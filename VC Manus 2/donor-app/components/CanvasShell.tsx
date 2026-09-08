@@ -1,0 +1,6 @@
+import { ArrowUpRight, Database, Search, SlidersHorizontal } from "lucide-react";
+import { Link } from "wouter";
+
+export default function CanvasShell({ children }: { children: React.ReactNode }) {
+  return <div className="canvas-app"><header className="canvas-header"><Link href="/" className="canvas-brand"><span className="canvas-mark">VC</span><span>VISUAL CLIMATE</span></Link><div className="canvas-status"><span className="live-dot" /> live intelligence canvas <span className="canvas-divider" /> 55 indexed sources</div><div className="canvas-actions"><button type="button" className="canvas-tool"><Search size={15} /> Search</button><Link href="/sources" className="canvas-tool"><Database size={15} /> Sources</Link><Link href="/account" className="canvas-tool">Account <ArrowUpRight size={13} /></Link></div></header><div className="canvas-command"><span className="command-label">ANALYSIS /</span><span>frame a question, keep the evidence visible</span><button type="button" className="command-settings"><SlidersHorizontal size={14} /> workspace</button></div><main className="canvas-main">{children}</main><footer className="canvas-footer"><span>Visual Climate / source-cited climate intelligence</span><span>Values, conditions, uncertainty, and lineage travel together.</span></footer></div>;
+}

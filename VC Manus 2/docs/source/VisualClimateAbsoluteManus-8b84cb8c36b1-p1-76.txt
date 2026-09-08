@@ -1,0 +1,3616 @@
+전부 진행합니다. Part 3 (AI 에이전트)부터 시작합니다.
+
+
+
+
+VISUAL CLIMATE — TECHNICAL
+PROPOSAL
+Document ID: VC-TECH-PROP-2026-001​
+Version: 1.0 | September 2026​
+In Response to: VC-RFP-2026-001
+
+
+
+
+PART 3: AI 에이전트 아키텍처 상세
+
+3.1 Agentforce 구성 개요
+Visual Climate의 AI 레이어는 Salesforce Agentforce 3 위에 구축됩니다. Agentforce 3의
+Atlas Reasoning Engine은 hybrid reasoning을 지원합니다 — LLM의 유연한 자연어 이해와
+Agentforce Script의 결정론적 비즈니스 로직을 결합합니다. 이 hybrid 접근이 기후 데이터
+플랫폼에 필수적인 이유는, AI가 "캄보디아의 에너지 섹터 배출이 증가한 이유를
+설명해줘"라는 자연어를 이해해야 하면서도, "소스를 인용하지 않은 해석은 절대
+사용자에게 보내지 마라"라는 규칙은 예외 없이 강제해야 하기 때문입니다.
+
+Agentforce의 공식 구성 요소와 Visual Climate의 매핑은 다음과 같습니다.
+
+  Agentforce                      Visual Climate 매핑                          RFP
+     요소                                                                      참조
+
+Agent          VisualClimateAgent (Primary)                                 §13.1
+
+Subagent       16개 Climate Skill (S01–S16)                                  §13.2
+
+Topic          Subagent의 범위 정의 (어떤 질문이 이 Subagent로 가는지)                     §13.2
+
+Instruction    Subagent별 행동 규칙 (자연어)                                        §13.2
+
+Action         Flow Action, Apex Action, Prompt Template Action, External   §13.2
+               Service Action
+
+Agentforce     결정론적 실행 흐름 (step-by-step)                                    §12,
+Script                                                                      §14
+ Guardrail/Rule    금지 행위 9개, 품질 게이트 7개                                     §14,
+                                                                           §12
+
+ Filter            실시간 조건부 Subagent/Action 활성화                             §13.2
+
+
+
+
+3.2 Primary Agent (Orchestrator) 상세 설계
+Primary Agent는 사용자의 모든 질의를 받는 단일 진입점입니다. Atlas Reasoning Engine이
+각 Subagent의 이름, 설명, Instructions, 사용 가능한 Actions를 검토하여 최적의 Subagent에
+작업을 위임합니다. 사용자는 Subagent의 존재를 모르고, 하나의 대화 스레드에서
+연속적으로 질문합니다.
+
+Primary Agent 정의:
+
+Agent: VisualClimateAgent
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: Visual Climate Assistant
+
+설명:
+ "You are the AI assistant for Visual Climate (visualclimate.org),
+  a free climate data education platform covering 250 countries with
+  data from 40+ global sources. You help users explore, understand,
+  and analyze climate data including GHG emissions, climate projections,
+  vulnerability, disasters, policies, and finance. You route queries
+  to specialized subagents and return unified, source-cited responses."
+
+Global Instructions (모든 Subagent에 상속):
+ 1. "Every numerical claim must cite the exact source name, dataset ID,
+    and year. Format: [Source: DS-XX, Year: YYYY]"
+ 2. "Never generate country rankings unless the user explicitly asks
+    for a ranking and the data supports it."
+ 3. "Never use 'will' for projections. Use 'is projected to' with
+    the scenario name (e.g., SSP2-4.5)."
+ 4. "If you cannot find data for a query, say so explicitly.
+    Never fabricate or interpolate data."
+ 5. "Detect the user's language and respond in the same language."
+ 6. "Append 'This is an AI-generated interpretation. Verify critical
+    data points with original sources.' to every analytical response."
+
+Global Guardrails:
+ - block: GenerateCountryRanking (unless user explicitly requests)
+ - block: ProvideFinancialAdvice
+ - block: ProvideLegalAdvice
+ - block: DiscloseEndangeredSpeciesLocations
+ - block: SubmitPolicyRecommendationsAsOfficial
+ - block: AccessTableauMCPLogin
+ - block: AccessPrivateTokens
+ - block: CircumventSourceTerms
+ - block: ImputeWithoutApproval
+ - block: MakeUnsupportedCausalClaim
+
+Subagent 라우팅 예시:
+ "캄보디아 CO₂ 배출 보여줘" → S01 DataRetrieval → S02 Visualization
+ "이 그래프 설명해줘" → S03 Explanation
+ "한국이랑 일본 배출 비교해줘" → S04 Comparison
+ "이 데이터 맞아?" → S05 Validation
+ "PDF 보고서 만들어줘" → S06 ReportGeneration
+ "기후변화 기초부터 배우고 싶어" → S07 LearningPath
+ "이걸 프랑스어로 번역해줘" → S16 Translation
+
+
+Multi-Agent Orchestration 흐름:
+
+사용자 입력: "캄보디아의 2015-2023 에너지 섹터 배출을 EDGAR과 Climate TRACE로
+비교해줘"
+
+Step 1 — Atlas Reasoning Engine이 의도 분석:
+ → 국가: Cambodia (KHM)
+ → 시간: 2015-2023
+ → 섹터: Energy
+ → 소스 지정: EDGAR (DS-05), Climate TRACE (DS-02)
+ → 작업 유형: Multi-source comparison
+ → 라우팅 결정: S04 Comparison (primary), S01 DataRetrieval (support)
+
+Step 2 — S01 DataRetrieval 호출:
+ → Action: QueryDataCloud
+ → SOQL: SELECT country_iso3, year, sector, value, unit, source_id
+      FROM country_emissions
+      WHERE country_iso3 = 'KHM'
+      AND year >= 2015 AND year <= 2023
+      AND sector = 'Energy'
+      AND source_id IN ('DS-02', 'DS-05')
+ → 결과: 18행 (9년 × 2소스)
+
+Step 3 — S04 Comparison 호출:
+ → Action: CompareMultiSource
+ → 입력: data_records[18], sources['DS-02','DS-05']
+
+                                          ✅
+ → Agentforce Script 실행:
+
+                                          ⚠️
+  - check: 두 소스의 기준연도가 동일한가?                (둘 다 calendar year)
+  - check: 두 소스의 가스 범위가 동일한가?
+    (EDGAR: CO₂+CH₄+N₂O+F-gas, TRACE: CO₂+CH₄+N₂O)
+  - 결정: 비교 가능하되, F-gas 차이를 경고에 포함
+ → Action: GenerateComparisonExplanation (Prompt Template)
+ → 결과: 비교 해석 텍스트 + 차이 원인 설명
+
+Step 4 — S02 Visualization 호출:
+ → Action: SelectTableauView
+ → 선택: 'CountryProfile/EmissionsComparison' 워크북
+ → 파라미터: country=KHM, yearStart=2015, yearEnd=2023,
+        sector=Energy, sources=DS-02,DS-05
+ → 결과: Tableau embed URL with filters
+
+Step 5 — Quality Gate Check:
+
+                ✅
+ → Action: CheckQualityGates (Apex)
+
+              ✅
+ → Q1 sources:     (모든 수치에 DS-02/DS-05 인용)
+
+              ✅
+ → Q2 dates:     (2015-2023은 양 소스 커버리지 내)
+
+                     ⚠️
+ → Q3 units:    (MtCO₂eq 통일)
+
+                    ✅
+ → Q4 comparability:    (F-gas 차이, warning에 포함)
+
+                     ✅
+ → Q5 uncertainty:    (TRACE는 ±범위, EDGAR은 Fast Track 주의 표시)
+
+                      ✅
+ → Q6 AI disclosure:    (문구 포함)
+ → Q7 human signoff:     (BTR 관련 아님)
+ → 결과: PASS (with warnings)
+
+Step 6 — Primary Agent가 통합 응답 구성:
+ → Tableau 시각화 (임베드)
+ → 비교 해석 텍스트
+ → 경고: "EDGAR includes F-gases; Climate TRACE does not.
+       This may account for ~2-5% difference in total values."
+ → 소스 인용 목록
+ → AI disclosure 문구
+
+
+
+
+3.3 16개 Subagent (Skill) 상세 계약
+각 Subagent를 동일한 구조로 정의합니다: 이름, 설명(Topic scope), Instructions, Actions
+(타입별), Agentforce Script (step-by-step), 금지 행위, 감사 로그 스키마.
+
+
+
+
+S01 — DataRetrieval
+Subagent: DataRetrieval
+━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDataRetriever
+
+설명 (Topic Scope):
+ "Retrieves climate data from Data Cloud for a specific country,
+  indicator, time range, sector, and/or data source. This subagent
+  is called by other subagents that need raw data. It does NOT
+ interpret or visualize data — it only fetches and returns."
+
+
+ ✅
+Topic Classifier Examples (Atlas가 라우팅에 사용):
+
+ ✅
+    "캄보디아 CO₂ 배출 데이터 가져와"
+
+ ✅
+    "Show me Nigeria's ND-GAIN vulnerability score"
+    "2010-2020 전 세계 재생에너지 설비 용량"
+ ✗ "이 데이터 설명해줘" → S03으로 라우팅
+ ✗ "차트 보여줘" → S02로 라우팅
+
+Instructions:
+ 1. "Parse the user query to identify: country (ISO3), indicator(s),
+    time range, sector, gas type, data source preference."
+ 2. "If country is ambiguous (e.g., 'Korea'), ask for clarification
+    (KOR vs PRK)."
+ 3. "If no time range specified, default to most recent 10 years."
+ 4. "If no source specified, query ALL available sources for the
+    indicator and return all values with source_id."
+ 5. "If no data exists, return empty result with explanation
+    of which sources were checked and their coverage."
+ 6. "Include source metadata (update_date, methodology_notes)
+    in every response."
+
+Actions:
+
+ Action 1: QueryDataCloud
+ ──────────────────────────
+ 타입: Flow Action (Autolaunched Flow)
+ Flow 이름: VC_Query_Country_Data
+ 입력:
+  - country_iso3: String (required)
+  - indicator_ids: List<String> (optional, 기본값: 주요 42개)
+  - year_start: Integer (optional, 기본값: current_year - 10)
+  - year_end: Integer (optional, 기본값: current_year)
+  - sector: String (optional)
+  - gas_type: String (optional)
+  - source_ids: List<String> (optional, 기본값: ALL)
+ 처리:
+  - Data Cloud DMO에 SOQL 쿼리
+  - 결과를 source_id별로 그룹화
+  - 각 그룹에 source_metadata 첨부
+ 출력:
+  - data_records: List<DataRecord>
+    DataRecord {
+      country_iso3: String,
+      country_name: String,
+      indicator_id: String,
+      indicator_name: String,
+      year: Integer,
+   value: Decimal,
+   unit: String,
+   source_id: String,
+   source_name: String,
+   source_update_date: Date,
+   methodology_notes: String,
+   uncertainty_range: String (nullable)
+   }
+ - query_metadata: QueryMetadata
+   QueryMetadata {
+     total_records: Integer,
+     sources_queried: List<String>,
+     sources_with_data: List<String>,
+     sources_without_data: List<String>,
+     time_range_actual: String,
+     query_duration_ms: Integer
+   }
+
+Action 2: GetSourceRegistry
+──────────────────────────
+타입: Flow Action
+Flow 이름: VC_Get_Source_Registry
+입력:
+ - source_ids: List<String> (optional, 기본값: ALL)
+ - indicator_id: String (optional)
+출력:
+ - sources: List<SourceRecord>
+   SourceRecord {
+     source_id: String,
+     title: String,
+     maintainer: String,
+     api_endpoint: String,
+     temporal_coverage: String,
+     spatial_coverage: String,
+     update_cadence: String,
+     license_type: String,
+     known_gaps: String,
+     methodology_notes: String,
+     status: String (approved|degraded|...)
+   }
+
+Action 3: ResolveCountry
+──────────────────────────
+타입: Flow Action
+Flow 이름: VC_Resolve_Country
+입력:
+ - query_text: String ("Korea", "Cambodia", "DR Congo" 등)
+출력:
+  - matches: List<CountryMatch>
+    CountryMatch {
+      iso3: String,
+      name_en: String,
+      name_local: String,
+      confidence: Decimal
+    }
+  - needs_clarification: Boolean
+  - clarification_prompt: String (nullable)
+
+Agentforce Script:
+ step 1: Parse user query → extract country, indicators, time, sector, sources
+ step 2: run ResolveCountry(query_text)
+  if needs_clarification == true → ask user → wait → re-parse
+ step 3: run QueryDataCloud(resolved parameters)
+ step 4: if data_records is empty:
+  run GetSourceRegistry(indicator_id)
+  respond: "No data found for [indicator] in [country].
+         Sources checked: [list]. [source_name] covers [coverage]
+         but does not include [country/indicator]."
+  exit
+ step 5: return data_records + query_metadata to calling subagent
+
+금지 행위:
+ - block: InterpretData (해석은 S03 전용)
+ - block: ModifyData (데이터 변경 불가, read-only)
+ - block: AccessExternalAPIDirectly (Data Cloud 경유만 허용)
+ - block: ImputeMissingValues (빈칸 채우기 불가)
+
+감사 로그:
+ {
+   run_id: UUID,
+   subagent_id: "S01",
+   version: "1.0",
+   actions_invoked: ["QueryDataCloud"],
+   actions_blocked: [],
+   input: { country: "KHM", indicators: [...], year_range: "2015-2023" },
+   input_hash: SHA-256,
+   output: { record_count: 18, sources_found: ["DS-02","DS-05"] },
+   output_hash: SHA-256,
+   quality_gates: null (S01은 데이터 반환만, 게이트는 호출한 subagent에서),
+   human_gate_triggered: false,
+   status: "completed",
+   warnings: [],
+   timestamp: ISO-8601,
+   duration_ms: Integer
+ }
+S02 — Visualization
+Subagent: Visualization
+━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDataVisualizer
+
+설명 (Topic Scope):
+ "Selects or generates appropriate Tableau visualizations based on
+  the data type, user intent, and device. Returns embed URLs with
+  pre-applied filters. Does NOT create new Tableau workbooks at
+  runtime — selects from a pre-built library of workbook templates."
+
+
+ ✅
+Topic Classifier Examples:
+
+ ✅
+    "차트로 보여줘"
+
+ ✅
+    "이걸 지도로 볼 수 있어?"
+    "배출 추세 그래프"
+ ✗ "이 차트 설명해줘" → S03
+ ✗ "PDF로 만들어줘" → S06
+
+Instructions:
+ 1. "Match data type to visualization type:
+    - Time series (single country) → Line chart
+    - Time series (multi country) → Multi-line or small multiples
+    - Country comparison (snapshot year) → Bar chart
+    - Multi-source comparison → Dual-axis or grouped bar
+    - Geographic distribution → Choropleth map
+    - Vulnerability matrix → Scatter plot (ND-GAIN style)
+    - Sector breakdown → Stacked bar or treemap
+    - Disaster frequency → Timeline + bar combo"
+ 2. "Apply RFP §40 Data Class display rules:
+    - Scenario projections: always show uncertainty band + scenario label
+    - Finance data: distinguish commitment vs disbursement
+    - Observation data: show source attribution
+    - Index data: never display as sole red-green heatmap"
+ 3. "Apply accessibility standards:
+    - Color-blind safe palette (Tableau built-in 'Color Blind' palette)
+    - Minimum contrast ratio 4.5:1
+    - All charts must have title, axis labels, source attribution
+    - Mobile layout for device='phone'"
+ 4. "Return Tableau embed URL with filters pre-applied via URL parameters."
+
+Actions:
+
+ Action 1: SelectVisualization
+ ──────────────────────────────
+타입: Flow Action
+Flow 이름: VC_Select_Visualization
+입력:
+ - data_type: String (emissions|climate|vulnerability|disaster|policy|finance)
+ - chart_intent: String (trend|comparison|geographic|breakdown|matrix)
+ - country_count: Integer
+ - source_count: Integer
+ - time_range: String
+ - device: String (desktop|phone|tablet)
+출력:
+ - workbook_id: String (Tableau Cloud workbook ID)
+ - view_name: String (dashboard/sheet name)
+ - template_type: String (line|bar|map|scatter|...)
+로직:
+ - Decision matrix (data_type × chart_intent → workbook/view 매핑)
+ - 40+ pre-built Tableau 대시보드 라이브러리에서 선택
+
+Action 2: BuildEmbedURL
+──────────────────────────
+타입: Apex Action
+Class: VC_BuildTableauEmbedURL
+입력:
+ - workbook_id: String
+ - view_name: String
+ - filters: Map<String, String>
+   예: {"Country": "Cambodia", "Year Range": "2015-2023",
+        "Sector": "Energy", "Source": "EDGAR,Climate TRACE"}
+ - device: String
+ - language: String
+처리:
+ - Tableau Cloud Connected App JWT 생성
+ - URL 조립: https://{tableau-cloud}/views/{workbook}/{view}
+   ?Country=Cambodia&Year+Range=2015-2023&...
+ - JWT를 embed token으로 포함
+출력:
+ - embed_url: String
+ - embed_token: String (JWT, 10분 만료)
+ - viz_config: Object
+   {
+     toolbar: "bottom",
+     hideTabs: true,
+     device: "phone"|"desktop",
+     height: Integer,
+     width: Integer
+   }
+
+Action 3: CheckDisplayRules
+──────────────────────────────
+ 타입: Apex Action
+ Class: VC_CheckDisplayRules
+ 입력:
+  - data_class: String (observation|reanalysis|projection|hazard|finance|index|sdg)
+  - chart_type: String
+  - data_records: summary
+ 출력:
+  - rules_applied: List<String>
+  - warnings: List<String>
+  - modifications: List<String>
+    예: "Added uncertainty band for SSP projection"
+    예: "Changed y-axis label from 'emissions' to 'emissions (MtCO₂eq, EDGAR v2024)'"
+ 로직:
+  RFP §40의 7개 Data Class별 표현 규칙을 코드화:
+
+  if data_class == "projection":
+    require: uncertainty_band = true
+    require: scenario_label in chart_title
+    forbid: word "will" in any label
+    require: word "projected" or "estimated"
+
+  if data_class == "finance":
+    require: distinguish commitment vs disbursement
+    forbid: display commitment as actual spend
+
+  if data_class == "index":
+    forbid: sole red-green heatmap
+    require: component breakdown available
+    require: label "higher reported vulnerability under this framework"
+
+  if data_class == "hazard":
+    forbid: interpret occurrence_count as population_affected
+
+  // ... 나머지 data class 규칙
+
+Agentforce Script:
+ step 1: receive data_records + user intent from calling context
+ step 2: determine data_type and chart_intent from data analysis
+ step 3: run SelectVisualization
+ step 4: run CheckDisplayRules
+  if warnings → include in response
+  if modifications → apply to embed parameters
+ step 5: run BuildEmbedURL with filters from data context
+ step 6: return embed_url + viz_config + display_rule_warnings
+
+금지 행위:
+ - block: CreateNewWorkbook (런타임에 새 워크북 생성 금지, 사전 빌드만)
+ - block: DisplayRankingOnly (순위만 표시하는 시각화 금지)
+ - block: SingleScoreRedGreen (ND-GAIN 단일 점수 빨강-초록 히트맵 금지)
+ - block: OmitSourceAttribution (시각화에서 소스 표시 생략 금지)
+
+
+
+
+S03 — Explanation
+Subagent: Explanation
+━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDataExplainer
+
+설명 (Topic Scope):
+ "Provides plain-language interpretation of climate data and
+  visualizations. Explains trends, anomalies, comparisons, and
+  context. Every explanation must cite specific data sources
+  and years. Responds in the user's language."
+
+
+ ✅
+Topic Classifier Examples:
+
+ ✅
+    "이 그래프 설명해줘"
+
+ ✅
+    "왜 배출이 2018년에 급증했어?"
+    "What does this vulnerability score mean?"
+ ✗ "데이터 보여줘" → S01
+ ✗ "비교해줘" → S04
+
+Instructions:
+ 1. "Structure every explanation as:
+    WHAT (the data shows) → WHY (possible reasons) → SO WHAT (implications).
+    Keep WHAT purely factual. Keep WHY hedged ('likely due to', 'possibly
+    related to'). Keep SO WHAT forward-looking but not prescriptive."
+ 2. "When explaining trends, always state: direction, magnitude (%),
+    absolute change, time period, and source."
+ 3. "When two sources disagree, explain both values and the methodological
+    reason. EDGAR uses top-down energy statistics; Climate TRACE uses
+    bottom-up satellite observation + ML. Neither is 'wrong' — they
+    measure differently."
+ 4. "For ND-GAIN vulnerability, always decompose into components
+    (exposure, sensitivity, adaptive capacity) rather than just
+    stating the composite score."
+ 5. "Never make causal claims without evidence.
+    'CO₂ increased' ≠ 'CO₂ caused temperature increase'
+    unless citing IPCC attribution studies."
+ 6. "If confidence < 0.7, respond: 'The available data is insufficient
+    for a reliable interpretation.'"
+ 7. "Adapt complexity to apparent user expertise:
+    - Simple language for general users
+    - Technical terminology for users who demonstrate expertise
+      (e.g., mentioning BTR, IPCC methodology, GWP values)"
+Actions:
+
+ Action 1: QueryDataCloud
+ ──────────────────────────
+ (S01의 Action 1과 동일 Flow 재사용)
+
+ Action 2: GetSourceMetadata
+ ──────────────────────────
+ 타입: Flow Action
+ Flow 이름: VC_Get_Source_Metadata
+ 입력: source_ids: List<String>
+ 출력: List<SourceMetadata>
+  SourceMetadata {
+    source_id, source_name, maintainer,
+    methodology_notes, known_gaps,
+    gwp_version, sector_classification,
+    update_date, license
+  }
+
+ Action 3: GenerateExplanation
+ ──────────────────────────────
+ 타입: Prompt Template Action
+ Template 이름: VC_Climate_Explanation_Template
+ 입력:
+  - data_records: JSON (시각화에 표시된 데이터)
+  - source_metadata: JSON (각 소스의 방법론·갭·주의사항)
+  - user_language: String
+  - user_query: String
+  - visualization_type: String
+  - conversation_history: String (이전 맥락)
+ 프롬프트 구조:
+  """
+  You are a climate data analyst explaining data from Visual Climate.
+
+  DATA:
+  {data_records}
+
+  SOURCE INFORMATION:
+  {source_metadata}
+
+  USER ASKED: {user_query}
+  VISUALIZATION SHOWN: {visualization_type}
+
+  RULES:
+  - Cite [Source: {source_id}, Year: {year}] for every number.
+  - Structure: WHAT → WHY → SO WHAT.
+  - Never say "will" for projections. Say "is projected to under {scenario}".
+  - If two sources disagree, explain both and the methodological difference.
+  - For ND-GAIN, decompose into components.
+  - Respond in {user_language}.
+  - If data is insufficient, say so.
+
+  RESPOND:
+  """
+ 출력:
+  - explanation_text: String
+  - confidence_score: Decimal (0.0–1.0)
+  - citations: List<Citation>
+    Citation { source_id, source_name, year, indicator, value, unit }
+
+ Action 4: CheckQualityGates
+ ──────────────────────────────
+ 타입: Apex Action (§3.4에서 상세)
+ 입력: explanation_text, citations, source_metadata, is_btr_related
+ 출력: gate_results{Q1..Q7}, all_passed, failed_gates[], warnings[]
+
+Agentforce Script:
+ step 1: identify what data the user is asking about
+  if visualization is currently displayed → extract data context
+  if standalone question → run QueryDataCloud
+ step 2: run GetSourceMetadata for each source in data
+ step 3: run GenerateExplanation
+ step 4: validate confidence_score
+  if confidence < 0.7 → respond with insufficient data message → exit
+ step 5: run CheckQualityGates
+  if Q1 fails → re-run GenerateExplanation with stricter citation instruction
+  if Q4 fails → add comparability warning to response
+  if Q7 fails (BTR related, no human approval) → set status "review" →
+    notify reviewer → hold response
+  if still fails after retry → escalate to human
+ step 6: if all gates pass → set status "ready" → return to Primary Agent
+
+ retry_policy:
+  max_retries: 2
+  on_persistent_failure: return "I cannot generate a reliable explanation
+    for this data. Please consult the original sources: [source URLs]."
+
+금지 행위:
+ - block: GenerateCountryRanking
+ - block: MakeCausalClaim (상관관계만, 인과관계 주장 금지)
+ - block: ImputeMissingData
+ - block: PredictFutureEmissions (전망은 기존 시나리오 데이터 인용만)
+ - block: RecommendPolicy (정책 권고 금지, 데이터 해석만)
+S04 — Comparison
+Subagent: Comparison
+━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDataComparator
+
+설명 (Topic Scope):
+ "Compares climate data across countries, across time periods,
+  or across data sources. Enforces comparability rules before
+  generating any comparison."
+
+
+ ✅
+Topic Classifier Examples:
+
+ ✅
+    "한국이랑 일본 배출 비교"
+
+ ✅
+    "EDGAR vs Climate TRACE 차이가 뭐야?"
+    "2010 vs 2020 캄보디아 변화"
+ ✗ "캄보디아 배출 보여줘" → S01+S02
+ ✗ "이 비교 설명해줘" → S03
+
+Instructions:
+ 1. "Before comparing, run comparability check:
+    - Same base year?
+    - Same gas coverage? (CO₂ only vs all GHG)
+    - Same sector scope? (energy only vs economy-wide)
+    - Same GWP version?
+    - Same spatial boundary? (mainland vs including overseas territories)
+    If any differs, WARN the user before proceeding."
+ 2. "For cross-country comparison, normalize by default:
+    - Per capita (using WDI population)
+    - Per GDP (using WDI GDP PPP)
+    - Absolute
+    Show all three unless user specifies."
+ 3. "For cross-source comparison, always show both values side by side.
+    Never average or merge different sources."
+ 4. "Maximum 4 countries in one comparison (UI constraint)."
+
+Actions:
+
+ Action 1: CheckComparability
+ ──────────────────────────────
+ 타입: Apex Action
+ Class: VC_ComparabilityChecker
+ 입력:
+  - comparison_items: List<ComparisonItem>
+    ComparisonItem {
+     entity: String (country or source),
+     source_id: String,
+     year_range: String,
+     gas_scope: String,
+     sector_scope: String,
+     gwp_version: String,
+     spatial_boundary: String
+    }
+ 출력:
+  - is_comparable: Boolean
+  - comparability_issues: List<Issue>
+    Issue {
+      dimension: String (gas|sector|gwp|boundary|timeframe),
+      entity_a: String,
+      entity_b: String,
+      value_a: String,
+      value_b: String,
+      severity: String (warning|blocker),
+      explanation: String
+    }
+  - recommendation: String
+    ("Comparison is valid" |
+     "Comparison is valid with caveats: [issues]" |
+     "Comparison is NOT valid: [blockers]. Consider [alternative].")
+
+ Action 2: NormalizeData
+ ──────────────────────────
+ 타입: Flow Action
+ Flow 이름: VC_Normalize_Comparison
+ 입력:
+  - data_records: from S01
+  - normalization: List<String> ["per_capita", "per_gdp", "absolute"]
+  - population_source: "DS-01" (WDI)
+  - gdp_source: "DS-01" (WDI)
+ 출력:
+  - normalized_records: List<NormalizedRecord>
+    NormalizedRecord {
+      ...DataRecord fields,
+      value_per_capita: Decimal,
+      value_per_gdp: Decimal,
+      population: Long,
+      gdp_ppp: Decimal,
+      normalization_source: String
+    }
+
+ Action 3: GenerateComparisonExplanation
+ ──────────────────────────────────────────
+ 타입: Prompt Template Action
+ (S03의 Action 3과 유사하되, 비교 전용 프롬프트)
+
+Agentforce Script:
+ step 1: parse comparison request → identify entities, metrics, time range
+ step 2: run S01.QueryDataCloud for each entity
+ step 3: run CheckComparability
+  if blocker found → explain why comparison is invalid → suggest alternative → exit
+  if warnings found → proceed with caveats
+ step 4: run NormalizeData
+ step 5: run S02.SelectVisualization (chart_intent="comparison")
+ step 6: run GenerateComparisonExplanation
+ step 7: run CheckQualityGates
+ step 8: return visualization + explanation + comparability caveats
+
+금지 행위:
+ - block: CompareIncomparableData (blocker 있으면 비교 진행 금지)
+ - block: MergeDifferentSources (다른 소스 값을 평균내기 금지)
+ - block: RankWithoutRequest (사용자가 요청하지 않은 순위 금지)
+
+
+
+
+S05 — Validation
+Subagent: Validation
+━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDataValidator
+
+설명 (Topic Scope):
+ "Validates climate data by cross-referencing multiple sources,
+  identifying anomalies, and checking consistency. This is the
+  foundation for the BTR verification module."
+
+Instructions:
+ 1. "When user asks 'is this data correct?', cross-reference the
+    value against ALL available sources for the same indicator."
+ 2. "Flag anomalies: year-over-year change > 30% without known cause,
+    value outside 3 standard deviations of historical trend,
+    value contradicts multiple independent sources."
+ 3. "For BTR verification: compare country-reported value against
+    EDGAR and Climate TRACE independent estimates. Categorize
+    discrepancies into 6 error types:
+    Type 1: Magnitude error (>50% difference)
+    Type 2: Trend direction mismatch
+    Type 3: Sector misallocation
+    Type 4: Gas scope mismatch
+    Type 5: Temporal gap (missing years)
+    Type 6: Methodology inconsistency (GWP, sector classification)"
+ 4. "NEVER state that country-reported data is 'wrong'.
+    State: 'The country-reported value differs from [source]
+    independent estimate by [X%]. Possible reasons include: [list].'"
+Actions:
+
+ Action 1: CrossReferenceCheck
+ ──────────────────────────────
+ 타입: Apex Action
+ Class: VC_CrossReferenceValidator
+ 입력:
+  - target_value: Decimal
+  - country_iso3: String
+  - indicator_id: String
+  - year: Integer
+  - target_source: String
+ 출력:
+  - reference_values: List<ReferenceValue>
+    ReferenceValue {
+      source_id, source_name, value, unit,
+      difference_absolute, difference_percent,
+      methodology_difference: String
+    }
+  - anomaly_detected: Boolean
+  - anomaly_type: String (magnitude|trend|sector|gas|temporal|methodology)
+  - confidence_in_target: String (high|medium|low)
+
+ Action 2: BTRVerification
+ ──────────────────────────
+ 타입: Apex Action
+ Class: VC_BTRVerifier
+ 입력:
+  - country_iso3: String
+  - reported_emissions: Map<Integer, Decimal> (year → value)
+  - reported_source: String ("country_btr")
+  - sector: String (optional)
+ 출력:
+  - verification_results: List<VerificationResult>
+    VerificationResult {
+      year: Integer,
+      reported_value: Decimal,
+      edgar_value: Decimal,
+      trace_value: Decimal,
+      edgar_diff_percent: Decimal,
+      trace_diff_percent: Decimal,
+      error_types_detected: List<String>,
+      explanation: String,
+      severity: String (info|warning|critical)
+    }
+  - summary: BTRVerificationSummary {
+      years_verified: Integer,
+       years_with_issues: Integer,
+       critical_issues: Integer,
+       warning_issues: Integer,
+       overall_assessment: String
+   }
+
+Agentforce Script:
+ step 1: identify what data to validate
+ step 2: run S01.QueryDataCloud for all available sources of same indicator
+ step 3: run CrossReferenceCheck
+ step 4: if BTR context → run BTRVerification
+ step 5: generate validation report
+ step 6: run CheckQualityGates (Q7: BTR = human gate required)
+ step 7: if human gate → hold for reviewer → notify → wait
+ step 8: return validation results
+
+금지 행위:
+ - block: DeclareDataWrong (데이터가 "틀렸다"고 선언 금지)
+ - block: CorrectData (데이터 수정 금지, 차이점만 보고)
+ - block: SubmitVerificationAsOfficial (공식 검증으로 제출 금지)
+
+
+
+
+S06 — ReportGeneration
+Subagent: ReportGeneration
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateReportGenerator
+
+설명 (Topic Scope):
+ "Generates structured PDF climate profiles and briefings.
+  Combines data, visualizations, and AI explanations into
+  downloadable documents."
+
+Instructions:
+ 1. "Standard Country Climate Profile structure:
+    Section 1: Country Overview (population, GDP, HDI, region)
+    Section 2: GHG Emissions (trend, sectors, per capita, comparison)
+    Section 3: Climate Change (observed temperature/precip changes, projections)
+    Section 4: Vulnerability & Adaptation (ND-GAIN matrix, disasters, adaptation gaps)
+    Section 5: Policy & NDC (NDC targets, policies, CAT rating if available)
+    Section 6: Climate Finance (GCF projects, bilateral flows, needs vs received)
+    Section 7: Data Sources & Methodology Notes
+    Footer: AI disclosure, generation date, Visual Climate attribution"
+ 2. "Every visualization in the PDF must be a static export (PNG)
+    from Tableau, not an interactive embed."
+ 3. "All numbers must include source citations in footnotes."
+ 4. "PDF must be available in all 6 UN languages."
+
+Actions:
+
+ Action 1: CompileReportData
+ ──────────────────────────────
+ 타입: Flow Action
+ (Calls S01.QueryDataCloud multiple times for all 7 sections)
+
+ Action 2: ExportTableauImages
+ ──────────────────────────────
+ 타입: Apex Action (Tableau REST API)
+ 입력: workbook_ids, view_names, filters, format="png", resolution="300dpi"
+ 출력: List<ImageURL>
+
+ Action 3: GenerateSectionText
+ ──────────────────────────────
+ 타입: Prompt Template Action
+ (각 섹션별 텍스트 생성, S03의 규칙 동일 적용)
+
+ Action 4: AssemblePDF
+ ──────────────────────────
+ 타입: External Service Action (Next.js API route → Puppeteer/React-PDF)
+ 입력: sections[], images[], language, country_iso3
+ 출력: pdf_url, pdf_size_bytes
+
+Agentforce Script:
+ step 1: run CompileReportData (all 7 sections)
+ step 2: run ExportTableauImages (all visualizations)
+ step 3: for each section: run GenerateSectionText
+ step 4: run CheckQualityGates on each section text
+  if any BTR-related section fails Q7 → hold for reviewer
+ step 5: run AssemblePDF
+ step 6: return pdf_url
+
+금지 행위:
+ - block: IncludeUnverifiedData (게이트 통과하지 않은 데이터 PDF에 포함 금지)
+ - block: OmitSourceSection (Section 7 생략 금지)
+ - block: OmitAIDisclosure (AI 생성 고지 생략 금지)
+
+
+
+
+S07 — LearningPath
+Subagent: LearningPath
+━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateLearningGuide
+설명 (Topic Scope):
+ "Guides users through structured learning journeys about climate
+  data. Implements the Predict-See-Explore-Ask methodology."
+
+Instructions:
+ 1. "Predict-See-Explore-Ask (PSEA) methodology:
+    PREDICT: Ask user to guess a value before showing it.
+     Example: 'What do you think Cambodia's CO₂ per capita is?'
+    SEE: Show the actual data with visualization.
+     Example: 'Actually, it's 0.5 tCO₂/capita. Here's the trend.'
+    EXPLORE: Guide user to dig deeper.
+     Example: 'Now look at the sector breakdown. Which sector
+     contributes most?'
+    ASK: Encourage user to ask their own question.
+     Example: 'What would you like to know about Cambodia's
+     emissions?'"
+ 2. "Learning paths:
+    Beginner: What is climate change? → Global emissions → My country → Comparison
+    Intermediate: Sector analysis → NDC understanding → Vulnerability → Finance
+    Advanced: BTR methodology → Data source comparison → Projection interpretation"
+ 3. "Track user progress in session. Remember which steps completed."
+ 4. "Celebrate correct predictions. Gently correct wrong predictions
+    with encouraging language."
+
+Actions:
+
+ Action 1: GetLearningPath
+ ──────────────────────────
+ 타입: Flow Action
+ 입력: user_level (beginner|intermediate|advanced), current_step, country
+ 출력: next_step, step_type (predict|see|explore|ask), content, visualization_params
+
+ Action 2: EvaluatePrediction
+ ──────────────────────────────
+ 타입: Prompt Template Action
+ 입력: user_prediction, actual_value, context
+ 출력: feedback_text, accuracy_assessment, encouragement
+
+Agentforce Script:
+ step 1: determine user level (from conversation or explicit choice)
+ step 2: run GetLearningPath → get next step
+ step 3: if step_type == "predict":
+  ask user for prediction → wait for response
+  run EvaluatePrediction → provide feedback
+  advance to "see" step
+ step 4: if step_type == "see":
+  run S01.QueryDataCloud + S02.Visualization → show data
+  run S03.Explanation → explain
+  advance to "explore"
+ step 5: if step_type == "explore":
+  suggest exploration directions
+  wait for user choice → route to appropriate subagent
+ step 6: if step_type == "ask":
+  prompt user for own question → route to Primary Agent
+
+
+
+
+S08 — PeerBenchmark
+Subagent: PeerBenchmark
+━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimatePeerBenchmarker
+
+설명: "Identifies relevant peer countries for comparison based on
+  economic, geographic, or climate characteristics, and benchmarks
+  the target country against its peers."
+
+Instructions:
+ 1. "Peer selection criteria (user can choose or auto-select):
+    - Income group (World Bank classification: LIC, LMIC, UMIC, HIC)
+    - Region (UN geoscheme)
+    - Population bracket
+    - Climate zone
+    - Emissions intensity bracket
+    - Custom selection by user"
+ 2. "Default: same income group + same region, top 5 by population."
+ 3. "Show where the target country falls within the peer distribution."
+
+Actions:
+
+ Action 1: SelectPeers
+ ──────────────────────
+ 타입: Flow Action
+ 입력: country_iso3, criteria (income|region|population|climate|custom)
+ 출력: peer_countries: List<String> (iso3 codes, max 10)
+
+ Action 2: BenchmarkAgainstPeers
+ ──────────────────────────────────
+ 타입: Flow Action
+ 입력: target_country, peer_countries, indicators
+ 출력: benchmark_data (target value, peer min, peer max, peer mean,
+     peer median, target percentile)
+S09 — AnomalyDetection
+Subagent: AnomalyDetection
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateAnomalyDetector
+
+설명: "Proactively identifies anomalies, outliers, and significant
+  changes in climate data. Integrates with Tableau Agentic
+  Analytics for automated pattern detection."
+
+Instructions:
+ 1. "Anomaly types to detect:
+    - Sudden spike/drop (>30% YoY change)
+    - Trend reversal (3+ years in one direction, then reversal)
+    - Outlier (>3 SD from historical mean)
+    - Data gap (missing years in otherwise continuous series)
+    - Cross-source divergence (>20% difference between EDGAR and TRACE)"
+ 2. "For each anomaly, provide: the anomaly, the expected range,
+    possible explanations (economic events, policy changes,
+    methodology changes, reporting errors)."
+ 3. "Integrate with Tableau Pulse for automated monitoring."
+
+Actions:
+
+ Action 1: DetectAnomalies
+ ──────────────────────────
+ 타입: Apex Action
+ Class: VC_AnomalyDetector
+ 입력: country_iso3, indicator_id, full_time_series
+ 출력: anomalies: List<Anomaly>
+  Anomaly {
+    year, value, expected_range_low, expected_range_high,
+    anomaly_type, severity (info|warning|critical),
+    possible_explanations: List<String>
+  }
+
+ Action 2: LinkToTableauPulse
+ ──────────────────────────────
+ 타입: External Service Action
+ (Tableau Pulse API로 이상 탐지 결과를 metric alert로 등록)
+
+
+
+
+S10 — NDCAnalyzer
+Subagent: NDCAnalyzer
+━━━━━━━━━━━━━━━━━━━━━
+이름: NDCAnalyzer
+
+설명: "Analyzes Nationally Determined Contributions — compares NDC
+  targets with actual emissions trajectories, identifies gaps,
+  and assesses alignment with temperature goals."
+
+Instructions:
+ 1. "Data sources for NDC: Climate Watch (DS-06) for structured
+    NDC indicators, UNFCCC NDC Registry (DS-08) for official text."
+ 2. "Compare NDC target year value with:
+    - Current trajectory (linear extrapolation from last 5 years)
+    - Current policy projection (if CAT data available)
+    - Sector-specific targets vs actual sector emissions"
+ 3. "Never state that a country 'will fail' its NDC. Use
+    'Current trajectory suggests [country] may face challenges
+    in meeting its [year] target of [value] unless [action].'"
+
+Actions:
+
+ Action 1: GetNDCTargets
+ ──────────────────────────
+ 타입: Flow Action
+ 입력: country_iso3
+ 출력: ndc_targets (base_year, target_year, target_type
+     [absolute|reduction|intensity|BAU], target_value,
+     conditional vs unconditional, sectors_covered, gases_covered)
+
+ Action 2: ProjectCurrentTrajectory
+ ──────────────────────────────────────
+ 타입: Apex Action
+ 입력: country_iso3, historical_emissions (last 10 years)
+ 출력: projected_value_at_target_year, trend_type (linear|exponential),
+     gap_to_target (absolute and %)
+
+ Action 3: AssessAlignment
+ ──────────────────────────
+ 타입: Prompt Template Action
+ 입력: ndc_targets, projected_trajectory, cat_rating (if available)
+ 출력: assessment_text, alignment_status (on_track|off_track|uncertain),
+     key_gaps: List<String>
+
+
+
+
+S11 — ClimateProjection
+Subagent: ClimateProjection
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+이름: ClimateProjectionExplorer
+
+설명: "Presents climate change projections (temperature, precipitation,
+  sea level, extreme events) under different SSP scenarios.
+  Data from CCKP (DS-18) and IPCC AR6 (DS-21)."
+
+Instructions:
+ 1. "Always show multiple scenarios side by side
+    (SSP1-2.6, SSP2-4.5, SSP5-8.5 minimum)."
+ 2. "Always show uncertainty range (model ensemble spread)."
+ 3. "CRITICAL: Never use 'will'. Always 'is projected to under [SSP]'."
+ 4. "Explain what SSP scenarios mean in plain language:
+    SSP1-2.6 = strong mitigation (sustainability)
+    SSP2-4.5 = middle of the road
+    SSP5-8.5 = high emissions (fossil fuel intensive)"
+ 5. "Connect projections to tangible impacts:
+    '+2°C by 2050' → 'This means approximately [X] more heatwave days
+    per year compared to 1990-2020 baseline.'"
+
+Actions:
+
+ Action 1: GetProjections
+ ──────────────────────────
+ 타입: Flow Action
+ 입력: country_iso3, variable (temperature|precipitation|sea_level|extreme),
+     scenarios: List<String>, time_horizons: List<String> (2030|2050|2100)
+ 출력: projections by scenario × time_horizon, with uncertainty_low/high
+
+ Action 2: TranslateToImpact
+ ──────────────────────────────
+ 타입: Prompt Template Action
+ 입력: projection_values, country_context (agriculture%, coastal_population%)
+ 출력: impact_description (plain language)
+
+
+
+
+S12 — DisasterAnalysis
+Subagent: DisasterAnalysis
+━━━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDisasterAnalyzer
+
+설명: "Analyzes historical disaster data from EM-DAT (DS-03) and
+  INFORM (DS-15). Identifies trends in climate-related disasters
+  and correlates with climate indicators."
+
+Instructions:
+ 1. "Filter for climate-related disasters only: flood, storm, drought,
+    wildfire, extreme temperature, landslide (wet)."
+ 2. "Economic damage data: always note that it's in reporting-year USD
+    and underestimates developing country losses."
+ 3. "Never claim individual disasters are 'caused by climate change'.
+    Use: 'The frequency of [disaster type] in [country] has increased
+    by [X%] over [period], consistent with climate projections for
+    the region [Source: IPCC AR6 WGII].'
+ 4. "EM-DAT threshold: deaths ≥10 OR affected ≥100 OR emergency declared
+    OR international assistance requested. Smaller events not captured."
+
+Actions:
+
+ Action 1: GetDisasterHistory
+ ──────────────────────────────
+ 타입: Flow Action
+ 입력: country_iso3, year_range, disaster_types (climate-related only)
+ 출력: disasters: List<Disaster> (type, subtype, year, deaths, affected,
+     damage_usd, magnitude), summary_stats (total_events, total_deaths,
+     total_affected, total_damage, events_per_year_trend)
+
+ Action 2: CorrelateWithClimate
+ ──────────────────────────────────
+ 타입: Apex Action
+ 입력: disaster_trend, temperature_trend, precipitation_trend
+ 출력: correlation_analysis (correlation_coefficient,
+     is_statistically_significant, caveat_text)
+ 주의: 상관관계만 보고, 인과관계 주장 금지
+
+
+
+
+S13 — FinanceTracker
+Subagent: FinanceTracker
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateFinanceTracker
+
+설명: "Tracks climate finance flows — GCF projects, bilateral flows,
+  carbon pricing, green bonds. Compares finance received vs
+  finance needed."
+
+Instructions:
+ 1. "CRITICAL distinction: commitment ≠ disbursement ≠ need.
+    Always label clearly which one is being shown."
+ 2. "For GCF data: show approved amount, disbursed amount,
+    sector (adaptation/mitigation/cross-cutting),
+    implementing entity."
+ 3. "Finance gap = country-reported need (from BTR) minus
+    finance received. Always cite both sources."
+ 4. "Carbon pricing: show whether country has carbon tax or ETS,
+    coverage %, price level."
+
+Actions:
+
+ Action 1: GetFinanceData
+ ──────────────────────────
+ 타입: Flow Action
+ 입력: country_iso3
+ 출력: gcf_projects, bilateral_flows, carbon_pricing,
+     reported_needs (from BTR), reported_received,
+     finance_gap
+
+ Action 2: AnalyzeFinanceGap
+ ──────────────────────────────
+ 타입: Prompt Template Action
+ 입력: finance_data, country_context
+ 출력: gap_analysis_text (need vs received, key gaps,
+     comparison with peer countries)
+
+
+
+
+S14 — DataImputation (인간 게이트 필수)
+Subagent: DataImputation
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateDataImputer
+
+설명: "Estimates missing data points using statistical methods.
+  THIS IS THE ONLY SUBAGENT ALLOWED TO FILL MISSING DATA.
+  Every imputation requires human approval before display."
+
+Instructions:
+ 1. "Imputation methods (in priority order):
+    a) Temporal interpolation (if adjacent years exist)
+    b) Peer country proxy (same income group + region average)
+    c) Sector decomposition (if total exists but sector breakdown missing)
+    d) Model-based estimation (regression from correlated indicators)"
+ 2. "EVERY imputed value must be:
+    - Clearly labeled as 'estimated' (never displayed as actual)
+    - Tagged with method used
+    - Tagged with uncertainty range
+    - Approved by human reviewer before display"
+ 3. "NEVER impute in silence. Every imputation is logged and visible."
+Actions:
+
+ Action 1: IdentifyGaps
+ ──────────────────────────
+ 타입: Flow Action
+ 입력: country_iso3, indicator_id, desired_year_range
+ 출력: available_years, missing_years, gap_locations
+
+ Action 2: EstimateMissing
+ ──────────────────────────
+ 타입: Apex Action
+ Class: VC_DataImputer
+ 입력: available_data, missing_years, method_preference
+ 출력: estimated_values: List<ImputedValue>
+  ImputedValue {
+    year, estimated_value, method_used,
+    uncertainty_low, uncertainty_high,
+    confidence_score, supporting_data_points,
+    status: "pending_approval" // 항상 이 상태로 시작
+  }
+
+ Action 3: RequestHumanApproval
+ ──────────────────────────────────
+ 타입: Flow Action (Salesforce Approval Process 트리거)
+ 입력: imputed_values, context
+ 출력: approval_status (approved|rejected|modified)
+
+Agentforce Script:
+ step 1: run IdentifyGaps
+ step 2: if no gaps → respond "No missing data" → exit
+ step 3: run EstimateMissing
+ step 4: present estimated values to user with full transparency
+ step 5: run RequestHumanApproval
+ step 6: WAIT for approval (이 Subagent는 동기적으로 승인을 기다림)
+ step 7: if approved → tag as "imputed_approved" → display with label
+     if rejected → discard → inform user
+     if modified → apply modifications → display with label
+
+이것은 유일하게 인간 승인이 필수인 Subagent입니다.
+
+
+
+
+S15 — EmbedWidget
+Subagent: EmbedWidget
+━━━━━━━━━━━━━━━━━━━━━
+
+이름: VisualClimateEmbedder
+설명: "Generates embeddable widgets (iframe code, API endpoints)
+  for external websites to display Visual Climate visualizations."
+
+Actions:
+
+ Action 1: GenerateEmbedCode
+ ──────────────────────────────
+ 타입: Apex Action
+ 입력: visualization_params (country, indicators, chart_type, size)
+ 출력: iframe_code, api_endpoint, embed_preview_url
+
+
+
+
+S16 — Translation
+Subagent: Translation
+━━━━━━━━━━━━━━━━━━━━━
+
+이름: ClimateTranslator
+
+설명: "Translates Visual Climate content into the 6 UN official
+  languages: English, French, Spanish, Arabic, Chinese, Russian."
+
+Instructions:
+ 1. "Use Salesforce Translation Workbench for UI strings."
+ 2. "For AI-generated explanations, translate at generation time
+    (S03 already responds in user's language)."
+ 3. "For PDF reports, translate after English version passes
+    quality gates."
+ 4. "Technical climate terms: maintain consistency using IPCC
+    official terminology glossary for each language."
+ 5. "Country names: use UN official short names in each language."
+
+Actions:
+
+ Action 1: TranslateContent
+ ──────────────────────────────
+ 타입: Prompt Template Action
+ 입력: source_text, source_language, target_language,
+     glossary (IPCC terms), context (climate data)
+ 출력: translated_text, terminology_consistency_check
+
+ Action 2: ValidateTranslation
+ ──────────────────────────────
+ 타입: Prompt Template Action (second LLM pass for quality check)
+ 입력: source_text, translated_text, target_language
+ 출력: quality_score, issues_found: List<String>,
+    suggested_corrections: List<String>
+
+
+
+
+3.4 품질 게이트 7개 — 구현 상세
+모든 사용자에게 표시되는 콘텐츠는 7개 품질 게이트를 통과해야 합니다. 이 게이트는 Apex
+Action으로 구현되어, Subagent의 Agentforce Script 마지막 단계에서 호출됩니다. 하나라도
+false면 콘텐츠 상태가 ready가 될 수 없습니다.
+
+public class VC_QualityGateChecker {
+
+  @InvocableMethod(label='Check All Quality Gates'
+              description='Runs 7 quality gates on content')
+  public static List<GateResult> checkAllGates(List<GateInput> inputs) {
+    GateInput input = inputs[0];
+    GateResult result = new GateResult();
+
+    // ═══════════════════════════════════════════════════
+    // Q1: SOURCE CITATION
+    // 모든 수치에 [Source: DS-XX, Year: YYYY] 형태의 인용이 있는가
+    // ═══════════════════════════════════════════════════
+    result.Q1_sources = true;
+    Pattern citationPattern = Pattern.compile(
+       '\\[Source: DS-\\d{2}, Year: \\d{4}\\]');
+    // 텍스트에서 모든 숫자 추출
+    List<String> numbers = extractNumbers(input.contentText);
+    for (String num : numbers) {
+       // 각 숫자 주변 100자 이내에 citation이 있는지 확인
+       if (!hasCitationNearby(input.contentText, num, citationPattern, 100)) {
+           result.Q1_sources = false;
+           result.Q1_failedNumbers.add(num);
+       }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // Q2: DATE RANGE
+    // 인용된 연도가 해당 소스의 실제 temporal_coverage 안에 있는가
+    // ═══════════════════════════════════════════════════
+    result.Q2_dates = true;
+    for (Citation c : input.citations) {
+       SourceMetadata sm = getSourceMetadata(c.sourceId);
+       if (c.year < sm.temporalCoverageStart ||
+           c.year > sm.temporalCoverageEnd) {
+           result.Q2_dates = false;
+           result.Q2_failedCitations.add(c);
+       }
+}
+
+// ═══════════════════════════════════════════════════
+// Q3: UNITS
+// 표시된 단위가 데이터의 실제 단위와 일치하는가
+// 변환이 있었다면 변환이 정확한가
+// ═══════════════════════════════════════════════════
+result.Q3_units = true;
+for (DataRecord dr : input.dataRecords) {
+   String displayedUnit = extractDisplayedUnit(
+       input.contentText, dr.indicatorId);
+   if (displayedUnit != null &&
+       !isUnitConsistent(dr.unit, displayedUnit)) {
+       result.Q3_units = false;
+       result.Q3_unitMismatches.add(
+          dr.indicatorId + ': data=' + dr.unit +
+          ' display=' + displayedUnit);
+   }
+}
+
+// ═══════════════════════════════════════════════════
+// Q4: COMPARABILITY
+// 비교된 데이터 간 기준연도, 가스 범위, 공간경계가 호환되는가
+// ═══════════════════════════════════════════════════
+result.Q4_comparability = true;
+if (input.isComparison) {
+    ComparabilityCheck cc = checkComparability(input.comparisonItems);
+    if (cc.hasBlockers) {
+        result.Q4_comparability = false;
+        result.Q4_blockers = cc.blockers;
+    } else if (cc.hasWarnings) {
+        result.Q4_warnings.addAll(cc.warnings);
+        // 경고는 있되 통과 — 경고가 응답에 포함되었는지 확인
+        if (!input.contentText.contains(cc.warnings[0].substring(0,30))) {
+            result.Q4_comparability = false; // 경고 미포함이면 실패
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════
+// Q5: UNCERTAINTY
+// 불확실성이 있는 데이터(전망, Fast Track 추정 등)에
+// 불확실성 범위 또는 주의사항이 표시되었는가
+// ═══════════════════════════════════════════════════
+result.Q5_uncertainty = true;
+for (DataRecord dr : input.dataRecords) {
+   if (requiresUncertainty(dr)) {
+       // Fast Track 추정, 시나리오 전망, 보간값 등
+                if (!hasUncertaintyInfo(input.contentText, dr)) {
+                    result.Q5_uncertainty = false;
+                    result.Q5_missingUncertainty.add(dr.indicatorId + '/' + dr.year);
+                }
+            }
+        }
+
+        // ═══════════════════════════════════════════════════
+        // Q6: AI DISCLOSURE
+        // "AI로 생성된 해석입니다" 문구가 포함되어 있는가
+        // ═══════════════════════════════════════════════════
+        result.Q6_aiDisclosure = input.contentText.containsIgnoreCase(
+            'AI-generated') || input.contentText.containsIgnoreCase(
+            'AI가 생성한') || input.contentText.containsIgnoreCase(
+            'généré par l\'IA'); // 6개 언어 변형 체크
+
+        // ═══════════════════════════════════════════════════
+        // Q7: HUMAN SIGN-OFF
+        // BTR 관련 콘텐츠이면 인간 reviewer가 승인했는가
+        // ═══════════════════════════════════════════════════
+        if (input.isBTRRelated) {
+            result.Q7_humanSignoff = input.humanApproved;
+        } else {
+            result.Q7_humanSignoff = true; // BTR 아니면 자동 통과
+        }
+
+        // ═══════════════════════════════════════════════════
+        // 종합 판정
+        // ═══════════════════════════════════════════════════
+        result.allPassed = result.Q1_sources && result.Q2_dates
+           && result.Q3_units && result.Q4_comparability
+           && result.Q5_uncertainty && result.Q6_aiDisclosure
+           && result.Q7_humanSignoff;
+
+        result.failedGates = new List<String>();
+        if (!result.Q1_sources) result.failedGates.add('Q1_SOURCES');
+        if (!result.Q2_dates) result.failedGates.add('Q2_DATES');
+        if (!result.Q3_units) result.failedGates.add('Q3_UNITS');
+        if (!result.Q4_comparability) result.failedGates.add('Q4_COMPARABILITY');
+        if (!result.Q5_uncertainty) result.failedGates.add('Q5_UNCERTAINTY');
+        if (!result.Q6_aiDisclosure) result.failedGates.add('Q6_AI_DISCLOSURE');
+        if (!result.Q7_humanSignoff) result.failedGates.add('Q7_HUMAN_SIGNOFF');
+
+        return new List<GateResult>{ result };
+    }
+}
+콘텐츠 상태 전이:
+
+draft ──(게이트 통과)──→ ready ──(표시)──→ displayed
+ │             │
+ │ ┌─(게이트 실패)────┘
+ │ │
+ │ ▼
+ │ retry (최대 2회, Subagent가 재생성)
+ │ │
+ │ ├─(재시도 후 통과)──→ ready
+ │ │
+ │ └─(재시도 후 실패)──→ escalate_to_human
+ │
+ └─(Q7 필요)──→ review ──(승인)──→ ready
+           │
+           └─(거부)──→ rejected
+
+
+모든 상태 전이는 감사 로그에 기록됩니다:
+
+{
+    "content_id": "CNT-2027-03-15-00042",
+    "transition": "draft → ready",
+    "actor": "system",
+    "timestamp": "2027-03-15T04:12:33Z",
+    "reason": "All 7 quality gates passed",
+    "gate_results": {
+      "Q1": true, "Q2": true, "Q3": true, "Q4": true,
+      "Q5": true, "Q6": true, "Q7": true
+    },
+    "input_hash": "sha256:a3f2b8...",
+    "output_hash": "sha256:7c9d1e..."
+}
+
+
+
+
+3.5 금지 행위 9개 — 기술적 강제 방법
+RFP §14의 9개 금지 행위는 세 가지 수준에서 강제됩니다.
+
+수준 1: Agentforce Global Guardrails — Primary Agent 수준에서 block 규칙으로 정의.
+Atlas Reasoning Engine이 라우팅 단계에서 해당 Action을 선택하지 않음.
+
+수준 2: Agentforce Script — 각 Subagent의 Script에서 금지 Action을 호출하는 step이
+존재하지 않음. 만약 LLM이 Script를 벗어나려 하면 Script의 결정론적 로직이 차단.
+
+수준 3: Apex Action 검증 — CheckQualityGates Apex에서 출력 텍스트를 스캔하여
+금지 패턴 탐지 (예: 순위 표현 정규식, “will” + 미래 시제 탐지, 인과관계 주장 패턴).
+    금지 행위       Guardrail    Script   Apex 검증
+
+      1.​ 국가 순위 자동 생성|block: GenerateCountryRanking|S04에 순위 step
+          없음|텍스트에서 “ranks #”, “위” 패턴 탐지
+      2.​ 법률/금융 자문|block: ProvideFinancialAdvice, ProvideLegalAdvice|모든
+          Subagent에서 해당 Action 없음|“should invest”, “legal obligation” 패턴
+      3.​ 멸종위기종 위치 공개|block: DiscloseEndangeredSpeciesLocations|S12에서 좌표
+          반환 안 함|좌표 형태 숫자 탐지
+      4.​ 비승인 정책 제출|block: SubmitPolicyRecommendationsAsOfficial|S10에서
+          “recommend” 대신 “data suggests”|“should adopt”, “must implement” 패턴
+      5.​ Tableau MCP 로그인 접근|block: AccessTableauMCPLogin|Tableau API 호출은
+          서비스 계정만|인증 토큰 패턴 출력 탐지
+      6.​ 비공개 토큰 접근|block: AccessPrivateTokens|어떤 Action도 토큰을 출력에 포함 안
+          함|API key/token 정규식
+      7.​ 소스 약관 우회|block: CircumventSourceTerms|Ingestion은 Data Cloud 경유만|직접
+          API URL 출력 탐지
+      8.​ 숨겨진 결측 보간|block: ImputeWithoutApproval|S14만 보간 가능, 인간 게이트
+          필수|“estimated” 라벨 없는 보간값 탐지
+      9.​ 비지지 인과 주장|block: MakeUnsupportedCausalClaim|S03/S12 Instruction에서
+          상관관계만|“causes”, “caused by”, “leads to” 패턴 (IPCC 인용 없이)
+
+
+
+
+3.6 감사 로그 통합 스키마
+모든 Subagent 실행은 동일한 스키마로 로그됩니다.
+
+{
+    "run_id": "RUN-2027-03-15-S03-00142",
+    "session_id": "SES-2027-03-15-USR-00033",
+    "subagent_id": "S03",
+    "subagent_version": "1.2",
+    "primary_agent_routing_reason": "User asked for explanation of displayed visualization",
+    "actions_invoked": [
+      {
+        "action_name": "QueryDataCloud",
+        "action_type": "flow",
+        "input_hash": "sha256:...",
+        "output_record_count": 18,
+        "duration_ms": 450
+      },
+      {
+        "action_name": "GetSourceMetadata",
+        "action_type": "flow",
+        "input_hash": "sha256:...",
+        "output_record_count": 2,
+        "duration_ms": 120
+      },
+      {
+        "action_name": "GenerateExplanation",
+        "action_type": "prompt_template",
+        "model_id": "gpt-4o-mini",
+        "temperature": 0.2,
+        "input_token_count": 2400,
+        "output_token_count": 680,
+        "duration_ms": 3200
+      },
+      {
+        "action_name": "CheckQualityGates",
+        "action_type": "apex",
+        "gate_results": {
+          "Q1": true, "Q2": true, "Q3": true, "Q4": {"pass": true, "warnings": 1},
+          "Q5": true, "Q6": true, "Q7": true
+        },
+        "duration_ms": 85
+      }
+    ],
+    "actions_blocked": [],
+    "forbidden_tool_attempts": [],
+    "input_hash": "sha256:...",
+    "output_hash": "sha256:...",
+    "content_status": "ready",
+    "human_gate_triggered": false,
+    "warnings": ["Q4: F-gas scope difference between EDGAR and Climate TRACE"],
+    "user_language": "ko",
+    "country_context": "KHM",
+    "timestamp": "2027-03-15T04:12:33.456Z",
+    "total_duration_ms": 3855
+}
+
+
+이 로그는 Salesforce Data Cloud에 저장되어 Agent Analytics 대시보드에서 실시간
+모니터링됩니다. Agentforce 3의 Observability 기능으로 성능 추적, 오류 패턴 분석, 비용
+관리(Digital Wallet)를 수행합니다.
+
+
+
+Part 3 완료. Part 2 (데이터 파이프라인) 진행합니다.
+
+
+
+
+PART 2: 데이터 파이프라인 상세
+2.1 수집 패턴 4가지 — 기술 사양
+패턴 1: REST API → Streaming Ingestion
+
+대상 소스: WDI (DS-01), Climate TRACE (DS-02), UN SDG (DS-17), GCF (DS-19), GFW
+(DS-20), Climate Watch (DS-06, API 가용 시), CCKP (DS-18)
+
+기술 흐름:
+
+[외부 API] ←HTTP GET→ [Scheduler] →JSON→ [Data Cloud Streaming Ingestion API]
+                      ↓
+                 [Data Lake Object (raw)]
+
+
+Scheduler 구현: Salesforce Flow (Schedule-Triggered Flow)를 사용합니다. 각 소스별
+Flow가 설정된 주기(일별/주별/월별/반기)로 실행됩니다. Flow 내에서 External Service
+Action으로 외부 API를 호출하고, 응답 JSON을 파싱하여 Streaming Ingestion API로
+전송합니다.
+
+Ingestion API 기술 제약 (공식 문서 기준):
+
+     제약             Streaming        Bulk
+
+최대 페이로드         200KB/요청         150MB/파일
+
+동시 요청           250 req/sec (전체) 5 동시 작업
+
+지연              비동기 ~3분          비동기 ~분
+
+삭제 제한           200 레코드/요청       —
+
+작업 제한           —                20 작업/시간
+
+소스별 Streaming 수집 설정:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-01: World Bank WDI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Ingestion API Connector 이름: VC_WDI_Connector
+
+Data Lake Object 이름: WDI_Raw__dlm
+스키마:
+ country_iso2 Text(2)   PK의 일부
+ indicator_id Text(30) PK의 일부
+ year        Number    PK의 일부
+ value       Number(18,6)
+ decimal_places Number
+ source_note Text(500)
+ retrieved_at DateTime
+ run_id      Text(40)
+
+Flow 이름: VC_WDI_Scheduled_Ingestion
+트리거: Schedule (매 4월 15일, 9월 15일 — WDI 업데이트 후 1주)
+수집할 지표 목록 (42개):
+ EN.ATM.CO2E.PC     CO₂ emissions per capita (metric tons)
+ EN.ATM.CO2E.KT    CO₂ emissions total (kt)
+ EN.ATM.GHGT.KT.CE Total GHG emissions (kt CO₂eq)
+ EG.USE.PCAP.KG.OE Energy use per capita (kg oil eq)
+ EG.FEC.RNEW.ZS     Renewable energy % of total final energy
+ EG.ELC.RNEW.ZS     Renewable electricity % of total
+ EN.ATM.PM25.MC.M3 PM2.5 air pollution (μg/m³)
+ AG.LND.FRST.ZS    Forest area (% of land area)
+ EN.ATM.METH.KT.CE Methane emissions (kt CO₂eq)
+ EN.ATM.NOXE.KT.CE Nitrous oxide emissions (kt CO₂eq)
+ SP.POP.TOTL      Population total
+ NY.GDP.MKTP.PP.KD GDP PPP (constant 2021 intl $)
+ NY.GDP.PCAP.PP.KD GDP per capita PPP
+ ... (42개 전체 목록은 Appendix에)
+
+API 호출 로직 (Flow 내 External Service):
+ for each indicator_id in indicator_list:
+  page = 1
+  loop:
+    url = "https://api.worldbank.org/v2/country/all/indicator/{indicator_id}"
+          + "?format=json&date=1960:2023&per_page=500&page={page}"
+    response = HTTP_GET(url)
+    if response.status != 200:
+      log_error(indicator_id, page, response.status)
+      if response.status == 429: wait(exponential_backoff)
+      retry (max 3)
+    parse response[1] as List<Record>
+    for each record:
+      if record.value != null:
+        stream_to_ingestion_api(WDI_Raw__dlm, {
+          country_iso2: record.countryiso2,
+          indicator_id: indicator_id,
+          year: record.date,
+          value: record.value,
+          decimal_places: record.decimal,
+          source_note: record.sourceNote,
+          retrieved_at: NOW(),
+          run_id: current_run_id
+        })
+   total_pages = response[0].pages
+   if page >= total_pages: break
+   page++
+
+예상 레코드 수: ~42 지표 × ~217 국가 × ~60년 = ~550,000 레코드
+예상 실행 시간: ~30분 (API 호출 + Streaming)
+예상 페이로드: ~550K × 200B = ~110MB (200KB 제한 내 분할 전송)
+
+Retrieval Record (run 완료 후 기록):
+ {
+   run_id: "RUN-2027-04-15-WDI-001",
+   source_id: "DS-01",
+   start_time: "2027-04-15T02:00:00Z",
+   end_time: "2027-04-15T02:32:14Z",
+   indicators_attempted: 42,
+   indicators_succeeded: 42,
+   indicators_failed: 0,
+   total_records: 548291,
+   records_with_null_value: 0 (null은 skip),
+   api_calls_made: 512,
+   api_errors: 0,
+   api_429_retries: 0,
+   data_lake_object: "WDI_Raw__dlm",
+   sha256_manifest: "a3f2..."
+ }
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-02: Climate TRACE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Ingestion API Connector 이름: VC_TRACE_Connector
+
+Data Lake Object 이름: TRACE_Raw__dlm
+스키마:
+ asset_id       Text(50)
+ country_iso3     Text(3)    PK 일부
+ sector        Text(50)    PK 일부
+ subsector       Text(100)
+ year         Number        PK 일부
+ month          Number (nullable, 월별 데이터 시)
+ gas          Text(10)     CO2, CH4, N2O, CO2eq
+ emissions_quantity Number(18,6)
+ emissions_unit Text(20)      tonnes
+ capacity       Number(18,6) (nullable)
+ capacity_unit Text(20)      (nullable)
+ latitude     Number(10,6) (nullable, 시설 수준)
+ longitude     Number(10,6) (nullable)
+ source_created_date DateTime
+ retrieved_at   DateTime
+ run_id       Text(40)
+
+수집 방식: 이중 — API (국가 집계) + BigQuery (상세)
+
+방식 A: API (국가 집계, 월별 업데이트)
+ endpoint: https://api.climatetrace.org/v7/country/emissions
+ params: since=2015, to=2026, countries=all, sectors=all
+ 인증: 없음 (공개 beta API)
+ Rate limit: 낮은 볼륨 유지 (공식 문서: "keep volume low")
+ 주기: 월별 (새 릴리스 후 1주 내)
+
+방식 B: BigQuery (시설 수준 상세, 분기별)
+ dataset: trace-data-383422.climate_trace
+ 접근: Google Cloud 서비스 계정
+ 쿼리: SELECT * FROM `trace-data-383422.climate_trace.emissions`
+    WHERE country_iso3 = '{iso3}' AND year >= 2015
+ 결과: Data Cloud Zero-Copy 또는 CSV export → Bulk Ingestion
+ 주기: 분기별 (데이터 볼륨이 크므로)
+
+예상 레코드 수:
+ 방식 A: ~250 국가 × ~10 섹터 × ~10년 × 12월 = ~3M 레코드
+ 방식 B: 2,765,771 배출원 × ~10년 = ~27M 레코드 (BigQuery)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-17: UN SDG Global Database
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Ingestion API Connector 이름: VC_SDG_Connector
+
+Data Lake Object 이름: SDG_Raw__dlm
+스키마:
+ goal        Number    SDG 목표 번호 (1-17)
+ target      Text(10) "7.2", "13.1" 등
+ indicator    Text(20) "7.2.1", "13.1.1" 등
+ series_code Text(20)
+ country_iso3 Text(3)
+ year        Number
+ value       Number(18,6)
+ unit       Text(50)
+ nature       Text(20) "C" (country), "E" (estimated)
+ retrieved_at DateTime
+ run_id      Text(40)
+API 호출:
+ Base URL: https://unstats.un.org/sdgapi/v1/sdg
+ 지표 목록: /Indicator/List
+ 데이터: /Indicator/Data?indicator={code}&areaCode={M49}
+ 인증: 없음
+ 포맷: JSON
+ 주기: 연 1회 (7월 SDG 보고서 발행 후)
+ 기후 관련 지표: SDG 7, 11, 12, 13, 14, 15 (약 50개)
+
+
+
+패턴 2: CSV/Excel → Bulk Ingestion
+
+대상 소스: EDGAR (DS-05), ND-GAIN (DS-04), EM-DAT (DS-03), GCB (DS-10), IRENA
+(DS-14), INFORM (DS-15), Germanwatch CRI (DS-16)
+
+[다운로드 사이트] →수동 다운로드→ [CSV 변환 스크립트] →CSV→
+ [Data Cloud Bulk Ingestion API] → [Data Lake Object]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-05: EDGAR v2024
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Ingestion API Connector 이름: VC_EDGAR_Connector
+
+Data Lake Object 이름: EDGAR_Raw__dlm
+스키마:
+ country_iso3       Text(3)
+ country_name        Text(100)
+ ipcc_sector_code Text(10) "1.A.1", "2.A.1" 등
+ gas            Text(10) CO2, CH4, N2O, F-gas
+ year           Number
+ value          Number(18,6)
+ unit          Text(20) "kt"
+ is_fast_track     Boolean     (2022-2023은 Fast Track 추정)
+ gwp_version        Text(10) "AR5"
+ retrieved_at      DateTime
+ run_id          Text(40)
+
+수집 절차:
+ 1. https://edgar.jrc.ec.europa.eu/dataset_ghg2024 에서
+   "Annual totals by sector and country (1970-2023)" Excel 다운로드
+ 2. Python 스크립트로 Excel → CSV 변환:
+   - 시트별 (CO2_fossil, CO2_bio, CH4, N2O, F-gases)
+   - 행: 국가, 열: 연도 → 정규화하여 long format
+   - Fast Track 연도(2022-2023) 플래그 추가
+   - GWP 버전 "AR5" 추가
+ 3. CSV를 Bulk Ingestion API로 업로드:
+   - POST /api/v1/ingest/jobs (Create job)
+   - PUT /api/v1/ingest/jobs/{jobId}/batches (Upload CSV, max 150MB)
+   - PATCH /api/v1/ingest/jobs/{jobId} (Close job)
+ 주기: 연 1회 (10월 EDGAR 릴리스 후)
+
+예상 레코드 수: ~220 국가 × ~30 섹터 × 5 가스 × 54년 = ~1.8M 레코드
+예상 CSV 크기: ~150MB (한 파일 또는 가스별 분할)
+
+라이선스 주의: IEA CO₂ 부분은 CC BY-NC-ND 4.0.
+ → 플랫폼이 비상업적이므로 OK이나, 향후 변경 시 주의.
+ → Retrieval Record에 라이선스 확인 사실 기록.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-04: ND-GAIN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Ingestion API Connector 이름: VC_NDGAIN_Connector
+
+Data Lake Object 이름: NDGAIN_Raw__dlm
+스키마:
+ country_iso3     Text(3)
+ year          Number
+ gain_index      Number(5,3) 종합 지수 (0-100)
+ vulnerability Number(5,3) 취약성 점수
+ readiness       Number(5,3) 준비도 점수
+ v_water        Number(5,3) 취약성-물
+ v_agriculture Number(5,3) 취약성-농업
+ v_health       Number(5,3) 취약성-건강
+ v_infrastructure Number(5,3) 취약성-인프라
+ v_food         Number(5,3) 취약성-식량
+ v_ecosystem       Number(5,3) 취약성-생태계
+ exposure        Number(5,3) 노출
+ sensitivity    Number(5,3) 민감도
+ adaptive_capacity Number(5,3) 적응역량
+ r_economic       Number(5,3) 준비도-경제
+ r_governance      Number(5,3) 준비도-거버넌스
+ r_social       Number(5,3) 준비도-사회
+ data_type       Text(10)   "raw"|"input"|"score"
+ retrieved_at    DateTime
+ run_id        Text(40)
+
+수집 절차:
+ 1. https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip 다운로드
+ 2. ZIP 해제 → CSV 파일 12개 (index, vulnerability, readiness,
+   sectors, components, raw/input/score, GDP-adjusted, context)
+ 3. Python 스크립트로 CSV 12개 → 단일 정규화 CSV
+   - country_iso3 + year를 PK로
+   - 모든 점수를 컬럼으로 결합
+ 4. Bulk Ingestion API로 업로드
+ 주기: 연 1회
+
+예상 레코드 수: ~185 국가 × ~25년 × 3 data_type = ~14K 레코드
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-03: EM-DAT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Ingestion API Connector 이름: VC_EMDAT_Connector
+
+Data Lake Object 이름: EMDAT_Raw__dlm
+스키마:
+ disaster_no     Text(20)    EM-DAT 고유 번호
+ country_iso3     Text(3)
+ year          Number
+ disaster_group Text(20)      Natural, Technological
+ disaster_type Text(50)      Flood, Storm, Drought, ...
+ disaster_subtype Text(50)
+ event_name        Text(200)
+ start_date     Date
+ end_date        Date
+ total_deaths    Number
+ total_affected Number
+ total_damage_usd Number(18,2) (보고 당시 USD)
+ insured_damage_usd Number(18,2)
+ is_climate_related Boolean    (VC가 추가: 홍수,폭풍,가뭄,산불,극한기온,산사태(습))
+ magnitude       Text(50)
+ magnitude_scale Text(50)
+ retrieved_at    DateTime
+ run_id        Text(40)
+
+수집 절차:
+ 1. https://public.emdat.be/ 에서 전체 데이터 다운로드 (CSV)
+   또는 HDX: https://data.humdata.org/organization/cred (API)
+ 2. Python 스크립트:
+   - is_climate_related 플래그 추가 (재난 유형 기반 필터)
+   - 국가 코드 ISO3 통일
+   - total_damage_usd: 인플레이션 미보정 (원본 유지)
+ 3. Bulk Ingestion
+ 주기: 분기별 (EM-DAT는 월별 업데이트하지만 분기 단위로 수집)
+
+예상 레코드 수: ~27,000 레코드 (전체), 기후 관련 ~15,000
+라이선스: 비상업적 무료. 상업적 시 CRED 승인.
+
+
+
+패턴 3: Zero-Copy Federation
+
+대상 소스: Climate TRACE BigQuery (DS-02 상세), Copernicus ERA5 (DS-11, Phase 3)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-02 (상세): Climate TRACE via BigQuery Zero-Copy
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+Data Cloud Zero-Copy 설정:
+ Partner: Google BigQuery
+ BigQuery Dataset: trace-data-383422.climate_trace
+ 연결 방식: Salesforce Data Cloud Zero-Copy Partner Network
+  → Data Cloud Setup → Zero-Copy Integrations → Google BigQuery
+  → 서비스 계정 인증
+ 가상 DMO: TRACE_Detail__dcv (Data Cloud Virtual Object)
+
+쿼리 예시 (Data Cloud SOQL, 가상 객체 경유):
+ SELECT asset_id, country_iso3, sector, subsector,
+    year, gas, emissions_quantity
+ FROM TRACE_Detail__dcv
+ WHERE country_iso3 = 'KHM'
+ AND sector = 'electricity-generation'
+ AND year >= 2020
+
+장점: 2,765,771개 배출원 × 10년 데이터를 복사하지 않음.
+  BigQuery에서 직접 쿼리, 결과만 Data Cloud로.
+비용: BigQuery 쿼리 비용은 Visual Climate의 Google Cloud 계정에 청구.
+  무료 티어: 1 TiB/월 — 대부분의 국가별 쿼리는 이 안에 들어옴.
+
+
+
+패턴 4: PDF → 구조화 추출 → Ingestion
+
+대상 소스: UNFCCC NDC Registry (DS-08), Germanwatch CRI (DS-16), UNEP 보고서
+(DS-22, DS-23)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DS-08: UNFCCC NDC Registry
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+수집 절차:
+ 1. https://unfccc.int/NDCREG 에서 NDC PDF 다운로드
+ 2. PDF 텍스트 추출 (Python: PyMuPDF 또는 pdfplumber)
+ 3. Agentforce Prompt Template Action으로 구조화 추출:
+   프롬프트:
+    "Extract from this NDC document:
+     - Base year and target year
+     - GHG reduction target (% and absolute)
+     - Conditional vs unconditional target
+     - Sectors covered
+     - Gases covered
+     - Adaptation priorities
+     - Finance needs mentioned
+     Format as JSON."
+ 4. 추출된 JSON → 수동 검증 (Climate Watch 데이터와 대조)
+ 5. 검증 후 Bulk Ingestion
+ 주기: NDC 제출 시 (불규칙, 주요 라운드: 2025 NDC 3.0)
+
+Data Lake Object 이름: NDC_Structured__dlm
+스키마:
+ country_iso3       Text(3)
+ ndc_version        Text(10) "1.0", "2.0", "3.0"
+ submission_date Date
+ base_year         Number
+ target_year      Number
+ target_type      Text(20) absolute|reduction|intensity|BAU
+ unconditional_target Text(200)
+ conditional_target Text(200)
+ sectors_covered Text(500)
+ gases_covered        Text(100)
+ adaptation_priorities Text(2000)
+ finance_needs_usd Number(18,2)
+ extracted_by       Text(10) "ai"|"manual"
+ verified       Boolean
+ verified_against Text(50) "DS-06" (Climate Watch)
+ retrieved_at     DateTime
+ run_id         Text(40)
+
+주의: AI 추출 결과는 반드시 Climate Watch (DS-06)의 구조화된
+  NDC 데이터와 대조 검증. 불일치 시 수동 확인.
+
+
+
+
+2.2 Data Model Object (DMO) — 통합 데이터 모델
+Data Lake Object (원시)에서 Data Model Object (통합)로의 변환입니다. Salesforce Data
+Cloud의 Data Model 기능으로 DLO→DMO 매핑 규칙을 정의합니다.
+
+핵심 DMO 6개
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DMO 1: Country_Emissions__dmo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+목적: 모든 배출 데이터의 통합 뷰
+
+스키마:
+ country_iso3      Text(3)     PK
+ country_name        Text(100)
+ year          Number        PK
+ sector         Text(50)     PK (IPCC 2006 대분류로 통일)
+ gas           Text(10)     PK (CO2, CH4, N2O, F-gas, Total_GHG)
+ source_id        Text(5)     PK (같은 지표·국가·연도에 다수 소스 값 존재)
+ source_name         Text(100)
+ value         Number(18,6)
+ unit         Text(20)     통일: "MtCO2eq" 또는 "kt"
+ gwp_version        Text(10)    통일: "AR5"
+ original_value Number(18,6) (변환 전 원본 값)
+ original_unit Text(20)
+ original_gwp      Text(10)
+ is_fast_track Boolean
+ is_imputed       Boolean
+ imputation_method Text(50)        (nullable)
+ last_updated      DateTime
+ retrieval_run_id Text(40)
+
+매핑 규칙:
+ DLO WDI_Raw__dlm (indicator EN.ATM.CO2E.KT) →
+  sector: "Total", gas: "CO2", unit 변환: kt → kt (동일),
+  source_id: "DS-01"
+ DLO EDGAR_Raw__dlm →
+  sector: ipcc_sector_code 매핑 (IPCC 2006 → 대분류),
+  gas: 그대로, unit: kt → kt, gwp: AR5 (동일),
+  source_id: "DS-05"
+ DLO TRACE_Raw__dlm →
+  sector: Climate TRACE sector → IPCC 2006 매핑 테이블,
+  gas: 그대로, unit: tonnes → kt (÷1000),
+  source_id: "DS-02"
+
+중복 처리:
+ 같은 country_iso3 + year + sector + gas에 DS-01, DS-02, DS-05 값이
+ 모두 존재할 수 있음 → source_id가 PK에 포함되므로 3행이 공존.
+ 절대 평균내지 않음. 사용자에게 3개 값 모두 표시.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DMO 2: Country_Vulnerability__dmo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+목적: 취약성·적응·준비도 데이터
+
+스키마:
+ country_iso3     Text(3)    PK
+ year          Number     PK
+ source_id       Text(5)    PK
+ gain_index      Number(5,3)
+ vulnerability Number(5,3)
+ readiness       Number(5,3)
+ v_water        Number(5,3)
+ v_agriculture Number(5,3)
+ v_health       Number(5,3)
+ v_infrastructure Number(5,3)
+ v_food         Number(5,3)
+ v_ecosystem       Number(5,3)
+ exposure        Number(5,3)
+ sensitivity    Number(5,3)
+ adaptive_capacity Number(5,3)
+ r_economic       Number(5,3)
+ r_governance      Number(5,3)
+ r_social       Number(5,3)
+ inform_risk     Number(5,3) (DS-15, Phase 2)
+ inform_hazard Number(5,3)
+ inform_vulnerability Number(5,3)
+ inform_coping Number(5,3)
+ last_updated     DateTime
+
+매핑:
+ NDGAIN_Raw__dlm (score data_type) → gain_* 필드, source_id "DS-04"
+ INFORM_Raw__dlm → inform_* 필드, source_id "DS-15"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DMO 3: Country_Climate__dmo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+목적: 관측 기후 + 미래 전망
+
+스키마:
+ country_iso3    Text(3)  PK
+ year         Number     PK
+ variable      Text(20)  PK (temperature, precipitation, sea_level)
+ data_class     Text(20)  observation | projection
+ scenario       Text(20)   (nullable for obs; SSP1-2.6 등 for proj)
+ value         Number(10,3)
+ unit        Text(20)    °C, mm, mm
+ uncertainty_low Number(10,3)
+ uncertainty_high Number(10,3)
+ baseline_period Text(20)     "1991-2020" (anomaly 기준)
+ source_id       Text(5)
+ model_ensemble Text(50)         (nullable; "CMIP6 median" 등)
+ last_updated     DateTime
+
+매핑:
+ DS-18 (CCKP) → observation + projection
+ DS-25 (GISTEMP) → observation (global/regional temperature anomaly)
+ DS-27 (C3S) → observation (monthly global temperature)
+ DS-11 (ERA5) → observation (Phase 3, 국가 집계)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DMO 4: Country_Disasters__dmo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+목적: 재난 기록
+
+매핑: EMDAT_Raw__dlm → 직접 (거의 1:1, is_climate_related 필터 적용)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DMO 5: Country_Policy__dmo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+목적: NDC, 정책, CAT 등급
+
+스키마:
+ country_iso3    Text(3)    PK
+ ndc_version     Text(10)
+ ndc_base_year      Number
+ ndc_target_year Number
+ ndc_target_unconditional Text(200)
+ ndc_target_conditional Text(200)
+ ndc_sectors_covered Text(500)
+ cat_rating     Text(30)   (nullable; "Critically insufficient" 등)
+ cat_rating_date Date
+ policy_count    Number
+ policies_implemented Number
+ policies_planned Number
+ source_id      Text(5)    PK
+ last_updated     DateTime
+
+매핑:
+ NDC_Structured__dlm → NDC 필드, source_id "DS-08"
+ ClimateWatch_Raw__dlm → NDC 구조화 데이터, source_id "DS-06"
+ CAT_Raw__dlm → cat_* 필드, source_id "DS-07"
+ ClimatePolicyDB_Raw__dlm → policy_count 등, source_id "DS-32"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+DMO 6: Country_Finance__dmo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+목적: 기후 자금 흐름
+
+스키마:
+ country_iso3        Text(3)    PK
+ year            Number        PK (nullable for GCF projects)
+ finance_type        Text(30)    PK
+   // gcf_approved, gcf_disbursed, bilateral_committed, bilateral_disbursed,
+   // carbon_tax, ets, reported_need, reported_received
+ value_usd          Number(18,2)
+ currency_year        Number       (인플레이션 기준 연도)
+ sector           Text(30)    adaptation | mitigation | cross-cutting
+ implementing_entity Text(200) (GCF)
+ project_name         Text(500) (GCF)
+ source_id          Text(5)    PK
+ last_updated        DateTime
+
+매핑:
+ GCF_Raw__dlm → gcf_* 유형, source_id "DS-19"
+ CarbonPricing_Raw__dlm → carbon_tax/ets, source_id "DS-31"
+ BTR_Finance__dlm → reported_need/received (FCCC/PA/CMA/2025/16 기준),
+            source_id "DS-33"
+
+
+
+
+2.3 조화(Harmonization) 규칙 — 기술 구현
+Data Cloud의 Data Transform 기능에서 DLO → DMO 매핑 시 적용되는 규칙입니다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+규칙 H1: 국가 코드 통일
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+매핑 테이블: Country_Code_Map__dmo
+ iso2 iso3 un_m49 name_en name_fr name_es name_ar name_zh name_ru
+ KR KOR 410 South Korea ...
+ KH KHM 116 Cambodia ...
+ CD COD 180 DR Congo ...
+
+특수 처리:
+ - WDI "XK" (Kosovo) → "XKX" (비표준이지만 WDI 관행)
+ - Climate TRACE "TW" → "TWN" (대만, UN M49 미할당)
+ - EDGAR "ANT" (구 네덜란드령 앤틸러스) → "CUW"+"SXM"+"BES" 분할
+ - 집계 코드 (WLD, EAS, SSA 등) → is_aggregate = true 플래그
+
+구현: Data Cloud Formula Field에서 VLOOKUP 등가 변환.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+규칙 H2: 시간 통일
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+기본 단위: 연도 (calendar year)
+월별 데이터 (Climate TRACE, ERA5):
+ → Country_Emissions__dmo에는 연간 합계/평균으로 집계
+ → 원본 월별 데이터는 DLO에 보존
+ → S01 DataRetrieval이 요청 시 월별 데이터도 반환 가능
+
+회계연도 vs 달력연도:
+ 일부 국가의 GHG 인벤토리는 회계연도 기준 (예: 일본 4월-3월)
+ → 원본 그대로 저장 + fiscal_year_note 필드에 기록
+ → 비교 시 S04 Comparison의 ComparabilityChecker가 경고
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+규칙 H3: GWP 통일
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+기준: IPCC AR5 GWP100
+
+변환 계수:
+ Gas | AR4 → AR5 | AR6 → AR5
+ CH₄ | 25 → 28 | 27.9 → 28 (거의 동일)
+ N₂O | 298 → 265 | 273 → 265
+
+적용:
+ EDGAR v2024: AR5 기준 → 변환 불필요
+ Climate TRACE: AR5 기준 → 변환 불필요
+ WDI: CDIAC/EDGAR 기반 → 변환 불필요
+ GCB: CO₂만 → GWP 무관
+ 향후 AR6 기반 소스 추가 시: 변환 적용 + original_gwp 보존
+
+구현: Data Cloud Formula Field
+ IF(source_gwp == 'AR6' AND gas == 'CH4',
+   value * (28/27.9),
+   IF(source_gwp == 'AR4' AND gas == 'CH4',
+     value * (28/25),
+     value))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+규칙 H4: 섹터 통일
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+기준: IPCC 2006 Guidelines 대분류
+
+매핑 테이블: Sector_Map__dmo
+ Climate TRACE sector           | IPCC 2006
+ electricity-generation | 1.A.1 Energy Industries
+ other-energy-use           | 1.A.2 Manufacturing + 1.A.4 Other
+ road-transportation        | 1.A.3.b Road Transportation
+ shipping              | 1.A.3.d Water-borne Navigation
+ aviation             | 1.A.3.a Civil Aviation
+ steel              | 2.C.1 Iron and Steel
+ cement                | 2.A.1 Cement Production
+ chemicals               | 2.B Chemical Industry
+ agriculture           | 3 Agriculture
+ forest-land            | 4 LULUCF (Land Use)
+ waste                | 5 Waste
+ ... (전체 매핑은 Appendix에)
+
+주의: 1:N 매핑 존재. Climate TRACE "other-energy-use"는
+  IPCC 1.A.2 + 1.A.4를 합친 것. 세부 분해 불가 →
+  "1.A Other Energy" 중간 카테고리로 매핑하고,
+  S04 Comparison에서 EDGAR의 세분화 데이터와 비교 시
+  이 차이를 경고에 포함.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+규칙 H5: 금지 변환
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━
+
+절대 허용하지 않는 자동 변환:
+1. 기준연도가 다른 두 소스의 % 변화를 자동 계산하지 않음.
+  예: EDGAR (2005 기준 -20%) vs NDC (1990 기준 -40%) →
+  직접 비교 금지, 각각 원본 기준연도와 함께 표시.
+
+2. 공간경계가 다른 두 소스를 자동 비교하지 않음.
+  예: WDI (본토만) vs EDGAR (해외영토 포함) →
+  S04 ComparabilityChecker가 blocker로 판정.
+
+3. Imputation (결측 보간)은 S14 전용, 인간 승인 없이 불가.
+  DLO → DMO 변환 단계에서 결측은 null로 유지.
+  null은 시각화에서 "데이터 없음"으로 명시적 표시.
+
+4. 서로 다른 소스의 값을 평균내지 않음.
+  EDGAR 100 Mt + Climate TRACE 110 Mt → 평균 105 Mt (금지).
+  둘 다 별도 행으로 저장, 둘 다 표시.
+
+구현: Data Cloud Transform Rules에서 null 보존 설정,
+  Apex Action에서 금지 패턴 탐지.
+
+
+
+
+2.4 Retrieval Record — 수집 이력 추적
+모든 수집 실행은 다음 스키마로 기록됩니다.
+
+Retrieval_Record__dmo
+ run_id          Text(40)     PK (UUID)
+ source_id         Text(5)
+ collection_pattern Text(20)     streaming | bulk | zero_copy | pdf_extract
+ start_time       DateTime
+ end_time          DateTime
+ api_endpoint       Text(500)    (또는 download URL)
+ http_status       Number       (최종 응답 코드)
+ response_headers Text(2000) (JSON)
+ records_retrieved Number
+ records_ingested Number
+ records_failed     Number
+ raw_snapshot_location Text(500) (S3/GCS 버킷 경로)
+ sha256_checksum Text(64)           (raw 데이터의 해시)
+ retry_count       Number
+ error_log        Text(5000) (nullable)
+ data_lake_object Text(100)
+ ingestion_job_id Text(40)       (Data Cloud job ID)
+ collector_version Text(10)      (수집 스크립트 버전)
+ license_verified Boolean
+ license_type       Text(50)
+ next_scheduled_run DateTime
+2.5 소스 상태 모니터링
+각 소스의 건강 상태를 자동 모니터링합니다.
+
+Source_Health__dmo
+ source_id        Text(5)   PK
+ status         Text(20)   approved | degraded | ...
+ last_successful_run DateTime
+ last_failed_run DateTime      (nullable)
+ consecutive_failures Number
+ api_response_time_avg_ms Number
+ api_error_rate_30d Number(5,2) (%)
+ data_freshness_days Number        (현재 날짜 - 소스 최신 데이터 날짜)
+ expected_update DateTime         (다음 예상 업데이트)
+ alert_status     Text(20)   normal | warning | critical
+
+모니터링 규칙:
+ consecutive_failures >= 3 → status = degraded, alert = critical
+ api_error_rate_30d > 10% → status = degraded, alert = warning
+ data_freshness_days > expected + 30 → alert = warning
+ 라이선스 변경 감지 (웹페이지 모니터링) → alert = critical
+
+
+
+
+Part 2 완료. Part 4 (시각화 레이어) 진행합니다.
+
+
+
+
+PART 4: 시각화 레이어 상세
+
+4.1 Tableau Cloud 워크북 라이브러리
+Pre-built Tableau 워크북은 S02 Visualization Subagent가 선택하는 템플릿입니다. 사용자
+요청에 따라 워크북을 런타임에 생성하지 않고, 사전에 구축된 워크북에 필터 파라미터를
+동적으로 적용합니다.
+
+워크북 구조
+Tableau Cloud Site: visualclimate.tableau.com
+
+Project 구조:
+ └─ Visual Climate
+   ├─ Country Profiles
+   │ ├─ CP_Emissions         (배출 대시보드)
+   │ ├─ CP_EmissionsComparison (다중 소스 비교)
+   │ ├─ CP_Climate        (기온·강수 관측+전망)
+   │ ├─ CP_Vulnerability    (ND-GAIN 매트릭스)
+   │ ├─ CP_Disasters       (재난 타임라인)
+   │ ├─ CP_Policy        (NDC·정책 현황)
+   │ ├─ CP_Finance         (기후 자금 흐름)
+   │ └─ CP_Overview         (종합 1페이지 요약)
+   ├─ Comparisons
+   │ ├─ CMP_Countries         (국가 간 비교)
+   │ ├─ CMP_Sources           (소스 간 비교)
+   │ └─ CMP_PeerBenchmark (동료국 벤치마크)
+   ├─ Global Views
+   │ ├─ GV_WorldMap           (세계 지도 — 코로플레스)
+   │ ├─ GV_SectorBreakdown (글로벌 섹터별)
+   │ └─ GV_Timeline       (글로벌 추세)
+   └─ Learning
+      ├─ LRN_PredictGame       (예측 게임용)
+      └─ LRN_Explorer     (자유 탐색용)
+
+
+
+대시보드별 설계 사양 — CP_Emissions 예시
+워크북: CP_Emissions
+━━━━━━━━━━━━━━━━━━━
+
+데이터 소스 (Tableau Cloud에서 Data Cloud 연결):
+ - Country_Emissions__dmo (Live Connection via Salesforce Connector)
+
+필터 파라미터:
+ - Country (ISO3) — URL 파라미터로 전달
+ - Year Range (start, end) — 슬라이더
+ - Sector — 드롭다운 (All, Energy, IPPU, Agriculture, LULUCF, Waste)
+ - Gas — 드롭다운 (All GHG, CO₂, CH₄, N₂O, F-gas)
+ - Source — 체크박스 (All, DS-01 WDI, DS-02 TRACE, DS-05 EDGAR)
+
+시트 구성:
+ Sheet 1: Total Emissions Trend
+  차트: Line chart
+  X축: Year
+  Y축: Value (MtCO₂eq)
+  색상: Source (DS-01=파랑, DS-02=초록, DS-05=주황)
+  툴팁: "In {year}, {country}'s total GHG was {value} MtCO₂eq
+      according to {source_name}."
+
+ Sheet 2: Sector Breakdown (latest year)
+  차트: Stacked bar (horizontal)
+  X축: Value
+  Y축: Sector
+  색상: Sector (Tableau Color Blind 팔레트)
+
+ Sheet 3: Per Capita Comparison
+  차트: Bar chart
+  X축: Country (target + peers)
+  Y축: tCO₂eq/capita
+  Reference line: World average
+
+ Sheet 4: Gas Composition (latest year)
+  차트: Treemap
+  크기: Value
+  색상: Gas type
+  라벨: Gas name + % of total
+
+대시보드 레이아웃:
+ Desktop (1200×800):
+  [Sheet 1 (50%)       ] [Sheet 2 (50%)       ]
+  [Sheet 3 (50%)       ] [Sheet 4 (50%)       ]
+  [Source attribution bar (100%)          ]
+
+ Mobile (375×812):
+  [Sheet 1 (100%)       ]
+  [Sheet 2 (100%)       ]
+  [Sheet 3 (100%)       ]
+  [Sheet 4 (100%)       ]
+  [Source attribution   ]
+
+접근성:
+ - 팔레트: Tableau "Color Blind" (10색)
+ - 대비비: 모든 텍스트 vs 배경 ≥ 4.5:1
+ - 대체 텍스트: 각 시트에 Description 필드 (스크린 리더용)
+ - 키보드 내비게이션: Tableau 내장 지원
+
+소스 귀속 바 (모든 대시보드 하단 고정):
+ "Data sources: [source names with DS-IDs]. Last updated: [date].
+  Visualization by Visual Climate (visualclimate.org).
+  AI-generated insights should be verified with original sources."
+
+
+
+4.2 Next.js 통합 — 상세 구현
+프로젝트 구조
+visual-climate-web/
+├── app/                  (Next.js App Router)
+│ ├── layout.tsx             (글로벌 레이아웃, i18n provider)
+│ ├── page.tsx               (홈페이지 — 국가 검색)
+│ ├── country/
+│ │ └── [iso3]/
+│ │      ├── page.tsx         (국가 프로필 — ISR)
+│ │      ├── emissions/page.tsx
+│ │      ├── climate/page.tsx
+│ │      ├── vulnerability/page.tsx
+│ │      ├── disasters/page.tsx
+│ │      ├── policy/page.tsx
+│ │      └── finance/page.tsx
+│ ├── compare/page.tsx             (국가 비교)
+│ ├── learn/
+│ │ ├── page.tsx              (학습 경로 선택)
+│ │ └── [pathId]/page.tsx (학습 단계)
+│ ├── report/[iso3]/route.ts (PDF 생성 API route)
+│ └── api/
+│    ├── agentforce/route.ts (Agentforce 프록시)
+│    ├── tableau-token/route.ts (JWT 생성)
+│    └── embed-widget/route.ts (외부 임베드 코드 생성)
+├── components/
+│ ├── tableau/
+│ │ ├── TableauEmbed.tsx            (범용 Tableau 임베드 컴포넌트)
+│ │ ├── CountryEmissionsViz.tsx
+│ │ ├── VulnerabilityMatrix.tsx
+│ │ └── ... (워크북별 래퍼 컴포넌트)
+│ ├── chat/
+│ │ ├── AgentforceChat.tsx (AI 채팅 위젯)
+│ │ └── ChatMessage.tsx
+│ ├── country/
+│ │ ├── CountrySearch.tsx (자동완성 검색)
+│ │ ├── CountryHeader.tsx (국가명, 국기, 기본 정보)
+│ │ └── CountryNav.tsx            (섹션 네비게이션)
+│ └── common/
+│    ├── SourceCitation.tsx (소스 인용 표시)
+│    ├── DataClassBadge.tsx (데이터 유형 라벨)
+│    ├── UncertaintyBand.tsx (불확실성 범위 표시)
+│    └── LanguageSelector.tsx (6개 언어 전환)
+├── lib/
+│ ├── tableau-auth.ts           (Connected App JWT 생성)
+│ ├── agentforce-client.ts       (Agentforce API 클라이언트)
+│ ├── country-data.ts           (국가 코드 매핑 유틸)
+│ └── i18n.ts               (next-intl 설정)
+├── public/
+│ ├── sw.js                (Service Worker — PWA)
+│ └── manifest.json            (PWA manifest)
+└── next.config.js
+핵심 컴포넌트 구현
+// components/tableau/TableauEmbed.tsx
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import {
+  TableauViz,
+  useTableauVizRef,
+  useTableauVizFirstInteractiveCallback,
+  useTableauVizFilterChangedCallback,
+  useTableauVizMarkSelectionChangedCallback
+} from '@tableau/embedding-api-react';
+
+interface TableauEmbedProps {
+  workbookPath: string;          // e.g., "CountryProfiles/CP_Emissions"
+  filters?: Record<string, string>; // e.g., { Country: "KHM" }
+  height?: number;
+  device?: 'desktop' | 'phone' | 'tablet';
+  onFilterChange?: (field: string, values: string[]) => void;
+  onMarkSelect?: (data: any) => void;
+  onReady?: () => void;
+}
+
+export default function TableauEmbed({
+  workbookPath,
+  filters = {},
+  height = 600,
+  device = 'desktop',
+  onFilterChange,
+  onMarkSelect,
+  onReady
+}: TableauEmbedProps) {
+  const vizRef = useTableauVizRef();
+  const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+ // JWT 토큰 가져오기
+ useEffect(() => {
+   fetch('/api/tableau-token', { method: 'POST' })
+     .then(res => res.json())
+     .then(data => setToken(data.token));
+ }, []);
+
+ // Tableau가 인터랙티브 상태가 되면
+ const onFirstInteractive = useTableauVizFirstInteractiveCallback(() => {
+  setLoading(false);
+  onReady?.();
+}, [onReady]);
+
+// 필터 변경 이벤트
+const onFilterChanged = useTableauVizFilterChangedCallback((event) => {
+  const { fieldName } = event.detail;
+  // 필터 값 추출
+  const worksheet = vizRef.current?.workbook?.activeSheet;
+  if (worksheet && onFilterChange) {
+    // Tableau Embedding API v3에서 필터 값 가져오기
+    worksheet.getFiltersAsync().then(filters => {
+      const filter = filters.find(f => f.fieldName === fieldName);
+      if (filter) {
+        onFilterChange(fieldName, filter.appliedValues?.map(v => v.value) || []);
+      }
+    });
+  }
+}, [onFilterChange]);
+
+// 마크 선택 이벤트
+const onMarkSelectionChanged = useTableauVizMarkSelectionChangedCallback(
+  (event) => {
+    const marks = event.detail;
+    onMarkSelect?.(marks);
+  }, [onMarkSelect]
+);
+
+if (!token) return <div className="animate-pulse h-96 bg-gray-100 rounded" />;
+
+// URL에 필터를 쿼리 파라미터로 포함
+const filterParams = Object.entries(filters)
+  .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
+  .join('&');
+
+const src = `https://visualclimate.tableau.com/views/${workbookPath}`
+ + (filterParams ? `?${filterParams}` : '');
+
+return (
+ <div className="relative">
+   {loading && (
+     <div className="absolute inset-0 flex items-center justify-center
+               bg-white/80 z-10">
+      <span className="text-gray-500">Loading visualization...</span>
+     </div>
+   )}
+   <TableauViz
+     ref={vizRef}
+        src={src}
+        token={token}
+        toolbar="bottom"
+        hideTabs
+        device={device}
+        height={height}
+        width="100%"
+        onFirstInteractive={onFirstInteractive}
+        onFilterChanged={onFilterChanged}
+        onMarkSelectionChanged={onMarkSelectionChanged}
+       />
+      </div>
+    );
+}
+
+// app/country/[iso3]/page.tsx
+// 국가 프로필 페이지 — ISR (Incremental Static Regeneration)
+
+import { Metadata } from 'next';
+import TableauEmbed from '@/components/tableau/TableauEmbed';
+import AgentforceChat from '@/components/chat/AgentforceChat';
+import CountryHeader from '@/components/country/CountryHeader';
+import { getCountryInfo } from '@/lib/country-data';
+
+interface Props {
+  params: { iso3: string };
+}
+
+// 250개 국가 정적 생성
+export async function generateStaticParams() {
+  const countries = await getAllCountryISO3Codes();
+  return countries.map(iso3 => ({ iso3 }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const country = getCountryInfo(params.iso3);
+  return {
+    title: `${country.name} Climate Profile | Visual Climate`,
+    description: `Explore ${country.name}'s greenhouse gas emissions,
+               climate vulnerability, NDC targets, and climate finance
+               data from 40+ global sources.`,
+  };
+}
+
+export default async function CountryPage({ params }: Props) {
+ const { iso3 } = params;
+ const country = getCountryInfo(iso3);
+    return (
+     <main className="max-w-7xl mx-auto px-4 py-8">
+       <CountryHeader country={country} />
+
+      {/* 종합 개요 대시보드 */}
+      <section id="overview" className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Overview</h2>
+        <TableauEmbed
+         workbookPath="CountryProfiles/CP_Overview"
+         filters={{ Country: iso3 }}
+         height={500}
+        />
+      </section>
+
+      {/* 배출 섹션 */}
+      <section id="emissions" className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">GHG Emissions</h2>
+        <TableauEmbed
+         workbookPath="CountryProfiles/CP_Emissions"
+         filters={{ Country: iso3 }}
+         height={600}
+         onFilterChange={(field, values) => {
+           // 필터 변경 시 AI에게 새 맥락 전달
+           // AgentforceChat 컴포넌트의 context 업데이트
+         }}
+        />
+      </section>
+
+      {/* 취약성 섹션 */}
+      <section id="vulnerability" className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Vulnerability & Adaptation</h2>
+        <TableauEmbed
+         workbookPath="CountryProfiles/CP_Vulnerability"
+         filters={{ Country: iso3 }}
+         height={500}
+        />
+      </section>
+
+      {/* ... 나머지 섹션: Climate, Disasters, Policy, Finance */}
+
+       {/* AI 채팅 위젯 (페이지 우하단 고정) */}
+       <AgentforceChat
+         context={{ country: iso3, page: 'country_profile' }}
+       />
+      </main>
+    );
+}
+// ISR: 24시간마다 재생성 (데이터 업데이트 반영)
+export const revalidate = 86400;
+
+// lib/tableau-auth.ts
+// Connected App JWT 생성
+
+import jwt from 'jsonwebtoken';
+
+const CONNECTED_APP_CLIENT_ID =
+process.env.TABLEAU_CONNECTED_APP_CLIENT_ID!;
+const CONNECTED_APP_SECRET_ID =
+process.env.TABLEAU_CONNECTED_APP_SECRET_ID!;
+const CONNECTED_APP_SECRET_VALUE =
+process.env.TABLEAU_CONNECTED_APP_SECRET_VALUE!;
+
+export function generateTableauJWT(username: string = 'public_viewer'): string {
+ const payload = {
+   iss: CONNECTED_APP_CLIENT_ID,
+   sub: username,
+   aud: 'tableau',
+   exp: Math.floor(Date.now() / 1000) + 600, // 10분 만료
+   jti: crypto.randomUUID(),
+   scp: ['tableau:views:embed', 'tableau:views:embed_authoring'] // 읽기 전용
+ };
+
+    return jwt.sign(payload, CONNECTED_APP_SECRET_VALUE, {
+      algorithm: 'HS256',
+      header: {
+        alg: 'HS256',
+        typ: 'JWT',
+        kid: CONNECTED_APP_SECRET_ID,
+        iss: CONNECTED_APP_CLIENT_ID
+      }
+    });
+}
+
+// lib/agentforce-client.ts
+// Agentforce API 클라이언트 (Next.js 서버 사이드)
+
+export class AgentforceClient {
+ private accessToken: string | null = null;
+ private instanceUrl: string;
+
+    constructor() {
+      this.instanceUrl = process.env.SALESFORCE_INSTANCE_URL!;
+    }
+
+    async authenticate(): Promise<void> {
+    // OAuth 2.0 JWT Bearer Flow
+    const jwtAssertion = this.createJWTAssertion();
+    const response = await fetch(`${this.instanceUrl}/services/oauth2/token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+        assertion: jwtAssertion
+      })
+    });
+    const data = await response.json();
+    this.accessToken = data.access_token;
+}
+
+async sendMessage(
+  sessionId: string,
+  message: string,
+  context?: { country?: string; page?: string; visualization?: string }
+): Promise<AgentResponse> {
+  if (!this.accessToken) await this.authenticate();
+
+    const response = await fetch(
+      `${this.instanceUrl}/services/data/v62.0/agent/chat`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          agentId: process.env.AGENTFORCE_AGENT_ID,
+          sessionId,
+          message,
+          context: {
+            ...context,
+            platform: 'visual_climate_web',
+            timestamp: new Date().toISOString()
+          }
+        })
+      }
+    );
+
+    return response.json();
+}
+
+private createJWTAssertion(): string {
+ // Salesforce OAuth JWT assertion 생성
+ // ...
+    }
+}
+
+
+
+4.3 Data Class 표현 규칙 — Tableau 구현
+RFP §40의 7개 Data Class별 표현 규칙을 Tableau 워크북에서 어떻게 적용하는지:
+
+Data Class: Projection (시나리오 전망)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tableau 구현:
+ - 차트 유형: Line chart + Confidence Band (연속 영역 차트 레이어)
+ - Band: 모델 앙상블 10th–90th percentile
+ - 라벨: 제목에 "[SSP scenario name]" 항상 포함
+ - 계산 필드:
+   // 라벨에서 "will" 방지
+   IF [data_class] = "projection" THEN
+     "Projected under " + [scenario]
+   END
+ - 색상: 시나리오별 고정색
+   SSP1-2.6: #2E7D32 (녹색, "지속가능")
+   SSP2-4.5: #FF8F00 (주황, "중간")
+   SSP5-8.5: #C62828 (빨강, "고배출")
+ - 툴팁: "[Country] temperature is projected to increase by
+        {value}°C (range: {low}–{high}°C) by {year}
+        under {scenario}. [Source: DS-18, CMIP6 ensemble]"
+
+Data Class: Finance (기후 자금)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tableau 구현:
+ - commitment vs disbursement: 별도 색상 + 라벨
+   Commitment: 점선 윤곽 바
+   Disbursement: 채워진 바
+ - 계산 필드:
+   IF [finance_type] = "committed" THEN "Committed (not yet disbursed)"
+   ELSEIF [finance_type] = "disbursed" THEN "Disbursed"
+   END
+ - 축 라벨: "USD (current prices, [currency_year])"
+ - 경고 텍스트 (대시보드 텍스트 객체):
+   "Note: Committed amounts may not yet have been disbursed."
+
+Data Class: Index (종합 지수 — ND-GAIN, INFORM)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━
+Tableau 구현:
+ - 절대 단일 빨강-초록 히트맵으로 표시하지 않음
+ - 기본 표현: Scatter plot (X=Readiness, Y=Vulnerability)
+   → ND-GAIN 매트릭스 스타일
+ - 보조 표현: Component breakdown bar chart
+   (Exposure, Sensitivity, Adaptive Capacity 각각)
+ - 라벨: "Higher score indicates higher reported vulnerability
+       under the ND-GAIN framework"
+ - 색상: 순차 팔레트 (파랑 → 주황, 적록색맹 안전)
+
+
+
+
+Part 4 완료. Part 5~8 진행합니다.
+
+
+
+
+PART 5: 오프라인 PWA & 다국어
+
+5.1 PWA 아키텍처
+Service Worker 전략:
+━━━━━━━━━━━━━━━━━━━
+
+리소스 유형별 캐싱 전략:
+
+1. App Shell (HTML, CSS, JS 번들)
+  전략: Cache First (install 시 사전 캐시)
+  갱신: 새 빌드 배포 시 SW 업데이트
+
+2. 국가 프로필 요약 데이터 (JSON)
+  전략: Stale-While-Revalidate
+  캐시: 최근 조회한 10개 국가의 요약 JSON
+  크기: 국가당 ~50KB, 총 ~500KB
+  내용: 주요 지표 최신값, 트렌드 방향, NDC 요약
+
+3. Tableau 시각화
+  전략: Network Only (오프라인 시 정적 스냅샷으로 대체)
+  대체: 마지막으로 캐시된 PNG 스냅샷 표시 +
+      "Offline: showing cached snapshot from [date]" 배너
+
+4. Agentforce AI 채팅
+  전략: Network Only (오프라인 시 비활성화)
+  대체: "AI features require internet connection.
+     Here's the cached data for [country]." +
+     캐시된 요약 데이터 표시
+5. 학습 경로 콘텐츠
+  전략: Cache First (미리 다운로드 가능)
+  기능: "Download for offline" 버튼 →
+    선택한 학습 경로의 모든 텍스트 + 정적 이미지 캐시
+
+IndexedDB 스키마:
+ store: country_cache
+  key: iso3
+  value: { summary_json, snapshot_images[], cached_at, expires_at }
+
+ store: learning_paths
+  key: path_id
+  value: { steps[], content[], images[], downloaded_at }
+
+
+
+5.2 다국어 (i18n)
+구현 계층:
+
+Layer 1: UI 문자열 (next-intl)
+ - /messages/en.json, /messages/fr.json, ... (6개 파일)
+ - 버튼 라벨, 메뉴, 에러 메시지 등 정적 문자열
+ - 약 2,000개 키
+
+Layer 2: 데이터 라벨 (Salesforce Translation Workbench)
+ - 지표명, 섹터명, 가스명 등 데이터 관련 용어
+ - Custom Metadata Type에 번역 저장
+ - 약 500개 키
+
+Layer 3: AI 생성 콘텐츠 (Agentforce S16 Translation)
+ - S03 Explanation의 출력을 사용자 언어로 생성
+ - S06 ReportGeneration의 PDF를 6개 언어로 생성
+ - IPCC 공식 용어 일관성을 위한 용어집 프롬프트에 포함
+
+Layer 4: 국가명 (UN 공식 단축명)
+ - Country_Code_Map__dmo에 6개 언어 국가명 저장
+ - UN Terminology 기반
+
+
+
+
+PART 6: 보안 & 접근 제어
+
+6.1 RBAC — Salesforce Permission Set 매핑
+역할           | Permission Set | 접근 범위
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━
+Public        | (인증 없음)       | 읽기 전용: 모든 시각화, AI 해석, PDF
+Authenticated User | VC_User        | + 커스텀 비교 저장, 학습 진도 저장
+Reviewer         | VC_Reviewer    | + Q7 인간 게이트 승인, BTR 검증 결과 확인
+Org Admin         | VC_Org_Admin     | + 조직별 커스텀 지표, 사용자 관리
+Platform Admin | VC_Platform_Admin | + 소스 레지스트리 관리, Subagent 설정,
+           |            | Data Cloud 파이프라인 관리
+
+
+
+6.2 위협 모델 및 완화
+위협              | 완화 방법
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━
+IDOR (타인 데이터 접근) | 모든 데이터가 공개이므로 IDOR 위험 없음.
+              | 사용자 저장 데이터(비교, 진도)는 세션/사용자 ID로 격리.
+CSRF                | Next.js 내장 CSRF 토큰 + SameSite 쿠키 정책.
+XSS               | React 자동 이스케이핑 + CSP 헤더 +
+              | Tableau iframe sandbox 속성.
+SQL Injection          | Data Cloud SOQL은 파라미터 바인딩 사용.
+              | 사용자 입력이 직접 쿼리에 들어가지 않음.
+Prompt Injection        | Agentforce Trust Layer: 입력 필터링 +
+              | Agentforce Script 결정론적 게이트.
+              | 사용자 입력이 Prompt Template에 삽입될 때
+              | XML/special char 이스케이핑.
+API Abuse             | Rate limiting: Agentforce 채팅 = 60 req/min/user.
+              | Tableau embed = 토큰 10분 만료.
+Data Poisoning           | 모든 수집은 Retrieval Record로 추적.
+              | sha256 체크섬으로 무결성 검증.
+              | 소스 변경은 Platform Admin만 가능.
+
+
+
+
+PART 7: 테스트 & 검증
+
+7.1 수용 테스트 (AT-01 ~ AT-14)
+RFP §23의 14개 수용 테스트를 구체적 테스트 시나리오로 변환합니다.
+
+AT-01: Source Traceability
+━━━━━━━━━━━━━━━━━━━━━━━━━
+테스트: "Cambodia CO₂ emissions 2020" 질의
+검증: 응답의 모든 수치에 [Source: DS-XX, Year: YYYY] 존재
+도구: Agentforce Testing Center — 자동화된 대화 시나리오
+합격 기준: 100% citation coverage (누락 0건)
+
+AT-02: Multi-Source Comparison Accuracy
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+테스트: "EDGAR vs Climate TRACE for India 2020 Energy"
+검증:
+ 1. 두 소스 값이 모두 표시됨
+ 2. 차이 설명이 방법론 기반 (bottom-up vs top-down)
+ 3. 하나가 "틀렸다"고 표현하지 않음
+ 4. F-gas 범위 차이 경고 포함
+합격 기준: 4개 항목 모두 충족
+
+AT-03: Quality Gate Enforcement
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+테스트: 의도적으로 소스 인용을 누락한 AI 출력 주입
+검증: Q1 게이트가 실패 → 재시도 또는 에스컬레이션
+합격 기준: 인용 누락 콘텐츠가 사용자에게 도달하지 않음
+
+AT-04: Prohibited Action Blocking
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+테스트: "Rank all countries by emissions" 질의
+검증: 순위 표가 자동 생성되지 않음 (단, 사용자가 명시적 요청 시 허용)
+합격 기준: 자동 순위 생성 = 0건
+
+... (AT-05 ~ AT-14도 동일 형식으로)
+
+AT-05: Offline Functionality
+AT-06: Multi-language Consistency
+AT-07: BTR Verification Accuracy
+AT-08: PDF Report Completeness
+AT-09: Response Time (< 5초 for data display, < 10초 for AI explanation)
+AT-10: Mobile Responsiveness
+AT-11: Accessibility (WCAG 2.1 AA)
+AT-12: Data Freshness (소스 업데이트 후 수집 파이프라인 실행 시간)
+AT-13: Concurrent Users (100명 동시 접속 시 성능 유지)
+AT-14: Security (OWASP Top 10 취약점 없음)
+
+
+
+7.2 페르소나 E2E 시나리오 — 자동화
+시나리오 1: BTR Analyst (캄보디아 환경부)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Step 1: 검색 → "Cambodia"
+ 검증: 국가 프로필 페이지 로드 < 3초
+ 검증: 모든 섹션 (emissions, vulnerability, ...) 시각화 표시
+
+Step 2: AI 질의 → "2015-2023 에너지 섹터 배출 EDGAR vs TRACE"
+ 검증: 응답 < 10초
+ 검증: 두 소스 값 모두 표시
+ 검증: 차이 설명 포함
+ 검증: Q1-Q6 품질 게이트 통과
+
+Step 3: PDF 생성 → "국가 기후 프로필 PDF"
+ 검증: PDF 생성 < 30초
+ 검증: 7개 섹션 모두 포함
+ 검증: 소스 인용 섹션 존재
+ 검증: AI 고지 문구 존재
+
+전체 소요: < 15분 (기존 7일 대비)
+
+
+
+
+PART 8: 구현 일정 — 기술 마일스톤
+
+Phase 2 (2027) — 52주 상세
+Q1 (Week 1-13): 데이터 확장
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+W1-2: Data Cloud Ingestion API 파이프라인 프레임워크 구축
+    (연결, 인증, 에러 처리, Retrieval Record 자동화)
+W3-4: DS-06 Climate Watch 통합 (API, NDC 데이터)
+W5-6: DS-18 CCKP 통합 (Climate Data API, 관측+전망)
+W7-8: DS-10 GCB 통합 (Bulk, 탄소 수지)
+    DS-12 IEA 무료 데이터셋 통합 (Bulk)
+W9-10: DS-13 FAOSTAT 통합 (API, 농업 배출)
+    DS-14 IRENA 통합 (Bulk, 재생에너지)
+W11-12: DS-17 UN SDG 통합 (API, SDG 지표)
+    DS-15 INFORM 통합 (Bulk, 위험 지수)
+W13: DS-19 GCF 통합 (API, 기후 자금)
+    DS-20 GFW 통합 (API, 산림)
+산출물: 15개 데이터셋 Data Cloud 통합 완료,
+    6개 DMO 스키마 확정, Retrieval Record 자동화
+
+Q2 (Week 14-26): AI Subagent 개발
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+W14-16: Agentforce Primary Agent 설정
+    S01 DataRetrieval 구현 + 테스트
+    S02 Visualization 구현 (워크북 선택 로직)
+W17-19: S03 Explanation 구현 + 품질 게이트 Apex
+    S04 Comparison 구현 + ComparabilityChecker
+W20-22: S05 Validation 구현 (기본 교차 검증)
+    S06 ReportGeneration 구현 (PDF 파이프라인)
+W23-25: S07 LearningPath 구현
+    S08 PeerBenchmark 구현
+W26: S09 AnomalyDetection + S10 NDCAnalyzer 기본 버전
+산출물: 10개 Subagent 운영, 품질 게이트 7개 전체 가동,
+    금지 행위 9개 전체 강제
+
+Q3 (Week 27-39): 프론트엔드 & 시각화
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+W27-29: Tableau 워크북 라이브러리 구축 (15+ 대시보드)
+    Tableau Connected App 설정
+W30-32: Next.js 프론트엔드 기본 구조
+    TableauEmbed React 컴포넌트
+    국가 프로필 ISR 페이지
+W33-35: AgentforceChat 위젯 통합
+    국가 비교 페이지
+    모바일 레이아웃 최적화
+W36-38: PDF 생성 파이프라인 (Puppeteer/React-PDF)
+    학습 경로 인터페이스
+W39: 접근성 감사 + 수정
+산출물: 완전한 웹 프론트엔드, 250개 국가 프로필,
+    PDF 생성, 학습 경로 MVP
+
+Q4 (Week 40-52): 다국어 & 안정화
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+W40-42: i18n (6개 UN 공용어) — UI 문자열 + 데이터 라벨
+    S16 Translation 구현
+W43-45: S11 ClimateProjection 구현 (CCKP 전망 데이터)
+    S12 DisasterAnalysis 구현
+    S13 FinanceTracker 구현
+W46-48: AT-01 ~ AT-14 수용 테스트 전체 실행
+    페르소나 E2E 시나리오 검증
+    성능 최적화 (Lighthouse ≥ 90)
+W49-51: 베타 테스트 (10개 파트너 기관)
+    피드백 반영 + 버그 수정
+W52: Phase 2 릴리스
+산출물: 15개 데이터셋, 200개 지표, 13개 Subagent,
+    6개 언어, MAU 10,000 목표 런칭
+PART 1: 시스템 아키텍처 개요
+(나머지 파트가 완성되었으므로 이제 요약을 작성합니다)
+
+
+
+
+1.1 전체 아키텍처 다이어그램
+┌────────────────────────────────────────────────────────
+─────────┐
+│               DATA SOURCES (40+)                │
+│
+┌────────┐┌──────────┐┌──────┐┌───────┐┌──────┐┌─────────
+─┐ │
+│ │WDI ││Climate ││EDGAR ││ND-GAIN││EM-DAT││+35 more │ │
+│ │DS-01 ││TRACE ││DS-05 ││DS-04 ││DS-03 ││DS-06~40 │ │
+│ │API ││DS-02 API ││Excel ││CSV ││CSV ││Mixed │ │
+│
+└───┬────┘└────┬─────┘└──┬───┘└───┬───┘└──┬───┘└────┬────
+─┘ │
+│   │        │     │      │     │     │      │
+│   ▼         ▼      ▼       ▼    ▼       ▼     │
+│
+┌────────────────────────────────────────────────────────
+──┐ │
+│ │ Collection Layer (4 patterns)              │ │
+│ │ Pattern 1: REST API → Streaming (JSON, 200KB/req)       │ │
+│ │ Pattern 2: CSV/Excel → Bulk (150MB/file)         │ │
+│ │ Pattern 3: Zero-Copy (BigQuery, no data movement)     │ │
+│ │ Pattern 4: PDF → AI Extract → Bulk             │ │
+│ │ Every run → Retrieval Record (sha256, timestamps, logs) │ │
+│
+└───────────────────────────┬────────────────────────────
+──┘ │
+└──────────────────────────────┼─────────────────────────
+─────────┘
+                  ▼
+┌────────────────────────────────────────────────────────
+──────────┐
+│            SALESFORCE DATA CLOUD                      │
+│                                         │
+│
+┌────────────────────────────────────────────────────────
+──┐ │
+│ │ Data Lake Objects (raw, source-faithful)       │ │
+│ │ WDI_Raw | EDGAR_Raw | TRACE_Raw | EMDAT_Raw | ...           │ │
+│
+└───────────────────────────┬────────────────────────────
+──┘ │
+│                  │                      │
+│            Harmonization Rules                   │
+│            H1: ISO3 country codes                 │
+│            H2: Annual time unit                │
+│            H3: GWP AR5                         │
+│            H4: IPCC 2006 sectors                 │
+│            H5: No forbidden transforms             │
+│                  │                      │
+│
+┌───────────────────────────▼────────────────────────────
+──┐ │
+│ │ Data Model Objects (harmonized, multi-source)          │ │
+│ │ Country_Emissions | Country_Vulnerability | Country_ │ │
+│ │ Climate | Country_Disasters | Country_Policy |       │ │
+│ │ Country_Finance                            │ │
+│
+└───────────────────────────┬────────────────────────────
+──┘ │
+└──────────────────────────────┼─────────────────────────
+─────────┘
+                  ▼
+┌────────────────────────────────────────────────────────
+──────────┐
+│            SALESFORCE AGENTFORCE 3                        │
+│                                        │
+│
+┌────────────────────────────────────────────────────────
+┐ │
+│ │ Primary Agent: VisualClimateAgent                │ │
+│ │ ├── Atlas Reasoning Engine (hybrid reasoning)         │ │
+│ │ ├── Global Instructions (6 rules)             │ │
+│ │ ├── Global Guardrails (9 prohibited actions)       │ │
+│ │ └── Multi-Agent Orchestration                  │ │
+│ │     ├── S01 DataRetrieval                   │ │
+│ │     ├── S02 Visualization                  │ │
+│ │     ├── S03 Explanation                    │ │
+│ │     ├── S04 Comparison                       │ │
+│ │     ├── S05 Validation (BTR verification)        │ │
+│ │     ├── S06 ReportGeneration (PDF)                │ │
+│ │     ├── S07 LearningPath (PSEA method)              │ │
+│ │     ├── S08 PeerBenchmark                      │ │
+│ │     ├── S09 AnomalyDetection                   │ │
+│ │     ├── S10 NDCAnalyzer                       │ │
+│ │     ├── S11 ClimateProjection                 │ │
+│ │     ├── S12 DisasterAnalysis                  │ │
+│ │    ├── S13 FinanceTracker                       │ │
+│ │    ├── S14 DataImputation (human gate mandatory) │ │
+│ │    ├── S15 EmbedWidget                          │ │
+│ │    └── S16 Translation                       │ │
+│
+└────────────────────────────────────────────────────────
+┘ │
+│
+┌────────────────────────────────────────────────────────
+┐ │
+│ │ Quality Gates (Apex, server-enforced)              │ │
+│ │ Q1 Sources | Q2 Dates | Q3 Units | Q4 Comparability │ │
+│ │ Q5 Uncertainty | Q6 AI Disclosure | Q7 Human Signoff │ │
+│
+└────────────────────────────────────────────────────────
+┘ │
+│
+┌────────────────────────────────────────────────────────
+┐ │
+│ │ Audit Log (every run: run_id, actions, gates, hashes) │ │
+│
+└────────────────────────────────────────────────────────
+┘ │
+└──────────────────────────────┬─────────────────────────
+─────────┘
+                   ▼
+┌────────────────────────────────────────────────────────
+──────────┐
+│             TABLEAU CLOUD                           │
+│                                          │
+│
+┌────────────────────────────────────────────────────────
+┐ │
+│ │ Workbook Library (15+ dashboards)                  │ │
+│ │ Country Profiles | Comparisons | Global Views |       │ │
+│ │ Learning                                │ │
+│ │ Connected App JWT auth | Embedding API v3              │ │
+│ │ Agentic Analytics (anomaly detection, auto-insight) │ │
+│ │ Data Class display rules enforced per §40           │ │
+│
+└───────────────────────────┬────────────────────────────
+┘ │
+└──────────────────────────────┼─────────────────────────
+─────────┘
+                   ▼
+┌────────────────────────────────────────────────────────
+──────────┐
+│             NEXT.JS FRONTEND                          │
+│                                         │
+│
+┌────────────────────────────────────────────────────────
+┐ │
+│ │ @tableau/embedding-api-react (<TableauViz> components) │ │
+│ │ AgentforceChat widget (AI 채팅)                   │ │
+│ │ 250 country profile pages (ISR, 24h revalidation)   │ │
+│ │ Country comparison tool                      │ │
+│ │ Learning path interface (PSEA method)              │ │
+│ │ PDF export (server-side Puppeteer)                │ │
+│ │ PWA (Service Worker, offline cached summaries)        │ │
+│ │ i18n (6 UN languages via next-intl)             │ │
+│ │ RBAC (5 levels via Salesforce Permission Sets)       │ │
+│
+└────────────────────────────────────────────────────────
+┘ │
+└────────────────────────────────────────────────────────
+──────────┘
+
+
+
+1.2 기술 스택 요약
+   계층                    기술                            역할              라이선스
+
+데이터       Salesforce Data Cloud (Ingestion     40개 소스 → 통합 DMO         비영리
+수집·통합     API, Zero-Copy)                                              무료
+
+AI        Salesforce Agentforce 3 (Atlas,      16 Subagent, 7 게이트, 9   비영리
+추론·로직     Agentforce Script)                   금지                      무료
+
+시각화       Tableau Cloud + Embedding API        15+ 대시보드,               비영리
+          v3 React                             인터랙티브 임베드               무료
+
+프론트엔드     Next.js 15 (App Router, ISR, PWA) SSR/ISR, 250 국가            MIT
+                                            페이지, 오프라인                  오픈소스
+
+인증        Salesforce Connected App +           OAuth JWT               —
+          Tableau Connected App
+
+PDF 생성    Puppeteer (서버 사이드)                   국가 프로필 PDF              Apache
+                                                                       2.0
+
+다국어       next-intl + Salesforce Translation   6개 UN 공용어               MIT / 내장
+          Workbench
+
+모니터링      Agentforce Observability + Agent     성능, 비용, 오류 추적           내장
+          Analytics
+1.3 데이터 흐름 요약
+사용자가 "Cambodia"를 검색하면: Next.js ISR 페이지 반환 (캐시 or 재생성) → Tableau
+Connected App JWT 발급 → <TableauViz> 컴포넌트가 CP_Overview 워크북 로드
+(Country=KHM 필터) → Tableau Cloud가 Data Cloud DMO에서 실시간 데이터 쿼리 →
+시각화 렌더링. 사용자가 AI 질문 → Next.js → Agentforce API → Primary Agent → Atlas
+라우팅 → Subagent 실행 → Data Cloud 쿼리 → 품질 게이트 → 응답 반환.
+
+
+
+
+APPENDIX: 40개 소스 수집 설정서 요약표
+ Source   ID   Pattern         DLO       수   예상         API/Download URL
+                                         집   레코
+                                         주    드
+                                         기
+
+World     D Streaming      WDI_Raw__dl   반   ~550K api.worldbank.org/v2
+Bank      S-               m             기
+WDI       0
+          1
+
+Climate   D Streaming+Ze   TRACE_Raw_    월   ~3M     api.climatetrace.org/v7
+TRACE     S- roCopy        _dlm          별   (API)
+          0                                  + 27M
+          2                                  (BQ)
+
+EM-DAT    D Bulk           EMDAT_Raw_    분   ~27K    public.emdat.be
+          S-               _dlm          기
+          0
+          3
+
+ND-GAI    D Bulk           NDGAIN_Raw    연   ~14K    gain.nd.edu/assets/64744
+N         S-               __dlm         1           0
+          0                              회
+          4
+
+EDGAR     D Bulk           EDGAR_Raw_    연   ~1.8M   edgar.jrc.ec.europa.eu
+          S-               _dlm          1
+          0                              회
+          5
+
+Climate   D Streaming      CW_Raw__dl    N   ~200K climatewatchdata.org
+Watch     S-               m             D
+          0                              C
+          6                              제
+                                         출
+                                         후
+
+CAT      D Bulk          CAT_Raw__dl     C    ~40국    climateactiontracker.org
+         S-              m               O
+         0                               P
+         7                               전
+                                         후
+
+UNFCC    D PDF Extract   NDC_Structure N      ~400    unfccc.int/NDCREG
+C NDC    S-              d__dlm        D      문서
+         0                             C
+         8                             제
+                                       출
+                                       시
+
+UNFCC    D TBD           CDH_Raw__dl     TB   TBD     unfccc.int/node/655626
+C CDH    S-              m               D
+         0
+         9
+
+GCB      D Bulk          GCB_Raw__dl     연 ~50K       globalcarbonbudget.org
+         S-              m               1
+         1                               회
+         0                               (1
+                                         1
+                                         월)
+
+Copernic D Zero-Copy     ERA5_Virtual_   일    PB급     cds.climate.copernicus.eu
+us ERA5 S-               _dcv            별    (가상)
+         1
+         1
+
+IEA      D Bulk          IEA_Raw__dl     연    ~10K(   iea.org/data-and-statistics
+         S-              m               1    무료)
+         1                               회
+         2
+
+FAOSTA   D Streaming     FAO_Raw__dl     연    ~500K fao.org/faostat
+T        S-              m               1
+         1                               회
+         3
+
+IRENA    D Bulk          IRENA_Raw__     연 ~50K       irena.org/Data
+         S-              dlm             1
+         1                               회
+         4                               (7
+                                         월)
+INFORM   D Bulk          INFORM_Raw    반   ~5K     drmkc.jrc.ec.europa.eu
+         S-              __dlm         기
+         1
+         5
+
+German   D PDF Extract   CRI_Raw__dl   연 ~180      germanwatch.org/en/cri
+watch    S-              m             1  국
+CRI      1                             회
+         6                             (1
+                                       1
+                                       월)
+
+UN SDG   D Streaming     SDG_Raw__dl   연 ~100K unstats.un.org/sdgapi
+         S-              m             1
+         1                             회
+         7                             (7
+                                       월)
+
+WB       D Streaming     CCKP_Raw__    비   ~500K climateknowledgeportal.w
+CCKP     S-              dlm           정         orldbank.org
+         1                             기
+         8
+
+GCF      D Streaming     GCF_Raw__dl   분   ~2K     developer.gcfund.org
+         S-              m             기
+         1
+         9
+
+GFW      D Streaming     GFW_Raw__dl 연     ~200K data-api.globalforestwatch
+         S-              m           1           .org
+         2                           회
+         0                           +
+                                     일
+                                     별
+                                     알
+                                     림
+
+IPCC     D Bulk          IPCC_Raw__d   비   ~1.2K   data.ene.iiasa.ac.at/ar6
+AR6 DB   S-              lm            정   시나
+         2                             기   리오
+         1
+
+UNEP     D PDF Extract   EGR_Raw__dl   연 ~50       unep.org/emissions-gap-r
+EGR      S-              m             1           eport
+         2                             회
+         2                             (1
+                                       0
+                                       월)
+UNEP      D PDF Extract   AGR_Raw__dl   연   ~30    unep.org/adaptation-gap-r
+AGR       S-              m             1          eport
+          2                             회
+          3
+
+IMF       D Streaming     IMF_Raw__dl   분   ~50K   climatedata.imf.org
+Climate   S-              m             기
+          2
+          4
+
+NASA      D Bulk          GIST_Raw__dl 월    ~50K   data.giss.nasa.gov/gistem
+GISTEM    S-              m            별           p
+P         2
+          5
+
+NOAA      D Bulk          NOAA_Raw__    월   ~5K    gml.noaa.gov
+GML       S-              dlm           별
+          2
+          6
+
+C3S       D Bulk          C3S_Raw__dl   월   ~1K    climate.copernicus.eu
+Global    S-              m             별
+Temp      2
+          7
+
+NASA      D Bulk          SEALEV_Raw    월   ~5K    sealevel.nasa.gov
+Sea       S-              __dlm         별
+Level     2
+          8
+
+GBIF      D Streaming     GBIF_Raw__dl 비    ~100K gbif.org
+          S-              m            정    (요약)
+          2                            기
+          9
+
+OECD      D Streaming     OECD_Raw__    연   ~20K   stats.oecd.org
+Env       S-              dlm           1
+          3                             회
+          0
+
+Carbon    D Bulk          CPRICE_Raw    연   ~500   carbonpricingdashboard.w
+Pricing   S-              __dlm         1          orldbank.org
+          3                             회
+          1
+
+Climate   D Streaming     CPDB_Raw__    수   ~5K정   climatepolicydatabase.org
+Policy    S-              dlm           시   책
+DB        3
+          2
+UNFCC      D PDF Extract    BTR_Raw__dl    제   ~200   unfccc.int/biennial-transpa
+C BTR      S-               m              출   문서     rency-reports
+           3                               시
+           3
+
+GEF        D Bulk           CBIT_Raw__dl   비   ~130   thegef.org
+CBIT       S-               m              정
+           3                               기
+           4
+
+NDC        D Bulk           NDCP_Raw__     비   ~100   ndcpartnership.org
+Partners   S-               dlm            정   국
+hip        3                               기
+           5
+
+Munich     D 라이선스           —              —   —      비공개
+Re         S- 협상
+           3
+           6
+
+Swiss      D Bulk (부분)      SWRE_Raw__     연   ~1K    sigma-explorer.com
+Re         S-               dlm            1
+sigma      3                               회
+           7
+
+WB Sov     D Streaming      SOVRISK_Ra     비   ~10K   data360.worldbank.org
+Risk       S-               w__dlm         정
+           3                               기
+           8
+
+CBI        D 부분 유료          CBI_Raw__dl    분   ~5K    climatebonds.net
+Green      S-               m              기
+Bond       3
+           9
+
+CAMS       D Streaming      CAMS_Raw__     일   ~50K   atmosphere.copernicus.e
+Air        S-               dlm            별          u
+Quality    4
+           0
+
+
+
+Technical Proposal 전체 완료.
+
+문서 ID: VC-TECH-PROP-2026-001, 8개 Part + Appendix, 총 ~48페이지 분량.
+
+이 문서를 기반으로 실제 개발을 시작할 수 있습니다. 어떤 Part부터 구현에 들어갈지, 또는
+특정 Part를 더 깊이 파야 할지 알려주세요.
+

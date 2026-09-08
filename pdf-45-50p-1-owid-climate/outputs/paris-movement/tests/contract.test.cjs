@@ -1,0 +1,17 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const ts = require('typescript');
+const path = require('node:path');
+const src=fs.readFileSync(path.join(__dirname,'../lib/climate.ts'),'utf8');
+const js=ts.transpileModule(src,{compilerOptions:{module:ts.ModuleKind.CommonJS,esModuleInterop:true}}).outputText;
+const mod={exports:{}};vm.runInNewContext(js,{exports:mod.exports,require:(name)=>name==='../data/khm.json'?JSON.parse(fs.readFileSync(path.join(__dirname,'../data/khm.json'),'utf8')):require(name),structuredClone,console});
+const {countrySnapshot,validateCountry,verdict}=mod.exports;
+test('Cambodia retains unparsed evidence, an unquantified split, and a refusal to derive a gap',()=>{const d=countrySnapshot('KHM');assert.equal(d.btr.submitted,true);assert.equal(d.series.observed.length,1);assert.equal(d.ndc.conditionality.conditional_pct,null);assert.equal(d.derived.ambition_gap_factor,null);assert.ok(Object.values(d.btr.components).every(v=>v.state==='unknown'));assert.ok(validateCountry(d));});
+test('Changing countries never carries Cambodia facts into another record',()=>{for(const iso of ['KOR','BRA']){const d=countrySnapshot(iso);assert.equal(d.country.iso3,iso);assert.equal(d.finance_need.mitigation_usd,null);assert.equal(d.btr.submitted,null);assert.equal(d.vulnerability.ndgain_score,null);assert.ok(!JSON.stringify(d).includes('Cambodia'));assert.ok(validateCountry(d));}});
+test('Invalid country is not replaced with a plausible default',()=>{assert.equal(countrySnapshot('XXX'),null);assert.equal(countrySnapshot('../'),null)});
+test('Source document editions and baseline types are explicit',()=>{assert.match(verdict(countrySnapshot('KHM')),/2030 BAU/);assert.match(verdict(countrySnapshot('KOR')),/2018 baseline/);assert.match(verdict(countrySnapshot('BRA')),/2005 baseline/)});
+test('A rich payload supports 15 observations and all reported components',()=>{const d=countrySnapshot('KHM');d.series.observed=Array.from({length:15},(_,i)=>({year:2016+i,value_mtco2e:125.2-i,state:'observed',source_id:'TEST-ONLY'}));Object.values(d.btr.components).forEach(c=>c.state='observed');assert.ok(validateCountry(d));assert.equal(d.series.observed.length,15)});
+test('Unknown and absent are both accepted but never collapsed',()=>{const d=countrySnapshot('KHM');d.btr.components.nir.state='absent';assert.ok(validateCountry(d));assert.equal(d.btr.components.nir.state,'absent');assert.equal(d.btr.components.crt.state,'unknown');d.btr.components.nir.state='missing';assert.equal(validateCountry(d),false)});
+test('Malformed contract and non-finite observations are rejected',()=>{assert.equal(validateCountry(null),false);assert.equal(validateCountry({}),false);const d=countrySnapshot('KHM');d.series.observed[0].value_mtco2e=Infinity;assert.equal(validateCountry(d),false)});

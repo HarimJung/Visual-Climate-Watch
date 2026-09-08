@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #0B0D0F; }
+    a { color: #FF8A3D; } a:hover { color: #FFA765; }
+    @keyframes tr-lift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.06); } }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 880px; height: 620px; padding: 40px 44px; box-sizing: border-box; overflow: hidden;
+    background: radial-gradient(100% 80% at 20% 0%, #191E23 0%, #101418 46%, #0A0C0E 100%);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;">
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 11px; margin-bottom: 8px;">
+        <div style="width: 22px; height: 1px; background: #FF8A3D;"></div>
+        <div style="font: 500 10px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: .28em; color: #FF8A3D;">SIGNATURE MOVE</div>
+      </div>
+      <h2 style="margin: 0; font-size: 27px; font-weight: 800; letter-spacing: -.022em; color: #EDF2F6;">지도가 아니라 시계공의 트레이</h2>
+    </div>
+    <div style="text-align: right; font: 400 10.5px 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #5C666D;">190 MOVEMENTS<br>1 CALIBRE</div>
+  </div>
+
+  <p style="margin: 0 0 22px; max-width: 640px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">케이스는 전부 똑같다. <span style="color:#EDF2F6;">안이 얼마나 채워져 있는지</span>가 등급이다 — Talker는 화려한 케이스에 거의 빈 무브먼트.</p>
+
+  <!-- the tray -->
+  <div style="display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 9px; padding: 18px 16px; border-radius: 2px;
+      background: linear-gradient(160deg, #15191D 0%, #0D1013 100%); box-shadow: inset 0 0 0 1px rgba(226,236,242,.08), inset 0 2px 22px rgba(0,0,0,.6);">
+    <sc-for list="{{units}}" as="u" hint-placeholder-count="19">
+      <div style="{{u.style}}"></div>
+    </sc-for>
+  </div>
+
+  <!-- legend -->
+  <div style="display: flex; align-items: center; gap: 30px; margin-top: 22px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 26px; height: 26px; border-radius: 50%; background: conic-gradient(from -90deg, #C6D0D7 0deg 320deg, #0C0F12 320deg 360deg); box-shadow: inset 0 0 0 1px rgba(226,236,242,.34);"></div>
+      <div>
+        <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .18em; color: #C6D0D7;">CHANGER</div>
+        <div style="font-size: 10.5px; color: #6F7A82;">거의 다 채워짐</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 26px; height: 26px; border-radius: 50%; background: conic-gradient(from -90deg, #79838A 0deg 175deg, #0C0F12 175deg 360deg); box-shadow: inset 0 0 0 1px rgba(226,236,242,.26);"></div>
+      <div>
+        <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .18em; color: #98A2AA;">STARTER</div>
+        <div style="font-size: 10.5px; color: #6F7A82;">반쯤 조립됨</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 26px; height: 26px; border-radius: 50%; background: conic-gradient(from -90deg, #4A5257 0deg 42deg, #0A0C0E 42deg 360deg); box-shadow: inset 0 0 0 1px rgba(194,69,63,.55);"></div>
+      <div>
+        <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .18em; color: #C2453F;">TALKER</div>
+        <div style="font-size: 10.5px; color: #6F7A82;">케이스만 있고 속이 빔</div>
+      </div>
+    </div>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 9px;">
+      <div style="width: 12px; height: 12px; border-radius: 50%; background: #FF8A3D; box-shadow: 0 0 12px rgba(255,138,61,.9);"></div>
+      <div style="font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: #6F7A82;">선택 → 트레이에서 들려 올라옴</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":880,"height":620}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var units = [];
+    for (var i = 0; i < 190; i++) {
+      // deterministic pseudo-random completeness
+      var s = Math.abs(Math.sin(i * 12.9898) * 43758.5453);
+      var f = s - Math.floor(s);
+      var pct = 0.10 + f * 0.88;
+      var deg = Math.round(pct * 360);
+      var fill = pct > 0.72 ? '#C6D0D7' : (pct > 0.38 ? '#79838A' : '#4A5257');
+      var ring = pct > 0.72 ? 'rgba(226,236,242,.34)' : (pct > 0.38 ? 'rgba(226,236,242,.24)' : 'rgba(194,69,63,.50)');
+      var extra = '';
+      if (i === 43) {
+        extra = ' box-shadow: inset 0 0 0 1px rgba(255,138,61,.95), 0 0 18px rgba(255,138,61,.55);'
+              + ' animation: tr-lift 3.8s ease-in-out infinite; z-index:2;';
+      }
+      units.push({
+        style: 'width:100%; aspect-ratio:1/1; border-radius:50%; position:relative;'
+          + ' background: conic-gradient(from -90deg, ' + fill + ' 0deg ' + deg + 'deg, #0A0C0E ' + deg + 'deg 360deg);'
+          + (extra ? extra : ' box-shadow: inset 0 0 0 1px ' + ring + ';')
+      });
+    }
+    return { units: units };
+  }
+}
+</script>
+</body>
+</html>

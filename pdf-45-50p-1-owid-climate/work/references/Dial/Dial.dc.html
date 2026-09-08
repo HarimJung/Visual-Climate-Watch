@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #0B0D0F; }
+    a { color: #FF8A3D; } a:hover { color: #FFA765; }
+    @keyframes vc-hover { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-7px) rotate(-8deg); } }
+    @keyframes vc-dash { to { stroke-dashoffset: -120; } }
+    @keyframes vc-pulse-soft { 0%,100% { opacity: .35; } 50% { opacity: .9; } }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 1000px; height: 900px; overflow: hidden;
+    background: radial-gradient(110% 80% at 30% 12%, #1C2228 0%, #11151A 46%, #0A0C0E 100%);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;">
+
+  <div style="position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 42%); pointer-events: none;"></div>
+
+  <!-- ── header ── -->
+  <div style="position: absolute; left: 60px; top: 52px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: baseline; gap: 16px;">
+      <div style="font: 500 12px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: .30em; color: #FF8A3D;">KHM</div>
+      <h2 style="margin: 0; font-size: 38px; font-weight: 800; letter-spacing: -.02em; color: #EDF2F6;">CAMBODIA</h2>
+      <div style="padding: 2px 7px; border: 1px solid rgba(194,69,63,.5); font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: #C2453F;">SAMPLE VALUES</div>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <div style="padding: 3px 10px; border: 1px solid rgba(226,236,242,.20); font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: #98A2AA;">LDC</div>
+      <div style="padding: 3px 10px; border: 1px solid rgba(226,236,242,.20); font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: #98A2AA;">NON-ANNEX I</div>
+      <div style="padding: 3px 10px; border: 1px solid rgba(226,236,242,.20); font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: #98A2AA;">LOWER MIDDLE INCOME</div>
+    </div>
+  </div>
+
+  <!-- ── the dial ── -->
+  <div style="position: absolute; left: 500px; top: 480px; width: 0; height: 0;">
+
+    <!-- halo -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 760px; height: 760px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: radial-gradient(circle, rgba(120,160,200,.09) 0%, rgba(0,0,0,0) 64%);"></div>
+
+    <!-- engraved tick bezel -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 596px; height: 596px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: repeating-conic-gradient(from -90deg, rgba(190,202,210,.52) 0deg 0.3deg, rgba(0,0,0,0) 0.3deg 6deg);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 578px; height: 578px; transform: translate(-50%,-50%); border-radius: 50%; background: #0B0D0F;"></div>
+
+    <!-- OBSERVED trajectory ring — METAL, sweeps past the target -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 566px; height: 566px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: conic-gradient(from -128deg, #9AA4AB 0deg, #C6D0D7 96deg, #79838A 214deg, rgba(0,0,0,0) 214deg 360deg);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 566px; height: 566px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: conic-gradient(from -128deg, rgba(255,255,255,.20) 0deg, rgba(255,255,255,0) 110deg, rgba(0,0,0,.25) 214deg, rgba(0,0,0,0) 214deg 360deg); mix-blend-mode: overlay;"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 514px; height: 514px; transform: translate(-50%,-50%); border-radius: 50%; background: #0B0D0F; box-shadow: 0 0 0 1px rgba(226,236,242,.10);"></div>
+
+    <!-- THE GAP — the air between promise and reality -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 566px; height: 566px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: conic-gradient(from 6deg, rgba(194,69,63,.30) 0deg 80deg, rgba(0,0,0,0) 80deg 360deg);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 514px; height: 514px; transform: translate(-50%,-50%); border-radius: 50%; background: #0B0D0F;"></div>
+
+    <!-- TARGET path ring — GLASS, stops short -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 500px; height: 500px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: conic-gradient(from -128deg, rgba(170,205,235,.42) 0deg, rgba(190,220,245,.20) 134deg, rgba(0,0,0,0) 134deg 360deg);
+        box-shadow: inset 0 0 0 1px rgba(200,225,245,.16);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 462px; height: 462px; transform: translate(-50%,-50%); border-radius: 50%; background: #0B0D0F;"></div>
+
+    <!-- inner plate -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 448px; height: 448px; transform: translate(-50%,-50%); border-radius: 50%;
+        background-image:
+          repeating-linear-gradient(112deg, rgba(255,255,255,.045) 0 2px, rgba(0,0,0,.05) 2px 14px),
+          radial-gradient(circle at 32% 24%, #5B6368 0%, #3D4449 50%, #23282C 100%);
+        box-shadow: inset 0 0 0 1px rgba(226,236,242,.16), inset 0 2px 22px rgba(0,0,0,.6);"></div>
+
+    <!-- BTR jewel subdial -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 250px; height: 250px; transform: translate(-50%,-50%); border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgba(226,236,242,.13);"></div>
+    <sc-for list="{{jewels}}" as="j" hint-placeholder-count="8">
+      <div style="{{j.style}}"></div>
+    </sc-for>
+    <sc-for list="{{jewels}}" as="j" hint-placeholder-count="8">
+      <div style="{{j.labelStyle}}">{{j.label}}</div>
+    </sc-for>
+
+    <!-- centre readout -->
+    <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); text-align: center; width: 190px;">
+      <div style="font: 500 9.5px 'IBM Plex Mono', monospace; letter-spacing: .26em; color: #7D878E;">BTR COMPLETENESS</div>
+      <div style="margin-top: 6px; font: 500 44px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: -.02em; color: #EDF2F6;">5<span style="color: #5C666D;">/8</span></div>
+      <div style="margin-top: 2px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .18em; color: #C2453F;">CTF · REDD+ · ART.6 부재</div>
+    </div>
+
+    <!-- gap callout -->
+    <div style="position: absolute; left: 244px; top: 96px; display: flex; align-items: center; gap: 10px;">
+      <div style="width: 54px; height: 1px; background: rgba(194,69,63,.7);"></div>
+      <div>
+        <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .22em; color: #C2453F;">AMBITION GAP</div>
+        <div style="font: 500 22px 'IBM Plex Mono', monospace; color: #EDF2F6;">×2.96</div>
+      </div>
+    </div>
+
+    <!-- ring labels -->
+    <div style="position: absolute; left: -370px; top: -196px; text-align: right; width: 190px;">
+      <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .20em; color: #C6D0D7;">OBSERVED · METAL</div>
+      <div style="margin-top: 3px; font: 400 11px 'Archivo', sans-serif; color: #7D878E;">실측 배출 궤적 (EDGAR)</div>
+    </div>
+    <div style="position: absolute; left: -370px; top: -128px; text-align: right; width: 190px;">
+      <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .20em; color: #9FC3E0;">PLEDGED · GLASS</div>
+      <div style="margin-top: 3px; font: 400 11px 'Archivo', sans-serif; color: #7D878E;">NDC 목표 경로</div>
+    </div>
+  </div>
+
+  <!-- ── SATELLITE : conditional wheel, not engaged ── -->
+  <div style="position: absolute; left: 742px; top: 176px; width: 210px; height: 250px;">
+    <svg viewBox="0 0 210 250" style="position: absolute; inset: 0; width: 210px; height: 250px;">
+      <path d="M 104 96 C 128 60, 150 48, 168 34" fill="none" stroke="rgba(200,225,245,.42)" stroke-width="1.2" stroke-dasharray="4 6"></path>
+      <path d="M 104 96 C 128 60, 150 48, 168 34" fill="none" stroke="#9FC3E0" stroke-width="1.6" stroke-dasharray="4 116" style="animation: vc-dash 3.4s linear infinite;"></path>
+    </svg>
+
+    <!-- empty finance barrel -->
+    <div style="position: absolute; left: 152px; top: 14px; width: 34px; height: 34px; border-radius: 50%;
+        background: #090B0D; box-shadow: inset 0 3px 8px rgba(0,0,0,.95), inset 0 0 0 1px rgba(194,69,63,.62);"></div>
+    <div style="position: absolute; left: 122px; top: 54px; width: 96px; text-align: center; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: #C2453F;">GCF · 미도달</div>
+
+    <!-- the floating, unmeshed conditional wheel -->
+    <div style="position: absolute; left: 104px; top: 96px; width: 0; height: 0; animation: vc-hover 4.4s ease-in-out infinite;">
+      <div style="position: absolute; left: -66px; top: -66px; width: 132px; height: 132px; border-radius: 50%;
+          background-image: repeating-conic-gradient(from 0deg, rgba(190,220,245,.50) 0deg 1.6deg, rgba(0,0,0,0) 1.6deg 8deg);"></div>
+      <div style="position: absolute; left: -48px; top: -48px; width: 96px; height: 96px; border-radius: 50%;
+          background: linear-gradient(140deg, rgba(180,205,225,.22), rgba(180,205,225,.06));
+          box-shadow: inset 0 0 0 1px rgba(200,225,245,.40); backdrop-filter: blur(2px);"></div>
+      <div style="position: absolute; left: -48px; top: -18px; width: 96px; text-align: center; font: 500 20px 'IBM Plex Mono', monospace; color: #CFE1F0;">−41.7%</div>
+      <div style="position: absolute; left: -48px; top: 8px; width: 96px; text-align: center; font: 400 9px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: #8FA6B8;">CONDITIONAL</div>
+    </div>
+
+    <div style="position: absolute; left: -14px; top: 190px; width: 238px; text-align: center;">
+      <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .22em; color: #9FC3E0;">NOT ENGAGED</div>
+      <div style="margin-top: 5px; font: 400 11.5px 'Archivo', sans-serif; line-height: 1.5; color: #7D878E;">톱니가 맞물리지 않음.<br>재원이 안 오면 계속 떠 있다.</div>
+    </div>
+  </div>
+
+  <!-- ── SATELLITE : adaptation balance ── -->
+  <div style="position: absolute; left: 52px; top: 218px; width: 200px; height: 150px;">
+    <div style="position: absolute; left: 96px; top: 68px; width: 8px; height: 58px; background: linear-gradient(180deg,#8E979E,#3C4348);"></div>
+    <div style="position: absolute; left: 20px; top: 44px; width: 160px; height: 5px; border-radius: 3px; transform: rotate(-13deg); transform-origin: 50% 50%;
+        background: linear-gradient(90deg,#5C666D,#C6D0D7,#5C666D);"></div>
+    <div style="position: absolute; left: 4px; top: 8px; width: 44px; height: 44px; border-radius: 50%;
+        background-image: radial-gradient(circle at 34% 28%, #838C93, #40474C); box-shadow: inset 0 0 0 1px rgba(226,236,242,.26);"></div>
+    <div style="position: absolute; left: 150px; top: 74px; width: 30px; height: 30px; border-radius: 50%;
+        background: rgba(180,205,225,.14); box-shadow: inset 0 0 0 1px rgba(200,225,245,.35);"></div>
+    <div style="position: absolute; left: -18px; top: 128px; width: 236px; text-align: center;">
+      <div style="font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .22em; color: #C6D0D7;">ADAPTATION BALANCE</div>
+      <div style="margin-top: 5px; font: 400 11.5px 'Archivo', sans-serif; line-height: 1.5; color: #7D878E;">취약성(금속)이 재원(유리)보다<br>무겁다 — 저울이 기운다.</div>
+    </div>
+  </div>
+
+  <!-- ── footer ── -->
+  <div style="position: absolute; left: 60px; bottom: 44px; right: 60px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="width: 7px; height: 7px; border-radius: 50%; background: #FF8A3D; box-shadow: 0 0 12px rgba(255,138,61,.9); animation: vc-pulse-soft 2.6s ease-in-out infinite;"></div>
+      <div style="font: 400 11px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: #6F7A82;">클릭 → BURST · 뒤집기 → CASE-BACK (출처 · 실행시각 · 체크섬)</div>
+    </div>
+    <div style="font: 400 11px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: #4E575D;">DIAL 001 / 190</div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1000,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var comps = [
+      { n: 'NIR', ok: true }, { n: 'CRT', ok: true }, { n: 'CTF', ok: false },
+      { n: 'TRACK', ok: true }, { n: 'ADAPT', ok: true }, { n: 'FINANCE', ok: true },
+      { n: 'REDD+', ok: false }, { n: 'ART.6', ok: false }
+    ];
+    var R = 125, LR = 152;
+    var jewels = comps.map(function (c, i) {
+      var a = (i / comps.length) * Math.PI * 2 - Math.PI / 2;
+      var x = Math.cos(a) * R, y = Math.sin(a) * R;
+      var lx = Math.cos(a) * LR, ly = Math.sin(a) * LR;
+      var face = c.ok
+        ? 'background-image: radial-gradient(circle at 34% 28%, #FF9E9A 0%, #C2453F 46%, #6E1F1C 100%); box-shadow: inset 0 0 0 1px rgba(255,170,166,.45), 0 0 14px rgba(194,69,63,.55);'
+        : 'background: #08090B; box-shadow: inset 0 3px 7px rgba(0,0,0,.98), inset 0 0 0 1px rgba(194,69,63,.55);';
+      return {
+        label: c.n,
+        style: 'position:absolute; left:' + x + 'px; top:' + y + 'px; width:20px; height:20px; margin-left:-10px; margin-top:-10px; border-radius:50%; ' + face,
+        labelStyle: 'position:absolute; left:' + lx + 'px; top:' + ly + 'px; width:90px; margin-left:-45px; margin-top:-7px; text-align:center;'
+          + ' font:500 8.5px "IBM Plex Mono", ui-monospace, monospace; letter-spacing:.16em; color:' + (c.ok ? '#98A2AA' : '#C2453F') + ';'
+      };
+    });
+    return { jewels: jewels };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1546 @@
+{
+  "$contract": "visual-climate/country-dial@1.0.0",
+  "$profile": "engine@1.1.0",
+  "country": {
+    "iso3": "SYC",
+    "name_en": "Seychelles",
+    "groups": [
+      "Sub-Saharan Africa",
+      "High income"
+    ]
+  },
+  "ndc": {
+    "version": "No NDC document loaded",
+    "submission_date": null,
+    "base_year": null,
+    "base_year_emissions_mtco2e": null,
+    "base_year_state": "unknown",
+    "target_year": null,
+    "bau_2030_mtco2e": null,
+    "bau_state": "unknown",
+    "reduction_mtco2e": null,
+    "reduction_pct": null,
+    "target_emissions_mtco2e": null,
+    "target_state": "unknown",
+    "folu_share_of_reduction_pct": null,
+    "sectors": [],
+    "net_zero_target_year": null,
+    "net_zero_state": "unknown",
+    "conditionality": {
+      "statement": "The conditional / unconditional split has not been extracted from this document.",
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "split_state": "unknown",
+      "extraction_confidence": "low"
+    },
+    "source": {
+      "id": "DS-06-NDC",
+      "name": "UNFCCC NDC registry",
+      "url": "https://unfccc.int/NDCREG",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "finance_need": {
+    "mitigation_usd": null,
+    "adaptation_usd": null,
+    "state": "unknown",
+    "received_usd": null,
+    "received_state": "unknown",
+    "source": {
+      "id": "DS-06-NDC",
+      "name": "UNFCCC NDC registry",
+      "url": "https://unfccc.int/NDCREG",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "btr": {
+    "version": "BTR1",
+    "submitted": null,
+    "submission_date": null,
+    "published_date": null,
+    "components": {
+      "nir": {
+        "state": "unknown"
+      },
+      "crt": {
+        "state": "unknown"
+      },
+      "ctf": {
+        "state": "unknown"
+      },
+      "ndc_track": {
+        "state": "unknown"
+      },
+      "adaptation": {
+        "state": "unknown"
+      },
+      "finance": {
+        "state": "unknown"
+      },
+      "redd_plus": {
+        "state": "unknown"
+      },
+      "article6": {
+        "state": "unknown"
+      }
+    },
+    "source": {
+      "id": "DS-BTR",
+      "name": "UNFCCC — First Biennial Transparency Reports",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "vulnerability": {
+    "ndgain_score": 48.6772819526412,
+    "vulnerability": 0.427958230503949,
+    "readiness": 0.401503869556773,
+    "rank": null,
+    "data_year": 2024,
+    "state": "observed",
+    "$note": "From the 2026 bulk release, latest available year. ND-GAIN restates earlier years between releases (Cambodia 2021 read 40.1 in the edition cited by data/khm.json and 40.665 here); rank is not in the bulk file.",
+    "source": {
+      "id": "DS-04",
+      "name": "ND-GAIN Country Index",
+      "url": "https://gain.nd.edu/our-work/country-index/",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "series": {
+    "observed": [
+      {
+        "year": 1990,
+        "value_mtco2e": 0.204,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1991,
+        "value_mtco2e": 0.23,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1992,
+        "value_mtco2e": 0.229,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1993,
+        "value_mtco2e": 0.241,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1994,
+        "value_mtco2e": 0.26,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1995,
+        "value_mtco2e": 0.258,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1995,
+        "value_mtco2e": -0.583492,
+        "state": "observed",
+        "source_id": "DS-40"
+      },
+      {
+        "year": 1996,
+        "value_mtco2e": 0.294,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1997,
+        "value_mtco2e": 0.333,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1998,
+        "value_mtco2e": 0.351,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 1999,
+        "value_mtco2e": 0.367,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2000,
+        "value_mtco2e": 0.388,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2000,
+        "value_mtco2e": -0.494762775,
+        "state": "observed",
+        "source_id": "DS-40"
+      },
+      {
+        "year": 2001,
+        "value_mtco2e": 0.41,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2002,
+        "value_mtco2e": 0.417,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2003,
+        "value_mtco2e": 0.41,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2004,
+        "value_mtco2e": 0.453,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2005,
+        "value_mtco2e": 0.456,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2006,
+        "value_mtco2e": 0.463,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2007,
+        "value_mtco2e": 0.479,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2008,
+        "value_mtco2e": 0.491,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2009,
+        "value_mtco2e": 0.523,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2010,
+        "value_mtco2e": 0.518,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2011,
+        "value_mtco2e": 0.481,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2012,
+        "value_mtco2e": 0.498,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2013,
+        "value_mtco2e": 0.494,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2014,
+        "value_mtco2e": 0.542,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2015,
+        "value_mtco2e": 1.0551435726369556,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2015,
+        "value_mtco2e": 0.585,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2016,
+        "value_mtco2e": 1.1936181879601784,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2016,
+        "value_mtco2e": 0.647,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2017,
+        "value_mtco2e": 1.3135267246097317,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2017,
+        "value_mtco2e": 0.672,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2018,
+        "value_mtco2e": 1.4088768727595906,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2018,
+        "value_mtco2e": 0.691,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2019,
+        "value_mtco2e": 1.5129825785770086,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2019,
+        "value_mtco2e": 0.687,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2020,
+        "value_mtco2e": 1.3372350485628297,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2020,
+        "value_mtco2e": 0.698,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2021,
+        "value_mtco2e": 1.3965212007462608,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2021,
+        "value_mtco2e": 0.715,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2022,
+        "value_mtco2e": 1.551183295376662,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2022,
+        "value_mtco2e": 0.735,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2023,
+        "value_mtco2e": 1.55991170324687,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2023,
+        "value_mtco2e": 0.75,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2024,
+        "value_mtco2e": 1.5641927330985768,
+        "state": "observed",
+        "source_id": "DS-02"
+      },
+      {
+        "year": 2024,
+        "value_mtco2e": 0.764,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "year": 2025,
+        "value_mtco2e": 1.5999830522135756,
+        "state": "observed",
+        "source_id": "DS-02"
+      }
+    ],
+    "bau": [],
+    "target": [],
+    "$note": "series.observed holds several sources and must not be read as one curve. DS-35: All greenhouse gases including land-use change, GWP100 (OWID, from Climate Watch / PIK), from 1990. DS-02: Asset-level observed emissions, CO₂e GWP100 (Climate TRACE); land use accounted differently from OWID, 2015-2025. DS-40: Total GHG emissions including LULUCF/LUCF exactly as the Party submitted them to the UNFCCC, on that Party’s own reporting guidelines and GWP set (UNFCCC Data Interface, snapshot of 2024-07-05). Non-Annex I Parties report only the years their national communications cover, and the figure is negative where reported removals exceed reported emissions. Points from an NDC document are that document's own inventory basis. The same year can appear more than once with different values; R3 keeps them side by side and never averages them."
+  },
+  "derived": {
+    "ambition_gap_factor": null,
+    "on_track": null,
+    "gap_state": "unknown",
+    "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+  },
+  "$extensions": [
+    "country_profile",
+    "ndc_registry",
+    "ndc_assessment",
+    "emissions_profile",
+    "projections",
+    "verdict",
+    "sources",
+    "provenance"
+  ],
+  "country_profile": {
+    "region": "Sub-Saharan Africa",
+    "income_group": "High income",
+    "population": 122730,
+    "population_year": 2025,
+    "state": "observed",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "source": {
+      "id": "DS-01",
+      "name": "World Bank — country register and World Development Indicators",
+      "url": "https://data.worldbank.org",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "ndc_registry": {
+    "party": "Seychelles",
+    "latest_version": "NDC 3.0",
+    "submission_date": "2025-09-30",
+    "document_url": "https://unfccc.int/sites/default/files/2025-09/ICTU%20Update%202025%20for%20Seychelles%20new%20NDC%203.0.pdf",
+    "archived_submissions": 1,
+    "matches_parsed_document": null,
+    "state": "observed",
+    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
+    "source": {
+      "id": "DS-08",
+      "name": "UNFCCC NDC Registry index",
+      "url": "https://unfccc.int/NDCREG",
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/ICTU%20Update%202025%20for%20Seychelles%20new%20NDC%203.0.pdf",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "ndc_assessment": {
+    "vintage": "First (I)NDC round, as assessed by WRI CAIT (2016). Not the latest submission.",
+    "summary": "The Republic of Seychelles will reduce its economy-wide absolute GHG emissions by 122.5 ktCO 2 e (21.4%) in 2025 and estimated 188 ktCO 2 e in 2030 (29.0%) relative to baseline emissions. The INDC also includes a section on adaptation.",
+    "ghg_target": "122.5 KtCO2e (or 21.4%) reduction in 2025 and 188 ktCO2e (or 29.0%) reduction in 2030 in GHG emissions compared to baseline projections",
+    "target_type": "GHG target",
+    "base_year": null,
+    "target_year": null,
+    "conditionality": "Partially conditional (I)NDC (unspecified mix of domestic/international resources)",
+    "conditionality_class": "partial",
+    "gases": "CO2, CH4",
+    "sectors": "Energy (Public electricity (generation and demand side management), Land transport); Waste (Solid waste management)",
+    "state": "pledged",
+    "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
+    "source": {
+      "id": "DS-06",
+      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "url": "https://www.climatewatchdata.org/ndcs-content",
+      "retrieved_at": "2026-09-07"
+    }
+  },
+  "emissions_profile": {
+    "latest_year": 2024,
+    "total_mtco2e": 0.764,
+    "excluding_lucf_mtco2e": 0.757,
+    "per_capita_tco2e": 5.857,
+    "state": "observed",
+    "by_gas": [
+      {
+        "gas": "CO2",
+        "value_mtco2e": 0.653,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "gas": "CH4",
+        "value_mtco2e": 0.076,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "gas": "N2O",
+        "value_mtco2e": 0.036,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "gas": "CH4",
+        "value_mtco2e": 0.0702,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "gas": "N2O",
+        "value_mtco2e": 0.0313,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "gas": "F-gases",
+        "value_mtco2e": null,
+        "state": "observed",
+        "source_id": "DS-05"
+      }
+    ],
+    "by_sector": [
+      {
+        "sector": "Coal",
+        "value_mtco2e": null,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "sector": "Oil",
+        "value_mtco2e": 0.653,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "sector": "Gas",
+        "value_mtco2e": null,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "sector": "Cement",
+        "value_mtco2e": 0,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "sector": "Flaring",
+        "value_mtco2e": 0,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "sector": "Land-use change",
+        "value_mtco2e": 0,
+        "state": "observed",
+        "source_id": "DS-35"
+      },
+      {
+        "sector": "Waste",
+        "value_mtco2e": 0.0637,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "sector": "Transport",
+        "value_mtco2e": 0.0152,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "sector": "Processes",
+        "value_mtco2e": 0.014,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "sector": "Agriculture",
+        "value_mtco2e": 0.0045,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "sector": "Buildings",
+        "value_mtco2e": 0.0026,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "sector": "Power Industry",
+        "value_mtco2e": 0.0008,
+        "state": "observed",
+        "source_id": "DS-05"
+      },
+      {
+        "sector": "Industrial Combustion",
+        "value_mtco2e": 0.0006,
+        "state": "observed",
+        "source_id": "DS-05"
+      }
+    ],
+    "by_source": [
+      {
+        "source_id": "DS-35",
+        "scope": "All greenhouse gases including land-use change, GWP100 (OWID, from Climate Watch / PIK)",
+        "series": [
+          {
+            "year": 1990,
+            "value_mtco2e": 0.204
+          },
+          {
+            "year": 1991,
+            "value_mtco2e": 0.23
+          },
+          {
+            "year": 1992,
+            "value_mtco2e": 0.229
+          },
+          {
+            "year": 1993,
+            "value_mtco2e": 0.241
+          },
+          {
+            "year": 1994,
+            "value_mtco2e": 0.26
+          },
+          {
+            "year": 1995,
+            "value_mtco2e": 0.258
+          },
+          {
+            "year": 1996,
+            "value_mtco2e": 0.294
+          },
+          {
+            "year": 1997,
+            "value_mtco2e": 0.333
+          },
+          {
+            "year": 1998,
+            "value_mtco2e": 0.351
+          },
+          {
+            "year": 1999,
+            "value_mtco2e": 0.367
+          },
+          {
+            "year": 2000,
+            "value_mtco2e": 0.388
+          },
+          {
+            "year": 2001,
+            "value_mtco2e": 0.41
+          },
+          {
+            "year": 2002,
+            "value_mtco2e": 0.417
+          },
+          {
+            "year": 2003,
+            "value_mtco2e": 0.41
+          },
+          {
+            "year": 2004,
+            "value_mtco2e": 0.453
+          },
+          {
+            "year": 2005,
+            "value_mtco2e": 0.456
+          },
+          {
+            "year": 2006,
+            "value_mtco2e": 0.463
+          },
+          {
+            "year": 2007,
+            "value_mtco2e": 0.479
+          },
+          {
+            "year": 2008,
+            "value_mtco2e": 0.491
+          },
+          {
+            "year": 2009,
+            "value_mtco2e": 0.523
+          },
+          {
+            "year": 2010,
+            "value_mtco2e": 0.518
+          },
+          {
+            "year": 2011,
+            "value_mtco2e": 0.481
+          },
+          {
+            "year": 2012,
+            "value_mtco2e": 0.498
+          },
+          {
+            "year": 2013,
+            "value_mtco2e": 0.494
+          },
+          {
+            "year": 2014,
+            "value_mtco2e": 0.542
+          },
+          {
+            "year": 2015,
+            "value_mtco2e": 0.585
+          },
+          {
+            "year": 2016,
+            "value_mtco2e": 0.647
+          },
+          {
+            "year": 2017,
+            "value_mtco2e": 0.672
+          },
+          {
+            "year": 2018,
+            "value_mtco2e": 0.691
+          },
+          {
+            "year": 2019,
+            "value_mtco2e": 0.687
+          },
+          {
+            "year": 2020,
+            "value_mtco2e": 0.698
+          },
+          {
+            "year": 2021,
+            "value_mtco2e": 0.715
+          },
+          {
+            "year": 2022,
+            "value_mtco2e": 0.735
+          },
+          {
+            "year": 2023,
+            "value_mtco2e": 0.75
+          },
+          {
+            "year": 2024,
+            "value_mtco2e": 0.764
+          }
+        ]
+      },
+      {
+        "source_id": "DS-02",
+        "scope": "Asset-level observed emissions, CO₂e GWP100 (Climate TRACE); land use accounted differently from OWID",
+        "series": [
+          {
+            "year": 2015,
+            "value_mtco2e": 1.0551435726369556
+          },
+          {
+            "year": 2016,
+            "value_mtco2e": 1.1936181879601784
+          },
+          {
+            "year": 2017,
+            "value_mtco2e": 1.3135267246097317
+          },
+          {
+            "year": 2018,
+            "value_mtco2e": 1.4088768727595906
+          },
+          {
+            "year": 2019,
+            "value_mtco2e": 1.5129825785770086
+          },
+          {
+            "year": 2020,
+            "value_mtco2e": 1.3372350485628297
+          },
+          {
+            "year": 2021,
+            "value_mtco2e": 1.3965212007462608
+          },
+          {
+            "year": 2022,
+            "value_mtco2e": 1.551183295376662
+          },
+          {
+            "year": 2023,
+            "value_mtco2e": 1.55991170324687
+          },
+          {
+            "year": 2024,
+            "value_mtco2e": 1.5641927330985768
+          },
+          {
+            "year": 2025,
+            "value_mtco2e": 1.5999830522135756
+          }
+        ]
+      },
+      {
+        "source_id": "DS-05",
+        "scope": "Non-CO₂ greenhouse gases only (CH₄, N₂O, F-gases), AR5 GWP100, excluding LULUCF (EDGAR 2024). CO₂ is omitted for licence reasons, so this is not a national total.",
+        "series": [
+          {
+            "year": 1970,
+            "value_mtco2e": 0.0232
+          },
+          {
+            "year": 1971,
+            "value_mtco2e": 0.0269
+          },
+          {
+            "year": 1972,
+            "value_mtco2e": 0.0291
+          },
+          {
+            "year": 1973,
+            "value_mtco2e": 0.0308
+          },
+          {
+            "year": 1974,
+            "value_mtco2e": 0.0329
+          },
+          {
+            "year": 1975,
+            "value_mtco2e": 0.0351
+          },
+          {
+            "year": 1976,
+            "value_mtco2e": 0.0365
+          },
+          {
+            "year": 1977,
+            "value_mtco2e": 0.037
+          },
+          {
+            "year": 1978,
+            "value_mtco2e": 0.0388
+          },
+          {
+            "year": 1979,
+            "value_mtco2e": 0.0406
+          },
+          {
+            "year": 1980,
+            "value_mtco2e": 0.0422
+          },
+          {
+            "year": 1981,
+            "value_mtco2e": 0.0427
+          },
+          {
+            "year": 1982,
+            "value_mtco2e": 0.0425
+          },
+          {
+            "year": 1983,
+            "value_mtco2e": 0.0445
+          },
+          {
+            "year": 1984,
+            "value_mtco2e": 0.045
+          },
+          {
+            "year": 1985,
+            "value_mtco2e": 0.0461
+          },
+          {
+            "year": 1986,
+            "value_mtco2e": 0.0467
+          },
+          {
+            "year": 1987,
+            "value_mtco2e": 0.0479
+          },
+          {
+            "year": 1988,
+            "value_mtco2e": 0.0498
+          },
+          {
+            "year": 1989,
+            "value_mtco2e": 0.0496
+          },
+          {
+            "year": 1990,
+            "value_mtco2e": 0.0515
+          },
+          {
+            "year": 1991,
+            "value_mtco2e": 0.0551
+          },
+          {
+            "year": 1992,
+            "value_mtco2e": 0.0539
+          },
+          {
+            "year": 1993,
+            "value_mtco2e": 0.0546
+          },
+          {
+            "year": 1994,
+            "value_mtco2e": 0.055
+          },
+          {
+            "year": 1995,
+            "value_mtco2e": 0.0556
+          },
+          {
+            "year": 1996,
+            "value_mtco2e": 0.0557
+          },
+          {
+            "year": 1997,
+            "value_mtco2e": 0.0569
+          },
+          {
+            "year": 1998,
+            "value_mtco2e": 0.0573
+          },
+          {
+            "year": 1999,
+            "value_mtco2e": 0.0578
+          },
+          {
+            "year": 2000,
+            "value_mtco2e": 0.0642
+          },
+          {
+            "year": 2001,
+            "value_mtco2e": 0.0634
+          },
+          {
+            "year": 2002,
+            "value_mtco2e": 0.063
+          },
+          {
+            "year": 2003,
+            "value_mtco2e": 0.0634
+          },
+          {
+            "year": 2004,
+            "value_mtco2e": 0.0699
+          },
+          {
+            "year": 2005,
+            "value_mtco2e": 0.069
+          },
+          {
+            "year": 2006,
+            "value_mtco2e": 0.072
+          },
+          {
+            "year": 2007,
+            "value_mtco2e": 0.0697
+          },
+          {
+            "year": 2008,
+            "value_mtco2e": 0.0711
+          },
+          {
+            "year": 2009,
+            "value_mtco2e": 0.0742
+          },
+          {
+            "year": 2010,
+            "value_mtco2e": 0.0729
+          },
+          {
+            "year": 2011,
+            "value_mtco2e": 0.0723
+          },
+          {
+            "year": 2012,
+            "value_mtco2e": 0.0757
+          },
+          {
+            "year": 2013,
+            "value_mtco2e": 0.0751
+          },
+          {
+            "year": 2014,
+            "value_mtco2e": 0.0793
+          },
+          {
+            "year": 2015,
+            "value_mtco2e": 0.0818
+          },
+          {
+            "year": 2016,
+            "value_mtco2e": 0.0883
+          },
+          {
+            "year": 2017,
+            "value_mtco2e": 0.0906
+          },
+          {
+            "year": 2018,
+            "value_mtco2e": 0.0878
+          },
+          {
+            "year": 2019,
+            "value_mtco2e": 0.0913
+          },
+          {
+            "year": 2020,
+            "value_mtco2e": 0.0946
+          },
+          {
+            "year": 2021,
+            "value_mtco2e": 0.0967
+          },
+          {
+            "year": 2022,
+            "value_mtco2e": 0.0993
+          },
+          {
+            "year": 2023,
+            "value_mtco2e": 0.1014
+          }
+        ]
+      },
+      {
+        "source_id": "DS-40",
+        "scope": "Total GHG emissions including LULUCF/LUCF exactly as the Party submitted them to the UNFCCC, on that Party’s own reporting guidelines and GWP set (UNFCCC Data Interface, snapshot of 2024-07-05). Non-Annex I Parties report only the years their national communications cover, and the figure is negative where reported removals exceed reported emissions.",
+        "series": [
+          {
+            "year": 1995,
+            "value_mtco2e": -0.583492
+          },
+          {
+            "year": 2000,
+            "value_mtco2e": -0.494762775
+          }
+        ]
+      }
+    ],
+    "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
+  },
+  "verdict": {
+    "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-09-30. 48 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (2). For 2024 the sources disagree: DS-02 1.6 MtCO₂e, DS-35 0.8 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. ND-GAIN scores it 48.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 122.5 KtCO2e (or 21.4%) reduction in 2025 and 188 ktCO2e (or 29.0%) reduction in 2030 in GHG emissions compared to baseline projections It was classed partial. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.86°C under SSP1-2.6 to +3.26°C under SSP5-8.5. These are model runs, not observations.",
+    "clauses": [
+      {
+        "field": "ndc_registry.submission_date",
+        "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-09-30."
+      },
+      {
+        "field": "series.observed",
+        "text": "48 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (2)."
+      },
+      {
+        "field": "series.observed.$conflict",
+        "text": "For 2024 the sources disagree: DS-02 1.6 MtCO₂e, DS-35 0.8 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+      },
+      {
+        "field": "derived.$reason",
+        "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+      },
+      {
+        "field": "vulnerability.ndgain_score",
+        "text": "ND-GAIN scores it 48.7 for 2024."
+      },
+      {
+        "field": "ndc_assessment.ghg_target",
+        "text": "In the first NDC round, WRI's CAIT assessment recorded: 122.5 KtCO2e (or 21.4%) reduction in 2025 and 188 ktCO2e (or 29.0%) reduction in 2030 in GHG emissions compared to baseline projections It was classed partial. That is a 2016 assessment of an earlier submission, not the target above."
+      },
+      {
+        "field": "projections.scenarios",
+        "text": "Projected warming for 2080-2099 against 1995-2014 ranges from +0.86°C under SSP1-2.6 to +3.26°C under SSP5-8.5. These are model runs, not observations."
+      }
+    ],
+    "$note": "Generated by engine/build/verdict.ts from rule templates. Each clause maps to one field and disappears when that field is unknown."
+  },
+  "projections": {
+    "variable": "tas",
+    "baseline_period": "1995-2014",
+    "baseline_c": 26.21,
+    "state": "pledged",
+    "scenarios": [
+      {
+        "scenario": "SSP1-2.6",
+        "period": "2020-2039",
+        "variable": "tas",
+        "value": 26.75,
+        "anomaly": 0.54,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP1-2.6",
+        "period": "2040-2059",
+        "variable": "tas",
+        "value": 27.02,
+        "anomaly": 0.81,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP1-2.6",
+        "period": "2060-2079",
+        "variable": "tas",
+        "value": 27.1,
+        "anomaly": 0.89,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP1-2.6",
+        "period": "2080-2099",
+        "variable": "tas",
+        "value": 27.07,
+        "anomaly": 0.86,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP2-4.5",
+        "period": "2020-2039",
+        "variable": "tas",
+        "value": 26.77,
+        "anomaly": 0.56,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP2-4.5",
+        "period": "2040-2059",
+        "variable": "tas",
+        "value": 27.2,
+        "anomaly": 0.99,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP2-4.5",
+        "period": "2060-2079",
+        "variable": "tas",
+        "value": 27.56,
+        "anomaly": 1.35,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP2-4.5",
+        "period": "2080-2099",
+        "variable": "tas",
+        "value": 27.82,
+        "anomaly": 1.61,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP3-7.0",
+        "period": "2020-2039",
+        "variable": "tas",
+        "value": 26.75,
+        "anomaly": 0.54,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP3-7.0",
+        "period": "2040-2059",
+        "variable": "tas",
+        "value": 27.32,
+        "anomaly": 1.11,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP3-7.0",
+        "period": "2060-2079",
+        "variable": "tas",
+        "value": 27.94,
+        "anomaly": 1.73,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP3-7.0",
+        "period": "2080-2099",
+        "variable": "tas",
+        "value": 28.66,
+        "anomaly": 2.45,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP5-8.5",
+        "period": "2020-2039",
+        "variable": "tas",
+        "value": 26.81,
+        "anomaly": 0.6,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP5-8.5",
+        "period": "2040-2059",
+        "variable": "tas",
+        "value": 27.54,
+        "anomaly": 1.33,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP5-8.5",
+        "period": "2060-2079",
+        "variable": "tas",
+        "value": 28.4,
+        "anomaly": 2.19,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      },
+      {
+        "scenario": "SSP5-8.5",
+        "period": "2080-2099",
+        "variable": "tas",
+        "value": 29.47,
+        "anomaly": 3.26,
+        "unit": "°C",
+        "baseline_period": "1995-2014",
+        "model": "CMIP6 ensemble median",
+        "state": "pledged",
+        "source_id": "DS-18"
+      }
+    ],
+    "$note": "CMIP6 ensemble median surface temperature, not a forecast and not an observation. Anomalies are against the 1995-2014 reference period."
+  },
+  "sources": [
+    {
+      "id": "DS-35",
+      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "pattern": "C",
+      "tables": [
+        "emissions"
+      ],
+      "connection": "connected",
+      "records": 35,
+      "last_run": "2026-09-07T21:54:02.267Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://github.com/owid/co2-data",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-02",
+      "name": "Climate TRACE — country emissions",
+      "pattern": "A",
+      "tables": [
+        "emissions"
+      ],
+      "connection": "connected",
+      "records": 11,
+      "last_run": "2026-09-07T22:21:15.632Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://climatetrace.org",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-04",
+      "name": "ND-GAIN Country Index",
+      "pattern": "B",
+      "tables": [
+        "vulnerability"
+      ],
+      "connection": "connected",
+      "records": 3,
+      "last_run": "2026-09-07T21:54:03.829Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://gain.nd.edu/our-work/country-index/",
+      "license": "CC BY"
+    },
+    {
+      "id": "DS-18",
+      "name": "World Bank Climate Change Knowledge Portal (CMIP6)",
+      "pattern": "A",
+      "tables": [
+        "country_projections"
+      ],
+      "connection": "connected",
+      "records": 16,
+      "last_run": "2026-09-07T22:24:29.344Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://climateknowledgeportal.worldbank.org",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-01",
+      "name": "World Bank — country register and World Development Indicators",
+      "pattern": "A",
+      "tables": [
+        "countries"
+      ],
+      "connection": "connected",
+      "records": 12,
+      "last_run": "2026-09-07T22:43:38.899Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://data.worldbank.org",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-05",
+      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "pattern": "B",
+      "tables": [
+        "emissions"
+      ],
+      "connection": "connected",
+      "records": 54,
+      "last_run": "2026-09-07T22:44:02.776Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://edgar.jrc.ec.europa.eu/report_2024",
+      "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
+    },
+    {
+      "id": "DS-40",
+      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "pattern": "B",
+      "tables": [
+        "emissions"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-09-07T23:32:02.148Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://di.unfccc.int/detailed_data_by_party",
+      "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
+    },
+    {
+      "id": "DS-06",
+      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "pattern": "C",
+      "tables": [
+        "ndc_content"
+      ],
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-09-07T22:48:12.520Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://www.climatewatchdata.org/ndcs-content",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-08",
+      "name": "UNFCCC NDC Registry index",
+      "pattern": "C",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-09-07T22:43:39.989Z",
+      "retrieved_at": "2026-09-07",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
+    },
+    {
+      "id": "DS-06-NDC",
+      "name": "UNFCCC NDC registry document",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": null,
+      "retrieved_at": null,
+      "url": "https://unfccc.int/NDCREG",
+      "license": "public"
+    },
+    {
+      "id": "DS-BTR",
+      "name": "UNFCCC First Biennial Transparency Reports",
+      "pattern": "D",
+      "tables": [
+        "btr_status"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": null,
+      "retrieved_at": null,
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "public"
+    }
+  ],
+  "provenance": {
+    "run_id": "fef16b2afded317c7680a38053096fec",
+    "built_at": "2026-09-07T23:32:02.148Z",
+    "payload_sha256": "9aafca94dcce0250f10a198f8848b1c703454e98f8e339dd1be4e5ebff2854fd",
+    "inputs": [
+      {
+        "source_id": "DS-35",
+        "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
+        "retrieved_at": "2026-09-07T21:54:02.267Z",
+        "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
+      },
+      {
+        "source_id": "DS-04",
+        "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
+        "retrieved_at": "2026-09-07T21:54:03.829Z",
+        "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
+      },
+      {
+        "source_id": "DS-02",
+        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
+        "retrieved_at": "2026-09-07T22:21:15.632Z",
+        "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
+      },
+      {
+        "source_id": "DS-18",
+        "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
+        "retrieved_at": "2026-09-07T22:24:29.344Z",
+        "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
+      },
+      {
+        "source_id": "DS-01",
+        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
+        "retrieved_at": "2026-09-07T22:43:38.899Z",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
+      },
+      {
+        "source_id": "DS-05",
+        "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
+        "retrieved_at": "2026-09-07T22:44:02.776Z",
+        "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
+      },
+      {
+        "source_id": "DS-06",
+        "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
+        "retrieved_at": "2026-09-07T22:48:12.520Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
+      },
+      {
+        "source_id": "DS-08",
+        "file_sha256": "50a66723c2da97784ac7e4cdc7a7cf596259b24b2553161ea83191d533a15963",
+        "retrieved_at": "2026-09-07T22:43:39.989Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
+      },
+      {
+        "source_id": "DS-40",
+        "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
+        "retrieved_at": "2026-09-07T23:32:02.148Z",
+        "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
+      }
+    ]
+  },
+  "$meta": {
+    "mode": "observations-only",
+    "snapshot": "OWID 관측 1990–2024",
+    "basis": "NDC 목표 미파싱",
+    "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
+  },
+  "$sources_index": [
+    {
+      "id": "DS-01",
+      "org": "World Bank",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-35",
+      "org": "Our World in Data",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-02",
+      "org": "Climate TRACE",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-05",
+      "org": "European Commission JRC (EDGAR)",
+      "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
+    },
+    {
+      "id": "DS-18",
+      "org": "World Bank CCKP",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-04",
+      "org": "University of Notre Dame (ND-GAIN)",
+      "license": "CC BY"
+    },
+    {
+      "id": "DS-06",
+      "org": "World Resources Institute (CAIT), via openclimatedata",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "DS-08",
+      "org": "UNFCCC, via openclimatedata",
+      "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
+    },
+    {
+      "id": "DS-40",
+      "org": "UNFCCC, via the PIK release on Zenodo",
+      "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
+    },
+    {
+      "id": "DS-06-NDC",
+      "org": "UNFCCC",
+      "license": "public"
+    },
+    {
+      "id": "DS-BTR",
+      "org": "UNFCCC",
+      "license": "public"
+    }
+  ]
+}

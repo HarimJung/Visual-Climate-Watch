@@ -1,0 +1,201 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - region "Notifications alt+T"
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e4]:
+        - generic [ref=f1e5]: visualclimate
+        - generic [ref=f1e13]:
+          - generic [ref=f1e14]: Research room
+          - strong [ref=f1e15]: Signed out
+          - generic [ref=f1e16]: Sign in to open a workspace
+        - navigation "Primary navigation" [ref=f1e17]:
+          - generic [ref=f1e18]: Navigate
+          - button "Explore data" [ref=f1e19] [cursor=pointer]
+          - button "My workspace" [ref=f1e23] [cursor=pointer]
+          - button "Reviewer console" [ref=f1e27] [cursor=pointer]
+          - button "NDC compare" [ref=f1e32] [cursor=pointer]
+          - generic [ref=f1e38]: Library
+          - button "Source catalog" [ref=f1e39] [cursor=pointer]
+          - button "Saved questions" [ref=f1e44] [cursor=pointer]
+        - generic [ref=f1e49]:
+          - generic [ref=f1e56]:
+            - strong [ref=f1e57]: Catalog loaded
+            - generic [ref=f1e58]: 40 registry records
+          - button "AM Analyst workspace Not signed in" [ref=f1e59] [cursor=pointer]:
+            - generic [ref=f1e60]: AM
+            - generic [ref=f1e61]:
+              - strong [ref=f1e62]: Analyst workspace
+              - generic [ref=f1e63]: Not signed in
+      - main [ref=f1e66]:
+        - generic [ref=f1e67]:
+          - generic [ref=f1e68]:
+            - generic [ref=f1e69]: Research room
+            - strong [ref=f1e72]: NDC compare
+          - generic [ref=f1e73]:
+            - generic [ref=f1e74]: All changes saved
+            - button "Open command search" [ref=f1e76] [cursor=pointer]
+            - button "Open account menu" [ref=f1e80] [cursor=pointer]: AM
+        - generic [ref=f1e82]:
+          - generic [ref=f1e220]:
+            - generic [ref=f1e221]:
+              - text: 04 / NDC comparison
+              - heading "Compare commitments with a clear source trail." [level=1] [ref=f1e222]
+              - paragraph [ref=f1e223]: Review the latest and prior NDC submissions for selected Parties without collapsing document provenance into a single score.
+            - button "Refresh registry" [ref=f1e225] [cursor=pointer]
+          - generic [ref=f1e231]:
+            - generic [ref=f1e232]:
+              - text: Party codes
+              - textbox "Party codes Enter comma-separated ISO-style three-letter codes." [ref=f1e233]:
+                - /placeholder: USA, IND, DEU
+                - text: USA, IND, DEU
+              - text: Enter comma-separated ISO-style three-letter codes.
+            - generic [ref=f1e234]:
+              - text: Target type
+              - combobox "Target type" [ref=f1e235] [cursor=pointer]:
+                - option "All target types" [selected]
+                - option "Unconditional"
+                - option "Conditional"
+                - option "Both"
+                - option "Unknown / not extracted"
+            - generic [ref=f1e236]:
+              - text: Target year
+              - combobox "Target year" [ref=f1e237] [cursor=pointer]:
+                - option "All years" [selected]
+                - option "2030"
+                - option "2035"
+                - option "Unknown"
+            - generic [ref=f1e238]:
+              - text: Baseline
+              - combobox "Baseline" [ref=f1e239] [cursor=pointer]:
+                - option "All baselines" [selected]
+                - option "Known year"
+                - option "Unknown / BAU"
+            - button "Compare parties" [ref=f1e240] [cursor=pointer]
+          - generic [ref=f1e250]:
+            - strong [ref=f1e251]: "Source:"
+            - text: UNFCCC NDC Registry via OpenClimateData · 9/6/2026, 5:24:42 PM
+          - generic "NDC target timeline comparison" [ref=f1e252]:
+            - generic [ref=f1e253]:
+              - generic [ref=f1e254]:
+                - text: Target horizon
+                - heading "Baseline to commitment year" [level=2] [ref=f1e255]
+              - generic [ref=f1e256]: 2020 → 2035+
+            - generic [ref=f1e257]:
+              - generic [ref=f1e258]: DEU
+              - strong [ref=f1e261]: "2035"
+              - generic [ref=f1e262]: from 1990 · unconditional
+            - generic [ref=f1e263]:
+              - generic [ref=f1e264]: IND
+              - strong [ref=f1e267]: "2030"
+              - generic [ref=f1e268]: from 2005 · unconditional
+            - generic [ref=f1e269]:
+              - generic [ref=f1e270]: USA
+              - strong [ref=f1e273]: "2035"
+              - generic [ref=f1e274]: from 2005 · unconditional
+          - generic [ref=f1e275]:
+            - article [ref=f1e276]:
+              - generic [ref=f1e277]:
+                - generic [ref=f1e278]:
+                  - text: DEU
+                  - heading "Germany" [level=2] [ref=f1e279]
+                - generic [ref=f1e280]: Active
+              - generic [ref=f1e281]:
+                - generic [ref=f1e282]: Latest submission
+                - strong [ref=f1e283]: The NDC of the European Union and its Member States
+                - generic [ref=f1e284]: 2025-11-05 · English
+              - generic [ref=f1e285]:
+                - generic [ref=f1e286]: Prior submission
+                - strong [ref=f1e287]: EU NDC 2023 update
+                - generic [ref=f1e288]: 2023-10-19
+              - generic [ref=f1e289]:
+                - generic [ref=f1e290]:
+                  - generic [ref=f1e291]: Target summary
+                  - strong [ref=f1e292]: Indicative 66.25–72.5% reduction of net GHG emissions compared with 1990 by 2035 through the EU and its Member States acting jointly.
+                - generic [ref=f1e293]:
+                  - generic [ref=f1e294]:
+                    - text: Baseline year
+                    - generic [ref=f1e295]: "1990"
+                  - generic [ref=f1e296]:
+                    - text: Target year
+                    - generic [ref=f1e297]: "2035"
+                  - generic [ref=f1e298]:
+                    - text: Scope
+                    - generic [ref=f1e299]: EU and Member State net GHG emissions
+                  - generic [ref=f1e300]:
+                    - text: Conditionality
+                    - generic [ref=f1e301]: unconditional
+                - link "Open target source" [ref=f1e302] [cursor=pointer]:
+                  - /url: https://unfccc.int/sites/default/files/2025-11/DK-2025-11-05%20EU%20NDC.pdf
+              - link "Open official document" [ref=f1e306] [cursor=pointer]:
+                - /url: https://unfccc.int/sites/default/files/2025-11/DK-2025-11-05%20EU%20NDC.pdf
+            - article [ref=f1e310]:
+              - generic [ref=f1e311]:
+                - generic [ref=f1e312]:
+                  - text: IND
+                  - heading "India" [level=2] [ref=f1e313]
+                - generic [ref=f1e314]: Active
+              - generic [ref=f1e315]:
+                - generic [ref=f1e316]: Latest submission
+                - strong [ref=f1e317]: India NDC (2031 - 2035)
+                - generic [ref=f1e318]: 2026-04-24 · English
+              - generic [ref=f1e319]:
+                - generic [ref=f1e320]: Prior submission
+                - strong [ref=f1e321]: India Updated First Nationally Determined Contribution
+                - generic [ref=f1e322]: 2022-08-26
+              - generic [ref=f1e323]:
+                - generic [ref=f1e324]:
+                  - generic [ref=f1e325]: Target summary
+                  - strong [ref=f1e326]: 45% reduction in GDP emissions intensity by 2030 from 2005 levels; 50% cumulative installed electric capacity from non-fossil sources by 2030.
+                - generic [ref=f1e327]:
+                  - generic [ref=f1e328]:
+                    - text: Baseline year
+                    - generic [ref=f1e329]: "2005"
+                  - generic [ref=f1e330]:
+                    - text: Target year
+                    - generic [ref=f1e331]: "2030"
+                  - generic [ref=f1e332]:
+                    - text: Scope
+                    - generic [ref=f1e333]: GDP emissions intensity and non-fossil power capacity
+                  - generic [ref=f1e334]:
+                    - text: Conditionality
+                    - generic [ref=f1e335]: unconditional
+                - link "Open target source" [active] [ref=f1e336] [cursor=pointer]:
+                  - /url: https://unfccc.int/sites/default/files/NDC/2022-08/India%20Updated%20First%20Nationally%20Determined%20Contrib.pdf
+              - link "Open official document" [ref=f1e340] [cursor=pointer]:
+                - /url: https://unfccc.int/sites/default/files/2026-04/INDIA%20NDC%202031-35.pdf
+            - article [ref=f1e344]:
+              - generic [ref=f1e345]:
+                - generic [ref=f1e346]:
+                  - text: USA
+                  - heading "United States of America (*)" [level=2] [ref=f1e347]
+                - generic [ref=f1e348]: Archived
+              - generic [ref=f1e349]:
+                - generic [ref=f1e350]: Latest submission
+                - strong [ref=f1e351]: United States of America 2035 NDC
+                - generic [ref=f1e352]: 2024-12-19 · English
+              - generic [ref=f1e353]:
+                - generic [ref=f1e354]: Prior submission
+                - strong [ref=f1e355]: United States of America First NDC (After rejoining the Paris Agreement)
+                - generic [ref=f1e356]: 2021-04-22
+              - generic [ref=f1e357]:
+                - generic [ref=f1e358]:
+                  - generic [ref=f1e359]: Target summary
+                  - strong [ref=f1e360]: 61–66% reduction in economy-wide net greenhouse gas emissions below 2005 levels by 2035.
+                - generic [ref=f1e361]:
+                  - generic [ref=f1e362]:
+                    - text: Baseline year
+                    - generic [ref=f1e363]: "2005"
+                  - generic [ref=f1e364]:
+                    - text: Target year
+                    - generic [ref=f1e365]: "2035"
+                  - generic [ref=f1e366]:
+                    - text: Scope
+                    - generic [ref=f1e367]: Economy-wide net GHG emissions
+                  - generic [ref=f1e368]:
+                    - text: Conditionality
+                    - generic [ref=f1e369]: unconditional
+                - link "Open target source" [ref=f1e370] [cursor=pointer]:
+                  - /url: https://unfccc.int/sites/default/files/2024-12/United%20States%202035%20NDC.pdf
+              - link "Open official document" [ref=f1e374] [cursor=pointer]:
+                - /url: https://unfccc.int/sites/default/files/2024-12/United%20States%202035%20NDC.pdf
+  - generic [aria-hidden] [ref=f1e378]: 0m

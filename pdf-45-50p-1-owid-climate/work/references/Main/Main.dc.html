@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+  <style>
+    body { margin: 0; background: #0B0D0F; }
+    a { color: #FF8A3D; } a:hover { color: #FFA765; }
+    @keyframes vc-flow { to { stroke-dashoffset: -260; } }
+    @keyframes vc-breathe { 0%,100% { opacity: .30; } 50% { opacity: .95; } }
+    @keyframes vc-tick { 0%,46% { transform: translate(-50%,-50%) rotate(-7deg); } 50%,96% { transform: translate(-50%,-50%) rotate(7deg); } 100% { transform: translate(-50%,-50%) rotate(-7deg); } }
+    @keyframes vc-turn { to { transform: translate(-50%,-50%) rotate(360deg); } }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 1440px; height: 900px; overflow: hidden; background:
+      radial-gradient(120% 90% at 78% 8%, #1E242A 0%, #12161A 42%, #0A0C0E 100%);
+      font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;">
+
+  <!-- raking key light -->
+  <div style="position: absolute; inset: 0; background: linear-gradient(118deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,0) 38%); pointer-events: none;"></div>
+  <!-- grain -->
+  <div style="position: absolute; inset: 0; opacity: .30; pointer-events: none;
+      background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, rgba(0,0,0,0) 1px 2px), repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, rgba(0,0,0,0) 1px 3px);"></div>
+
+  <!-- ══ STAGE : the movement ══ -->
+  <div style="position: absolute; left: 618px; top: 50px; width: 800px; height: 800px;">
+
+    <!-- ambient halo -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 900px; height: 900px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,138,61,.10) 0%, rgba(255,138,61,.03) 38%, rgba(0,0,0,0) 66%);"></div>
+
+    <!-- outer engraved tick ring -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 712px; height: 712px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: repeating-conic-gradient(from 0deg, rgba(190,202,210,.55) 0deg 0.28deg, rgba(0,0,0,0) 0.28deg 4.5deg);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 690px; height: 690px; transform: translate(-50%,-50%); border-radius: 50%; background: #0B0D0F;"></div>
+
+    <!-- mainplate : côtes de genève + brushed sheen + bevel -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 672px; height: 672px; transform: translate(-50%,-50%); border-radius: 50%;
+        background-image:
+          repeating-linear-gradient(112deg, rgba(255,255,255,.052) 0 2px, rgba(0,0,0,.055) 2px 15px),
+          conic-gradient(from 195deg, rgba(255,255,255,.13), rgba(255,255,255,0) 22%, rgba(255,255,255,.07) 48%, rgba(255,255,255,0) 74%, rgba(255,255,255,.14) 100%),
+          radial-gradient(circle at 32% 24%, #6E777E 0%, #4A5257 46%, #2C3236 100%);
+        box-shadow: inset 0 0 0 1px rgba(226,236,242,.22), inset 0 2px 26px rgba(0,0,0,.55), 0 40px 90px rgba(0,0,0,.65);"></div>
+
+    <!-- hairline guides -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 588px; height: 588px; transform: translate(-50%,-50%); border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(226,236,242,.14);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 470px; height: 470px; transform: translate(-50%,-50%); border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(226,236,242,.09);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 286px; height: 286px; transform: translate(-50%,-50%); border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(226,236,242,.07);"></div>
+
+    <!-- gear-train energy paths -->
+    <sc-for list="{{flows}}" as="f" hint-placeholder-count="4">
+      <svg viewBox="0 0 800 800" style="position: absolute; left: 0; top: 0; width: 800px; height: 800px; pointer-events: none;">
+        <path d="{{f.d}}" fill="none" stroke="rgba(226,236,242,.13)" stroke-width="1"></path>
+        <path d="{{f.d}}" fill="none" stroke="#FF8A3D" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="5 255" style="{{f.style}}"></path>
+      </svg>
+    </sc-for>
+
+    <!-- 40 source barrels -->
+    <sc-for list="{{barrels}}" as="b" hint-placeholder-count="6">
+      <div style="{{b.style}}"></div>
+    </sc-for>
+
+    <!-- complication wheels -->
+    <sc-for list="{{wheels}}" as="w" hint-placeholder-count="3">
+      <div style="{{w.style}}">
+        <div style="position: absolute; left: 50%; top: 50%; width: 74%; height: 74%; transform: translate(-50%,-50%); border-radius: 50%;
+            background-image: conic-gradient(from 140deg, rgba(255,255,255,.16), rgba(255,255,255,0) 30%, rgba(255,255,255,.08) 60%, rgba(255,255,255,0) 88%), radial-gradient(circle at 34% 26%, #79828A 0%, #4C5459 55%, #2E3438 100%);
+            box-shadow: inset 0 0 0 1px rgba(226,236,242,.20);"></div>
+        <div style="position: absolute; left: 0; right: 0; bottom: -26px; text-align: center; font: 500 10px 'IBM Plex Mono', ui-monospace, Menlo, monospace; letter-spacing: .20em; color: #9AA4AB;">{{w.label}}</div>
+      </div>
+    </sc-for>
+
+    <!-- escapement / balance : the ratchet heartbeat -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 196px; height: 196px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,138,61,.34) 0%, rgba(255,138,61,.06) 52%, rgba(0,0,0,0) 72%);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 132px; height: 132px; border-radius: 50%; transform: translate(-50%,-50%);
+        animation: vc-tick 3.6s cubic-bezier(.4,0,.2,1) infinite;
+        background-image: repeating-conic-gradient(from 0deg, rgba(232,240,246,.62) 0deg 1.1deg, rgba(0,0,0,0) 1.1deg 9deg);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 108px; height: 108px; transform: translate(-50%,-50%); border-radius: 50%;
+        background-image: conic-gradient(from 210deg, rgba(255,255,255,.18), rgba(255,255,255,0) 34%, rgba(255,255,255,.10) 66%, rgba(255,255,255,0) 96%), radial-gradient(circle at 34% 26%, #7E878E 0%, #4B5358 58%, #2B3135 100%);
+        box-shadow: inset 0 0 0 1px rgba(226,236,242,.28), 0 8px 26px rgba(0,0,0,.6);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; transform: translate(-50%,-50%); border-radius: 50%;
+        background: radial-gradient(circle at 34% 30%, #FFC38C, #FF8A3D 60%, #C25C1C 100%); box-shadow: 0 0 22px rgba(255,138,61,.85);"></div>
+
+    <!-- specular sweep -->
+    <div style="position: absolute; left: 50%; top: 50%; width: 672px; height: 672px; transform: translate(-50%,-50%); border-radius: 50%; pointer-events: none;
+        background: linear-gradient(118deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.02) 26%, rgba(255,255,255,0) 46%, rgba(0,0,0,.20) 100%); mix-blend-mode: screen;"></div>
+  </div>
+
+  <!-- ══ COPY ══ -->
+  <div style="position: absolute; left: 86px; top: 118px; width: 470px; display: flex; flex-direction: column; gap: 22px;">
+
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 26px; height: 1px; background: #FF8A3D;"></div>
+      <div style="font: 500 11px 'IBM Plex Mono', ui-monospace, Menlo, monospace; letter-spacing: .30em; color: #FF8A3D;">VISUAL CLIMATE · CALIBRE 2015</div>
+    </div>
+
+    <h1 style="margin: 0; font-size: 68px; line-height: .94; font-weight: 800; letter-spacing: -.025em; color: #EDF2F6; text-wrap: balance;">THE PARIS<br>MOVEMENT</h1>
+
+    <p style="margin: 0; max-width: 420px; font-size: 15.5px; line-height: 1.65; color: #98A2AA;">파리협정의 상향 톱니(ratchet) 구조를 실제 무브먼트로 깎는다. 40개 배럴이 데이터를 감고, 기어 트레인이 검증을 통과시키고, 다이얼 190개가 그 위에 얹힌다.</p>
+
+    <!-- verdict-first : renders before the machine -->
+    <div style="margin-top: 6px; padding: 18px 20px; border-radius: 2px; border: 1px solid rgba(200,225,245,.22);
+        background: linear-gradient(140deg, rgba(180,205,225,.10), rgba(180,205,225,.03)); backdrop-filter: blur(2px);">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+        <div style="font: 500 9.5px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: .26em; color: #6F7A82;">0.2s · VERDICT FIRST</div>
+        <div style="padding: 1px 6px; border: 1px solid rgba(194,69,63,.55); font: 500 8.5px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: #C2453F;">SAMPLE</div>
+      </div>
+      <div style="font-size: 15px; line-height: 1.62; color: #D6DEE4;">
+        <span style="color: #EDF2F6; font-weight: 600;">캄보디아</span>는 2030년까지 <span style="color: #9FC3E0;">−41.7%</span>를 약속했지만, 그 대부분은 <span style="color: #9FC3E0;">해외 재원 조건부</span>이고, 실제 배출은 <span style="color: #EDF2F6;">증가 중</span>이며, BTR의 <span style="color: #C2453F;">CTF 표는 미제출</span>이다.
+      </div>
+    </div>
+
+    <!-- material legend -->
+    <div style="display: flex; gap: 26px; margin-top: 8px;">
+      <div style="display: flex; align-items: center; gap: 9px;">
+        <div style="width: 15px; height: 15px; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #8E979E, #454C51); box-shadow: inset 0 0 0 1px rgba(226,236,242,.3);"></div>
+        <div style="font: 400 11px 'IBM Plex Mono', monospace; letter-spacing: .10em; color: #8A949B;">METAL · 관측</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px;">
+        <div style="width: 15px; height: 15px; border-radius: 50%; background: rgba(180,205,225,.16); box-shadow: inset 0 0 0 1px rgba(200,225,245,.45);"></div>
+        <div style="font: 400 11px 'IBM Plex Mono', monospace; letter-spacing: .10em; color: #8A949B;">GLASS · 약속</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px;">
+        <div style="width: 15px; height: 15px; border-radius: 50%; background: #0A0C0E; box-shadow: inset 0 2px 5px rgba(0,0,0,.9), inset 0 0 0 1px rgba(194,69,63,.6);"></div>
+        <div style="font: 400 11px 'IBM Plex Mono', monospace; letter-spacing: .10em; color: #8A949B;">VOID · 부재</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer rail -->
+  <div style="position: absolute; left: 86px; bottom: 54px; display: flex; align-items: center; gap: 18px;">
+    <div style="width: 8px; height: 8px; border-radius: 50%; background: #FF8A3D; box-shadow: 0 0 14px rgba(255,138,61,.9); animation: vc-breathe 2.6s ease-in-out infinite;"></div>
+    <div style="font: 400 11px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: .18em; color: #6F7A82;">PULSE = 실제 ETL CRON 주기 · 40 BARRELS · 12 TABLES</div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var CX = 400, CY = 400, R = 286;
+    var named = ['WDI','EDGAR','CLIMATE TRACE','ND-GAIN','EM-DAT','CLIMATE WATCH','GISTEMP','C3S','CCKP','INFORM',
+                 'GCF','FAOSTAT','IRENA','GCB','IIASA AR6','UN SDG','UNFCCC NDC','UNFCCC BTR','CAT','CPI',
+                 'NOAA','NASA SEA LEVEL','NSIDC','AQUEDUCT','GEM','OWID'];
+    var live = [0, 5, 11, 17, 23, 29, 34];
+    var voids = [8, 26];
+
+    var barrels = [];
+    for (var i = 0; i < 40; i++) {
+      var a = (i / 40) * Math.PI * 2 - Math.PI / 2;
+      var x = CX + Math.cos(a) * R;
+      var y = CY + Math.sin(a) * R;
+      var isLive = live.indexOf(i) >= 0;
+      var isVoid = voids.indexOf(i) >= 0;
+      var d = isLive ? 26 : 22;
+      var face;
+      if (isVoid) {
+        face = 'background: #090B0D; box-shadow: inset 0 3px 7px rgba(0,0,0,.95), inset 0 0 0 1px rgba(194,69,63,.62), 0 0 12px rgba(194,69,63,.18);';
+      } else if (isLive) {
+        face = 'background-image: radial-gradient(circle at 34% 28%, #FFD3AA 0%, #FF9B52 42%, #A85B22 100%);'
+             + ' box-shadow: inset 0 0 0 1px rgba(255,205,160,.55), 0 0 20px rgba(255,138,61,.75);';
+      } else {
+        face = 'background-image: conic-gradient(from 160deg, rgba(255,255,255,.18), rgba(255,255,255,0) 34%, rgba(255,255,255,.09) 68%, rgba(255,255,255,0) 96%), radial-gradient(circle at 34% 28%, #838C93 0%, #525A60 52%, #2F353A 100%);'
+             + ' box-shadow: inset 0 0 0 1px rgba(226,236,242,.26), 0 4px 12px rgba(0,0,0,.55);';
+      }
+      barrels.push({
+        style: 'position:absolute; left:' + x + 'px; top:' + y + 'px; width:' + d + 'px; height:' + d + 'px;'
+             + ' margin-left:' + (-d / 2) + 'px; margin-top:' + (-d / 2) + 'px; border-radius:50%; ' + face,
+        label: i < named.length ? named[i] : 'DS-' + (i + 1)
+      });
+    }
+
+    var wheelDefs = [
+      { ang: -90, d: 158, label: 'NDC GAP' },
+      { ang: 30,  d: 138, label: 'BTR SCORE' },
+      { ang: 150, d: 138, label: 'TRIANGLE' }
+    ];
+    var wheels = wheelDefs.map(function (w) {
+      var ra = w.ang * Math.PI / 180;
+      var wx = CX + Math.cos(ra) * 148;
+      var wy = CY + Math.sin(ra) * 148;
+      return {
+        label: w.label,
+        style: 'position:absolute; left:' + wx + 'px; top:' + wy + 'px; width:' + w.d + 'px; height:' + w.d + 'px;'
+             + ' margin-left:' + (-w.d / 2) + 'px; margin-top:' + (-w.d / 2) + 'px; border-radius:50%;'
+             + ' background-image: repeating-conic-gradient(from 0deg, rgba(214,224,232,.70) 0deg 1.5deg, rgba(0,0,0,0) 1.5deg 7.5deg);'
+             + ' filter: drop-shadow(0 10px 22px rgba(0,0,0,.6));'
+      };
+    });
+
+    var flows = live.map(function (i, n) {
+      var a = (i / 40) * Math.PI * 2 - Math.PI / 2;
+      var x = CX + Math.cos(a) * R;
+      var y = CY + Math.sin(a) * R;
+      var mx = CX + Math.cos(a + 0.34) * (R * 0.52);
+      var my = CY + Math.sin(a + 0.34) * (R * 0.52);
+      return {
+        d: 'M ' + x + ' ' + y + ' Q ' + mx + ' ' + my + ' ' + CX + ' ' + CY,
+        style: 'animation: vc-flow ' + (2.6 + n * 0.42) + 's linear infinite; animation-delay: ' + (n * 0.55) + 's; filter: drop-shadow(0 0 6px rgba(255,138,61,.9));'
+      };
+    });
+
+    return { barrels: barrels, wheels: wheels, flows: flows };
+  }
+}
+</script>
+</body>
+</html>

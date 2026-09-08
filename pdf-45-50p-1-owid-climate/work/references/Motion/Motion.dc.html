@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #0B0D0F; }
+    a { color: #FF8A3D; } a:hover { color: #FFA765; }
+
+    .m-stage { position: relative; height: 132px; border-radius: 2px; overflow: hidden;
+      background: linear-gradient(150deg, #171B1F 0%, #0E1114 100%);
+      box-shadow: inset 0 0 0 1px rgba(226,236,242,.09); }
+    .m-part { position: absolute; border-radius: 1px;
+      background-image: conic-gradient(from 200deg at 30% 20%, rgba(255,255,255,.16), rgba(255,255,255,0) 34%, rgba(255,255,255,.08) 68%, rgba(255,255,255,0) 96%), linear-gradient(146deg, #79828A, #3B4247);
+      box-shadow: inset 0 0 0 1px rgba(226,236,242,.24); }
+
+    @keyframes mo-assemble { 0% { transform: translateX(-120px); opacity: 0; } 22% { transform: translateX(4px); opacity: 1; } 30%, 88% { transform: translateX(0); opacity: 1; } 100% { transform: translateX(0); opacity: 1; } }
+    @keyframes mo-burst-1 { 0%, 22% { transform: translateY(0); } 44%, 66% { transform: translateY(-34px); } 88%, 100% { transform: translateY(0); } }
+    @keyframes mo-burst-2 { 0%, 22% { transform: translateY(0); } 44%, 66% { transform: translateY(-12px); } 88%, 100% { transform: translateY(0); } }
+    @keyframes mo-burst-3 { 0%, 22% { transform: translateY(0); } 44%, 66% { transform: translateY(12px); } 88%, 100% { transform: translateY(0); } }
+    @keyframes mo-burst-4 { 0%, 22% { transform: translateY(0); } 44%, 66% { transform: translateY(34px); } 88%, 100% { transform: translateY(0); } }
+    @keyframes mo-pulse-run { 0% { left: 6%; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 94%; opacity: 0; } }
+    @keyframes mo-void-try { 0% { transform: translateY(-52px); opacity: 0; } 26% { transform: translateY(0); opacity: 1; } 46% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { transform: translateY(-52px); opacity: 0; } }
+    @keyframes mo-void-hole { 0%, 44% { opacity: .25; } 74%, 100% { opacity: 1; } }
+    @keyframes mo-flip { 0%, 18% { transform: rotateY(0deg); } 46%, 68% { transform: rotateY(180deg); } 96%, 100% { transform: rotateY(0deg); } }
+    @keyframes mo-tick { 0%, 46% { transform: rotate(-9deg); } 50%, 96% { transform: rotate(9deg); } 100% { transform: rotate(-9deg); } }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 1440px; height: 760px; padding: 48px 56px; box-sizing: border-box; overflow: hidden;
+    background: radial-gradient(100% 80% at 78% 0%, #191E23 0%, #101418 46%, #0A0C0E 100%);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;">
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 30px;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+        <div style="width: 24px; height: 1px; background: #FF8A3D;"></div>
+        <div style="font: 500 10.5px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: .30em; color: #FF8A3D;">DESIGN SYSTEM · 02</div>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 800; letter-spacing: -.022em; color: #EDF2F6;">MOTION PRIMITIVES</h2>
+    </div>
+    <div style="max-width: 430px; font-size: 13px; line-height: 1.6; color: #8A949B; text-align: right;">효과 모음이 아니라 문법. 이 여섯 개 밖으로 나가는 모션은 만들지 않는다. 이징은 기계적 — 만화 같은 바운스 금지.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 32px;">
+
+    <!-- 1 ASSEMBLE -->
+    <div style="display: flex; flex-direction: column; gap: 13px;">
+      <div class="m-stage">
+        <div class="m-part" style="left: 96px; top: 34px; width: 68px; height: 12px; animation: mo-assemble 3.2s cubic-bezier(.16,.9,.3,1) infinite; animation-delay: 0s;"></div>
+        <div class="m-part" style="left: 96px; top: 54px; width: 122px; height: 12px; animation: mo-assemble 3.2s cubic-bezier(.16,.9,.3,1) infinite; animation-delay: .18s;"></div>
+        <div class="m-part" style="left: 96px; top: 74px; width: 96px; height: 12px; animation: mo-assemble 3.2s cubic-bezier(.16,.9,.3,1) infinite; animation-delay: .36s;"></div>
+        <div class="m-part" style="left: 96px; top: 94px; width: 148px; height: 12px; animation: mo-assemble 3.2s cubic-bezier(.16,.9,.3,1) infinite; animation-delay: .54s;"></div>
+        <div style="position: absolute; left: 84px; top: 24px; width: 1px; height: 92px; background: rgba(255,138,61,.4);"></div>
+      </div>
+      <div>
+        <div style="font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: #C6D0D7;">01 · ASSEMBLE <span style="color:#5C666D;">조립</span></div>
+        <div style="margin-top: 7px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">부품이 <span style="color:#EDF2F6;">한 축</span>으로 들어와 안착. 1프레임 오버슈트 + 미세 정착.</div>
+        <div style="margin-top: 8px; font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #FF8A3D;">RULE — 등장 순서 = 종속 순서 = 논증. 동시 등장 금지.</div>
+      </div>
+    </div>
+
+    <!-- 2 BURST -->
+    <div style="display: flex; flex-direction: column; gap: 13px;">
+      <div class="m-stage">
+        <div class="m-part" style="left: 50%; top: 40px; width: 128px; height: 11px; margin-left: -64px; animation: mo-burst-1 3.4s cubic-bezier(.4,0,.2,1) infinite;"></div>
+        <div class="m-part" style="left: 50%; top: 55px; width: 128px; height: 11px; margin-left: -64px; animation: mo-burst-2 3.4s cubic-bezier(.4,0,.2,1) infinite;"></div>
+        <div class="m-part" style="left: 50%; top: 70px; width: 128px; height: 11px; margin-left: -64px; animation: mo-burst-3 3.4s cubic-bezier(.4,0,.2,1) infinite;"></div>
+        <div class="m-part" style="left: 50%; top: 85px; width: 128px; height: 11px; margin-left: -64px; animation: mo-burst-4 3.4s cubic-bezier(.4,0,.2,1) infinite;"></div>
+      </div>
+      <div>
+        <div style="font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: #C6D0D7;">02 · BURST <span style="color:#5C666D;">파라라락</span></div>
+        <div style="margin-top: 7px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">적층 법선 방향으로만 폭발 분해 → 400ms 홀드 → 재안착.</div>
+        <div style="margin-top: 8px; font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #FF8A3D;">RULE — 단일 축, 가역. 사방 흩어짐은 싸구려.</div>
+      </div>
+    </div>
+
+    <!-- 3 PULSE -->
+    <div style="display: flex; flex-direction: column; gap: 13px;">
+      <div class="m-stage">
+        <div style="position: absolute; left: 6%; right: 6%; top: 44px; height: 1px; background: rgba(226,236,242,.16);"></div>
+        <div style="position: absolute; left: 6%; right: 6%; top: 66px; height: 1px; background: rgba(226,236,242,.16);"></div>
+        <div style="position: absolute; left: 6%; right: 6%; top: 88px; height: 1px; background: rgba(226,236,242,.16);"></div>
+        <div style="position: absolute; top: 41px; width: 30px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, rgba(255,138,61,0), #FF8A3D); box-shadow: 0 0 12px rgba(255,138,61,.9); animation: mo-pulse-run 2.6s linear infinite;"></div>
+        <div style="position: absolute; top: 63px; width: 30px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, rgba(255,138,61,0), #FF8A3D); box-shadow: 0 0 12px rgba(255,138,61,.9); animation: mo-pulse-run 3.6s linear infinite; animation-delay: .7s;"></div>
+        <div style="position: absolute; top: 85px; width: 30px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, rgba(255,138,61,0), #FF8A3D); box-shadow: 0 0 12px rgba(255,138,61,.9); animation: mo-pulse-run 4.4s linear infinite; animation-delay: 1.4s;"></div>
+      </div>
+      <div>
+        <div style="font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: #C6D0D7;">03 · PULSE <span style="color:#5C666D;">맥동</span></div>
+        <div style="margin-top: 7px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">앰버 에너지가 기어 트레인을 탄다. 소스마다 다른 타이밍.</div>
+        <div style="margin-top: 8px; font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #FF8A3D;">RULE — 실제 cron 주기에 물림. 유휴 화면 = 파이프라인의 숨.</div>
+      </div>
+    </div>
+
+    <!-- 4 VOID -->
+    <div style="display: flex; flex-direction: column; gap: 13px;">
+      <div class="m-stage">
+        <div style="position: absolute; left: 50%; top: 62px; width: 46px; height: 46px; margin-left: -23px; border-radius: 50%; background: #08090B; box-shadow: inset 0 4px 11px rgba(0,0,0,1), inset 0 0 0 1px rgba(194,69,63,.6); animation: mo-void-hole 3.4s ease-in-out infinite;"></div>
+        <div style="position: absolute; left: 50%; top: 62px; width: 40px; height: 40px; margin-left: -20px; margin-top: 3px; border-radius: 50%;
+            background-image: radial-gradient(circle at 34% 28%, #838C93, #3B4247); box-shadow: inset 0 0 0 1px rgba(226,236,242,.24);
+            animation: mo-void-try 3.4s cubic-bezier(.4,0,.5,1) infinite;"></div>
+      </div>
+      <div>
+        <div style="font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: #C2453F;">04 · VOID <span style="color:#5C666D;">공백</span></div>
+        <div style="margin-top: 7px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">부품이 들어와 <span style="color:#EDF2F6;">안착에 실패</span>하고 사라진다. 가공된 소켓만 남는다.</div>
+        <div style="margin-top: 8px; font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #C2453F;">RULE — 감정의 핵. 없는 자리를 가장 정밀하게 깎는다.</div>
+      </div>
+    </div>
+
+    <!-- 5 FLIP -->
+    <div style="display: flex; flex-direction: column; gap: 13px;">
+      <div class="m-stage" style="perspective: 800px;">
+        <div style="position: absolute; left: 50%; top: 50%; width: 160px; height: 86px; margin-left: -80px; margin-top: -43px; transform-style: preserve-3d; animation: mo-flip 4.2s cubic-bezier(.5,0,.2,1) infinite;">
+          <div style="position: absolute; inset: 0; backface-visibility: hidden; border-radius: 2px;
+              background-image: conic-gradient(from 200deg at 30% 20%, rgba(255,255,255,.14), rgba(255,255,255,0) 34%, rgba(255,255,255,.07) 68%, rgba(255,255,255,0) 96%), linear-gradient(146deg, #79828A, #3B4247);
+              box-shadow: inset 0 0 0 1px rgba(226,236,242,.24); display: flex; align-items: center; justify-content: center;
+              font: 500 22px 'IBM Plex Mono', monospace; color: #EDF2F6;">−41.7%</div>
+          <div style="position: absolute; inset: 0; backface-visibility: hidden; transform: rotateY(180deg); border-radius: 2px;
+              background: linear-gradient(146deg, #1B1F23, #0F1215); box-shadow: inset 0 0 0 1px rgba(255,138,61,.35);
+              display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+              font: 400 8.5px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #9AA4AB;">
+            <div style="color:#FF8A3D;">CLIMATE WATCH NDC</div>
+            <div>run 2026-09-06 06:15Z</div>
+            <div style="color:#5C666D;">sha256 4f9c…a1e0</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: #C6D0D7;">05 · FLIP <span style="color:#5C666D;">케이스백</span></div>
+        <div style="margin-top: 7px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">180° 뒤집어 출처를 본다. 시계 뒤판 열듯이.</div>
+        <div style="margin-top: 8px; font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #FF8A3D;">RULE — 오직 출처 확인에만. 한 제스처 = 한 의미.</div>
+      </div>
+    </div>
+
+    <!-- 6 TICK -->
+    <div style="display: flex; flex-direction: column; gap: 13px;">
+      <div class="m-stage">
+        <div style="position: absolute; left: 50%; top: 50%; width: 90px; height: 90px; margin-left: -45px; margin-top: -45px; border-radius: 50%;
+            background-image: repeating-conic-gradient(from 0deg, rgba(214,224,232,.6) 0deg 1.3deg, rgba(0,0,0,0) 1.3deg 10deg);
+            animation: mo-tick 3.6s cubic-bezier(.4,0,.2,1) infinite;"></div>
+        <div style="position: absolute; left: 50%; top: 50%; width: 62px; height: 62px; margin-left: -31px; margin-top: -31px; border-radius: 50%;
+            background-image: radial-gradient(circle at 34% 26%, #7E878E, #2B3135); box-shadow: inset 0 0 0 1px rgba(226,236,242,.26);"></div>
+        <div style="position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin-left: -8px; margin-top: -8px; border-radius: 50%;
+            background: radial-gradient(circle at 34% 30%, #FFC38C, #FF8A3D); box-shadow: 0 0 18px rgba(255,138,61,.85);"></div>
+      </div>
+      <div>
+        <div style="font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: #C6D0D7;">06 · TICK <span style="color:#5C666D;">틱</span></div>
+        <div style="margin-top: 7px; font-size: 12.5px; line-height: 1.6; color: #8A949B;">유일한 상시 루프. NDC 5년 / BTR 2년 주기에 물린 박동.</div>
+        <div style="margin-top: 8px; font: 400 10px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #FF8A3D;">RULE — 비용 0에 가깝고, 화면이 절대 죽지 않는다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":760}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

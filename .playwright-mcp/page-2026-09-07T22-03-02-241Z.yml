@@ -1,0 +1,368 @@
+- generic [ref=f3e1]:
+  - main [ref=f3e2]:
+    - generic [aria-hidden] [ref=f3e3]:
+      - link [ref=f3e252] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e5]: ◉
+        - generic [ref=f3e6]:
+          - text: VISUAL CLIMATE
+          - generic [ref=f3e7]: THE PARIS MOVEMENT
+      - tablist [ref=f3e9]:
+        - tab [selected] [ref=f3e253] [cursor=pointer]: 조립 엔진
+        - tab [ref=f3e254] [cursor=pointer]: 데이터 구조
+        - tab [ref=f3e255] [cursor=pointer]: 국가 선택
+      - button [ref=f3e256] [cursor=pointer]: 읽는 방법
+    - generic [aria-hidden] [ref=f3e17]:
+      - generic [ref=f3e18]:
+        - generic [ref=f3e19]: +
+        - generic [ref=f3e20]: CALIBRE 2015
+        - generic [ref=f3e21]: /
+        - generic [ref=f3e22]: 데이터가 기계가 되는 과정
+      - generic [ref=f3e23]:
+        - text: 문서 데이터 재생
+        - combobox [ref=f3e257] [cursor=pointer]:
+          - generic [ref=f3e26]: Cambodia
+          - img [aria-hidden]: ▼
+        - textbox [aria-hidden] [ref=f3e27]: KHM
+    - generic [ref=f3e29]:
+      - generic [ref=f3e30]:
+        - complementary [ref=f3e31]:
+          - paragraph [aria-hidden] [ref=f3e32]: 01 THE ANATOMY OF CLIMATE ACTION
+          - heading [level=1] [aria-hidden] [ref=f3e258]:
+            - text: 우리가 지킬 것은
+            - emphasis [ref=f3e34]: 하나의 지구.
+          - generic [aria-hidden] [ref=f3e35]:
+            - generic [ref=f3e36]: Cambodia
+            - generic [ref=f3e38]: 2020 NDC · 2024 BTR
+          - generic [aria-hidden] [ref=f3e39]:
+            - strong [ref=f3e40]:
+              - text: −41.7
+              - superscript [ref=f3e41]: "%"
+            - generic [ref=f3e42]:
+              - text: 2030년까지 감축 약속
+              - generic [ref=f3e43]: 2030 BAU 기준
+          - paragraph [ref=f3e44]: 국제 지원을 조건으로 한 약속입니다.조건부 비율은 아직 정량화되지 않았습니다.
+          - button [aria-hidden] [ref=f3e259] [cursor=pointer]: 데이터 조립 다시 보기
+          - navigation [aria-hidden] [ref=f3e260]:
+            - button [ref=f3e261] [cursor=pointer]:
+              - generic [ref=f3e53]: "01"
+              - generic [ref=f3e54]:
+                - strong [ref=f3e55]: 파리협정
+                - generic [ref=f3e56]: 모든 부품을 받치는 공통의 설계
+            - button [ref=f3e262] [cursor=pointer]:
+              - generic [ref=f3e61]: "02"
+              - generic [ref=f3e62]:
+                - strong [ref=f3e63]: NDC · 감축 약속
+                - generic [ref=f3e64]: 2030년까지 −41.7%
+            - button [ref=f3e263] [cursor=pointer]:
+              - generic [ref=f3e69]: "03"
+              - generic [ref=f3e70]:
+                - strong [ref=f3e71]: 배출 인벤토리
+                - generic [ref=f3e72]: 36개 관측 연도 · 실제 이행의 근거
+            - button [ref=f3e264] [cursor=pointer]:
+              - generic [ref=f3e77]: "04"
+              - generic [ref=f3e78]:
+                - strong [ref=f3e79]: BTR · 투명성
+                - generic [ref=f3e80]: 0개 확인 / 8개 구성요소
+            - button [ref=f3e265] [cursor=pointer]:
+              - generic [ref=f3e85]: "05"
+              - generic [ref=f3e86]:
+                - strong [ref=f3e87]: 국제 재원
+                - generic [ref=f3e88]: 약속을 실행하기 위한 지원 조건
+          - generic [aria-hidden] [ref=f3e92]:
+            - text: 데이터 기준
+            - paragraph [ref=f3e93]: 2020 NDC · 2024 BTR 문서 기준입니다. 실시간 현황이나 최신 NDC 판정이 아닙니다.
+        - generic [aria-hidden] [ref=f3e94]:
+          - generic:
+            - generic: EXPLODED ASSEMBLY
+            - generic: KHM / 001
+          - generic [ref=f3e266]:
+            - generic [ref=f3e243] [cursor=pointer]
+            - generic:
+              - generic:
+                - strong: 01 / NDC 목표 링
+                - generic: 41.7% 감축 약속
+              - generic:
+                - strong: 02 / 관측 데이터
+                - generic: 36개 관측 연도
+              - generic:
+                - strong: 03 / BTR 보고 의무
+                - generic: 제출됨 · 8개 미파싱
+              - generic:
+                - strong: 04 / 국제 지원 조건
+                - generic: 받은 재원 미확인 → 미결합
+              - generic: NDC 원문
+              - generic: INV 원문
+              - generic: BTR 원문
+              - generic: FIN 원문
+          - generic: + 각 층이 같은 축을 따라 분리됩니다
+      - generic [aria-hidden] [ref=f3e96]:
+        - generic [ref=f3e97]:
+          - generic [ref=f3e98]: 분해 — 조립
+          - group [ref=f3e267]:
+            - slider [ref=f3e246]: "0"
+          - status [ref=f3e102]: 0%
+        - generic [ref=f3e103]:
+          - generic [ref=f3e104]: 확대
+          - group [ref=f3e268]:
+            - slider [ref=f3e249]: "1"
+          - status [ref=f3e108]: 1.00×
+      - generic [ref=f3e109]:
+        - generic [ref=f3e110]: "00"
+        - generic [ref=f3e111]:
+          - strong [ref=f3e112]: 분해도 · 데이터 층을 분리했습니다
+          - paragraph [ref=f3e113]: 같은 축을 따라 재조립하면 모든 부품이 원래 자리로 돌아옵니다.
+        - button "한 번 재생" [ref=f3e114] [cursor=pointer]
+      - region [aria-hidden] [ref=f3e269]:
+        - generic [ref=f3e116]:
+          - button [pressed] [ref=f3e270] [cursor=pointer]: 다시 조립
+          - button [ref=f3e271] [cursor=pointer]:
+            - generic [ref=f3e127]: 다시 재생
+          - button [ref=f3e272] [cursor=pointer]
+          - button [ref=f3e273] [cursor=pointer]
+        - generic [ref=f3e138]:
+          - button [ref=f3e274] [cursor=pointer]: 출처·체크섬
+          - button [ref=f3e275] [cursor=pointer]:
+            - generic [ref=f3e147]: 프레임 저장
+          - button [ref=f3e276] [cursor=pointer]:
+            - generic [ref=f3e151]: 10초 영상
+    - region [aria-hidden] [ref=f3e277]:
+      - button [ref=f3e278] [cursor=pointer]:
+        - generic [ref=f3e154]: 01 감축 약속
+        - generic [ref=f3e160]: 90.4 MtCO₂e
+        - paragraph [ref=f3e161]: 2030년 목표 배출량
+        - generic [ref=f3e162]: Pledged
+      - button [ref=f3e279] [cursor=pointer]:
+        - generic [ref=f3e165]: 02 지원 조건
+        - generic [ref=f3e171]: 비율 미확인
+        - paragraph [ref=f3e172]: 국제 지원을 조건으로 한 목표
+        - generic [ref=f3e173]: 조건부 비율 미확인
+      - button [ref=f3e280] [cursor=pointer]:
+        - generic [ref=f3e176]: 03 실제 이행
+        - generic [ref=f3e182]: 경로 이탈
+        - paragraph [ref=f3e183]: "확보한 관측: 36개 연도"
+        - generic [ref=f3e184]: 엔진 평가
+      - button [ref=f3e281] [cursor=pointer]:
+        - generic [ref=f3e187]: 04 증거 상태
+        - generic [ref=f3e193]: BTR 제출됨
+        - paragraph [ref=f3e194]: 2024-12-31
+        - generic [ref=f3e195]: 8 unparsed
+    - region [aria-hidden] [ref=f3e290]:
+      - button [ref=f3e291] [cursor=pointer]:
+        - generic [ref=f3e207]: NDC
+        - generic [ref=f3e208]:
+          - generic [ref=f3e209]: 국가 감축 약속
+          - strong [ref=f3e210]: −41.7% · 2030
+          - generic [ref=f3e211]: 2020 NDC · 2024 BTR
+      - button [active] [ref=f3e292] [cursor=pointer]:
+        - generic [ref=f3e213]: INV
+        - generic [ref=f3e214]:
+          - generic [ref=f3e215]: 배출 인벤토리
+          - strong [ref=f3e216]: 36개 관측 연도
+          - generic [ref=f3e217]: 출처별 관측값 보존
+      - button [ref=f3e293] [cursor=pointer]:
+        - generic [ref=f3e219]: BTR
+        - generic [ref=f3e220]:
+          - generic [ref=f3e221]: 투명성 보고서
+          - strong [ref=f3e222]: 제출 확인
+          - generic [ref=f3e223]: 8개 구성요소 미파싱
+      - button [ref=f3e294] [cursor=pointer]:
+        - generic [ref=f3e225]: FIN
+        - generic [ref=f3e226]:
+          - generic [ref=f3e227]: 국제 재원
+          - strong [ref=f3e228]: 완화 > $5.8bn
+          - generic [ref=f3e229]: 수령액 미확인 · 충족률 계산 안 함
+    - generic [aria-hidden] [ref=f3e230]:
+      - generic [ref=f3e231]:
+        - generic [ref=f3e232]: 재질 = 증거 상태
+        - generic [ref=f3e233]: 보고된 값
+        - generic [ref=f3e235]: 약속·전망
+        - generic [ref=f3e237]: 미확인
+        - generic [ref=f3e239]: 부재 확인
+      - generic [ref=f3e241]: 미확인은 미제출과 다릅니다.
+  - dialog [ref=f3e298]:
+    - generic [ref=f3e299]:
+      - paragraph [ref=f3e300]: KHM / UNDER THE DIAL
+      - heading "The trajectory" [level=2] [ref=f3e301]
+      - paragraph [ref=f3e302]: Cambodia · 2020 NDC · 2024 BTR
+    - generic [ref=f3e303]:
+      - paragraph [ref=f3e304]: Each observed value is preserved with its source. Projected pathways remain separate.
+      - generic [ref=f3e305]:
+        - generic [ref=f3e306]:
+          - generic [ref=f3e307]: YEAR
+          - generic [ref=f3e308]: MtCO₂e
+          - generic [ref=f3e309]: STATUS
+        - generic [ref=f3e310]:
+          - generic [ref=f3e311]: "1990"
+          - generic [ref=f3e312]: "76.4"
+          - generic [ref=f3e313]: observed
+        - generic [ref=f3e315]:
+          - generic [ref=f3e316]: "1991"
+          - generic [ref=f3e317]: "61.9"
+          - generic [ref=f3e318]: observed
+        - generic [ref=f3e320]:
+          - generic [ref=f3e321]: "1992"
+          - generic [ref=f3e322]: "55.3"
+          - generic [ref=f3e323]: observed
+        - generic [ref=f3e325]:
+          - generic [ref=f3e326]: "1993"
+          - generic [ref=f3e327]: "53.2"
+          - generic [ref=f3e328]: observed
+        - generic [ref=f3e330]:
+          - generic [ref=f3e331]: "1994"
+          - generic [ref=f3e332]: "51.2"
+          - generic [ref=f3e333]: observed
+        - generic [ref=f3e335]:
+          - generic [ref=f3e336]: "1995"
+          - generic [ref=f3e337]: "50.7"
+          - generic [ref=f3e338]: observed
+        - generic [ref=f3e340]:
+          - generic [ref=f3e341]: "1996"
+          - generic [ref=f3e342]: "47.3"
+          - generic [ref=f3e343]: observed
+        - generic [ref=f3e345]:
+          - generic [ref=f3e346]: "1997"
+          - generic [ref=f3e347]: "49.5"
+          - generic [ref=f3e348]: observed
+        - generic [ref=f3e350]:
+          - generic [ref=f3e351]: "1998"
+          - generic [ref=f3e352]: "48.4"
+          - generic [ref=f3e353]: observed
+        - generic [ref=f3e355]:
+          - generic [ref=f3e356]: "1999"
+          - generic [ref=f3e357]: "59"
+          - generic [ref=f3e358]: observed
+        - generic [ref=f3e360]:
+          - generic [ref=f3e361]: "2000"
+          - generic [ref=f3e362]: "64.3"
+          - generic [ref=f3e363]: observed
+        - generic [ref=f3e365]:
+          - generic [ref=f3e366]: "2001"
+          - generic [ref=f3e367]: "64.1"
+          - generic [ref=f3e368]: observed
+        - generic [ref=f3e370]:
+          - generic [ref=f3e371]: "2002"
+          - generic [ref=f3e372]: "63"
+          - generic [ref=f3e373]: observed
+        - generic [ref=f3e375]:
+          - generic [ref=f3e376]: "2003"
+          - generic [ref=f3e377]: "68.1"
+          - generic [ref=f3e378]: observed
+        - generic [ref=f3e380]:
+          - generic [ref=f3e381]: "2004"
+          - generic [ref=f3e382]: "69.6"
+          - generic [ref=f3e383]: observed
+        - generic [ref=f3e385]:
+          - generic [ref=f3e386]: "2005"
+          - generic [ref=f3e387]: "56.5"
+          - generic [ref=f3e388]: observed
+        - generic [ref=f3e390]:
+          - generic [ref=f3e391]: "2006"
+          - generic [ref=f3e392]: "50.5"
+          - generic [ref=f3e393]: observed
+        - generic [ref=f3e395]:
+          - generic [ref=f3e396]: "2007"
+          - generic [ref=f3e397]: "49.5"
+          - generic [ref=f3e398]: observed
+        - generic [ref=f3e400]:
+          - generic [ref=f3e401]: "2008"
+          - generic [ref=f3e402]: "48.7"
+          - generic [ref=f3e403]: observed
+        - generic [ref=f3e405]:
+          - generic [ref=f3e406]: "2009"
+          - generic [ref=f3e407]: "57.4"
+          - generic [ref=f3e408]: observed
+        - generic [ref=f3e410]:
+          - generic [ref=f3e411]: "2010"
+          - generic [ref=f3e412]: "62.4"
+          - generic [ref=f3e413]: observed
+        - generic [ref=f3e415]:
+          - generic [ref=f3e416]: "2011"
+          - generic [ref=f3e417]: "72.1"
+          - generic [ref=f3e418]: observed
+        - generic [ref=f3e420]:
+          - generic [ref=f3e421]: "2012"
+          - generic [ref=f3e422]: "76.9"
+          - generic [ref=f3e423]: observed
+        - generic [ref=f3e425]:
+          - generic [ref=f3e426]: "2013"
+          - generic [ref=f3e427]: "80"
+          - generic [ref=f3e428]: observed
+        - generic [ref=f3e430]:
+          - generic [ref=f3e431]: "2014"
+          - generic [ref=f3e432]: "90.3"
+          - generic [ref=f3e433]: observed
+        - generic [ref=f3e435]:
+          - generic [ref=f3e436]: "2015"
+          - generic [ref=f3e437]: "89.1"
+          - generic [ref=f3e438]: observed
+        - generic [ref=f3e440]:
+          - generic [ref=f3e441]: "2016"
+          - generic [ref=f3e442]: "125.2"
+          - generic [ref=f3e443]: observed
+        - generic [ref=f3e445]:
+          - generic [ref=f3e446]: "2016"
+          - generic [ref=f3e447]: "93"
+          - generic [ref=f3e448]: observed
+        - generic [ref=f3e450]:
+          - generic [ref=f3e451]: "2017"
+          - generic [ref=f3e452]: "92.8"
+          - generic [ref=f3e453]: observed
+        - generic [ref=f3e455]:
+          - generic [ref=f3e456]: "2018"
+          - generic [ref=f3e457]: "96.6"
+          - generic [ref=f3e458]: observed
+        - generic [ref=f3e460]:
+          - generic [ref=f3e461]: "2019"
+          - generic [ref=f3e462]: "101.5"
+          - generic [ref=f3e463]: observed
+        - generic [ref=f3e465]:
+          - generic [ref=f3e466]: "2020"
+          - generic [ref=f3e467]: "99"
+          - generic [ref=f3e468]: observed
+        - generic [ref=f3e470]:
+          - generic [ref=f3e471]: "2021"
+          - generic [ref=f3e472]: "86.6"
+          - generic [ref=f3e473]: observed
+        - generic [ref=f3e475]:
+          - generic [ref=f3e476]: "2022"
+          - generic [ref=f3e477]: "89.9"
+          - generic [ref=f3e478]: observed
+        - generic [ref=f3e480]:
+          - generic [ref=f3e481]: "2023"
+          - generic [ref=f3e482]: "91.4"
+          - generic [ref=f3e483]: observed
+        - generic [ref=f3e485]:
+          - generic [ref=f3e486]: "2024"
+          - generic [ref=f3e487]: "91.8"
+          - generic [ref=f3e488]: observed
+        - generic [ref=f3e490]:
+          - generic [ref=f3e491]: "2016"
+          - generic [ref=f3e492]: "125.2"
+          - generic [ref=f3e493]: target
+        - generic [ref=f3e495]:
+          - generic [ref=f3e496]: "2030"
+          - generic [ref=f3e497]: "90.4"
+          - generic [ref=f3e498]: target
+        - generic [ref=f3e500]:
+          - generic [ref=f3e501]: "2016"
+          - generic [ref=f3e502]: "125.2"
+          - generic [ref=f3e503]: BAU
+        - generic [ref=f3e505]:
+          - generic [ref=f3e506]: "2030"
+          - generic [ref=f3e507]: "155"
+          - generic [ref=f3e508]: BAU
+      - generic [ref=f3e510]:
+        - generic [ref=f3e511]:
+          - generic [ref=f3e512]: Ambition gap
+          - generic [ref=f3e513]: Reported
+        - strong [ref=f3e515]: Not computable
+        - paragraph [ref=f3e516]: observed emissions are rising by 1.38 MtCO₂e/yr while the target requires a fall of 0.24 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported.
+      - paragraph [ref=f3e517]: The target ring visualizes the pledge. It does not measure observed progress. Different emissions sources require matching sector boundaries, gases, and land-use scope before comparison.
+      - link "DS-06-NDC Cambodia Updated NDC (2020) Retrieved 2026-09-07" [ref=f3e518] [cursor=pointer]:
+        - /url: https://unfccc.int/sites/default/files/NDC/2022-06/20201231_NDC_Update_Cambodia.pdf
+        - generic [ref=f3e519]:
+          - generic [ref=f3e520]: DS-06-NDC
+          - text: Cambodia Updated NDC (2020)
+          - generic [ref=f3e521]: Retrieved 2026-09-07
+    - button "Close" [ref=f3e525] [cursor=pointer]

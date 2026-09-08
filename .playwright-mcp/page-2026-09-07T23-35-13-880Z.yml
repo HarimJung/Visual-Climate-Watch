@@ -1,0 +1,513 @@
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - generic [aria-hidden] [ref=e3]:
+      - link [ref=e242] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: ◉
+        - generic [ref=e6]:
+          - text: VISUAL CLIMATE
+          - generic [ref=e7]: THE PARIS MOVEMENT
+      - tablist [ref=e9]:
+        - tab [selected] [ref=e243] [cursor=pointer]: 조립 엔진
+        - tab [ref=e244] [cursor=pointer]: 데이터 구조
+        - tab [ref=e245] [cursor=pointer]: 국가 선택
+      - button [ref=e246] [cursor=pointer]: 읽는 방법
+    - generic [aria-hidden] [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: +
+        - generic [ref=e20]: CALIBRE 2015
+        - generic [ref=e21]: /
+        - generic [ref=e22]: 데이터가 기계가 되는 과정
+      - generic [ref=e23]:
+        - text: 문서 데이터 재생
+        - combobox [ref=e247] [cursor=pointer]:
+          - generic [ref=e26]: Cambodia
+          - img [aria-hidden]: ▼
+        - textbox [aria-hidden] [ref=e27]: KHM
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - complementary [ref=e31]:
+          - paragraph [aria-hidden] [ref=e32]: 01 THE ANATOMY OF CLIMATE ACTION
+          - heading [level=1] [aria-hidden] [ref=e248]:
+            - text: 우리가 지킬 것은
+            - emphasis [ref=e34]: 하나의 지구.
+          - generic [aria-hidden] [ref=e35]:
+            - generic [ref=e36]: Cambodia
+            - generic [ref=e38]: 2020 NDC · 2024 BTR
+          - generic [aria-hidden] [ref=e39]:
+            - strong [ref=e40]:
+              - text: −41.7
+              - superscript [ref=e41]: "%"
+            - generic [ref=e42]:
+              - text: 2030년까지 감축 약속
+              - generic [ref=e43]: 2030 BAU 기준
+          - paragraph [ref=e44]: 국제 지원을 조건으로 한 약속입니다.조건부 비율은 아직 정량화되지 않았습니다.
+          - button [aria-hidden] [ref=e249] [cursor=pointer]: 데이터 조립 다시 보기
+          - navigation [aria-hidden] [ref=e250]:
+            - button [ref=e251] [cursor=pointer]:
+              - generic [ref=e53]: "01"
+              - generic [ref=e54]:
+                - strong [ref=e55]: 파리협정
+                - generic [ref=e56]: 모든 부품을 받치는 공통의 설계
+            - button [ref=e252] [cursor=pointer]:
+              - generic [ref=e61]: "02"
+              - generic [ref=e62]:
+                - strong [ref=e63]: NDC · 감축 약속
+                - generic [ref=e64]: 2030년까지 −41.7%
+            - button [ref=e253] [cursor=pointer]:
+              - generic [ref=e69]: "03"
+              - generic [ref=e70]:
+                - strong [ref=e71]: 배출 인벤토리
+                - generic [ref=e72]: 49개 관측 연도 · 실제 이행의 근거
+            - button [ref=e254] [cursor=pointer]:
+              - generic [ref=e77]: "04"
+              - generic [ref=e78]:
+                - strong [ref=e79]: BTR · 투명성
+                - generic [ref=e80]: 0개 확인 / 8개 구성요소
+            - button [ref=e255] [cursor=pointer]:
+              - generic [ref=e85]: "05"
+              - generic [ref=e86]:
+                - strong [ref=e87]: 국제 재원
+                - generic [ref=e88]: 약속을 실행하기 위한 지원 조건
+          - generic [aria-hidden] [ref=e92]:
+            - text: 데이터 기준
+            - paragraph [ref=e93]: 2020 NDC · 2024 BTR 문서 기준입니다. 실시간 현황이나 최신 NDC 판정이 아닙니다.
+        - generic [aria-hidden] [ref=e94]:
+          - generic:
+            - generic: EXPLODED ASSEMBLY
+            - generic: KHM / 102
+          - generic [ref=e256]:
+            - generic [ref=e257] [cursor=pointer]
+            - generic:
+              - generic:
+                - strong: 01 / NDC 목표 링
+                - generic: 41.7% 감축 약속
+              - generic:
+                - strong: 02 / 관측 데이터
+                - generic: 49개 관측 연도
+              - generic:
+                - strong: 03 / BTR 보고 의무
+                - generic: 제출됨 · 8개 미파싱
+              - generic:
+                - strong: 04 / 국제 지원 조건
+                - generic: 받은 재원 미확인 → 미결합
+              - generic: NDC 원문
+              - generic: INV 원문
+              - generic: BTR 원문
+              - generic: FIN 원문
+          - generic: + 각 층이 같은 축을 따라 분리됩니다
+      - generic [aria-hidden] [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]: 분해 — 조립
+          - group [ref=e258]:
+            - slider [ref=e261]: "33"
+          - status [ref=e102]: 33%
+        - generic [ref=e103]:
+          - generic [ref=e104]: 확대
+          - group [ref=e262]:
+            - slider [ref=e265]: "1"
+          - status [ref=e108]: 1.00×
+      - generic [ref=e109]:
+        - generic [ref=e110]: "02"
+        - generic [ref=e111]:
+          - strong [ref=e112]: 분해도 · 데이터 층을 분리했습니다
+          - paragraph [ref=e113]: 같은 축을 따라 재조립하면 모든 부품이 원래 자리로 돌아옵니다.
+        - button "한 번 재생" [ref=e114] [cursor=pointer]
+      - region [aria-hidden] [ref=e266]:
+        - generic [ref=e116]:
+          - button [pressed] [ref=e267] [cursor=pointer]: 다시 조립
+          - button [ref=e268] [cursor=pointer]:
+            - generic [ref=e127]: 다시 재생
+          - button [pressed] [ref=e269] [cursor=pointer]
+          - button [ref=e272] [cursor=pointer]
+        - generic [ref=e138]:
+          - button [ref=e273] [cursor=pointer]: 출처·체크섬
+          - button [ref=e274] [cursor=pointer]:
+            - generic [ref=e147]: 프레임 저장
+          - button [ref=e275] [cursor=pointer]:
+            - generic [ref=e151]: 10초 영상
+    - region [aria-hidden] [ref=e276]:
+      - button [ref=e277] [cursor=pointer]:
+        - generic [ref=e154]: 01 감축 약속
+        - generic [ref=e160]: 90.4 MtCO₂e
+        - paragraph [ref=e161]: 2030년 목표 배출량
+        - generic [ref=e162]: Pledged
+      - button [ref=e278] [cursor=pointer]:
+        - generic [ref=e165]: 02 지원 조건
+        - generic [ref=e171]: 비율 미확인
+        - paragraph [ref=e172]: 국제 지원을 조건으로 한 목표
+        - generic [ref=e173]: 조건부 비율 미확인
+      - button [ref=e279] [cursor=pointer]:
+        - generic [ref=e176]: 03 실제 이행
+        - generic [ref=e182]: 경로 이탈
+        - paragraph [ref=e183]: "확보한 관측: 49개 연도"
+        - generic [ref=e184]: 엔진 평가
+      - button [ref=e280] [cursor=pointer]:
+        - generic [ref=e187]: 04 증거 상태
+        - generic [ref=e193]: BTR 제출됨
+        - paragraph [ref=e194]: 2024-12-31
+        - generic [ref=e195]: 8 unparsed
+    - region [aria-hidden] [ref=e289]:
+      - button [ref=e290] [cursor=pointer]:
+        - generic [ref=e207]: NDC
+        - generic [ref=e208]:
+          - generic [ref=e209]: 국가 감축 약속
+          - strong [ref=e210]: −41.7% · 2030
+          - generic [ref=e211]: 2020 NDC · 2024 BTR
+      - button [ref=e291] [cursor=pointer]:
+        - generic [ref=e213]: INV
+        - generic [ref=e214]:
+          - generic [ref=e215]: 배출 인벤토리
+          - strong [ref=e216]: 49개 관측 연도
+          - generic [ref=e217]: 출처별 관측값 보존
+      - button [ref=e292] [cursor=pointer]:
+        - generic [ref=e219]: BTR
+        - generic [ref=e220]:
+          - generic [ref=e221]: 투명성 보고서
+          - strong [ref=e222]: 제출 확인
+          - generic [ref=e223]: 8개 구성요소 미파싱
+      - button [ref=e293] [cursor=pointer]:
+        - generic [ref=e225]: FIN
+        - generic [ref=e226]:
+          - generic [ref=e227]: 국제 재원
+          - strong [ref=e228]: 완화 > $5.8bn
+          - generic [ref=e229]: 수령액 미확인 · 충족률 계산 안 함
+    - generic [aria-hidden] [ref=e230]:
+      - generic [ref=e231]:
+        - generic [ref=e232]: 재질 = 증거 상태
+        - generic [ref=e233]: 보고된 값
+        - generic [ref=e235]: 약속·전망
+        - generic [ref=e237]: 미확인
+        - generic [ref=e239]: 부재 확인
+      - generic [ref=e241]: 미확인은 미제출과 다릅니다.
+  - dialog [ref=e297]:
+    - generic [ref=e298]:
+      - paragraph [ref=e299]: KHM / UNDER THE DIAL
+      - heading "Behind the movement" [level=2] [ref=e300]
+      - paragraph [ref=e301]: Cambodia · 2020 NDC · 2024 BTR
+    - generic [ref=e302]:
+      - paragraph [ref=e303]: Every figure resolves to a source. Built by run fef16b2a over 218 countries, 0 values quarantined.
+      - generic [ref=e304]:
+        - generic [ref=e305]: THIS PAGE’S DATA REQUEST
+        - generic [ref=e306]: 2026-09-07T23:34:58.226Z
+        - generic [ref=e307]: PAYLOAD SHA-256
+        - code [ref=e308]: 75cb131738570b1f3e368379b1e0a2086a306307b29a1f92857f7f74a568eb36
+        - generic [ref=e309]: Fingerprint of the response shown here, not a checksum of the original source document.
+      - link "DS-06-NDC Cambodia Updated NDC (2020) Retrieved 2026-09-07" [active] [ref=e310] [cursor=pointer]:
+        - /url: https://unfccc.int/sites/default/files/NDC/2022-06/20201231_NDC_Update_Cambodia.pdf
+        - generic [ref=e311]:
+          - generic [ref=e312]: DS-06-NDC
+          - text: Cambodia Updated NDC (2020)
+          - generic [ref=e313]: Retrieved 2026-09-07
+      - link "DS-BTR UNFCCC — First Biennial Transparency Reports Retrieved 2026-09-07" [ref=e317] [cursor=pointer]:
+        - /url: https://unfccc.int/documents/645175
+        - generic [ref=e318]:
+          - generic [ref=e319]: DS-BTR
+          - text: UNFCCC — First Biennial Transparency Reports
+          - generic [ref=e320]: Retrieved 2026-09-07
+      - link "DS-04 ND-GAIN Country Index Retrieved 2026-09-07" [ref=e324] [cursor=pointer]:
+        - /url: https://gain.nd.edu/our-work/country-index/
+        - generic [ref=e325]:
+          - generic [ref=e326]: DS-04
+          - text: ND-GAIN Country Index
+          - generic [ref=e327]: Retrieved 2026-09-07
+      - heading "The source register 11/42" [level=3] [ref=e331]:
+        - text: The source register
+        - generic [ref=e332]: 11/42
+      - paragraph [ref=e333]: Architecture catalog from the supplied specification. Catalog inclusion does not mean an active connection — the state on each row is what the engine actually observed.
+      - generic [ref=e334]:
+        - link "DS-01 World Bank — country register and World Development Indicators 206개국 · 2,472개 값 Connected" [ref=e335] [cursor=pointer]:
+          - /url: https://data.worldbank.org
+          - generic [ref=e336]: DS-01
+          - generic [ref=e337]:
+            - text: World Bank — country register and World Development Indicators
+            - generic [ref=e338]: 206개국 · 2,472개 값
+          - generic [ref=e339]: Connected
+        - link "DS-02 Climate TRACE — country emissions 218개국 · 2,398개 값 Connected" [ref=e344] [cursor=pointer]:
+          - /url: https://climatetrace.org
+          - generic [ref=e345]: DS-02
+          - generic [ref=e346]:
+            - text: Climate TRACE — country emissions
+            - generic [ref=e347]: 218개국 · 2,398개 값
+          - generic [ref=e348]: Connected
+        - link "DS-04 ND-GAIN Country Index 190개국 · 570개 값 Connected" [ref=e353] [cursor=pointer]:
+          - /url: https://gain.nd.edu/our-work/country-index/
+          - generic [ref=e354]: DS-04
+          - generic [ref=e355]:
+            - text: ND-GAIN Country Index
+            - generic [ref=e356]: 190개국 · 570개 값
+          - generic [ref=e357]: Connected
+        - link "DS-05 EDGAR — GHG emissions of all world countries (JRC) 197개국 · 10,638개 값 Connected" [ref=e362] [cursor=pointer]:
+          - /url: https://edgar.jrc.ec.europa.eu/report_2024
+          - generic [ref=e363]: DS-05
+          - generic [ref=e364]:
+            - text: EDGAR — GHG emissions of all world countries (JRC)
+            - generic [ref=e365]: 197개국 · 10,638개 값
+          - generic [ref=e366]: Connected
+        - link "DS-06 Climate Watch / CAIT — (I)NDC content assessment 196개국 · 196개 값 Connected" [ref=e371] [cursor=pointer]:
+          - /url: https://www.climatewatchdata.org/ndcs-content
+          - generic [ref=e372]: DS-06
+          - generic [ref=e373]:
+            - text: Climate Watch / CAIT — (I)NDC content assessment
+            - generic [ref=e374]: 196개국 · 196개 값
+          - generic [ref=e375]: Connected
+        - link "DS-08 UNFCCC NDC Registry index 193개국 · 193개 값 Connected" [ref=e380] [cursor=pointer]:
+          - /url: https://unfccc.int/NDCREG
+          - generic [ref=e381]: DS-08
+          - generic [ref=e382]:
+            - text: UNFCCC NDC Registry index
+            - generic [ref=e383]: 193개국 · 193개 값
+          - generic [ref=e384]: Connected
+        - link "DS-18 World Bank Climate Change Knowledge Portal (CMIP6) 217개국 · 3,472개 값 Connected" [ref=e389] [cursor=pointer]:
+          - /url: https://climateknowledgeportal.worldbank.org
+          - generic [ref=e390]: DS-18
+          - generic [ref=e391]:
+            - text: World Bank Climate Change Knowledge Portal (CMIP6)
+            - generic [ref=e392]: 217개국 · 3,472개 값
+          - generic [ref=e393]: Connected
+        - link "DS-35 Our World in Data — CO₂ and Greenhouse Gas Emissions 218개국 · 6,965개 값 Connected" [ref=e398] [cursor=pointer]:
+          - /url: https://github.com/owid/co2-data
+          - generic [ref=e399]: DS-35
+          - generic [ref=e400]:
+            - text: Our World in Data — CO₂ and Greenhouse Gas Emissions
+            - generic [ref=e401]: 218개국 · 6,965개 값
+          - generic [ref=e402]: Connected
+        - link "DS-40 UNFCCC Data Interface — country-submitted GHG inventories 191개국 · 2,306개 값 Connected" [ref=e407] [cursor=pointer]:
+          - /url: https://di.unfccc.int/detailed_data_by_party
+          - generic [ref=e408]: DS-40
+          - generic [ref=e409]:
+            - text: UNFCCC Data Interface — country-submitted GHG inventories
+            - generic [ref=e410]: 191개국 · 2,306개 값
+          - generic [ref=e411]: Connected
+        - link "DS-06-NDC UNFCCC NDC registry document 3개국 · 3개 값 Connected" [ref=e416] [cursor=pointer]:
+          - /url: https://unfccc.int/NDCREG
+          - generic [ref=e417]: DS-06-NDC
+          - generic [ref=e418]:
+            - text: UNFCCC NDC registry document
+            - generic [ref=e419]: 3개국 · 3개 값
+          - generic [ref=e420]: Connected
+        - link "DS-BTR UNFCCC First Biennial Transparency Reports 1개국 · 1개 값 Connected" [ref=e425] [cursor=pointer]:
+          - /url: https://unfccc.int/first-biennial-transparency-reports
+          - generic [ref=e426]: DS-BTR
+          - generic [ref=e427]:
+            - text: UNFCCC First Biennial Transparency Reports
+            - generic [ref=e428]: 1개국 · 1개 값
+          - generic [ref=e429]: Connected
+        - link "DS-03 EM-DAT disasters Not connected" [ref=e434] [cursor=pointer]:
+          - /url: https://public.emdat.be
+          - generic [ref=e435]: DS-03
+          - generic [ref=e436]:
+            - text: EM-DAT
+            - generic [ref=e437]: disasters
+          - generic [ref=e438]: Not connected
+        - link "DS-07 IEA WEO emissions Not connected" [ref=e443] [cursor=pointer]:
+          - /url: https://iea.org
+          - generic [ref=e444]: DS-07
+          - generic [ref=e445]:
+            - text: IEA WEO
+            - generic [ref=e446]: emissions
+          - generic [ref=e447]: Not connected
+        - link "DS-09 GISTEMP climate_indicators Not connected" [ref=e452] [cursor=pointer]:
+          - /url: https://data.giss.nasa.gov
+          - generic [ref=e453]: DS-09
+          - generic [ref=e454]:
+            - text: GISTEMP
+            - generic [ref=e455]: climate_indicators
+          - generic [ref=e456]: Not connected
+        - link "DS-10 Copernicus C3S climate_indicators Not connected" [ref=e461] [cursor=pointer]:
+          - /url: https://climate.copernicus.eu
+          - generic [ref=e462]: DS-10
+          - generic [ref=e463]:
+            - text: Copernicus C3S
+            - generic [ref=e464]: climate_indicators
+          - generic [ref=e465]: Not connected
+        - link "DS-11 FAOSTAT emissions Not connected" [ref=e470] [cursor=pointer]:
+          - /url: https://fao.org/faostat
+          - generic [ref=e471]: DS-11
+          - generic [ref=e472]:
+            - text: FAOSTAT
+            - generic [ref=e473]: emissions
+          - generic [ref=e474]: Not connected
+        - link "DS-12 IRENA climate_indicators Not connected" [ref=e479] [cursor=pointer]:
+          - /url: https://irena.org
+          - generic [ref=e480]: DS-12
+          - generic [ref=e481]:
+            - text: IRENA
+            - generic [ref=e482]: climate_indicators
+          - generic [ref=e483]: Not connected
+        - link "DS-13 Global Carbon Budget emissions Not connected" [ref=e488] [cursor=pointer]:
+          - /url: https://globalcarbonbudget.org
+          - generic [ref=e489]: DS-13
+          - generic [ref=e490]:
+            - text: Global Carbon Budget
+            - generic [ref=e491]: emissions
+          - generic [ref=e492]: Not connected
+        - link "DS-14 INFORM Risk vulnerability Not connected" [ref=e497] [cursor=pointer]:
+          - /url: https://drmkc.jrc.ec.europa.eu/inform-index
+          - generic [ref=e498]: DS-14
+          - generic [ref=e499]:
+            - text: INFORM Risk
+            - generic [ref=e500]: vulnerability
+          - generic [ref=e501]: Not connected
+        - link "DS-15 Green Climate Fund climate_finance Not connected" [ref=e506] [cursor=pointer]:
+          - /url: https://greenclimate.fund
+          - generic [ref=e507]: DS-15
+          - generic [ref=e508]:
+            - text: Green Climate Fund
+            - generic [ref=e509]: climate_finance
+          - generic [ref=e510]: Not connected
+        - link "DS-16 IIASA AR6 climate_indicators Not connected" [ref=e515] [cursor=pointer]:
+          - /url: https://data.ene.iiasa.ac.at/ar6
+          - generic [ref=e516]: DS-16
+          - generic [ref=e517]:
+            - text: IIASA AR6
+            - generic [ref=e518]: climate_indicators
+          - generic [ref=e519]: Not connected
+        - link "DS-17 UN SDG climate_indicators Not connected" [ref=e524] [cursor=pointer]:
+          - /url: https://unstats.un.org
+          - generic [ref=e525]: DS-17
+          - generic [ref=e526]:
+            - text: UN SDG
+            - generic [ref=e527]: climate_indicators
+          - generic [ref=e528]: Not connected
+        - link "DS-19 NOAA CO₂ climate_indicators Not connected" [ref=e533] [cursor=pointer]:
+          - /url: https://gml.noaa.gov
+          - generic [ref=e534]: DS-19
+          - generic [ref=e535]:
+            - text: NOAA CO₂
+            - generic [ref=e536]: climate_indicators
+          - generic [ref=e537]: Not connected
+        - link "DS-20 NASA Sea Level climate_indicators Not connected" [ref=e542] [cursor=pointer]:
+          - /url: https://sealevel.nasa.gov
+          - generic [ref=e543]: DS-20
+          - generic [ref=e544]:
+            - text: NASA Sea Level
+            - generic [ref=e545]: climate_indicators
+          - generic [ref=e546]: Not connected
+        - link "DS-21 NSIDC Sea Ice climate_indicators Not connected" [ref=e551] [cursor=pointer]:
+          - /url: https://nsidc.org
+          - generic [ref=e552]: DS-21
+          - generic [ref=e553]:
+            - text: NSIDC Sea Ice
+            - generic [ref=e554]: climate_indicators
+          - generic [ref=e555]: Not connected
+        - link "DS-22 UNEP Adaptation Gap nap_status Not connected" [ref=e560] [cursor=pointer]:
+          - /url: https://unep.org
+          - generic [ref=e561]: DS-22
+          - generic [ref=e562]:
+            - text: UNEP Adaptation Gap
+            - generic [ref=e563]: nap_status
+          - generic [ref=e564]: Not connected
+        - link "DS-23 CPI Climate Finance climate_finance Not connected" [ref=e569] [cursor=pointer]:
+          - /url: https://climatepolicyinitiative.org
+          - generic [ref=e570]: DS-23
+          - generic [ref=e571]:
+            - text: CPI Climate Finance
+            - generic [ref=e572]: climate_finance
+          - generic [ref=e573]: Not connected
+        - link "DS-24 WRI Aqueduct vulnerability Not connected" [ref=e578] [cursor=pointer]:
+          - /url: https://wri.org/aqueduct
+          - generic [ref=e579]: DS-24
+          - generic [ref=e580]:
+            - text: WRI Aqueduct
+            - generic [ref=e581]: vulnerability
+          - generic [ref=e582]: Not connected
+        - link "DS-25 Global Energy Monitor climate_indicators Not connected" [ref=e587] [cursor=pointer]:
+          - /url: https://globalenergymonitor.org
+          - generic [ref=e588]: DS-25
+          - generic [ref=e589]:
+            - text: Global Energy Monitor
+            - generic [ref=e590]: climate_indicators
+          - generic [ref=e591]: Not connected
+        - link "DS-26 Carbon Brief ndc_content Not connected" [ref=e596] [cursor=pointer]:
+          - /url: https://carbonbrief.org
+          - generic [ref=e597]: DS-26
+          - generic [ref=e598]:
+            - text: Carbon Brief
+            - generic [ref=e599]: ndc_content
+          - generic [ref=e600]: Not connected
+        - link "DS-27 Climate Action Tracker ndc_targets Not connected" [ref=e605] [cursor=pointer]:
+          - /url: https://climateactiontracker.org
+          - generic [ref=e606]: DS-27
+          - generic [ref=e607]:
+            - text: Climate Action Tracker
+            - generic [ref=e608]: ndc_targets
+          - generic [ref=e609]: Not connected
+        - link "DS-28 OECD DAC climate_finance Not connected" [ref=e614] [cursor=pointer]:
+          - /url: https://oecd.org
+          - generic [ref=e615]: DS-28
+          - generic [ref=e616]:
+            - text: OECD DAC
+            - generic [ref=e617]: climate_finance
+          - generic [ref=e618]: Not connected
+        - link "DS-29 IMF Climate climate_indicators Not connected" [ref=e623] [cursor=pointer]:
+          - /url: https://climatedata.imf.org
+          - generic [ref=e624]: DS-29
+          - generic [ref=e625]:
+            - text: IMF Climate
+            - generic [ref=e626]: climate_indicators
+          - generic [ref=e627]: Not connected
+        - link "DS-30 WB Sovereign Risk vulnerability Not connected" [ref=e632] [cursor=pointer]:
+          - /url: https://worldbank.org
+          - generic [ref=e633]: DS-30
+          - generic [ref=e634]:
+            - text: WB Sovereign Risk
+            - generic [ref=e635]: vulnerability
+          - generic [ref=e636]: Not connected
+        - link "DS-31 WHO Climate Health vulnerability Not connected" [ref=e641] [cursor=pointer]:
+          - /url: https://who.int
+          - generic [ref=e642]: DS-31
+          - generic [ref=e643]:
+            - text: WHO Climate Health
+            - generic [ref=e644]: vulnerability
+          - generic [ref=e645]: Not connected
+        - link "DS-32 IDMC disasters Not connected" [ref=e650] [cursor=pointer]:
+          - /url: https://internal-displacement.org
+          - generic [ref=e651]: DS-32
+          - generic [ref=e652]:
+            - text: IDMC
+            - generic [ref=e653]: disasters
+          - generic [ref=e654]: Not connected
+        - link "DS-33 Munich Re NatCat disasters Not connected" [ref=e659] [cursor=pointer]:
+          - /url: https://munichre.com
+          - generic [ref=e660]: DS-33
+          - generic [ref=e661]:
+            - text: Munich Re NatCat
+            - generic [ref=e662]: disasters
+          - generic [ref=e663]: Not connected
+        - link "DS-34 Swiss Re Sigma disasters Not connected" [ref=e668] [cursor=pointer]:
+          - /url: https://swissre.com
+          - generic [ref=e669]: DS-34
+          - generic [ref=e670]:
+            - text: Swiss Re Sigma
+            - generic [ref=e671]: disasters
+          - generic [ref=e672]: Not connected
+        - link "DS-36 Global Forest Watch climate_indicators Not connected" [ref=e677] [cursor=pointer]:
+          - /url: https://globalforestwatch.org
+          - generic [ref=e678]: DS-36
+          - generic [ref=e679]:
+            - text: Global Forest Watch
+            - generic [ref=e680]: climate_indicators
+          - generic [ref=e681]: Not connected
+        - link "DS-37 Germanwatch CRI vulnerability Not connected" [ref=e686] [cursor=pointer]:
+          - /url: https://germanwatch.org
+          - generic [ref=e687]: DS-37
+          - generic [ref=e688]:
+            - text: Germanwatch CRI
+            - generic [ref=e689]: vulnerability
+          - generic [ref=e690]: Not connected
+        - link "DS-38 UNEP Emissions Gap ndc_content Not connected" [ref=e695] [cursor=pointer]:
+          - /url: https://unep.org
+          - generic [ref=e696]: DS-38
+          - generic [ref=e697]:
+            - text: UNEP Emissions Gap
+            - generic [ref=e698]: ndc_content
+          - generic [ref=e699]: Not connected
+        - link "DS-39 IEA CO₂ emissions Not connected" [ref=e704] [cursor=pointer]:
+          - /url: https://iea.org
+          - generic [ref=e705]: DS-39
+          - generic [ref=e706]:
+            - text: IEA CO₂
+            - generic [ref=e707]: emissions
+          - generic [ref=e708]: Not connected
+    - button "Close" [ref=e713] [cursor=pointer]

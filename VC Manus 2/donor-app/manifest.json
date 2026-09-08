@@ -1,0 +1,10 @@
+{
+  "name": "Visual Climate",
+  "short_name": "Visual Climate",
+  "description": "Source-cited climate data exploration for everyone.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111614",
+  "theme_color": "#75d5c8",
+  "icons": []
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #0B0D0F; }
+    a { color: #FF8A3D; } a:hover { color: #FFA765; }
+    .sb-cell { position: relative; height: 186px; border-radius: 2px; overflow: hidden;
+      background: linear-gradient(150deg, #14181C 0%, #0C0F12 100%);
+      box-shadow: inset 0 0 0 1px rgba(226,236,242,.09); }
+    .sb-plate { position: absolute; left: 50%; top: 50%; width: 118px; height: 118px; transform: translate(-50%,-50%); border-radius: 50%; }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 1680px; height: 620px; padding: 44px 48px; box-sizing: border-box; overflow: hidden;
+    background: radial-gradient(90% 90% at 12% 0%, #191E23 0%, #101418 44%, #0A0C0E 100%);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;">
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 26px;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 9px;">
+        <div style="width: 24px; height: 1px; background: #FF8A3D;"></div>
+        <div style="font: 500 10.5px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: .30em; color: #FF8A3D;">SEQUENCE A · HOME</div>
+      </div>
+      <h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -.022em; color: #EDF2F6;">무브먼트가 조립된다 — 타이밍 시트</h2>
+    </div>
+    <div style="max-width: 470px; font-size: 12.5px; line-height: 1.6; color: #8A949B; text-align: right;">판결 문장이 기계보다 <span style="color:#EDF2F6;">먼저</span> 뜬다. 조립이 이해를 가로막는 순간 이 디자인은 실패다.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px;">
+
+    <!-- F1 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="sb-cell">
+        <div class="sb-plate" style="background: radial-gradient(circle at 34% 26%, #3A4045 0%, #23282C 55%, #14181B 100%); box-shadow: inset 0 0 0 1px rgba(226,236,242,.10);"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(118deg, rgba(255,255,255,.06), rgba(255,255,255,0) 44%);"></div>
+      </div>
+      <div>
+        <div style="font: 500 14px 'IBM Plex Mono', monospace; color: #FF8A3D;">0.0s</div>
+        <div style="margin-top: 5px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #C6D0D7;">PLATE IN</div>
+        <div style="margin-top: 6px; font-size: 12px; line-height: 1.55; color: #8A949B;">암전. 메인플레이트가 빛 속으로 회전 진입.</div>
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="sb-cell">
+        <div class="sb-plate" style="background: radial-gradient(circle at 34% 26%, #3A4045 0%, #23282C 55%, #14181B 100%); box-shadow: inset 0 0 0 1px rgba(226,236,242,.10); opacity: .55;"></div>
+        <div style="position: absolute; left: 16px; right: 16px; top: 58px; display: flex; flex-direction: column; gap: 7px;">
+          <div style="height: 7px; border-radius: 1px; background: rgba(237,242,246,.86);"></div>
+          <div style="height: 7px; width: 82%; border-radius: 1px; background: rgba(237,242,246,.62);"></div>
+          <div style="height: 7px; width: 58%; border-radius: 1px; background: rgba(194,69,63,.85);"></div>
+        </div>
+      </div>
+      <div>
+        <div style="font: 500 14px 'IBM Plex Mono', monospace; color: #FF8A3D;">0.2s</div>
+        <div style="margin-top: 5px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #C6D0D7;">VERDICT FIRST</div>
+        <div style="margin-top: 6px; font-size: 12px; line-height: 1.55; color: #8A949B;">판결 한 문장이 기계보다 앞서 렌더.</div>
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="sb-cell">
+        <div class="sb-plate" style="width: 150px; height: 150px; background: repeating-conic-gradient(from -90deg, rgba(214,224,232,.85) 0deg 2.6deg, rgba(0,0,0,0) 2.6deg 9deg); -webkit-mask-image: conic-gradient(from -90deg, #000 0deg 236deg, transparent 236deg 360deg); mask-image: conic-gradient(from -90deg, #000 0deg 236deg, transparent 236deg 360deg);"></div>
+        <div class="sb-plate" style="width: 132px; height: 132px; background: #0F1215;"></div>
+        <div class="sb-plate" style="background: radial-gradient(circle at 34% 26%, #4A5257 0%, #2C3236 60%, #1A1E21 100%); box-shadow: inset 0 0 0 1px rgba(226,236,242,.14);"></div>
+      </div>
+      <div>
+        <div style="font: 500 14px 'IBM Plex Mono', monospace; color: #FF8A3D;">0.4 → 2.0s</div>
+        <div style="margin-top: 5px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #C6D0D7;">ASSEMBLE · 40 BARRELS</div>
+        <div style="margin-top: 6px; font-size: 12px; line-height: 1.55; color: #8A949B;">실제 ETL 스케줄 순서로 안착. 각인: 소스명 + 레코드 수.</div>
+      </div>
+    </div>
+
+    <!-- F4 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="sb-cell">
+        <div class="sb-plate" style="width: 150px; height: 150px; background: repeating-conic-gradient(from -90deg, rgba(214,224,232,.85) 0deg 2.6deg, rgba(0,0,0,0) 2.6deg 9deg);"></div>
+        <div class="sb-plate" style="width: 132px; height: 132px; background: #0F1215;"></div>
+        <div class="sb-plate" style="background: radial-gradient(circle at 34% 26%, #4A5257 0%, #2C3236 60%, #1A1E21 100%); box-shadow: inset 0 0 0 1px rgba(226,236,242,.14);"></div>
+        <sc-for list="{{wheels}}" as="w" hint-placeholder-count="3">
+          <div style="{{w.style}}"></div>
+        </sc-for>
+      </div>
+      <div>
+        <div style="font: 500 14px 'IBM Plex Mono', monospace; color: #FF8A3D;">2.0 → 3.0s</div>
+        <div style="margin-top: 5px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #C6D0D7;">GEAR TRAIN MESH</div>
+        <div style="margin-top: 6px; font-size: 12px; line-height: 1.55; color: #8A949B;">분석 휠 3개 낙하 — NDC Gap · BTR · Triangle.</div>
+      </div>
+    </div>
+
+    <!-- F5 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="sb-cell">
+        <div class="sb-plate" style="width: 150px; height: 150px; background: repeating-conic-gradient(from -90deg, rgba(214,224,232,.85) 0deg 2.6deg, rgba(0,0,0,0) 2.6deg 9deg);"></div>
+        <div class="sb-plate" style="width: 132px; height: 132px; background: #0F1215;"></div>
+        <div class="sb-plate" style="background: radial-gradient(circle at 34% 26%, #4A5257 0%, #2C3236 60%, #1A1E21 100%); box-shadow: inset 0 0 0 1px rgba(226,236,242,.14);"></div>
+        <sc-for list="{{wheels}}" as="w" hint-placeholder-count="3">
+          <div style="{{w.style}}"></div>
+        </sc-for>
+        <div class="sb-plate" style="width: 96px; height: 96px; background: radial-gradient(circle, rgba(255,138,61,.34) 0%, rgba(255,138,61,.05) 55%, rgba(0,0,0,0) 74%);"></div>
+        <div class="sb-plate" style="width: 20px; height: 20px; background: radial-gradient(circle at 34% 30%, #FFC38C, #FF8A3D); box-shadow: 0 0 18px rgba(255,138,61,.9);"></div>
+      </div>
+      <div>
+        <div style="font: 500 14px 'IBM Plex Mono', monospace; color: #FF8A3D;">3.0s →</div>
+        <div style="margin-top: 5px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #C6D0D7;">IDLE · PULSE + TICK</div>
+        <div style="margin-top: 6px; font-size: 12px; line-height: 1.55; color: #8A949B;">유휴 상태 = 진짜 파이프라인이 숨쉬는 것.</div>
+      </div>
+    </div>
+
+    <!-- F6 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="sb-cell">
+        <div class="sb-plate" style="width: 150px; height: 150px; background: repeating-conic-gradient(from -90deg, rgba(214,224,232,.35) 0deg 2.6deg, rgba(0,0,0,0) 2.6deg 9deg);"></div>
+        <div class="sb-plate" style="width: 132px; height: 132px; background: #0F1215;"></div>
+        <div class="sb-plate" style="width: 126px; height: 126px; background: conic-gradient(from -128deg, #9AA4AB 0deg, #C6D0D7 92deg, #79838A 214deg, rgba(0,0,0,0) 214deg 360deg);"></div>
+        <div class="sb-plate" style="width: 126px; height: 126px; background: conic-gradient(from 6deg, rgba(194,69,63,.45) 0deg 80deg, rgba(0,0,0,0) 80deg 360deg);"></div>
+        <div class="sb-plate" style="width: 108px; height: 108px; background: #0F1215;"></div>
+        <div class="sb-plate" style="width: 100px; height: 100px; background: conic-gradient(from -128deg, rgba(170,205,235,.45) 0deg, rgba(190,220,245,.18) 134deg, rgba(0,0,0,0) 134deg 360deg);"></div>
+        <div class="sb-plate" style="width: 82px; height: 82px; background: radial-gradient(circle at 34% 26%, #4A5257, #23282C); box-shadow: inset 0 0 0 1px rgba(226,236,242,.14);"></div>
+      </div>
+      <div>
+        <div style="font: 500 14px 'IBM Plex Mono', monospace; color: #9FC3E0;">CLICK</div>
+        <div style="margin-top: 5px; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #C6D0D7;">DIAL SEATS · SEQUENCE B</div>
+        <div style="margin-top: 6px; font-size: 12px; line-height: 1.55; color: #8A949B;">카메라가 밀고 들어가고 국가 다이얼이 얹힌다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- timeline ruler -->
+  <div style="position: absolute; left: 48px; right: 48px; bottom: 44px;">
+    <div style="position: relative; height: 1px; background: rgba(226,236,242,.16);"></div>
+    <div style="position: relative; height: 26px;">
+      <div style="position: absolute; left: 0%; top: -5px; width: 1px; height: 10px; background: rgba(226,236,242,.35);"></div>
+      <div style="position: absolute; left: 3.5%; top: -7px; width: 1px; height: 14px; background: #FF8A3D;"></div>
+      <div style="position: absolute; left: 33%; top: -5px; width: 1px; height: 10px; background: rgba(226,236,242,.35);"></div>
+      <div style="position: absolute; left: 50%; top: -5px; width: 1px; height: 10px; background: rgba(226,236,242,.35);"></div>
+      <div style="position: absolute; left: 66%; top: -5px; width: 1px; height: 10px; background: rgba(226,236,242,.35);"></div>
+      <div style="position: absolute; left: 0; top: 12px; font: 400 9.5px 'IBM Plex Mono', monospace; color: #5C666D;">0.0</div>
+      <div style="position: absolute; left: 3.5%; top: 12px; font: 500 9.5px 'IBM Plex Mono', monospace; color: #FF8A3D;">0.2 — 이해는 여기서 이미 끝난다</div>
+      <div style="position: absolute; left: 33%; top: 12px; font: 400 9.5px 'IBM Plex Mono', monospace; color: #5C666D;">1.0</div>
+      <div style="position: absolute; left: 50%; top: 12px; font: 400 9.5px 'IBM Plex Mono', monospace; color: #5C666D;">2.0</div>
+      <div style="position: absolute; left: 66%; top: 12px; font: 400 9.5px 'IBM Plex Mono', monospace; color: #5C666D;">3.0s</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1680,"height":620}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var angles = [-90, 30, 150];
+    var wheels = angles.map(function (a) {
+      var r = a * Math.PI / 180;
+      var x = Math.cos(r) * 32;
+      var y = Math.sin(r) * 32;
+      return {
+        style: 'position:absolute; left:50%; top:50%; width:34px; height:34px;'
+          + ' margin-left:' + (x - 17) + 'px; margin-top:' + (y - 17) + 'px; border-radius:50%;'
+          + ' background-image: repeating-conic-gradient(from 0deg, rgba(214,224,232,.75) 0deg 3deg, rgba(0,0,0,0) 3deg 12deg),'
+          + ' radial-gradient(circle at 34% 26%, #79828A, #2E3438);'
+      };
+    });
+    return { wheels: wheels };
+  }
+}
+</script>
+</body>
+</html>
