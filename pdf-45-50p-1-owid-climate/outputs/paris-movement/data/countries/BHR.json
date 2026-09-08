@@ -403,6 +403,7 @@
   },
   "derived": {
     "ambition_gap_factor": null,
+    "trend_annual_mtco2e": 1.089,
     "on_track": null,
     "gap_state": "unknown",
     "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
@@ -1424,7 +1425,7 @@
   "provenance": {
     "run_id": "fef16b2afded317c7680a38053096fec",
     "built_at": "2026-09-07T23:32:02.148Z",
-    "payload_sha256": "89687ba7901dab4c0dbb67b1ac05039fe7096df23d323b837aff4738ce041f07",
+    "payload_sha256": "69b10c8e06510dd9769be23eed28da036d399265d891359413d48938cdcdfb20",
     "inputs": [
       {
         "source_id": "DS-35",

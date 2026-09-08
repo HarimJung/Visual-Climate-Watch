@@ -449,6 +449,7 @@
   },
   "derived": {
     "ambition_gap_factor": null,
+    "trend_annual_mtco2e": 1.376,
     "on_track": false,
     "gap_state": "observed",
     "$note": "Trend: least-squares slope over 35 observed years (1990–2024) from DS-35, compared against the DS-06-NDC target of 90.4 MtCO₂e by 2030. The two are not necessarily on the same inventory scope — see series.$note.",
@@ -1487,7 +1488,7 @@
   "provenance": {
     "run_id": "fef16b2afded317c7680a38053096fec",
     "built_at": "2026-09-07T23:32:02.148Z",
-    "payload_sha256": "66c6bfcdfa75e1f9f11500a10cf43a86f66f583e84eacf3c08ab9d663200cd30",
+    "payload_sha256": "f53f1f518ae05740c02f39afd269531a9fe1f7bf6fd3a9695861357b0c13e060",
     "inputs": [
       {
         "source_id": "DS-35",

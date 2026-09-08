@@ -79,3 +79,26 @@ void test('Cambodia still reports zero of eight BTR components as confirmed', ()
   assert.equal(khm.btr.submitted, true);
   assert.equal(Object.values(khm.btr.components).filter((c) => c.state === 'unknown').length, 8);
 });
+
+// The 3D gear train turns in the direction of this sign, so a null here is the
+// difference between "the machine is still" and "the machine lies".
+void test('the observed trend is reported whenever it is measurable, and refused otherwise', () => {
+  for (const [file, data] of built()) {
+    const perSource = new Map<string, number>();
+    for (const p of data.series.observed) perSource.set(p.source_id ?? '?', (perSource.get(p.source_id ?? '?') ?? 0) + 1);
+    const longest = Math.max(0, ...perSource.values());
+    if (longest < 2) {
+      assert.equal(data.derived.trend_annual_mtco2e, null, `${file} reported a trend from a ${longest}-point series`);
+    } else {
+      assert.equal(typeof data.derived.trend_annual_mtco2e, 'number', `${file} has ${longest} observed years from one source but no trend`);
+    }
+  }
+});
+
+void test('a rising trend is never reported as on track', () => {
+  for (const [file, data] of built()) {
+    if ((data.derived.trend_annual_mtco2e ?? -1) > 0 && data.derived.ambition_gap_factor != null) {
+      assert.fail(`${file} derived a finite gap factor from a rising trend`);
+    }
+  }
+});

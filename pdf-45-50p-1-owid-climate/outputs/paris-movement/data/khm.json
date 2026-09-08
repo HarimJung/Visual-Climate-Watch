@@ -119,6 +119,7 @@
   "derived": {
     "$note": "Computed by the engine, never by the UI, so the number on screen and the number in an export can never disagree.",
     "ambition_gap_factor": null,
+    "trend_annual_mtco2e": null,
     "on_track": null,
     "gap_state": "unknown",
     "$reason": "avg annual change requires ≥2 observed years. With one point it is not computable. Do NOT display a gap factor — display the reason."

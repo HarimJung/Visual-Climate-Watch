@@ -36,43 +36,53 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  function clickable(obj:THREE.Object3D,id:string){obj.userData.click=id;hits.push(obj);return obj;}
  function screw(parent:THREE.Object3D,x:number,y:number,z:number,r=.07){cylinder(parent,r,.055,z,edge,x,y);const cut=mesh(new T.BoxGeometry(r*1.45,.013,.008),steel,parent,x,y,z+.03);cut.rotation.z=.6;}
  function ghost_(obj:THREE.Object3D){obj.traverse(o=>{if(o instanceof T.Mesh){const m=(o.material as THREE.MeshStandardMaterial).clone();m.transparent=true;m.opacity=.23;m.depthWrite=false;o.material=m;}});return obj;}
+ // Rotation direction carries the engine's observed trend, not decoration:
+ // falling emissions turn the train the way the pledge needs, rising emissions
+ // turn it backwards, and a trend the engine refused to compute turns nothing.
+ // Sign only — the existing per-gear speeds already alternate, so flipping the
+ // whole train together keeps the teeth meshing.
+ const trend=data.derived.trend_annual_mtco2e??null;const spin=trend==null?0:trend<0?1:-1;
  function part(id:string,phase:number,z:number){const g=new T.Group();g.userData={id,phase,home:z};g.position.z=z;world.add(g);parts.push(g);return g;}
  function cog(parent:THREE.Object3D,x:number,y:number,r:number,count:number,mat:THREE.Material,sign=1){const g=new T.Group();g.position.set(x,y,.05);parent.add(g);const sh=new T.Shape();for(let i=0;i<count*4;i++){const a=i/count/4*Math.PI*2;const rr=r+(i%4===1||i%4===2?1:-1)*r/count;const x=Math.cos(a)*rr,y=Math.sin(a)*rr;if(i===0)sh.moveTo(x,y);else sh.lineTo(x,y);}sh.closePath();for(let j=0;j<5;j++){const a=j/5*Math.PI*2;const hole=new T.Path();hole.absarc(Math.cos(a)*r*.55,Math.sin(a)*r*.55,r*.2,0,Math.PI*2,true);sh.holes.push(hole);}const hole=new T.Path();hole.absarc(0,0,r*.17,0,Math.PI*2,true);sh.holes.push(hole);mesh(new T.ExtrudeGeometry(sh,{depth:.13,bevelEnabled:true,bevelSize:.015,bevelThickness:.017,bevelSegments:2,curveSegments:20}),mat,g);ring(g,r*.78,.023,.155,edge);cylinder(g,r*.16,.2,.12,steel);screw(g,0,0,.25,r*.075);gears.push({g,speed:sign*24/count*.52,phase:parent.userData.phase??2});return g;}
  function engraving(parent:THREE.Object3D,text:string,color:string,w:number,h:number,z:number){const cv=document.createElement('canvas');cv.width=512;cv.height=160;const ctx=cv.getContext('2d')!;ctx.clearRect(0,0,512,160);ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 66px Arial';ctx.fillText(text,256,80);const texture=new T.CanvasTexture(cv);texture.colorSpace=T.SRGBColorSpace;textures.push(texture);return mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}),parent,0,0,z);}
  function label(anchor:THREE.Object3D,title:string,value:string,color:string,phase:number,offset:[number,number]){const div=document.createElement('div');div.className='component-label';div.style.setProperty('--component-color',color);const name=document.createElement('strong');name.textContent=title;const val=document.createElement('span');val.textContent=value;div.appendChild(name);div.appendChild(val);topLabels.appendChild(div);labels.push({el:div,anchor,offset,phase});}
+ // The source document as a physical token. It rides with its component and
+ // anchors that component's label, so the box, the leader line and the reading
+ // are one object rather than three unrelated ones.
+ function chip(parent:THREE.Group,name:string,mat:THREE.Material,css:string,x:number,y:number,z:number,id:string){const g=new T.Group();g.position.set(x,y,z);parent.add(g);clickable(slab(g,1.16,.86,0,mat,.2),id);slab(g,1.00,.70,.22,white,.06);engraving(g,name,css,.80,.28,.33);screw(g,-.38,-.24,.34,.028);screw(g,.38,.24,.34,.028);return g;}
  // The neutral chassis is the shared country contract; it contains no claimed climate values.
  const chassis=part('treaty',0,-.22);clickable(annulus(chassis,2.96,1.04,.22,0,porcelain),'treaty');annulus(chassis,3.07,2.9,.14,-.12,silver);ring(chassis,3.04,.032,.11,edge);ring(chassis,2.94,.024,.25,white);cylinder(chassis,1.03,.11,.09,white);ring(chassis,1.07,.022,.19,silver);
  engraving(chassis,'PARIS AGREEMENT · 2015','#344f62',1.75,.14,.29).position.y=-2.42;
- const anchorT=new T.Object3D();anchorT.position.set(-2.35,-2.35,.3);chassis.add(anchorT);label(anchorT,'01 / 파리협정 지판','모든 부품이 올라앉는 공통 설계','#5d6b76',0,[-150,26]);
+ const anchorT=chip(chassis,'PARIS',porcelain,'#5d6b76',-2.62,-2.62,.30,'treaty');label(anchorT,'01 / 파리협정 지판','모든 부품이 올라앉는 공통 설계','#5d6b76',0,[-150,26]);
  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;screw(chassis,Math.cos(a)*2.73,Math.sin(a)*2.73,.28,.066);}
  // 1. NDC records become the target ring. The arc length is the actual pledged reduction.
  const promise=part('pledge',1,.40);clickable(annulus(promise,2.82,2.4,.12,0,clear),'pledge');ring(promise,2.85,.028,.12,edge);ring(promise,2.37,.015,.13,edge);const ratio=(data.ndc.reduction_pct??0)/100;
  const segments:THREE.Mesh[]=[];for(let i=0;i<50;i++){const g=new T.TorusGeometry(2.61,.082,8,8,Math.PI*2/50*.78);const m=mesh(g,i<Math.round(ratio*50)?blue:porcelain,promise,0,0,.17);m.rotation.z=Math.PI/2+i/50*Math.PI*2;segments.push(m);clickable(m,'pledge');}
- const anchorN=new T.Object3D();anchorN.position.set(-1.7,2.4,.37);promise.add(anchorN);label(anchorN,'02 / NDC 목표 링',`${fmt(data.ndc.reduction_pct)}% 감축 약속`,'#356aef',1,[-110,-28]);
+ const anchorN=chip(promise,'NDC',blue,'#356aef',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC 목표 링',`${fmt(data.ndc.reduction_pct)}% 감축 약속`,'#356aef',1,[-110,-28]);
  // 2. Only loaded observations become metal markers; the gear train has mechanical support, not invented time-series points.
  const inventory=part('delivery',2,.35);
  const sourceGears:[number,number,number,number,THREE.Material,number,string][]=[[-1.05,-.30,.87,36,teal,1,'delivery'],[.55,-.30,.70,29,steel,-1,'source:DS-05'],[1.33,.75,.58,24,steel,1,'source:DS-02']];
  sourceGears.forEach(([x,y,r,n,mat,sign,id])=>{const g=clickable(cog(inventory,x,y,r,n,mat,sign),id);g.userData.source=id;const available=id==='delivery'?data.series.observed.length>0:(data.sources??[]).some(s=>s.id===id.slice(7)&&s.connection==='connected');g.userData.available=available;if(!available)ghost_(g);const cap=new T.Group();cap.position.set(x,y,.43);inventory.add(cap);engraving(cap,id==='delivery'?'INVENTORY':id==='source:DS-05'?'EDGAR':'TRACE','#314c61',r*1.22,r*.30,.02);clickable(cap,id);});
  const gearSupports:[[number,number],[number,number]][]=[[[-1.05,-.30],[.55,-.30]],[[.55,-.30],[1.33,.75]]];gearSupports.forEach(([a,b])=>{const dx=b[0]-a[0],dy=b[1]-a[1];const bar=new T.Group();bar.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,-.17);bar.rotation.z=Math.atan2(dy,dx);inventory.add(bar);slab(bar,Math.hypot(dx,dy),.13,0,silver,.065);});
  const dataMarks:THREE.Mesh[]=[];data.series.observed.forEach((p,i)=>{const a=Math.PI*.1+i/Math.max(data.series.observed.length,15)*Math.PI*1.8;const m=cylinder(inventory,.075,.045,.25,teal,Math.cos(a)*2.26,Math.sin(a)*2.26);clickable(m,'delivery');dataMarks.push(m)});
- const anchorI=new T.Object3D();anchorI.position.set(-2.1,-1.65,.3);inventory.add(anchorI);label(anchorI,'03 / 관측 데이터',`${data.series.observed.length}개 관측 연도`,'#167f7c',2,[-144,10]);
+ const anchorI=chip(inventory,'INV',teal,'#167f7c',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / 관측 데이터',`${data.series.observed.length}개 관측 연도${trend==null?' · 추세 미산출':` · 연 ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e`}`,'#167f7c',2,[-144,10]);
  // 3. BTR submission seats a bridge. Eight individual states remain independent of submission.
  const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,porcelain,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#7150b5':'#9c91aa',.7,.22,.174);
  const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed')cylinder(g,.107,.08,.04,violet);else if(state.state==='pledged')cylinder(g,.107,.05,.04,glass);else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{ring(g,.102,.009,.034,ghost);engraving(g,'?', '#927da8',.10,.06,.052);}sockets.push(g);g.userData.key=key});
- const anchorB=new T.Object3D();anchorB.position.set(1.8,1.3,.27);evidence.add(anchorB);label(anchorB,'04 / BTR 보고 의무',data.btr.submitted===true?`제출됨 · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length}개 미파싱`:'제출 기록 미파싱','#8060c4',3,[36,-42]);
+ const anchorB=chip(evidence,'BTR',violet,'#8060c4',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR 보고 의무',data.btr.submitted===true?`제출됨 · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length}개 미파싱`:'제출 기록 미파싱','#8060c4',3,[36,-42]);
  // 4. Finance docks beside the mechanism. Unknown receipts never make this conditional wheel mesh.
- const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);gears.pop();clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);label(finance,'05 / 국제 지원 조건',data.finance_need.received_usd==null?'받은 재원 미확인 → 미결합':'재원 수령과 조건 충족은 별개','#ab7728',4,[32,18]);
- const tetherCurve=new T.CatmullRomCurve3([new T.Vector3(2.68,-.38,.25),new T.Vector3(2.91,-.38,.28),new T.Vector3(3.02,-.38,.62),new T.Vector3(3.08,-.38,.64)]);const tether=mesh(new T.TubeGeometry(tetherCurve,30,.022,6,false),gold,world);tether.visible=false;
+ const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);gears.pop();clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN',gold,'#ab7728',0,1.06,.04,'conditions');label(anchorF,'05 / 국제 지원 조건',data.finance_need.received_usd==null?'받은 재원 미확인 → 미결합':'재원 수령과 조건 충족은 별개','#ab7728',4,[32,18]);
  // 5. The assessment core seats only after the inputs. It refuses an unsupported conclusion.
  const core=part('assessment',5,1.02);const corePlate=slab(core,.89,.75,0,porcelain,.13);clickable(corePlate,'delivery');engraving(core,'VC','#506674',.63,.24,.174);ring(core,.48,.018,.05,edge);
 
  function disposeScene(){const materials=new Set<THREE.Material>();scene.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Points){o.geometry.dispose();(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));}});materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());key.shadow.dispose();env.dispose();renderer.dispose();renderer.domElement.remove();topLabels.remove();}
  cleanup=disposeScene;
  const earthTexture=await new T.TextureLoader().loadAsync('/textures/earth.jpg');if(cancelled){earthTexture.dispose();cleanup();return;}earthTexture.colorSpace=T.SRGBColorSpace;earthTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());textures.push(earthTexture);
- const earthMaterial=new T.MeshPhysicalMaterial({map:earthTexture,color:0xb4c3d6,metalness:.15,roughness:.36,clearcoat:.65,clearcoatRoughness:.24});
- const earthInside=new T.MeshStandardMaterial({color:0x172d43,metalness:.73,roughness:.31,side:T.BackSide});
+ // The shell is evidence of scope, not a lid: the mechanism has to stay legible
+ // through it, so it is glass rather than a painted ball.
+ const earthMaterial=new T.MeshPhysicalMaterial({map:earthTexture,color:0x9fb3c9,emissive:0xffffff,emissiveMap:earthTexture,emissiveIntensity:.5,metalness:.05,roughness:.44,clearcoat:.22,clearcoatRoughness:.3,transparent:true,opacity:.55,depthWrite:false,side:T.DoubleSide});
  const north=new T.Group(),south=new T.Group();world.add(north,south);
- for(const [g,start] of [[north,0],[south,Math.PI/2]] as const){const shell=new T.SphereGeometry(2.90,128,72,0,Math.PI*2,start,Math.PI/2);shell.rotateX(Math.PI/2);const planet=clickable(mesh(shell,earthMaterial,g),'planet');planet.castShadow=true;const inner=new T.SphereGeometry(2.84,96,48,0,Math.PI*2,start,Math.PI/2);inner.rotateX(Math.PI/2);mesh(inner,earthInside,g);ring(g,2.90,.035,0,edge);ring(g,2.82,.020,.012,gold);}
+ for(const [g,start] of [[north,0],[south,Math.PI/2]] as const){const shell=new T.SphereGeometry(2.90,128,72,0,Math.PI*2,start,Math.PI/2);shell.rotateX(Math.PI/2);const planet=clickable(mesh(shell,earthMaterial,g),'planet');planet.castShadow=true;planet.renderOrder=3;ring(g,2.90,.035,0,edge);ring(g,2.82,.020,.012,gold);}
  const atmosphereMaterial=new T.ShaderMaterial({transparent:true,side:T.BackSide,depthWrite:false,uniforms:{glowColor:{value:new T.Color(0x538fd3)}},vertexShader:'varying vec3 n; varying vec3 v; void main(){vec4 mv=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',fragmentShader:'varying vec3 n; varying vec3 v; uniform vec3 glowColor; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(glowColor,rim*.18);}'});
  const atmosphere=new T.SphereGeometry(2.935,96,48,0,Math.PI*2,0,Math.PI/2);atmosphere.rotateX(Math.PI/2);mesh(atmosphere,atmosphereMaterial,north);
  const equator=part('planet-label',0,-.23);ring(equator,3.11,.01,0,steel);engraving(equator,'ONE PLANET · SHARED RESPONSIBILITY','#5d6b76',2.32,.17,.09).position.y=-2.82;
@@ -80,12 +90,6 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const confirmedGaps=Object.values(data.btr.components).filter(c=>c.state==='absent').length;const offTrack=data.derived.on_track===false;const unresolved=data.derived.on_track==null;
  const warningMat=new T.MeshStandardMaterial({color:0xb55e48,emissive:0x7e261c,emissiveIntensity:.25,metalness:.3,roughness:.38});
  if(offTrack||confirmedGaps>0){const brokenArc=ring(chassis,2.99,.027,.31,warningMat,Math.PI*.32);brokenArc.rotation.z=-Math.PI*.4;clickable(brokenArc,'planet');}
-  // Source chips travel into their corresponding components. Each retains its document identity.
- const definitions=[{id:'pledge',name:'NDC',color:blue,css:'#356aef',value:`${data.ndc.source.id} · ${data.ndc.version}`,phase:1,from:[-3.10,1.80,3.7],to:[-1.58,2.00,.71]},{id:'delivery',name:'INV',color:teal,css:'#167f7c',value:`${data.series.observed.length} observed years`,phase:2,from:[-3.15,-1.62,2.5],to:[-1.12,-.3,.78]},{id:'evidence',name:'BTR',color:violet,css:'#8060c4',value:data.btr.submitted===true?'제출 확인 / 구성요소 미파싱':'제출 정보 미파싱',phase:3,from:[2.85,2.25,3.0],to:[.72,.78,1.05]},{id:'conditions',name:'FIN',color:gold,css:'#ab7728',value:data.finance_need.mitigation_usd==null?'Finance needs unknown':`완화 > $${fmt(data.finance_need.mitigation_usd/1e9)}bn`,phase:4,from:[3.55,-1.9,2.0],to:[3.58,-.38,.89]}];
- const chips:{g:THREE.Group;from:THREE.Vector3;to:THREE.Vector3;phase:number;tag:HTMLDivElement}[]=[];
- definitions.forEach(d=>{const dock=new T.Group();dock.position.set(d.from[0],d.from[1],-.27);dock.visible=false;world.add(dock);slab(dock,1.10,.85,0,porcelain,.12);ring(dock,.30,.012,.16,silver);const g=new T.Group();g.position.set(d.from[0],d.from[1],d.from[2]);world.add(g);clickable(slab(g,.98,.73,0,d.color,.18),d.id);slab(g,.85,.60,.2,white,.055);engraving(g,d.name,d.css,.68,.24,.30);screw(g,-.32,-.2,.31,.025);screw(g,.32,.2,.31,.025);const tag=document.createElement('div');tag.className='source-chip-label';tag.style.setProperty('--component-color',d.css);tag.textContent=d.name+' 원문';topLabels.appendChild(tag);chips.push({g,from:new T.Vector3(...d.from as [number,number,number]),to:new T.Vector3(...d.to as [number,number,number]),phase:d.phase,tag});});
- // Animate the existing semantic assemblies; preserve materials and data-backed geometry.
- chips.forEach(({g,tag})=>{g.visible=false;tag.style.display='none';});
  // Keep the earlier open-work instrument as the resting pose. This is an
  // explanatory cutaway, independent of whether a country's goal is met.
  north.position.set(0,.65,3.8);south.position.z=-.34;
@@ -130,7 +134,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    markerPositions[i*3]=part.center.x+offset.x;markerPositions[i*3+1]=part.center.y+offset.y;markerPositions[i*3+2]=part.center.z+offset.z;
   });
   markerGeometry.attributes.position.needsUpdate=true;markers.visible=amount>.75;
-  world.rotation.z=-.13*(1-amount);floor.visible=amount<.5;equator.visible=amount<.5;tether.visible=false;
+  world.rotation.z=-.13*(1-amount);floor.visible=amount<.5;equator.visible=amount<.5;
   world.updateMatrixWorld(true);
  }
  function fit(){
@@ -185,21 +189,25 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   replay.update(amount,dt,c.paused,c.loop===true&&!still);
   const target=replay.stage!=='idle'?replay.target:c.explode?1:c.progress!=null?Math.max(0,Math.min(1,c.progress/100)):0;
   const previous=amount;
-  if(still)amount=target;else if(!c.paused||replay.stage==='idle')amount=Math.abs(target-amount)<.0001?target:T.MathUtils.damp(amount,target,8,dt);
+  // The story plays at a fixed rate so each layer gets its own moment on screen.
+  // Only the slider snaps: that is direct manipulation and must not lag.
+  const step=dt*.36,scrub=replay.stage==='idle'&&c.progress!=null;
+  if(still)amount=target;
+  else if(!c.paused||replay.stage==='idle')amount=scrub?(Math.abs(target-amount)<.0001?target:T.MathUtils.damp(amount,target,8,dt)):(Math.abs(target-amount)<=step?target:amount+Math.sign(target-amount)*step);
   const moving=previous!==amount;
   const key=[c.camera,c.zoom,c.selected,c.paused,still].join('|');if(key!==lastKey){if(c.camera!==lastKey.split('|')[0]||String(c.zoom)!==lastKey.split('|')[1]){fitDirty=true;manualCamera=false;}lastKey=key;dirty=true;}
   if(moving){placeParts();dirty=true;if(!manualCamera)fitDirty=true;}
   orbit.enableRotate=amount<.9;orbit.mouseButtons.LEFT=amount<.9?T.MOUSE.ROTATE:T.MOUSE.PAN;orbit.touches.ONE=amount<.9?T.TOUCH.ROTATE:T.TOUCH.PAN;
   // Keep the readable study angle steady; the gears supply the motion.
   orbit.autoRotate=false;
-  if(!still&&!c.paused&&amount<.7){
+  if(spin&&!still&&!c.paused&&amount<.7){
    gearTime+=dt*(1-T.MathUtils.clamp((amount-.5)/.2,0,1));
-   for(const {g,speed} of gears){if(g.userData.available)g.rotation.z=gearTime*speed;}
+   for(const {g,speed} of gears){if(g.userData.available)g.rotation.z=gearTime*speed*spin;}
    world.updateMatrixWorld(true);dirty=true;
   }
   if(fitDirty){fit();const rate=still?1:1-Math.exp(-8*dt);camera.position.lerp(cameraGoal,rate);orbit.target.lerp(lookGoal,rate);if(camera.position.distanceTo(cameraGoal)<.0001&&orbit.target.distanceTo(lookGoal)<.0001){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);fitDirty=false;}dirty=true;}
   orbit.update(dt);
-  const phase=amount===0?0:amount<.18?1:amount<.38?2:amount<.72?3:amount<.97?4:5;
+  const phase=amount===0?0:amount<.22?1:amount<.40?2:amount<.62?3:amount<.90?4:5;
   if(phase!==lastPhase){lastPhase=phase;phaseCallback.current?.(phase);dirty=true;}
   const percent=Math.round(amount*100);if(percent!==lastPercent){lastPercent=percent;progressCallback.current?.(percent);}
   if(dirty){camera.updateMatrixWorld();renderer.render(scene,camera);updateLabels();dirty=false;}

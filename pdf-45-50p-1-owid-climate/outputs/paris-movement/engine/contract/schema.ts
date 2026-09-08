@@ -122,6 +122,9 @@ export const countrySchema = z.object({
   }).strict(),
   derived: z.object({
     ambition_gap_factor: num,
+    // Signed least-squares slope of the observed series, MtCO2e/yr. Negative
+    // falls. Null only when no trend was computable, never as a stand-in for 0.
+    trend_annual_mtco2e: num,
     on_track: z.boolean().nullable(),
     gap_state: state,
     $note: z.string().optional(),

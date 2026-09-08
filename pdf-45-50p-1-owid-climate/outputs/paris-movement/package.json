@@ -11,7 +11,7 @@
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
     "format": "oxfmt",
-    "test": "node --test 'engine/__tests__/*.test.ts' tests/contract.test.cjs",
+    "test": "node --test 'engine/__tests__/*.test.ts' 'tests/*.test.ts' tests/contract.test.cjs",
     "engine:build": "node engine/cli.ts build-all",
     "engine:verify": "node engine/cli.ts verify",
     "engine:serve": "node engine/server.ts",

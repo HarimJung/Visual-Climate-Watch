@@ -8,7 +8,7 @@ export type CountryData = {
  finance_need:{mitigation_usd:number|null;adaptation_usd:number|null;state:string;received_usd:number|null;received_state:string;source:Source};
  btr:{version:string;submitted:boolean|null;submission_date:string|null;published_date:string|null;components:Record<string,{state:string}>;source:Source};
  vulnerability:{ndgain_score:number|null;vulnerability:number|null;readiness:number|null;rank:number|null;data_year:number|null;state:string;source:Source};
- series:{observed:Point[];bau:Point[];target:Point[]};derived:{ambition_gap_factor:number|null;on_track:boolean|null;gap_state:string;$reason?:string};
+ series:{observed:Point[];bau:Point[];target:Point[]};derived:{ambition_gap_factor:number|null;trend_annual_mtco2e:number|null;on_track:boolean|null;gap_state:string;$reason?:string};
  // v1.1, optional: a payload without it still satisfies everything above.
  sources?:{id:string;name:string;tables:string[];connection:'connected'|'not-connected'|'failed';records:number;last_run:string|null;retrieved_at:string|null;url:string;license:string}[];
  $meta?:{mode:string;snapshot:string;basis:string;notice:string};
