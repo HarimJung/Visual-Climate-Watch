@@ -1,0 +1,181 @@
+- main [ref=f3e2]:
+  - generic [ref=f3e3]:
+    - link "Visual Climate home" [ref=f3e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f3e5]: ◉
+      - generic [ref=f3e6]:
+        - text: VISUAL CLIMATE
+        - generic [ref=f3e7]: THE PARIS MOVEMENT
+    - tablist [ref=f3e9]:
+      - tab "조립 엔진" [selected] [ref=f3e10] [cursor=pointer]
+      - tab "데이터 구조" [ref=f3e11] [cursor=pointer]
+      - tab "국가 선택" [ref=f3e12] [cursor=pointer]
+    - button "읽는 방법" [ref=f3e13] [cursor=pointer]
+  - generic [ref=f3e17]:
+    - generic [ref=f3e18]:
+      - generic [ref=f3e19]: +
+      - generic [ref=f3e20]: CALIBRE 2015
+      - generic [ref=f3e21]: /
+      - generic [ref=f3e22]: 데이터가 기계가 되는 과정
+    - generic [ref=f3e23]:
+      - text: 문서 데이터 재생
+      - combobox "Select country" [ref=f3e25] [cursor=pointer]:
+        - generic [ref=f3e26]: Cambodia
+        - img [aria-hidden]: ▼
+      - textbox [aria-hidden] [ref=f3e27]: KHM
+  - generic [ref=f3e29]:
+    - generic [ref=f3e30]:
+      - complementary [ref=f3e31]:
+        - paragraph [ref=f3e32]: 01 THE ANATOMY OF CLIMATE ACTION
+        - heading [level=1] [ref=f3e33]:
+          - text: 우리가 지킬 것은
+          - emphasis [ref=f3e34]: 하나의 지구.
+        - generic [ref=f3e35]:
+          - generic [ref=f3e36]: Cambodia
+          - generic [ref=f3e38]: 2020 NDC · 2024 BTR
+        - generic [ref=f3e39]:
+          - strong [ref=f3e40]:
+            - text: −41.7
+            - superscript [ref=f3e41]: "%"
+          - generic [ref=f3e42]:
+            - text: 2030년까지 감축 약속
+            - generic [ref=f3e43]: 2030 BAU 기준
+        - paragraph [ref=f3e44]: 국제 지원을 조건으로 한 약속입니다.조건부 비율은 아직 정량화되지 않았습니다.
+        - button "데이터 조립 다시 보기" [ref=f3e45] [cursor=pointer]
+        - navigation "엔진 부품과 의미" [ref=f3e51]:
+          - button "01 파리협정 모든 부품을 받치는 공통의 설계" [ref=f3e52] [cursor=pointer]:
+            - generic [ref=f3e53]: "01"
+            - generic [ref=f3e54]:
+              - strong [ref=f3e55]: 파리협정
+              - generic [ref=f3e56]: 모든 부품을 받치는 공통의 설계
+          - button "02 NDC · 감축 약속 2030년까지 −41.7%" [ref=f3e60] [cursor=pointer]:
+            - generic [ref=f3e61]: "02"
+            - generic [ref=f3e62]:
+              - strong [ref=f3e63]: NDC · 감축 약속
+              - generic [ref=f3e64]: 2030년까지 −41.7%
+          - button "03 배출 인벤토리 1개 관측 연도 · 실제 이행의 근거" [ref=f3e68] [cursor=pointer]:
+            - generic [ref=f3e69]: "03"
+            - generic [ref=f3e70]:
+              - strong [ref=f3e71]: 배출 인벤토리
+              - generic [ref=f3e72]: 1개 관측 연도 · 실제 이행의 근거
+          - button "04 BTR · 투명성 0개 확인 / 8개 구성요소" [ref=f3e76] [cursor=pointer]:
+            - generic [ref=f3e77]: "04"
+            - generic [ref=f3e78]:
+              - strong [ref=f3e79]: BTR · 투명성
+              - generic [ref=f3e80]: 0개 확인 / 8개 구성요소
+          - button "05 국제 재원 약속을 실행하기 위한 지원 조건" [ref=f3e84] [cursor=pointer]:
+            - generic [ref=f3e85]: "05"
+            - generic [ref=f3e86]:
+              - strong [ref=f3e87]: 국제 재원
+              - generic [ref=f3e88]: 약속을 실행하기 위한 지원 조건
+        - generic [ref=f3e92]:
+          - text: 데이터 기준
+          - paragraph [ref=f3e93]: 2020 NDC · 2024 BTR 문서 기준입니다. 실시간 현황이나 최신 NDC 판정이 아닙니다.
+      - generic [ref=f3e94]:
+        - generic:
+          - generic: ISOMETRIC STUDY
+          - generic: KHM / 001
+        - 'generic "Cambodia: NDC, inventory, BTR and finance assemble into a climate evidence instrument." [ref=f3e95]'
+        - generic "부품 읽는 법":
+          - generic: 톱니 = 데이터 소스 · 돌면 값이 들어온 것
+          - generic: 반투명 = 그 자리에 값이 없음
+          - generic: 보고된 값
+          - generic: 약속·전망
+          - generic: 미확인
+        - generic:
+          - generic: + 부품을 누르면 연결된 데이터가 열립니다
+          - generic: 문서 데이터 조립 시연 · 실시간 ETL 아님
+    - generic [ref=f3e96]:
+      - generic [ref=f3e97]:
+        - generic [ref=f3e98]: 입체 모형 — 전체 도면
+        - group "전개 진행도" [ref=f3e99]
+        - status [ref=f3e102]: 0%
+      - generic [ref=f3e103]:
+        - generic [ref=f3e104]: 확대
+        - group "엔진 확대" [ref=f3e105]
+        - status [ref=f3e108]: 1.00×
+    - generic [ref=f3e109]:
+      - generic [ref=f3e110]: "00"
+      - generic [ref=f3e111]:
+        - strong [ref=f3e112]: 지구 안에서 움직이는 데이터
+        - paragraph [ref=f3e113]: 열린 반구 사이로 목표 링, 관측 기어, 보고·재원 부품을 살펴보세요. 슬라이더를 움직이면 층별로 펼쳐집니다.
+      - button "한 번 재생" [ref=f3e120] [cursor=pointer]
+    - region "Movement controls" [ref=f3e121]:
+      - generic [ref=f3e122]:
+        - button "층별로 분해" [ref=f3e123] [cursor=pointer]
+        - button "Replay assembly" [ref=f3e129] [cursor=pointer]:
+          - generic [ref=f3e133]: 다시 재생
+        - button "Pause motion" [ref=f3e134] [cursor=pointer]
+        - button "Toggle plan view" [ref=f3e138] [cursor=pointer]
+      - generic [ref=f3e144]:
+        - button "출처·체크섬" [ref=f3e145] [cursor=pointer]
+        - button "프레임 저장" [ref=f3e149] [cursor=pointer]
+        - button "Export 10-second motion" [ref=f3e154] [cursor=pointer]:
+          - generic [ref=f3e157]: 10초 영상
+  - region "Promise, conditions, delivery, evidence" [ref=f3e158]:
+    - button "01 감축 약속 90.4 MtCO₂e 2030년 목표 배출량 Pledged" [ref=f3e159] [cursor=pointer]:
+      - generic [ref=f3e160]: 01 감축 약속
+      - generic [ref=f3e166]: 90.4 MtCO₂e
+      - paragraph [ref=f3e167]: 2030년 목표 배출량
+      - generic [ref=f3e168]: Pledged
+    - button "02 지원 조건 비율 미확인 국제 지원을 조건으로 한 목표 조건부 비율 미확인" [ref=f3e170] [cursor=pointer]:
+      - generic [ref=f3e171]: 02 지원 조건
+      - generic [ref=f3e177]: 비율 미확인
+      - paragraph [ref=f3e178]: 국제 지원을 조건으로 한 목표
+      - generic [ref=f3e179]: 조건부 비율 미확인
+    - 'button "03 실제 이행 아직 평가할 수 없음 확보한 관측: 1개 연도 더 많은 관측 필요" [ref=f3e181] [cursor=pointer]':
+      - generic [ref=f3e182]: 03 실제 이행
+      - generic [ref=f3e188]: 아직 평가할 수 없음
+      - paragraph [ref=f3e189]: "확보한 관측: 1개 연도"
+      - generic [ref=f3e190]: 더 많은 관측 필요
+    - 'button "04 증거 상태 BTR 제출됨 2024-12-31 National inventory: unknown Reporting tables: unknown Tabular formats: unknown NDC tracking: unknown Adaptation: unknown Finance & support: unknown REDD+: unknown Article 6: unknown 8 unparsed" [ref=f3e192] [cursor=pointer]':
+      - generic [ref=f3e193]: 04 증거 상태
+      - generic [ref=f3e199]: BTR 제출됨
+      - paragraph [ref=f3e200]: 2024-12-31
+      - generic [ref=f3e201]:
+        - 'generic "National inventory: unknown" [ref=f3e202]'
+        - 'generic "Reporting tables: unknown" [ref=f3e203]'
+        - 'generic "Tabular formats: unknown" [ref=f3e204]'
+        - 'generic "NDC tracking: unknown" [ref=f3e205]'
+        - 'generic "Adaptation: unknown" [ref=f3e206]'
+        - 'generic "Finance & support: unknown" [ref=f3e207]'
+        - 'generic "REDD+: unknown" [ref=f3e208]'
+        - 'generic "Article 6: unknown" [ref=f3e209]'
+        - generic [ref=f3e210]: 8 unparsed
+  - region "조립에 들어가는 원문 데이터" [ref=f3e211]:
+    - button "NDC 국가 감축 약속 −41.7% · 2030 2020 NDC · 2024 BTR 02" [ref=f3e212] [cursor=pointer]:
+      - generic [ref=f3e213]: NDC
+      - generic [ref=f3e214]:
+        - generic [ref=f3e215]: 국가 감축 약속
+        - strong [ref=f3e216]: −41.7% · 2030
+        - generic [ref=f3e217]: 2020 NDC · 2024 BTR
+      - generic [ref=f3e218]: "02"
+    - button "INV 배출 인벤토리 1개 관측 연도 추세를 계산하기에 부족 03" [ref=f3e219] [cursor=pointer]:
+      - generic [ref=f3e220]: INV
+      - generic [ref=f3e221]:
+        - generic [ref=f3e222]: 배출 인벤토리
+        - strong [ref=f3e223]: 1개 관측 연도
+        - generic [ref=f3e224]: 추세를 계산하기에 부족
+      - generic [ref=f3e225]: "03"
+    - button "BTR 투명성 보고서 제출 확인 8개 구성요소 미파싱 04" [ref=f3e226] [cursor=pointer]:
+      - generic [ref=f3e227]: BTR
+      - generic [ref=f3e228]:
+        - generic [ref=f3e229]: 투명성 보고서
+        - strong [ref=f3e230]: 제출 확인
+        - generic [ref=f3e231]: 8개 구성요소 미파싱
+      - generic [ref=f3e232]: "04"
+    - button "FIN 국제 재원 완화 > $5.8bn 수령액 미확인 · 충족률 계산 안 함 05" [ref=f3e233] [cursor=pointer]:
+      - generic [ref=f3e234]: FIN
+      - generic [ref=f3e235]:
+        - generic [ref=f3e236]: 국제 재원
+        - strong [ref=f3e237]: 완화 > $5.8bn
+        - generic [ref=f3e238]: 수령액 미확인 · 충족률 계산 안 함
+      - generic [ref=f3e239]: "05"
+  - generic [ref=f3e240]:
+    - generic [ref=f3e241]:
+      - generic [ref=f3e242]: 재질 = 증거 상태
+      - generic [ref=f3e243]: 보고된 값
+      - generic [ref=f3e245]: 약속·전망
+      - generic [ref=f3e247]: 미확인
+      - generic [ref=f3e249]: 부재 확인
+    - generic [ref=f3e251]: 미확인은 미제출과 다릅니다.
