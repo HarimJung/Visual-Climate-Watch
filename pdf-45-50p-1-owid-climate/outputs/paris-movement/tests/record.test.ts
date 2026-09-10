@@ -61,3 +61,24 @@ void test('the emissions pivot never blends two sources into one value', () => {
     }
   }
 });
+
+// The countries tray draws one static dial per record from the engine index,
+// not from the record. Both halves of that have to hold: the index must carry
+// what the card reads, and no card may come out blank while the record behind
+// it holds a figure.
+void test('every tray card has a reading and the coverage figures it prints', async () => {
+  const { dialReading } = await import('../lib/climate.ts');
+  const index = JSON.parse(readFileSync(join(import.meta.dirname, '../data/engine-index.json'), 'utf8')) as {
+    countries: { iso3: string; reduction_pct: number | null; total_mtco2e?: number | null; latest_year?: number | null;
+      observed_years?: number; per_capita_tco2e?: number | null; btr_components: Record<string, { state: string }> }[];
+  };
+  assert.equal(index.countries.length, all.length, 'the index and the built records disagree on the roster');
+  for (const row of index.countries) {
+    for (const k of ['observed_years', 'per_capita_tco2e', 'ndgain_score', 'income_group', 'latest_year', 'total_mtco2e'] as const) {
+      assert.ok(k in row, `${row.iso3}: the tray prints ${k} and the index does not carry it`);
+    }
+    assert.equal(Object.keys(row.btr_components).length, 8, `${row.iso3}: dial needs all eight sockets`);
+    const reading = dialReading({ ndc: { reduction_pct: row.reduction_pct }, emissions_profile: { total_mtco2e: row.total_mtco2e ?? null, latest_year: row.latest_year ?? null }, observed_years: row.observed_years ?? null });
+    assert.notEqual(reading.value, '—', `${row.iso3}: draws an empty dial although the engine built a record for it`);
+  }
+});

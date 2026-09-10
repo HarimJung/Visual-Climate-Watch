@@ -3,8 +3,9 @@ type EngineSource={id:string;connection:string;records:number;last_run:string|nu
 type Index={countries?:unknown[];sources?:EngineSource[];telemetry?:unknown};
 const catalogOnly=(note:string)=>Response.json({mode:'catalog',countries:[],sources:sourceCatalog,telemetry:{state:'unknown',runs:[],last_run:null,quarantine_count:null},note});
 // The catalogue is the whole architecture; the engine only reports what ran.
-// Show all 40 either way, each carrying the state the engine actually observed,
-// so an unconnected source stays visible as unconnected rather than disappearing.
+// Show all 42 either way — the spec's DS-01..DS-40 plus the two the engine added
+// itself (DS-06-NDC, DS-BTR) — each carrying the state the engine actually
+// observed, so an unconnected source stays visible rather than disappearing.
 function merge(e:Index,mode:string){
  const live=new Map((e.sources??[]).map(s=>[s.id,s]));
  const sources:Record<string,unknown>[]=sourceCatalog.map(s=>({...s,...live.get(s.id),state:live.get(s.id)?.connection??'not-connected'}));

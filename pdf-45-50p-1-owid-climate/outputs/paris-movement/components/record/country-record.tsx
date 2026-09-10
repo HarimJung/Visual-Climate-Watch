@@ -31,15 +31,19 @@ function Blank({what,why}:{what:string;why:string}){
 const axis={stroke:'#99a1a7',fontSize:10,fontFamily:'var(--font-mono)'} as const;
 const tip={background:'#fbfaf7',border:'1px solid #c8c2b4',borderRadius:3,fontSize:12,fontFamily:'var(--font-sans)'} as const;
 
-export default function CountryRecord({iso3}:{iso3:string}){
- const [data,setData]=useState<CountryData|null>(null);
+// `initial` is the record the server already resolved. When it is there the
+// page is complete in the HTML — quotable, crawlable, printable — and the fetch
+// below never runs. `undefined` means the server could not reach the record, so
+// the browser tries again rather than showing an error the server caused.
+export default function CountryRecord({iso3,initial}:{iso3:string;initial?:CountryData}){
+ const [data,setData]=useState<CountryData|null>(initial??null);
  const [error,setError]=useState('');
- useEffect(()=>{const abort=new AbortController();
+ useEffect(()=>{if(initial)return;const abort=new AbortController();
   void fetch(`/api/v1/country-dial?country=${iso3}`,{signal:abort.signal})
    .then(async r=>{const body=await r.json() as CountryData&{error?:string};if(!r.ok)throw Error(body.error??'This record could not be loaded.');
     if(!validateCountry(body)||body.country.iso3!==iso3)throw Error('The record did not match the contract.');setData(body)})
    .catch(e=>{if(e.name!=='AbortError')setError(e.message)});
-  return()=>abort.abort()},[iso3]);
+  return()=>abort.abort()},[iso3,initial]);
 
  if(error)return <main className="record"><div className="rec-shell"><p className="eyebrow"><span className="index">!</span> {iso3}</p><h1 className="rec-title">No record</h1><p className="rec-lede">{error}</p><Link className="rec-back" href="/"><ArrowLeft size={15}/> Back to the instrument</Link></div></main>;
  if(!data)return <main className="record"><div className="rec-shell"><p className="eyebrow"><span className="index">··</span> {iso3}</p><h1 className="rec-title">Loading the record…</h1></div></main>;
@@ -65,7 +69,7 @@ export default function CountryRecord({iso3}:{iso3:string}){
  const confirmed=Object.values(btr.components).filter(v=>v.state==='observed').length;
 
  return <main className="record">
-  <header className="rec-top"><Link className="rec-back" href="/"><ArrowLeft size={15}/> The instrument</Link><span className="rec-contract">{data.$profile??'engine'} · {data.$contract.split('@')[1]}</span></header>
+  <header className="rec-top"><Link className="rec-back" href="/"><ArrowLeft size={15}/> The instrument</Link><span className="rec-top-right"><Link className="rec-back" href="/divergence">Divergence</Link><Link className="rec-back" href="/refusals">Refusals</Link><span className="rec-contract">{data.$profile??'engine'} · {data.$contract.split('@')[1]}</span></span></header>
 
   <div className="rec-shell">
    <section className="rec-head">

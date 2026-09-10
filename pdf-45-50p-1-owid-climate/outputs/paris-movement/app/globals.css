@@ -267,6 +267,10 @@ svg{flex-shrink:0}
 .tray-country p{font:10px var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .tray-country svg{color:var(--ink-4);transition:transform .3s,color .3s}
 .tray-card:hover svg{transform:translate(3px,-3px);color:var(--ndc)}
+.tray-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)}
+.tray-stats dt{font:9px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}
+.tray-stats dd{margin-top:3px;font:15px var(--font-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tray-stats dd small{margin-left:1px;font-size:9px;color:var(--ink-4)}
 .tray-reading{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .tray-reading>span:last-child{color:var(--ndc)}
 .tray-note{max-width:62ch;margin-top:22px;font-size:12px;color:var(--ink-3)}
@@ -422,7 +426,8 @@ svg{flex-shrink:0}
    The dial is the way in. This is everything behind it, on the same paper. */
 .record{min-height:100vh;background:var(--paper);color:var(--ink);font-family:var(--font-sans)}
 .rec-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px var(--gutter);border-bottom:1px solid var(--rule)}
-.rec-contract{font:10px var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.rec-contract{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font:10px var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);transition:color .2s}
+a.rec-contract:hover{color:var(--ndc)}
 .rec-back{display:inline-flex;align-items:center;gap:8px;font:10px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);transition:color .2s}
 .rec-back:hover{color:var(--ndc)}
 .rec-shell{max-width:1120px;margin:0 auto;padding-block:clamp(28px,4vw,56px) 72px;padding-inline:var(--gutter)}
@@ -464,6 +469,56 @@ svg{flex-shrink:0}
 .rec-blank{display:flex;flex-direction:column;gap:9px;margin:18px 0;padding:20px;border:1px dashed var(--rule-strong);background:var(--paper-sunken)}
 .rec-blank p{font-size:12.5px;line-height:1.7;color:var(--ink-3)}
 
+.source-license{display:block;margin-top:3px;color:var(--ink-4)}
+.topbar-links{display:flex;align-items:center;gap:18px}
+.topbar-links>a{font:10px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);transition:color .2s}
+.topbar-links>a:hover{color:var(--ndc)}
+.rec-top-right{display:flex;align-items:center;gap:18px}
+.rec-title .rec-stop{color:var(--ndc)}
+.rec-blank.caveat{border-style:solid;border-color:var(--ndc);background:color-mix(in srgb,var(--ndc) 5%,var(--paper-raised))}
+
+/* ── the refusal log ──────────────────────────────────────────────────────
+   No client state: <details> does the grouping, so the whole log is in the
+   HTML and a printed or crawled copy loses nothing. */
+.refusal-list{display:flex;flex-direction:column;gap:1px;margin-top:22px;background:var(--rule);border:1px solid var(--rule)}
+.refusal{background:var(--paper-raised)}
+.refusal>summary{display:flex;align-items:baseline;gap:12px;padding:15px 18px;cursor:pointer;list-style:none;transition:background .2s}
+.refusal>summary::-webkit-details-marker{display:none}
+.refusal>summary::before{content:'+';flex-shrink:0;width:12px;font:12px var(--font-mono);color:var(--ndc)}
+.refusal[open]>summary::before{content:'\2212'}
+.refusal>summary:hover{background:var(--paper-sunken)}
+.refusal>summary b{flex:1;font-size:14px;font-weight:500;color:var(--ink);text-wrap:pretty}
+.refusal-count{flex-shrink:0;font:13px var(--font-mono);color:var(--ndc);font-variant-numeric:tabular-nums}
+.refusal>summary code{flex-shrink:0;font:9.5px var(--font-mono);letter-spacing:.06em;color:var(--ink-4)}
+.refusal>.rec-note{margin:0;padding:0 18px 4px 42px;max-width:74ch}
+.refusal-entries{margin:6px 0 4px;padding:0 18px 16px 42px;list-style:none;counter-reset:r}
+.refusal-entries li{padding:11px 0;border-top:1px solid var(--rule)}
+.refusal-entries a{display:inline-flex;align-items:baseline;gap:9px;font-size:13px;color:var(--ink-2);transition:color .2s}
+.refusal-entries a:hover{color:var(--ndc)}
+.refusal-entries a i{font:9.5px var(--font-mono);font-style:normal;letter-spacing:.08em;color:var(--ink-4)}
+.refusal-entries p{margin-top:4px;font-size:12.5px;line-height:1.75;color:var(--ink-3);max-width:88ch;text-wrap:pretty}
+
+/* ── the divergence atlas ─────────────────────────────────────────────── */
+.div-rows{display:flex;flex-direction:column;gap:1px;margin-top:22px;background:var(--rule);border:1px solid var(--rule)}
+.div-country{display:grid;grid-template-columns:190px 1fr 66px;align-items:center;gap:18px;padding:11px 16px;background:var(--paper-raised)}
+.div-name{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--ink-2);transition:color .2s;min-width:0}
+.div-name:hover{color:var(--ndc)}
+.div-name i{flex-shrink:0;font:9.5px var(--font-mono);font-style:normal;letter-spacing:.08em;color:var(--ink-4)}
+.div-name small{flex-shrink:0;font:9.5px var(--font-mono);color:var(--ink-4)}
+.div-bars{display:flex;flex-direction:column;gap:3px;min-width:0}
+.div-bar{display:grid;grid-template-columns:44px 1fr 74px;align-items:center;gap:9px}
+.div-src{font:9.5px var(--font-mono);letter-spacing:.06em}
+.div-track{display:block;height:9px;background:var(--paper-sunken)}
+.div-track i{display:block;height:100%;min-width:1px}
+.div-val{text-align:right;font:11px var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.div-spread{text-align:right;font:12px var(--font-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.div-spread[data-wide]{color:#a6432f}
+@media(max-width:720px){
+ .div-country{grid-template-columns:1fr 58px;gap:8px 12px}
+ .div-name{grid-column:1/-1}
+ .div-bar{grid-template-columns:40px 1fr 64px}
+ .refusal>.rec-note,.refusal-entries{padding-left:18px}
+}
 .rec-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:16px;margin-top:26px}
 .rec-card{display:flex;flex-direction:column;padding:20px;border:1px solid var(--rule);background:var(--paper-raised)}
 .rec-card-tag{font:9.5px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ndc)}
