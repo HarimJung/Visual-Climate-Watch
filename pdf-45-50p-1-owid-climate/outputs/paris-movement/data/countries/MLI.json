@@ -46,6 +46,7 @@
     "state": "unknown",
     "received_usd": null,
     "received_state": "unknown",
+    "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -60,28 +61,36 @@
     "published_date": null,
     "components": {
       "nir": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "crt": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "ctf": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "ndc_track": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "adaptation": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "finance": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "redd_plus": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "article6": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       }
     },
     "$note": "No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed — unfccc.int refuses this engine's requests, so the registry itself has not been read.",
@@ -1673,7 +1682,7 @@
       "last_run": "2026-09-10T21:09:45.434Z",
       "retrieved_at": "2026-09-10",
       "url": "https://unfccc.int/NDCREG",
-      "license": "public"
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
       "id": "DS-15",
@@ -1707,7 +1716,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "ca615b5cd7107c73edd51df85ded3ef81fcf01195e69241eca5d4571e4f72a17",
+    "payload_sha256": "58e1cd4065364c81d45e9df02a397f4e20051a9e420016f69dacb647e5f1ece5",
     "inputs": [
       {
         "source_id": "DS-35",

@@ -22,6 +22,7 @@ import { snapshot, etlLog, type EtlLog, type Snapshot, asModule, type EtlModule 
 
 export const ID = 'DS-01';
 export const HOME = 'https://data.worldbank.org';
+export const LICENSE = 'CC BY 4.0';
 const REGISTER = 'https://api.worldbank.org/v2/country?format=json&per_page=400';
 const INDICATOR = 'SP.POP.TOTL';
 export const FROM_YEAR = 2015;

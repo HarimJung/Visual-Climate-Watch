@@ -140,31 +140,31 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
       id: owid.ID, name: 'Our World in Data — CO₂ and Greenhouse Gas Emissions', pattern: 'C' as const,
       tables: ['emissions'], connection: (o ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: o?.points.length ?? 0, last_run: i.owid.snap.retrieved_at,
-      retrieved_at: o ? day(i.owid.snap.retrieved_at) : null, url: owid.HOME, license: 'CC BY 4.0',
+      retrieved_at: o ? day(i.owid.snap.retrieved_at) : null, url: owid.HOME, license: owid.LICENSE,
     },
     {
       id: trace.ID, name: 'Climate TRACE — country emissions', pattern: 'A' as const,
       tables: ['emissions'], connection: (i.trace.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.trace.data.get(iso3)?.points.length ?? 0, last_run: i.trace.snap.retrieved_at,
-      retrieved_at: i.trace.data.get(iso3) ? day(i.trace.snap.retrieved_at) : null, url: trace.HOME, license: 'CC BY 4.0',
+      retrieved_at: i.trace.data.get(iso3) ? day(i.trace.snap.retrieved_at) : null, url: trace.HOME, license: trace.LICENSE,
     },
     {
       id: ndgain.ID, name: 'ND-GAIN Country Index', pattern: 'B' as const,
       tables: ['vulnerability'], connection: (g ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: g ? 3 : 0, last_run: i.ndgain.snap.retrieved_at,
-      retrieved_at: g ? day(i.ndgain.snap.retrieved_at) : null, url: ndgain.HOME, license: 'CC BY',
+      retrieved_at: g ? day(i.ndgain.snap.retrieved_at) : null, url: ndgain.HOME, license: ndgain.LICENSE,
     },
     {
       id: cckp.ID, name: 'World Bank Climate Change Knowledge Portal (CMIP6)', pattern: 'A' as const,
       tables: ['country_projections'], connection: (i.cckp.data.get(iso3)?.scenarios.length ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.cckp.data.get(iso3)?.scenarios.length ?? 0, last_run: i.cckp.snap.retrieved_at,
-      retrieved_at: i.cckp.data.get(iso3) ? day(i.cckp.snap.retrieved_at) : null, url: cckp.HOME, license: 'CC BY 4.0',
+      retrieved_at: i.cckp.data.get(iso3) ? day(i.cckp.snap.retrieved_at) : null, url: cckp.HOME, license: cckp.LICENSE,
     },
     {
       id: wb.ID, name: 'World Bank — country register and World Development Indicators', pattern: 'A' as const,
       tables: ['countries'], connection: (i.wb.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.wb.data.get(iso3) ? 1 + (i.wb.data.get(iso3)!.population.length) : 0, last_run: i.wb.snap.retrieved_at,
-      retrieved_at: i.wb.data.get(iso3) ? day(i.wb.snap.retrieved_at) : null, url: wb.HOME, license: 'CC BY 4.0',
+      retrieved_at: i.wb.data.get(iso3) ? day(i.wb.snap.retrieved_at) : null, url: wb.HOME, license: wb.LICENSE,
     },
     {
       id: edgar.ID, name: 'EDGAR — GHG emissions of all world countries (JRC)', pattern: 'B' as const,
@@ -197,7 +197,7 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
       records: isCurated || i.ndcdocs.data.get(iso3)?.reduction_pct != null ? 1 : 0,
       last_run: i.ndcdocs.file?.extracted_at ?? null,
       retrieved_at: isCurated ? '2026-09-07' : (i.ndcdocs.data.get(iso3) && i.ndcdocs.file ? day(i.ndcdocs.file.extracted_at) : null),
-      url: 'https://unfccc.int/NDCREG', license: 'public',
+      url: 'https://unfccc.int/NDCREG', license: ndcdocs.LICENSE,
     },
     {
       id: gcf.ID, name: 'Green Climate Fund — projects and disbursements', pattern: 'A' as const,
@@ -231,6 +231,13 @@ function emissionsProfile(iso3: string, i: Inputs) {
     excluding_lucf_mtco2e: o?.excluding_lucf_mtco2e ?? null,
     per_capita_tco2e: o?.per_capita_tco2e ?? null,
     state: (o?.total_mtco2e == null ? 'unknown' : 'observed') as 'observed' | 'unknown',
+    // R5: the headline is OWID's or it is unknown, and an unknown says which
+    // of the two ways it got there. Never blank, never inferred from by_source.
+    ...(o?.total_mtco2e == null
+      ? { $reason: o
+        ? `${owid.ID} carries a row for this territory but publishes no all-gas total for it, so no headline figure is reported. Every series that was retrieved is still listed under by_source.`
+        : `${owid.ID}, the only source this record takes headline totals from, carries no row for this territory. Every series that was retrieved is still listed under by_source.` }
+      : {}),
     // Two sources describe the same gases and sectors on different scopes.
     // Both rows stay, each stamped with the source that produced it; nothing is
     // added across source_id.
@@ -271,7 +278,12 @@ function vulnerabilityOf(iso3: string, i: Inputs) {
   const g = i.ndgain.data.get(iso3);
   const source = { id: ndgain.ID, name: 'ND-GAIN Country Index', url: ndgain.HOME, retrieved_at: day(i.ndgain.snap.retrieved_at) };
   if (!g) {
-    return { ndgain_score: null, vulnerability: null, readiness: null, rank: null, data_year: null, state: 'unknown' as const, source };
+    return {
+      ndgain_score: null, vulnerability: null, readiness: null, rank: null, data_year: null,
+      state: 'unknown' as const,
+      $reason: 'the ND-GAIN bulk release carries no row for this country, so no index score has been read. It is not a claim that this country is not vulnerable.',
+      source,
+    };
   }
   return {
     ndgain_score: g.ndgain_score, vulnerability: g.vulnerability, readiness: g.readiness,
@@ -288,7 +300,12 @@ function countryProfileOf(iso3: string, i: Inputs): CountryData['country_profile
   const w = i.wb.data.get(iso3);
   const source = { id: wb.ID, name: 'World Bank — country register and World Development Indicators', url: wb.HOME, retrieved_at: day(i.wb.snap.retrieved_at) };
   if (!w) {
-    return { region: null, income_group: null, population: null, population_year: null, state: 'unknown', source };
+    return {
+      region: null, income_group: null, population: null, population_year: null,
+      state: 'unknown',
+      $reason: `the World Bank country register carries no row for this territory, so neither its region, its income classification nor its population has been read from ${wb.ID}.`,
+      source,
+    };
   }
   return {
     region: w.region,
@@ -311,6 +328,7 @@ function ndcRegistryOf(iso3: string, i: Inputs, parsed: CountryData['ndc']): Cou
     return {
       party: null, latest_version: null, submission_date: null, document_url: null,
       archived_submissions: 0, matches_parsed_document: null, state: 'unknown',
+      $reason: 'the UNFCCC NDC registry index does not list this country as a Party, so no filing of its can be looked up. That is a statement about the index, not about the country.',
       $note: 'The registry index does not list this country as a Party.',
       source: base,
     };
@@ -419,11 +437,19 @@ function financeFlowsOf(iso3: string, i: Inputs): CountryData['finance_flows'] {
 function btrOf(iso3: string, i: Inputs): CountryData['btr'] {
   const b = i.btr.data.get(iso3);
   const source = { id: btrsrc.ID, name: 'UNFCCC — First Biennial Transparency Reports', url: btrsrc.HOME, retrieved_at: day(i.btr.snap.retrieved_at) };
+  // Three different silences, and the socket says which one it is. A reader
+  // who cannot tell "we never got the filing" from "the filing has chapters no
+  // filename can name" is reading a gap where the engine reported a limit.
+  const NO_FILENAME_CAN_NAME = new Set<string>(['adaptation', 'article6']);
   const components = Object.fromEntries(BTR_COMPONENTS.map((k) => {
     const files = b?.evidence[k];
-    return [k, files?.length
-      ? { state: 'observed' as const, $evidence: files }
-      : { state: 'unknown' as const }];
+    if (files?.length) return [k, { state: 'observed' as const, $evidence: files }];
+    const $reason = !b
+      ? `no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing.`
+      : NO_FILENAME_CAN_NAME.has(k)
+        ? `${k === 'adaptation' ? 'Adaptation' : 'Article 6'} reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been.`
+        : `none of the ${b.files} attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing.`;
+    return [k, { state: 'unknown' as const, $reason }];
   })) as CountryData['btr']['components'];
   const confirmed = Object.values(components).filter((c) => c.state === 'observed').length;
   return {
@@ -501,6 +527,7 @@ function compose(iso3: string, i: Inputs): CountryData {
     ndc,
     finance_need: frozen ? frozen.finance_need : {
       mitigation_usd: null, adaptation_usd: null, state: 'unknown', received_usd: null, received_state: 'unknown',
+      $reason: 'no connected source publishes this country\'s own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.',
       source: ndc.source,
     },
     btr: frozen ? frozen.btr : btrOf(iso3, i),
@@ -551,12 +578,12 @@ function compose(iso3: string, i: Inputs): CountryData {
       ],
     },
     $sources_index: [
-      { id: 'DS-01', org: 'World Bank', license: 'CC BY 4.0' },
-      { id: 'DS-35', org: 'Our World in Data', license: 'CC BY 4.0' },
-      { id: 'DS-02', org: 'Climate TRACE', license: 'CC BY 4.0' },
+      { id: 'DS-01', org: 'World Bank', license: wb.LICENSE },
+      { id: 'DS-35', org: 'Our World in Data', license: owid.LICENSE },
+      { id: 'DS-02', org: 'Climate TRACE', license: trace.LICENSE },
       { id: 'DS-05', org: 'European Commission JRC (EDGAR)', license: edgar.LICENSE },
-      { id: 'DS-18', org: 'World Bank CCKP', license: 'CC BY 4.0' },
-      { id: 'DS-04', org: 'University of Notre Dame (ND-GAIN)', license: 'CC BY' },
+      { id: 'DS-18', org: 'World Bank CCKP', license: cckp.LICENSE },
+      { id: 'DS-04', org: 'University of Notre Dame (ND-GAIN)', license: ndgain.LICENSE },
       { id: 'DS-06', org: 'World Resources Institute (CAIT), via openclimatedata', license: cait.LICENSE },
       { id: 'DS-08', org: 'UNFCCC, via openclimatedata', license: registry.LICENSE },
       { id: 'DS-40', org: 'UNFCCC, via the PIK release on Zenodo', license: unfccc.LICENSE },

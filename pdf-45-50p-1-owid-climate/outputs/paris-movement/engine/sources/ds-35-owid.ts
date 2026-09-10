@@ -13,6 +13,7 @@ import { snapshot, etlLog, parseCsv, numOrNull, type EtlLog, type Snapshot , asM
 export const ID = 'DS-35';
 export const URL = 'https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv';
 export const HOME = 'https://github.com/owid/co2-data';
+export const LICENSE = 'CC BY 4.0';
 
 // National inventories start here. OWID reconstructs back to 1850, but those
 // early years are modeled history, not reported inventory, so they are not

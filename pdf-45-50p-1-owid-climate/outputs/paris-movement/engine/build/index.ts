@@ -10,7 +10,9 @@ import { ROOT } from './compose.ts';
 
 export type RosterRow = {
   iso3: string; name_en: string; region: string | null; edition: string;
-  reduction_pct: number | null; btr_components: CountryData['btr']['components'];
+  // State only. The socket reasons are 1,744 sentences long across the roster
+  // and belong on the record page that shows one country, not in a list.
+  reduction_pct: number | null; btr_components: Record<string, { state: string }>;
   // Coverage the tray can rank and filter on without pulling 218 full payloads.
   observed_years: number; latest_year: number | null; total_mtco2e: number | null;
   per_capita_tco2e: number | null; ndgain_score: number | null; income_group: string | null;
@@ -37,7 +39,7 @@ export function buildIndex(records: CountryData[], etl?: EtlFile): EngineIndex {
     region: d.country_profile?.region ?? null,
     edition: d.ndc.version,
     reduction_pct: d.ndc.reduction_pct,
-    btr_components: d.btr.components,
+    btr_components: Object.fromEntries(Object.entries(d.btr.components).map(([k, v]) => [k, { state: v.state }])),
     observed_years: observedYears(d),
     latest_year: d.emissions_profile?.latest_year ?? null,
     total_mtco2e: d.emissions_profile?.total_mtco2e ?? null,

@@ -17,4 +17,9 @@ rmSync('public/data', { recursive: true, force: true });
 mkdirSync('public/data', { recursive: true });
 cpSync('data/countries', 'public/data/countries', { recursive: true });
 cpSync('data/engine-index.json', 'public/data/engine-index.json');
-console.log('[stage-data] staged data/countries + engine-index.json → public/data/');
+// The two published views. Built by `engine:index`; a page fetches one file.
+for (const f of ['refusals.json', 'divergence.json']) {
+  if (existsSync(`data/${f}`)) cpSync(`data/${f}`, `public/data/${f}`);
+  else console.warn(`[stage-data] data/${f} is missing — run \`npm run engine:index\`.`);
+}
+console.log('[stage-data] staged data/countries + engine-index.json + views → public/data/');

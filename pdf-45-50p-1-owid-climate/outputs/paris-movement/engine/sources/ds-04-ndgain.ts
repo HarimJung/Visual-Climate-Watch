@@ -10,6 +10,7 @@ import { unzip, entry } from './_zip.ts';
 export const ID = 'DS-04';
 export const URL = 'https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip';
 export const HOME = 'https://gain.nd.edu/our-work/country-index/';
+export const LICENSE = 'CC BY';
 
 export type NdGain = {
   name: string;

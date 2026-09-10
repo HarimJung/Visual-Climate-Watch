@@ -46,6 +46,7 @@
     "state": "unknown",
     "received_usd": null,
     "received_state": "unknown",
+    "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -82,19 +83,24 @@
         ]
       },
       "ndc_track": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 39 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "adaptation": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "Adaptation reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       },
       "finance": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 39 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "redd_plus": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 39 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "article6": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
     "$note": "39 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
@@ -1727,7 +1733,7 @@
       "last_run": "2026-09-10T21:09:45.434Z",
       "retrieved_at": null,
       "url": "https://unfccc.int/NDCREG",
-      "license": "public"
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
       "id": "DS-15",
@@ -1761,7 +1767,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "5ac28fd57b09479bd7a74ce3202d244667db1bfe38146659ee62ce84f8957d98",
+    "payload_sha256": "293e09698324d7c6e168c7c2fb3e946ab2ce73533d0ab7cca7236931f221170e",
     "inputs": [
       {
         "source_id": "DS-35",

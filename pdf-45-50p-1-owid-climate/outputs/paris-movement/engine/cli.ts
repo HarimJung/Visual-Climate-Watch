@@ -3,6 +3,7 @@ import { writeFileSync, readFileSync, readdirSync, existsSync, mkdirSync } from 
 import { join } from 'node:path';
 import { build, collectAll, isoList, logsOf, ROOT } from './build/compose.ts';
 import { indexFromDisk } from './build/index.ts';
+import { viewsFromDisk } from './build/views.ts';
 import { validate, type CountryData } from './contract/schema.ts';
 
 const DIR = join(ROOT, 'data/countries');
@@ -27,11 +28,18 @@ async function buildAll(only?: string, refresh = false) {
   console.log(`built ${written} record(s) → data/countries/`);
 }
 
-/** The roster and source catalogue as one file, so a static host needs no upstream. */
+/**
+ * The roster, the source catalogue and the two published views, each as one
+ * file, so a static host needs no upstream and no page has to pull 218 records.
+ */
 function writeIndex() {
   const index = indexFromDisk();
   writeFileSync(join(ROOT, 'data/engine-index.json'), JSON.stringify(index) + '\n');
   console.log(`indexed ${index.countries.length} record(s) → data/engine-index.json`);
+  const views = viewsFromDisk();
+  writeFileSync(join(ROOT, 'data/refusals.json'), JSON.stringify(views.refusals) + '\n');
+  writeFileSync(join(ROOT, 'data/divergence.json'), JSON.stringify(views.divergence) + '\n');
+  console.log(`viewed  ${views.refusals.total} refusal(s), ${views.divergence.countries.length} multi-source country(ies) → data/refusals.json, data/divergence.json`);
 }
 
 function verify() {
@@ -98,6 +106,7 @@ function census() {
   const connected = new Map<string, number>();
   for (const d of rows) for (const s of d.sources ?? []) if (s.connection === 'connected') connected.set(s.id, (connected.get(s.id) ?? 0) + 1);
   const etl = JSON.parse(readFileSync(join(ROOT, 'data/etl-logs.json'), 'utf8')) as { run_id: string; built_at: string };
+  const views = viewsFromDisk();
   console.log(JSON.stringify({
     generated_at: new Date().toISOString(),
     run_id: etl.run_id, built_at: etl.built_at,
@@ -123,6 +132,17 @@ function census() {
     gap_assessed: count((d) => d.derived.on_track != null),
     gap_refused: count((d) => d.derived.on_track == null),
     connected_sources: Object.fromEntries([...connected].sort()),
+    // What /refusals and /divergence print. M9's acceptance is that the screens
+    // and this census never disagree, so both read the same numbers from here.
+    refusals_total: views.refusals.total,
+    refusals_distinct_sentences: views.refusals.distinct_sentences,
+    refusals_by_family: Object.fromEntries(views.refusals.families.map((f) => [f.id, f.count])),
+    divergence_pair_countries: views.divergence.headline.countries,
+    divergence_median_spread_pct: Number(views.divergence.headline.median_spread_pct.toFixed(1)),
+    divergence_over_20pct: views.divergence.headline.over_20pct,
+    divergence_over_50pct: views.divergence.headline.over_50pct,
+    divergence_total_gap_mtco2e: Math.round(views.divergence.headline.total_gap_mtco2e),
+    divergence_multi_source_countries: views.divergence.countries.length,
   }, null, 2));
 }
 

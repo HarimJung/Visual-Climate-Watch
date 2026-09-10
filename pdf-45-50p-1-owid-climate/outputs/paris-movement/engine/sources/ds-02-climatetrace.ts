@@ -17,6 +17,7 @@ import { snapshot, etlLog, numOrNull, type EtlLog, type Snapshot , asModule, typ
 
 export const ID = 'DS-02';
 export const HOME = 'https://climatetrace.org';
+export const LICENSE = 'CC BY 4.0';
 const API = 'https://api.climatetrace.org/v6/country/emissions';
 
 export const FROM_YEAR = 2015;

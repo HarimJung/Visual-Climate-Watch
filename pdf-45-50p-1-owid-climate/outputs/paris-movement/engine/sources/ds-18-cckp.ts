@@ -11,6 +11,7 @@ import { snapshot, etlLog, type EtlLog, type Snapshot , asModule, type EtlModule
 
 export const ID = 'DS-18';
 export const HOME = 'https://climateknowledgeportal.worldbank.org';
+export const LICENSE = 'CC BY 4.0';
 const API = 'https://cckpapi.worldbank.org/cckp/v1';
 
 // CMIP6 reference period. Anomalies below are differences against it.

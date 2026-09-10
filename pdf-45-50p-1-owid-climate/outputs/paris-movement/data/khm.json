@@ -1,13 +1,15 @@
 {
   "$contract": "visual-climate/country-dial@1.0.0",
   "$note": "FROZEN CONTRACT. Atlas builds against this shape. The engine emits this shape. Do not change field names without bumping the version.",
-
   "country": {
     "iso3": "KHM",
     "name_en": "Cambodia",
-    "groups": ["LDC", "NON-ANNEX I", "LOWER MIDDLE INCOME"]
+    "groups": [
+      "LDC",
+      "NON-ANNEX I",
+      "LOWER MIDDLE INCOME"
+    ]
   },
-
   "epistemics": {
     "$note": "Every value in this document carries a `state`. State drives MATERIAL in the UI. This is the core of the design.",
     "states": {
@@ -17,7 +19,6 @@
       "absent": "confirmed not to exist. Renders as VOID (machined empty socket)."
     }
   },
-
   "ndc": {
     "version": "Updated NDC",
     "submission_date": "2020-12-31",
@@ -25,14 +26,20 @@
     "base_year_emissions_mtco2e": 125.2,
     "base_year_state": "observed",
     "target_year": 2030,
-    "bau_2030_mtco2e": 155.0,
+    "bau_2030_mtco2e": 155,
     "bau_state": "pledged",
     "reduction_mtco2e": 64.6,
     "reduction_pct": 41.7,
     "target_emissions_mtco2e": 90.4,
     "target_state": "pledged",
     "folu_share_of_reduction_pct": 59.1,
-    "sectors": ["Energy", "Agriculture", "Waste", "IPPU", "FOLU"],
+    "sectors": [
+      "Energy",
+      "Agriculture",
+      "Waste",
+      "IPPU",
+      "FOLU"
+    ],
     "net_zero_target_year": null,
     "net_zero_state": "unknown",
     "conditionality": {
@@ -50,7 +57,6 @@
       "retrieved_at": "2026-09-07"
     }
   },
-
   "finance_need": {
     "mitigation_usd": 5800000000,
     "adaptation_usd": 2000000000,
@@ -58,23 +64,49 @@
     "$note": "Stated NEED, not receipt. 'over US$5.8 billion' / 'just over US$2 billion'.",
     "received_usd": null,
     "received_state": "unknown",
-    "source": { "id": "DS-06-NDC", "url": "https://unfccc.int/sites/default/files/NDC/2022-06/20201231_NDC_Update_Cambodia.pdf" }
+    "source": {
+      "id": "DS-06-NDC",
+      "url": "https://unfccc.int/sites/default/files/NDC/2022-06/20201231_NDC_Update_Cambodia.pdf"
+    }
   },
-
   "btr": {
     "version": "BTR1",
     "submitted": true,
     "submission_date": "2024-12-31",
     "published_date": "2025-02-06",
     "components": {
-      "nir":       { "state": "unknown" },
-      "crt":       { "state": "unknown" },
-      "ctf":       { "state": "unknown" },
-      "ndc_track": { "state": "unknown" },
-      "adaptation":{ "state": "unknown" },
-      "finance":   { "state": "unknown" },
-      "redd_plus": { "state": "unknown" },
-      "article6":  { "state": "unknown" }
+      "nir": {
+        "state": "unknown",
+        "$reason": "Cambodia's BTR1 has been located and dated by hand, but its attachments have not been read, so nothing evidences this component yet."
+      },
+      "crt": {
+        "state": "unknown",
+        "$reason": "Cambodia's BTR1 has been located and dated by hand, but its attachments have not been read, so nothing evidences this component yet."
+      },
+      "ctf": {
+        "state": "unknown",
+        "$reason": "Cambodia's BTR1 has been located and dated by hand, but its attachments have not been read, so nothing evidences this component yet."
+      },
+      "ndc_track": {
+        "state": "unknown",
+        "$reason": "Cambodia's BTR1 has been located and dated by hand, but its attachments have not been read, so nothing evidences this component yet."
+      },
+      "adaptation": {
+        "state": "unknown",
+        "$reason": "Adaptation reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. Cambodia's filing has been located but not read."
+      },
+      "finance": {
+        "state": "unknown",
+        "$reason": "Cambodia's BTR1 has been located and dated by hand, but its attachments have not been read, so nothing evidences this component yet."
+      },
+      "redd_plus": {
+        "state": "unknown",
+        "$reason": "Cambodia's BTR1 has been located and dated by hand, but its attachments have not been read, so nothing evidences this component yet."
+      },
+      "article6": {
+        "state": "unknown",
+        "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. Cambodia's filing has been located but not read."
+      }
     },
     "$note": "Cambodia DID submit BTR1 on time. Per-component presence is NOT yet parsed — all eight are `unknown`, not `absent`. The UI must distinguish these: unknown = hairline outline, absent = machined void. Conflating them would be a false accusation.",
     "source": {
@@ -85,7 +117,6 @@
       "retrieved_at": "2026-09-07"
     }
   },
-
   "vulnerability": {
     "ndgain_score": 40.1,
     "vulnerability": 0.486,
@@ -100,22 +131,41 @@
       "retrieved_at": "2026-09-07"
     }
   },
-
   "series": {
     "observed": [
-      { "year": 2016, "value_mtco2e": 125.2, "state": "observed", "source_id": "DS-06-NDC" }
+      {
+        "year": 2016,
+        "value_mtco2e": 125.2,
+        "state": "observed",
+        "source_id": "DS-06-NDC"
+      }
     ],
     "bau": [
-      { "year": 2016, "value_mtco2e": 125.2, "state": "observed" },
-      { "year": 2030, "value_mtco2e": 155.0, "state": "pledged" }
+      {
+        "year": 2016,
+        "value_mtco2e": 125.2,
+        "state": "observed"
+      },
+      {
+        "year": 2030,
+        "value_mtco2e": 155,
+        "state": "pledged"
+      }
     ],
     "target": [
-      { "year": 2016, "value_mtco2e": 125.2, "state": "observed" },
-      { "year": 2030, "value_mtco2e": 90.4,  "state": "pledged" }
+      {
+        "year": 2016,
+        "value_mtco2e": 125.2,
+        "state": "observed"
+      },
+      {
+        "year": 2030,
+        "value_mtco2e": 90.4,
+        "state": "pledged"
+      }
     ],
     "$note": "The observed series has ONE point. This is not a bug and must not be padded — it is exactly what the platform exists to expose. The engine's job is to fill this from EDGAR / Climate TRACE / the BTR inventory. Until it does, the dial renders a nearly-empty metal arc beside a full glass one, which is the honest picture."
   },
-
   "derived": {
     "$note": "Computed by the engine, never by the UI, so the number on screen and the number in an export can never disagree.",
     "ambition_gap_factor": null,
@@ -124,10 +174,21 @@
     "gap_state": "unknown",
     "$reason": "avg annual change requires ≥2 observed years. With one point it is not computable. Do NOT display a gap factor — display the reason."
   },
-
   "$sources_index": [
-    { "id": "DS-06-NDC", "org": "UNFCCC / RGC-NCSD", "license": "public" },
-    { "id": "DS-BTR",    "org": "UNFCCC",            "license": "public" },
-    { "id": "DS-04",     "org": "University of Notre Dame (ND-GAIN)", "license": "CC BY" }
+    {
+      "id": "DS-06-NDC",
+      "org": "UNFCCC / RGC-NCSD",
+      "license": "public"
+    },
+    {
+      "id": "DS-BTR",
+      "org": "UNFCCC",
+      "license": "public"
+    },
+    {
+      "id": "DS-04",
+      "org": "University of Notre Dame (ND-GAIN)",
+      "license": "CC BY"
+    }
   ]
 }

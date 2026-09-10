@@ -46,6 +46,7 @@
     "state": "unknown",
     "received_usd": null,
     "received_state": "unknown",
+    "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -60,28 +61,36 @@
     "published_date": null,
     "components": {
       "nir": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "crt": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "ctf": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "ndc_track": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "adaptation": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "finance": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "redd_plus": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       },
       "article6": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       }
     },
     "$note": "No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed — unfccc.int refuses this engine's requests, so the registry itself has not been read.",
@@ -99,6 +108,7 @@
     "rank": null,
     "data_year": null,
     "state": "unknown",
+    "$reason": "the ND-GAIN bulk release carries no row for this country, so no index score has been read. It is not a claim that this country is not vulnerable.",
     "source": {
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
@@ -427,6 +437,7 @@
     "archived_submissions": 0,
     "matches_parsed_document": null,
     "state": "unknown",
+    "$reason": "the UNFCCC NDC registry index does not list this country as a Party, so no filing of its can be looked up. That is a statement about the index, not about the country.",
     "$note": "The registry index does not list this country as a Party.",
     "source": {
       "id": "DS-08",
@@ -1349,7 +1360,7 @@
       "last_run": "2026-09-10T21:09:45.434Z",
       "retrieved_at": null,
       "url": "https://unfccc.int/NDCREG",
-      "license": "public"
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
       "id": "DS-15",
@@ -1383,7 +1394,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "a97b9eb6cb265f3fed14e2098f47fc1f1eda754a3c4d73276792a801b92d7c05",
+    "payload_sha256": "46e076b8531e1ef4a80201ed0a48ea4d50e4974aac78abb8cedb091a18eff1b6",
     "inputs": [
       {
         "source_id": "DS-35",

@@ -28,6 +28,20 @@ void test("R1 — no 'absent' without a stated reason", () => {
   }
 });
 
+// The other half of R1. 'absent' is an accusation and needs a reason; 'unknown'
+// is the product's own claim — that a gap here is a measured limit of what was
+// read, not a blank — and needs one just as much. Scoped to the field literally
+// named `state`, which is the one that stands for the object it sits on.
+void test("R1 — no 'unknown' without a stated reason", () => {
+  for (const [file, data] of built()) {
+    for (const [path, o] of stated(data)) {
+      if (o.state !== 'unknown') continue;
+      assert.ok(typeof o.$reason === 'string' && o.$reason.length > 0,
+        `${file} ${path}.state is 'unknown' with no $reason — an unknown without a receipt is a blank, and this product sells the difference`);
+    }
+  }
+});
+
 // A receipt has to cover the thing it is attached to. The index that lists a
 // document verifies only the list; if a figure was read out of a sentence, the
 // bytes that sentence lives in are a separate input, or the record cites a
@@ -175,5 +189,25 @@ void test('GCF disbursements are never split across a multi-country project', ()
     assert.equal(sum, f.disbursed_usd ?? 0, `${file} disbursement total does not equal its own flows`);
     for (const r of disbursed) assert.ok(r.project_ref.length > 0, `${file} has a disbursement with no project`);
     if (f.disbursed_usd == null) assert.ok(f.$reason, `${file} reports no disbursement without saying why`);
+  }
+});
+
+// A record states each source's licence twice — once in `sources[]`, once in
+// `$sources_index`. Before this test they disagreed about DS-06-NDC, which is
+// the one thing a partner's counsel actually reads before republishing.
+void test('a record never states two licences for one source', () => {
+  for (const [file, data] of built()) {
+    const index = new Map((data.$sources_index ?? []).map((s) => [s.id, s.license]));
+    for (const s of data.sources ?? []) {
+      assert.ok(s.license.length > 0, `${file}: ${s.id} carries no licence`);
+      const stated = index.get(s.id);
+      assert.ok(stated !== undefined, `${file}: ${s.id} is used but missing from $sources_index`);
+      assert.equal(s.license, stated, `${file}: ${s.id} has two different licences in one record`);
+    }
+    // Every connected source must be citable: a licence a reader cannot check
+    // is not a licence, and this product's whole claim is that they can check.
+    for (const s of (data.sources ?? []).filter((x) => x.connection === 'connected')) {
+      assert.match(s.url, /^https:\/\//, `${file}: ${s.id} is connected with no resolvable home`);
+    }
   }
 });
