@@ -9,3 +9,11 @@ dist/
 pdf-45-50p-1-owid-climate/outputs/paris-movement/engine/cache/
 pdf-45-50p-1-owid-climate/work/python/
 pdf-45-50p-1-owid-climate/work/swift-cache/
+
+# tool output and working scratch: 51MB of screenshots and reference photos that
+# git would keep forever. Drop a line from here to start tracking one.
+.playwright-mcp/
+Real Resource/
+now-*.png
+uga-record.md
+uga-fixed.md

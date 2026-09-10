@@ -459,8 +459,10 @@
     "country_profile",
     "ndc_registry",
     "ndc_assessment",
+    "ndc_document",
     "emissions_profile",
     "projections",
+    "finance_flows",
     "verdict",
     "sources",
     "provenance"
@@ -514,6 +516,356 @@
       "name": "Climate Watch / CAIT — (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
+    }
+  },
+  "ndc_document": {
+    "kind": "First NDC",
+    "language": "English",
+    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Cambodia%20First/20201231_NDC_Update_Cambodia.pdf",
+    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/KHM_Cambodia_First_NDC_English.pdf",
+    "submission_date": "2020-12-31",
+    "pages": 156,
+    "reduction_pct": null,
+    "basis": null,
+    "base_year": null,
+    "target_year": null,
+    "unconditional_pct": null,
+    "conditional_pct": null,
+    "net_zero_year": null,
+    "confidence": "low",
+    "evidence": [
+      {
+        "page": 150,
+        "sentence": "This is a 41.7 % reduction compared with the BAU case."
+      },
+      {
+        "page": 103,
+        "sentence": "Mitigation action Sector Ministry Government priority GHG mitigation potential Baseline and targets Co-benefits(adaptation, environmental, social) Finance costs (USD) 2: Sustainable energy practices in brick industry Bricks 1.8 MtCO2e, 44% vs BAU by 2030 2.1: Boat-to-rotary kiln upgrade Roughly esti"
+      },
+      {
+        "page": 103,
+        "sentence": "3: Sustainable energy practices in food & beverage Industry 3.1: Replacing inefficient boilers in the F&B industry Food and Beverage 1.04 MtCO2e, 25% vs BAU by 2030 Finance benefits Improving brick kiln efficiency can improve the safety of brick kiln operation through implementation of better safety"
+      }
+    ],
+    "state": "unknown",
+    "$reason": "the document states 5 different percentages on the same basis (12.4%, 19.7%, 25%, 41.7%, 44%) and does not label which is the pledge.",
+    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "source": {
+      "id": "DS-06-NDC",
+      "name": "Cambodia First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Cambodia%20First/20201231_NDC_Update_Cambodia.pdf",
+      "retrieved_at": "2026-09-10"
+    }
+  },
+  "finance_flows": {
+    "channel": "Green Climate Fund",
+    "approved_usd": 357454222,
+    "co_financing_usd": 1166267078,
+    "disbursed_usd": 62854630,
+    "projects": 12,
+    "regional_projects": 7,
+    "regional_disbursed_usd": 200290621,
+    "instruments": [
+      "Equity",
+      "Grants",
+      "Senior Loans"
+    ],
+    "latest_disbursement": "2026-03-25",
+    "received": [
+      {
+        "year": 2018,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 40000000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2019,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 60000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2019,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 2340000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2020,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 440485,
+        "project_ref": "FP151",
+        "project_name": "Global Subnational Climate Fund (SnCF Global) – Technical Assistance (TA) Facility",
+        "state": "observed"
+      },
+      {
+        "year": 2020,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 3571500,
+        "project_ref": "FP152",
+        "project_name": "Global Subnational Climate Fund (SnCF Global) – Equity",
+        "state": "observed"
+      },
+      {
+        "year": 2021,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 900000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2021,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 60000000,
+        "project_ref": "FP156",
+        "project_name": "ASEAN Catalytic Green Finance Facility (ACGF): Green Recovery Program",
+        "state": "observed"
+      },
+      {
+        "year": 2022,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 5538000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2022,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 4170000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2023,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 36231981,
+        "project_ref": "FP199",
+        "project_name": "Public-Social-Private Partnerships for Ecologically-Sound Agriculture and Resilient Livelihood in Northern Tonle Sap Basin (PEARL)",
+        "state": "observed"
+      },
+      {
+        "year": 2023,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "FAO",
+        "amount_usd": 4291852.5,
+        "project_ref": "FP199",
+        "project_name": "Public-Social-Private Partnerships for Ecologically-Sound Agriculture and Resilient Livelihood in Northern Tonle Sap Basin (PEARL)",
+        "state": "observed"
+      },
+      {
+        "year": 2023,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 24000000,
+        "project_ref": "FP215",
+        "project_name": "Community Resilience Partnership Program",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 18234000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 3920000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "FAO",
+        "amount_usd": 10215991.5,
+        "project_ref": "FP199",
+        "project_name": "Public-Social-Private Partnerships for Ecologically-Sound Agriculture and Resilient Livelihood in Northern Tonle Sap Basin (PEARL)",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 54959050,
+        "project_ref": "FP228",
+        "project_name": "Cambodian Climate Financing Facility",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 20894200,
+        "project_ref": "FP240",
+        "project_name": "Collaborative R&DB Programme for Promoting the Innovation of Climate Technopreneurship",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 13989930.83,
+        "project_ref": "FP258",
+        "project_name": "Multi-country Project Advancing Early Warnings for All (EW4All)",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 80000000,
+        "project_ref": "FP270",
+        "project_name": "Climate Adaptive Irrigation and Sustainable Agriculture for Resilience (CAISAR) in Cambodia",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 13583618.83,
+        "project_ref": "FP274",
+        "project_name": "Building the Climate Resilience of Children and Communities through the Education Sector (BRACE)",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 9783456,
+        "project_ref": "SAP058",
+        "project_name": "Local Governments and Climate Change III (LGCC-3)",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 950000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "ADB",
+        "amount_usd": 3888000,
+        "project_ref": "FP076",
+        "project_name": "Climate-Friendly Agribusiness Value Chains Sector Project",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "KDB",
+        "amount_usd": 447660,
+        "project_ref": "FP228",
+        "project_name": "Cambodian Climate Financing Facility",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "KDB",
+        "amount_usd": 6500000,
+        "project_ref": "FP228",
+        "project_name": "Cambodian Climate Financing Facility",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "NCDD",
+        "amount_usd": 1399126,
+        "project_ref": "SAP058",
+        "project_name": "Local Governments and Climate Change III (LGCC-3)",
+        "state": "observed"
+      }
+    ],
+    "state": "observed",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 7 multi-country project(s) disbursing 200,290,621 USD in total are counted separately and never divided.",
+    "source": {
+      "id": "DS-15",
+      "name": "Green Climate Fund — projects and disbursements",
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "retrieved_at": "2026-09-10"
     }
   },
   "emissions_profile": {
@@ -1465,30 +1817,44 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": null,
+      "last_run": "2026-09-10T21:09:45.434Z",
       "retrieved_at": "2026-09-07",
       "url": "https://unfccc.int/NDCREG",
       "license": "public"
     },
     {
+      "id": "DS-15",
+      "name": "Green Climate Fund — projects and disbursements",
+      "pattern": "A",
+      "tables": [
+        "climate_finance"
+      ],
+      "connection": "connected",
+      "records": 26,
+      "last_run": "2026-09-10T19:58:14.348Z",
+      "retrieved_at": "2026-09-10",
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "license": "GCF open data, attribution requested"
+    },
+    {
       "id": "DS-BTR",
       "name": "UNFCCC First Biennial Transparency Reports",
-      "pattern": "D",
+      "pattern": "C",
       "tables": [
         "btr_status"
       ],
       "connection": "connected",
-      "records": 1,
-      "last_run": null,
+      "records": 2,
+      "last_run": "2026-09-10T20:12:43.405Z",
       "retrieved_at": "2026-09-07",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "license": "public"
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ],
   "provenance": {
-    "run_id": "fef16b2afded317c7680a38053096fec",
-    "built_at": "2026-09-07T23:32:02.148Z",
-    "payload_sha256": "f53f1f518ae05740c02f39afd269531a9fe1f7bf6fd3a9695861357b0c13e060",
+    "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
+    "built_at": "2026-09-10T20:12:43.405Z",
+    "payload_sha256": "952f7623105121bbf5a3f0320b74bc2cd0d9207689615a7aac7a3cc481aabfdb",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1543,6 +1909,30 @@
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
         "retrieved_at": "2026-09-07T23:32:02.148Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
+      },
+      {
+        "source_id": "DS-15",
+        "file_sha256": "8c3d7e89f4770c525e8e446686c64fc62ba83bff4770a3ee3ba58a8a1254ca00",
+        "retrieved_at": "2026-09-10T19:58:14.348Z",
+        "url": "https://api.gcfund.org/v1/projects"
+      },
+      {
+        "source_id": "DS-BTR",
+        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
+        "retrieved_at": "2026-09-10T20:12:43.405Z",
+        "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
+        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "da6d38247f614f7cbfeaf9162ad0cd4bde101e0287ff32e913b261c1e746e216",
+        "retrieved_at": "2026-09-10T19:57:04.914Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/KHM_Cambodia_First_NDC_English.pdf"
       }
     ]
   },
@@ -1600,13 +1990,18 @@
     },
     {
       "id": "DS-06-NDC",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, documents via openclimatedata",
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-15",
+      "org": "Green Climate Fund",
+      "license": "GCF open data, attribution requested"
     },
     {
       "id": "DS-BTR",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ]
 }

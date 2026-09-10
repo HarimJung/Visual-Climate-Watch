@@ -6,7 +6,8 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
+    "dev": "node scripts/dev.mjs",
+    "dev:web": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
@@ -15,7 +16,12 @@
     "engine:build": "node engine/cli.ts build-all",
     "engine:verify": "node engine/cli.ts verify",
     "engine:serve": "node engine/server.ts",
-    "engine:etl": "node engine/cli.ts etl"
+    "engine:etl": "node engine/cli.ts etl",
+    "predev": "node scripts/stage-data.mjs",
+    "prebuild": "node scripts/stage-data.mjs",
+    "engine:index": "node engine/cli.ts index",
+    "engine:refresh": "node engine/cli.ts etl && node engine/cli.ts ndc-parse --refresh && node engine/cli.ts build-all --refresh && node engine/cli.ts verify",
+    "engine:census": "node engine/cli.ts report --json"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

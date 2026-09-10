@@ -1,4 +1,3 @@
-import khm from '../data/khm.json';
 export type State = 'observed'|'pledged'|'unknown'|'absent';
 export type Source = {id:string;name?:string;url:string;retrieved_at?:string;document_url?:string};
 export type Point = {year:number;value_mtco2e:number;state?:string;source_id?:string};
@@ -6,34 +5,40 @@ export type CountryData = {
  $contract:string;country:{iso3:string;name_en:string;groups:string[]};
  ndc:{version:string;submission_date:string|null;base_year:number|null;base_year_emissions_mtco2e:number|null;base_year_state:string;target_year:number|null;bau_2030_mtco2e:number|null;bau_state:string;reduction_mtco2e:number|null;reduction_pct:number|null;target_emissions_mtco2e:number|null;target_state:string;folu_share_of_reduction_pct:number|null;sectors:string[];net_zero_target_year:number|null;net_zero_state:string;conditionality:{statement:string;unconditional_pct:number|null;conditional_pct:number|null;split_state:string;extraction_confidence:string};source:Source};
  finance_need:{mitigation_usd:number|null;adaptation_usd:number|null;state:string;received_usd:number|null;received_state:string;source:Source};
- btr:{version:string;submitted:boolean|null;submission_date:string|null;published_date:string|null;components:Record<string,{state:string}>;source:Source};
- vulnerability:{ndgain_score:number|null;vulnerability:number|null;readiness:number|null;rank:number|null;data_year:number|null;state:string;source:Source};
- series:{observed:Point[];bau:Point[];target:Point[]};derived:{ambition_gap_factor:number|null;trend_annual_mtco2e:number|null;on_track:boolean|null;gap_state:string;$reason?:string};
+ btr:{version:string;submitted:boolean|null;submission_date:string|null;published_date:string|null;components:Record<string,{state:string;$reason?:string;$evidence?:string[]}>;$note?:string;source:Source};
+ vulnerability:{ndgain_score:number|null;vulnerability:number|null;readiness:number|null;rank:number|null;data_year:number|null;state:string;$note?:string;source:Source};
+ series:{observed:Point[];bau:Point[];target:Point[]};derived:{ambition_gap_factor:number|null;trend_annual_mtco2e:number|null;on_track:boolean|null;gap_state:string;$reason?:string;$note?:string};
  // v1.1, optional: a payload without it still satisfies everything above.
- sources?:{id:string;name:string;tables:string[];connection:'connected'|'not-connected'|'failed';records:number;last_run:string|null;retrieved_at:string|null;url:string;license:string}[];
+ sources?:{id:string;name:string;pattern?:string;tables:string[];connection:'connected'|'not-connected'|'failed';records:number;last_run:string|null;retrieved_at:string|null;url:string;license:string}[];
  $meta?:{mode:string;snapshot:string;basis:string;notice:string};
+ $profile?:string;$extensions?:string[];$sources_index?:{id:string;org:string;license:string}[];
+ country_profile?:{region:string|null;income_group:string|null;population:number|null;population_year:number|null;state:string;$note?:string;source:Source};
+ ndc_registry?:{party:string;latest_version:string|null;submission_date:string|null;document_url:string|null;archived_submissions:number;matches_parsed_document:boolean|null;state:string;$reason?:string;$note?:string;source:Source};
+ ndc_assessment?:{vintage:string;summary:string|null;ghg_target:string|null;target_type:string|null;base_year:number|null;target_year:number|null;conditionality:string|null;conditionality_class:string;gases:string|null;sectors:string|null;state:string;$note?:string;source:Source};
+ emissions_profile?:{latest_year:number|null;total_mtco2e:number|null;excluding_lucf_mtco2e:number|null;per_capita_tco2e:number|null;state:string;by_gas:{gas:string;value_mtco2e:number|null;state:string;source_id:string}[];by_sector:{sector:string;value_mtco2e:number|null;state:string;source_id:string}[];by_source:{source_id:string;scope:string;series:{year:number;value_mtco2e:number}[]}[];$note?:string};
+ projections?:{variable:string;baseline_period:string;baseline_c:number|null;state:string;scenarios:{scenario:string;period:string;variable:string;value:number|null;anomaly:number|null;unit:string;baseline_period:string;model:string;state:string;source_id:string}[];$note?:string};
+ verdict?:{text:string;clauses:{field:string;text:string}[];$note?:string};
+ // Pattern D's reading of the NDC document, with the sentence it rests on.
+ ndc_document?:{kind:string;language:string;document_url:string;retrieval_url:string;submission_date:string|null;pages:number;reduction_pct:number|null;basis:'base-year'|'bau'|null;base_year:number|null;target_year:number|null;unconditional_pct:number|null;conditional_pct:number|null;net_zero_year:number|null;confidence:'high'|'medium'|'low';evidence:{page:number;sentence:string}[];state:string;$reason?:string;$note?:string;source:Source};
+ // One channel of climate finance, named as one.
+ finance_flows?:{channel:string;approved_usd:number|null;co_financing_usd:number|null;disbursed_usd:number|null;projects:number;regional_projects:number;regional_disbursed_usd:number|null;instruments:string[];latest_disbursement:string|null;received:{year:number;flow_type:'approval'|'disbursement';channel:string;instrument:string|null;provider:string|null;amount_usd:number;project_ref:string;project_name:string;state:string}[];state:string;$reason?:string;$note?:string;source:Source};
+ provenance?:{run_id:string|null;built_at:string|null;payload_sha256:string|null;inputs:{source_id:string;file_sha256:string;retrieved_at:string;url:string}[]};
 };
-export const countries=[{iso3:'KHM',name:'Cambodia',region:'Southeast Asia',edition:'2020'},{iso3:'KOR',name:'Republic of Korea',region:'East Asia',edition:'2021'},{iso3:'BRA',name:'Brazil',region:'South America',edition:'2023'}];
+// The roster the tray renders. /api/v1/engine supplies the real one; this is
+// only the shape.
+export type RosterRow={iso3:string;name_en:string;region:string|null;edition:string;reduction_pct:number|null;btr_components:Record<string,{state:string;$reason?:string;$evidence?:string[]}>|null;observed_years?:number;latest_year?:number|null;total_mtco2e?:number|null;per_capita_tco2e?:number|null;ndgain_score?:number|null;income_group?:string|null};
 export const jewelNames:Record<string,string>={nir:'National inventory',crt:'Reporting tables',ctf:'Tabular formats',ndc_track:'NDC tracking',adaptation:'Adaptation',finance:'Finance & support',redd_plus:'REDD+',article6:'Article 6'};
-export function countrySnapshot(iso:string):CountryData|null{
- if(!countries.some(c=>c.iso3===iso))return null;
- const d=structuredClone(khm) as CountryData;
- d.$meta={mode:'document-snapshot',snapshot:'2020 NDC · 2024 BTR',basis:'2030 BAU',notice:'Historical document snapshot. Not a live assessment or the latest NDC.'};
- if(iso==='KHM')return d;
- const korea=iso==='KOR';
- const source:Source=korea?{id:'UNFCCC-KOR-2021',name:'Republic of Korea Enhanced NDC (2021)',url:'https://www.opm.go.kr/en/policies/Nationally_Determined_Contribution.do',retrieved_at:'2026-09-07'}:{id:'UNFCCC-BRA-2023',name:'Brazil First NDC — 2023 adjustment',url:'https://unfccc.int/documents/633022',retrieved_at:'2026-09-07'};
- d.country={iso3:iso,name_en:korea?'Republic of Korea':'Brazil',groups:korea?['EAST ASIA','2021 NDC']:['SOUTH AMERICA','2023 NDC']};
- d.ndc={...d.ndc,version:korea?'Enhanced NDC (2021)':'First NDC adjustment (2023)',submission_date:korea?'2021-12-23':'2023-10-27',base_year:korea?2018:2005,base_year_emissions_mtco2e:korea?727.6:null,base_year_state:korea?'observed':'unknown',bau_2030_mtco2e:null,bau_state:'unknown',reduction_mtco2e:korea?291:null,reduction_pct:korea?40:53.1,target_emissions_mtco2e:korea?436.6:1200,folu_share_of_reduction_pct:null,sectors:[],net_zero_target_year:2050,net_zero_state:'pledged',source,conditionality:{statement:'A numeric conditional / unconditional split has not been loaded for this document snapshot.',unconditional_pct:null,conditional_pct:null,split_state:'unknown',extraction_confidence:'low'}};
- d.finance_need={mitigation_usd:null,adaptation_usd:null,state:'unknown',received_usd:null,received_state:'unknown',source};
- d.btr={...d.btr,submitted:null,submission_date:null,published_date:null,source:{id:'DS-BTR',name:'UNFCCC BTR registry',url:'https://unfccc.int/first-biennial-transparency-reports'}};
- d.vulnerability={ndgain_score:null,vulnerability:null,readiness:null,rank:null,data_year:null,state:'unknown',source:{id:'DS-04',name:'ND-GAIN',url:'https://gain.nd.edu'}};
- d.series={observed:korea?[{year:2018,value_mtco2e:727.6,state:'observed',source_id:source.id}]:[],bau:[],target:korea?[{year:2018,value_mtco2e:727.6,state:'observed'},{year:2030,value_mtco2e:436.6,state:'pledged'}]:[{year:2030,value_mtco2e:1200,state:'pledged'}]};
- d.$meta={mode:'document-snapshot',snapshot:korea?'2021 NDC':'2023 NDC',basis:korea?'2018 baseline':'2005 baseline',notice:'Historical document snapshot. Not a live assessment or the latest NDC.'};
- // Remove Cambodia-only notes and indices from the supplied fixture when deriving another snapshot.
- return JSON.parse(JSON.stringify(d,(key,value)=>key.startsWith('$')&&!['$contract','$meta','$reason'].includes(key)?undefined:value));
-}
 export const fmt=(n:number|null|undefined,digits=1)=>n==null?'Unknown':n.toLocaleString('en-US',{maximumFractionDigits:digits});
-export function verdict(d:CountryData){const n=d.ndc;const first=n.reduction_pct==null?`${d.country.name_en} has no target loaded.`:`${d.country.name_en} pledges a ${fmt(n.reduction_pct)}% reduction by ${n.target_year}, against ${d.$meta?.basis??'the stated reference'}.`;return first+(d.country.iso3==='KHM'?' Most targets depend on international support; the share is unquantified.':'')+(d.series.observed.length<2?' Progress cannot yet be assessed from this snapshot.':'');}
+// series.observed holds one row per source per year, so its length is a count of
+// observations, not of years. Both numbers are true and they are not the same.
+export const observedYears=(d:CountryData)=>new Set(d.series.observed.map(p=>p.year)).size;
+export const clauseFor=(d:CountryData,field:string)=>d.verdict?.clauses.find(c=>c.field===field)?.text;
+/** The engine's sentence for this country, or the reason there isn't one. */
+export function verdict(d:CountryData,field?:string){
+ if(field){const c=clauseFor(d,field);if(c)return c}
+ if(d.verdict?.text)return d.verdict.text;
+ return `No assessment has been generated for ${d.country.name_en}.`;
+}
 export function validateCountry(value:unknown):value is CountryData {
  if(!value||typeof value!=='object')return false;const d=value as CountryData;const states=['observed','pledged','unknown','absent'];
  return d.$contract==='visual-climate/country-dial@1.0.0'&&typeof d.country?.iso3==='string'&&!!d.ndc?.source?.url&&!!d.ndc?.conditionality&&!!d.btr?.components&&!!d.finance_need&&!!d.vulnerability&&!!d.derived&&['observed','bau','target'].every(k=>Array.isArray(d.series?.[k as keyof typeof d.series])&&(d.series[k as keyof typeof d.series] as Point[]).every(p=>Number.isFinite(p.year)&&Number.isFinite(p.value_mtco2e)))&&Object.values(d.btr.components).every(c=>states.includes(c.state));

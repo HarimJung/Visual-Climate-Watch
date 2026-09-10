@@ -1,0 +1,381 @@
+// DS-06-NDC — the NDC documents themselves (Pattern D: PDF → structured).
+//
+// WHY A MIRROR, AND WHY THIS ONE. unfccc.int serves every path through
+// Incapsula, including the document CDN: a request for the Cambodia NDC PDF
+// with this engine's User-Agent returns a 212-byte bot-check page with HTTP
+// 200, not a PDF. ENGINE-BUILD §9 forbids working around that, so the
+// documents come from openclimatedata's mirror on raw.githubusercontent.com,
+// the same publisher DS-06 and DS-08 already retrieve from. The URL this
+// record cites and shows a reader is always the UNFCCC's own; the mirror is
+// recorded as the retrieval path.
+//
+// VINTAGE IS THE RISK HERE, NOT PARSING. The mirror is archived and carries
+// one document per Party — 153 first NDCs (many of them the 2020-21 revised
+// versions) and 14 second NDCs. Where the registry (DS-08) lists a later
+// active submission, `ndc_registry.matches_parsed_document` already says so
+// and the verdict prints it. A figure read here is never presented as the
+// current pledge on its own.
+//
+// WHAT IS EXTRACTED, AND WHAT IS REFUSED. Only an economy-wide percentage
+// reduction stated in one of the two canonical NDC sentence forms — against a
+// base year, or against a business-as-usual projection. Everything else is
+// left unknown with the candidates listed:
+//   · two different percentages for the same basis and year (Viet Nam's
+//     document restates its 8%/25% pledge as 9%/27%; picking one is a guess)
+//   · intensity targets (India's 45% is per unit of GDP, not an absolute cut)
+//   · sector targets, renewable-share targets, forest-cover targets
+//   · trajectory targets with no percentage at all (South Africa)
+// A parsed percentage is a `pledged` value with the sentence it came from and
+// the page it sits on, so a reader can check the engine's reading against the
+// document. No absolute target tonnage is invented from a percentage: that
+// conversion belongs to derive(), which states the series it used.
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { snapshot, etlLog, parseCsv, type EtlLog, type Snapshot, asModule, type EtlModule } from './_base.ts';
+import { ROOT } from '../paths.ts';
+
+export const ID = 'DS-06-NDC';
+export const INDEX_URL = 'https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv';
+export const PDF_BASE = 'https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/';
+export const HOME = 'https://unfccc.int/NDCREG';
+export const MIRROR = 'https://github.com/openclimatedata/national-climate-plans';
+export const LICENSE = 'UNFCCC public filings; the mirror declares CC0 for its scripts only';
+export const TARGETS_PATH = join(ROOT, 'data/ndc-targets.json');
+
+export type Basis = 'base-year' | 'bau';
+export type Evidence = { page: number; sentence: string };
+
+export type NdcTarget = {
+  iso3: string;
+  party: string;
+  /** The mirror's own label: "First NDC", "Second NDC". */
+  kind: string;
+  language: string;
+  /** The UNFCCC's URL for this document. What a reader is shown. */
+  document_url: string;
+  /** Where these bytes were actually fetched from. */
+  retrieval_url: string;
+  submission_date: string | null;
+  reduction_pct: number | null;
+  basis: Basis | null;
+  base_year: number | null;
+  target_year: number | null;
+  unconditional_pct: number | null;
+  conditional_pct: number | null;
+  net_zero_year: number | null;
+  confidence: 'high' | 'medium' | 'low';
+  evidence: Evidence[];
+  /** Why no figure was accepted. Present exactly when reduction_pct is null. */
+  $reason?: string;
+  pages: number;
+  text_sha256: string;
+  /** The document's own bytes, and when they were fetched. The index only says
+   *  where a document is; this is what verifies the sentence that was read. */
+  document_sha256: string;
+  document_retrieved_at: string | null;
+};
+
+export type TargetsFile = {
+  $note: string;
+  extracted_at: string;
+  index_sha256: string;
+  extractor: string;
+  targets: NdcTarget[];
+};
+
+// ─── extraction ─────────────────────────────────────────────────────────────
+// Pure, so it can be tested against sentences without a PDF in the loop.
+
+const norm = (s: string) =>
+  s.replace(/­/g, '')
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/[‐-―−]/g, '-')
+    .replace(/ /g, ' ')
+    .replace(/-\s*\n\s*/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const PCT = String.raw`(\d{1,2}(?:[.,]\d{1,2})?)\s*(?:%|per\s?cent(?:age)?)`;
+const AGAINST = String.raw`(?:below|beneath|compared?\s+(?:to|with)|relative\s+to|from|against|versus|vs\.?)`;
+const BAU = String.raw`(?:"?business[-\s]?as[-\s]?usual"?(?:\s*\(?BAU\)?)?|\bBAU\b|baseline\s+scenario|reference\s+scenario|business\s+as\s+usual\s+scenario)`;
+
+/**
+ * Four sentence shapes: percentage first or last, base year or BAU. They are
+ * applied around each percentage rather than swept across the page, because a
+ * single sweep consumes overlapping matches -- Sri Lanka's "3% unconditional
+ * and 7% conditional against BAU" reads as one target that way, and the
+ * document's two figures become one accepted number.
+ */
+const PCT_RE = new RegExp(PCT, 'gi');
+const FWD_BAU = new RegExp(String.raw`^[^.;]{0,60}?${AGAINST}\s+(?:the\s+|a\s+|its\s+)?(?:projected\s+)?${BAU}`, 'i');
+const FWD_BASE = new RegExp(String.raw`^[^.;]{0,60}?${AGAINST}\s+(?:the\s+)?((?:19|20)\d{2})\s*(?:levels?|base(?:line)?\s*year|emissions?|values?)`, 'i');
+const REV_BAU = new RegExp(String.raw`${AGAINST}\s+(?:the\s+|a\s+|its\s+)?(?:projected\s+)?${BAU}[^.;]{0,70}?\bby\s+$`, 'i');
+const REV_BASE = new RegExp(String.raw`${AGAINST}\s+(?:the\s+)?((?:19|20)\d{2})\s*(?:levels?|emissions?)[^.;]{0,70}?\bby\s+$`, 'i');
+
+/**
+ * A window mentioning any of these is not an economy-wide absolute cut, even
+ * when the sentence otherwise reads like one. India's 45% is intensity per
+ * unit of GDP; a renewable share is not an emissions reduction at all.
+ */
+const NOT_A_TOTAL = new RegExp([
+  'intensity', String.raw`per\s+unit\s+of\s+GDP`, 'renewable', String.raw`electricity\s+generation`,
+  String.raw`forest\s+cover`, 'deforestation', String.raw`share\s+of\s+(?:energy|power|electricity)`,
+  String.raw`water\s+use`, String.raw`installed\s+capacity`,
+  // One sector is not the economy. Tuvalu's 60% is the energy sector, Saint
+  // Lucia's 7% is the energy sector, Samoa's 26% is AFOLU, Laos' 10% is final
+  // energy consumption -- each reads as an economy-wide cut without this.
+  String.raw`\b(?:energy|transport|waste|agricultur\w+|industr\w+|power|building|forestry|AFOLU|LULUCF|IPPU)\s+(?:sub[-\s]?)?sector`,
+  String.raw`final\s+energy\s+consumption`,
+  // Zimbabwe's 33% is per capita, which is not a cut in total emissions.
+  String.raw`per\s+capita`,
+  // A document recounting a target it already met is not stating its pledge:
+  // the United States' filing describes surpassing its 2020 target of 17%.
+  String.raw`\b(?:met|surpassed|exceeded|achieved)\b[^.;]{0,40}\btarget`,
+  // Somebody else's target. Saudi Arabia's 30% is the Global Methane Pledge.
+  String.raw`global\s+methane|Global\s+Methane\s+Pledge|\bglobal\s+emissions\b`,
+].join('|'), 'i');
+
+const TARGET_YEARS = [2025, 2030, 2035, 2040, 2045, 2050];
+
+type Candidate = {
+  pct: number; basis: Basis; base_year: number | null; target_year: number | null;
+  condition: 'unconditional' | 'conditional' | null;
+  page: number; sentence: string;
+};
+
+const conditionOf = (w: string): Candidate['condition'] =>
+  /unconditional|domestic\s+resources|own\s+resources|without\s+(?:international|external)\s+support/i.test(w) ? 'unconditional'
+    : /conditional|international\s+support|external\s+support|international\s+finance/i.test(w) ? 'conditional'
+      : null;
+
+/**
+ * Candidates from one page of normalised text. Exported for the tests.
+ *
+ * Everything is judged on the sentence the match sits in, not on a character
+ * window around it: Indonesia's pledge sentence follows one about renewable
+ * energy sources, and a window wide enough to reach that word discards a real
+ * target as a sector target.
+ */
+export function candidatesOf(text: string, page = 1): Candidate[] {
+  const out: Candidate[] = [];
+  PCT_RE.lastIndex = 0;
+  for (const hit of text.matchAll(PCT_RE)) {
+    const at = hit.index ?? 0;
+    const after = text.slice(at + hit[0].length, at + hit[0].length + 150);
+    const before = text.slice(Math.max(0, at - 150), at);
+
+    let basis: Basis | null = null;
+    let base: number | null = null;
+    let m: RegExpMatchArray | null;
+    if (FWD_BAU.test(after)) basis = 'bau';
+    else if ((m = after.match(FWD_BASE))) { basis = 'base-year'; base = Number(m[1]); }
+    else if (REV_BAU.test(before)) basis = 'bau';
+    else if ((m = before.match(REV_BASE))) { basis = 'base-year'; base = Number(m[1]); }
+    if (!basis) continue;
+
+    // "40-50 % reduction" is a range quoted from somebody's pathway, not a
+    // pledge; the upper bound would otherwise be read as the target.
+    if (/\d\s*[-–—]\s*$/.test(text.slice(Math.max(0, at - 6), at))) continue;
+    // "a reduction ... to 70 percent relative to the 1990 level" is a level,
+    // not a cut: Russia's target leaves emissions at 70% of 1990, which is a
+    // 30% reduction. "by 70 percent below" is the cut. Only "by" is read.
+    if (/\bto\s*$/.test(text.slice(Math.max(0, at - 24), at))) continue;
+
+    const from = text.lastIndexOf('. ', at) + 1;
+    const to = text.indexOf('. ', at + hit[0].length);
+    const sentence = text.slice(from, to === -1 ? text.length : to + 1).trim();
+    if (NOT_A_TOTAL.test(sentence)) continue;
+
+    const pct = Number(hit[1].replace(',', '.'));
+    if (!Number.isFinite(pct) || pct < 1 || pct > 99) continue;
+    if (base != null && (base < 1990 || base > 2025)) continue;
+
+    // The horizon may sit in the next sentence -- Albania states the
+    // percentage in one and "less in 2030" in the one after -- so the year is
+    // looked for more widely than the disqualifying words are.
+    const YEAR = /\bby\s+(?:the\s+)?(?:year\s+(?:of\s+)?)?(20[2-9]\d)\b|\bin\s+(20[2-9]\d)\b/i;
+    const near = text.slice(Math.max(0, at - 200), at + hit[0].length + 200);
+    const byYear = sentence.match(YEAR) ?? near.match(YEAR);
+    let target = byYear ? Number(byYear[1] ?? byYear[2]) : null;
+    if (target == null) {
+      // Nothing nearby: accept a year only if the page names exactly one.
+      const onPage = TARGET_YEARS.filter((y) => text.includes(String(y)));
+      if (onPage.length === 1) target = onPage[0];
+    }
+    // A horizon already in the past is a document's own history, not its
+    // pledge: Indonesia's first NDC restates a 26%-by-2020 commitment
+    // alongside the 2030 one, and reading that as the target is wrong.
+    if (target == null || target === base || target < 2025) continue;
+
+    out.push({
+      pct, basis, base_year: base, target_year: target,
+      condition: conditionOf(sentence), page, sentence: sentence.slice(0, 300),
+    });
+  }
+  return out;
+}
+
+export type Extraction = Pick<NdcTarget, 'reduction_pct' | 'basis' | 'base_year' | 'target_year' | 'unconditional_pct' | 'conditional_pct' | 'net_zero_year' | 'confidence' | 'evidence'> & { $reason?: string };
+
+/** Net zero only when the document names exactly one year for it. */
+function netZeroYear(pages: string[]): number | null {
+  const years = new Set<number>();
+  for (const p of pages) {
+    for (const hit of p.matchAll(/(?:net[-\s]?zero|carbon[-\s]neutral(?:ity)?|climate[-\s]neutral(?:ity)?)[^.;]{0,80}?\b(20[2-9]\d)\b/gi)) {
+      years.add(Number(hit[1]));
+    }
+  }
+  return years.size === 1 ? [...years][0] : null;
+}
+
+export function extract(pages: string[]): Extraction {
+  const empty = {
+    reduction_pct: null, basis: null, base_year: null, target_year: null,
+    unconditional_pct: null, conditional_pct: null,
+    net_zero_year: netZeroYear(pages), confidence: 'low' as const, evidence: [] as Evidence[],
+  };
+  // Scanned filings have no text layer at all. Saying "no sentence states a
+  // target" about a document nobody has read would be a false statement about
+  // the Party, not about the engine.
+  const chars = pages.join('').length;
+  if (!pages.length || chars / pages.length < 40) {
+    return { ...empty, $reason: 'the mirrored document has no extractable text layer — it is a scan — so nothing in it has been read.' };
+  }
+  const cands = pages.flatMap((p, i) => candidatesOf(p, i + 1));
+  if (!cands.length) return { ...empty, $reason: 'no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.' };
+
+  const key = (c: Candidate) => `${c.basis}|${c.base_year ?? ''}|${c.target_year}`;
+  const groups = new Map<string, Candidate[]>();
+  for (const c of cands) groups.set(key(c), (groups.get(key(c)) ?? []).concat(c));
+
+  if (groups.size > 1) {
+    const shown = [...groups.keys()].sort().map((k) => k.replace(/\|/g, ' · ')).join('; ');
+    return { ...empty, $reason: `the document states targets on more than one basis or horizon (${shown}); choosing between them would be a guess.` };
+  }
+
+  const group = [...groups.values()][0];
+  const head = group[0];
+  const evidence = [...new Map(group.map((c) => [c.sentence, { page: c.page, sentence: c.sentence }])).values()].slice(0, 3);
+  const distinct = [...new Set(group.map((c) => c.pct))].sort((a, b) => a - b);
+
+  if (distinct.length === 1) {
+    // A figure the document itself calls conditional is one half of a pair.
+    // Zambia pledges 25% unconditionally and 47% with support; reading only
+    // the 47% and printing it as the target overstates what was promised.
+    if (group.every((c) => c.condition === 'conditional')) {
+      return { ...empty, evidence, $reason: `the only figure found (${distinct[0]}%) is one the document conditions on international support, and the unconditional figure it is paired with was not found.` };
+    }
+    return {
+      reduction_pct: distinct[0], basis: head.basis, base_year: head.base_year, target_year: head.target_year,
+      unconditional_pct: null, conditional_pct: null, net_zero_year: empty.net_zero_year,
+      confidence: group.length >= 2 ? 'high' : 'medium', evidence,
+    };
+  }
+  // There is no branch here that pairs two percentages into an
+  // unconditional/conditional split. One was written and then removed: it read
+  // Djibouti's 40/20 the wrong way round and paired Mexico's 22% target with
+  // its 70% black-carbon figure. Two percentages on one basis is a refusal.
+  return { ...empty, evidence, $reason: `the document states ${distinct.length} different percentages on the same basis (${distinct.join('%, ')}%) and does not label which is the pledge.` };
+}
+
+// ─── retrieval ──────────────────────────────────────────────────────────────
+
+/**
+ * Two of the mirror's index rows carry an http link to unfccc.int for the same
+ * file every other row links over https. The contract requires https of every
+ * source URL, so the scheme -- and only the scheme -- is normalised; the host
+ * and path are the index's own.
+ */
+const httpsOnly = (url: string) => url.replace(/^http:\/\//, 'https://');
+
+/** pdftotext keeps page breaks as form feeds. No layout mode: reflowed prose parses better than columns. */
+function pdfPages(path: string): string[] {
+  const raw = execFileSync('pdftotext', ['-q', '-enc', 'UTF-8', path, '-'], { maxBuffer: 256 * 1024 * 1024, encoding: 'utf8' });
+  return raw.split('\f').map(norm).filter(Boolean);
+}
+
+export function haveExtractor(): boolean {
+  try { execFileSync('pdftotext', ['-v'], { stdio: 'ignore' }); return true; } catch { return false; }
+}
+
+/**
+ * Fetch every mirrored document, read it, and write data/ndc-targets.json.
+ * Run by `engine/cli.ts ndc-parse`, never by a build: the build reads the
+ * committed result so it stays reproducible on a machine without poppler.
+ */
+export async function parseAll(refresh = false, only?: string): Promise<{ file: TargetsFile; log: EtlLog; snap: Snapshot }> {
+  const started = Date.now();
+  if (!haveExtractor()) throw new Error(`${ID}: pdftotext (poppler) is not on PATH; install it or keep the committed data/ndc-targets.json`);
+  const snap = await snapshot(INDEX_URL, ID, 'national-climate-plans.csv', refresh);
+  const rows = parseCsv(snap.bytes.toString('utf8'));
+  if (!rows.length || !('Filename' in rows[0]) || !('EncodedAbsUrl' in rows[0])) {
+    throw new Error(`${ID}: ${INDEX_URL} does not have the columns this adapter reads`);
+  }
+
+  const targets: NdcTarget[] = [];
+  for (const r of rows) {
+    const iso3 = r.Code?.trim().toUpperCase();
+    if (!iso3 || !/^[A-Z]{3}$/.test(iso3) || !r.Filename) continue;
+    if (only && iso3 !== only) continue;
+    const url = PDF_BASE + encodeURIComponent(r.Filename);
+    let pages: string[] = [];
+    let doc: Snapshot | undefined;
+    try {
+      doc = await snapshot(url, ID, r.Filename, refresh);
+      pages = pdfPages(doc.path);
+    } catch (err) {
+      targets.push({
+        iso3, party: r.Party || iso3, kind: r.Kind || 'NDC', language: r.Language || '',
+        document_url: httpsOnly(r.EncodedAbsUrl), retrieval_url: url, submission_date: /^\d{4}-\d{2}-\d{2}$/.test(r.SubmissionDate ?? '') ? r.SubmissionDate : null,
+        reduction_pct: null, basis: null, base_year: null, target_year: null,
+        unconditional_pct: null, conditional_pct: null, net_zero_year: null,
+        confidence: 'low', evidence: [], pages: 0, text_sha256: '', document_sha256: doc?.sha256 ?? '', document_retrieved_at: doc?.retrieved_at ?? null,
+        $reason: `the document could not be read: ${String((err as Error).message ?? err).slice(0, 200)}`,
+      });
+      continue;
+    }
+    const ex = extract(pages);
+    targets.push({
+      iso3, party: r.Party || iso3,
+      // The mirror marks superseded filings in the filename; a reader should
+      // see that on the record, not have to infer it from the date.
+      kind: (r.Kind || 'NDC') + (/Archived/i.test(r.Filename) ? ' (archived)' : ''),
+      language: r.Language || '',
+      document_url: httpsOnly(r.EncodedAbsUrl), retrieval_url: url,
+      submission_date: /^\d{4}-\d{2}-\d{2}$/.test(r.SubmissionDate ?? '') ? r.SubmissionDate : null,
+      ...ex, pages: pages.length,
+      text_sha256: createHash('sha256').update(pages.join('\f')).digest('hex'),
+      document_sha256: doc!.sha256, document_retrieved_at: doc!.retrieved_at,
+    });
+    process.stdout.write(`  ${iso3} ${ex.reduction_pct != null ? `${ex.reduction_pct}% ${ex.basis} → ${ex.target_year} (${ex.confidence})` : 'unknown'}\n`);
+  }
+
+  targets.sort((a, b) => a.iso3.localeCompare(b.iso3));
+  const file: TargetsFile = {
+    $note: 'Read by engine/sources/ds-06-ndc-docs.ts from the mirrored NDC documents. Committed so a build reproduces without a PDF extractor installed. Every accepted figure carries the sentence and page it came from; every refusal carries its reason.',
+    extracted_at: new Date().toISOString(),
+    index_sha256: snap.sha256,
+    extractor: 'ds-06-ndc-docs@1',
+    targets,
+  };
+  return { file, log: etlLog(ID, snap, targets.filter((t) => t.reduction_pct != null).length, started), snap };
+}
+
+/** What the build reads: the committed extraction, not the PDFs. */
+export function collect(): { data: Map<string, NdcTarget>; file: TargetsFile | null } {
+  if (!existsSync(TARGETS_PATH)) return { data: new Map(), file: null };
+  const file = JSON.parse(readFileSync(TARGETS_PATH, 'utf8')) as TargetsFile;
+  return { data: new Map(file.targets.map((t) => [t.iso3, t])), file };
+}
+
+export function write(file: TargetsFile): void {
+  writeFileSync(TARGETS_PATH, JSON.stringify(file, null, 2) + '\n');
+}
+
+export const etlModule: EtlModule = asModule(ID, async () => {
+  const { log } = await parseAll();
+  return { log };
+});

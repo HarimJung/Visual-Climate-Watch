@@ -55,18 +55,30 @@
   },
   "btr": {
     "version": "BTR1",
-    "submitted": null,
+    "submitted": true,
     "submission_date": null,
     "published_date": null,
     "components": {
       "nir": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "2024-04-15_DE_NID_2024_UNFCCC_english.pdf"
+        ]
       },
       "crt": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "DEU-CRT-2024-V1.1-1990-20241206-101928_started.xlsx",
+          "DEU-CRT-2024-V1.1-1991-20241206-101928_started.xlsx",
+          "DEU-CRT-2024-V1.1-1992-20241206-101928_started.xlsx"
+        ]
       },
       "ctf": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "DEU-CTF-FTC-2024.xlsx",
+          "DEU-CTF-NDC-2024.xlsx"
+        ]
       },
       "ndc_track": {
         "state": "unknown"
@@ -84,11 +96,12 @@
         "state": "unknown"
       }
     },
+    "$note": "38 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC — First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-10"
     }
   },
   "vulnerability": {
@@ -1336,7 +1349,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is The NDC of the European Union and its Member States, filed 2025-11-05. 78 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (32). For 2024 the sources disagree: DS-02 749.6 MtCO₂e, DS-35 659.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. ND-GAIN scores it 69.2 for 2024. In the first NDC round, WRI's CAIT assessment recorded: The European Union and its 28 Member States submitted a joint NDC: at least 40% domestic reduction in GHG emissions by 2030 compared to 1990 It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.28°C under SSP1-2.6 to +4.61°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "The registry's current submission for this Party is The NDC of the European Union and its Member States, filed 2025-11-05. 78 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (32). For 2024 the sources disagree: DS-02 749.6 MtCO₂e, DS-35 659.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 69.2 for 2024. In the first NDC round, WRI's CAIT assessment recorded: The European Union and its 28 Member States submitted a joint NDC: at least 40% domestic reduction in GHG emissions by 2030 compared to 1990 It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.28°C under SSP1-2.6 to +4.61°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc_registry.submission_date",
@@ -1353,6 +1366,10 @@
       {
         "field": "derived.$reason",
         "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+      },
+      {
+        "field": "btr.submitted",
+        "text": "It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1706,30 +1723,44 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": null,
+      "last_run": "2026-09-10T21:09:45.434Z",
       "retrieved_at": null,
       "url": "https://unfccc.int/NDCREG",
       "license": "public"
     },
     {
-      "id": "DS-BTR",
-      "name": "UNFCCC First Biennial Transparency Reports",
-      "pattern": "D",
+      "id": "DS-15",
+      "name": "Green Climate Fund — projects and disbursements",
+      "pattern": "A",
       "tables": [
-        "btr_status"
+        "climate_finance"
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": null,
+      "last_run": "2026-09-10T19:58:14.348Z",
       "retrieved_at": null,
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "license": "GCF open data, attribution requested"
+    },
+    {
+      "id": "DS-BTR",
+      "name": "UNFCCC First Biennial Transparency Reports",
+      "pattern": "C",
+      "tables": [
+        "btr_status"
+      ],
+      "connection": "connected",
+      "records": 38,
+      "last_run": "2026-09-10T20:12:43.405Z",
+      "retrieved_at": "2026-09-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "license": "public"
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ],
   "provenance": {
-    "run_id": "fef16b2afded317c7680a38053096fec",
-    "built_at": "2026-09-07T23:32:02.148Z",
-    "payload_sha256": "e3d73e1ef3072f0914a754dde1a0587ba58fcdf166090748477e6442e9fb9629",
+    "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
+    "built_at": "2026-09-10T20:12:43.405Z",
+    "payload_sha256": "1ec55c2e0db9df51a0a4f70b1a9fa8d3605c8f5851914c035cba6a7a5f89f82e",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1784,13 +1815,31 @@
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
         "retrieved_at": "2026-09-07T23:32:02.148Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
+      },
+      {
+        "source_id": "DS-15",
+        "file_sha256": "8c3d7e89f4770c525e8e446686c64fc62ba83bff4770a3ee3ba58a8a1254ca00",
+        "retrieved_at": "2026-09-10T19:58:14.348Z",
+        "url": "https://api.gcfund.org/v1/projects"
+      },
+      {
+        "source_id": "DS-BTR",
+        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
+        "retrieved_at": "2026-09-10T20:12:43.405Z",
+        "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
+        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       }
     ]
   },
   "$meta": {
     "mode": "observations-only",
-    "snapshot": "OWID 관측 1990–2024",
-    "basis": "NDC 목표 미파싱",
+    "snapshot": "OWID observations 1990–2024",
+    "basis": "NDC target not parsed",
     "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
   },
   "$sources_index": [
@@ -1841,13 +1890,18 @@
     },
     {
       "id": "DS-06-NDC",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, documents via openclimatedata",
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-15",
+      "org": "Green Climate Fund",
+      "license": "GCF open data, attribution requested"
     },
     {
       "id": "DS-BTR",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ]
 }

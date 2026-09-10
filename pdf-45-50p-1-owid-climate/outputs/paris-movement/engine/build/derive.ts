@@ -44,8 +44,27 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   const observedAnnual = slope(sorted);
   const trend = Number(observedAnnual.toFixed(3));
 
-  const target = ndc.target_emissions_mtco2e;
   const targetYear = ndc.target_year;
+  let target = ndc.target_emissions_mtco2e;
+  let conversion = '';
+
+  // A percentage against a base year becomes a tonnage only with a base-year
+  // level, and the document does not always publish one. The observed series
+  // has one, on its own inventory scope, so the conversion is done here --
+  // where it is a derived value with its basis stated -- and never written
+  // into ndc.target_emissions_mtco2e as if the document had said it (R5).
+  if (target == null && ndc.reduction_pct != null && targetYear != null) {
+    if (ndc.base_year == null) {
+      return refuse(`the pledge is ${ndc.reduction_pct}% below a business-as-usual projection for ${targetYear}. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it.`, trend);
+    }
+    const basePoint = sorted.find((p) => p.year === ndc.base_year);
+    if (!basePoint) {
+      return refuse(`the pledge is ${ndc.reduction_pct}% below ${ndc.base_year} levels, and ${sourceId} carries no observation for ${ndc.base_year}, so there is no base-year level to apply it to.`, trend);
+    }
+    target = Number((basePoint.value_mtco2e * (1 - ndc.reduction_pct / 100)).toFixed(3));
+    conversion = ` The target tonnage is derived here, not quoted: ${ndc.reduction_pct}% below ${sourceId}'s ${ndc.base_year} value of ${basePoint.value_mtco2e} MtCO₂e. The document states the percentage; the level it is applied to comes from ${sourceId}, on ${sourceId}'s inventory scope, which is not necessarily the document's.`;
+  }
+
   if (target == null || targetYear == null) {
     return refuse(`${series.length} observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against.`, trend);
   }
@@ -57,13 +76,17 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   }
 
   const requiredAnnual = (target - latest.value_mtco2e) / yearsLeft;
-  const note = `Trend: least-squares slope over ${sorted.length} observed years (${sorted[0].year}–${latest.year}) from ${sourceId}, compared against the ${ndc.source.id} target of ${target} MtCO₂e by ${targetYear}. The two are not necessarily on the same inventory scope — see series.$note.`;
+  const note = `Trend: least-squares slope over ${sorted.length} observed years (${sorted[0].year}–${latest.year}) from ${sourceId}, compared against the ${ndc.source.id} target of ${target} MtCO₂e by ${targetYear}. The two are not necessarily on the same inventory scope — see series.$note.${conversion}`;
 
-  // Target sits above the observed level: nothing has to fall.
+  // Target sits above the observed level: nothing has to fall *today*. That is
+  // not the same as arriving under it. A rising trend can still cross the target
+  // before the target year, so the trend is projected rather than waved through.
+  const projected = latest.value_mtco2e + observedAnnual * yearsLeft;
   if (requiredAnnual >= 0) {
+    const under = projected <= target;
     return {
-      ambition_gap_factor: null, on_track: true, gap_state: 'observed', trend_annual_mtco2e: trend,
-      $reason: `the target (${target} MtCO₂e) is above the latest observed level (${latest.value_mtco2e} MtCO₂e), so no reduction rate is required to reach it.`,
+      ambition_gap_factor: null, on_track: under, gap_state: 'observed', trend_annual_mtco2e: trend,
+      $reason: `the target (${target} MtCO₂e) is above the latest observed level (${latest.value_mtco2e} MtCO₂e), so no cut is required today. Carried forward at the observed ${observedAnnual >= 0 ? '+' : ''}${observedAnnual.toFixed(2)} MtCO₂e/yr, ${targetYear} projects ${projected.toFixed(1)} MtCO₂e — ${under ? 'still under it' : 'above it'}.`,
       $note: note,
     };
   }

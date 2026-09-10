@@ -6,7 +6,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { validate, type CountryData } from '../contract/schema.ts';
+import { validate, BTR_COMPONENTS, type CountryData } from '../contract/schema.ts';
 import { derive } from './derive.ts';
 import { verdict, NO_CONDITIONALITY_PARSED } from './verdict.ts';
 import { ROOT } from '../paths.ts';
@@ -19,6 +19,9 @@ import * as edgar from '../sources/ds-05-edgar.ts';
 import * as cait from '../sources/ds-06-cait.ts';
 import * as registry from '../sources/ds-08-ndc-registry.ts';
 import * as unfccc from '../sources/ds-40-unfccc.ts';
+import * as ndcdocs from '../sources/ds-06-ndc-docs.ts';
+import * as gcf from '../sources/ds-15-gcf.ts';
+import * as btrsrc from '../sources/ds-btr.ts';
 import type { EtlLog } from '../sources/_base.ts';
 
 export { ROOT };
@@ -67,6 +70,9 @@ export type Inputs = {
   cait: Awaited<ReturnType<typeof cait.collect>>;
   registry: Awaited<ReturnType<typeof registry.collect>>;
   unfccc: Awaited<ReturnType<typeof unfccc.collect>>;
+  ndcdocs: ReturnType<typeof ndcdocs.collect>;
+  btr: Awaited<ReturnType<typeof btrsrc.collect>>;
+  gcf: Awaited<ReturnType<typeof gcf.collect>>;
   runId: string;
   builtAt: string;
 };
@@ -83,6 +89,17 @@ export async function collectAll(refresh = false): Promise<Inputs> {
   const a = await cait.collect(refresh);
   const n = await registry.collect(refresh);
   const u = await unfccc.collect(refresh);
+  const f = await gcf.collect(refresh);
+  // The BTR mirror names Parties, not codes. The register already loaded is
+  // the naming authority; the adapter carries aliases only for UNFCCC labels
+  // that no register spells the same way.
+  const names = new Map<string, string>();
+  for (const [iso3, row] of w.data) if (row.name) names.set(btrsrc.nameKey(row.name), iso3);
+  for (const [iso3, row] of o.data) { const k = btrsrc.nameKey(row.name ?? ''); if (k && !names.has(k)) names.set(k, iso3); }
+  const b = await btrsrc.collect(names, refresh);
+  // Pattern D is not run here: `cli.ts ndc-parse` writes data/ndc-targets.json
+  // and the build reads it, so a build reproduces without poppler or a network.
+  const dcs = ndcdocs.collect();
   // P3 — a run is identified by what it consumed, not by the wall clock. Two
   // builds over the same cached snapshots must produce identical bytes, so
   // run_id is a digest of the input hashes and built_at is the newest
@@ -97,17 +114,20 @@ export async function collectAll(refresh = false): Promise<Inputs> {
     cait: a,
     registry: n,
     unfccc: u,
+    ndcdocs: dcs,
+    gcf: f,
+    btr: b,
     runId: createHash('sha256')
-      .update([o.snap.sha256, g.snap.sha256, t.sha256, p.snap.sha256, w.sha256, e.snap.sha256, a.snap.sha256, n.snap.sha256, u.snap.sha256].join('\n'))
+      .update([o.snap.sha256, g.snap.sha256, t.sha256, p.snap.sha256, w.sha256, e.snap.sha256, a.snap.sha256, n.snap.sha256, u.snap.sha256, f.snap.sha256, b.snap.sha256, dcs.file?.index_sha256 ?? ''].join('\n'))
       .digest('hex').slice(0, 32),
     builtAt: [o.snap.retrieved_at, g.snap.retrieved_at, t.snap.retrieved_at, p.snap.retrieved_at,
       w.snap.retrieved_at, e.snap.retrieved_at, a.snap.retrieved_at, n.snap.retrieved_at,
-      u.snap.retrieved_at].sort().at(-1)!,
+      u.snap.retrieved_at, f.snap.retrieved_at, b.snap.retrieved_at].sort().at(-1)!,
   };
 }
 
 export const logsOf = (i: Inputs): EtlLog[] =>
-  [i.owid.log, i.ndgain.log, i.trace.log, i.cckp.log, i.wb.log, i.edgar.log, i.cait.log, i.registry.log, i.unfccc.log];
+  [i.owid.log, i.ndgain.log, i.trace.log, i.cckp.log, i.wb.log, i.edgar.log, i.cait.log, i.registry.log, i.unfccc.log, i.gcf.log, i.btr.log];
 
 const day = (iso: string) => iso.slice(0, 10);
 
@@ -172,15 +192,27 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
     },
     {
       id: 'DS-06-NDC', name: 'UNFCCC NDC registry document', pattern: 'D' as const,
-      tables: ['ndc_targets'], connection: (isCurated ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
-      records: isCurated ? 1 : 0, last_run: null,
-      retrieved_at: isCurated ? '2026-09-07' : null, url: 'https://unfccc.int/NDCREG', license: 'public',
+      tables: ['ndc_targets'],
+      connection: (isCurated || i.ndcdocs.data.get(iso3)?.reduction_pct != null ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
+      records: isCurated || i.ndcdocs.data.get(iso3)?.reduction_pct != null ? 1 : 0,
+      last_run: i.ndcdocs.file?.extracted_at ?? null,
+      retrieved_at: isCurated ? '2026-09-07' : (i.ndcdocs.data.get(iso3) && i.ndcdocs.file ? day(i.ndcdocs.file.extracted_at) : null),
+      url: 'https://unfccc.int/NDCREG', license: 'public',
     },
     {
-      id: 'DS-BTR', name: 'UNFCCC First Biennial Transparency Reports', pattern: 'D' as const,
-      tables: ['btr_status'], connection: (iso3 === 'KHM' ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
-      records: iso3 === 'KHM' ? 1 : 0, last_run: null,
-      retrieved_at: iso3 === 'KHM' ? '2026-09-07' : null, url: 'https://unfccc.int/first-biennial-transparency-reports', license: 'public',
+      id: gcf.ID, name: 'Green Climate Fund — projects and disbursements', pattern: 'A' as const,
+      tables: ['climate_finance'], connection: (i.gcf.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
+      records: i.gcf.data.get(iso3)?.flows.length ?? 0, last_run: i.gcf.snap.retrieved_at,
+      retrieved_at: i.gcf.data.get(iso3) ? day(i.gcf.snap.retrieved_at) : null, url: gcf.HOME, license: gcf.LICENSE,
+    },
+    {
+      id: btrsrc.ID, name: 'UNFCCC First Biennial Transparency Reports', pattern: 'C' as const,
+      tables: ['btr_status'],
+      connection: (iso3 === 'KHM' || i.btr.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
+      records: i.btr.data.get(iso3)?.files ?? (iso3 === 'KHM' ? 1 : 0),
+      last_run: i.btr.snap.retrieved_at,
+      retrieved_at: iso3 === 'KHM' ? '2026-09-07' : (i.btr.data.get(iso3) ? day(i.btr.snap.retrieved_at) : null),
+      url: btrsrc.HOME, license: btrsrc.LICENSE,
     },
   ];
 }
@@ -210,13 +242,16 @@ function emissionsProfile(iso3: string, i: Inputs) {
       ...(o?.by_sector.map(tag) ?? []),
       ...(ed?.by_sector.map((x) => ({ ...x, state: 'observed' as const, source_id: edgar.ID })) ?? []),
     ],
-    // R3: one entry per source, side by side, never reconciled.
+    // R3: one entry per source, side by side, never reconciled. A source that
+    // holds a row for the territory but no values for it gets no lane: an empty
+    // series draws as a source that reported nothing, which is not the same as
+    // a source that was never asked.
     by_source: [
       ...(o ? [{ source_id: owid.ID, scope: OWID_SCOPE, series: o.points }] : []),
       ...(tr ? [{ source_id: trace.ID, scope: TRACE_SCOPE, series: tr.points }] : []),
       ...(ed ? [{ source_id: edgar.ID, scope: edgar.SCOPE, series: ed.points }] : []),
       ...(un ? [{ source_id: unfccc.ID, scope: unfccc.SCOPE, series: un.points }] : []),
-    ],
+    ].filter((s) => s.series.length > 0),
     $note: `Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. ${edgar.ID}'s rows are non-CO₂ gases only and are not comparable with the others; that is also why ${edgar.ID} is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole.`,
   };
 }
@@ -327,6 +362,84 @@ function ndcAssessmentOf(iso3: string, i: Inputs): CountryData['ndc_assessment']
   };
 }
 
+/**
+ * What the document said, and where. A refusal is shaped like an acceptance so
+ * the page renders both through one code path: the difference is `state` and
+ * whether $reason or evidence is filled.
+ */
+function ndcDocumentOf(iso3: string, i: Inputs): CountryData['ndc_document'] {
+  const t = i.ndcdocs.data.get(iso3);
+  const file = i.ndcdocs.file;
+  if (!t || !file) return undefined;
+  const read = t.reduction_pct != null;
+  return {
+    kind: t.kind, language: t.language,
+    document_url: t.document_url, retrieval_url: t.retrieval_url,
+    submission_date: t.submission_date, pages: t.pages,
+    reduction_pct: t.reduction_pct, basis: t.basis, base_year: t.base_year, target_year: t.target_year,
+    unconditional_pct: t.unconditional_pct, conditional_pct: t.conditional_pct,
+    net_zero_year: t.net_zero_year, confidence: t.confidence,
+    evidence: t.evidence,
+    // A pledge read out of a document is 'pledged'. It is never 'observed':
+    // nobody measured it, a government wrote it.
+    state: read ? 'pledged' : 'unknown',
+    ...(read ? {} : { $reason: t.$reason }),
+    $note: `Read by ${ndcdocs.ID} from the ${t.kind} as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. ${read ? `The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.` : 'Nothing was accepted from this document.'}`,
+    source: { id: ndcdocs.ID, name: `${t.party} ${t.kind}`, url: t.document_url, retrieved_at: day(file.extracted_at) },
+  };
+}
+
+function financeFlowsOf(iso3: string, i: Inputs): CountryData['finance_flows'] {
+  const g = i.gcf.data.get(iso3);
+  if (!g) return undefined;
+  return {
+    channel: 'Green Climate Fund',
+    approved_usd: g.approved_usd, co_financing_usd: g.co_financing_usd, disbursed_usd: g.disbursed_usd,
+    projects: g.projects, regional_projects: g.regional_projects,
+    regional_disbursed_usd: g.regional_disbursed_usd || null,
+    instruments: g.instruments, latest_disbursement: g.latest_disbursement,
+    received: g.flows,
+    state: 'observed',
+    ...(g.disbursed_usd == null
+      ? { $reason: g.regional_projects > 0
+          ? `every ${gcf.ID} project reaching this country is multi-country, and the Fund does not publish a country split of their disbursements.`
+          : 'the Fund reports approved financing for this country but no disbursement yet.' }
+      : {}),
+    $note: `${gcf.SCOPE} approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; ${g.regional_projects} multi-country project(s) disbursing ${g.regional_disbursed_usd.toLocaleString('en-US')} USD in total are counted separately and never divided.`,
+    source: { id: gcf.ID, name: 'Green Climate Fund — projects and disbursements', url: gcf.HOME, retrieved_at: day(i.gcf.snap.retrieved_at) },
+  };
+}
+
+/**
+ * The BTR socket board. A component is promoted only where an attachment names
+ * it; everything else stays unknown, which is the answer, not a gap. Nothing
+ * here is ever set to `absent`: this listing can show that a filing exists, it
+ * can never show that a component of it does not (R1).
+ */
+function btrOf(iso3: string, i: Inputs): CountryData['btr'] {
+  const b = i.btr.data.get(iso3);
+  const source = { id: btrsrc.ID, name: 'UNFCCC — First Biennial Transparency Reports', url: btrsrc.HOME, retrieved_at: day(i.btr.snap.retrieved_at) };
+  const components = Object.fromEntries(BTR_COMPONENTS.map((k) => {
+    const files = b?.evidence[k];
+    return [k, files?.length
+      ? { state: 'observed' as const, $evidence: files }
+      : { state: 'unknown' as const }];
+  })) as CountryData['btr']['components'];
+  const confirmed = Object.values(components).filter((c) => c.state === 'observed').length;
+  return {
+    version: 'BTR1',
+    // R1: true where a filing was found, null where none was. Never false —
+    // this mirror not holding a filing is not a Party failing to file one.
+    submitted: b ? true : null,
+    submission_date: null, published_date: null,
+    components,
+    $note: b
+      ? `${b.files} attachment(s) are listed for this Party's BTR1. ${confirmed} of ${BTR_COMPONENTS.length} components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.`
+      : 'No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed — unfccc.int refuses this engine\'s requests, so the registry itself has not been read.',
+    source,
+  };
+}
+
 function compose(iso3: string, i: Inputs): CountryData {
   const c = curated.find((x) => x.iso3 === iso3);
   const o = i.owid.data.get(iso3);
@@ -350,20 +463,30 @@ function compose(iso3: string, i: Inputs): CountryData {
     ...(un?.points.map((p) => ({ year: p.year, value_mtco2e: p.value_mtco2e, state: 'observed' as const, source_id: unfccc.ID })) ?? []),
   ].sort((a, b) => a.year - b.year || String(a.source_id).localeCompare(String(b.source_id)));
 
+  // A hand-read country keeps its hand-read figures. Otherwise the Pattern D
+  // extraction fills what it accepted and nothing else: a percentage with no
+  // base-year tonnage stays a percentage, and no target tonnage is invented
+  // from it here (R5). derive() converts one, and says which series it used.
+  const ndcDoc = i.ndcdocs.data.get(iso3);
+  const doc = c ? undefined : ndcDoc;
+  const read = doc?.reduction_pct != null ? doc : undefined;
   const ndc: CountryData['ndc'] = frozen ? frozen.ndc : {
-    version: c?.ndc_version ?? 'No NDC document loaded',
-    submission_date: c?.submission_date ?? null,
-    base_year: c?.base_year ?? null, base_year_emissions_mtco2e: null, base_year_state: 'unknown',
-    target_year: c?.target_year ?? null, bau_2030_mtco2e: null, bau_state: 'unknown',
-    reduction_mtco2e: null, reduction_pct: null,
-    target_emissions_mtco2e: null, target_state: 'unknown',
+    version: read ? `${read.kind}${read.submission_date ? ` (${read.submission_date.slice(0, 4)})` : ''}` : c?.ndc_version ?? 'No NDC document loaded',
+    submission_date: read?.submission_date ?? c?.submission_date ?? null,
+    base_year: read?.base_year ?? c?.base_year ?? null, base_year_emissions_mtco2e: null, base_year_state: 'unknown',
+    target_year: read?.target_year ?? c?.target_year ?? null, bau_2030_mtco2e: null, bau_state: 'unknown',
+    reduction_mtco2e: null, reduction_pct: read?.reduction_pct ?? null,
+    target_emissions_mtco2e: null, target_state: read ? 'pledged' : 'unknown',
     folu_share_of_reduction_pct: null, sectors: [],
-    net_zero_target_year: null, net_zero_state: 'unknown',
+    net_zero_target_year: read?.net_zero_year ?? null, net_zero_state: read?.net_zero_year != null ? 'pledged' : 'unknown',
     conditionality: {
       statement: NO_CONDITIONALITY_PARSED,
-      unconditional_pct: null, conditional_pct: null, split_state: 'unknown', extraction_confidence: 'low',
+      unconditional_pct: null, conditional_pct: null, split_state: 'unknown',
+      extraction_confidence: read?.confidence ?? 'low',
     },
-    source: c?.source ?? { id: 'DS-06-NDC', name: 'UNFCCC NDC registry', url: 'https://unfccc.int/NDCREG', retrieved_at: '2026-09-07' },
+    source: read
+      ? { id: ndcdocs.ID, name: `${read.party} ${read.kind}`, url: read.document_url, retrieved_at: i.ndcdocs.file ? day(i.ndcdocs.file.extracted_at) : '2026-09-07' }
+      : c?.source ?? { id: 'DS-06-NDC', name: 'UNFCCC NDC registry', url: 'https://unfccc.int/NDCREG', retrieved_at: '2026-09-07' },
   };
 
   const record: CountryData = {
@@ -380,15 +503,13 @@ function compose(iso3: string, i: Inputs): CountryData {
       mitigation_usd: null, adaptation_usd: null, state: 'unknown', received_usd: null, received_state: 'unknown',
       source: ndc.source,
     },
-    btr: frozen ? frozen.btr : {
-      version: 'BTR1', submitted: null, submission_date: null, published_date: null,
-      components: Object.fromEntries(['nir', 'crt', 'ctf', 'ndc_track', 'adaptation', 'finance', 'redd_plus', 'article6'].map((k) => [k, { state: 'unknown' }])) as CountryData['btr']['components'],
-      source: { id: 'DS-BTR', name: 'UNFCCC — First Biennial Transparency Reports', url: 'https://unfccc.int/first-biennial-transparency-reports', retrieved_at: '2026-09-07' },
-    },
+    btr: frozen ? frozen.btr : btrOf(iso3, i),
     vulnerability: vulnerabilityOf(iso3, i),
     country_profile: countryProfileOf(iso3, i),
     ndc_registry: ndcRegistryOf(iso3, i, ndc),
     ndc_assessment: ndcAssessmentOf(iso3, i),
+    ndc_document: ndcDocumentOf(iso3, i),
+    finance_flows: financeFlowsOf(iso3, i),
     series: {
       observed,
       bau: frozen?.series.bau ?? [],
@@ -415,6 +536,18 @@ function compose(iso3: string, i: Inputs): CountryData {
         { source_id: cait.ID, file_sha256: i.cait.snap.sha256, retrieved_at: i.cait.snap.retrieved_at, url: i.cait.snap.url },
         { source_id: registry.ID, file_sha256: i.registry.snap.sha256, retrieved_at: i.registry.snap.retrieved_at, url: i.registry.snap.url },
         { source_id: unfccc.ID, file_sha256: i.unfccc.snap.sha256, retrieved_at: i.unfccc.snap.retrieved_at, url: i.unfccc.snap.url },
+        { source_id: gcf.ID, file_sha256: i.gcf.snap.sha256, retrieved_at: i.gcf.snap.retrieved_at, url: i.gcf.snap.url },
+        { source_id: btrsrc.ID, file_sha256: i.btr.snap.sha256, retrieved_at: i.btr.snap.retrieved_at, url: i.btr.snap.url },
+        // Pattern D's input is the extraction itself: the digest of the index
+        // it was taken from, and when it was taken.
+        ...(i.ndcdocs.file ? [{ source_id: ndcdocs.ID, file_sha256: i.ndcdocs.file.index_sha256, retrieved_at: i.ndcdocs.file.extracted_at, url: ndcdocs.INDEX_URL }] : []),
+        // The index only says where the document is. A figure read out of a
+        // sentence is verified by the document's own bytes, so those are a
+        // separate input -- present whenever a document was fetched, including
+        // when the reading was refused, because the refusal is about that file.
+        ...(ndcDoc?.document_sha256
+          ? [{ source_id: ndcdocs.ID, file_sha256: ndcDoc.document_sha256, retrieved_at: ndcDoc.document_retrieved_at ?? i.ndcdocs.file!.extracted_at, url: ndcDoc.retrieval_url }]
+          : []),
       ],
     },
     $sources_index: [
@@ -427,8 +560,9 @@ function compose(iso3: string, i: Inputs): CountryData {
       { id: 'DS-06', org: 'World Resources Institute (CAIT), via openclimatedata', license: cait.LICENSE },
       { id: 'DS-08', org: 'UNFCCC, via openclimatedata', license: registry.LICENSE },
       { id: 'DS-40', org: 'UNFCCC, via the PIK release on Zenodo', license: unfccc.LICENSE },
-      { id: 'DS-06-NDC', org: 'UNFCCC', license: 'public' },
-      { id: 'DS-BTR', org: 'UNFCCC', license: 'public' },
+      { id: 'DS-06-NDC', org: 'UNFCCC, documents via openclimatedata', license: ndcdocs.LICENSE },
+      { id: 'DS-15', org: 'Green Climate Fund', license: gcf.LICENSE },
+      { id: 'DS-BTR', org: 'UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data', license: btrsrc.LICENSE },
     ],
   };
   if (frozen?.epistemics) record.epistemics = frozen.epistemics;
@@ -440,7 +574,7 @@ function compose(iso3: string, i: Inputs): CountryData {
 
   // Self-describing rather than a fixed list: a reader can tell from the
   // payload which extensions this particular country actually has.
-  record.$extensions = (['country_profile', 'ndc_registry', 'ndc_assessment', 'emissions_profile', 'projections', 'verdict', 'sources', 'provenance'] as const)
+  record.$extensions = (['country_profile', 'ndc_registry', 'ndc_assessment', 'ndc_document', 'emissions_profile', 'projections', 'finance_flows', 'verdict', 'sources', 'provenance'] as const)
     .filter((k) => record[k] !== undefined);
 
   record.provenance!.payload_sha256 = createHash('sha256').update(JSON.stringify(record)).digest('hex');
@@ -451,12 +585,21 @@ function compose(iso3: string, i: Inputs): CountryData {
 export function metaFor(iso3: string, i?: Inputs) {
   const c = curated.find((x) => x.iso3 === iso3);
   if (c) return { mode: 'document-snapshot', snapshot: c.meta.snapshot, basis: c.meta.basis, notice: NOTICE };
+  const doc = i?.ndcdocs.data.get(iso3);
+  if (doc?.reduction_pct != null) {
+    return {
+      mode: 'document-parsed',
+      snapshot: `${doc.kind}${doc.submission_date ? ` · ${doc.submission_date.slice(0, 4)}` : ''}`,
+      basis: doc.basis === 'bau' ? `${doc.target_year} business-as-usual` : `${doc.base_year} baseline`,
+      notice: `${doc.reduction_pct}% by ${doc.target_year} was read out of the document by ${ndcdocs.ID}, not tabulated by it. The sentence it came from is on the record.`,
+    };
+  }
   const o = i?.owid.data.get(iso3);
   if (!o) return undefined;
   return {
     mode: 'observations-only',
-    snapshot: `OWID 관측 ${o.points[0]?.year ?? owid.FROM_YEAR}–${o.points.at(-1)?.year ?? ''}`,
-    basis: 'NDC 목표 미파싱',
+    snapshot: `OWID observations ${o.points[0]?.year ?? owid.FROM_YEAR}–${o.points.at(-1)?.year ?? ''}`,
+    basis: 'NDC target not parsed',
     notice: 'Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country.',
   };
 }
@@ -482,6 +625,9 @@ export function emptyRecord(iso3: string, name_en: string): CountryData {
     cait: { data: new Map(), log: null as never, snap },
     registry: { data: new Map(), log: null as never, snap },
     unfccc: { data: new Map(), log: null as never, snap },
+    ndcdocs: { data: new Map(), file: null },
+    gcf: { data: new Map(), log: null as never, snap },
+    btr: { data: new Map(), unmatched: [], log: null as never, snap },
     runId: '0'.repeat(32), builtAt: '1970-01-01T00:00:00.000Z',
   };
   const r = compose(iso3, empty);

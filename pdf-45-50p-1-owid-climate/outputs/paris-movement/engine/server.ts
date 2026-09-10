@@ -1,10 +1,11 @@
 // The upstream that app/api/v1/country-dial/route.ts proxies to.
 // Two routes, so node:http is enough. No framework.
 import { createServer, type ServerResponse } from 'node:http';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { validate, type CountryData } from './contract/schema.ts';
 import { ROOT } from './build/compose.ts';
+import { indexFromDisk } from './build/index.ts';
 
 const PORT = Number(process.env.PORT ?? 8787);
 
@@ -48,50 +49,11 @@ export const server = createServer((req, res) => {
 
   if (url.pathname === '/engine') {
     // Real state: which sources ran, what they produced, which countries exist.
-    let telemetry: unknown = { state: 'unknown', runs: [], last_run: null, quarantine_count: null };
-    let sources: unknown[] = [];
-    let countries: Record<string, unknown>[] = [];
     try {
-      const etl = JSON.parse(readFileSync(join(ROOT, 'data/etl-logs.json'), 'utf8'));
-      telemetry = {
-        state: 'observed', run_id: etl.run_id, last_run: etl.built_at,
-        countries: etl.countries, runs: etl.logs,
-        quarantine_count: etl.logs.reduce((s: number, l: { quarantine_count: number }) => s + l.quarantine_count, 0),
-      };
-    } catch { /* no run yet: the unknown default above stands */ }
-    try {
-      const records = readdirSync(join(ROOT, 'data/countries')).filter((f) => f.endsWith('.json'))
-        .map((f) => JSON.parse(readFileSync(join(ROOT, 'data/countries', f), 'utf8')) as CountryData);
-      // Enough for the country tray to draw a card and a static dial. Deliberately
-      // not the whole record: 218 full payloads is not a roster, it's a download.
-      countries = records.map((d) => ({
-        iso3: d.country.iso3,
-        name_en: d.country.name_en,
-        region: d.country_profile?.region ?? null,
-        edition: d.ndc.version,
-        reduction_pct: d.ndc.reduction_pct,
-        btr_components: d.btr.components,
-      }));
-      // Catalogue state is the aggregate, not one country's view: a source is
-      // connected if it fed any country, and carries the total it contributed.
-      const agg = new Map<string, Record<string, unknown>>();
-      for (const d of records) {
-        for (const s of d.sources ?? []) {
-          const cur = agg.get(s.id) ?? { ...s, connection: 'not-connected', records: 0, countries: 0 };
-          if (s.connection === 'connected') {
-            cur.connection = 'connected';
-            cur.countries = (cur.countries as number) + 1;
-            cur.records = (cur.records as number) + s.records;
-            cur.retrieved_at = s.retrieved_at;
-            cur.last_run = s.last_run;
-          }
-          agg.set(s.id, cur);
-        }
-      }
-      sources = [...agg.values()];
-    } catch { /* nothing built yet */ }
-
-    return json(res, 200, { mode: 'engine', countries, sources, telemetry });
+      return json(res, 200, indexFromDisk());
+    } catch {
+      return json(res, 200, { mode: 'engine', countries: [], sources: [], telemetry: { state: 'unknown', runs: [], last_run: null, quarantine_count: null } });
+    }
   }
 
   return json(res, 404, { error: 'Unknown route.' });

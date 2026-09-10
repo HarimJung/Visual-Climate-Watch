@@ -1,38 +1,45 @@
-// The assembly is a cascade: seven slots, each with its own moment. If STEP and
-// WINDOW ever drift apart, a layer silently never finishes and the plan view
-// loses a part — with no error anywhere.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { explosionOffset, slotOf } from '../components/movement/explosion-motion.ts';
+import {verticalOffset,reveal,btrReveal,btrStepAt,storyPhase,LAYER_WINDOWS,LAYER_LIFTS,AssemblyReplay} from '../components/movement/explosion-motion.ts';
 
-const center = { x: 1, y: 2, z: .5 };
-const target = { x: -3, y: 4, z: 0 };
-const cases = [
-  ['upper' as const, 4], ['lower' as const, 0],
-  [null, 0], [null, 1], [null, 2], [null, 3], [null, 4],
-] as const;
-
-void test('nothing has moved at rest, and every layer has landed at full extension', () => {
-  for (const [shell, layer] of cases) {
-    const at0 = explosionOffset(0, layer, center, target, shell);
-    assert.ok(Math.hypot(at0.x, at0.y, at0.z) === 0, `layer ${layer}/${shell} drifts at rest`);
-    const at1 = explosionOffset(1, layer, center, target, shell);
-    for (const k of ['x', 'y'] as const) {
-      assert.ok(Math.abs(at1[k] - (target[k] - center[k])) < 1e-9, `layer ${layer}/${shell} never reaches its ${k} cell`);
-    }
-    assert.ok(Math.abs(at1.z + center.z) < 1e-9, `layer ${layer}/${shell} never flattens`);
-  }
+void test('layers rise on the common spindle and return exactly to their resting heights',()=>{
+ for(let layer=0;layer<5;layer++){
+  assert.equal(verticalOffset(0,layer),0);
+  assert.equal(verticalOffset(1,layer),LAYER_LIFTS[layer]);
+  const [start,end]=LAYER_WINDOWS[layer];assert.equal(verticalOffset(start,layer),0);assert.equal(verticalOffset(end,layer),LAYER_LIFTS[layer]);
+  let previous=0;for(let step=0;step<=1000;step++){const lift=verticalOffset(step/1000,layer);assert.ok(lift>=previous-1e-9);previous=lift;}
+  assert.equal(verticalOffset(0,layer),0);
+ }
+ assert.ok(verticalOffset(.08,4,'upper')>5,'lid must lift before the first plate');
+ for(let layer=1;layer<5;layer++)assert.ok(LAYER_LIFTS[layer]>LAYER_LIFTS[layer-1]);
 });
-
-void test('the shells part before any plate inside them moves', () => {
-  const slots = cases.map(([shell, layer]) => slotOf(layer, shell));
-  assert.deepEqual(slots, [0, 1, 2, 3, 4, 5, 6]);
-  // At the moment the first plate starts, both shells are already under way.
-  const plateStart = 2 * .11;
-  for (const shell of ['upper', 'lower'] as const) {
-    const open = explosionOffset(plateStart, shell === 'upper' ? 4 : 0, center, target, shell);
-    assert.ok(Math.abs(open.z) > .2, `${shell} shell has barely opened when the plates start`);
-  }
-  const plate = explosionOffset(plateStart, 0, center, target, null);
-  assert.ok(Math.hypot(plate.x, plate.y, plate.z) === 0, 'the first plate has already moved before its slot opens');
+void test('each data family has its own reading interval',()=>{
+ for(let layer=0;layer<4;layer++){
+  const end=LAYER_WINDOWS[layer][1];assert.equal(verticalOffset(end,layer+1),0,'next family moved too early');
+ }
+ assert.deepEqual([.02,.12,.25,.4,.55,.95].map(storyPhase),[0,1,2,3,4,5]);
+});
+void test('all eight BTR elements rise separately before international support',()=>{
+ for(let i=0;i<8;i++){
+  const start=.615+i*.034,end=.641+i*.034;
+  assert.equal(btrReveal(start,i),0);assert.equal(btrReveal(end,i),1);
+  assert.equal(btrStepAt(start+.001),i);
+  if(i<7)assert.equal(btrReveal(end,i+1),0,'two BTR reveals overlap');
+  assert.equal(btrReveal(.91,i),1);
+ }
+ assert.equal(verticalOffset(.879,4),0);assert.equal(btrStepAt(.91),-1);
+});
+void test('floating starts and landings have no velocity discontinuity',()=>{
+ const epsilon=1e-4;
+ assert.ok(reveal(epsilon,0,1)/epsilon<1e-5);
+ assert.ok((1-reveal(1-epsilon,0,1))/epsilon<1e-5);
+});
+void test('one-shot narration remains open; pause, cancel, loop and reduced motion work',()=>{
+ const replay=new AssemblyReplay();replay.start();replay.update(1,.01,false,false);assert.equal(replay.stage,'hold');
+ for(let i=0;i<100;i++)replay.update(1,.05,false,false);assert.equal(replay.target,1);
+ for(let i=0;i<100;i++)replay.update(1,.05,true,true);assert.equal(replay.stage,'hold');
+ for(let i=0;i<61;i++)replay.update(1,.05,false,true);assert.equal(replay.stage,'close');
+ replay.update(0,.01,false,true);assert.equal(replay.stage,'open');
+ replay.cancel();assert.equal(replay.stage,'idle');
+ replay.start(true);assert.equal(replay.stage,'hold');assert.equal(replay.target,1);
 });
