@@ -1,4 +1,4 @@
-// Two published views over records that are already built. No new source, no
+// Three published views over records that are already built. No new source, no
 // new parsing: both are aggregations of fields every country record carries.
 //
 // They are written to disk rather than computed per request because the deploy
@@ -14,7 +14,7 @@ import { ROOT } from './compose.ts';
 /**
  * A refusal family. The engine writes its reasons as sentences, not codes, so
  * these patterns are the one place that reads them back. If a source rewords a
- * refusal, `other` fills up and the view test fails — which is the point: a
+ * refusal, `other` fills up and the view test fails, which is the point: a
  * silently mis-grouped log is worse than a broken build.
  */
 const FAMILIES = [
@@ -57,7 +57,7 @@ export type RefusalLog = {
 /** Every calculation the engine declined, grouped by why. */
 export function refusalLog(records: CountryData[]): RefusalLog {
   const families: RefusalFamily[] = FAMILIES.map((f) => ({ ...f, match: undefined, count: 0, entries: [] } as unknown as RefusalFamily));
-  const other: RefusalFamily = { id: 'other', field: '—', label: 'Unclassified refusal', note: 'A refusal whose sentence no family recognises. This list must stay empty.', count: 0, entries: [] };
+  const other: RefusalFamily = { id: 'other', field: ', ', label: 'Unclassified refusal', note: 'A refusal whose sentence no family recognises. This list must stay empty.', count: 0, entries: [] };
   const all: string[] = [];
   const file = (field: string, d: CountryData, reason: string) => {
     all.push(reason);
@@ -113,7 +113,7 @@ const at = (d: CountryData, id: string, year: number) =>
 const scopeOf = (d: CountryData, id: string) => d.emissions_profile?.by_source.find((s) => s.source_id === id)?.scope ?? '';
 /**
  * R3 in one line. Dividing by the larger figure means the answer does not
- * change when the two sources swap places — neither is treated as the truth
+ * change when the two sources swap places, neither is treated as the truth
  * the other deviates from.
  */
 const spread = (vals: number[]) => {
@@ -168,14 +168,164 @@ export function divergence(records: CountryData[]): Divergence {
       rows: [...rows].sort((x, y) => y.spread_pct - x.spread_pct),
     },
     countries,
-    caveat: 'Much of this gap is land-use accounting scope, not error. DS-05 (EDGAR) is non-CO₂ only and is not comparable with the others at all. The sentence for this page is always "same country, same year, different ledgers" — never "the data is wrong".',
+    caveat: 'Much of this gap is land-use accounting scope, not error. DS-05 (EDGAR) is non-CO₂ only and is not comparable with the others at all. The sentence for this page is always "same country, same year, different ledgers", never "the data is wrong".',
   };
 }
 
-/** Read what is on disk and build both views. */
+// ----------------------------------------------------------------- finance
+
+// Feature 3: does the money follow the vulnerability? Both axes are already in
+// every record, ND-GAIN on one side, the Green Climate Fund ledger on the
+// other. Nothing here is new collection; it is the crossing that was missing.
+//
+// Two distinctions carry this whole view, and collapsing either one turns it
+// into an accusation the data cannot support:
+//   · no fund record at all  → the ledger was not read (not "received nothing")
+//   · a record with no disbursement figure → that figure was not read
+//     (not "nothing was disbursed", and never a 0% ratio)
+// Every total and every average below therefore names the countries it covers.
+
+export type FinanceRow = {
+  iso3: string; name_en: string; region: string | null; income_group: string | null;
+  vulnerability: number; readiness: number; ndgain_score: number | null; data_year: number | null;
+  approved_usd: number | null; disbursed_usd: number | null; co_financing_usd: number | null;
+  projects: number; regional_projects: number; regional_disbursed_usd: number | null;
+  /** disbursed / approved. null when either side was never read, an unread
+   *  disbursement is not 0%, which is the single easiest lie on this page. */
+  disbursed_pct: number | null;
+  need_mitigation_usd: number | null; need_adaptation_usd: number | null; need_state: string;
+};
+export type FinanceBand = {
+  label: string; from: number; to: number; countries: number;
+  approved_usd: number; disbursed_usd: number;
+  /** How many of `countries` actually carry a disbursement figure. The average
+   *  divides by this, not by the band size. */
+  disbursed_read: number;
+  median_readiness: number; disbursed_per_read_country_usd: number;
+};
+export type Finance = {
+  generated_at: string;
+  headline: {
+    channel: string;
+    vulnerability_scored: number; gcf_recorded: number; plottable: number;
+    no_gcf_record: number;
+    /** A read figure of zero. Distinct from a figure nobody read. */
+    approved_nothing_disbursed: number;
+    /** An approval whose disbursement figure was never read. */
+    disbursement_unread: number;
+    disbursed_read_countries: number;
+    total_approved_usd: number;
+    /**
+     * Approvals summed over disbursed_read_countries ONLY, so it shares a
+     * denominator with total_disbursed_usd. total_disbursed_usd over
+     * total_approved_usd is NOT a disbursement rate: the numerator covers the
+     * countries whose disbursement was read, the denominator covers every
+     * plotted country. Anything printed as "x% disbursed" must use this pair.
+     */
+    approved_usd_read_countries: number;
+    /** The only defensible headline rate: like for like, same countries. */
+    disbursed_pct_like_for_like: number;
+    /** Summed over disbursed_read_countries only. */
+    total_disbursed_usd: number;
+    median_disbursed_pct: number;
+  };
+  bands: FinanceBand[];
+  rows: FinanceRow[];
+  /** Vulnerability is known, the fund ledger is not. Kept visible on purpose. */
+  unknowns: { iso3: string; name_en: string; vulnerability: number; $reason: string }[];
+  caveat: string;
+};
+
+const median = (xs: number[]) => {
+  if (!xs.length) return 0;
+  const s = [...xs].sort((a, b) => a - b);
+  return s[Math.floor(s.length / 2)];
+};
+
+export function finance(records: CountryData[]): Finance {
+  const rows: FinanceRow[] = [];
+  const unknowns: Finance['unknowns'] = [];
+  let scored = 0, recorded = 0;
+
+  for (const d of records) {
+    const v = d.vulnerability, f = d.finance_flows, n = d.finance_need;
+    const hasV = v?.vulnerability != null && v?.readiness != null;
+    const hasF = !!f && (f.approved_usd != null || f.disbursed_usd != null);
+    if (hasV) scored++;
+    if (hasF) recorded++;
+    if (!hasV) continue;
+    if (!hasF) {
+      unknowns.push({
+        iso3: d.country.iso3, name_en: d.country.name_en, vulnerability: v!.vulnerability!,
+        $reason: f?.$reason ?? 'No Green Climate Fund record was read for this country. That is an unread ledger, not a country that received nothing.',
+      });
+      continue;
+    }
+    const approved = f!.approved_usd, disbursed = f!.disbursed_usd;
+    rows.push({
+      iso3: d.country.iso3, name_en: d.country.name_en,
+      region: d.country_profile?.region ?? null, income_group: d.country_profile?.income_group ?? null,
+      vulnerability: v!.vulnerability!, readiness: v!.readiness!,
+      ndgain_score: v!.ndgain_score, data_year: v!.data_year,
+      approved_usd: approved, disbursed_usd: disbursed, co_financing_usd: f!.co_financing_usd,
+      projects: f!.projects, regional_projects: f!.regional_projects, regional_disbursed_usd: f!.regional_disbursed_usd,
+      disbursed_pct: disbursed != null && approved != null && approved > 0 ? disbursed / approved * 100 : null,
+      need_mitigation_usd: n?.mitigation_usd ?? null, need_adaptation_usd: n?.adaptation_usd ?? null,
+      need_state: n?.state ?? 'unknown',
+    });
+  }
+  rows.sort((a, b) => b.vulnerability - a.vulnerability);
+  unknowns.sort((a, b) => b.vulnerability - a.vulnerability);
+
+  // Four equal-count bands over the plotted set. Quartiles rather than chosen
+  // thresholds, so the split is not an editorial decision.
+  const byVul = [...rows].sort((a, b) => a.vulnerability - b.vulnerability);
+  const q = Math.ceil(byVul.length / 4) || 1;
+  const LABELS = ['Least vulnerable quartile', 'Second quartile', 'Third quartile', 'Most vulnerable quartile'];
+  const bands: FinanceBand[] = [];
+  for (let i = 0; i < 4; i++) {
+    const part = byVul.slice(i * q, (i + 1) * q);
+    if (!part.length) continue;
+    const read = part.filter((r) => r.disbursed_usd != null);
+    const disbursed = read.reduce((s, r) => s + r.disbursed_usd!, 0);
+    bands.push({
+      label: LABELS[i], from: part[0].vulnerability, to: part[part.length - 1].vulnerability,
+      countries: part.length,
+      approved_usd: part.reduce((s, r) => s + (r.approved_usd ?? 0), 0),
+      disbursed_usd: disbursed, disbursed_read: read.length,
+      median_readiness: median(part.map((r) => r.readiness)),
+      disbursed_per_read_country_usd: read.length ? disbursed / read.length : 0,
+    });
+  }
+
+  const readRows = rows.filter((r) => r.disbursed_usd != null);
+  return {
+    generated_at: new Date().toISOString(),
+    headline: {
+      channel: 'Green Climate Fund',
+      vulnerability_scored: scored, gcf_recorded: recorded, plottable: rows.length,
+      no_gcf_record: unknowns.length,
+      approved_nothing_disbursed: rows.filter((r) => (r.approved_usd ?? 0) > 0 && r.disbursed_usd === 0).length,
+      disbursement_unread: rows.filter((r) => (r.approved_usd ?? 0) > 0 && r.disbursed_usd == null).length,
+      disbursed_read_countries: readRows.length,
+      total_approved_usd: rows.reduce((s, r) => s + (r.approved_usd ?? 0), 0),
+      approved_usd_read_countries: readRows.reduce((s, r) => s + (r.approved_usd ?? 0), 0),
+      disbursed_pct_like_for_like: (() => {
+        const a = readRows.reduce((s, r) => s + (r.approved_usd ?? 0), 0);
+        return a > 0 ? readRows.reduce((s, r) => s + r.disbursed_usd!, 0) / a * 100 : 0;
+      })(),
+      total_disbursed_usd: readRows.reduce((s, r) => s + r.disbursed_usd!, 0),
+      median_disbursed_pct: median(rows.map((r) => r.disbursed_pct).filter((x): x is number => x != null)),
+    },
+    bands, rows, unknowns,
+    caveat: 'The Green Climate Fund is one channel among many, bilateral aid, the Adaptation Fund, the GEF and multilateral development banks are not counted here. A low figure on this page means this fund disbursed little to that country, never that the country received nothing. Approved and disbursed totals are not like for like: every plotted country has an approval, but only some carry a disbursement figure, and the rest were never read rather than paid nothing. Stated need comes from a government’s own NDC and is a claim, not an audited requirement; received totals against that need are not published by any source this engine reads, so no gap is computed.',
+  };
+}
+
+/** Read what is on disk and build the published views. */
 export function viewsFromDisk() {
   const dir = join(ROOT, 'data/countries');
   const records = readdirSync(dir).filter((f) => f.endsWith('.json'))
     .map((f) => JSON.parse(readFileSync(join(dir, f), 'utf8')) as CountryData);
-  return { refusals: refusalLog(records), divergence: divergence(records) };
+  return { refusals: refusalLog(records), divergence: divergence(records), finance: finance(records) };
 }

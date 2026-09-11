@@ -39,12 +39,13 @@ function writeIndex() {
   const views = viewsFromDisk();
   writeFileSync(join(ROOT, 'data/refusals.json'), JSON.stringify(views.refusals) + '\n');
   writeFileSync(join(ROOT, 'data/divergence.json'), JSON.stringify(views.divergence) + '\n');
-  console.log(`viewed  ${views.refusals.total} refusal(s), ${views.divergence.countries.length} multi-source country(ies) → data/refusals.json, data/divergence.json`);
+  writeFileSync(join(ROOT, 'data/finance.json'), JSON.stringify(views.finance) + '\n');
+  console.log(`viewed  ${views.refusals.total} refusal(s), ${views.divergence.countries.length} multi-source country(ies), ${views.finance.headline.plottable} vulnerability×finance country(ies) → data/refusals.json, data/divergence.json, data/finance.json`);
 }
 
 function verify() {
   const files = existsSync(DIR) ? readdirSync(DIR).filter((f) => f.endsWith('.json')) : [];
-  if (!files.length) throw new Error('no built records to verify — run `build-all` first');
+  if (!files.length) throw new Error('no built records to verify, run `build-all` first');
   let ok = 0;
   for (const f of files) {
     validate(JSON.parse(readFileSync(join(DIR, f), 'utf8')), `data/countries/${f}`);
@@ -143,6 +144,17 @@ function census() {
     divergence_over_50pct: views.divergence.headline.over_50pct,
     divergence_total_gap_mtco2e: Math.round(views.divergence.headline.total_gap_mtco2e),
     divergence_multi_source_countries: views.divergence.countries.length,
+    finance_plottable_countries: views.finance.headline.plottable,
+    finance_vulnerability_scored: views.finance.headline.vulnerability_scored,
+    finance_no_gcf_record: views.finance.headline.no_gcf_record,
+    finance_approved_nothing_disbursed: views.finance.headline.approved_nothing_disbursed,
+    finance_total_approved_usd: views.finance.headline.total_approved_usd,
+    // Print THIS as the disbursement rate. total_disbursed / total_approved
+    // divides two different country sets and is not a rate at all.
+    finance_approved_usd_read_countries: views.finance.headline.approved_usd_read_countries,
+    finance_disbursed_pct_like_for_like: Number(views.finance.headline.disbursed_pct_like_for_like.toFixed(1)),
+    finance_total_disbursed_usd: views.finance.headline.total_disbursed_usd,
+    finance_median_disbursed_pct: Number(views.finance.headline.median_disbursed_pct.toFixed(1)),
   }, null, 2));
 }
 

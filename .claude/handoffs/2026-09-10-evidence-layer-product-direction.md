@@ -3,7 +3,14 @@
 **Date:** 2026-09-10
 **Repo:** https://github.com/HarimJung/Visual-Climate-Watch (**private**)
 **Git root:** `/Users/harimgemmajung/Documents/Codex/Visual Climate Watch`
-**Branch:** `movement-cascade` (nothing committed this session — working tree carries all the changes)
+**Branch:** `movement-cascade` — clean tree, HEAD `35bff6d`
+
+> **Superseded in part, 2026-09-10.** After this handoff was first written, another session
+> committed the redesign and pushed the engine forward four commits (`92534e4`, `8f68e99`,
+> `21dc135`, `35bff6d`), then republished the artifact. **P2 and P6 are shipped**, the BTR and
+> NDC coverage numbers below have moved, and the divergence metric changed. Sections marked
+> ⚠ have been corrected; everything else still holds. Verified against
+> `node engine/cli.ts report --json` (run `def9168d`) rather than taken from the artifact.
 **App:** `pdf-45-50p-1-owid-climate/outputs/paris-movement` (vinext + React 19 + Three.js)
 **Run it:** `npm run dev` → localhost:3000. The launcher starts the engine on 8787 itself if nothing is listening.
 
@@ -63,18 +70,26 @@ from strings and colour literals.
 `tsc --noEmit` clean · `npm run build` succeeds · no console errors · no horizontal overflow at 390px.
 Pre-existing `oxlint` errors remain (shadcn components, test files, three unused vars in `scene.tsx`).
 
-## The Numbers That Drive the Product Doc
+## ⚠ The Numbers That Drive the Product Doc — corrected
 
-Computed from `data/countries/*.json` this session — recompute rather than trust these if the
-engine is rebuilt:
+**Never type these by hand again.** `node engine/cli.ts report --json` now emits the whole census;
+the artifact's figures come from it. Current values (run `def9168d`, built 2026-09-10):
 
-- 218 countries built, 11 connected sources, **29,214 records**
-- 218/218 have observed series · 217 have CMIP6 projections · 190 have ND-GAIN
-- **1 of 218** has a parsed NDC target figure (Cambodia)
-- **0 of 1,744** BTR component sockets parsed — all `unknown`, none `absent`
-- OWID (DS-35) vs Climate TRACE (DS-02), 2022, 199 countries: **median 27% difference**,
-  123 differ by >20%, 64 by >50%, and the two totals are **4,032 MtCO₂e apart**
-- Caveat that must travel with that figure: DS-05 (EDGAR) is non-CO₂ only and is *not* comparable;
+- 218 countries built, **12 connected sources**, **11,670 observation points**
+  (the earlier "29,214 records" counted source rows, not observations — different metric)
+- 218/218 observed series · 217 projections · 190 ND-GAIN · 198 with 3+ inventory sources
+- **18 of 218** NDC targets accepted, against **168 documents held** — **150 refused**
+- **328 of 1,744** BTR sockets now carry evidence across 134 located filings; the other 1,416
+  stay `unknown` and each now carries a written reason. Zero `absent` **within BTR**; two exist
+  corpus-wide (`USA` and `YEM`, `ndc_registry.state`), which the census reports as
+  `ndc_registry_none_active: 2`. The earlier blanket "still zero absent" was wrong.
+- **364 refusals** in 61 distinct sentences (17 gap + 44 document) · gap assessed for 4 countries,
+  refused for 214. 61 counts only refusals: `derived.$reason` where `on_track` is null and
+  `ndc_document.$reason` where the state is `unknown`. A naive scan of every `$reason` returns 65.
+- Divergence metric **changed**: now measured as a share of the **larger** of the two figures, so
+  it is symmetric and neither source becomes the reference. Median **22.7%**, 108 of 199 above
+  20%, 28 above 50%. (The earlier 27% divided by OWID, which quietly made OWID the truth.)
+- Caveat that must still travel with it: DS-05 (EDGAR) is non-CO₂ only and is *not* comparable;
   much of the OWID/TRACE gap is land-use scope, not error. Never present it as "the data is wrong".
 
 ## The Product Line (from the artifact)
@@ -82,18 +97,20 @@ engine is rebuilt:
 | ID | Product | Status |
 |---|---|---|
 | P1 | The Instrument — the 3D movement | shipped |
-| P2 | Divergence Atlas — sources side by side, unmerged, with scope strings | **runs on data already built** (`emissions_profile.by_source`) |
-| P3 | The Unknown Map — publish our own coverage gaps as the headline metric | one census build step |
-| P4 | Receipts — per-figure provenance API + citation chip | **runs on data already built** (`provenance`, `$sources_index`) |
-| P5 | BTR Reading Room — fill the 1,744 sockets with evidence anchors | needs document parsing (engine milestone M3) |
-| P6 | Refusal Log — every calculation the engine declined, in its own words | **runs on data already built** (`derived.$reason`, `verdict.text`) |
+| P2 | Divergence Atlas — sources side by side, unmerged, with scope strings | ⚠ **shipped** — live at `/divergence`, server rendered, no client JS |
+| P3 | The Unknown Map — publish our own coverage gaps as the headline metric | census now exists (`report --json`); needs the page |
+| P4 | Receipts — per-figure provenance API + citation chip | **the remaining free one** (`provenance`, `$sources_index`) |
+| P5 | BTR Reading Room — fill the remaining 1,416 sockets with evidence anchors | needs document parsing (engine milestone M3) |
+| P6 | Refusal Log — every calculation the engine declined, in its own words | ⚠ **shipped** — live at `/refusals`, 364 refusals |
 
 ## Open Questions
 
-- [ ] Which of P2 / P4 / P6 ships first? All three are view-only work on existing fields.
+- [x] ~~Which of P2 / P4 / P6 ships first?~~ P2 and P6 shipped; P4 is next.
 - [ ] Is the BTR parsing (P5) a hire, a partnership, or a slow in-house crawl?
 - [ ] Who is the first named institutional partner — ministry, funder, newsroom, or litigation team?
-- [ ] Commit and push this session's work? Nothing has been committed yet.
+- [ ] Do licences actually permit redistributing what Receipts would cite? One licence string per
+      source is now enforced by test, but whether it permits redistribution is unanswered.
+- [x] ~~Commit and push this session's work?~~ Committed by the follow-up session.
 - [ ] Should `.claude/handoffs/` and internal docs be English or Korean? This one is English;
       `2026-09-08-movement-legibility.md` is Korean.
 
@@ -107,14 +124,19 @@ engine is rebuilt:
 - The user's earlier complaint pattern is about *legibility*, not decoration — they notice when a
   component doesn't explain itself. Design work should serve reading, not ornament.
 
-## Next Steps
+## ⚠ Next Steps — corrected
 
-1. [ ] Decide P2 / P4 / P6 order and build the first one — no new source, no new licence needed.
-2. [ ] Commit the redesign (`app/`, `components/movement/`, `engine/`, `data/`, `public/favicon.svg`)
-       — one commit for the design system, one for the English conversion, keeps the diff readable.
-3. [ ] Write the census script behind P3 as a real engine command (`node engine/cli.ts census`)
-       so the coverage numbers are reproducible rather than ad-hoc.
-4. [ ] Decide whether the artifact's figures get regenerated automatically from that command.
+1. [ ] **Build P4 (Receipts)** — the last product that needs no new data. `GET /api/v1/receipt`
+       plus a pasteable citation chip, over `provenance.inputs` and `$sources_index`.
+2. [ ] **Build P3 (Unknown Map)** — `report --json` already emits the census; this is now a page,
+       not a data problem. Make the unknown count the public quarterly metric.
+3. [ ] Put the two live pages in front of a real reader. Nobody outside the project has used
+       `/divergence` or `/refusals` yet, and open question 04 is still open.
+4. [ ] Wire the artifact's figures to `report --json` output so the deck can never drift from
+       the engine again.
+5. [ ] Then P5 / engine M3 — the remaining 1,416 sockets, twenty countries at a time.
+
+~~Commit the redesign~~ — done by the follow-up session; tree is clean at `35bff6d`.
 
 ## Files to Review on Resume
 
