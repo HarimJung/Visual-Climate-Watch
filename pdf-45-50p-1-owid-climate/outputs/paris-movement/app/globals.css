@@ -1305,3 +1305,12 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .ref-rows>li,.div-country,.tray-grid>*{content-visibility:auto;contain-intrinsic-size:auto 56px}
 .tray-grid>*{contain-intrinsic-size:auto 480px}
 .claim-text h1 em{background:none;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;text-decoration-color:var(--ndc)}
+
+/* /unknown — each gap row takes the same shape as a chapter: the figure and
+   its bar in the column, the sentence that defends it in the rail. */
+@media(min-width:1040px){
+ .unk-gap{display:grid;grid-template-columns:minmax(0,1fr) 232px;column-gap:var(--s7);align-items:start}
+ .unk-gap>*{grid-column:1}
+ .unk-gap>.rec-note{grid-column:2;grid-row:1/span 3;margin:0;font-size:var(--t1);line-height:1.65}
+ .unk-gap>.record-action{grid-row:4}
+}

@@ -130,7 +130,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
         <XAxis dataKey="year" tick={axis} tickLine={false} axisLine={{stroke:'var(--rule-strong)'}}/>
         <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'MtCO₂e',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
         <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
-        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.08em',textTransform:'uppercase'}}/>
+        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.04em'}}/>
         {(ep?.by_source??[]).map(s=><Line key={s.source_id} type="monotone" dataKey={s.source_id} name={s.source_id} stroke={colorOf(s.source_id)} strokeWidth={2} dot={false} activeDot={{r:5,strokeWidth:2,stroke:"var(--paper-raised)"}} connectNulls={false} isAnimationActive={false}/>)}
        </LineChart>
       </ResponsiveContainer>
@@ -278,7 +278,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
         <XAxis dataKey="period" tick={axis} tickLine={false} axisLine={{stroke:'var(--rule-strong)'}}/>
         <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'°C anomaly',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
         <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
-        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.08em'}}/>
+        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.04em'}}/>
         {scenarios.map(s=><Line key={s} type="monotone" dataKey={s} stroke={SCENARIO_COLOR[s]??'var(--ink-3)'} strokeWidth={1.6} dot={{r:2.5}} isAnimationActive={false}/>)}
        </LineChart>
       </ResponsiveContainer>
