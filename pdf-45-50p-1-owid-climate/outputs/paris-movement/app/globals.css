@@ -1412,3 +1412,21 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .compare-note{grid-column:1/-1;font-size:var(--t1);line-height:1.6;color:var(--ink-4);max-width:80ch}
 @media(max-width:860px){.compare{grid-template-columns:1fr}}
 @media(max-width:720px){.compare-picker{display:none}}
+
+/* ── the series chart, on the page's grid ──────────────────────────────────── */
+.sc{margin:var(--s4) 0 var(--s3)}
+.sc-svg{display:block;width:100%;height:auto;overflow:visible}
+.sc-grid{stroke:var(--rule);stroke-width:1}
+.sc-axis{stroke:var(--rule-strong);stroke-width:1}
+.sc-zero{stroke:var(--ink-4);stroke-width:1;stroke-dasharray:3 3}
+.sc-tick{font:11px var(--font-mono);fill:var(--ink-4)}
+.sc-end{font:600 11px var(--font-mono);letter-spacing:.04em;paint-order:stroke;stroke:var(--paper-raised);stroke-width:3px}
+.sc-mark{font:11px var(--font-mono);fill:var(--ink-3);paint-order:stroke;stroke:var(--paper-raised);stroke-width:3px}
+.sc-key{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s3);font:var(--t1) var(--font-sans);color:var(--ink-3)}
+.sc-key span{display:inline-flex;align-items:baseline;gap:7px}
+.sc-key i{width:14px;height:3px;border-radius:2px;flex:none;transform:translateY(-3px)}
+.sc-key small{color:var(--ink-4)}
+.sc-key-target{width:9px!important;height:9px!important;border:2px solid var(--ndc);border-radius:50%;background:var(--paper-raised)!important}
+.sc-key-bau{width:9px!important;height:9px!important;border:2px dashed var(--ink-3);border-radius:50%;background:none!important}
+.sc-unit{margin-left:auto;font-family:var(--font-mono);color:var(--ink-4)}
+.evidence-sheet .sc{margin-top:var(--s3)}

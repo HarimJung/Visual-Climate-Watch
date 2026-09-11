@@ -5,6 +5,7 @@ import {LineChart,Line,BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,Legend,Res
 import {clauseFor,fmt,jewelNames,observedYears,validateCountry,type CountryData,type Source} from '@/lib/climate';
 import SectionRail from '@/components/record/section-rail';
 import Peers from '@/components/record/peers';
+import SeriesChart from '@/components/movement/series-chart';
 
 // One colour per inventory source, held steady across every chart on the page,
 // because R3 keeps the sources apart and the reader has to be able to tell them
@@ -61,9 +62,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
  const years=observedYears(data);
  // Recharts wants one row per year with a column per source. This is a pivot,
  // not a merge: no year ever gets one blended value.
- const pivot=(()=>{const rows=new Map<number,Record<string,number>>();
-  for(const s of ep?.by_source??[])for(const p of s.series){const r=rows.get(p.year)??{year:p.year};r[s.source_id]=p.value_mtco2e;rows.set(p.year,r)}
-  return [...rows.values()].sort((a,b)=>a.year-b.year)})();
+ const pivot=(ep?.by_source??[]).some(sr=>sr.series.length)?[1]:[];
  const periods=[...new Set((pr?.scenarios??[]).map(s=>s.period))].sort();
  const scenarios=[...new Set((pr?.scenarios??[]).map(s=>s.scenario))].sort();
  const projRows=periods.map(period=>{const row:Record<string,number|string>={period};
@@ -123,18 +122,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
      long={<>Every source keeps its own line because rule R3 forbids merging them at the contract, not at the chart. Two lines that disagree are two measurements on different scopes, not an error: the scope string travels with each source below. A gap in a line is a year that source did not report, and it is drawn as a gap rather than bridged.</>}/>
     <Peers iso3={country.iso3} figure="emissions_profile.total_mtco2e"/>
     {pivot.length?<>
-     <div className="rec-chart">
-      <ResponsiveContainer width="100%" height={300}>
-       <LineChart data={pivot} margin={{top:8,right:12,left:0,bottom:0}}>
-        <CartesianGrid stroke="var(--rule)" strokeDasharray="2 4" vertical={false}/>
-        <XAxis dataKey="year" tick={axis} tickLine={false} axisLine={{stroke:'var(--rule-strong)'}}/>
-        <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'MtCO₂e',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
-        <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
-        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.04em'}}/>
-        {(ep?.by_source??[]).map(s=><Line key={s.source_id} type="monotone" dataKey={s.source_id} name={s.source_id} stroke={colorOf(s.source_id)} strokeWidth={2} dot={false} activeDot={{r:5,strokeWidth:2,stroke:"var(--paper-raised)"}} connectNulls={false} isAnimationActive={false}/>)}
-       </LineChart>
-      </ResponsiveContainer>
-     </div>
+     <SeriesChart lines={(ep?.by_source??[]).map(sr=>({id:sr.source_id,scope:sr.scope,points:sr.series.map(p=>({year:p.year,value:p.value_mtco2e}))}))} marks={[{id:'target' as const,points:data.series.target.map(p=>({year:p.year,value:p.value_mtco2e}))},{id:'bau' as const,points:data.series.bau.map(p=>({year:p.year,value:p.value_mtco2e}))}].filter(m=>m.points.length)}/>
      <ul className="rec-scopes">{(ep?.by_source??[]).map(s=><li key={s.source_id}><i style={{background:colorOf(s.source_id)}}/><b>{s.source_id}</b><span>{s.scope}</span><small>{s.series.length} years</small></li>)}</ul>
      {clauseFor(data,'series.observed.$conflict')?<p className="detail-note">{clauseFor(data,'series.observed.$conflict')}</p>:null}
     </>:<Blank what="No inventory series" why="No source has produced an emissions time series for this record."/>}
