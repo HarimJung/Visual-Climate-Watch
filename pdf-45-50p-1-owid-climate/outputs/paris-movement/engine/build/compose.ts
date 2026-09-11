@@ -55,7 +55,7 @@ export const curated: Curated[] = [
   {
     iso3: 'BRA', name_en: 'Brazil', groups: ['SOUTH AMERICA', '2023 NDC'],
     ndc_version: 'First NDC adjustment (2023)', submission_date: '2023-10-27', base_year: 2005, target_year: 2030,
-    source: { id: 'DS-06-NDC', name: 'Brazil First NDC — 2023 adjustment', url: 'https://unfccc.int/documents/633022', retrieved_at: '2026-09-07' },
+    source: { id: 'DS-06-NDC', name: 'Brazil First NDC: 2023 adjustment', url: 'https://unfccc.int/documents/633022', retrieved_at: '2026-09-07' },
     meta: { snapshot: '2023 NDC', basis: '2005 baseline' },
   },
 ];
@@ -100,7 +100,7 @@ export async function collectAll(refresh = false): Promise<Inputs> {
   // Pattern D is not run here: `cli.ts ndc-parse` writes data/ndc-targets.json
   // and the build reads it, so a build reproduces without poppler or a network.
   const dcs = ndcdocs.collect();
-  // P3 — a run is identified by what it consumed, not by the wall clock. Two
+  // P3, a run is identified by what it consumed, not by the wall clock. Two
   // builds over the same cached snapshots must produce identical bytes, so
   // run_id is a digest of the input hashes and built_at is the newest
   // retrieval time among them. randomUUID()/Date.now() would break that.
@@ -137,13 +137,13 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
   const g = i.ndgain.data.get(iso3);
   return [
     {
-      id: owid.ID, name: 'Our World in Data — CO₂ and Greenhouse Gas Emissions', pattern: 'C' as const,
+      id: owid.ID, name: 'Our World in Data: CO₂ and Greenhouse Gas Emissions', pattern: 'C' as const,
       tables: ['emissions'], connection: (o ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: o?.points.length ?? 0, last_run: i.owid.snap.retrieved_at,
       retrieved_at: o ? day(i.owid.snap.retrieved_at) : null, url: owid.HOME, license: owid.LICENSE,
     },
     {
-      id: trace.ID, name: 'Climate TRACE — country emissions', pattern: 'A' as const,
+      id: trace.ID, name: 'Climate TRACE: country emissions', pattern: 'A' as const,
       tables: ['emissions'], connection: (i.trace.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.trace.data.get(iso3)?.points.length ?? 0, last_run: i.trace.snap.retrieved_at,
       retrieved_at: i.trace.data.get(iso3) ? day(i.trace.snap.retrieved_at) : null, url: trace.HOME, license: trace.LICENSE,
@@ -161,25 +161,25 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
       retrieved_at: i.cckp.data.get(iso3) ? day(i.cckp.snap.retrieved_at) : null, url: cckp.HOME, license: cckp.LICENSE,
     },
     {
-      id: wb.ID, name: 'World Bank — country register and World Development Indicators', pattern: 'A' as const,
+      id: wb.ID, name: 'World Bank: country register and World Development Indicators', pattern: 'A' as const,
       tables: ['countries'], connection: (i.wb.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.wb.data.get(iso3) ? 1 + (i.wb.data.get(iso3)!.population.length) : 0, last_run: i.wb.snap.retrieved_at,
       retrieved_at: i.wb.data.get(iso3) ? day(i.wb.snap.retrieved_at) : null, url: wb.HOME, license: wb.LICENSE,
     },
     {
-      id: edgar.ID, name: 'EDGAR — GHG emissions of all world countries (JRC)', pattern: 'B' as const,
+      id: edgar.ID, name: 'EDGAR: GHG emissions of all world countries (JRC)', pattern: 'B' as const,
       tables: ['emissions'], connection: (i.edgar.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.edgar.data.get(iso3)?.points.length ?? 0, last_run: i.edgar.snap.retrieved_at,
       retrieved_at: i.edgar.data.get(iso3) ? day(i.edgar.snap.retrieved_at) : null, url: edgar.HOME, license: edgar.LICENSE,
     },
     {
-      id: unfccc.ID, name: 'UNFCCC Data Interface — country-submitted GHG inventories', pattern: 'B' as const,
+      id: unfccc.ID, name: 'UNFCCC Data Interface: country-submitted GHG inventories', pattern: 'B' as const,
       tables: ['emissions'], connection: (i.unfccc.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.unfccc.data.get(iso3)?.points.length ?? 0, last_run: i.unfccc.snap.retrieved_at,
       retrieved_at: i.unfccc.data.get(iso3) ? day(i.unfccc.snap.retrieved_at) : null, url: unfccc.HOME, license: unfccc.LICENSE,
     },
     {
-      id: cait.ID, name: 'Climate Watch / CAIT — (I)NDC content assessment', pattern: 'C' as const,
+      id: cait.ID, name: 'Climate Watch / CAIT: (I)NDC content assessment', pattern: 'C' as const,
       tables: ['ndc_content'], connection: (i.cait.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.cait.data.get(iso3) ? 1 : 0, last_run: i.cait.snap.retrieved_at,
       retrieved_at: i.cait.data.get(iso3) ? day(i.cait.snap.retrieved_at) : null, url: cait.HOME, license: cait.LICENSE,
@@ -200,7 +200,7 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
       url: 'https://unfccc.int/NDCREG', license: ndcdocs.LICENSE,
     },
     {
-      id: gcf.ID, name: 'Green Climate Fund — projects and disbursements', pattern: 'A' as const,
+      id: gcf.ID, name: 'Green Climate Fund: projects and disbursements', pattern: 'A' as const,
       tables: ['climate_finance'], connection: (i.gcf.data.get(iso3) ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
       records: i.gcf.data.get(iso3)?.flows.length ?? 0, last_run: i.gcf.snap.retrieved_at,
       retrieved_at: i.gcf.data.get(iso3) ? day(i.gcf.snap.retrieved_at) : null, url: gcf.HOME, license: gcf.LICENSE,
@@ -298,7 +298,7 @@ function vulnerabilityOf(iso3: string, i: Inputs) {
 
 function countryProfileOf(iso3: string, i: Inputs): CountryData['country_profile'] {
   const w = i.wb.data.get(iso3);
-  const source = { id: wb.ID, name: 'World Bank — country register and World Development Indicators', url: wb.HOME, retrieved_at: day(i.wb.snap.retrieved_at) };
+  const source = { id: wb.ID, name: 'World Bank: country register and World Development Indicators', url: wb.HOME, retrieved_at: day(i.wb.snap.retrieved_at) };
   if (!w) {
     return {
       region: null, income_group: null, population: null, population_year: null,
@@ -315,7 +315,7 @@ function countryProfileOf(iso3: string, i: Inputs): CountryData['country_profile
     population: w.latest_population?.value ?? null,
     population_year: w.latest_population?.year ?? null,
     state: 'observed',
-    $note: `Population is World Bank SP.POP.TOTL for the latest year published in the ${wb.FROM_YEAR}–${wb.TO_YEAR} window. Income group is the World Bank's own classification, not a UNFCCC one.`,
+    $note: `Population is World Bank SP.POP.TOTL for the latest year published in the ${wb.FROM_YEAR}-${wb.TO_YEAR} window. Income group is the World Bank's own classification, not a UNFCCC one.`,
     source,
   };
 }
@@ -376,7 +376,7 @@ function ndcAssessmentOf(iso3: string, i: Inputs): CountryData['ndc_assessment']
     // A pledge assessed by a third party is never an observation.
     state: 'pledged',
     $note: 'Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.',
-    source: { id: cait.ID, name: 'Climate Watch / CAIT — (I)NDC content assessment', url: cait.HOME, retrieved_at: day(i.cait.snap.retrieved_at) },
+    source: { id: cait.ID, name: 'Climate Watch / CAIT: (I)NDC content assessment', url: cait.HOME, retrieved_at: day(i.cait.snap.retrieved_at) },
   };
 }
 
@@ -424,7 +424,7 @@ function financeFlowsOf(iso3: string, i: Inputs): CountryData['finance_flows'] {
           : 'the Fund reports approved financing for this country but no disbursement yet.' }
       : {}),
     $note: `${gcf.SCOPE} approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; ${g.regional_projects} multi-country project(s) disbursing ${g.regional_disbursed_usd.toLocaleString('en-US')} USD in total are counted separately and never divided.`,
-    source: { id: gcf.ID, name: 'Green Climate Fund — projects and disbursements', url: gcf.HOME, retrieved_at: day(i.gcf.snap.retrieved_at) },
+    source: { id: gcf.ID, name: 'Green Climate Fund: projects and disbursements', url: gcf.HOME, retrieved_at: day(i.gcf.snap.retrieved_at) },
   };
 }
 
@@ -436,7 +436,7 @@ function financeFlowsOf(iso3: string, i: Inputs): CountryData['finance_flows'] {
  */
 function btrOf(iso3: string, i: Inputs): CountryData['btr'] {
   const b = i.btr.data.get(iso3);
-  const source = { id: btrsrc.ID, name: 'UNFCCC — First Biennial Transparency Reports', url: btrsrc.HOME, retrieved_at: day(i.btr.snap.retrieved_at) };
+  const source = { id: btrsrc.ID, name: 'UNFCCC: First Biennial Transparency Reports', url: btrsrc.HOME, retrieved_at: day(i.btr.snap.retrieved_at) };
   // Three different silences, and the socket says which one it is. A reader
   // who cannot tell "we never got the filing" from "the filing has chapters no
   // filename can name" is reading a gap where the engine reported a limit.
@@ -454,14 +454,14 @@ function btrOf(iso3: string, i: Inputs): CountryData['btr'] {
   const confirmed = Object.values(components).filter((c) => c.state === 'observed').length;
   return {
     version: 'BTR1',
-    // R1: true where a filing was found, null where none was. Never false —
+    // R1: true where a filing was found, null where none was. Never false , 
     // this mirror not holding a filing is not a Party failing to file one.
     submitted: b ? true : null,
     submission_date: null, published_date: null,
     components,
     $note: b
       ? `${b.files} attachment(s) are listed for this Party's BTR1. ${confirmed} of ${BTR_COMPONENTS.length} components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.`
-      : 'No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed — unfccc.int refuses this engine\'s requests, so the registry itself has not been read.',
+      : 'No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed, unfccc.int refuses this engine\'s requests, so the registry itself has not been read.',
     source,
   };
 }
@@ -625,7 +625,7 @@ export function metaFor(iso3: string, i?: Inputs) {
   if (!o) return undefined;
   return {
     mode: 'observations-only',
-    snapshot: `OWID observations ${o.points[0]?.year ?? owid.FROM_YEAR}–${o.points.at(-1)?.year ?? ''}`,
+    snapshot: `OWID observations ${o.points[0]?.year ?? owid.FROM_YEAR}-${o.points.at(-1)?.year ?? ''}`,
     basis: 'NDC target not parsed',
     notice: 'Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country.',
   };

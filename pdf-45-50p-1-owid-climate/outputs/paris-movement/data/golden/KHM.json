@@ -48,7 +48,7 @@
       "conditional_pct": null,
       "split_state": "unknown",
       "extraction_confidence": "low",
-      "$note": "Cambodia publishes NO numeric unconditional/conditional split. The dial MUST NOT invent one — render the conditional wheel as UNQUANTIFIED, floating and unmeshed, with the verbatim statement on the case-back."
+      "$note": "Cambodia publishes NO numeric unconditional/conditional split. The dial MUST NOT invent one: render the conditional wheel as UNQUANTIFIED, floating and unmeshed, with the verbatim statement on the case-back."
     },
     "source": {
       "id": "DS-06-NDC",
@@ -108,10 +108,10 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. Cambodia's filing has been located but not read."
       }
     },
-    "$note": "Cambodia DID submit BTR1 on time. Per-component presence is NOT yet parsed — all eight are `unknown`, not `absent`. The UI must distinguish these: unknown = hairline outline, absent = machined void. Conflating them would be a false accusation.",
+    "$note": "Cambodia DID submit BTR1 on time. Per-component presence is NOT yet parsed: all eight are `unknown`, not `absent`. The UI must distinguish these: unknown = hairline outline, absent = machined void. Conflating them would be a false accusation.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "document_url": "https://unfccc.int/documents/645175",
       "retrieved_at": "2026-09-07"
@@ -460,7 +460,7 @@
     "trend_annual_mtco2e": 1.376,
     "on_track": false,
     "gap_state": "observed",
-    "$note": "Trend: least-squares slope over 35 observed years (1990–2024) from DS-35, compared against the DS-06-NDC target of 90.4 MtCO₂e by 2030. The two are not necessarily on the same inventory scope — see series.$note.",
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 90.4 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note.",
     "$reason": "observed emissions are rising by 1.38 MtCO₂e/yr while the target requires a fall of 0.24 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported."
   },
   "$extensions": [
@@ -481,10 +481,10 @@
     "population": 17847982,
     "population_year": 2025,
     "state": "observed",
-    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015-2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
     "source": {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
       "retrieved_at": "2026-09-07"
     }
@@ -521,7 +521,7 @@
     "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
     "source": {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
     }
@@ -871,7 +871,7 @@
     "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 7 multi-country project(s) disbursing 200,290,621 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "retrieved_at": "2026-09-10"
     }
@@ -1692,7 +1692,7 @@
   "sources": [
     {
       "id": "DS-35",
-      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "name": "Our World in Data: CO₂ and Greenhouse Gas Emissions",
       "pattern": "C",
       "tables": [
         "emissions"
@@ -1706,7 +1706,7 @@
     },
     {
       "id": "DS-02",
-      "name": "Climate TRACE — country emissions",
+      "name": "Climate TRACE: country emissions",
       "pattern": "A",
       "tables": [
         "emissions"
@@ -1748,7 +1748,7 @@
     },
     {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "pattern": "A",
       "tables": [
         "countries"
@@ -1762,7 +1762,7 @@
     },
     {
       "id": "DS-05",
-      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "name": "EDGAR: GHG emissions of all world countries (JRC)",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1776,7 +1776,7 @@
     },
     {
       "id": "DS-40",
-      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "name": "UNFCCC Data Interface: country-submitted GHG inventories",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1790,7 +1790,7 @@
     },
     {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "pattern": "C",
       "tables": [
         "ndc_content"
@@ -1832,7 +1832,7 @@
     },
     {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "pattern": "A",
       "tables": [
         "climate_finance"
@@ -1862,7 +1862,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "e2d66df6ea2c6e813e8a229b01b6b59b2b8fd00591e684aa8551950d9c135fec",
+    "payload_sha256": "118c8ebaeaee5a5db54abd159d542bbc165eed3b7a7136ba137278dc90d90baf",
     "inputs": [
       {
         "source_id": "DS-35",

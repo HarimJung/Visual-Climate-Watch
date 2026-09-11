@@ -1,6 +1,6 @@
 // Rule-based assessment sentences. One clause per field.
 //
-// If the field is unknown, the clause is absent — the sentence gets shorter,
+// If the field is unknown, the clause is absent, the sentence gets shorter,
 // which is the correct behaviour, not a defect to pad. No language model
 // writes any part of this: a UN partner asking for the methodology has to be
 // able to read it as code, and every clause has to be traceable to one field.
@@ -40,7 +40,7 @@ export function verdict(d: CountryData, basis?: string): { clauses: Clause[]; te
     });
   }
 
-  // 2. conditionality — only when the document itself says something
+  // 2. conditionality, only when the document itself says something
   if (n.conditionality.conditional_pct != null) {
     c.push({ field: 'ndc.conditionality.conditional_pct', text: `${pct(n.conditionality.conditional_pct)} of that target is conditional on international support.` });
   } else if (n.conditionality.statement && n.conditionality.statement !== NO_CONDITIONALITY_PARSED) {

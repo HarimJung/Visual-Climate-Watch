@@ -96,7 +96,7 @@
     "$note": "1 attachment(s) are listed for this Party's BTR1. 0 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "retrieved_at": "2026-09-10"
     }
@@ -518,7 +518,7 @@
     "trend_annual_mtco2e": 0.002,
     "on_track": false,
     "gap_state": "observed",
-    "$note": "Trend: least-squares slope over 35 observed years (1990–2024) from DS-35, compared against the DS-06-NDC target of 0.102 MtCO₂e by 2030. The two are not necessarily on the same inventory scope — see series.$note. The target tonnage is derived here, not quoted: 44.7% below DS-35's 2014 value of 0.184 MtCO₂e. The document states the percentage; the level it is applied to comes from DS-35, on DS-35's inventory scope, which is not necessarily the document's.",
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 0.102 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note. The target tonnage is derived here, not quoted: 44.7% below DS-35's 2014 value of 0.184 MtCO₂e. The document states the percentage; the level it is applied to comes from DS-35, on DS-35's inventory scope, which is not necessarily the document's.",
     "$reason": "observed emissions are rising by 0.00 MtCO₂e/yr while the target requires a fall of 0.02 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported."
   },
   "$extensions": [
@@ -539,10 +539,10 @@
     "population": 65871,
     "population_year": 2025,
     "state": "observed",
-    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015-2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
     "source": {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
       "retrieved_at": "2026-09-07"
     }
@@ -579,7 +579,7 @@
     "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
     "source": {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
     }
@@ -712,7 +712,7 @@
     "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 4 multi-country project(s) disbursing 129,718,554 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "retrieved_at": "2026-09-10"
     }
@@ -1597,7 +1597,7 @@
   "sources": [
     {
       "id": "DS-35",
-      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "name": "Our World in Data: CO₂ and Greenhouse Gas Emissions",
       "pattern": "C",
       "tables": [
         "emissions"
@@ -1611,7 +1611,7 @@
     },
     {
       "id": "DS-02",
-      "name": "Climate TRACE — country emissions",
+      "name": "Climate TRACE: country emissions",
       "pattern": "A",
       "tables": [
         "emissions"
@@ -1653,7 +1653,7 @@
     },
     {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "pattern": "A",
       "tables": [
         "countries"
@@ -1667,7 +1667,7 @@
     },
     {
       "id": "DS-05",
-      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "name": "EDGAR: GHG emissions of all world countries (JRC)",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1681,7 +1681,7 @@
     },
     {
       "id": "DS-40",
-      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "name": "UNFCCC Data Interface: country-submitted GHG inventories",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1695,7 +1695,7 @@
     },
     {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "pattern": "C",
       "tables": [
         "ndc_content"
@@ -1737,7 +1737,7 @@
     },
     {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "pattern": "A",
       "tables": [
         "climate_finance"
@@ -1767,7 +1767,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "1d25b771a064a1504f1d17eb4c9d8f72cde778ce71e8482a902dee9eec103523",
+    "payload_sha256": "cf3e01127210abded7665a80a0ae9644299a42f4bff6463efa1108c2811ddcfe",
     "inputs": [
       {
         "source_id": "DS-35",

@@ -5,7 +5,7 @@ import {fmt,type CountryData} from '@/lib/climate';
 import {loadCountry,origin} from '@/lib/record';
 
 // The dial is the way in; this is the whole record behind it. One route per
-// country so a section can be linked to directly: /country/KOR#emissions —
+// country so a section can be linked to directly: /country/KOR#emissions,
 // and rendered on the server, so the URL is quotable by a reader, a crawler or
 // a court filing without running the 3D instrument first.
 const iso3Of=async(params:Promise<{iso3:string}>)=>(await params).iso3.toUpperCase();
@@ -17,8 +17,8 @@ const tryLoad=async(iso3:string)=>{try{return await loadCountry(iso3,await origi
 export async function generateMetadata({params}:{params:Promise<{iso3:string}>}):Promise<Metadata>{
  const iso3=await iso3Of(params);
  const d=await tryLoad(iso3);
- if(!d)return {title:`${iso3} — Visual Climate Watch`};
- const title=`${d.country.name_en} — climate record`;
+ if(!d)return {title:`${iso3} · Visual Climate Watch`};
+ const title=`${d.country.name_en} · climate record`;
  // The description is built from the record's own figures, not written for
  // search. What a result quotes is then the same claim the page makes.
  const description=summarise(d);

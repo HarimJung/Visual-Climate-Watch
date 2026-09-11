@@ -1,13 +1,12 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
 import {ArrowLeft,ArrowUpRight} from 'lucide-react';
 import {fmt} from '@/lib/climate';
 import {loadView} from '@/lib/record';
 
 // P2, the Divergence Atlas. The same country and year as several sources hold
-// it, never reconciled — R3 all the way to the page.
+// it, never reconciled, R3 all the way to the page.
 export const metadata:Metadata={
- title:'Divergence Atlas — Visual Climate',
+ title:'Divergence Atlas, Visual Climate',
  description:'The same country, the same year, different ledgers. Every inventory source side by side, unmerged, each with its own scope.',
 };
 
@@ -18,8 +17,15 @@ type Atlas={
   a_total_mtco2e:number;b_total_mtco2e:number;total_gap_mtco2e:number;rows:Row[]};
  countries:Row[];caveat:string;
 };
-const COLOR:Record<string,string>={'DS-35':'#1b6f68','DS-02':'#2b54b7','DS-40':'#8f6b2a','DS-05':'#5b4c99'};
-const colorOf=(id:string)=>COLOR[id]??'#6a747b';
+// 207 rows with a hairline under each is a wall. Grouped by how far the
+// sources actually disagree, the same rows answer a question on sight.
+const BANDS=[
+ {label:'Sources disagree by more than half',min:50,max:Infinity},
+ {label:'Disagree by a fifth to a half',min:20,max:50},
+ {label:'Broadly agree, under a fifth',min:0,max:20},
+] as const;
+const COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)'};
+const colorOf=(id:string)=>COLOR[id]??'var(--ink-3)';
 
 function Bars({row}:{row:Row}){
  const max=Math.max(...row.values.map(v=>Math.abs(v.value_mtco2e)))||1;
@@ -30,17 +36,38 @@ function Bars({row}:{row:Row}){
  </div>)}</div>;
 }
 
+
+// Two respected datasets, the same 199 countries, the same year, drawn as the
+// disagreement they are. The page opens on the argument instead of describing it.
+function Collision({h}:{h:Atlas['headline']}){
+ const max=Math.max(h.a_total_mtco2e,h.b_total_mtco2e)||1;
+ const rows=[{id:h.a,v:h.a_total_mtco2e},{id:h.b,v:h.b_total_mtco2e}];
+ return <figure className="div-collide" aria-label={`${h.a} totals ${Math.round(h.a_total_mtco2e)} Mt and ${h.b} totals ${Math.round(h.b_total_mtco2e)} Mt across the same ${h.countries} countries in ${h.year}.`}>
+  {rows.map(r=><div className="div-collide-row" key={r.id}>
+   <span className="div-collide-id" style={{color:colorOf(r.id)}}>{r.id}</span>
+   <span className="div-collide-track"><i style={{width:`${r.v/max*100}%`,background:colorOf(r.id)}}/></span>
+   <span className="div-collide-val">{fmt(r.v,0)}<small>Mt</small></span>
+  </div>)}
+  <figcaption>
+   <b>{fmt(h.total_gap_mtco2e,0)} Mt apart</b>
+   <span>same {h.countries} countries · same year ({h.year}) · neither one corrected</span>
+  </figcaption>
+ </figure>;
+}
+
 export default async function Page(){
  const atlas=await loadView<Atlas>('divergence');
  const h=atlas?.headline;
  const scopes=atlas?[...new Map(atlas.countries.flatMap(r=>r.values).map(v=>[v.source_id,v.scope])).entries()].sort((a,b)=>a[0].localeCompare(b[0])):[];
- return <main className="record">
-  <header className="rec-top"><Link className="rec-back" href="/"><ArrowLeft size={15}/> The instrument</Link><Link className="rec-contract" href="/refusals">The Refusal Log <ArrowUpRight size={13}/></Link></header>
-  <div className="rec-shell">
-   <section className="rec-head">
-    <p className="eyebrow"><span className="index">P2</span> DIVERGENCE ATLAS</p>
-    <h1 className="rec-title">Same country, same year, different ledgers<span className="rec-stop">.</span></h1>
-    <p className="rec-lede">Every source this engine holds for a country stays whole. Nothing here is averaged, harmonised or reconciled — rule R3 forbids it at the contract, not at the chart — so a disagreement between two respected datasets survives all the way to this page instead of being resolved by a pipeline nobody reads.</p>
+ return <main className="record" id="main">
+    <div className="rec-shell">
+   <section className="div-masthead">
+    <div className="div-masthead-text">
+     <p className="eyebrow">DIVERGENCE ATLAS</p>
+     <h1 className="rec-title">Same country, same year, different ledgers<span className="rec-stop">.</span></h1>
+     <p className="rec-lede">Every source this engine holds stays whole. Nothing is averaged or reconciled, rule R3 forbids it at the contract, not at the chart, so a disagreement between two respected datasets survives all the way to this page.</p>
+    </div>
+    {h&&<Collision h={h}/>}
    </section>
 
    {!atlas||!h?<div className="rec-blank"><span className="state-token unknown"><i/>Atlas unavailable</span><p>The divergence view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div>:<>
@@ -55,29 +82,36 @@ export default async function Page(){
     <div className="rec-blank caveat"><span className="state-token pledged"><i/>Read this before quoting the figures</span><p>{atlas.caveat}</p></div>
 
     <section className="rec-section" id="scopes">
-     <h2><i>01</i> What each source measures</h2>
+     <h2>What each source measures</h2>
      <p className="rec-note">The scope string travels with the values, because most of the spread below is a scope difference rather than a measurement error.</p>
      <ul className="rec-scopes">{scopes.map(([id,scope])=><li key={id}><i style={{background:colorOf(id)}}/><b>{id}</b><span>{scope}</span></li>)}</ul>
     </section>
 
     <section className="rec-section" id="pair">
-     <h2><i>02</i> {h.a} against {h.b}, {h.year}</h2>
+     <h2>{h.a} against {h.b}, {h.year}</h2>
      <p className="rec-note">All {h.countries} countries for which both sources publish a {h.year} figure, widest disagreement first. The percentage is the gap as a share of the larger figure, so neither source is treated as the one the other deviates from.</p>
      <div className="div-rows">{h.rows.map(r=><div className="div-country" key={r.iso3}>
-      <Link className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}</Link>
+      <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}</a>
       <Bars row={r}/>
       <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
      </div>)}</div>
     </section>
 
     <section className="rec-section" id="countries">
-     <h2><i>03</i> Every country, every source</h2>
+     <h2>Every country, every source</h2>
      <p className="rec-note">{atlas.countries.length} countries have two or more sources reporting the same year. Each row is that country&rsquo;s latest such year, with every source that reported it.</p>
-     <div className="div-rows">{atlas.countries.map(r=><div className="div-country" key={r.iso3}>
-      <Link className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}<small>{r.year}</small></Link>
-      <Bars row={r}/>
-      <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
-     </div>)}</div>
+     {BANDS.map(b=>{
+      const rows=atlas.countries.filter(r=>r.spread_pct>=b.min&&r.spread_pct<b.max);
+      if(!rows.length)return null;
+      return <section className="div-band" key={b.label}>
+       <h3 className="band-head"><span>{b.label}</span><b>{rows.length}</b></h3>
+       <div className="div-rows">{rows.map(r=><div className="div-country" key={r.iso3}>
+        <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}<small>{r.year}</small></a>
+        <Bars row={r}/>
+        <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
+       </div>)}</div>
+      </section>;
+     })}
     </section>
    </>}
   </div>

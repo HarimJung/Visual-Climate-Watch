@@ -1,9 +1,9 @@
-// DS-35 — Our World in Data, CO2 and Greenhouse Gas Emissions (Pattern C).
+// DS-35, Our World in Data, CO2 and Greenhouse Gas Emissions (Pattern C).
 // License: CC BY 4.0. Redistributable with attribution.
 //
 // SCOPE WARNING, and the reason `$note` exists on every series:
 // `total_ghg` is all greenhouse gases INCLUDING land-use change, GWP100,
-// sourced by OWID from Climate Watch / PIK — NOT the national inventory a
+// sourced by OWID from Climate Watch / PIK, NOT the national inventory a
 // country reports under its own NDC accounting. Cambodia's NDC baseline of
 // 125.2 MtCO2e (2016, incl. FOLU) and OWID's figure for the same year are
 // different measurements of an overlapping thing. R3: both are kept, tagged

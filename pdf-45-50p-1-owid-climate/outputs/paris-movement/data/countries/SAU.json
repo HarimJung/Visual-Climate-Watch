@@ -100,7 +100,7 @@
     "$note": "11 attachment(s) are listed for this Party's BTR1. 1 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "retrieved_at": "2026-09-10"
     }
@@ -451,10 +451,10 @@
     "population": 36973555,
     "population_year": 2025,
     "state": "observed",
-    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015-2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
     "source": {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
       "retrieved_at": "2026-09-07"
     }
@@ -491,7 +491,7 @@
     "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
     "source": {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
     }
@@ -1334,7 +1334,7 @@
   "sources": [
     {
       "id": "DS-35",
-      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "name": "Our World in Data: CO₂ and Greenhouse Gas Emissions",
       "pattern": "C",
       "tables": [
         "emissions"
@@ -1348,7 +1348,7 @@
     },
     {
       "id": "DS-02",
-      "name": "Climate TRACE — country emissions",
+      "name": "Climate TRACE: country emissions",
       "pattern": "A",
       "tables": [
         "emissions"
@@ -1390,7 +1390,7 @@
     },
     {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "pattern": "A",
       "tables": [
         "countries"
@@ -1404,7 +1404,7 @@
     },
     {
       "id": "DS-05",
-      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "name": "EDGAR: GHG emissions of all world countries (JRC)",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1418,7 +1418,7 @@
     },
     {
       "id": "DS-40",
-      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "name": "UNFCCC Data Interface: country-submitted GHG inventories",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1432,7 +1432,7 @@
     },
     {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "pattern": "C",
       "tables": [
         "ndc_content"
@@ -1474,7 +1474,7 @@
     },
     {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "pattern": "A",
       "tables": [
         "climate_finance"
@@ -1504,7 +1504,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "746f5cf9ee834233e7d880024d672c1b1a90047c5b7fceec5a9a1f0f94c0649d",
+    "payload_sha256": "149f3707ad278f96329a34fb0c40225e542a726abe34a93ffdf142fc1daad798",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1588,7 +1588,7 @@
   },
   "$meta": {
     "mode": "observations-only",
-    "snapshot": "OWID observations 1990–2024",
+    "snapshot": "OWID observations 1990-2024",
     "basis": "NDC target not parsed",
     "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
   },

@@ -56,6 +56,8 @@ export default defineConfig(async ({ command }) => {
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
         config: {
           ...localBindingConfig,
+          // Lets the worker read its own staged data files; see lib/record.ts.
+          assets: { binding: 'ASSETS' },
           // The combined local launcher supplies this binding. Never bake a
           // localhost upstream into a production build.
           ...(command === 'serve' && process.env.CLIMATE_API_BASE

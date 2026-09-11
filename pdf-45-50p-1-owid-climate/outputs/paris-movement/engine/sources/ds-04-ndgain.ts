@@ -1,4 +1,4 @@
-// DS-04 — ND-GAIN Country Index (Pattern B, bulk zip). License: CC BY.
+// DS-04, ND-GAIN Country Index (Pattern B, bulk zip). License: CC BY.
 //
 // The bulk release carries scores but NOT the published rank. A rank computed
 // by sorting the scores does not reproduce ND-GAIN's own ranking (Cambodia

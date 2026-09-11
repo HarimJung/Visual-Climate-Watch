@@ -1,6 +1,6 @@
 // Minimal zip reader: enough to pull named entries out of a bulk download.
 // node:zlib inflates, but has no zip container support, and the alternative
-// was shelling out to `unzip` — a hidden binary dependency in a pipeline that
+// was shelling out to `unzip`, a hidden binary dependency in a pipeline that
 // has to be reproducible. 40 lines is cheaper than that.
 import { inflateRawSync } from 'node:zlib';
 

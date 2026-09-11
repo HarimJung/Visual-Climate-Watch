@@ -1,4 +1,4 @@
-// DS-05 — EDGAR, European Commission JRC (Pattern B, bulk workbook).
+// DS-05, EDGAR, European Commission JRC (Pattern B, bulk workbook).
 //
 // LICENCE, AND WHY THIS ADAPTER DROPS CO2.
 // The workbook's own 'citations and references' sheet says the EDGAR material

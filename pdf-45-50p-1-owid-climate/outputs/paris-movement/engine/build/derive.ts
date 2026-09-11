@@ -1,6 +1,6 @@
 // Derived values, and the discipline to refuse them.
 //
-// R4 — the engine computes an ambition gap only when it has the observations
+// R4, the engine computes an ambition gap only when it has the observations
 // to support one. Everything else returns null with a reason the UI can print.
 // The specification's calculateNdcGap() is deliberately NOT used: it
 // extrapolates without checking the observation count and returns Infinity
@@ -76,7 +76,7 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   }
 
   const requiredAnnual = (target - latest.value_mtco2e) / yearsLeft;
-  const note = `Trend: least-squares slope over ${sorted.length} observed years (${sorted[0].year}–${latest.year}) from ${sourceId}, compared against the ${ndc.source.id} target of ${target} MtCO₂e by ${targetYear}. The two are not necessarily on the same inventory scope — see series.$note.${conversion}`;
+  const note = `Trend: least-squares slope over ${sorted.length} observed years (${sorted[0].year}-${latest.year}) from ${sourceId}, compared against the ${ndc.source.id} target of ${target} MtCO₂e by ${targetYear}. The two are not necessarily on the same inventory scope, see series.$note.${conversion}`;
 
   // Target sits above the observed level: nothing has to fall *today*. That is
   // not the same as arriving under it. A rising trend can still cross the target
@@ -86,7 +86,7 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
     const under = projected <= target;
     return {
       ambition_gap_factor: null, on_track: under, gap_state: 'observed', trend_annual_mtco2e: trend,
-      $reason: `the target (${target} MtCO₂e) is above the latest observed level (${latest.value_mtco2e} MtCO₂e), so no cut is required today. Carried forward at the observed ${observedAnnual >= 0 ? '+' : ''}${observedAnnual.toFixed(2)} MtCO₂e/yr, ${targetYear} projects ${projected.toFixed(1)} MtCO₂e — ${under ? 'still under it' : 'above it'}.`,
+      $reason: `the target (${target} MtCO₂e) is above the latest observed level (${latest.value_mtco2e} MtCO₂e), so no cut is required today. Carried forward at the observed ${observedAnnual >= 0 ? '+' : ''}${observedAnnual.toFixed(2)} MtCO₂e/yr, ${targetYear} projects ${projected.toFixed(1)} MtCO₂e, ${under ? 'still under it' : 'above it'}.`,
       $note: note,
     };
   }

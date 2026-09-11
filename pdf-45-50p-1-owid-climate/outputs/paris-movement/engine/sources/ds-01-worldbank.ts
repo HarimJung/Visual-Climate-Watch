@@ -1,4 +1,4 @@
-// DS-01 — World Bank (Pattern A, REST). CC BY 4.0.
+// DS-01, World Bank (Pattern A, REST). CC BY 4.0.
 //
 // Two requests: the country register, and one population indicator. Between
 // them they replace three things the engine had been inferring:

@@ -34,18 +34,18 @@ export const fmt=(n:number|null|undefined,digits=1)=>n==null?'Unknown':n.toLocal
 export const observedYears=(d:CountryData)=>new Set(d.series.observed.map(p=>p.year)).size;
 /**
  * What the centre of a static dial reads. A dial with nothing in the middle is
- * not a country that pledged nothing — it is a country whose document has not
- * been read — so the pledge falls back to the inventory total the record does
+ * not a country that pledged nothing, it is a country whose document has not
+ * been read, so the pledge falls back to the inventory total the record does
  * hold, and then to the years observed. 19 territories have a series from one
  * source and no headline total from another; they are covered, not blank, and
- * the third rung is what says so. Only a record with none of the three is '—'.
+ * the third rung is what says so. Only a record with none of the three is ', '.
  */
 export function dialReading(d:{ndc:{reduction_pct:number|null};emissions_profile?:{total_mtco2e:number|null;latest_year:number|null};observed_years?:number|null}){
  if(d.ndc.reduction_pct!=null)return {value:`${fmt(d.ndc.reduction_pct)}%`,label:'PLEDGED REDUCTION'};
  const ep=d.emissions_profile;
  if(ep?.total_mtco2e!=null)return {value:fmt(ep.total_mtco2e,0),label:ep.latest_year?`MtCO₂e · ${ep.latest_year}`:'MtCO₂e OBSERVED'};
  if(d.observed_years)return {value:String(d.observed_years),label:'YEARS OBSERVED'};
- return {value:'—',label:'NOTHING PARSED YET'};
+ return {value:', ',label:'NOTHING PARSED YET'};
 }
 export const clauseFor=(d:CountryData,field:string)=>d.verdict?.clauses.find(c=>c.field===field)?.text;
 /** The engine's sentence for this country, or the reason there isn't one. */

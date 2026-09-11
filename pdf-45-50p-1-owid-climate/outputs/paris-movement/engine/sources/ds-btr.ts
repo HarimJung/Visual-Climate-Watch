@@ -1,4 +1,4 @@
-// DS-BTR — first Biennial Transparency Reports: who filed one, and what they
+// DS-BTR, first Biennial Transparency Reports: who filed one, and what they
 // attached (Pattern C over a file listing).
 //
 // WHY A LISTING AND NOT THE DOCUMENTS. unfccc.int is behind Incapsula for
@@ -9,7 +9,7 @@
 // BTR1, and the attachment names say what came with it.
 //
 // ENGINE-BUILD M3 allows exactly this evidence: "승격에는 근거가 필요하다:
-// 문서 내 섹션 위치 또는 첨부 파일명" — a component may be promoted on a
+// 문서 내 섹션 위치 또는 첨부 파일명", a component may be promoted on a
 // section location or an attachment filename. Nothing here reads a document,
 // so nothing here promotes a component the filenames do not name.
 //

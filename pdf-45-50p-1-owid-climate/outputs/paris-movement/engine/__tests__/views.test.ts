@@ -5,7 +5,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { built } from './helpers.ts';
-import { refusalLog, divergence } from '../build/views.ts';
+import { refusalLog, divergence, finance } from '../build/views.ts';
 import type { CountryData } from '../contract/schema.ts';
 
 const records = built().map(([, d]) => d as CountryData);
@@ -68,4 +68,80 @@ void test('the headline aggregates are the rows they claim to summarise', () => 
   const sorted = h.rows.map((r) => r.spread_pct).sort((a, b) => a - b);
   assert.equal(h.median_spread_pct, sorted[Math.floor(sorted.length / 2)]);
   assert.ok(Math.abs(h.total_gap_mtco2e - Math.abs(h.b_total_mtco2e - h.a_total_mtco2e)) < 1e-6);
+});
+
+// The finance view crosses two fields that already exist. The thing that can
+// actually go wrong is the one the product sells against: a country whose fund
+// ledger was never read being counted as a country that received nothing.
+void test('a country with no fund ledger is an unknown, never a zero', () => {
+  const v = finance(records);
+  const plotted = new Set(v.rows.map((r) => r.iso3));
+  for (const u of v.unknowns) {
+    assert.ok(!plotted.has(u.iso3), `${u.iso3} is both plotted and listed as unread`);
+    assert.ok(u.$reason.length > 0, `${u.iso3} is unknown with no stated reason`);
+  }
+  const scored = records.filter((d) => d.vulnerability?.vulnerability != null && d.vulnerability?.readiness != null).length;
+  assert.equal(v.rows.length + v.unknowns.length, scored,
+    'every country with a vulnerability score is either plotted or listed as unread — no country may fall out of both');
+  assert.equal(v.headline.vulnerability_scored, scored);
+  assert.equal(v.headline.plottable, v.rows.length);
+  assert.equal(v.headline.no_gcf_record, v.unknowns.length);
+});
+
+// The whole point of the view: an unread disbursement is not a zero, and must
+// never reach a reader as 0%. This is the assertion that stops it.
+void test('an unread disbursement has no ratio — never 0%', () => {
+  const v = finance(records);
+  for (const r of v.rows) {
+    const computable = r.disbursed_usd != null && r.approved_usd != null && r.approved_usd > 0;
+    if (!computable) {
+      assert.equal(r.disbursed_pct, null,
+        `${r.iso3} reports a ratio it cannot compute — disbursed ${r.disbursed_usd}, approved ${r.approved_usd}`);
+    } else {
+      assert.equal(r.disbursed_pct, r.disbursed_usd! / r.approved_usd! * 100, `${r.iso3} ratio does not match its own figures`);
+    }
+  }
+  assert.equal(v.headline.disbursement_unread,
+    v.rows.filter((r) => (r.approved_usd ?? 0) > 0 && r.disbursed_usd == null).length,
+    'the unread count does not match the rows');
+  assert.equal(v.headline.approved_nothing_disbursed,
+    v.rows.filter((r) => (r.approved_usd ?? 0) > 0 && r.disbursed_usd === 0).length,
+    'a genuine, read zero is being counted as something else');
+  assert.equal(v.headline.disbursed_read_countries, v.rows.filter((r) => r.disbursed_usd != null).length);
+  // A total summed over a subset must name that subset, or it reads as the whole.
+  assert.equal(v.headline.total_disbursed_usd,
+    v.rows.reduce((s, r) => s + (r.disbursed_usd ?? 0), 0),
+    'the disbursed total does not equal the sum of the figures actually read');
+});
+
+void test('the quartile bands hold every plotted country exactly once', () => {
+  const v = finance(records);
+  assert.equal(v.bands.reduce((s, b) => s + b.countries, 0), v.rows.length, 'the bands do not add up to the plotted set');
+  assert.equal(v.bands.reduce((s, b) => s + b.approved_usd, 0), v.headline.total_approved_usd);
+  assert.equal(v.bands.reduce((s, b) => s + b.disbursed_usd, 0), v.headline.total_disbursed_usd);
+  assert.equal(v.bands.reduce((s, b) => s + b.disbursed_read, 0), v.headline.disbursed_read_countries,
+    'the bands and the headline disagree on how many disbursement figures were read');
+  for (const b of v.bands) {
+    // The per-country average must divide by the countries it actually summed.
+    assert.equal(b.disbursed_per_read_country_usd, b.disbursed_read ? b.disbursed_usd / b.disbursed_read : 0,
+      `${b.label} averages over the wrong denominator`);
+  }
+  // Bands are ordered least to most vulnerable and must not overlap.
+  for (let i = 1; i < v.bands.length; i++) {
+    assert.ok(v.bands[i].from > v.bands[i - 1].to, `band ${i} overlaps the one before it`);
+  }
+});
+
+// Every refusal is published verbatim on /refusals and on the country record.
+// A raw shell failure carries the build machine's absolute path — the
+// operator's home directory and username — straight onto a public page. This
+// caught two (IRQ, ISR) that had been shipping.
+void test('no published refusal leaks the build machine', () => {
+  const machine = /(?:\/(?:Users|home|root)\/)|(?:[A-Za-z]:\\)|Command failed|pdftotext/i;
+  for (const f of refusalLog(records).families) {
+    for (const e of f.entries) {
+      assert.ok(!machine.test(e.reason),
+        `${e.iso3} publishes a refusal containing a filesystem path or shell command: ${e.reason}`);
+    }
+  }
 });

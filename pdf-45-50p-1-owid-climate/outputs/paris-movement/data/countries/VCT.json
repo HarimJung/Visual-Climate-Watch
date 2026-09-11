@@ -93,10 +93,10 @@
         "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
       }
     },
-    "$note": "No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed — unfccc.int refuses this engine's requests, so the registry itself has not been read.",
+    "$note": "No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed, unfccc.int refuses this engine's requests, so the registry itself has not been read.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "retrieved_at": "2026-09-10"
     }
@@ -454,10 +454,10 @@
     "population": 99924,
     "population_year": 2025,
     "state": "observed",
-    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015-2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
     "source": {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
       "retrieved_at": "2026-09-07"
     }
@@ -494,7 +494,7 @@
     "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
     "source": {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
     }
@@ -569,7 +569,7 @@
     "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 1 multi-country project(s) disbursing 45,308,253 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "retrieved_at": "2026-09-10"
     }
@@ -1390,7 +1390,7 @@
   "sources": [
     {
       "id": "DS-35",
-      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "name": "Our World in Data: CO₂ and Greenhouse Gas Emissions",
       "pattern": "C",
       "tables": [
         "emissions"
@@ -1404,7 +1404,7 @@
     },
     {
       "id": "DS-02",
-      "name": "Climate TRACE — country emissions",
+      "name": "Climate TRACE: country emissions",
       "pattern": "A",
       "tables": [
         "emissions"
@@ -1446,7 +1446,7 @@
     },
     {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "pattern": "A",
       "tables": [
         "countries"
@@ -1460,7 +1460,7 @@
     },
     {
       "id": "DS-05",
-      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "name": "EDGAR: GHG emissions of all world countries (JRC)",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1474,7 +1474,7 @@
     },
     {
       "id": "DS-40",
-      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "name": "UNFCCC Data Interface: country-submitted GHG inventories",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1488,7 +1488,7 @@
     },
     {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "pattern": "C",
       "tables": [
         "ndc_content"
@@ -1530,7 +1530,7 @@
     },
     {
       "id": "DS-15",
-      "name": "Green Climate Fund — projects and disbursements",
+      "name": "Green Climate Fund: projects and disbursements",
       "pattern": "A",
       "tables": [
         "climate_finance"
@@ -1560,7 +1560,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "80d788389fa7a0339aa83ff5b898e31336f7e9656367e637ceef36ff17fd16f2",
+    "payload_sha256": "df9235456a99053f1db4d8785a4e1e6a66519c4093279a173cc3e71446614115",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1644,7 +1644,7 @@
   },
   "$meta": {
     "mode": "observations-only",
-    "snapshot": "OWID observations 1990–2024",
+    "snapshot": "OWID observations 1990-2024",
     "basis": "NDC target not parsed",
     "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
   },

@@ -25,7 +25,7 @@ export type EngineIndex = {
   telemetry: Record<string, unknown>;
 };
 
-/** Unique observed years — series.observed holds one row per source per year. */
+/** Unique observed years, series.observed holds one row per source per year. */
 export const observedYears = (d: CountryData) => new Set(d.series.observed.map((p) => p.year)).size;
 
 type EtlFile = { run_id: string; built_at: string; countries: number; logs: { quarantine_count: number }[] };

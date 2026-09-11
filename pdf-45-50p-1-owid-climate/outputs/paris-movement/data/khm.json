@@ -48,7 +48,7 @@
       "conditional_pct": null,
       "split_state": "unknown",
       "extraction_confidence": "low",
-      "$note": "Cambodia publishes NO numeric unconditional/conditional split. The dial MUST NOT invent one — render the conditional wheel as UNQUANTIFIED, floating and unmeshed, with the verbatim statement on the case-back."
+      "$note": "Cambodia publishes NO numeric unconditional/conditional split. The dial MUST NOT invent one: render the conditional wheel as UNQUANTIFIED, floating and unmeshed, with the verbatim statement on the case-back."
     },
     "source": {
       "id": "DS-06-NDC",
@@ -108,10 +108,10 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. Cambodia's filing has been located but not read."
       }
     },
-    "$note": "Cambodia DID submit BTR1 on time. Per-component presence is NOT yet parsed — all eight are `unknown`, not `absent`. The UI must distinguish these: unknown = hairline outline, absent = machined void. Conflating them would be a false accusation.",
+    "$note": "Cambodia DID submit BTR1 on time. Per-component presence is NOT yet parsed: all eight are `unknown`, not `absent`. The UI must distinguish these: unknown = hairline outline, absent = machined void. Conflating them would be a false accusation.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "document_url": "https://unfccc.int/documents/645175",
       "retrieved_at": "2026-09-07"
@@ -164,7 +164,7 @@
         "state": "pledged"
       }
     ],
-    "$note": "The observed series has ONE point. This is not a bug and must not be padded — it is exactly what the platform exists to expose. The engine's job is to fill this from EDGAR / Climate TRACE / the BTR inventory. Until it does, the dial renders a nearly-empty metal arc beside a full glass one, which is the honest picture."
+    "$note": "The observed series has ONE point. This is not a bug and must not be padded: it is exactly what the platform exists to expose. The engine's job is to fill this from EDGAR / Climate TRACE / the BTR inventory. Until it does, the dial renders a nearly-empty metal arc beside a full glass one, which is the honest picture."
   },
   "derived": {
     "$note": "Computed by the engine, never by the UI, so the number on screen and the number in an export can never disagree.",
@@ -172,7 +172,7 @@
     "trend_annual_mtco2e": null,
     "on_track": null,
     "gap_state": "unknown",
-    "$reason": "avg annual change requires ≥2 observed years. With one point it is not computable. Do NOT display a gap factor — display the reason."
+    "$reason": "avg annual change requires ≥2 observed years. With one point it is not computable. Do NOT display a gap factor: display the reason."
   },
   "$sources_index": [
     {

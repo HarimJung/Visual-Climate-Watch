@@ -1,4 +1,4 @@
-// DS-15 — Green Climate Fund, project and disbursement data (Pattern A).
+// DS-15, Green Climate Fund, project and disbursement data (Pattern A).
 //
 // This is the axis the vulnerability picture has been missing: ND-GAIN says
 // how exposed a country is, and until now nothing said what reached it.

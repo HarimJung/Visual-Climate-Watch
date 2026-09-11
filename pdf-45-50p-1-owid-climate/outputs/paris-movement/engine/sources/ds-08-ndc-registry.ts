@@ -1,4 +1,4 @@
-// DS-08 — UNFCCC NDC Registry, via the openclimatedata mirror (Pattern C).
+// DS-08, UNFCCC NDC Registry, via the openclimatedata mirror (Pattern C).
 //
 // WHY A MIRROR. unfccc.int/NDCREG sits behind a WAF that refuses this engine's
 // requests, and ENGINE-BUILD.md §9 forbids working around one. The mirror is a

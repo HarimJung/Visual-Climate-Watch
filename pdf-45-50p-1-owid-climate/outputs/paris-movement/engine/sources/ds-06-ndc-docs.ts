@@ -1,4 +1,4 @@
-// DS-06-NDC — the NDC documents themselves (Pattern D: PDF → structured).
+// DS-06-NDC, the NDC documents themselves (Pattern D: PDF → structured).
 //
 // WHY A MIRROR, AND WHY THIS ONE. unfccc.int serves every path through
 // Incapsula, including the document CDN: a request for the Cambodia NDC PDF
@@ -10,14 +10,14 @@
 // recorded as the retrieval path.
 //
 // VINTAGE IS THE RISK HERE, NOT PARSING. The mirror is archived and carries
-// one document per Party — 153 first NDCs (many of them the 2020-21 revised
+// one document per Party, 153 first NDCs (many of them the 2020-21 revised
 // versions) and 14 second NDCs. Where the registry (DS-08) lists a later
 // active submission, `ndc_registry.matches_parsed_document` already says so
 // and the verdict prints it. A figure read here is never presented as the
 // current pledge on its own.
 //
 // WHAT IS EXTRACTED, AND WHAT IS REFUSED. Only an economy-wide percentage
-// reduction stated in one of the two canonical NDC sentence forms — against a
+// reduction stated in one of the two canonical NDC sentence forms, against a
 // base year, or against a business-as-usual projection. Everything else is
 // left unknown with the candidates listed:
 //   · two different percentages for the same basis and year (Viet Nam's
@@ -159,6 +159,25 @@ const conditionOf = (w: string): Candidate['condition'] =>
  * energy sources, and a window wide enough to reach that word discards a real
  * target as a sector target.
  */
+/**
+ * A refusal is published verbatim on /refusals and on the country record, so it
+ * must never carry the build machine's filesystem. A raw shell failure embeds
+ * the absolute path of the cache file, which leaks the operator's home
+ * directory and username to every reader, and tells them nothing about the
+ * evidence either. Keep the failure, drop the machine.
+ */
+export function toolError(err: unknown): string {
+  const raw = String((err as Error)?.message ?? err);
+  const cleaned = raw
+    .replace(/(?:\/[^\s:"']+)+/g, '<path>')          // posix absolute paths
+    .replace(/[A-Za-z]:\\[^\s:"']+/g, '<path>')       // windows
+    .replace(/\s+/g, ' ')
+    .trim();
+  // A bare command failure says nothing a reader can act on; name the step.
+  if (/^Command failed/i.test(cleaned)) return 'the PDF text extractor failed on this file';
+  return cleaned.slice(0, 160);
+}
+
 export function candidatesOf(text: string, page = 1): Candidate[] {
   const out: Candidate[] = [];
   PCT_RE.lastIndex = 0;
@@ -242,7 +261,7 @@ export function extract(pages: string[]): Extraction {
   // the Party, not about the engine.
   const chars = pages.join('').length;
   if (!pages.length || chars / pages.length < 40) {
-    return { ...empty, $reason: 'the mirrored document has no extractable text layer — it is a scan — so nothing in it has been read.' };
+    return { ...empty, $reason: 'the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.' };
   }
   const cands = pages.flatMap((p, i) => candidatesOf(p, i + 1));
   if (!cands.length) return { ...empty, $reason: 'no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.' };
@@ -333,7 +352,7 @@ export async function parseAll(refresh = false, only?: string): Promise<{ file: 
         reduction_pct: null, basis: null, base_year: null, target_year: null,
         unconditional_pct: null, conditional_pct: null, net_zero_year: null,
         confidence: 'low', evidence: [], pages: 0, text_sha256: '', document_sha256: doc?.sha256 ?? '', document_retrieved_at: doc?.retrieved_at ?? null,
-        $reason: `the document could not be read: ${String((err as Error).message ?? err).slice(0, 200)}`,
+        $reason: `the document could not be read: ${toolError(err)}`,
       });
       continue;
     }

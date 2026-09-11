@@ -1,9 +1,9 @@
-// DS-02 — Climate TRACE, country emissions (Pattern A, REST). CC BY 4.0.
+// DS-02, Climate TRACE, country emissions (Pattern A, REST). CC BY 4.0.
 //
 // The second emissions source, and the reason R3 exists. Climate TRACE builds
 // country totals from observed assets (satellite, sensor, ML) and does not
 // account for land use the way OWID's Climate Watch/PIK series does. For
-// Cambodia 2022 it reports 41.7 MtCO2e against OWID's 89.9 — a factor of two.
+// Cambodia 2022 it reports 41.7 MtCO2e against OWID's 89.9, a factor of two.
 // Neither is corrected toward the other. Both are stored with their source_id.
 //
 // The bulk alternative was 218 country packages at ~8MB each (1.8 GB of

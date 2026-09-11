@@ -1,4 +1,4 @@
-// DS-40 — UNFCCC Data Interface: country-submitted GHG inventories (Pattern B).
+// DS-40, UNFCCC Data Interface: country-submitted GHG inventories (Pattern B).
 //
 // WHY NOT di.unfccc.int DIRECTLY. Its API answers this engine with an Imperva
 // challenge page instead of JSON, and ENGINE-BUILD.md §9 forbids working around

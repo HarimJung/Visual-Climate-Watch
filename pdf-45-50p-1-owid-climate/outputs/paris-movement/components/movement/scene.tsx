@@ -1,18 +1,27 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import type * as THREE from 'three';
+import {StaticDial} from './static-dial';
+
+// The engraved inks live in CSS so the instrument follows the page into dark
+// mode instead of etching near-black text onto a near-black plate. Read at
+// build time; the scene rebuilds when the record changes.
+const ink=(name:string,fallback:string)=>{
+ try{return getComputedStyle(document.documentElement).getPropertyValue(name).trim()||fallback}catch{return fallback}
+};
+
 import {cycleOffset,narrativeAmount,deskAmount,returnAmount,cyclePhase,reveal,btrReveal,btrStepAt,storyPhase,BTR_STORIES,LAYER_WINDOWS,AssemblyReplay} from './explosion-motion';
 import {createExplosionLayout} from './explosion-layout';
 import {PointerTap} from './pointer-tap';
-import {dialReading,fmt,observedYears,type CountryData} from '@/lib/climate';
+import {fmt,observedYears,type CountryData} from '@/lib/climate';
 export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;playSeconds?:number};
 export const phases=[
  {title:'Opening the planet',description:'Scroll down and the connected data rises one layer at a time. The movement explains structure; it never stands for progress.'},
- {title:'01 · The Paris Agreement — the plate under every promise',description:'Pledges, observations, reporting and support conditions all seat on one shared design.'},
- {title:'02 · NDC — the pledge becomes a ring',description:'The reduction written in the document rises as a target ring. The blue arc is the size of the promise, not a measured result.'},
- {title:'03 · Observations — the record becomes gears',description:'Inventory gears and record markers rise in turn. Only observations actually held are shown as data.'},
- {title:'04 · BTR — eight pieces inside one report',description:'The reporting module lifts first. Keep scrolling to read each component inside it.'},
- {title:'05 · International support — the condition on the promise',description:'Support conditions rise last. Finance needed and finance received stay separate facts, and unknown stays unknown.'},
+ {title:'01 · The Paris Agreement, the plate under every promise',description:'Pledges, observations, reporting and support conditions all seat on one shared design.'},
+ {title:'02 · NDC, the pledge becomes a ring',description:'The reduction written in the document rises as a target ring. The blue arc is the size of the promise, not a measured result.'},
+ {title:'03 · Observations, the record becomes gears',description:'Inventory gears and record markers rise in turn. Only observations actually held are shown as data.'},
+ {title:'04 · BTR, eight pieces inside one report',description:'The reporting module lifts first. Keep scrolling to read each component inside it.'},
+ {title:'05 · International support, the condition on the promise',description:'Support conditions rise last. Finance needed and finance received stay separate facts, and unknown stays unknown.'},
  {title:'Laid flat, for one look at the whole',description:'Parts that have finished their explanation spread out like a drawing on a desk, then return to their seats one by one.'},
  {title:'One by one, back into one machine',description:'Target ring, inventory gears, reporting and support return to the Paris plate. The shell closes last.'},
  {title:'One planet, connected again',description:'Every record is back in its seat. The gears keep turning. Scroll back to revisit any scene.'}
@@ -53,8 +62,8 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  function chip(parent:THREE.Group,name:string,mat:THREE.Material,css:string,x:number,y:number,z:number,id:string){const g=new T.Group();g.position.set(x,y,z);parent.add(g);clickable(slab(g,1.16,.86,0,mat,.2),id);slab(g,1.00,.70,.22,white,.06);engraving(g,name,css,.80,.28,.33);screw(g,-.38,-.24,.34,.028);screw(g,.38,.24,.34,.028);return g;}
  // The neutral chassis is the shared country contract; it contains no claimed climate values.
  const chassis=part('treaty',0,-.22);clickable(annulus(chassis,2.96,1.04,.22,0,porcelain),'treaty');annulus(chassis,3.07,2.9,.14,-.12,silver);ring(chassis,3.04,.032,.11,edge);ring(chassis,2.94,.024,.25,white);cylinder(chassis,1.03,.11,.09,white);ring(chassis,1.07,.022,.19,silver);
- engraving(chassis,'PARIS AGREEMENT · 2015','#3c464d',1.75,.14,.29).position.y=-2.42;
- const anchorT=chip(chassis,'PARIS',porcelain,'#4c565c',-2.62,-2.62,.30,'treaty');label(anchorT,'01 / Paris plate','The shared design every part seats on','#4c565c',0,[-150,26]);
+ engraving(chassis,'PARIS AGREEMENT · 2015',ink('--ink-2','#3c464d'),1.75,.14,.29).position.y=-2.42;
+ const anchorT=chip(chassis,'PARIS',porcelain,ink('--engrave','#4c565c'),-2.62,-2.62,.30,'treaty');label(anchorT,'01 / Paris plate','The shared design every part seats on',ink('--engrave','#4c565c'),0,[-150,26]);
  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;screw(chassis,Math.cos(a)*2.73,Math.sin(a)*2.73,.28,.066);}
  // 1. NDC records become the target ring. The arc length is the actual pledged reduction.
  const promise=part('pledge',1,.40);clickable(annulus(promise,2.82,2.4,.12,0,clear),'pledge');ring(promise,2.85,.028,.12,edge);ring(promise,2.37,.015,.13,edge);const ratio=(data.ndc.reduction_pct??0)/100;
@@ -63,18 +72,18 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  // 2. Only loaded observations become metal markers; the gear train has mechanical support, not invented time-series points.
  const inventory=part('delivery',2,.35);
  const sourceGears:[number,number,number,number,THREE.Material,number,string][]=[[-1.05,-.30,.87,36,teal,1,'delivery'],[.55,-.30,.70,29,steel,-1,'source:DS-05'],[1.33,.75,.58,24,steel,1,'source:DS-02']];
- sourceGears.forEach(([x,y,r,n,mat,sign,id])=>{const g=clickable(cog(inventory,x,y,r,n,mat,sign),id);g.userData.source=id;const available=id==='delivery'?data.series.observed.length>0:(data.sources??[]).some(s=>s.id===id.slice(7)&&s.connection==='connected');g.userData.available=available;if(!available)ghost_(g);const cap=new T.Group();cap.position.set(x,y,.43);inventory.add(cap);engraving(cap,id==='delivery'?'INVENTORY':id==='source:DS-05'?'EDGAR':'TRACE','#3c464d',r*1.22,r*.30,.02);clickable(cap,id);});
+ sourceGears.forEach(([x,y,r,n,mat,sign,id])=>{const g=clickable(cog(inventory,x,y,r,n,mat,sign),id);g.userData.source=id;const available=id==='delivery'?data.series.observed.length>0:(data.sources??[]).some(s=>s.id===id.slice(7)&&s.connection==='connected');g.userData.available=available;if(!available)ghost_(g);const cap=new T.Group();cap.position.set(x,y,.43);inventory.add(cap);engraving(cap,id==='delivery'?'INVENTORY':id==='source:DS-05'?'EDGAR':'TRACE',ink('--ink-2','#3c464d'),r*1.22,r*.30,.02);clickable(cap,id);});
  const gearSupports:[[number,number],[number,number]][]=[[[-1.05,-.30],[.55,-.30]],[[.55,-.30],[1.33,.75]]];gearSupports.forEach(([a,b])=>{const dx=b[0]-a[0],dy=b[1]-a[1];const bar=new T.Group();bar.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,-.17);bar.rotation.z=Math.atan2(dy,dx);inventory.add(bar);slab(bar,Math.hypot(dx,dy),.13,0,silver,.065);});
  const dataMarks:THREE.Mesh[]=[];data.series.observed.forEach((p,i)=>{const a=Math.PI*.1+i/Math.max(data.series.observed.length,15)*Math.PI*1.8;const m=cylinder(inventory,.075,.045,.25,teal,Math.cos(a)*2.26,Math.sin(a)*2.26);clickable(m,'delivery');dataMarks.push(m)});
- const anchorI=chip(inventory,'INV',teal,'#1b6f68',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${data.series.observed.length} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#1b6f68',2,[-144,10]);
+ const anchorI=chip(inventory,'INV',teal,'#0d8a6e',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${data.series.observed.length} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#0d8a6e',2,[-144,10]);
  // 3. BTR submission seats a bridge. Eight individual states remain independent of submission.
- const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,porcelain,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#5b4c99':'#9a93a6',.7,.22,.174);
+ const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,porcelain,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#8e4a86':'#9a93a6',.7,.22,.174);
  const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);const pad=mesh(new T.CylinderGeometry(.34,.34,.6,8),new T.MeshBasicMaterial({visible:false}),g,0,0,.1);pad.rotation.x=Math.PI/2;pad.castShadow=pad.receiveShadow=false;clickable(pad,'evidence:'+key);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed')cylinder(g,.107,.08,.04,violet);else if(state.state==='pledged')cylinder(g,.107,.05,.04,glass);else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{ring(g,.102,.009,.034,ghost);engraving(g,'?', '#8d84a0',.10,.06,.052);}sockets.push(g);g.userData.key=key});
- const anchorB=chip(evidence,'BTR',violet,'#5b4c99',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR reporting duty',data.btr.submitted===true?`Submitted · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length} unparsed`:'Submission unparsed','#5b4c99',3,[36,-42]);
+ const anchorB=chip(evidence,'BTR',violet,'#8e4a86',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR reporting duty',data.btr.submitted===true?`Submitted · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length} unparsed`:'Submission unparsed','#8e4a86',3,[36,-42]);
  // 4. Finance docks beside the mechanism. Unknown receipts never make this conditional wheel mesh.
- const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN',gold,'#8f6b2a',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#8f6b2a',4,[32,18]);
+ const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN',gold,'#b07d1a',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#b07d1a',4,[32,18]);
  // 5. The assessment core seats only after the inputs. It refuses an unsupported conclusion.
- const core=part('assessment',5,1.02);const corePlate=slab(core,.89,.75,0,porcelain,.13);clickable(corePlate,'delivery');engraving(core,'VC','#3c464d',.63,.24,.174);ring(core,.48,.018,.05,edge);
+ const core=part('assessment',5,1.02);const corePlate=slab(core,.89,.75,0,porcelain,.13);clickable(corePlate,'delivery');engraving(core,'VC',ink('--ink-2','#3c464d'),.63,.24,.174);ring(core,.48,.018,.05,edge);
 
  function disposeScene(){const materials=new Set<THREE.Material>();scene.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Points||o instanceof T.Line){o.geometry.dispose();(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));}});materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());key.shadow.dispose();env.dispose();renderer.dispose();renderer.domElement.remove();topLabels.remove();btrLayer.remove();}
  cleanup=disposeScene;
@@ -86,7 +95,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  for(const [g,start] of [[north,0],[south,Math.PI/2]] as const){const shell=new T.SphereGeometry(2.90,128,72,0,Math.PI*2,start,Math.PI/2);shell.rotateX(Math.PI/2);const planet=clickable(mesh(shell,earthMaterial,g),'planet');planet.castShadow=true;planet.renderOrder=3;ring(g,2.90,.035,0,edge);ring(g,2.82,.020,.012,gold);}
  const atmosphereMaterial=new T.ShaderMaterial({transparent:true,side:T.BackSide,depthWrite:false,uniforms:{glowColor:{value:new T.Color(0x538fd3)}},vertexShader:'varying vec3 n; varying vec3 v; void main(){vec4 mv=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',fragmentShader:'varying vec3 n; varying vec3 v; uniform vec3 glowColor; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(glowColor,rim*.18);}'});
  const atmosphere=new T.SphereGeometry(2.935,96,48,0,Math.PI*2,0,Math.PI/2);atmosphere.rotateX(Math.PI/2);mesh(atmosphere,atmosphereMaterial,north);
- const equator=part('planet-label',0,-.23);ring(equator,3.11,.01,0,steel);engraving(equator,'ONE PLANET · SHARED RESPONSIBILITY','#4c565c',2.32,.17,.09).position.y=-2.82;
+ const equator=part('planet-label',0,-.23);ring(equator,3.11,.01,0,steel);engraving(equator,'ONE PLANET · SHARED RESPONSIBILITY',ink('--engrave','#4c565c'),2.32,.17,.09).position.y=-2.82;
  const obligations=new T.Group();chassis.add(obligations);const obligationNames=['ARTICLE 2','ARTICLE 4','ARTICLE 13','ARTICLE 14'];for(let i=0;i<4;i++){const g=new T.Group();const a=i*Math.PI/2+.38;g.position.set(Math.cos(a)*2.08,Math.sin(a)*2.08,.22);g.rotation.z=a-Math.PI/2;obligations.add(g);clickable(slab(g,.80,.27,0,steel,.06),'treaty');engraving(g,obligationNames[i],'#d6e0e6',.68,.10,.094);}
  const confirmedGaps=Object.values(data.btr.components).filter(c=>c.state==='absent').length;const offTrack=data.derived.on_track===false;const unresolved=data.derived.on_track==null;
  const warningMat=new T.MeshStandardMaterial({color:0xa6432f,emissive:0x7e261c,emissiveIntensity:.25,metalness:.3,roughness:.38});
@@ -265,5 +274,4 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  }catch(error){cleanup();console.error('3D movement unavailable',error);if(!cancelled)setFailed(true)}})();return()=>{cancelled=true;cleanup()}},[data]);
  return <div ref={host} className="scene-host" aria-label={`${data.country.name_en}: NDC, inventory, BTR and finance assemble into a climate evidence instrument.`}>{failed&&<div className="fallback"><StaticDial data={{...data,observed_years:observedYears(data)}}/><p>3D is unavailable in this browser. Every figure is still readable below.</p></div>}</div>
 }
-export function StaticDial({data}:{data:{ndc:{reduction_pct:number|null};btr:{components:Record<string,{state:string}>};emissions_profile?:{total_mtco2e:number|null;latest_year:number|null};observed_years?:number|null}}){const pct=data.ndc.reduction_pct;const reading=dialReading(data);
-return <svg viewBox="0 0 420 420" aria-label="Static climate evidence dial"><circle cx="210" cy="210" r="185" fill="#eceae2" stroke="#c8c2b4"/><circle cx="210" cy="210" r="163" fill="none" stroke="#ddd8cd" strokeWidth="20"/>{pct!=null&&<circle cx="210" cy="210" r="163" fill="none" stroke="#2b54b7" strokeWidth="12" strokeDasharray={`${pct/100*1024} 1024`} transform="rotate(-90 210 210)"/>}{Object.entries(data.btr.components).map(([k,v],i)=>{const a=i/8*Math.PI*2;return <circle key={k} cx={210+100*Math.cos(a)} cy={210+100*Math.sin(a)} r="9" fill={v.state==='observed'?'#5b4c99':v.state==='absent'?'#4c565c':'none'} stroke="#a294b3" strokeDasharray={v.state==='unknown'?'2 3':undefined}/>})}<text x="210" y="203" textAnchor="middle" fill="#161a1e" fontSize="42" fontFamily="Instrument Serif, Georgia, serif">{reading.value}</text><text x="210" y="234" textAnchor="middle" fill="#6a747b" fontSize="20" letterSpacing="1">{reading.label}</text></svg>}
+export {StaticDial} from './static-dial';
