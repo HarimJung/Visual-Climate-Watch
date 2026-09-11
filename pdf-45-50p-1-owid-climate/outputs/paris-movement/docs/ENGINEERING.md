@@ -289,6 +289,20 @@ PRD §9의 1~4번. 새 소스도 새 파싱도 필요 없다.
 - `quarantine` 테이블: DB가 없는데 테이블만 있다. **M13으로 이관.** 지금은
   `etl-logs.json`의 `quarantine_count`가 그 역할을 한다.
 
+**검증 (2026-09-11, 실제 CI):** `deploy.yml` — main push → install·test 118/118·
+계약 게이트·빌드까지 녹색, 시크릿 없어 경고로 정지 (run 34617624471).
+`refresh.yml` — 수동 실행, 캐시 없이 전체 수집·169개 PDF 재파싱·218 재빌드·
+게이트·테스트·census까지 **11분**, PR #2 생성 (run 34618035747). census는 로컬과
+동일(읽음 50 · 판정 38 · 거절 325). 첫 실행은 PR 생성에서 실패했다 — 저장소 설정
+"Allow GitHub Actions to create and approve pull requests"가 꺼져 있었고, API로
+켰다. 주간 PR은 수집 시각·해시가 매번 바뀌어 444개 파일이 움직인다; 읽을 것은
+`data/census.json` 차이 하나다.
+
+CI 설치는 `npm install`이다. `npm ci`는 macOS에서 쓴 lockfile을 Linux에서 거절한다
+(선택 의존성 체인 `@napi-rs/wasm-runtime → @emnapi/*`를 lock이 기록하지 않음; node
+22·24 모두, `--os linux`로 재생성해도 안 생김). 커밋된 lock이 기록이고 CI 설치는
+일회용이다.
+
 ### M13 — 영속화 (v3의 M7 잔여)
 `engine/db/schema.sql` 실행, ETL이 파일 대신 DB에 쓰기. 파일 경로는 로컬 폴백.
 **M9~M12가 끝나기 전에 시작하지 마라.** 파일 기반으로 218개국이 돌고 있고,
