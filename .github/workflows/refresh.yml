@@ -28,7 +28,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 24, cache: npm, cache-dependency-path: pdf-45-50p-1-owid-climate/outputs/paris-movement/package-lock.json }
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
-      - run: npm ci
+      # npm ci refuses this lockfile on Linux: an optional chain the macOS-written
+      # lock never records (@napi-rs/wasm-runtime → @emnapi/*). npm install
+      # resolves it in place; the committed lock stays the record.
+      - run: npm install --no-audit --no-fund
       - name: probe the BTR data sibling (ENGINEERING M11 is blocked on it)
         run: |
           if curl -sI --max-time 20 https://gin.hemio.de/ | head -1 | grep -q "HTTP/"; then
