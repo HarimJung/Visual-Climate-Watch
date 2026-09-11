@@ -1460,6 +1460,15 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
  .projected-labels,.assembly-leaders,.chapter-popup{display:none}
  .stage-step{width:40px;height:40px}
  .stage-hint{display:none}
- .calibre-row{grid-template-columns:repeat(3,1fr)}
+ .calibre-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .calibre-dial{min-width:0;padding-inline:4px}
+ .calibre-dial svg{width:100%;max-width:96px;height:auto}
  .compare{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ /* the replay button had been forced to display:block and stacked its two
+    icons above and below the label; the anatomy key wraps instead of hiding
+    its tail behind a scroller with no edge to show for it */
+ .country-story>.assembly-action{display:inline-flex}
+ .anatomy-key{flex-wrap:wrap;overflow:visible;gap:8px 16px}
 }
