@@ -259,18 +259,35 @@ PRD §9의 1~4번. 새 소스도 새 파싱도 필요 없다.
 `ndc-extract.test.ts` 13/13 유지, 신규 회귀 29건 통과. 오판정으로 확인된 것 0
 (예멘 1%/14%는 첫 컷에서 잘못 통과할 뻔했고 회귀 케이스로 고정).
 
-### M11 — BTR 본문 파싱
+### M11 — BTR 본문 파싱 — **조달 경로 조사 완료 2026-09-11, 막힘**
 `DS-BTR`은 지금 첨부 목록만 읽는다. 적응·제6조는 본문 장(章)이라 파일명으로는
-영원히 `unknown`이다. 미러의 파일은 git-annex라 GitHub에서 못 받는다.
-**먼저 조달 경로를 조사해 보고하고, 지시를 받은 뒤 진행한다.**
+영원히 `unknown`이다.
 
-**인수:** 근거 없는 승격 0건. 소켓 328 → 목표 700.
+조사 결과 (측정):
+- GitHub 미러 `JGuetschow/UNFCCC_non-AnnexI_data`의 BTR1 파일 **5,249개 전부**
+  mode 120000, 140~152바이트 — git-annex 심링크. raw.githubusercontent는 404.
+- README가 지목하는 유일한 공개 데이터 사이블링 `gin.hemio.de`: DNS는
+  136.243.12.190으로 풀리지만 **443 연결 거부**(7초 타임아웃). 같은 시각
+  raw.githubusercontent는 200.
+- unfccc.int는 R9(WAF 우회 금지)로 제외.
+- 살아날 경우의 규모: BTR1 폴더 140개 Party, 그중 **91개**는 서술형 보고서 PDF가
+  파일명으로 정확히 하나 식별됨(14개는 없음, 35개는 여러 개 — 정오표·언어판).
+- 승격 규칙은 ENGINE-BUILD M3 그대로: 문서 내 **섹션 위치**(장 제목 + 쪽)가 근거.
+  적응은 MPG 4장, 제6조는 협력적 접근 절.
 
-### M12 — 운영화 (v3의 M8)
-- `npm run engine:refresh` 가 한 줄로 수집→재파싱→재빌드→게이트까지 한다.
-  이것을 스케줄에 건다.
-- 실패 알림: `cli.ts etl`이 이미 실패 시 exit 1. 이것을 받는 쪽이 없다.
-- `quarantine` 테이블은 스키마에만 있고 쓰는 코드가 없다.
+`refresh.yml`이 주간 실행마다 GIN을 프로브해서 살아나면 경고로 알린다. 그때
+이 절의 규칙대로 시작한다. **인수(그대로):** 근거 없는 승격 0건. 소켓 328 → 700.
+
+### M12 — 운영화 (v3의 M8) — **완료 2026-09-11**
+- `.github/workflows/refresh.yml`: 매주 월요일 03:17 UTC, 캐시 없이 처음부터
+  수집→재파싱→재빌드→계약 게이트(`verify --no-golden`)→골든 수용→전체 테스트→
+  **PR 생성**. 사람이 census 차이를 읽고 머지한다. 자동 배포 아님.
+- `.github/workflows/deploy.yml`: main에 push되면 test→verify→build→deploy.
+  Cloudflare 시크릿 둘(`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`)이 없으면
+  빌드까지만 하고 경고로 멈춘다 — **시크릿 등록이 유일한 수동 단계.**
+- 실패 알림: 어느 단계든 실패하면 GitHub이 저장소 소유자에게 메일. 이것이 받는 쪽.
+- `quarantine` 테이블: DB가 없는데 테이블만 있다. **M13으로 이관.** 지금은
+  `etl-logs.json`의 `quarantine_count`가 그 역할을 한다.
 
 ### M13 — 영속화 (v3의 M7 잔여)
 `engine/db/schema.sql` 실행, ETL이 파일 대신 DB에 쓰기. 파일 경로는 로컬 폴백.

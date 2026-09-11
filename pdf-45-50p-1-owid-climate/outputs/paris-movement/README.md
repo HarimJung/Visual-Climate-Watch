@@ -67,6 +67,18 @@ production needs no upstream and `CLIMATE_API_BASE` is never baked into a build.
 The site is published but not indexed: `public/robots.txt` disallows crawlers and
 `app/layout.tsx` sends `noindex, nofollow`. Delete both to open it to search.
 
+## Operations
+
+- **Weekly refresh** — `.github/workflows/refresh.yml`, Mondays 03:17 UTC. Every
+  source is collected from nothing, every filing re-parsed, all 218 records
+  rebuilt, the contract gate and the suite run, and a pull request is opened
+  with the diff. A person reads the census change and merges; nothing is
+  deployed by the refresh itself. Trigger by hand from the Actions tab.
+- **Deploy on main** — `.github/workflows/deploy.yml`. Test, verify, build,
+  ship. Needs two repository secrets, `CLOUDFLARE_API_TOKEN` and
+  `CLOUDFLARE_ACCOUNT_ID`; without them the job builds, warns, and stops.
+- **Failure** — any failing step mails the repository owner.
+
 ## Checks
 
 ```sh

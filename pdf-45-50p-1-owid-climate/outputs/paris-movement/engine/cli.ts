@@ -48,7 +48,12 @@ function writeIndex() {
   console.log(`viewed  ${views.refusals.total} refusal(s), ${views.divergence.countries.length} multi-source country(ies), ${views.finance.headline.plottable} vulnerability×finance country(ies) → data/refusals.json, data/divergence.json, data/finance.json`);
 }
 
-function verify() {
+/**
+ * `--no-golden`: the contract gate alone. The scheduled refresh rebuilds every
+ * record on purpose, so golden drift there is the job's output, not a fault;
+ * the golden files are accepted afterwards and the suite runs on them.
+ */
+function verify(noGolden = false) {
   const files = existsSync(DIR) ? readdirSync(DIR).filter((f) => f.endsWith('.json')) : [];
   if (!files.length) throw new Error('no built records to verify, run `build-all` first');
   let ok = 0;
@@ -56,6 +61,7 @@ function verify() {
     validate(JSON.parse(readFileSync(join(DIR, f), 'utf8')), `data/countries/${f}`);
     ok++;
   }
+  if (noGolden) { console.log(`${ok} record(s) pass the contract gate.`); return; }
   const golden = join(ROOT, 'data/golden');
   const drift = (existsSync(golden) ? readdirSync(golden) : []).filter((f) => readFileSync(join(golden, f), 'utf8') !== readFileSync(join(DIR, f), 'utf8'));
   if (drift.length) throw new Error(`drifted from data/golden: ${drift.join(', ')}`);
@@ -209,7 +215,7 @@ const refresh = args.includes('--refresh');
 if (cmd === 'build' && args[1]) await buildAll(args[1].toUpperCase(), refresh);
 else if (cmd === 'build-all') await buildAll(undefined, refresh);
 else if (cmd === 'index') writeIndex();
-else if (cmd === 'verify') verify();
+else if (cmd === 'verify') verify(args.includes('--no-golden'));
 else if (cmd === 'report') { if (args.includes('--json')) census(); else report(); }
 else if (cmd === 'etl') await etl();
 else if (cmd === 'ndc-parse') await ndcParse(args[1] && !args[1].startsWith('--') ? args[1].toUpperCase() : undefined, refresh);

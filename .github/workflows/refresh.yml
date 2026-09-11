@@ -1,0 +1,59 @@
+# The scheduled refresh (ENGINEERING §6, M12).
+#
+# Every Monday: collect every source again, re-parse the filings, rebuild the
+# 218 records, run the contract gate and the suite, and open a pull request
+# with whatever changed — data, golden, census — for a person to read before
+# it is merged and deployed. A failure anywhere stops the job, and GitHub mails
+# the repository owner; that is the receiver the ETL's exit code never had.
+#
+# The refresh runs from nothing: the engine cache is not in git, so every
+# source is fetched. poppler is the one system dependency (pdftotext).
+name: refresh
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: pdf-45-50p-1-owid-climate/outputs/paris-movement
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: pdf-45-50p-1-owid-climate/outputs/paris-movement/package-lock.json }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - run: npm ci
+      - name: probe the BTR data sibling (ENGINEERING M11 is blocked on it)
+        run: |
+          if curl -sI --max-time 20 https://gin.hemio.de/ | head -1 | grep -q "HTTP/"; then
+            echo "::warning::gin.hemio.de answers — the BTR filings may be procurable now. See ENGINEERING §6 M11."
+          else
+            echo "gin.hemio.de still unreachable; BTR bodies stay unread."
+          fi
+      - name: collect, parse, build
+        run: node engine/cli.ts etl && node engine/cli.ts ndc-parse --refresh && node engine/cli.ts build-all --refresh
+      - name: contract gate (golden drift is this job's output, so only the contract is checked here)
+        run: node engine/cli.ts verify --no-golden
+      - name: accept the rebuilt records as golden
+        run: cp data/countries/*.json data/golden/
+      - run: npm test
+      - name: census
+        run: node engine/cli.ts report --json > /tmp/census.json && node -e "const c=require('/tmp/census.json');console.log('read',c.ndc_target_accepted,'judged',c.gap_assessed,'refusals',c.refusals_total)"
+      - name: open a pull request with the refreshed records
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: refresh/${{ github.run_id }}
+          base: main
+          commit-message: "Refresh every source and rebuild the 218 records"
+          title: "Weekly refresh: rebuilt records for review"
+          body: |
+            Every source collected again, every filing re-parsed, all 218 records rebuilt, contract gate and suite green.
+            Read the census diff in `data/census.json` and the record diffs before merging. Merging deploys.
+          labels: refresh
+          delete-branch: true
