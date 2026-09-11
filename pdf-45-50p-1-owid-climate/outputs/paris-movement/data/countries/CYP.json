@@ -104,7 +104,7 @@
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "vulnerability": {
@@ -119,7 +119,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-11"
     }
   },
   "series": {
@@ -627,7 +627,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-11"
     }
   },
   "ndc_registry": {
@@ -644,7 +644,7 @@
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2025-11/DK-2025-11-05%20EU%20NDC.pdf",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-11"
     }
   },
   "ndc_assessment": {
@@ -664,7 +664,7 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-11"
     }
   },
   "ndc_document": {
@@ -1637,8 +1637,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-07T21:54:02.267Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:03:38.884Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1651,8 +1651,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-07T22:21:15.632Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:03:51.083Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1665,8 +1665,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-07T21:54:03.829Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:03:40.998Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1679,8 +1679,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-07T22:24:29.344Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:04:08.191Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1693,8 +1693,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-07T22:43:38.899Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:04:10.117Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1707,8 +1707,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-07T22:44:02.776Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:04:14.897Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1721,8 +1721,8 @@
       ],
       "connection": "connected",
       "records": 32,
-      "last_run": "2026-09-07T23:32:02.148Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:07:25.352Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1735,8 +1735,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-07T22:48:12.520Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:04:15.768Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1749,8 +1749,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-07T22:43:39.989Z",
-      "retrieved_at": "2026-09-07",
+      "last_run": "2026-09-11T16:04:16.530Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1763,7 +1763,7 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-11T13:55:27.940Z",
+      "last_run": "2026-09-11T16:03:36.230Z",
       "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
@@ -1777,7 +1777,7 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T19:58:14.348Z",
+      "last_run": "2026-09-11T16:07:30.178Z",
       "retrieved_at": null,
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF open data, attribution requested"
@@ -1791,93 +1791,93 @@
       ],
       "connection": "connected",
       "records": 72,
-      "last_run": "2026-09-10T20:12:43.405Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T16:07:30.960Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ],
   "provenance": {
-    "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
-    "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "df819c129876cb0a173d60504cf62b74375a43a0bc55b27440bfb8b5e34508de",
+    "run_id": "6e5bf2a88a907e0528e0cbc48abc0959",
+    "built_at": "2026-09-11T16:07:30.960Z",
+    "payload_sha256": "d57b2e542f9e45818344b0dda5cb8de743da6a16b8b5512a454dfaecd6ddaceb",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-07T21:54:02.267Z",
+        "retrieved_at": "2026-09-11T16:03:38.884Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-07T21:54:03.829Z",
+        "retrieved_at": "2026-09-11T16:03:40.998Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
         "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-07T22:21:15.632Z",
+        "retrieved_at": "2026-09-11T16:03:51.083Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-07T22:24:29.344Z",
+        "retrieved_at": "2026-09-11T16:04:08.191Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
         "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-07T22:43:38.899Z",
+        "retrieved_at": "2026-09-11T16:04:10.117Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-07T22:44:02.776Z",
+        "retrieved_at": "2026-09-11T16:04:14.897Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-07T22:48:12.520Z",
+        "retrieved_at": "2026-09-11T16:04:15.768Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "50a66723c2da97784ac7e4cdc7a7cf596259b24b2553161ea83191d533a15963",
-        "retrieved_at": "2026-09-07T22:43:39.989Z",
+        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
+        "retrieved_at": "2026-09-11T16:04:16.530Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-07T23:32:02.148Z",
+        "retrieved_at": "2026-09-11T16:07:25.352Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "8c3d7e89f4770c525e8e446686c64fc62ba83bff4770a3ee3ba58a8a1254ca00",
-        "retrieved_at": "2026-09-10T19:58:14.348Z",
+        "file_sha256": "78ee4ea5ccb9001d77920a5904e7d467039eb1976b5436f470e7756f8cc33463",
+        "retrieved_at": "2026-09-11T16:07:30.178Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
         "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-10T20:12:43.405Z",
+        "retrieved_at": "2026-09-11T16:07:30.960Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-11T13:55:27.940Z",
+        "retrieved_at": "2026-09-11T16:03:36.230Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "4528d268ec75c6e394335e7f35453ba6b5eb0c7beb9ebbf0450468096356fc5b",
-        "retrieved_at": "2026-09-10T19:57:29.961Z",
+        "retrieved_at": "2026-09-11T16:01:35.765Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/EUU_European-Union_First_NDC_English.pdf"
       }
     ]
