@@ -246,7 +246,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
     <Head id="projections" title="Projections" lead="CMIP6 scenarios. Models, not observations."/>{projRows.length?<>
      <p className="rec-note">CMIP6 ensemble medians for {pr?.variable==='tas'?'mean surface temperature':pr?.variable}, as an anomaly against {pr?.baseline_period}{pr?.baseline_c!=null?` (${fmt(pr.baseline_c,2)}°C)`:''}. These are model runs, not observations.</p>
      <div className="rec-chart">
-      <SeriesChart unit="°C anomaly" hues={SCENARIO_COLOR} lines={scenarios.map(sc=>({id:sc,points:(pr?.scenarios??[]).filter(x=>x.scenario===sc&&x.anomaly!=null&&Number.isFinite(parseInt(x.period))).map(x=>({year:parseInt(x.period),value:x.anomaly as number}))}))}/>
+      <SeriesChart unit="°C anomaly" gap={60} hues={SCENARIO_COLOR} lines={scenarios.map(sc=>({id:sc,points:(pr?.scenarios??[]).filter(x=>x.scenario===sc&&x.anomaly!=null&&Number.isFinite(parseInt(x.period))).map(x=>({year:parseInt(x.period),value:x.anomaly as number}))}))}/>
      </div>
      <p className="rec-note">{pr?.scenarios[0]?.model} · one line per shared socio-economic pathway.</p>
     </>:<Blank what="No projections" why="The World Bank's CMIP6 climatology does not cover this territory."/>}

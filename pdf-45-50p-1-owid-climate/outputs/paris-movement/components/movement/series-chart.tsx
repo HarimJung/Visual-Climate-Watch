@@ -21,7 +21,11 @@ export type Mark={id:'target'|'bau';points:{year:number;value:number}[]};
 const HUE:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)'};
 const W=640,H=300,PAD={l:52,r:16,t:14,b:34};
 
-export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=false,hues}:{lines:Line[];marks?:Mark[];unit?:string;compact?:boolean;hues?:Record<string,string>}){
+export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=false,hues,gap=1}:{lines:Line[];marks?:Mark[];unit?:string;compact?:boolean;hues?:Record<string,string>;
+ /** The largest step between two points that is still one line. 1 for an
+  *  annual inventory, where a skipped year is a gap; wider for a series that
+  *  is sampled every twenty years by design, like CMIP6 periods. */
+ gap?:number}){
  const hue=(id:string)=>hues?.[id]??HUE[id]??'var(--ink-3)';
  const all=[...lines.flatMap(l=>l.points),...marks.flatMap(m=>m.points)];
  if(!all.length)return null;
@@ -40,7 +44,7 @@ export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=fals
   // A gap in the years is a gap in the line: a source that skipped a year is
   // not bridged across it.
   const s=[...pts].sort((a,b)=>a.year-b.year);let d='';let prev:number|null=null;
-  for(const p of s){d+=(prev!=null&&p.year-prev<=1?'L':'M')+`${px(p.year).toFixed(1)} ${py(p.value).toFixed(1)}`;prev=p.year}
+  for(const p of s){d+=(prev!=null&&p.year-prev<=gap?'L':'M')+`${px(p.year).toFixed(1)} ${py(p.value).toFixed(1)}`;prev=p.year}
   return d;
  };
  const last=(l:Line)=>[...l.points].sort((a,b)=>a.year-b.year).at(-1);
