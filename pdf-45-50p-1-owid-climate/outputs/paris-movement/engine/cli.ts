@@ -40,6 +40,11 @@ function writeIndex() {
   writeFileSync(join(ROOT, 'data/refusals.json'), JSON.stringify(views.refusals) + '\n');
   writeFileSync(join(ROOT, 'data/divergence.json'), JSON.stringify(views.divergence) + '\n');
   writeFileSync(join(ROOT, 'data/finance.json'), JSON.stringify(views.finance) + '\n');
+  // The census, as a file. /unknown reads this one and nothing else, so the
+  // screen cannot quote a figure `report --json` disagrees with: same object.
+  const c = censusData(views);
+  writeFileSync(join(ROOT, 'data/census.json'), JSON.stringify(c) + '\n');
+  console.log(`census  ${c.btr_component_sockets - c.btr_components_evidenced} empty socket(s), ${c.countries - c.ndc_target_accepted} country(ies) with no target → data/census.json`);
   console.log(`viewed  ${views.refusals.total} refusal(s), ${views.divergence.countries.length} multi-source country(ies), ${views.finance.headline.plottable} vulnerability×finance country(ies) → data/refusals.json, data/divergence.json, data/finance.json`);
 }
 
@@ -98,7 +103,7 @@ function report(asJson = false) {
 }
 
 /** The same census as data. Every figure quoted in docs/ comes from here. */
-function census() {
+function censusData(views = viewsFromDisk()) {
   const files = readdirSync(DIR).filter((f) => f.endsWith('.json'));
   const rows = files.map((f) => JSON.parse(readFileSync(join(DIR, f), 'utf8')) as CountryData);
   const count = (fn: (d: CountryData) => boolean) => rows.filter(fn).length;
@@ -107,8 +112,7 @@ function census() {
   const connected = new Map<string, number>();
   for (const d of rows) for (const s of d.sources ?? []) if (s.connection === 'connected') connected.set(s.id, (connected.get(s.id) ?? 0) + 1);
   const etl = JSON.parse(readFileSync(join(ROOT, 'data/etl-logs.json'), 'utf8')) as { run_id: string; built_at: string };
-  const views = viewsFromDisk();
-  console.log(JSON.stringify({
+  return {
     generated_at: new Date().toISOString(),
     run_id: etl.run_id, built_at: etl.built_at,
     countries: rows.length,
@@ -155,7 +159,11 @@ function census() {
     finance_disbursed_pct_like_for_like: Number(views.finance.headline.disbursed_pct_like_for_like.toFixed(1)),
     finance_total_disbursed_usd: views.finance.headline.total_disbursed_usd,
     finance_median_disbursed_pct: Number(views.finance.headline.median_disbursed_pct.toFixed(1)),
-  }, null, 2));
+  };
+}
+
+function census() {
+  console.log(JSON.stringify(censusData(), null, 2));
 }
 
 /**

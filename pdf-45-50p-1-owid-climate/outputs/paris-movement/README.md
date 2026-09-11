@@ -24,6 +24,14 @@ play the assembly sequence, or scroll to move through its chapters.
 ## Pages
 
 - `/` — the instrument. The dial, its parts, and the evidence sheet behind each one.
+- `/unknown` — the Unknown Map. What this engine has not established, counted and
+  ordered by how dark the question is, with the route to each set of reasons.
+  Every figure on it is a subtraction inside `data/census.json`, which is the
+  object `node engine/cli.ts report --json` prints.
+- `/countries` — the collection: 218 records as sortable, filterable cards.
+- `/divergence` — the same country and year as several sources hold it, unmerged.
+- `/finance` — vulnerability against the Green Climate Fund ledger.
+- `/refusals` — every calculation the engine declined, grouped by why.
 - `/country/<ISO3>` — the full record for one country: emissions by source, the
   pledge and what has and has not been read from it, transparency components,
   vulnerability, CMIP6 projections, every generated clause, and the provenance
@@ -35,9 +43,10 @@ Two paths, in this order:
 
 1. `CLIMATE_API_BASE` — a running engine (`npm run engine:serve`). `npm run dev`
    starts one if nothing answers.
-2. the staged static payload — `scripts/stage-data.mjs` copies `data/countries/`
-   and `data/engine-index.json` into `public/data/`, and `predev`/`prebuild` run
-   it. This is what a deployed build serves, so production needs no upstream.
+2. the staged static payload — `scripts/stage-data.mjs` copies `data/countries/`,
+   `data/engine-index.json` and the published views (`refusals`, `divergence`,
+   `finance`, `census`) into `public/data/`, and `predev`/`prebuild` run it. This
+   is what a deployed build serves, so production needs no upstream.
 
 There is no third path. A country the engine has not built returns 404; nothing
 is substituted for it.

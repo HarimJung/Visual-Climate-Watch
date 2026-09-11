@@ -24,7 +24,7 @@ async function readAsset(path:string,base?:string):Promise<Response>{
 }
 
 /** One published view file (data/*.json, staged into public/data/). */
-export async function loadView<T>(name:'refusals'|'divergence'|'finance'):Promise<T|null>{
+export async function loadView<T>(name:'refusals'|'divergence'|'finance'|'census'):Promise<T|null>{
  try{
   const r=await readAsset(`/data/${name}.json`);
   return r.ok?await r.json() as T:null;

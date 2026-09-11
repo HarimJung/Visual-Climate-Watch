@@ -10,6 +10,7 @@ import {usePathname} from 'next/navigation';
 // inside the instrument stay inside the instrument.
 const NAV=[
  {href:'/',label:'Instrument'},
+ {href:'/unknown',label:'Unknown'},
  {href:'/countries',label:'Countries'},
  {href:'/divergence',label:'Divergence'},
  {href:'/finance',label:'Finance'},

@@ -160,11 +160,11 @@
 | ID | 제품 | 근거 데이터 | 상태 |
 |---|---|---|---|
 | **P1** | The Instrument — 3D 무브먼트 | 계약 전체 | **출시됨** |
-| **P2** | Divergence Atlas — 소스별 나란히 | `emissions_profile.by_source` (198개국 3소스 이상) | 데이터 완비, 화면 필요 |
-| **P3** | The Unknown Map — 우리 자신의 공백을 헤드라인 지표로 | `engine:census` | **명령 완비**, 화면 필요 |
-| **P4** | Receipts — 수치별 출처 API + 인용 칩 | `provenance`, `$sources_index` | 데이터 완비, API 표면 필요 |
+| **P2** | Divergence Atlas — 소스별 나란히 | `emissions_profile.by_source` (198개국 3소스 이상) | **출시됨** `/divergence` |
+| **P3** | The Unknown Map — 우리 자신의 공백을 헤드라인 지표로 | `engine:census` → `data/census.json` | **출시됨** `/unknown` |
+| **P4** | Receipts — 수치별 출처 API + 인용 칩 | `provenance`, `$sources_index` | **출시됨** `/api/v1/receipt`, `/api/v1/related` |
 | **P5** | BTR Reading Room — 1,744 소켓 | `btr.components[].$evidence` 328 확보 | **부분 출시**, 문서 파싱 시 확대 |
-| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` 214 + `ndc_document.$reason` 150 | 데이터 완비, 화면 필요 |
+| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` 214 + `ndc_document.$reason` 150 | **출시됨** `/refusals` |
 
 **P6이 지금 가장 저평가된 자산이다.** 거절 364건이 이미
 레코드 안에 있고, 그중 **서로 다른 문장은 61개**(거절 17 + 문서 44)다.
@@ -200,9 +200,21 @@
   #projections    06  CMIP6 SSP 4종
   #assessment     07  필드별 생성 문장
   #provenance     08  run_id · payload SHA-256 · 입력별 파일 해시·수집일·라이선스
+/unknown              The Unknown Map — 우리가 못 채운 칸을 헤드라인 지표로.
+                      1,744 소켓 격자 + 공백 8종을 어두운 순으로. `data/census.json` 하나만 읽는다.
+/countries            218개 레코드의 컬렉션. 정렬·필터·카드.
+/divergence           같은 나라·같은 해·다른 장부. 병합 없음.
+/finance              취약성 × GCF 원장. 미귀속을 1급 시민으로.
+/refusals             거절 364건, 사유 문장 61종, 8개 가족으로 묶음.
 /api/v1/country-dial  계약 페이로드
 /api/v1/engine        로스터 + 소스 카탈로그 + 텔레메트리
+/api/v1/receipt       수치 하나의 출처·해시·라이선스
+/api/v1/related       그 수치에서 나가는 길: 코호트 3 + unknown_here + siblings + downloads
 ```
+
+**`/unknown`의 규칙:** 이 화면의 모든 수치는 `data/census.json`에서 뺄셈으로
+나온다. 그 파일은 `node engine/cli.ts report --json`이 출력하는 바로 그 객체이고,
+`engine:index`가 같은 함수로 쓴다. 화면과 인구조사가 어긋날 수 있는 경로가 없다.
 
 **규칙:** 값이 없는 칸은 비운 채로 두고 **그 나라에만 해당하는 이유**를 적는다.
 바티칸은 5칸이 비고 이유가 각각 다르다. 공통 문구로 때우지 않는다.
@@ -253,11 +265,14 @@
 
 ## 9. 릴리스 순서
 
-1. **P6 Refusal Log** — 새 데이터 0, 화면만. 거절 364건, 서로 다른 문장 61개.
-2. **P2 Divergence Atlas** — 새 데이터 0. 198개국 다중 소스.
-3. **기능3 삼각 화면** — 190 × 136 교차. 다국가 미귀속을 1급 시민으로 표시.
-4. **P4 Receipts API** — `/api/v1/provenance/<ISO3>/<field>`.
-5. **NDC 본문 파싱 확대** — BAU 투영과 기준연도 인벤토리. 기능1의 병목.
-6. **BTR 본문 파싱** — 적응·제6조는 이것 없이는 영원히 `unknown`.
+1. ~~**P6 Refusal Log**~~ — 출시됨 `/refusals`. 거절 364건, 서로 다른 문장 61개.
+2. ~~**P2 Divergence Atlas**~~ — 출시됨 `/divergence`. 207개국 다중 소스.
+3. ~~**기능3 삼각 화면**~~ — 출시됨 `/finance`. 190 × 136 교차, 132개국 작도.
+4. ~~**P4 Receipts**~~ — 출시됨 `/api/v1/receipt` + `/api/v1/related`.
+5. ~~**P3 The Unknown Map**~~ — 출시됨 `/unknown`. 앞문. 새 수집 0, 화면만.
+6. **NDC 본문 파싱 확대** — BAU 투영과 기준연도 인벤토리. 기능1의 병목.
+7. **BTR 본문 파싱** — 적응·제6조는 이것 없이는 영원히 `unknown`.
+   `/unknown`의 격자에서 이 둘은 218칸 전부가 빈 줄로 보인다.
 
-1~4는 **수집이 필요 없다.** 이미 빌드된 데이터 위의 뷰 작업이다.
+1~5는 **수집이 필요 없었다.** 이미 빌드된 데이터 위의 뷰 작업이다. 남은 6~7은
+수집과 파싱이고, 그때까지 그 공백은 `/unknown`에 사유와 함께 게시된 채로 있다.
