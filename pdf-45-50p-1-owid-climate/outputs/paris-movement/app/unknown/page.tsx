@@ -4,6 +4,7 @@ import {fmt,jewelNames,type RosterRow} from '@/lib/climate';
 import {loadIndex,loadView} from '@/lib/record';
 import {catalogueSize,gaps,type Census} from '@/lib/unknown';
 import ExportCsv from '@/components/site/export-csv';
+import CoverageMap,{type Basemap} from '@/components/unknown/coverage-map';
 
 // P3, the Unknown Map. The front door, and the one screen that leads with the
 // engine's own emptiness instead of its coverage. Every figure is subtracted
@@ -41,7 +42,7 @@ function Lattice({roster,census}:{roster:RosterRow[];census:Census}){
 }
 
 export default async function Page(){
- const [census,index]=await Promise.all([loadView<Census>('census'),loadIndex()]);
+ const [census,index,map]=await Promise.all([loadView<Census>('census'),loadIndex(),loadView<Basemap>('basemap')]);
  const roster=index?.countries??[];
  const rows=census?gaps(census):[];
  return <main className="record" id="main">
@@ -69,6 +70,14 @@ export default async function Page(){
    <div className="rec-shell">
     <div className="rec-blank caveat"><span className="state-token pledged"><i/>Read this before quoting the figures</span><p>Unknown is not absent, and neither is zero. Every figure here counts what this engine has not established, which is a statement about our reading, not about a country&rsquo;s conduct. Where a country is missing from a count, the reason it is missing is published with it, country by country and sentence by sentence.</p></div>
    </div>
+
+   {map&&roster.length>0&&<section className="band" id="map">
+    <div className="sec-head">
+     <h2>Where the dark is</h2>
+     <p>Not emissions — how much of each country this engine has actually established.</p>
+    </div>
+    <CoverageMap map={map} roster={roster}/>
+   </section>}
 
    <section className="band raised" id="gaps">
     <div>

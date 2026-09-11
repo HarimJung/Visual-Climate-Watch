@@ -27,6 +27,38 @@ const BANDS=[
 const COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)'};
 const colorOf=(id:string)=>COLOR[id]??'var(--ink-3)';
 
+/**
+ * The pair, as a disagreement rather than two lengths. Each bar runs from the
+ * midpoint of the two figures out to its own source's reading, so the gap is
+ * the thing you see and neither source sits at zero pretending to be the truth.
+ */
+function Tornado({rows,a,b}:{rows:Row[];a:string;b:string}){
+ // Rows are ordered by how far apart the two readings are as a share, so the
+ // bar encodes that share too. Sizing it by absolute megatonnes instead made
+ // Brazil the longest bar in a list Brazil is fifteenth in.
+ return <div className="torn" role="table" aria-label={`${a} against ${b}, each country's two readings around their midpoint`}>
+  <div className="torn-head" role="row"><span>{a} reads lower</span><i/><span>{a} reads higher</span></div>
+  {rows.map(r=>{
+   const av=r.values.find(v=>v.source_id===a)?.value_mtco2e??0;
+   const bv=r.values.find(v=>v.source_id===b)?.value_mtco2e??0;
+   // Half the spread either side of the midpoint: a 100% spread fills the track.
+   const w=r.spread_pct/2;
+   const left=av<bv;
+   return <a className="torn-row row-hit" role="row" key={r.iso3} href={`/country/${r.iso3}#emissions`}>
+    <span className="torn-name"><i>{r.iso3}</i>{r.name_en}</span>
+    <span className="torn-track">
+     <b className="torn-mid"/>
+     <i style={{width:`${w}%`,[left?'right':'left']:'50%',background:'var(--inv)'} as React.CSSProperties}/>
+     <i style={{width:`${w}%`,[left?'left':'right']:'50%',background:'var(--ndc)'} as React.CSSProperties}/>
+    </span>
+    <span className="torn-fig">{fmt(Math.abs(av-bv),0)}<small>Mt apart</small></span>
+    <span className="torn-pct">{fmt(r.spread_pct)}%</span>
+   </a>;
+  })}
+  <p className="torn-note">The centre line is the midpoint of the two readings, not zero: {a} runs to one side, {b} to the other, and each bar is half the spread — as a share of the larger figure, so a small country that disagrees by two thirds is as long as a large one. Megatonnes are printed beside it. Widest {rows.length} of the {a}/{b} pair.</p>
+ </div>;
+}
+
 function Bars({row}:{row:Row}){
  const max=Math.max(...row.values.map(v=>Math.abs(v.value_mtco2e)))||1;
  return <div className="div-bars">{row.values.map(v=><div className="div-bar" key={v.source_id}>
@@ -91,6 +123,7 @@ export default async function Page(){
     <section className="rec-section" id="pair">
      <div className="sec-head btr"><h2>{h.a} against {h.b}, {h.year}</h2><p>Widest disagreement first. The percentage is the gap as a share of the larger figure.</p></div>
      <details className="disc"><summary>How to read this</summary><div className="disc-body">All {h.countries} countries for which both sources publish a {h.year} figure, widest disagreement first. The percentage is the gap as a share of the larger figure, so neither source is treated as the one the other deviates from.</div></details>
+     <Tornado rows={h.rows.slice(0,24)} a={h.a} b={h.b}/>
      <div className="div-rows">{h.rows.map(r=><div className="div-country row-hit reveal" key={r.iso3}>
       <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}</a>
       <Bars row={r}/>
