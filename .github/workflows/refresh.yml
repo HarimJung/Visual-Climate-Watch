@@ -60,3 +60,4 @@ jobs:
             Read the census diff in `data/census.json` and the record diffs before merging. Merging deploys.
           labels: refresh
           delete-branch: true
+          add-paths: pdf-45-50p-1-owid-climate/outputs/paris-movement/data/**
