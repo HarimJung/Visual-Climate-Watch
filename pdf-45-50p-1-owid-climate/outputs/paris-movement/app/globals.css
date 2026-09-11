@@ -1175,3 +1175,28 @@ body::after{
 .torn-pct{text-align:right;font:var(--t1) var(--font-mono);color:var(--warn);font-variant-numeric:tabular-nums}
 .torn-note{margin-top:var(--s3);font-size:var(--t1);line-height:1.6;color:var(--ink-4);max-width:80ch}
 @media(max-width:760px){.torn-row{grid-template-columns:104px minmax(0,1fr) 74px 42px;gap:var(--s2)}}
+
+/* ── ⌘K: 218 records is too many to navigate by clicking ─────────────────── */
+.jump-open{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border:1px solid var(--rule-strong);
+ border-radius:999px;font:var(--t0) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);
+ transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.jump-open:hover{border-color:var(--ndc);color:var(--ndc)}
+.jump-open kbd{font:var(--t0) var(--font-mono);color:var(--ink-3)}
+.jump-back{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-start;justify-content:center;padding-top:14vh;
+ background:color-mix(in srgb,var(--ink) 34%,transparent);backdrop-filter:blur(2px);
+ animation:fadeIn 140ms var(--ease) both}
+.jump{width:min(560px,calc(100vw - 32px));max-height:66vh;display:flex;flex-direction:column;
+ border:1px solid var(--rule-strong);background:var(--paper-raised);box-shadow:var(--shadow-2);
+ animation:riseIn 200ms var(--out) both}
+.jump-field{display:flex;align-items:center;gap:var(--s3);padding:var(--s4);border-bottom:1px solid var(--rule);color:var(--ink-4)}
+.jump-field input{flex:1;min-width:0;border:0;background:none;outline:none;color:var(--ink);font:var(--t4) var(--font-sans)}
+.jump-field kbd{font:var(--t0) var(--font-mono);color:var(--ink-4);border:1px solid var(--rule);padding:2px 6px;border-radius:3px}
+.jump-hits{list-style:none;overflow-y:auto}
+.jump-hits a{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:baseline;gap:var(--s3);
+ padding:11px var(--s4);border-bottom:1px solid var(--rule);color:var(--ink-2)}
+.jump-hits a[aria-current="true"]{background:var(--paper-sunken);color:var(--ink)}
+.jump-hits b{font:500 var(--t3) var(--font-sans)}
+.jump-hits span{grid-column:1;grid-row:2;font:var(--t0) var(--font-mono);color:var(--ink-4)}
+.jump-hits small{font:var(--t0) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.jump-none{padding:var(--s5) var(--s4);font-size:var(--t2);color:var(--ink-3)}
+@media(max-width:720px){.jump-open{display:none}}

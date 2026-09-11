@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {ArrowLeft,ArrowUpRight} from 'lucide-react';
 import {fmt} from '@/lib/climate';
 import {loadView} from '@/lib/record';
+import SectionRail from '@/components/record/section-rail';
 
 // P2, the Divergence Atlas. The same country and year as several sources hold
 // it, never reconciled, R3 all the way to the page.
@@ -111,6 +112,7 @@ export default async function Page(){
      <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.total_gap_mtco2e,0)}</span><sup>Mt</sup></strong><span className="kpi-lab">Totals apart</span><span className="kpi-sub">summed across those countries, neither corrected</span></div>
     </section>
 
+    <SectionRail sections={[['scopes','01','What each source measures'] as const,['pair','02',`${h.a} against ${h.b}`] as const,['countries','03','Every country, every source'] as const]}/>
     <div className="rec-shell">
     <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{atlas.caveat}</div></details>
 

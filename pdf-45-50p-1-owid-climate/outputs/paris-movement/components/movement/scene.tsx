@@ -6,6 +6,23 @@ import {StaticDial} from './static-dial';
 // The engraved inks live in CSS so the instrument follows the page into dark
 // mode instead of etching near-black text onto a near-black plate. Read at
 // build time; the scene rebuilds when the record changes.
+/**
+ * The plate is lit for the paper it sits on. On the dark sheet the same
+ * instrument is under a dimmer lamp: the studio environment drops, exposure
+ * comes down, and the shadow deepens so it still reads against a dark ground.
+ * Without this the canvas kept its bright studio and floated on the dark page
+ * like a photograph someone pasted on.
+ */
+const isDark=()=>{
+ try{
+  const set=document.documentElement.getAttribute('data-theme');
+  if(set)return set==='dark';
+  return matchMedia('(prefers-color-scheme:dark)').matches;
+ }catch{return false}
+};
+const LIT={light:{env:.46,exposure:.92,key:2.1,ambient:.38,shadow:.14},
+           dark:{env:.30,exposure:.74,key:1.55,ambient:.62,shadow:.34}} as const;
+
 const ink=(name:string,fallback:string)=>{
  try{return getComputedStyle(document.documentElement).getPropertyValue(name).trim()||fallback}catch{return fallback}
 };
@@ -31,13 +48,13 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress},[controls,onSelect,onReady,onPhase,onProgress]);
  useEffect(()=>{let cleanup=()=>{};let cancelled=false;void(async()=>{try{
  const T=await import('three');const {RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');if(cancelled||!host.current)return;
- setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.92;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement);
- const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.46;room.dispose();pm.dispose();
- const key=new T.DirectionalLight(0xfff5e5,2.1);key.position.set(-5,-3,11);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=4;scene.add(key);scene.add(new T.AmbientLight(0xf3f8ff,.38));
+ setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;let lit=LIT[isDark()?'dark':'light'];renderer.toneMappingExposure=lit.exposure;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement);
+ const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=lit.env;room.dispose();pm.dispose();
+ const key=new T.DirectionalLight(0xfff5e5,lit.key);key.position.set(-5,-3,11);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=4;scene.add(key);const ambient=new T.AmbientLight(0xf3f8ff,lit.ambient);scene.add(ambient);
  const camera=new T.PerspectiveCamera(34,1,.1,100);const world=new T.Group();world.rotation.z=-.13;scene.add(world);
  const silver=new T.MeshStandardMaterial({color:0xa4afb2,metalness:.94,roughness:.27});const edge=new T.MeshStandardMaterial({color:0xe4e8e7,metalness:.9,roughness:.22});const steel=new T.MeshStandardMaterial({color:0x5f737b,metalness:.82,roughness:.3});const porcelain=new T.MeshPhysicalMaterial({color:0xa7b0b4,metalness:.86,roughness:.3,clearcoat:.28});const white=new T.MeshStandardMaterial({color:0xf9fbf5,metalness:.1,roughness:.38});const shadow=new T.MeshStandardMaterial({color:0x52616a,metalness:.5,roughness:.5});
  const blue=new T.MeshPhysicalMaterial({color:0x2b54b7,metalness:.18,roughness:.18,clearcoat:1});const teal=new T.MeshPhysicalMaterial({color:0x276f68,metalness:.35,roughness:.25,clearcoat:1});const violet=new T.MeshPhysicalMaterial({color:0x5b4c99,metalness:.2,roughness:.22,clearcoat:1});const gold=new T.MeshPhysicalMaterial({color:0x8f6b2a,metalness:.45,roughness:.24,clearcoat:1});const glass=new T.MeshPhysicalMaterial({color:0x86a5e4,transparent:true,opacity:.66,transmission:.3,thickness:.22,metalness:.05,roughness:.14,ior:1.45,side:T.DoubleSide,depthWrite:false});const clear=new T.MeshPhysicalMaterial({color:0xd1daf5,transparent:true,opacity:.32,transmission:.55,roughness:.12,side:T.DoubleSide,depthWrite:false});const ghost=new T.MeshStandardMaterial({color:0xada3bf,metalness:.35,roughness:.4,transparent:true,opacity:.65});
- const floor=new T.Mesh(new T.PlaneGeometry(100,100),new T.ShadowMaterial({opacity:.14}));floor.position.z=-3.43;floor.receiveShadow=true;scene.add(floor);
+ const floor=new T.Mesh(new T.PlaneGeometry(100,100),new T.ShadowMaterial({opacity:lit.shadow}));floor.position.z=-3.43;floor.receiveShadow=true;scene.add(floor);
  const parts:THREE.Group[]=[];const gears:{g:THREE.Group;speed:number;phase:number}[]=[];const hits:THREE.Object3D[]=[];const textures:THREE.Texture[]=[];const labels:{el:HTMLDivElement;anchor:THREE.Object3D;offset:[number,number];phase:number}[]=[];const topLabels=document.createElement('div');topLabels.className='projected-labels';el.appendChild(topLabels);topLabels.setAttribute('aria-hidden','true');const btrLayer=document.createElement('div');btrLayer.className='projected-labels btr-layer';el.appendChild(btrLayer);
  function mesh(geometry:THREE.BufferGeometry,material:THREE.Material,parent:THREE.Object3D,x=0,y=0,z=0){const m=new T.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
  function cylinder(parent:THREE.Object3D,r:number,h:number,z:number,mat:THREE.Material=porcelain,x=0,y=0){const m=mesh(new T.CylinderGeometry(r,r,h,72),mat,parent,x,y,z);m.rotation.x=Math.PI/2;return m;}
@@ -270,7 +287,13 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   const percent=Math.round(amount*100);if(percent!==lastPercent){lastPercent=percent;progressCallback.current?.(percent);}
   if(dirty){camera.updateMatrixWorld();renderer.render(scene,camera);updateLabels();dirty=false;}
  }raf=requestAnimationFrame(frame);
- cleanup=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();reduced.removeEventListener('change',motionChanged);orbit.removeEventListener('change',changed);orbit.removeEventListener('start',started);orbit.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',cancel);renderer.domElement.removeEventListener('lostpointercapture',cancel);disposeScene();};
+ // The reader can switch theme mid-visit; the plate is relit in place.
+ const lamp=matchMedia('(prefers-color-scheme:dark)');
+ const relight=()=>{lit=LIT[isDark()?'dark':'light'];renderer.toneMappingExposure=lit.exposure;scene.environmentIntensity=lit.env;key.intensity=lit.key;ambient.intensity=lit.ambient;(floor.material as THREE.ShadowMaterial).opacity=lit.shadow;dirty=true};
+ lamp.addEventListener('change',relight);
+ const themed=new MutationObserver(relight);
+ themed.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+ cleanup=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();lamp.removeEventListener('change',relight);themed.disconnect();reduced.removeEventListener('change',motionChanged);orbit.removeEventListener('change',changed);orbit.removeEventListener('start',started);orbit.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',cancel);renderer.domElement.removeEventListener('lostpointercapture',cancel);disposeScene();};
  }catch(error){cleanup();console.error('3D movement unavailable',error);if(!cancelled)setFailed(true)}})();return()=>{cancelled=true;cleanup()}},[data]);
  return <div ref={host} className="scene-host" aria-label={`${data.country.name_en}: NDC, inventory, BTR and finance assemble into a climate evidence instrument.`}>{failed&&<div className="fallback"><StaticDial data={{...data,observed_years:observedYears(data)}}/><p>3D is unavailable in this browser. Every figure is still readable below.</p></div>}</div>
 }

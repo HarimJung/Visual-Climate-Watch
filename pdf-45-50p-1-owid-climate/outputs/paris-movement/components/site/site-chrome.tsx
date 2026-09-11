@@ -35,6 +35,9 @@ export function SiteHeader(){
   </a>
   <nav className="site-nav" aria-label="Sections">
    {NAV.map(n=><a key={n.href} href={n.href} aria-current={active(n.href)?'page':undefined}>{n.label}</a>)}
+   <button className="jump-open" onClick={()=>dispatchEvent(new KeyboardEvent('keydown',{key:'k',metaKey:true}))} aria-label="Jump to a country or a screen">
+    <span>Jump</span><kbd>⌘K</kbd>
+   </button>
   </nav>
  </header>
  </>;

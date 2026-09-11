@@ -2,6 +2,8 @@ import type {Metadata} from 'next';
 import {ArrowLeft,ArrowUpRight} from 'lucide-react';
 import {fmt} from '@/lib/climate';
 import {loadView} from '@/lib/record';
+import Ledger from '@/components/finance/ledger';
+import SectionRail from '@/components/record/section-rail';
 
 // Feature 3, the crossing. ND-GAIN on one axis, the Green Climate Fund ledger
 // on the other, both already in every record, never yet drawn together.
@@ -116,6 +118,7 @@ function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
    <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.median_disbursed_pct)}</span><sup>%</sup></strong><span className="kpi-lab">Median country</span><span className="kpi-sub">of its approval actually received</span></div>
    <div className="kpi"><strong className="kpi-fig countup">{h.no_gcf_record}</strong><span className="kpi-lab">Ledgers never read</span><span className="kpi-sub">plus {h.disbursement_unread} approvals with no payment figure — unknown, not zero</span></div>
   </section>
+  <SectionRail sections={[['gradient','01','The gradient'] as const,['plot','02','Every plotted country'] as const,['countries','03','The ledger'] as const,['unread','04','The ledgers not read'] as const]}/>
   <div className="rec-shell">
    <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{v.caveat}</div></details>
   </div>
@@ -168,22 +171,7 @@ function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
     <section className="rec-section" id="countries">
      <div className="sec-head fin"><h2>The ledger</h2><p>Most vulnerable first. A dash means a figure was never read.</p></div>
      <details className="disc"><summary>How to read this</summary><div className="disc-body">Approved, disbursed, and the share of the approval that has actually arrived. A dash is not nought per cent: it means one of the two figures was never read, so the ratio does not exist.</div></details>
-     {[...v.bands].reverse().map(b=>{
-      const rows=v.rows.filter(r=>r.vulnerability>=b.from&&r.vulnerability<=b.to);
-      if(!rows.length)return null;
-      return <section className="div-band" key={b.label}>
-       <h3 className="band-head"><span>{b.label}</span><b>{rows.length}</b></h3>
-       <div className="div-rows">{rows.map(r=>
-      <div className="div-country fin-row" key={r.iso3}>
-       <a className="div-name" href={`/country/${r.iso3}#finance`}><i>{r.iso3}</i>{r.name_en}</a>
-       <span className="fin-vul"><i style={{width:`${r.vulnerability*100}%`}}/><small>{r.vulnerability.toFixed(3)}</small></span>
-       <span className="fin-money"><b>{usd(r.disbursed_usd)}</b><small>of {usd(r.approved_usd)}</small></span>
-       <span className="div-spread" data-wide={r.disbursed_pct!=null&&r.disbursed_pct<10||undefined}>
-        {r.disbursed_pct==null?'-':`${fmt(r.disbursed_pct)}%`}
-       </span>
-      </div>)}</div>
-      </section>;
-     })}
+     <Ledger rows={v.rows}/>
     </section>
 
     <section className="rec-section" id="unread">
