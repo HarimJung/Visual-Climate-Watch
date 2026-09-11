@@ -54,14 +54,18 @@ export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=fals
    <line className="sc-axis" x1={PAD.l} x2={W-PAD.r} y1={h-PAD.b} y2={h-PAD.b}/>
    {lines.map(l=><path key={l.id} d={path(l.points)} fill="none" stroke={hue(l.id)} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>)}
    {/* the last reading of each line, labelled: identity is never colour alone */}
-   {lines.map(l=>{const p=last(l);if(!p)return null;return <g key={l.id+'-end'}><circle cx={px(p.year)} cy={py(p.value)} r="4" fill={hue(l.id)} stroke="var(--paper-raised)" strokeWidth="2"/><text className="sc-end" x={px(p.year)+8} y={py(p.value)} dy="0.35em" fill={hue(l.id)}>{l.id}</text></g>})}
+   {/* End labels, nudged apart: two sources ending within a few megatonnes of
+       each other (Kenya's DS-35 and DS-02 both close at ~100) overprinted. */}
+   {(()=>{const ends=lines.map(l=>{const p=last(l);return p?{l,p,y:py(p.value)}:null}).filter((e):e is {l:Line;p:{year:number;value:number};y:number}=>!!e).sort((a,b)=>a.y-b.y);
+     for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<13)ends[i].y=ends[i-1].y+13;
+     return ends.map(({l,p,y})=><g key={l.id+'-end'}><circle cx={px(p.year)} cy={py(p.value)} r="4" fill={hue(l.id)} stroke="var(--paper-raised)" strokeWidth="2"/><text className="sc-end" x={px(p.year)+8} y={y} dy="0.35em" fill={hue(l.id)}>{l.id}</text></g>);})()}
    {marks.map(m=>m.points.map((p,i)=><g key={m.id+i}>
     <circle cx={px(p.year)} cy={py(p.value)} r="5" fill={m.id==='target'?'var(--paper-raised)':'none'} stroke={m.id==='target'?'var(--ndc)':'var(--ink-3)'} strokeWidth="2" strokeDasharray={m.id==='bau'?'2 2':undefined}/>
     <text className="sc-mark" x={px(p.year)} y={py(p.value)-10} textAnchor="middle">{m.id==='target'?`target ${fmt(p.value,0)}`:`BAU ${fmt(p.value,0)}`}</text>
    </g>))}
   </svg>
   <figcaption className="sc-key">
-   {lines.map(l=><span key={l.id}><i style={{background:hue(l.id)}}/>{l.id}{l.scope&&<small>{l.scope}</small>}</span>)}
+   {lines.map(l=><span key={l.id}><i style={{background:hue(l.id)}}/><b>{l.id}</b>{l.scope&&<small>{l.scope}</small>}</span>)}
    {marks.some(m=>m.id==='target')&&<span><i className="sc-key-target"/>target, read from the filing</span>}
    {marks.some(m=>m.id==='bau')&&<span><i className="sc-key-bau"/>business-as-usual, a projection</span>}
    <span className="sc-unit">{unit}</span>

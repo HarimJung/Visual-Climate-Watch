@@ -1430,3 +1430,4 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .sc-key-bau{width:9px!important;height:9px!important;border:2px dashed var(--ink-3);border-radius:50%;background:none!important}
 .sc-unit{margin-left:auto;font-family:var(--font-mono);color:var(--ink-4)}
 .evidence-sheet .sc{margin-top:var(--s3)}
+.sc-key b{white-space:nowrap;font:600 var(--t1) var(--font-mono);letter-spacing:.04em;color:var(--ink-2)}
