@@ -1340,3 +1340,29 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .primary-reading{flex-wrap:wrap;align-items:flex-end;row-gap:var(--s2)}
 .primary-reading>div{flex:1 1 170px;min-width:0}
 .primary-reading strong{font-size:clamp(34px,4.2vw,54px)}
+
+/* ── the stage as a stage ───────────────────────────────────────────────────
+   A vignette and a faint set of guide rings behind the machine, so it sits in
+   a space rather than floating on the sheet; a way to the next country on
+   either side; a hint that leaves once the reader has touched anything. */
+.movement-stage{background:
+ radial-gradient(60% 55% at 52% 48%,color-mix(in srgb,var(--paper-raised) 70%,transparent) 0,transparent 70%),
+ repeating-radial-gradient(circle at 52% 48%,transparent 0 118px,color-mix(in srgb,var(--rule) 55%,transparent) 118px 119px)}
+.stage-step{position:absolute;top:50%;z-index:3;translate:0 -50%;width:44px;height:44px;display:grid;place-items:center;
+ border:1px solid var(--rule-strong);border-radius:50%;background:color-mix(in srgb,var(--paper-raised) 86%,transparent);
+ backdrop-filter:blur(4px);color:var(--ink-2);opacity:.85;
+ transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease),opacity var(--dur) var(--ease),transform 120ms var(--out)}
+.stage-step.prev{left:10px}.stage-step.next{right:10px}
+.stage-step:hover{color:var(--ndc);border-color:var(--ndc);opacity:1;transform:scale(1.06)}
+.stage-step:active{transform:scale(.96)}
+.stage-step:disabled{opacity:.3}
+.stage-hint{position:absolute;left:50%;bottom:50px;z-index:3;translate:-50% 0;padding:6px 12px;border-radius:999px;
+ background:color-mix(in srgb,var(--ink) 82%,transparent);color:var(--paper);font:500 var(--t1) var(--font-sans);white-space:nowrap;
+ animation:riseIn 600ms var(--out) 1.2s both}
+@media(prefers-reduced-motion:reduce){.stage-hint{animation:none}}
+.try{display:flex;flex-wrap:wrap;gap:6px;margin-right:var(--s4)}
+.try .chip{min-height:32px;padding:0 10px;font-size:var(--t0);gap:6px}
+.try .chip b{font:var(--t0) var(--font-sans);font-weight:400;color:var(--ink-4);letter-spacing:0}
+.try .chip[aria-pressed="true"] b{color:#ffffff9c}
+@media(max-width:1100px){.try .chip b{display:none}}
+@media(max-width:720px){.try{display:none}.stage-hint{display:none}}
