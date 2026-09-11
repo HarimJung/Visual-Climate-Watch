@@ -395,7 +395,9 @@ svg{flex-shrink:0}
 @media(max-width:700px){
  .scroll-chapter{height:720svh}
  .instrument{display:flex;flex-direction:column;gap:0;padding:0 16px}
- .movement-stage{order:-1;flex:none;height:min(78vw,480px);min-height:300px}
+ /* svh follows the browser's own chrome: it measured 471px in an 844px
+    viewport, making the stage smaller than the 304px it replaced. */
+ .movement-stage{order:-1;flex:none;height:min(108vw,480px,62vh);min-height:300px}
  .country-story{display:block;flex-shrink:0;max-height:150px;padding:4px 0}
  .country-story>.eyebrow,.country-story>h1,.country-story>.verdict,.country-story>.edition-note,.country-story>.assembly-action,.country-story>.engine-copy{display:none}
  .country-story>.primary-reading{margin:4px 0;padding-top:8px;gap:12px}
@@ -1176,7 +1178,7 @@ body::after{
 .jump-hits span{grid-column:1;grid-row:2;font:var(--t0) var(--font-mono);color:var(--ink-4)}
 .jump-hits small{font:var(--t0) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
 .jump-none{padding:var(--s5) var(--s4);font-size:var(--t2);color:var(--ink-3)}
-@media(max-width:720px){.jump-open{display:none}}
+@media(max-width:720px){.jump-open kbd{display:none}.jump-open{padding-inline:10px}}
 
 /* ════════════════════════════════════════════════════════════════════════════
    THE SECOND PASS — what the audits found, and what replaces it

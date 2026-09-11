@@ -118,6 +118,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableZoom=false;renderer.domElement.style.touchAction='pan-y';orbit.enableDamping=true;orbit.dampingFactor=.085;orbit.autoRotateSpeed=.65;orbit.minDistance=3;orbit.maxDistance=100;orbit.target.set(0,0,.25);
  camera.position.set(5.2,-16,10.8);camera.lookAt(orbit.target);orbit.update();
  let disposed=false,raf=0,last=performance.now(),amount=0,gearTime=0,lastPhase=-1,lastPercent=-1,lastReplay=-1,lastInput=current.current.inputToken;
+ let liftScale=1;
  let dirty=true,fitDirty=true,manualCamera=false,lastKey='',lastProgress=current.current.progress,lastExplode=current.current.explode,lastPaused=current.current.paused;
  const replay=new AssemblyReplay();const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const pos=new T.Vector3(),pointer=new T.Vector2(),ray=new T.Raycaster(),tap=new PointerTap();
@@ -139,7 +140,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const threads=new T.LineSegments(threadGeometry,new T.LineBasicMaterial({color:0x9d93b2,transparent:true,opacity:.4}));threads.frustumCulled=false;evidence.add(threads);
  const markerGeometry=new T.BufferGeometry();const markerPositions=new Float32Array(assemblies.length*3);markerGeometry.setAttribute('position',new T.BufferAttribute(markerPositions,3));
  const markers=new T.Points(markerGeometry,new T.PointsMaterial({color:0x969ba1,size:3,sizeAttenuation:false,depthTest:false}));markers.frustumCulled=false;markers.renderOrder=10;world.add(markers);
- function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,w<768?1.5:2));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;fitDirty=dirty=true;}
+ function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,w<768?1.5:2));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;fitDirty=dirty=true;}
  const observer=new ResizeObserver(resize);observer.observe(el);resize();
  const changed=()=>{dirty=true};const started=()=>{manualCamera=true;fitDirty=false;dirty=true};
  orbit.addEventListener('change',changed);orbit.addEventListener('start',started);
@@ -154,7 +155,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  function placeParts(){
   const story=narrativeAmount(amount);const internal=(layer:number)=>story*(1-returnAmount(amount,layer));
   assemblies.forEach((part,i)=>{
-   const cell=layout.cells.get(part.id)!;const offset=cycleOffset(amount,part.layer,part.center,{x:cell.x,y:cell.y,z:0},part.shell);
+   const cell=layout.cells.get(part.id)!;const offset=cycleOffset(amount,part.layer,part.center,{x:cell.x,y:cell.y,z:0},part.shell,liftScale);
    const float=part.shell?0:Math.sin(gearTime*.8+part.layer*.9)*.025*(part.layer===0?.25:1);
    part.g.position.copy(part.home).add(pos.set(offset.x,offset.y,offset.z+float));
    markerPositions[i*3]=part.center.x+offset.x;markerPositions[i*3+1]=part.center.y+offset.y;markerPositions[i*3+2]=part.center.z+offset.z+float;
@@ -190,7 +191,9 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   const direction=(c.camera==='plan'?new T.Vector3(.16,-.8,1).normalize():c.camera==='back'?back:iso).clone().lerp(front,deskView).normalize();
   const right=new T.Vector3().crossVectors(camera.up,direction).normalize();const up=new T.Vector3().crossVectors(direction,right).normalize();
   const tangent=Math.tan(T.MathUtils.degToRad(camera.fov/2));
-  const tanY=tangent*Math.max(.5,(el.clientHeight-80)/el.clientHeight);
+  // 80px of reserved chrome is a tenth of a desktop stage and a fifth of a phone's.
+  const padY=el.clientWidth>700?80:Math.min(80,el.clientHeight*.12);
+  const tanY=tangent*Math.max(.5,(el.clientHeight-padY)/el.clientHeight);
   const tanX=tangent*camera.aspect*Math.max(.5,(el.clientWidth-36)/el.clientWidth);
   let distance=0;
   // Fit in camera space. World-Z depth is not screen height in this oblique view.
