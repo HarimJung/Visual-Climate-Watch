@@ -97,5 +97,9 @@ void test('the 2016 assessment never becomes the target', () => {
     assert.equal(d.ndc.base_year, null, `${file}: ndc.base_year filled from the assessment`);
     assert.equal(d.derived.ambition_gap_factor, null, `${file}: a gap was derived without a parsed target`);
   }
-  assert.ok(checked > 150, `expected most parties to be assessment-only, got ${checked}`);
+  // 27 Parties carry the EU joint NDC now and are read, so the floor sits
+  // below the 150 it was when every EU Member was assessment-only. The
+  // per-record checks above are what this test is for; the floor only guards
+  // against the loop silently checking nothing.
+  assert.ok(checked > 120, `expected most parties to be assessment-only, got ${checked}`);
 });

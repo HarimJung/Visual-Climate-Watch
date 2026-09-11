@@ -60,6 +60,56 @@ export const curated: Curated[] = [
   },
 ];
 
+/**
+ * A joint NDC: one document filed by a bloc on behalf of every one of its
+ * Members. The registry (DS-08) names it as each Member's current filing, and
+ * the mirror holds it once, under the bloc's own code. Without this, 27
+ * Parties whose pledge is on file read as "no document held".
+ *
+ * The parser refused the EU document — four base years appear in its text —
+ * and that refusal stands for the parser. The headline is a hand-verified
+ * reading, cited to the page, the same way data/khm.json carries Cambodia's.
+ * It is a collective target, and every record that carries it says so.
+ */
+type Joint = {
+  registry: RegExp; mirror: string;
+  reading: { reduction_pct: number; basis: 'base-year' | 'bau'; base_year: number | null; target_year: number; evidence: { page: number; sentence: string }[] };
+  note: string;
+};
+export const joint: Joint[] = [
+  {
+    registry: /European Union and its Member States/i, mirror: 'EUU',
+    reading: {
+      reduction_pct: 55, basis: 'base-year', base_year: 1990, target_year: 2030,
+      evidence: [{ page: 6, sentence: 'The EU and its Member States, acting jointly, are committed to a binding target of a net domestic reduction of at least 55% in greenhouse gas emissions by 2030 compared to 1990.' }],
+    },
+    note: 'A collective target of the European Union and its Member States acting jointly, filed as one document for all of them. It is not this Party\'s national figure: the share each Member contributes is set by EU effort-sharing law and is not read here.',
+  },
+];
+
+/**
+ * The document that speaks for this Party: its own, or the joint one the
+ * registry names as its current filing. Nothing is attached on membership
+ * alone — the registry has to say so for that Party.
+ */
+function docOf(iso3: string, i: Inputs): ndcdocs.NdcTarget | undefined {
+  const own = i.ndcdocs.data.get(iso3);
+  if (own) return own;
+  const r = i.registry.data.get(iso3);
+  if (!r?.active || !r.version) return undefined;
+  const j = joint.find((x) => x.registry.test(r.version!));
+  const bloc = j && i.ndcdocs.data.get(j.mirror);
+  if (!j || !bloc) return undefined;
+  const { $reason: _refused, ...rest } = bloc;
+  return {
+    ...rest, iso3,
+    reduction_pct: j.reading.reduction_pct, basis: j.reading.basis, base_year: j.reading.base_year, target_year: j.reading.target_year,
+    unconditional_pct: null, conditional_pct: null,
+    confidence: 'high', evidence: j.reading.evidence,
+    kind: `${bloc.kind} of ${bloc.party} and its Member States (joint)`,
+  };
+}
+
 export type Inputs = {
   owid: Awaited<ReturnType<typeof owid.collect>>;
   ndgain: Awaited<ReturnType<typeof ndgain.collect>>;
@@ -193,10 +243,10 @@ function sourcesFor(iso3: string, i: Inputs, isCurated: boolean) {
     {
       id: 'DS-06-NDC', name: 'UNFCCC NDC registry document', pattern: 'D' as const,
       tables: ['ndc_targets'],
-      connection: (isCurated || i.ndcdocs.data.get(iso3)?.reduction_pct != null ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
-      records: isCurated || i.ndcdocs.data.get(iso3)?.reduction_pct != null ? 1 : 0,
+      connection: (isCurated || docOf(iso3, i)?.reduction_pct != null ? 'connected' : 'not-connected') as 'connected' | 'not-connected',
+      records: isCurated || docOf(iso3, i)?.reduction_pct != null ? 1 : 0,
       last_run: i.ndcdocs.file?.extracted_at ?? null,
-      retrieved_at: isCurated ? '2026-09-07' : (i.ndcdocs.data.get(iso3) && i.ndcdocs.file ? day(i.ndcdocs.file.extracted_at) : null),
+      retrieved_at: isCurated ? '2026-09-07' : (docOf(iso3, i) && i.ndcdocs.file ? day(i.ndcdocs.file.extracted_at) : null),
       url: 'https://unfccc.int/NDCREG', license: ndcdocs.LICENSE,
     },
     {
@@ -391,7 +441,8 @@ function ndcAssessmentOf(iso3: string, i: Inputs): CountryData['ndc_assessment']
  * whether $reason or evidence is filled.
  */
 function ndcDocumentOf(iso3: string, i: Inputs): CountryData['ndc_document'] {
-  const t = i.ndcdocs.data.get(iso3);
+  const t = docOf(iso3, i);
+  const j = t && !i.ndcdocs.data.get(iso3) ? joint.find((x) => i.ndcdocs.data.get(x.mirror)?.party === t.party) : undefined;
   const file = i.ndcdocs.file;
   if (!t || !file) return undefined;
   const read = t.reduction_pct != null;
@@ -407,7 +458,7 @@ function ndcDocumentOf(iso3: string, i: Inputs): CountryData['ndc_document'] {
     // nobody measured it, a government wrote it.
     state: read ? 'pledged' : 'unknown',
     ...(read ? {} : { $reason: t.$reason }),
-    $note: `Read by ${ndcdocs.ID} from the ${t.kind} as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. ${read ? `The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.` : 'Nothing was accepted from this document.'}`,
+    $note: `${j ? j.note + ' The parser refused this document (it states figures on several base years); the headline is a hand-verified reading of the sentence quoted, page ' + j.reading.evidence[0].page + '. ' : ''}Read by ${ndcdocs.ID} from the ${t.kind} as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. ${read ? `The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.` : 'Nothing was accepted from this document.'}`,
     source: { id: ndcdocs.ID, name: `${t.party} ${t.kind}`, url: t.document_url, retrieved_at: day(file.extracted_at) },
   };
 }
@@ -498,7 +549,7 @@ function compose(iso3: string, i: Inputs): CountryData {
   // extraction fills what it accepted and nothing else: a percentage with no
   // base-year tonnage stays a percentage, and no target tonnage is invented
   // from it here (R5). derive() converts one, and says which series it used.
-  const ndcDoc = i.ndcdocs.data.get(iso3);
+  const ndcDoc = docOf(iso3, i);
   const doc = c ? undefined : ndcDoc;
   const read = doc?.reduction_pct != null ? doc : undefined;
   const ndc: CountryData['ndc'] = frozen ? frozen.ndc : {
@@ -617,7 +668,7 @@ function compose(iso3: string, i: Inputs): CountryData {
 export function metaFor(iso3: string, i?: Inputs) {
   const c = curated.find((x) => x.iso3 === iso3);
   if (c) return { mode: 'document-snapshot', snapshot: c.meta.snapshot, basis: c.meta.basis, notice: NOTICE };
-  const doc = i?.ndcdocs.data.get(iso3);
+  const doc = i ? docOf(iso3, i) : undefined;
   if (doc?.reduction_pct != null) {
     return {
       mode: 'document-parsed',

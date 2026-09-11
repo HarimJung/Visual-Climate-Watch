@@ -395,7 +395,7 @@ svg{flex-shrink:0}
 @media(max-width:700px){
  .scroll-chapter{height:720svh}
  .instrument{display:flex;flex-direction:column;gap:0;padding:0 16px}
- .movement-stage{order:-1;flex:1;min-height:0}
+ .movement-stage{order:-1;flex:none;height:min(78vw,480px);min-height:300px}
  .country-story{display:block;flex-shrink:0;max-height:150px;padding:4px 0}
  .country-story>.eyebrow,.country-story>h1,.country-story>.verdict,.country-story>.edition-note,.country-story>.assembly-action,.country-story>.engine-copy{display:none}
  .country-story>.primary-reading{margin:4px 0;padding-top:8px;gap:12px}
@@ -1441,3 +1441,25 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .hb-track i{display:block;height:100%;transform-origin:left}
 .hb-val{text-align:right;font:var(--t1) var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
 .hb-src{margin-left:6px;font:var(--t0) var(--font-mono);letter-spacing:.04em}
+
+/* ── the instrument on a phone: unpinned ──────────────────────────────────────
+   The desktop chapter pins a 100svh frame while a 680svh track scrolls under
+   it. On a phone that frame cannot hold the stage, the reading, the anatomy,
+   the narration, the rail and the calibre strip at once, so they were drawn
+   on top of each other. Below 700px nothing is pinned: everything flows, the
+   stage keeps its own height, and the machine still assembles itself on load.
+   The projected labels and the chapter popup are the narration strip's text
+   again, drawn onto a stage too small for them, so they go. */
+@media(max-width:700px){
+ .scroll-chapter{height:auto}
+ .scroll-pin{position:static;height:auto;overflow:visible}
+ .instrument{padding-bottom:var(--s3)}
+ .country-story{max-height:none;overflow:visible;padding:var(--s3) 0 0}
+ .country-story>h1,.country-story>.verdict,.country-story>.assembly-action{display:block}
+ .country-story>h1{font-size:28px}
+ .projected-labels,.assembly-leaders,.chapter-popup{display:none}
+ .stage-step{width:40px;height:40px}
+ .stage-hint{display:none}
+ .calibre-row{grid-template-columns:repeat(3,1fr)}
+ .compare{grid-template-columns:1fr}
+}
