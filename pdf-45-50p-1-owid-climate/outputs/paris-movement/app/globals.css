@@ -1076,3 +1076,49 @@ body::after{
 .fig-wait{display:inline-block;width:1.6em;height:.62em;border-radius:2px;background:var(--paper-sunken);
  animation:fadeIn .9s var(--ease) infinite alternate}
 @media(prefers-reduced-motion:reduce){.fig-wait{animation:none}}
+
+/* ── the country record ──────────────────────────────────────────────────────
+   A record is a document: a name you can read across a room, a reading under
+   it, the figures that matter as a band, and a spine you can navigate by. */
+.cty-head{padding-block:clamp(30px,4vw,56px) clamp(22px,2.6vw,34px);max-width:none}
+.cty-name{font-family:var(--font-display);font-weight:800;font-stretch:112%;
+ font-size:clamp(44px,7.4vw,96px);line-height:.94;letter-spacing:-.035em;margin:var(--s3) 0 var(--s4);
+ text-wrap:balance;color:var(--ink)}
+.cty-verdict{margin:var(--s5) 0 0;padding-left:clamp(14px,1.8vw,22px);border-left:3px solid var(--ndc);
+ font-family:var(--font-display);font-weight:500;font-size:clamp(18px,1.9vw,25px);line-height:1.42;
+ letter-spacing:-.012em;color:var(--ink-2);max-width:70ch;text-wrap:pretty}
+.kpi-none{font-size:.52em;font-weight:600;letter-spacing:.04em;opacity:.62}
+
+/* the spine: sticky under the site header, and it says where you are */
+.rail{position:sticky;top:var(--top-h);z-index:30;
+ background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);
+ border-bottom:1px solid var(--rule)}
+.rail ol{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none;
+ max-width:1120px;margin-inline:auto;padding-inline:var(--gutter)}
+.rail ol::-webkit-scrollbar{display:none}
+.rail a{display:inline-flex;align-items:baseline;gap:7px;white-space:nowrap;
+ padding:13px 16px 12px 0;margin-right:var(--s3);
+ font:var(--t0) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);
+ border-bottom:2px solid transparent;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.rail a:hover{color:var(--ink-2)}
+.rail a i{font-style:normal;opacity:.55}
+.rail a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ndc)}
+.rail a[aria-current="true"] i{color:var(--ndc);opacity:1}
+.record .rec-section{scroll-margin-top:calc(var(--top-h) + 54px)}
+@media(max-width:720px){.rail a span{display:none}.rail a{padding-right:10px}}
+
+/* where this figure sits among the countries that carry it */
+.peers{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--s4) var(--s6);
+ margin:var(--s5) 0 var(--s2);padding:var(--s4) 0;border-block:1px solid var(--rule)}
+.peers-lab{flex:1 1 100%;font:var(--t0) var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}
+.peers ul{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s6);list-style:none}
+.peers li{display:flex;flex-direction:column;gap:3px}
+.peers b{display:flex;align-items:baseline;gap:6px;font-weight:400}
+.peers-rank{font-family:var(--font-display);font-weight:800;font-stretch:96%;font-size:var(--t6);line-height:1;
+ letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.peers b small{font:var(--t1) var(--font-mono);color:var(--ink-3)}
+.peers-where{font-size:var(--t2);color:var(--ink-2)}
+.peers-gap{font:var(--t0) var(--font-mono);color:var(--warn)}
+.peers .record-action{margin:0}
+.cty-rest{margin-top:var(--s3);border-top:0}
+.cty-rest>summary{padding-top:0}

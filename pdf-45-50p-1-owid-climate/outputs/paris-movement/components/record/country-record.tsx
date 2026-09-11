@@ -3,6 +3,8 @@ import {useEffect,useState} from 'react';
 import {ArrowLeft,ArrowUpRight,Check,Minus} from 'lucide-react';
 import {LineChart,Line,BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,Legend,ResponsiveContainer} from 'recharts';
 import {clauseFor,fmt,jewelNames,observedYears,validateCountry,type CountryData,type Source} from '@/lib/climate';
+import SectionRail from '@/components/record/section-rail';
+import Peers from '@/components/record/peers';
 
 // One colour per inventory source, held steady across every chart on the page,
 // because R3 keeps the sources apart and the reader has to be able to tell them
@@ -11,6 +13,12 @@ const SOURCE_COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--nd
 const colorOf=(id:string)=>SOURCE_COLOR[id]??'var(--ink-3)';
 const SCENARIO_COLOR:Record<string,string>={'SSP1-2.6':'var(--inv)','SSP2-4.5':'var(--ndc)','SSP3-7.0':'var(--fin)','SSP5-8.5':'#a6432f'};
 const SECTIONS=[['emissions','01','Emissions'],['pledge','02','The pledge'],['transparency','03','Transparency'],['vulnerability','04','Vulnerability'],['finance','05','Finance received'],['projections','06','Projections'],['assessment','07','The assessment'],['provenance','08','Provenance']] as const;
+/** Each chapter wears the hue of the evidence it is made of. */
+const TONE:Record<string,string>={emissions:'inv',pledge:'',transparency:'btr',vulnerability:'warn',finance:'fin',projections:'inv',assessment:'',provenance:''};
+function Head({id,title,lead,long}:{id:string;title:string;lead:string;long?:React.ReactNode}){
+ return <><div className={`sec-head ${TONE[id]??''}`}><h2>{title}</h2><p>{lead}</p></div>
+  {long?<details className="disc"><summary>How to read this</summary><div className="disc-body">{long}</div></details>:null}</>;
+}
 const usd=(n:number|null|undefined)=>n==null?'Unknown':n>=1e9?`$${(n/1e9).toFixed(2)}bn`:n>=1e6?`$${(n/1e6).toFixed(1)}m`:`$${n.toLocaleString('en-US',{maximumFractionDigits:0})}`;
 
 function Token({state,label}:{state:string;label?:string}){
@@ -66,22 +74,40 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
   list.filter(x=>x.value_mtco2e!=null).map(x=>({name:(x as never as Record<string,string>)[key],value:x.value_mtco2e as number,source_id:x.source_id,fill:colorOf(x.source_id)}))
    .sort((a,b)=>Math.abs(b.value)-Math.abs(a.value));
  const confirmed=Object.values(btr.components).filter(v=>v.state==='observed').length;
+ // Two sentences is a reading; the whole generated paragraph is a document, and
+ // it has its own chapter further down.
+ // Split on a full stop that ends a word and is followed by a capital, never
+ // on the one inside 41.7 or NDC 3.0 — the first cut of this dropped the
+ // opening clause and printed "7% reduction" as the country's pledge.
+ const sentences=(data.verdict?.text??'No assessment has been generated for this record.')
+  .split(/(?<=[^\d]\.)\s+(?=[A-Z])/);
+ const lead=sentences.slice(0,2).join(' ').trim();
+ const rest=sentences.slice(2).join(' ').trim();
 
  return <main className="record">
-  <header className="rec-top"><a className="rec-back" href="/"><ArrowLeft size={15}/> The instrument</a><span className="rec-contract">{data.$profile??'engine'} · {data.$contract.split('@')[1]}</span></header>
 
   <div className="rec-shell">
-   <section className="rec-head">
+   <section className="cty-head">
     <p className="eyebrow"><span className="index">{country.iso3}</span> COUNTRY RECORD</p>
-    <h1 className="rec-title">{country.name_en}</h1>
+    <h1 className="cty-name">{country.name_en}</h1>
     <div className="rec-chips">
-     {[...new Set([cp?.region,cp?.income_group,cp?.population?`${fmt(cp.population/1e6,1)}M people (${cp.population_year})`:null,...country.groups].filter(Boolean).map(String))].map(c=><span key={c}>{c}</span>)}
+     {[...new Map([cp?.region,cp?.income_group,cp?.population?`${fmt(cp.population/1e6,1)}M people (${cp.population_year})`:null,...country.groups].filter(Boolean).map(String).map(c=>[c.toLowerCase(),c])).values()].map(c=><span key={c}>{c}</span>)}
     </div>
-    {data.verdict?<p className="rec-lede">{data.verdict.text}</p>
-     :<p className="rec-lede">No assessment has been generated for this record.</p>}
-    <nav className="rec-jump">{SECTIONS.map(([id,no,label])=><a key={id} href={`#${id}`}><i>{no}</i>{label}</a>)}</nav>
+    <blockquote className="cty-verdict">{lead}</blockquote>
+    {rest&&<details className="disc cty-rest"><summary>The rest of the assessment, {data.verdict?.clauses.length??0} clauses</summary><div className="disc-body">{rest}</div></details>}
    </section>
+  </div>
 
+  <section className="kpi-band" aria-label={`${country.name_en} in four figures`}>
+   <div className="kpi"><strong className="kpi-fig">{ep?.total_mtco2e==null?<span className="kpi-none">Unread</span>:<><span className="countup">{fmt(ep.total_mtco2e,0)}</span><sup>Mt</sup></>}</strong><span className="kpi-lab">Latest inventory</span><span className="kpi-sub">{ep?.latest_year?`CO₂e reported for ${ep.latest_year}`:'no source holds a total for this record'}</span></div>
+   <div className="kpi"><strong className="kpi-fig">{ndc.reduction_pct==null?<span className="kpi-none">Unread</span>:<>−<span className="countup">{fmt(ndc.reduction_pct)}</span><sup>%</sup></>}</strong><span className="kpi-lab">Pledged reduction</span><span className="kpi-sub">{ndc.reduction_pct==null?(reg?.state==='observed'?'a filing exists; no figure has been read from it':'no filing found'):`by ${ndc.target_year}, read from the document`}</span></div>
+   <div className="kpi"><strong className="kpi-fig"><span className="countup">{confirmed}</span><sup>/{Object.keys(btr.components).length}</sup></strong><span className="kpi-lab">Evidence sockets</span><span className="kpi-sub">components a filed document names</span></div>
+   <div className="kpi"><strong className="kpi-fig">{vulnerability.ndgain_score==null?<span className="kpi-none">Unranked</span>:<span className="countup">{fmt(vulnerability.ndgain_score,1)}</span>}</strong><span className="kpi-lab">ND-GAIN</span><span className="kpi-sub">{vulnerability.data_year?`index · ${vulnerability.data_year}`:'the index does not rank this territory'}</span></div>
+  </section>
+
+  <SectionRail sections={SECTIONS}/>
+
+  <div className="rec-shell">
    <section className="rec-tiles">
     <Tile label="Latest emissions" value={fmt(ep?.total_mtco2e,0)} unit={ep?.total_mtco2e==null?undefined:'Mt'} note={ep?.latest_year?`CO₂e · ${ep.latest_year}`:'No inventory total held'} state={ep?.state}/>
     <Tile label="Per capita" value={fmt(ep?.per_capita_tco2e,2)} unit={ep?.per_capita_tco2e==null?undefined:'t'} note="tCO₂e per person" state={ep?.per_capita_tco2e==null?'unknown':'observed'}/>
@@ -93,18 +119,19 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="emissions">
-    <h2>Emissions</h2>
-    <p className="rec-note">Every inventory is drawn on its own line. They disagree because they are on different scopes, and the engine does not reconcile them. {ep?.$note?'':''}</p>
+    <Head id="emissions" title="Emissions" lead="One line per inventory. Never averaged."
+     long={<>Every source keeps its own line because rule R3 forbids merging them at the contract, not at the chart. Two lines that disagree are two measurements on different scopes, not an error: the scope string travels with each source below. A gap in a line is a year that source did not report, and it is drawn as a gap rather than bridged.</>}/>
+    <Peers iso3={country.iso3} figure="emissions_profile.total_mtco2e"/>
     {pivot.length?<>
      <div className="rec-chart">
       <ResponsiveContainer width="100%" height={300}>
        <LineChart data={pivot} margin={{top:8,right:12,left:0,bottom:0}}>
         <CartesianGrid stroke="var(--rule)" strokeDasharray="2 4" vertical={false}/>
-        <XAxis dataKey="year" tick={axis} tickLine={false} axisLine={{stroke:'#c8c2b4'}}/>
+        <XAxis dataKey="year" tick={axis} tickLine={false} axisLine={{stroke:'var(--rule-strong)'}}/>
         <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'MtCO₂e',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
         <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
         <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.08em',textTransform:'uppercase'}}/>
-        {(ep?.by_source??[]).map(s=><Line key={s.source_id} type="monotone" dataKey={s.source_id} name={s.source_id} stroke={colorOf(s.source_id)} strokeWidth={1.6} dot={false} connectNulls={false} isAnimationActive={false}/>)}
+        {(ep?.by_source??[]).map(s=><Line key={s.source_id} type="monotone" dataKey={s.source_id} name={s.source_id} stroke={colorOf(s.source_id)} strokeWidth={2} dot={false} activeDot={{r:5,strokeWidth:2,stroke:"var(--paper-raised)"}} connectNulls={false} isAnimationActive={false}/>)}
        </LineChart>
       </ResponsiveContainer>
      </div>
@@ -119,7 +146,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
        <BarChart data={bars(ep.by_gas,'gas')} layout="vertical" margin={{left:0,right:24}}>
         <XAxis type="number" tick={axis} tickLine={false} axisLine={false}/>
         <YAxis type="category" dataKey="name" tick={axis} tickLine={false} axisLine={false} width={82}/>
-        <Tooltip contentStyle={tip} cursor={{fill:'#ebe8e0'}}/>
+        <Tooltip contentStyle={tip} cursor={{fill:'var(--paper-sunken)'}}/>
         <Bar dataKey="value" radius={1} isAnimationActive={false}/>
        </BarChart></ResponsiveContainer>:<Blank what="No gas split" why="No source reported a per-gas breakdown for this country."/>}
      </div>
@@ -129,7 +156,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
        <BarChart data={bars(ep.by_sector,'sector')} layout="vertical" margin={{left:0,right:24}}>
         <XAxis type="number" tick={axis} tickLine={false} axisLine={false}/>
         <YAxis type="category" dataKey="name" tick={axis} tickLine={false} axisLine={false} width={110}/>
-        <Tooltip contentStyle={tip} cursor={{fill:'#ebe8e0'}}/>
+        <Tooltip contentStyle={tip} cursor={{fill:'var(--paper-sunken)'}}/>
         <Bar dataKey="value" radius={1} isAnimationActive={false}/>
        </BarChart></ResponsiveContainer>:<Blank what="No sector split" why="No source reported a per-sector breakdown for this country."/>}
      </div>
@@ -138,8 +165,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="pledge">
-    <h2>The pledge</h2>
-    <div className="rec-cards">
+    <Head id="pledge" title="The pledge" lead="What the filing says, and what was read out of it."/><div className="rec-cards">
      <article className="rec-card">
       <span className="rec-card-tag">PARSED TARGET</span>
       {ndc.reduction_pct!=null?<>
@@ -203,8 +229,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="transparency">
-    <h2>Transparency</h2>
-    <p className="rec-note">{btr.submitted===true?`${btr.version} submitted${btr.submission_date?` on ${btr.submission_date}`:''}.`:btr.submitted===false?'A non-submission has been confirmed.':'Whether a report was submitted has not been read from the registry.'} Unparsed is not the same as missing: the engine has not opened the document, which is not a finding against the Party.</p>
+    <Head id="transparency" title="Transparency" lead="Eight reporting components. A socket fills only when a document names it." long={<>{btr.submitted===true?`${btr.version} submitted${btr.submission_date?` on ${btr.submission_date}`:''}.`:btr.submitted===false?'A non-submission has been confirmed.':'Whether a report was submitted has not been read from the registry.'} Unparsed is not the same as missing: the engine has not opened the document, which is not a finding against the Party.</>}/>
     <ul className="rec-components">{Object.entries(btr.components).map(([k,v])=>
      <li key={k} className={v.state}><span className="rec-comp-mark">{v.state==='observed'?<Check size={14}/>:v.state==='absent'?<Minus size={14}/>:'?'}</span><b>{jewelNames[k]??k}</b><Token state={v.state}/>
       {v.$evidence?.length?<small className="rec-comp-evidence">{v.$evidence.join(' · ')}</small>:null}</li>)}</ul>
@@ -213,8 +238,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="vulnerability">
-    <h2>Vulnerability</h2>
-    {vulnerability.state==='observed'?<>
+    <Head id="vulnerability" title="Vulnerability" lead="Exposure and readiness, as ND-GAIN scores them."/>{vulnerability.state==='observed'?<>
      <div className="rec-tiles three">
       <Tile label="ND-GAIN index" value={fmt(vulnerability.ndgain_score,1)} note={`latest year ${vulnerability.data_year}`} state="observed"/>
       <Tile label="Vulnerability" value={fmt(vulnerability.vulnerability,3)} note="0 = least vulnerable" state="observed"/>
@@ -227,8 +251,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="finance">
-    <h2>Finance received</h2>
-    {fin?<>
+    <Head id="finance" title="Finance received" lead="One channel — the Green Climate Fund — named as one."/>{fin?<>
      <div className="rec-tiles three">
       <Tile label="Approved" value={usd(fin.approved_usd)} note={`${fin.projects} project${fin.projects===1?'':'s'} · ${fin.channel}`} state="observed"/>
       <Tile label="Disbursed" value={usd(fin.disbursed_usd)} note={fin.latest_disbursement?`latest ${fin.latest_disbursement}`:'nothing attributable yet'} state={fin.disbursed_usd==null?'unknown':'observed'}/>
@@ -246,14 +269,13 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="projections">
-    <h2>Projections</h2>
-    {projRows.length?<>
+    <Head id="projections" title="Projections" lead="CMIP6 scenarios. Models, not observations."/>{projRows.length?<>
      <p className="rec-note">CMIP6 ensemble medians for {pr?.variable==='tas'?'mean surface temperature':pr?.variable}, as an anomaly against {pr?.baseline_period}{pr?.baseline_c!=null?` (${fmt(pr.baseline_c,2)}°C)`:''}. These are model runs, not observations.</p>
      <div className="rec-chart">
       <ResponsiveContainer width="100%" height={280}>
        <LineChart data={projRows} margin={{top:8,right:12,left:0,bottom:0}}>
         <CartesianGrid stroke="var(--rule)" strokeDasharray="2 4" vertical={false}/>
-        <XAxis dataKey="period" tick={axis} tickLine={false} axisLine={{stroke:'#c8c2b4'}}/>
+        <XAxis dataKey="period" tick={axis} tickLine={false} axisLine={{stroke:'var(--rule-strong)'}}/>
         <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'°C anomaly',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
         <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
         <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.08em'}}/>
@@ -266,16 +288,14 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="assessment">
-    <h2>The assessment</h2>
-    <p className="rec-note">Each sentence is generated from one field by a rule, and disappears when that field empties. No prose model wrote any of it.</p>
+    <Head id="assessment" title="The assessment" lead="One clause per field, generated by rule, never by a model." long={<>Each sentence is generated from one field by a rule, and disappears when that field empties. No prose model wrote any of it.</>}/>
     {data.verdict?.clauses.length?<ol className="rec-clauses">{data.verdict.clauses.map(c=>
      <li key={c.field}><code>{c.field}</code><p>{c.text}</p></li>)}</ol>
      :<Blank what="No clauses" why="Nothing in this record carries a value that can be asserted."/>}
    </section>
 
    <section className="rec-section" id="provenance">
-    <h2>Provenance</h2>
-    {data.provenance?<>
+    <Head id="provenance" title="Provenance" lead="The run, the hashes, and every input file behind this page."/>{data.provenance?<>
      <dl className="rec-run"><div><dt>Run</dt><dd>{data.provenance.run_id?.slice(0,16)}</dd></div>
       <div><dt>Built</dt><dd>{data.provenance.built_at}</dd></div>
       <div><dt>Payload SHA-256</dt><dd className="rec-hash">{data.provenance.payload_sha256}</dd></div></dl>
