@@ -1440,3 +1440,4 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .hb-track{display:block;height:12px;background:var(--paper-sunken)}
 .hb-track i{display:block;height:100%;transform-origin:left}
 .hb-val{text-align:right;font:var(--t1) var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.hb-src{margin-left:6px;font:var(--t0) var(--font-mono);letter-spacing:.04em}

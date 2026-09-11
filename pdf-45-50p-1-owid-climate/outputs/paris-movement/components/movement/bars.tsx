@@ -17,8 +17,8 @@ export default function Bars({bars,unit='MtCO₂e'}:{bars:Bar[];unit?:string}){
  const sources=[...new Set(bars.map(b=>b.source_id))];
  return <figure className="hb">
   <ol className="hb-rows" aria-label={`${bars.length} bars in ${unit}`}>
-   {bars.map(b=><li key={b.name} className="hb-row">
-    <span className="hb-name">{b.name}</span>
+   {bars.map(b=><li key={b.name+b.source_id} className="hb-row">
+    <span className="hb-name">{b.name}{sources.length>1&&<small className="hb-src" style={{color:hue(b.source_id)}}>{b.source_id}</small>}</span>
     <span className="hb-track"><i style={{width:`${Math.abs(b.value)/max*100}%`,background:hue(b.source_id)}}/></span>
     <span className="hb-val">{fmt(b.value,1)}</span>
    </li>)}
