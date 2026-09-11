@@ -1332,3 +1332,6 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .tray-go:hover{color:var(--ndc);text-decoration-color:var(--ndc)}
 .tray-card h2 a{color:inherit}
 .tray-card h2 a:hover{color:var(--ndc)}
+/* the collection card's region line was the one label the pass missed */
+.tray-country p{text-transform:none;letter-spacing:0;font:var(--t1) var(--font-sans);color:var(--ink-3)}
+.tray-meta span{font-family:var(--font-mono);font-size:var(--t0);letter-spacing:.06em;text-transform:none;color:var(--ink-4)}
