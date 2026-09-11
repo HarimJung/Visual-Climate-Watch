@@ -59,36 +59,13 @@
 }
 
 :root{color-scheme:light}
-
-/* ── dark: chosen, not flipped ──────────────────────────────────────────────
-   The same plate under a loupe lamp. Every evidence hue is re-stepped for the
-   dark surface and re-validated (--mode dark --pairs all); a light palette
-   dropped onto a dark ground fails the lightness band and the CVD checks. */
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
- --paper:#16181b;--paper-raised:#1e2126;--paper-sunken:#101214;
- --ink:#f0efe8;--ink-2:#c8ccd0;--ink-3:#949da3;--ink-4:#727c84;
- --rule:#343a40;--rule-strong:#4a525a;
- --ndc:#5578e0;--inv:#1fa98c;--btr:#a8479c;--fin:#b28c26;--warn:#e0674a;
- --wash:#1c2333;
- --dial-face:#20242a;--dial-edge:#3c4349;--dial-track:#2c3136;--dial-absent:#7d878e;--dial-socket:#8f7fa8;
- --engrave:#9aa3a9;
- --sheen:#252b34;--sheen-fade:#16181b00;--grain-blend:soft-light;--grain-opacity:.09;
- --shadow-1:0 1px 2px #0006,0 8px 22px #0004;
- --shadow-2:0 2px 6px #00000073,0 20px 46px #0000004d;
-}}
-:root[data-theme="dark"]{
- --paper:#16181b;--paper-raised:#1e2126;--paper-sunken:#101214;
- --ink:#f0efe8;--ink-2:#c8ccd0;--ink-3:#949da3;--ink-4:#727c84;
- --rule:#343a40;--rule-strong:#4a525a;
- --ndc:#5578e0;--inv:#1fa98c;--btr:#a8479c;--fin:#b28c26;--warn:#e0674a;
- --wash:#1c2333;
- --dial-face:#20242a;--dial-edge:#3c4349;--dial-track:#2c3136;--dial-absent:#7d878e;--dial-socket:#8f7fa8;
- --engrave:#9aa3a9;
- --sheen:#252b34;--sheen-fade:#16181b00;--grain-blend:soft-light;--grain-opacity:.09;
- --shadow-1:0 1px 2px #0006,0 8px 22px #0004;
- --shadow-2:0 2px 6px #00000073,0 20px 46px #0000004d;
-}
-:root{color-scheme:light dark}
+/* One paper, and only one.
+   This product is printed on an ivory sheet and stays on it whatever the
+   operating system prefers: colour-scheme is pinned to light so the form
+   controls, scrollbars and the 3D plate all agree with the page. A dark
+   variant was built and taken out again — the client's standing instruction
+   is a light screen, and a second palette nobody asked for is a second
+   palette to keep honest. */
 
 @theme inline{
  --color-background:var(--background);--color-foreground:var(--foreground);
