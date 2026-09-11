@@ -668,6 +668,7 @@
   },
   "emissions_profile": {
     "latest_year": 2024,
+    "source_id": "DS-35",
     "total_mtco2e": 12.116,
     "excluding_lucf_mtco2e": 9.157,
     "per_capita_tco2e": 8.905,
@@ -1764,7 +1765,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "90720a0eb1b505f5c1696063492439a54854c306e094ab7ecd5de1827266c453",
+    "payload_sha256": "061132d0b6ea6e4e43b1b7c6b7accc1c1430f5b113f8db59d5606d74748c2652",
     "inputs": [
       {
         "source_id": "DS-35",

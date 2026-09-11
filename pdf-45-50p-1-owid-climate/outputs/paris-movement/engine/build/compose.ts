@@ -231,6 +231,11 @@ function emissionsProfile(iso3: string, i: Inputs) {
     excluding_lucf_mtco2e: o?.excluding_lucf_mtco2e ?? null,
     per_capita_tco2e: o?.per_capita_tco2e ?? null,
     state: (o?.total_mtco2e == null ? 'unknown' : 'observed') as 'observed' | 'unknown',
+    // The headline is OWID's by construction (the $note below says so in
+    // prose), but the block never said so as data, so a receipt for
+    // total_mtco2e — the most-quoted figure on the site — came back
+    // "not attributable". The source is stamped where the receipt reads it.
+    ...(o?.total_mtco2e == null ? {} : { source_id: owid.ID }),
     // R5: the headline is OWID's or it is unknown, and an unknown says which
     // of the two ways it got there. Never blank, never inferred from by_source.
     ...(o?.total_mtco2e == null

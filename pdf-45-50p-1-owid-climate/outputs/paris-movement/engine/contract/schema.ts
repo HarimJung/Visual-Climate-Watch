@@ -245,6 +245,8 @@ export const countrySchema = z.object({
   }).strict().optional(),
   emissions_profile: z.object({
     latest_year: z.number().int().nullable(),
+    /** v1.2, optional: the source the headline figures are taken from. */
+    source_id: z.string().optional(),
     total_mtco2e: num,
     excluding_lucf_mtco2e: num,
     per_capita_tco2e: num,
