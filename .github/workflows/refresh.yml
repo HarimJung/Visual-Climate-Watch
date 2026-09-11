@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm, cache-dependency-path: pdf-45-50p-1-owid-climate/outputs/paris-movement/package-lock.json }
+        with: { node-version: 24, cache: npm, cache-dependency-path: pdf-45-50p-1-owid-climate/outputs/paris-movement/package-lock.json }
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
       - run: npm ci
       - name: probe the BTR data sibling (ENGINEERING M11 is blocked on it)
