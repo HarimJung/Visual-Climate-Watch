@@ -3,6 +3,7 @@ import {ArrowUpRight} from 'lucide-react';
 import {fmt,jewelNames,type RosterRow} from '@/lib/climate';
 import {loadIndex,loadView} from '@/lib/record';
 import {catalogueSize,gaps,type Census} from '@/lib/unknown';
+import ExportCsv from '@/components/site/export-csv';
 
 // P3, the Unknown Map. The front door, and the one screen that leads with the
 // engine's own emptiness instead of its coverage. Every figure is subtracted
@@ -18,7 +19,7 @@ export const metadata:Metadata={
 const evidenced=(r:RosterRow,k:string)=>(r.btr_components?.[k]?.state??'unknown')!=='unknown';
 function Lattice({roster,census}:{roster:RosterRow[];census:Census}){
  const keys=Object.keys(jewelNames);
- return <figure className="unk-lattice">
+ return <figure className="unk-lattice reveal" style={{'--i':1} as React.CSSProperties}>
   <ul>
    {keys.map(k=>{
     const hits=roster.map((r,i)=>evidenced(r,k)?i:-1).filter(i=>i>=0);
@@ -53,26 +54,38 @@ export default async function Page(){
     </div>
     {census&&roster.length>0&&<Lattice roster={roster} census={census}/>}
    </section>
+  </div>
 
-   {!census?<div className="rec-blank"><span className="state-token unknown"><i/>Census unavailable</span><p>The census has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div>:<>
-    <section className="rec-tiles">
-     <div className="rec-tile"><span className="rec-tile-label">Countries built</span><strong>{census.countries}</strong><small>every one of them carries its own gaps</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Observations held</span><strong>{fmt(census.observation_points,0)}</strong><small>measured points, across every source</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Refusals on record</span><strong>{census.refusals_total}</strong><small>{census.refusals_distinct_sentences} distinct wordings between them</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Sources connected</span><strong>{Object.keys(census.connected_sources).length}<sup>of {catalogueSize(census)}</sup></strong><small>catalogued is not connected</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Run</span><strong className="unk-run">{census.run_id.slice(0,8)}</strong><small>built {census.built_at.slice(0,10)}</small></div>
-    </section>
+  {!census?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Census unavailable</span><p>The census has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
 
-    <div className="rec-blank caveat"><span className="state-token pledged"><i/>Read this before quoting the figures</span><p>Unknown is not absent, and neither is zero. Every figure below counts what this engine has not established, which is a statement about our reading, not about a country&rsquo;s conduct. Where a country is missing from a count, the reason it is missing is published with it, country by country and sentence by sentence.</p></div>
+   {/* The finding, at reading distance. Four counts, each one a subtraction. */}
+   <section className="kpi-band ink" aria-label="What is unknown, in four figures">
+    <div className="kpi"><strong className="kpi-fig countup">{fmt(census.btr_component_sockets-census.btr_components_evidenced,0)}</strong><span className="kpi-lab">Empty evidence sockets</span><span className="kpi-sub">of {fmt(census.btr_component_sockets,0)} · no filed document names them</span></div>
+    <div className="kpi"><strong className="kpi-fig countup">{census.countries-census.ndc_target_accepted}</strong><span className="kpi-lab">Countries with no target read</span><span className="kpi-sub">of {census.countries} · {census.ndc_target_refused} refused with a reason, {census.countries-census.ndc_documents_held} with no document held</span></div>
+    <div className="kpi"><strong className="kpi-fig countup">{census.refusals_total}</strong><span className="kpi-lab">Calculations refused</span><span className="kpi-sub">{census.refusals_distinct_sentences} distinct sentences, every one published</span></div>
+    <div className="kpi"><strong className="kpi-fig"><span className="countup">{Object.keys(census.connected_sources).length}</span><sup>of {catalogueSize(census)}</sup></strong><span className="kpi-lab">Sources connected</span><span className="kpi-sub">catalogued is not read; the catalogue says which is which</span></div>
+   </section>
 
-    <section className="rec-section" id="gaps">
-     <h2>What is dark, and how dark</h2>
-     <p className="rec-note">The dashed part of each bar is the unknown; the solid part is what the engine has actually established. Ordered by how dark the question is, not by the size of the number, so seventeen targets out of eighteen outranks eighty-two countries out of {census.countries}.</p>
+   <div className="rec-shell">
+    <div className="rec-blank caveat"><span className="state-token pledged"><i/>Read this before quoting the figures</span><p>Unknown is not absent, and neither is zero. Every figure here counts what this engine has not established, which is a statement about our reading, not about a country&rsquo;s conduct. Where a country is missing from a count, the reason it is missing is published with it, country by country and sentence by sentence.</p></div>
+   </div>
+
+   <section className="band raised" id="gaps">
+    <div>
+     <div className="sec-head warn">
+      <h2>What is dark, and how dark</h2>
+      <p>The dashed part of each bar is the unknown; the solid part is what the engine has actually established. Ordered by how dark the question is, not by the size of the number, so seventeen targets out of eighteen outranks eighty-two countries out of {census.countries}.</p>
+     </div>
+     <div className="ctl-row">
+      <span className="ctl-lab">{rows.length} open questions</span>
+      <span className="ctl-spacer"/>
+      <ExportCsv name="visual-climate-unknown-map" rows={rows.map(g=>({question:g.label,unknown:g.unknown,of:g.of,unit:g.unit,share_unknown_pct:+(g.unknown/g.of*100).toFixed(1),reasons_at:g.href,note:g.note}))}/>
+     </div>
      <ol className="unk-gaps">
-      {rows.map(g=><li className="unk-gap" key={g.id}>
+      {rows.map((g,i)=><li className="unk-gap reveal" key={g.id} style={{'--i':i} as React.CSSProperties}>
        <div className="unk-gap-head">
         <b>{g.label}</b>
-        <span className="unk-gap-fig">{fmt(g.unknown,0)}<small>of {fmt(g.of,0)} {g.unit}</small></span>
+        <span className="unk-gap-fig"><span className="countup">{fmt(g.unknown,0)}</span><small>of {fmt(g.of,0)} {g.unit}</small></span>
        </div>
        <span className="unk-track" aria-hidden="true"><i style={{width:`${(g.of-g.unknown)/g.of*100}%`}}/></span>
        <span className="unk-legend"><b>{((g.of-g.unknown)/g.of*100).toFixed(1)}% established</b><span>{(g.unknown/g.of*100).toFixed(1)}% unknown</span></span>
@@ -80,16 +93,25 @@ export default async function Page(){
        <a className="record-action" href={g.href}>{g.link}<ArrowUpRight size={13}/></a>
       </li>)}
      </ol>
-    </section>
+    </div>
+   </section>
 
-    <section className="rec-section" id="sources">
-     <h2>Which sources are feeding this</h2>
-     <p className="rec-note">A connected source is one that fed a record in this run, with the number of countries it reached. The rest of the catalogue is named on the instrument, marked as what it is: listed, not read.</p>
-     <ul className="rec-scopes">
-      {Object.entries(census.connected_sources).map(([id,n])=><li key={id}><i style={{background:'var(--inv)'}}/><b>{id}</b><span>{n} countries</span></li>)}
+   <section className="band" id="sources">
+    <div>
+     <div className="sec-head inv">
+      <h2>Which sources are feeding this</h2>
+      <p>A connected source is one that fed a record in this run, with the number of countries it reached. The rest of the catalogue is named on the instrument, marked as what it is: listed, not read.</p>
+     </div>
+     <ul className="src-grid">
+      {Object.entries(census.connected_sources).map(([id,n],i)=><li key={id} className="reveal" style={{'--i':i} as React.CSSProperties}>
+       <b>{id}</b>
+       <span className="src-track"><i style={{width:`${n/census.countries*100}%`}}/></span>
+       <span className="src-n"><span className="countup">{n}</span> / {census.countries}</span>
+      </li>)}
      </ul>
-    </section>
-   </>}
-  </div>
+     <p className="rec-note">Run <code>{census.run_id.slice(0,8)}</code> · built {census.built_at.slice(0,10)} · {fmt(census.observation_points,0)} observation points held.</p>
+    </div>
+   </section>
+  </>}
  </main>;
 }

@@ -47,6 +47,10 @@ function ContactSheet({roster}:{roster:RosterRow[]}){
 export default async function Page(){
  const index=await loadIndex();
  const roster=index?.countries??[];
+ // Counted here rather than typed: the roster is the only thing this page has.
+ const pledged=roster.filter(c=>c.reduction_pct!=null).length;
+ const sockets=roster.reduce((n,c)=>n+Object.values(c.btr_components??{}).filter(x=>x.state!=='unknown').length,0);
+ const years=roster.reduce((n,c)=>n+(c.observed_years??0),0);
  return <main className="record" id="main">
   <div className="rec-shell">
    <section className="cty-masthead">
@@ -57,9 +61,19 @@ export default async function Page(){
     </div>
     {roster.length>0&&<ContactSheet roster={roster}/>}
    </section>
-   {roster.length===0
-    ?<div className="rec-blank"><span className="state-token unknown"><i/>Roster unavailable</span><p>The engine index has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div>
-    :<CountryGrid roster={roster} note={index?.telemetry?.run_id?`Run ${index.telemetry.run_id.slice(0,8)}.`:undefined}/>}
   </div>
+  {roster.length===0
+   ?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Roster unavailable</span><p>The engine index has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>
+   :<>
+    <section className="kpi-band" aria-label="The collection in four figures">
+     <div className="kpi"><strong className="kpi-fig countup">{roster.length}</strong><span className="kpi-lab">Records built</span><span className="kpi-sub">one contract, one code path, every one of them</span></div>
+     <div className="kpi"><strong className="kpi-fig countup">{pledged}</strong><span className="kpi-lab">Pledge figures read</span><span className="kpi-sub">of {roster.length} · the rest are unread, not absent</span></div>
+     <div className="kpi"><strong className="kpi-fig countup">{sockets}</strong><span className="kpi-lab">Evidence sockets filled</span><span className="kpi-sub">of {roster.length*8} · a filed document names each one</span></div>
+     <div className="kpi"><strong className="kpi-fig countup">{years}</strong><span className="kpi-lab">Country-years observed</span><span className="kpi-sub">summed across the collection</span></div>
+    </section>
+    <div className="rec-shell">
+     <CountryGrid roster={roster} note={index?.telemetry?.run_id?`Run ${index.telemetry.run_id.slice(0,8)}.`:undefined}/>
+    </div>
+   </>}
  </main>;
 }

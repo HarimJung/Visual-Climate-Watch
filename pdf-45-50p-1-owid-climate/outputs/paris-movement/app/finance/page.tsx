@@ -105,6 +105,23 @@ function Staircase({bands}:{bands:Band[]}){
 export default async function Page(){
  const v=await loadView<Finance>('finance');
  const h=v?.headline;
+// The finding, at reading distance, and the caveat as a latch rather than a
+// paragraph every reader must cross before the first chart.
+function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
+ return <>
+  <section className="kpi-band" aria-label="The ledger in five figures">
+   <div className="kpi"><strong className="kpi-fig countup">{h.plottable}</strong><span className="kpi-lab">Countries plotted</span><span className="kpi-sub">a vulnerability score and a fund ledger, both</span></div>
+   <div className="kpi"><strong className="kpi-fig">{usd(h.total_approved_usd)}</strong><span className="kpi-lab">Approved</span><span className="kpi-sub">across those countries</span></div>
+   <div className="kpi"><strong className="kpi-fig">{usd(h.total_disbursed_usd)}</strong><span className="kpi-lab">Disbursed</span><span className="kpi-sub">over the {h.disbursed_read_countries} whose payment figure was read</span></div>
+   <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.median_disbursed_pct)}</span><sup>%</sup></strong><span className="kpi-lab">Median country</span><span className="kpi-sub">of its approval actually received</span></div>
+   <div className="kpi"><strong className="kpi-fig countup">{h.no_gcf_record}</strong><span className="kpi-lab">Ledgers never read</span><span className="kpi-sub">plus {h.disbursement_unread} approvals with no payment figure — unknown, not zero</span></div>
+  </section>
+  <div className="rec-shell">
+   <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{v.caveat}</div></details>
+  </div>
+ </>;
+}
+
  return <main className="record" id="main">
   <div className="rec-shell">
    <section className="fin-masthead">
@@ -115,22 +132,15 @@ export default async function Page(){
     </div>
     {v&&h&&<Staircase bands={v.bands}/>}
    </section>
+  </div>
 
-   {!v||!h?<div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div>:<>
-    <section className="rec-tiles">
-     <div className="rec-tile"><span className="rec-tile-label">Countries plotted</span><strong>{h.plottable}</strong><small>both a vulnerability score and a fund ledger</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Approved</span><strong>{usd(h.total_approved_usd)}</strong><small>across those countries</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Disbursed</span><strong>{usd(h.total_disbursed_usd)}</strong><small>across the {h.disbursed_read_countries} countries whose payment figure was read</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Median country</span><strong>{fmt(h.median_disbursed_pct)}<sup>%</sup></strong><small>of its approval received</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Disbursement unread</span><strong>{h.disbursement_unread}</strong><small>approvals whose payment figure was never read, not a zero</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Ledger unread</span><strong>{h.no_gcf_record}</strong><small>vulnerability known, no fund record, unknown, not zero</small></div>
-    </section>
-
-    <div className="rec-blank caveat"><span className="state-token pledged"><i/>Read this before quoting the figures</span><p>{v.caveat}</p></div>
+  {!v||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
+    <FinanceBand h={h} v={v}/>
+    <div className="rec-shell">
 
     <section className="rec-section" id="gradient">
-     <h2>The gradient</h2>
-     <p className="rec-note">The {h.plottable} plotted countries split into four equal groups by vulnerability, quartiles, so the cut is arithmetic rather than editorial. Approvals fall in step with need across all four bands, from {usd(v.bands[0].approved_usd)} to {usd(v.bands[3].approved_usd)}. Disbursement per country is not a clean staircase, the second quartile receives the most, but the most vulnerable quartile receives the least of any band, and it does so while carrying the most countries with a figure actually on the books ({v.bands[3].disbursed_read} of {v.bands[3].countries}), so this is not an artefact of thinner coverage.</p>
+     <div className="sec-head fin"><h2>The gradient</h2><p>Four equal groups by vulnerability. Approvals rise with need; payments do not.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">The {h.plottable} plotted countries split into four equal groups by vulnerability, quartiles, so the cut is arithmetic rather than editorial. Approvals fall in step with need across all four bands, from {usd(v.bands[0].approved_usd)} to {usd(v.bands[3].approved_usd)}. Disbursement per country is not a clean staircase, the second quartile receives the most, but the most vulnerable quartile receives the least of any band, and it does so while carrying the most countries with a figure actually on the books ({v.bands[3].disbursed_read} of {v.bands[3].countries}), so this is not an artefact of thinner coverage.</div></details>
      <div className="fin-bands">
       {v.bands.map(b=>{
        const max=Math.max(...v.bands.map(x=>x.disbursed_per_read_country_usd))||1;
@@ -150,14 +160,14 @@ export default async function Page(){
     </section>
 
     <section className="rec-section" id="plot">
-     <h2>Every plotted country</h2>
-     <p className="rec-note">One dot per country. Vertical axis is disbursement on a log scale, because the range runs from tens of thousands to over a billion. The lane beneath the break is not a low number, it is {h.disbursement_unread} countries that hold an approval and whose disbursement figure this engine has never read. Every other product would print them as zero.</p>
+     <div className="sec-head fin"><h2>Every plotted country</h2><p>One dot per country. The lane under the break is unread, not nought.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">One dot per country. Vertical axis is disbursement on a log scale, because the range runs from tens of thousands to over a billion. The lane beneath the break is not a low number, it is {h.disbursement_unread} countries that hold an approval and whose disbursement figure this engine has never read. Every other product would print them as zero.</div></details>
      <Scatter rows={v.rows}/>
     </section>
 
     <section className="rec-section" id="countries">
-     <h2>The ledger, most vulnerable first</h2>
-     <p className="rec-note">Approved, disbursed, and the share of the approval that has actually arrived. A dash is not nought per cent: it means one of the two figures was never read, so the ratio does not exist.</p>
+     <div className="sec-head fin"><h2>The ledger</h2><p>Most vulnerable first. A dash means a figure was never read.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">Approved, disbursed, and the share of the approval that has actually arrived. A dash is not nought per cent: it means one of the two figures was never read, so the ratio does not exist.</div></details>
      {[...v.bands].reverse().map(b=>{
       const rows=v.rows.filter(r=>r.vulnerability>=b.from&&r.vulnerability<=b.to);
       if(!rows.length)return null;
@@ -177,14 +187,14 @@ export default async function Page(){
     </section>
 
     <section className="rec-section" id="unread">
-     <h2>The ledgers not read</h2>
-     <p className="rec-note">{v.unknowns.length} countries have a vulnerability score and no fund record in this engine. They are absent from every figure above. Printing them here is the point: a country missing from a finance chart usually disappears, and disappearing reads as having received nothing.</p>
+     <div className="sec-head warn"><h2>The ledgers not read</h2><p>Vulnerability known, no fund record. Absent from every figure above.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">{v.unknowns.length} countries have a vulnerability score and no fund record in this engine. They are absent from every figure above. Printing them here is the point: a country missing from a finance chart usually disappears, and disappearing reads as having received nothing.</div></details>
      <ul className="rec-scopes">{v.unknowns.map(u=>
       <li key={u.iso3}><i className="fin-unknown-dot"/><b>{u.iso3}</b><span>{u.name_en}</span><small>vul {u.vulnerability.toFixed(3)}</small></li>)}
      </ul>
      <div className="rec-blank"><span className="state-token unknown"><i/>Why they are unknown and not zero</span><p>{v.unknowns[0]?.$reason}</p></div>
     </section>
+    </div>
    </>}
-  </div>
  </main>;
 }

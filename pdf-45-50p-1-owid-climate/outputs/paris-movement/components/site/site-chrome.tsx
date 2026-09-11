@@ -1,5 +1,6 @@
 'use client';
 import {usePathname} from 'next/navigation';
+import Mark from '@/components/site/mark';
 
 // One header and one footer for the whole site, mounted in the root layout.
 //
@@ -28,9 +29,9 @@ export function SiteHeader(){
  return <>
   <a className="skip-link" href="#main">Skip to content</a>
   <header className="site-top">
-  <a className="brand" href="/" aria-label="Visual Climate home">
-   <span className="brand-symbol">◉</span>
-   <span>VISUAL CLIMATE<small>THE PARIS MOVEMENT</small></span>
+  <a className="brand" href="/" aria-label="Visual Climate, the Paris Movement">
+   <Mark size={30} className="brand-mark"/>
+   <span className="brand-word">VISUAL&nbsp;CLIMATE<small>THE PARIS MOVEMENT</small></span>
   </a>
   <nav className="site-nav" aria-label="Sections">
    {NAV.map(n=><a key={n.href} href={n.href} aria-current={active(n.href)?'page':undefined}>{n.label}</a>)}
@@ -41,7 +42,8 @@ export function SiteHeader(){
 
 export function SiteFooter(){
  return <footer className="site-foot">
-  <span>Visual Climate · The Paris Movement</span>
-  <span>Reported ≠ independently verified. Unknown ≠ absent.</span>
+  <a className="foot-brand" href="/"><Mark size={22}/><b>VISUAL&nbsp;CLIMATE</b></a>
+  <span className="foot-line">The climate record that publishes what it does not know.</span>
+  <span>Reported ≠ independently verified · Unknown ≠ absent · Refused ≠ failed</span>
  </footer>;
 }

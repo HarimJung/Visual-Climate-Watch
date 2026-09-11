@@ -69,28 +69,29 @@ export default async function Page(){
     </div>
     {h&&<Collision h={h}/>}
    </section>
+  </div>
 
-   {!atlas||!h?<div className="rec-blank"><span className="state-token unknown"><i/>Atlas unavailable</span><p>The divergence view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div>:<>
-    <section className="rec-tiles">
-     <div className="rec-tile"><span className="rec-tile-label">Countries compared</span><strong>{h.countries}</strong><small>{h.a} and {h.b} both report {h.year}</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Median spread</span><strong>{fmt(h.median_spread_pct)}<sup>%</sup></strong><small>of the larger of the two figures</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Differ by &gt;20%</span><strong>{h.over_20pct}</strong><small>countries</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Differ by &gt;50%</span><strong>{h.over_50pct}</strong><small>countries</small></div>
-     <div className="rec-tile"><span className="rec-tile-label">Totals apart</span><strong>{fmt(h.total_gap_mtco2e,0)}<sup>Mt</sup></strong><small>summed across those countries</small></div>
+  {!atlas||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Atlas unavailable</span><p>The divergence view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
+    <section className="kpi-band" aria-label="The disagreement in five figures">
+     <div className="kpi"><strong className="kpi-fig countup">{h.countries}</strong><span className="kpi-lab">Countries compared</span><span className="kpi-sub">{h.a} and {h.b} both report {h.year}</span></div>
+     <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.median_spread_pct)}</span><sup>%</sup></strong><span className="kpi-lab">Median spread</span><span className="kpi-sub">of the larger of the two figures</span></div>
+     <div className="kpi"><strong className="kpi-fig countup">{h.over_20pct}</strong><span className="kpi-lab">Differ by more than a fifth</span><span className="kpi-sub">{h.over_50pct} of them by more than half</span></div>
+     <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.total_gap_mtco2e,0)}</span><sup>Mt</sup></strong><span className="kpi-lab">Totals apart</span><span className="kpi-sub">summed across those countries, neither corrected</span></div>
     </section>
 
-    <div className="rec-blank caveat"><span className="state-token pledged"><i/>Read this before quoting the figures</span><p>{atlas.caveat}</p></div>
+    <div className="rec-shell">
+    <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{atlas.caveat}</div></details>
 
     <section className="rec-section" id="scopes">
-     <h2>What each source measures</h2>
-     <p className="rec-note">The scope string travels with the values, because most of the spread below is a scope difference rather than a measurement error.</p>
+     <div className="sec-head inv"><h2>What each source measures</h2><p>Most of the spread below is scope, not error.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">The scope string travels with the values, because most of the spread below is a scope difference rather than a measurement error.</div></details>
      <ul className="rec-scopes">{scopes.map(([id,scope])=><li key={id}><i style={{background:colorOf(id)}}/><b>{id}</b><span>{scope}</span></li>)}</ul>
     </section>
 
     <section className="rec-section" id="pair">
-     <h2>{h.a} against {h.b}, {h.year}</h2>
-     <p className="rec-note">All {h.countries} countries for which both sources publish a {h.year} figure, widest disagreement first. The percentage is the gap as a share of the larger figure, so neither source is treated as the one the other deviates from.</p>
-     <div className="div-rows">{h.rows.map(r=><div className="div-country" key={r.iso3}>
+     <div className="sec-head btr"><h2>{h.a} against {h.b}, {h.year}</h2><p>Widest disagreement first. The percentage is the gap as a share of the larger figure.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">All {h.countries} countries for which both sources publish a {h.year} figure, widest disagreement first. The percentage is the gap as a share of the larger figure, so neither source is treated as the one the other deviates from.</div></details>
+     <div className="div-rows">{h.rows.map(r=><div className="div-country row-hit reveal" key={r.iso3}>
       <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}</a>
       <Bars row={r}/>
       <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
@@ -98,14 +99,14 @@ export default async function Page(){
     </section>
 
     <section className="rec-section" id="countries">
-     <h2>Every country, every source</h2>
-     <p className="rec-note">{atlas.countries.length} countries have two or more sources reporting the same year. Each row is that country&rsquo;s latest such year, with every source that reported it.</p>
+     <div className="sec-head fin"><h2>Every country, every source</h2><p>Each row is that country’s latest year with two or more sources reporting.</p></div>
+     <details className="disc"><summary>How to read this</summary><div className="disc-body">{atlas.countries.length} countries have two or more sources reporting the same year. Each row is that country&rsquo;s latest such year, with every source that reported it.</div></details>
      {BANDS.map(b=>{
       const rows=atlas.countries.filter(r=>r.spread_pct>=b.min&&r.spread_pct<b.max);
       if(!rows.length)return null;
       return <section className="div-band" key={b.label}>
        <h3 className="band-head"><span>{b.label}</span><b>{rows.length}</b></h3>
-       <div className="div-rows">{rows.map(r=><div className="div-country" key={r.iso3}>
+       <div className="div-rows">{rows.map(r=><div className="div-country row-hit reveal" key={r.iso3}>
         <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}<small>{r.year}</small></a>
         <Bars row={r}/>
         <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
@@ -113,7 +114,7 @@ export default async function Page(){
       </section>;
      })}
     </section>
+    </div>
    </>}
-  </div>
  </main>;
 }

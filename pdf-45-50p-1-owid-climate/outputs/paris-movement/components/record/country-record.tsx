@@ -27,8 +27,8 @@ function Cite({source,extra}:{source?:Source;extra?:string}){
 function Blank({what,why}:{what:string;why:string}){
  return <div className="rec-blank"><Token state="unknown" label={what}/><p>{why}</p></div>;
 }
-const axis={stroke:'var(--ink-4)',fontSize:10,fontFamily:'var(--font-mono)'} as const;
-const tip={background:'#fbfaf7',border:'1px solid #c8c2b4',borderRadius:3,fontSize:12,fontFamily:'var(--font-sans)'} as const;
+const axis={stroke:'var(--ink-4)',fontSize:11,fontFamily:'var(--font-mono)'} as const;
+const tip={background:'var(--paper-raised)',border:'1px solid var(--rule-strong)',color:'var(--ink)',borderRadius:3,fontSize:12.5,fontFamily:'var(--font-sans)'} as const;
 
 // `initial` is the record the server already resolved. When it is there the
 // page is complete in the HTML, quotable, crawlable, printable, and the fetch
@@ -102,8 +102,8 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
         <CartesianGrid stroke="var(--rule)" strokeDasharray="2 4" vertical={false}/>
         <XAxis dataKey="year" tick={axis} tickLine={false} axisLine={{stroke:'#c8c2b4'}}/>
         <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'MtCO₂e',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
-        <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:10}}/>
-        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:10,letterSpacing:'.08em',textTransform:'uppercase'}}/>
+        <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
+        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.08em',textTransform:'uppercase'}}/>
         {(ep?.by_source??[]).map(s=><Line key={s.source_id} type="monotone" dataKey={s.source_id} name={s.source_id} stroke={colorOf(s.source_id)} strokeWidth={1.6} dot={false} connectNulls={false} isAnimationActive={false}/>)}
        </LineChart>
       </ResponsiveContainer>
@@ -255,8 +255,8 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
         <CartesianGrid stroke="var(--rule)" strokeDasharray="2 4" vertical={false}/>
         <XAxis dataKey="period" tick={axis} tickLine={false} axisLine={{stroke:'#c8c2b4'}}/>
         <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'°C anomaly',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
-        <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:10}}/>
-        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:10,letterSpacing:'.08em'}}/>
+        <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
+        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.08em'}}/>
         {scenarios.map(s=><Line key={s} type="monotone" dataKey={s} stroke={SCENARIO_COLOR[s]??'var(--ink-3)'} strokeWidth={1.6} dot={{r:2.5}} isAnimationActive={false}/>)}
        </LineChart>
       </ResponsiveContainer>

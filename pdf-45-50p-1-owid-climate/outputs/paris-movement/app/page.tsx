@@ -69,7 +69,37 @@ export default function Page(){
  function exportCanvas(){if(!canvas.current){setNotice('The 3D scene is still loading.');return null}const out=document.createElement('canvas');out.width=1800;out.height=1200;const ctx=out.getContext('2d')!;ctx.fillStyle='#f4f2ec';ctx.fillRect(0,0,1800,1200);const src=canvas.current;const ratio=Math.min(1200/src.width,940/src.height);ctx.drawImage(src,570,110,src.width*ratio,src.height*ratio);ctx.fillStyle='#161a1e';ctx.font='22px Helvetica, Arial';ctx.fillText('VISUAL CLIMATE   /   THE PARIS MOVEMENT',70,75);ctx.font='66px Georgia, serif';ctx.fillText(data.country.name_en,70,255);ctx.font='104px Georgia, serif';ctx.fillText(trend!=null?`${sign}${Math.abs(trend).toFixed(2)} Mt/yr`:`${years} yr`,70,400);ctx.font='23px Helvetica, Arial';ctx.fillStyle='#6a747b';ctx.fillText(trend!=null?`${direction} · ${trendSpan} · ${trendSeries?.[0]??'source not recorded'}`:'Observed years held',75,450);ctx.fillText(n.reduction_pct!=null?`Pledge: −${fmt(n.reduction_pct)}% by ${n.target_year} against ${data.$meta?.basis??'the stated reference'}`:'No pledge figure read from any document',75,490);ctx.font='19px Helvetica, Arial';ctx.fillText(data.$meta?.snapshot??n.version,75,555);ctx.fillText('Historical snapshot · Not a live assessment',75,590);ctx.fillText('Conditional split: '+(c.conditional_pct==null?'unquantified':c.conditional_pct+'%'),75,660);ctx.fillText(`Observed: ${years} years · ${observed.length} values across sources`,75,695);ctx.fillText(`Evidence: ${evidence} reported / ${Object.keys(data.btr.components).length} components`,75,730);ctx.font='16px Helvetica, Arial';ctx.fillText(n.source.url.slice(0,155),70,1110);ctx.fillText('Reported ≠ independently verified. Unknown ≠ absent. Motion illustrates structure.',70,1145);return out}
  function saveFrame(){try{const out=exportCanvas();out?.toBlob(blob=>{if(blob){download(blob,`visual-climate-${data.country.iso3}.png`);setNotice('Frame saved with document context and source.')}})}catch{setNotice('This browser could not export the frame.')}}
  async function saveMotion(){if(recording)return;const mime=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/mp4'].find(t=>globalThis.MediaRecorder?.isTypeSupported(t));if(!mime||!canvas.current?.captureStream){setNotice('Motion export is unavailable in this browser. Use Save frame.');return}const out=exportCanvas();if(!out)return;setRecording(true);setProgress(null);setPaused(false);setReplay(v=>v+1);setNotice('Recording a 10-second assembly…');const stream=out.captureStream(30);const chunks:Blob[]=[];const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:8000000});recorder.current=rec;rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};let frame=0;const start=performance.now();function paint(){const next=exportCanvas();if(next)out!.getContext('2d')!.drawImage(next,0,0);if(performance.now()-start<10000&&rec.state==='recording')frame=requestAnimationFrame(paint);else if(rec.state==='recording')rec.stop()};rec.onstop=()=>{cancelAnimationFrame(frame);stream.getTracks().forEach(t=>t.stop());download(new Blob(chunks,{type:mime}),`visual-climate-${data.country.iso3}.${mime.includes('mp4')?'mp4':'webm'}`);setRecording(false);setNotice('Motion saved. Data context is included in every frame.');recorder.current=null};rec.start();frame=requestAnimationFrame(paint)}
+  // Real only once the engine has answered: the bundled fallback is one record.
+ const census=roster.length>1?{
+  built:roster.length,
+  connected:catalog.filter(s=>s.state==='connected').length,
+  catalogued:catalog.length,
+  sockets:roster.length*8,
+  empty:roster.length*8-roster.reduce((n,c)=>n+Object.values(c.btr_components??{}).filter(x=>x.state!=='unknown').length,0),
+ }:null;
  return <main className="atelier" id="main">
+ {/* The instrument is beautiful and says nothing about what this is. One line
+     that states the claim, three counts that prove it, and the three ways in.
+     Every figure is counted off the roster this page already loaded. */}
+ <section className="claim">
+  <div className="claim-text">
+   <h1>The climate record that publishes <em>what it does not know</em>.</h1>
+   <p>218 country records built from documents governments filed. Every gap carries the sentence that says why it is empty.</p>
+  </div>
+  <dl className="claim-figs">
+   {/* Until /api/v1/engine answers, the roster is the single bundled record.
+       Printing 1 as "records built" would be this product's own cardinal sin,
+       so the counts wait for the engine rather than guess. */}
+   <div><dt>Records built</dt><dd>{census?census.built:<i className="fig-wait">&nbsp;</i>}</dd></div>
+   <div><dt>Sources connected</dt><dd>{census?census.connected:<i className="fig-wait">&nbsp;</i>}<span>/{census?census.catalogued:'42'}</span></dd></div>
+   <div><dt>Evidence sockets empty</dt><dd>{census?fmt(census.empty,0):<i className="fig-wait">&nbsp;</i>}<span>/{census?fmt(census.sockets,0):'1,744'}</span></dd></div>
+  </dl>
+  <nav className="claim-ways" aria-label="Ways in">
+   <a className="way primary" href="/unknown">See what we do not know<ArrowRight size={15}/></a>
+   <a className="way" href="/countries">Browse {census?`${census.built} records`:'the records'}</a>
+   <a className="way" href="/refusals">Read the refusals</a>
+  </nav>
+ </section>
  <div className="mode-strip"><Tabs value={mode} onValueChange={changeMode}><TabsList variant="line" className="main-tabs"><TabsTrigger disabled={recording} value="instrument">Instrument</TabsTrigger><TabsTrigger disabled={recording} value="engine">Architecture</TabsTrigger></TabsList></Tabs><button className="about-button" onClick={()=>inspect('method')}>How to read this <ArrowUpRight size={15}/></button></div>
  <div className="workspace-bar"><div className="breadcrumb"><span className="tiny-cross">+</span><span>CALIBRE 2015</span><span className="slash">/</span><span>{mode==='engine'?'How the data connects':mode==='tray'?'One calibre, different promises':'How data becomes a machine'}</span></div><div className="workspace-right"><span className="snapshot-dot"/>Document snapshot<Select disabled={recording} value={iso} onValueChange={v=>v&&selectCountry(v)} items={roster.map(c=>({value:c.iso3,label:c.name_en}))}><SelectTrigger aria-label="Select country" className="country-picker"><Globe2 size={15}/><SelectValue/></SelectTrigger><SelectContent className="country-menu">{roster.map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select></div></div>
  {mode==='tray'?<section className="tray-view"><div className="tray-heading"><p className="eyebrow">ONE CALIBRE. DIFFERENT PROMISES.</p><h1>The country collection<span>.</span></h1><p>Choose a country to open its movement. Each edition retains its original document context.</p></div><div className="tray-grid">{roster.map(country=>{const evidenced=Object.values(country.btr_components??{}).filter(c=>c.state==='observed').length;
