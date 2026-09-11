@@ -55,14 +55,25 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   // into ndc.target_emissions_mtco2e as if the document had said it (R5).
   if (target == null && ndc.reduction_pct != null && targetYear != null) {
     if (ndc.base_year == null) {
-      return refuse(`the pledge is ${ndc.reduction_pct}% below a business-as-usual projection for ${targetYear}. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it.`, trend);
+      // A BAU-basis pledge becomes a tonnage only against the document's own
+      // BAU projection. When the filing states one for the target year, the
+      // conversion is done here and says so; when it does not, the refusal
+      // below stands, and it is the document that is silent, not the engine.
+      if (ndc.bau_state === 'pledged' && ndc.bau_2030_mtco2e != null && targetYear === 2030) {
+        target = Number((ndc.bau_2030_mtco2e * (1 - ndc.reduction_pct / 100)).toFixed(3));
+        conversion = ` The target tonnage is derived here, not quoted: ${ndc.reduction_pct}% below the document's own business-as-usual projection of ${ndc.bau_2030_mtco2e} MtCO₂e for 2030. The document states the percentage and the projection; the engine did the arithmetic.`;
+      } else {
+        return refuse(`the pledge is ${ndc.reduction_pct}% below a business-as-usual projection for ${targetYear}. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it.`, trend);
+      }
     }
-    const basePoint = sorted.find((p) => p.year === ndc.base_year);
-    if (!basePoint) {
+    const basePoint = ndc.base_year == null ? undefined : sorted.find((p) => p.year === ndc.base_year);
+    if (ndc.base_year != null && !basePoint) {
       return refuse(`the pledge is ${ndc.reduction_pct}% below ${ndc.base_year} levels, and ${sourceId} carries no observation for ${ndc.base_year}, so there is no base-year level to apply it to.`, trend);
     }
-    target = Number((basePoint.value_mtco2e * (1 - ndc.reduction_pct / 100)).toFixed(3));
-    conversion = ` The target tonnage is derived here, not quoted: ${ndc.reduction_pct}% below ${sourceId}'s ${ndc.base_year} value of ${basePoint.value_mtco2e} MtCO₂e. The document states the percentage; the level it is applied to comes from ${sourceId}, on ${sourceId}'s inventory scope, which is not necessarily the document's.`;
+    if (basePoint) {
+      target = Number((basePoint.value_mtco2e * (1 - ndc.reduction_pct / 100)).toFixed(3));
+      conversion = ` The target tonnage is derived here, not quoted: ${ndc.reduction_pct}% below ${sourceId}'s ${ndc.base_year} value of ${basePoint.value_mtco2e} MtCO₂e. The document states the percentage; the level it is applied to comes from ${sourceId}, on ${sourceId}'s inventory scope, which is not necessarily the document's.`;
+    }
   }
 
   if (target == null || targetYear == null) {

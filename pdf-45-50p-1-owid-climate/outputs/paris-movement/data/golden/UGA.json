@@ -16,8 +16,8 @@
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
     "target_year": 2030,
-    "bau_2030_mtco2e": null,
-    "bau_state": "unknown",
+    "bau_2030_mtco2e": 77.3,
+    "bau_state": "pledged",
     "reduction_mtco2e": null,
     "reduction_pct": 22,
     "target_emissions_mtco2e": null,
@@ -414,9 +414,10 @@
   "derived": {
     "ambition_gap_factor": null,
     "trend_annual_mtco2e": 0.995,
-    "on_track": null,
-    "gap_state": "unknown",
-    "$reason": "the pledge is 22% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+    "on_track": false,
+    "gap_state": "observed",
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 60.294 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note. The target tonnage is derived here, not quoted: 22% below the document's own business-as-usual projection of 77.3 MtCO₂e for 2030. The document states the percentage and the projection; the engine did the arithmetic.",
+    "$reason": "observed emissions are rising by 0.99 MtCO₂e/yr while the target requires a fall of 0.61 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported."
   },
   "$extensions": [
     "country_profile",
@@ -1429,7 +1430,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Uganda pledges a 22% reduction by 2030 against 2030 business-as-usual. A later submission, Uganda's Updated NDC, was filed on 2022-09-12; it has not been read, so no figure here comes from it. 48 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (2). For 2024 the sources disagree: DS-02 64 MtCO₂e, DS-35 63.9 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 22% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. ND-GAIN scores it 35.9 for 2024. Projected warming for 2080-2099 against 1995-2014 ranges from +1.04°C under SSP1-2.6 to +3.74°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Uganda pledges a 22% reduction by 2030 against 2030 business-as-usual. A later submission, Uganda's Updated NDC, was filed on 2022-09-12; it has not been read, so no figure here comes from it. 48 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (2). For 2024 the sources disagree: DS-02 64 MtCO₂e, DS-35 63.9 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. The target is not reached on the observed trend. ND-GAIN scores it 35.9 for 2024. Projected warming for 2080-2099 against 1995-2014 ranges from +1.04°C under SSP1-2.6 to +3.74°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc.reduction_pct",
@@ -1448,8 +1449,8 @@
         "text": "For 2024 the sources disagree: DS-02 64 MtCO₂e, DS-35 63.9 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
-        "field": "derived.$reason",
-        "text": "No implementation gap is reported: the pledge is 22% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+        "field": "derived.on_track",
+        "text": "The target is not reached on the observed trend."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1799,7 +1800,7 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-11T13:49:09.691Z",
+      "last_run": "2026-09-11T13:55:27.940Z",
       "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
@@ -1836,7 +1837,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "9724db520bb2d959e50ea1c9ef6cf81ac28a3447b680c69e0c25e82e0ea330f0",
+    "payload_sha256": "6cf9f20043e8f73cb05cc03e8ce09ec60ede3ce7c006607cc5659d6652f691d9",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1907,7 +1908,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-11T13:49:09.691Z",
+        "retrieved_at": "2026-09-11T13:55:27.940Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

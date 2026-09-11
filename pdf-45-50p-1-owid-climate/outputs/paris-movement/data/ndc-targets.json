@@ -1,6 +1,6 @@
 {
   "$note": "Read by engine/sources/ds-06-ndc-docs.ts from the mirrored NDC documents. Committed so a build reproduces without a PDF extractor installed. Every accepted figure carries the sentence and page it came from; every refusal carries its reason.",
-  "extracted_at": "2026-09-11T13:49:09.691Z",
+  "extracted_at": "2026-09-11T13:55:27.940Z",
   "index_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
   "extractor": "ds-06-ndc-docs@1",
   "targets": [
@@ -30,6 +30,8 @@
           "sentence": "Greenhouse Gas Emissions for Afghanistan showing 13.6% relative reduction in emissions compared to a business as usual scenario for the year 2030 1"
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 8,
       "text_sha256": "1cbab3de9fd5240de8f0206d0f21e9d259a783de3995fd06b7d546392496ab69",
       "document_sha256": "fbeeb331441c86fd3db7f2776da20e7d0075d837952ab3e99b1ba4ab11dba0c9",
@@ -80,6 +82,8 @@
           "sentence": "The INDC of Albania is a baseline scenario target: it commits to reduce CO2 emissions compared to the baseline scenario in the period of 2016 and 2030 by 11.5 %."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 3,
       "text_sha256": "581f739a078a13f698ae5e34f3a39458396549883427b0f6fbd74e8a803fa495",
       "document_sha256": "359a5fa1fa9db78acc59070af825797ae0929cc3d00d82dee6a031b1ca5c1879",
@@ -107,6 +111,11 @@
           "sentence": "Andorra fue una de las Partes pioneras en comunicar su INDC en 2015, según la cual el compromiso era reducir las emisiones de GEI en un 37% respecto al escenario Bussines as usual (BAU), 530,55 Gg CO2 eq.), para el año 2030."
         }
       ],
+      "bau_mtco2e": 0.53055,
+      "bau_evidence": {
+        "page": 9,
+        "sentence": "Información para facilitar la claridad, transparencia y comprensión Valores de referencia Para poder hacer un correcto seguimiento del compromiso definido en la primera NDC y del refuerzo de este compromiso con esta nueva actualización, se mantiene como referencia el valor de las emisiones no absorb"
+      },
       "pages": 23,
       "text_sha256": "c3a4f143f6dd2e5278f980e63f4a4cef694874c6cf37999a4739b08fa9058d6b",
       "document_sha256": "0aab080c22d7e7ede742d67f84da54a52705ff05a0a548c65c65f427207a30ae",
@@ -138,6 +147,8 @@
           "sentence": "Emission reduction Reduction of 23.5% in GHG emissions for the year 2030, relative to BAU."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 16,
       "text_sha256": "87fb50fbaff615a5f2e506abb74f6d817f74c77ab95ee436e788ef5f6f0406f5",
       "document_sha256": "8abbfa608d0a6f485bc61ffa8e308096bf42d43ec8ba3747dd60975283978950",
@@ -192,6 +203,8 @@
           "sentence": "Quantifiable information on the reference indicators • 40 per cent reduction from 1990 emission levels by 2030 • Total GHG emissions 1990: 25,855, Gg CO 2 eq • Net GHG emissions 1990: 25,118, Gg CO 2 eq, (NIR 1990-2017) 3."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 16,
       "text_sha256": "ac7486fe2b42e59bf805c3f7e0055bb920900a0cd56f8efbfe387f830b5a2728",
       "document_sha256": "3894e2035d3d4e8e98dc21438988a82f92b895494a03a1c139377fb459a85c1f",
@@ -604,6 +617,11 @@
           "sentence": "How the NDC contributes towards achieving the objectives of the Convention as set out in its Article 2 (a) How the nationally Brunei Darussalam's target to reduce GHG emissions by 20% determined contribution by 2030 from Business-as-Usual levels is in line with the contributes towards objectives set"
         }
       ],
+      "bau_mtco2e": 29.5,
+      "bau_evidence": {
+        "page": 1,
+        "sentence": "Quantified information on the reference point (including, as appropriate, a base year): (a) Reference year(s), base Base year: 2015 year(s), reference period(s) or other starting point(s) (b) Quantifiable information on the reference indicators, their values in the reference year(s), base year(s), r"
+      },
       "pages": 14,
       "text_sha256": "214445adb5ebf1adfa4a75d79c8c9669128201fd624aca995fdc8a241d1128fa",
       "document_sha256": "442aa477a9284e07bcd6100cc578bdec861317d67927c3a523b0eae5101c383c",
@@ -856,6 +874,11 @@
           "sentence": "Réduction des émissions des GES La RDC s'engage à réduire ses émissions de 17% d'ici 2030 par rapport aux émissions du scénario des émissions du statu quo (430 Mt CO2e), soit une réduction d'un peu plus de 70 Mt CO2e évités (Ministère de l'Environnement, 2009)."
         }
       ],
+      "bau_mtco2e": 430,
+      "bau_evidence": {
+        "page": 9,
+        "sentence": "Réduction des émissions des GES La RDC s'engage à réduire ses émissions de 17% d'ici 2030 par rapport aux émissions du scénario des émissions du statu quo (430 Mt CO2e), soit une réduction d'un peu plus de 70 Mt CO2e évités (Ministère de l'Environnement, 2009)."
+      },
       "pages": 12,
       "text_sha256": "f430864597289fb3cca9b7491ad63d02a7adfc9d79c46ad5bf9319b26df96304",
       "document_sha256": "1897fce3a93881199263c7b8b1b632246d59eb727b843ad31ee2c1d14f4f195f",
@@ -970,6 +993,8 @@
           "sentence": "CPDN Comores Contribution en matière d'atténuation Réduction de GES Secteurs couverts Gaz à effet de serre couverts > L'Union des Comores s'est fixé comme cible une réduction de 84% en 2030 de ses émissions de gaz à effet de serre par rapport aux émissions du scénario de référence > Énergie > Indust"
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 21,
       "text_sha256": "0abdccb0b03f89e392d24a4743f419f4532bcfeb40eedeb2ea6ca36487f08b91",
       "document_sha256": "bdcf2a1f0860dc6aa781d2a39aafbaa1f41508410a9fbf3cac120223a5217162",
@@ -1115,6 +1140,8 @@
           "sentence": "Information on Dominica's INDC Parameter Information Period of implementation Beginning in 2016 and ending in 2030 Type of commitment Absolute reduction from base year emissions Base year Scope and coverage 2014 Emissions will be reduced by 44.7% from 2014 levels."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 18,
       "text_sha256": "24e73eb1d5aa52966e5f46b75e356e20fff266fe10189f5b60ededb2556f97c1",
       "document_sha256": "8063e6b8e74a541f67f5d0e3bbb4100763a533c3c6981c732728fc13bcda4cfc",
@@ -1568,6 +1595,8 @@
           "sentence": "En base a lo señalado anteriormente, la ambición de Guinea Ecuatorial es reducir en un 20% de sus emisiones para el año 2030, con respecto a los niveles de 2010; a fin de alcanzar una reducción de 50% para el año 2050."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 12,
       "text_sha256": "4b939e85d3a967093058e2a9e724cef1a11e11712dd4b84bfcfe48b12a0dfada",
       "document_sha256": "57ad529c8b0f2ffb72b9ae0958ee599d1eb5dc86bba910aa9d0ace3d34fcb5fe",
@@ -1736,6 +1765,8 @@
           "sentence": "Indonesia has committed to reduce unconditionally 29% of its greenhouse gasses emissions against the business as usual scenario by the year of 2030."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 38,
       "text_sha256": "708a29bf202a78d7e0970572553005c858f37be13e33f591dbba9b71311ddf5b",
       "document_sha256": "70d380e50f0213d16c4dfab2289d72210660d14a314afd141b3a47373b3f7d32",
@@ -1786,6 +1817,8 @@
           "sentence": "On the basis of national capabilities, financial resources available and requirements of the national development program, taking into account GHGs emission scenarios, the Islamic Republic of Iran intends to participate by mitigating its GHGs emission in 2030 by 4% compared to the Business As Usual "
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 10,
       "text_sha256": "8667983b218a607e4f0d3730b546fef0fd72742c21a563f82b01f5c5a5f90667",
       "document_sha256": "a45cb1c6e9f3214456f91f128be8450e5d6995a0932022f72a37c0ed9003fa06",
@@ -2142,6 +2175,8 @@
           "sentence": "ensure the clarity and transparency of the target, the government replaced the previous target with an absolute target which is to reduce 24.4% from 2017 emissions level by 2030."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 27,
       "text_sha256": "7bad7b783ab26ffbb423cb071564c6e641575dd60c2642d2bfa263fe8eeba1ab",
       "document_sha256": "f94f781da2bb5f080237cfd9a0bccafb6b9262aed831a9dd42c908f580d610c0",
@@ -2443,6 +2478,8 @@
           "sentence": "Target relative to the reference indicator Republic of Moldova is committed to an unconditional target of 70 per cent reduction of its net greenhouse gas emissions by 2030 as compared to 1990 levels, instead of 64-67 per cent committed in NDC1."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 74,
       "text_sha256": "d6dc4c299dd86158588e514e7364b8cbe3235e35412f8e5563015d97fb287037",
       "document_sha256": "896501ba40b4af93f24d5bcce9cc15ec02bb7b7c506526af43a24233c8c9b378",
@@ -2680,6 +2717,8 @@
           "sentence": "Nationally Determined Contribution Target Mongolia intends to achieve a target to mitigate its greenhouse gas emissions by 22.7 percent by 2030, compared to the business as usual scenario, excluding LULUCF."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 8,
       "text_sha256": "6b074c8c3c56aab029cf6dac0103ea22b0b5feb975bfbce540e064397daccd29",
       "document_sha256": "12c90dd1f93aa967165295d36612dd0e2e68414edd82c7a4412630d7b720ff69",
@@ -2753,6 +2792,11 @@
           "sentence": "2.0 Mitigation contributions Mauritius will promote and implement the following mitigation activities:            The Republic of Mauritius imperatively needs international technical and financial support to enable it to abate its greenhouse gas emissions by 30%, by the year 2030, relativ"
         }
       ],
+      "bau_mtco2e": 7,
+      "bau_evidence": {
+        "page": 3,
+        "sentence": "2.0 Mitigation contributions Mauritius will promote and implement the following mitigation activities:            The Republic of Mauritius imperatively needs international technical and financial support to enable it to abate its greenhouse gas emissions by 30%, by the year 2030, relativ"
+      },
       "pages": 6,
       "text_sha256": "3a066eb8e120f7ca2d5321bb7638739733edd029d4b3134ef98927a6ea7b7784",
       "document_sha256": "5662e9bca7fce560ae8489ba50fda493d616edcbc50bbfba80f6a617cd9fb219",
@@ -2830,6 +2874,8 @@
           "sentence": "Year 2010 2020 2030 Emissions (Gg CO2-eq) -1339 12 441 22 647 Namibia aims at a reduction of about 89% of its GHG emissions compared to the BAU scenario at the 2030 time horizon."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 21,
       "text_sha256": "bf529767ac22b9d828eefd3435e916e73a992c0cc50626c34dc6dda46dafeed6",
       "document_sha256": "3d1e8c662ae16d70acc52ac83383cf80c12743a433d9a7262e5b53581b42dd29",
@@ -3080,6 +3126,11 @@
           "sentence": "Reduction of 7% in 2030 relative to BAU, with total GHG emissions capped to 116."
         }
       ],
+      "bau_mtco2e": 125.254,
+      "bau_evidence": {
+        "page": 3,
+        "sentence": "They would enable the Sultanate of Oman to slow GHG emission growth and reduce them by 7% in 2030, compared to the Business-As-Usual (BAU) scenario, which is predicted at about 125.254 MTCO2e."
+      },
       "pages": 16,
       "text_sha256": "77a47cba55e0cf19a1ad4df9d6573d12f32e2da8e2bfd8945611d49b58e65a92",
       "document_sha256": "5d16a05e85804d551df9eaafa4d3d5839993b2cb3d1509daf95f7ca897c404cb",
@@ -3795,6 +3846,8 @@
           "sentence": "Summary Contribution > > > National Objectives > Chad's vision by 2030: an emerging country with a middle-income economy, generated by diverse and sustainable growth sources and value adding activities Emissions for the reference year (2010) > 8,379.62Gg CO2e > Unconditional reduction of 18.2% of th"
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 17,
       "text_sha256": "e745be43a4b904ecc31a30fbc0fdb54a84152eccd7629ec5b0ae947037825f2c",
       "document_sha256": "8e0c51f12e3aa78c513117792126b5ee5dac28f4b4fb39913e8b94d9ec3596b6",
@@ -3822,6 +3875,8 @@
           "sentence": "Ambition Thanks to measures already in progress, Togo will unconditionally reduce its emissions by 11.14% compared to the baseline scenario in 2030."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 21,
       "text_sha256": "d51da9d52969392e1403e2cf321811b3a35bdc39bdd92dec9db73765dab35c89",
       "document_sha256": "37ec4d0f024996d6631762b7fc27fc647e7d0f1f54e49b670e107a831b89c6b5",
@@ -3964,6 +4019,8 @@
           "sentence": "Trinidad and Tobago's aim is to achieve a reduction objective in overall emissions from the three sectors by 15% by 2030 from BAU, which in absolute terms is an equivalent of one hundred and three million tonnes (103,000,000) of CO2e."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 6,
       "text_sha256": "341b285064dd5acb399fe26c0930a059730fe8680bec1b606db7f025d748661e",
       "document_sha256": "704c50769507b7fa6f95c08b9b0f32ea9d41fe1501027617565eb82ac6e130c7",
@@ -4087,6 +4144,11 @@
           "sentence": "80 Potential emission reduction 22% in 2030 compared to BAU 60 Net emissions including reductions and net LULUCF sink Total national GHG emissions (MtCO2e) As shown in Figure 2, the cumulative impact of these measures could result in approximately 22% reduction of overall national emissions in 2030,"
         }
       ],
+      "bau_mtco2e": 77.3,
+      "bau_evidence": {
+        "page": 11,
+        "sentence": ", and emissions are projected to rise to approximately 77.3 MtCO2e/a in 2030."
+      },
       "pages": 18,
       "text_sha256": "5dbf12762423666596044a1a7dbed95faaa512d89bae15d36783fbf5de54acde",
       "document_sha256": "c0924bda4bafbb0655e181f6c9a1991ff0273b639aa28d3cdbbfd47332cd49c1",
@@ -4229,6 +4291,8 @@
           "sentence": "El Plan Nacional de Mitigación apuntará a la reducción de las emisiones del país en al menos un 20% para 2030 en relación al escenario inercial, entendido este como un escenario hipotético en el cual no se implementa el plan."
         }
       ],
+      "bau_mtco2e": null,
+      "bau_evidence": null,
       "pages": 40,
       "text_sha256": "dbc0dfc3468bf94dc3667b64db5d58d9961b3a66a578e8c9e3cda4525dd667be",
       "document_sha256": "699ff584e3d867799c96bf447cab8d0171806d8602334011f534f839fab7e891",

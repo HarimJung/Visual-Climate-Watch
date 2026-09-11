@@ -16,8 +16,8 @@
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
     "target_year": 2030,
-    "bau_2030_mtco2e": null,
-    "bau_state": "unknown",
+    "bau_2030_mtco2e": 125.254,
+    "bau_state": "pledged",
     "reduction_mtco2e": null,
     "reduction_pct": 7,
     "target_emissions_mtco2e": null,
@@ -412,9 +412,10 @@
   "derived": {
     "ambition_gap_factor": null,
     "trend_annual_mtco2e": 2.671,
-    "on_track": null,
-    "gap_state": "unknown",
-    "$reason": "the pledge is 7% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+    "on_track": false,
+    "gap_state": "observed",
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 116.486 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note. The target tonnage is derived here, not quoted: 7% below the document's own business-as-usual projection of 125.254 MtCO₂e for 2030. The document states the percentage and the projection; the engine did the arithmetic.",
+    "$reason": "observed emissions are rising by 2.67 MtCO₂e/yr while the target requires a fall of 0.10 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported."
   },
   "$extensions": [
     "country_profile",
@@ -1080,7 +1081,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Oman pledges a 7% reduction by 2030 against 2030 business-as-usual. A later submission, NDC 3.0, was filed on 2026-07-30; it has not been read, so no figure here comes from it. 47 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (1). For 2024 the sources disagree: DS-02 183.7 MtCO₂e, DS-35 117.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 7% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 1 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 49.3 for 2024. In the first NDC round, WRI's CAIT assessment recorded: Control the expected GHG emissions growth by 2% below BAU to be 88714 Gg (in 2030) during the period from 2020 - 2030 It was classed conditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.23°C under SSP1-2.6 to +4.68°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Oman pledges a 7% reduction by 2030 against 2030 business-as-usual. A later submission, NDC 3.0, was filed on 2026-07-30; it has not been read, so no figure here comes from it. 47 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (1). For 2024 the sources disagree: DS-02 183.7 MtCO₂e, DS-35 117.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. The target is not reached on the observed trend. It submitted BTR1. 1 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 49.3 for 2024. In the first NDC round, WRI's CAIT assessment recorded: Control the expected GHG emissions growth by 2% below BAU to be 88714 Gg (in 2030) during the period from 2020 - 2030 It was classed conditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.23°C under SSP1-2.6 to +4.68°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc.reduction_pct",
@@ -1099,8 +1100,8 @@
         "text": "For 2024 the sources disagree: DS-02 183.7 MtCO₂e, DS-35 117.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
-        "field": "derived.$reason",
-        "text": "No implementation gap is reported: the pledge is 7% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+        "field": "derived.on_track",
+        "text": "The target is not reached on the observed trend."
       },
       {
         "field": "btr.submitted",
@@ -1458,7 +1459,7 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-11T13:49:09.691Z",
+      "last_run": "2026-09-11T13:55:27.940Z",
       "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
@@ -1495,7 +1496,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "a558265e902d977d77ff7d414feee53ec3b94812565edd774ce76270abd8a908",
+    "payload_sha256": "b392c96a884623dd0d47661c724fb748811b1e0c612c8fbeb1086dd083b1fc0d",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1566,7 +1567,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-11T13:49:09.691Z",
+        "retrieved_at": "2026-09-11T13:55:27.940Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

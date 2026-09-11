@@ -16,8 +16,8 @@
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
     "target_year": 2030,
-    "bau_2030_mtco2e": null,
-    "bau_state": "unknown",
+    "bau_2030_mtco2e": 7,
+    "bau_state": "pledged",
     "reduction_mtco2e": null,
     "reduction_pct": 30,
     "target_emissions_mtco2e": null,
@@ -469,9 +469,10 @@
   "derived": {
     "ambition_gap_factor": null,
     "trend_annual_mtco2e": 0.103,
-    "on_track": null,
-    "gap_state": "unknown",
-    "$reason": "the pledge is 30% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+    "on_track": false,
+    "gap_state": "observed",
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 4.9 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note. The target tonnage is derived here, not quoted: 30% below the document's own business-as-usual projection of 7 MtCO₂e for 2030. The document states the percentage and the projection; the engine did the arithmetic.",
+    "$reason": "observed emissions are rising by 0.10 MtCO₂e/yr while the target requires a fall of 0.09 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported."
   },
   "$extensions": [
     "country_profile",
@@ -1342,7 +1343,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Mauritius pledges a 30% reduction by 2030 against 2030 business-as-usual. A later submission, NDC 3.0, was filed on 2025-09-29; it has not been read, so no figure here comes from it. 55 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (9). For 2024 the sources disagree: DS-02 9.3 MtCO₂e, DS-35 5.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 30% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 5 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 51.2 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 30% reduction in GHG emissions by 2030 compared to the BAU scenario (7 MtCO2e) It was classed conditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.75°C under SSP1-2.6 to +2.96°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Mauritius pledges a 30% reduction by 2030 against 2030 business-as-usual. A later submission, NDC 3.0, was filed on 2025-09-29; it has not been read, so no figure here comes from it. 55 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (9). For 2024 the sources disagree: DS-02 9.3 MtCO₂e, DS-35 5.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. The target is not reached on the observed trend. It submitted BTR1. 5 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 51.2 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 30% reduction in GHG emissions by 2030 compared to the BAU scenario (7 MtCO2e) It was classed conditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.75°C under SSP1-2.6 to +2.96°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc.reduction_pct",
@@ -1361,8 +1362,8 @@
         "text": "For 2024 the sources disagree: DS-02 9.3 MtCO₂e, DS-35 5.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
-        "field": "derived.$reason",
-        "text": "No implementation gap is reported: the pledge is 30% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+        "field": "derived.on_track",
+        "text": "The target is not reached on the observed trend."
       },
       {
         "field": "btr.submitted",
@@ -1720,7 +1721,7 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-11T13:49:09.691Z",
+      "last_run": "2026-09-11T13:55:27.940Z",
       "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
@@ -1757,7 +1758,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "a47932f732d26fab11b3e14a19187895944e9f82661ee270f2bbd2eabdf3a434",
+    "payload_sha256": "d63179066e7c25341875681f698ace6efdaab1042062de3564c1e43cebaf817f",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1828,7 +1829,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-11T13:49:09.691Z",
+        "retrieved_at": "2026-09-11T13:55:27.940Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

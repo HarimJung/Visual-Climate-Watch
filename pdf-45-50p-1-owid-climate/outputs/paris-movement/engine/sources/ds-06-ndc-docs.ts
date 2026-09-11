@@ -65,6 +65,11 @@ export type NdcTarget = {
   unconditional_pct: number | null;
   conditional_pct: number | null;
   net_zero_year: number | null;
+  /** The document's own business-as-usual projection for the target year, in
+   *  MtCO₂e, with the sentence it was read from. Present only for a BAU-basis
+   *  pledge whose filing states the figure; a percentage never invents one. */
+  bau_mtco2e?: number | null;
+  bau_evidence?: Evidence | null;
   confidence: 'high' | 'medium' | 'low';
   evidence: Evidence[];
   /** Why no figure was accepted. Present exactly when reduction_pct is null. */
@@ -266,7 +271,67 @@ export function candidatesOf(text: string, page = 1): Candidate[] {
   return out;
 }
 
-export type Extraction = Pick<NdcTarget, 'reduction_pct' | 'basis' | 'base_year' | 'target_year' | 'unconditional_pct' | 'conditional_pct' | 'net_zero_year' | 'confidence' | 'evidence'> & { $reason?: string };
+export type Extraction = Pick<NdcTarget, 'reduction_pct' | 'basis' | 'base_year' | 'target_year' | 'unconditional_pct' | 'conditional_pct' | 'net_zero_year' | 'confidence' | 'evidence'> & { $reason?: string; bau_mtco2e?: number | null; bau_evidence?: Evidence | null };
+
+// ─── M10: the business-as-usual projection ──────────────────────────────────
+//
+// A BAU-basis pledge is a percentage of a number the document may or may not
+// state. When it does, it is read here, under stricter rules than the pledge:
+// the figure has to sit in one sentence with the scenario it belongs to, in
+// one of the shapes filings actually use, for the target year, and a sentence
+// that is about a reduction, an amount avoided, or a mitigation-scenario level
+// is not a projection however close the words sit. One distinct figure per
+// document, or nothing.
+
+const TONNE = String.raw`(\d{1,3}(?:[ ,]\d{3})*(?:[.,]\d+)?)\s*(Mt\s?CO2\s?-?\s?e?q?(?:uivalent)?(?:/a|/yr)?|MtCO2e|MTCO2e|million\s+(?:metric\s+)?t(?:onnes|ons)?\s*(?:of\s+)?CO2\s?-?e?q?(?:uivalent)?|Mt\s?[ée]q\s?-?\s?CO2|Gg\s?CO2\s?-?e?q?|GgCO2e|kt\s?CO2\s?e?q?)`;
+const SCENARIO = String.raw`(?:business[-\s]?as[-\s]?usual|BAU|BaU|statu\s+quo|tendanciel|tendencial|inercial|reference\s+scenario|baseline\s+scenario|sc[ée]nario\s+de\s+r[ée]f[ée]rence|escenario\s+de\s+referencia)`;
+const ABOUT = String.raw`(?:about|approximately|around|some|roughly|environ|aproximadamente|unos?)?\s*`;
+/** Three shapes. Each anchors the figure to the scenario inside one sentence. */
+const BAU_SHAPES = [
+  // "... scenario (430 Mt CO2e)" / "scenario of 7 million metric tonnes"
+  new RegExp(String.raw`${SCENARIO}[^.;()]{0,40}?(?:\(|of\s+|de\s+)${ABOUT}${TONNE}`, 'i'),
+  // "BAU emissions are estimated to be 7 MtCO2e" / "scenario, which is predicted at about 125.254 MTCO2e"
+  new RegExp(String.raw`${SCENARIO}[^.;]{0,60}?(?:estimated|predicted|projected|expected|forecast|estim[ée]e?s?|pr[ée]vu(?:e|s|es)?|estimad[oa]s?)\s+(?:to\s+be\s+|at\s+|to\s+reach\s+|of\s+|à\s+|en\s+|a\s+)?${ABOUT}${TONNE}`, 'i'),
+  // "Business-As-Usual (2030) emission level: approximately 29.5 Mt CO2e" / "emissions are projected to rise to approximately 77.3 MtCO2e/a in 2030"
+  new RegExp(String.raw`(?:${SCENARIO}\s*\((20[2-9]\d)\)\s*emissions?\s+level\s*:?\s*|emissions\s+are\s+projected\s+to\s+(?:rise|grow|increase|reach)\s+to\s+)${ABOUT}${TONNE}`, 'i'),
+];
+/** Words that make the figure something other than the projection. */
+const NOT_A_PROJECTION = /(?:avoided|avoid|abate(?:d|ment)?|mitigation\s+scenario|mitigation\s+measures|a\s+reduction\s+of|reduction\s+of\s+\d|r[ée]duction\s+d[e']|cumulative|objective|target\s+level|sequestration|évit[ée]s?|evitad[oa]s?)/i;
+
+const toMt = (raw: string, unit: string) => {
+  const n = Number(raw.replace(/[ ,](?=\d{3})/g, '').replace(',', '.'));
+  if (!Number.isFinite(n)) return null;
+  return /^(?:Gg|kt)/i.test(unit) ? n / 1000 : n;
+};
+
+/**
+ * The document's BAU projection for `targetYear`, or null. Exported for the
+ * tests. Pure, like extract().
+ */
+export function bauOf(pages: string[], targetYear: number | null): { bau_mtco2e: number; bau_evidence: Evidence } | null {
+  if (targetYear == null) return null;
+  const found = new Map<number, Evidence>();
+  pages.forEach((text, i) => {
+    for (const sentence of text.split(/(?<=[.;])\s+/)) {
+      if (NOT_A_PROJECTION.test(sentence)) continue;
+      for (const shape of BAU_SHAPES) {
+        const m = sentence.match(shape);
+        if (!m) continue;
+        // the year: in the table shape it is the bracketed one; otherwise the
+        // sentence has to name the target year somewhere
+        const yearInShape = m.length > 3 && /^20\d\d$/.test(m[1] ?? '') ? Number(m[1]) : null;
+        const mt = toMt(m[m.length - 2], m[m.length - 1]);
+        if (mt == null || mt <= 0) continue;
+        if (yearInShape != null ? yearInShape !== targetYear : !sentence.includes(String(targetYear))) continue;
+        if (!found.has(mt)) found.set(mt, { page: i + 1, sentence: sentence.trim().slice(0, 300) });
+        break;
+      }
+    }
+  });
+  if (found.size !== 1) return null;
+  const [[bau_mtco2e, bau_evidence]] = found;
+  return { bau_mtco2e, bau_evidence };
+}
 
 /** Net zero only when the document names exactly one year for it. */
 function netZeroYear(pages: string[]): number | null {
@@ -316,10 +381,12 @@ export function extract(pages: string[]): Extraction {
     if (group.every((c) => c.condition === 'conditional')) {
       return { ...empty, evidence, $reason: `the only figure found (${distinct[0]}%) is one the document conditions on international support, and the unconditional figure it is paired with was not found.` };
     }
+    const bau = head.basis === 'bau' ? bauOf(pages, head.target_year) : null;
     return {
       reduction_pct: distinct[0], basis: head.basis, base_year: head.base_year, target_year: head.target_year,
       unconditional_pct: null, conditional_pct: null, net_zero_year: empty.net_zero_year,
       confidence: group.length >= 2 ? 'high' : 'medium', evidence,
+      bau_mtco2e: bau?.bau_mtco2e ?? null, bau_evidence: bau?.bau_evidence ?? null,
     };
   }
   // There is no branch here that pairs two percentages into an

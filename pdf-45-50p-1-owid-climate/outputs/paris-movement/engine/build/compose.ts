@@ -104,7 +104,7 @@ function docOf(iso3: string, i: Inputs): ndcdocs.NdcTarget | undefined {
   return {
     ...rest, iso3,
     reduction_pct: j.reading.reduction_pct, basis: j.reading.basis, base_year: j.reading.base_year, target_year: j.reading.target_year,
-    unconditional_pct: null, conditional_pct: null,
+    unconditional_pct: null, conditional_pct: null, bau_mtco2e: null, bau_evidence: null,
     confidence: 'high', evidence: j.reading.evidence,
     kind: `${bloc.kind} of ${bloc.party} and its Member States (joint)`,
   };
@@ -556,7 +556,11 @@ function compose(iso3: string, i: Inputs): CountryData {
     version: read ? `${read.kind}${read.submission_date ? ` (${read.submission_date.slice(0, 4)})` : ''}` : c?.ndc_version ?? 'No NDC document loaded',
     submission_date: read?.submission_date ?? c?.submission_date ?? null,
     base_year: read?.base_year ?? c?.base_year ?? null, base_year_emissions_mtco2e: null, base_year_state: 'unknown',
-    target_year: read?.target_year ?? c?.target_year ?? null, bau_2030_mtco2e: null, bau_state: 'unknown',
+    target_year: read?.target_year ?? c?.target_year ?? null,
+    // The contract's field is named for 2030; a projection for another horizon
+    // has nowhere honest to go and stays in the document record only.
+    bau_2030_mtco2e: read?.basis === 'bau' && read.target_year === 2030 && read.bau_mtco2e != null ? read.bau_mtco2e : null,
+    bau_state: read?.basis === 'bau' && read.target_year === 2030 && read.bau_mtco2e != null ? 'pledged' : 'unknown',
     reduction_mtco2e: null, reduction_pct: read?.reduction_pct ?? null,
     target_emissions_mtco2e: null, target_state: read ? 'pledged' : 'unknown',
     folu_share_of_reduction_pct: null, sectors: [],

@@ -1358,7 +1358,7 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-11T13:49:09.691Z",
+      "last_run": "2026-09-11T13:55:27.940Z",
       "retrieved_at": null,
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
@@ -1395,7 +1395,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "e3e4cc86e6cf72b8b33599eb9cfc7829061ff63af9c4e5abb8ee24babd23d22c",
+    "payload_sha256": "ca7b11a34a2c7aa04ca4aac31a4df02b277b26881540d4740c7719dd01c59ec6",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1466,7 +1466,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-11T13:49:09.691Z",
+        "retrieved_at": "2026-09-11T13:55:27.940Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       }
     ]
