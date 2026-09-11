@@ -1,0 +1,5 @@
+# Not indexed yet. This build is public so it can be read and checked by
+# people who have the link, not so it can be ranked. Every record is also
+# available as JSON at /api/v1/country-dial?country=<ISO3>.
+User-agent: *
+Disallow: /

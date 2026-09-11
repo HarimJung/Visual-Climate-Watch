@@ -51,6 +51,22 @@ Two paths, in this order:
 There is no third path. A country the engine has not built returns 404; nothing
 is substituted for it.
 
+## Deploy
+
+```sh
+npm run build
+npx wrangler deploy --config dist/server/wrangler.json
+```
+
+Live at <https://visual-climate.visualclimate.workers.dev>. The worker is named
+from `package.json`; renaming it after a deploy strands the old URL, so change
+it only deliberately. `prebuild` stages `data/` into `public/`, and the deployed
+worker reads those files through its `ASSETS` binding (`lib/record.ts`), so
+production needs no upstream and `CLIMATE_API_BASE` is never baked into a build.
+
+The site is published but not indexed: `public/robots.txt` disallows crawlers and
+`app/layout.tsx` sends `noindex, nofollow`. Delete both to open it to search.
+
 ## Checks
 
 ```sh
