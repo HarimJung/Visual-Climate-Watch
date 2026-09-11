@@ -1177,3 +1177,131 @@ body::after{
 .jump-hits small{font:var(--t0) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
 .jump-none{padding:var(--s5) var(--s4);font-size:var(--t2);color:var(--ink-3)}
 @media(max-width:720px){.jump-open{display:none}}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   THE SECOND PASS — what the audits found, and what replaces it
+   Two reviews were run against the first system: the redesign audit (generic
+   and dated patterns) and the Web Interface Guidelines (a11y, forms, motion,
+   navigation, touch). Their findings, in order of how much they dated the
+   page:
+     1. 58 uppercase tracked-mono labels: eyebrows, nav, chips, legends, rails.
+        The terminal-dashboard default. Uppercase mono is now reserved for
+        codes the engine actually uses — ISO3, DS-35, run hashes, units.
+     2. A #111 band dropped into a cream page. Reads as a pasted block; the
+        band is now the same paper, one step sunken, with ink figures.
+     3. Four evidence hues on the chrome (chapter bars in inv/btr/fin/warn).
+        Evidence hues live in chart marks only; the chrome has one accent.
+     4. Everything centred and symmetrical. Sections become an editorial
+        grid: the argument hangs in a right-hand rail beside the data.
+     5. Bordered tiles and boxed cards. Grouping by rhythm and hairlines.
+     6. Pill chips and a filled+ghost button pair. Quiet squared controls,
+        44px on touch, one primary and text links.
+     7. One motion for everything. A hierarchy: hero, body, micro.
+   Overrides live here rather than in 58 edits so the pass is one diff.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── motion hierarchy ─────────────────────────────────────────────────────── */
+:root{--dur-quick:180ms;--dur:300ms;--dur-slow:640ms}
+.reveal.is-in{animation-duration:var(--dur-slow);animation-delay:calc(min(var(--i,0),6)*60ms)}
+.claim-text h1,.cty-name,.rec-title{animation:riseIn 760ms var(--emph) both}
+.claim-figs,.claim-ways,.cty-verdict,.rec-lede{animation:riseIn 560ms var(--out) 140ms both}
+@media(prefers-reduced-motion:reduce){.claim-text h1,.cty-name,.rec-title,.claim-figs,.claim-ways,.cty-verdict,.rec-lede{animation:none}}
+
+/* ── labels: sentence case, the interface face, medium weight ─────────────── */
+.eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.tally,.peers-lab,.claim-figs dt,.unk-legend,
+.unk-lattice figcaption span,.fin-band-figs span,.band-head span,.unk-lat-name,.jump-hits small,
+.record-action,.btn-ghost,.jump-open,.disc>summary,.rail a,.site-nav a,.cov-tip-score,.src-n,
+.fin-stair figcaption,.div-collide figcaption span,.cty-sheet figcaption span,.ref-specimen figcaption>span,
+.rec-chips span,.rec-section h3 small,.unk-gap-fig small,.cov-key li,.torn-head,.rec-jump a,.footer-label,
+.stage-heading,.stage-bottom,.tray-stats dt,.reading>div,.state-token,.edition-note>span,.breadcrumb,
+.workspace-right,.object-controls>div>span,.loop-toggle,.clause-top,.input-name,.country-context,
+.rec-card-tag,.rec-card dt,.rec-run dt,.rec-inputs th,.topbar-links>a,.request-audit>span,.site-foot{
+ text-transform:none;letter-spacing:0;font-family:var(--font-sans);font-weight:500}
+.eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.peers-lab,.claim-figs dt,.band-head span,.cov-key li,.torn-head,
+.unk-lattice figcaption span,.fin-stair figcaption,.div-collide figcaption span,.cty-sheet figcaption span,
+.ref-specimen figcaption>span,.unk-legend,.src-n,.fin-band-figs span{font-size:var(--t1);color:var(--ink-3)}
+.eyebrow{font-weight:600;color:var(--ndc)}
+.eyebrow .index{font-family:var(--font-mono);font-weight:500;letter-spacing:.06em;margin-right:6px}
+.site-nav a{font-size:var(--t2);letter-spacing:0}
+.rail a{font-size:var(--t1)}
+.disc>summary{font-size:var(--t1);color:var(--ink-3)}
+.record-action,.btn-ghost,.jump-open{font-size:var(--t1)}
+.tally{font-size:var(--t1)}.tally b{font-size:var(--t2)}
+.rec-chips span{font:500 var(--t1) var(--font-sans);border-radius:2px;padding:4px 8px}
+/* codes stay codes: mono, tracked, small caps in effect */
+.rec-iso,.ref-iso,.div-name i,.torn-name i,.rec-contract,.peers b small,.kpi-fig sup,.unk-gap-fig small,
+.jump-hits span,.ref-meta,.rec-tile strong sup,.src-grid b{font-family:var(--font-mono);letter-spacing:.06em}
+.brand-word{text-transform:uppercase}
+.brand small{text-transform:uppercase;letter-spacing:.19em;font-family:var(--font-mono);font-weight:400}
+
+/* ── chapter heads: sentence case, one rule, one accent ───────────────────── */
+.sec-head h2{text-transform:none;font-size:clamp(24px,2.7vw,32px);font-weight:700;letter-spacing:-.02em;
+ font-stretch:100%;line-height:1.08}
+.sec-head h2:before{display:none}
+.sec-head{padding-top:var(--s3);border-top:2px solid var(--ink)}
+.sec-head p{font-size:var(--t2)}
+.rec-section h2:not(.sec-head h2){border-bottom:0;border-top:2px solid var(--ink);padding-top:var(--s3);font-size:clamp(24px,2.7vw,32px);font-weight:700}
+
+/* ── the figure band: the same paper, one step down ───────────────────────── */
+.kpi-band{background:var(--paper-sunken);color:var(--ink);
+ border-block:1px solid var(--rule-strong);
+ padding-block:clamp(26px,3vw,40px) clamp(30px,3.6vw,48px);
+ padding-left:max(var(--gutter),env(safe-area-inset-left),(100% - 1120px)/2);
+ padding-right:max(var(--gutter),env(safe-area-inset-right),(100% - 1120px)/2)}
+.kpi-band.blue,.kpi-band.warn{background:var(--paper-sunken);color:var(--ink)}
+.kpi-fig{color:var(--ink)}
+.kpi-lab{border-top:1px solid var(--rule-strong);color:var(--ink-2)}
+.kpi-sub{color:var(--ink-3);opacity:1}
+.kpi-none{color:var(--ink-4)}
+.band{padding-left:max(var(--gutter),env(safe-area-inset-left),(100% - 1120px)/2);
+ padding-right:max(var(--gutter),env(safe-area-inset-right),(100% - 1120px)/2);
+ padding-block:clamp(40px,4.8vw,72px) clamp(52px,6vw,96px)}
+.band.raised{background:none;border-block:0}
+.band.raised+.band,.band+.band.raised{border-top:1px solid var(--rule)}
+
+/* ── the editorial grid: argument in the rail, data in the column ─────────── */
+@media(min-width:1040px){
+ .rec-section{display:grid;grid-template-columns:minmax(0,1fr) 232px;column-gap:var(--s7);align-items:start}
+ .rec-section>*{grid-column:1;min-width:0}
+ .rec-section>.disc{grid-column:2;grid-row:1/span 4;position:sticky;top:calc(var(--top-h) + 64px);
+  border-top:0;padding-top:var(--s3);align-self:start}
+ .rec-section>.disc>summary{padding-top:0}
+ .rec-section>.disc .disc-body{font-size:var(--t1);line-height:1.65}
+ .rec-section>.sec-head{grid-row:1}
+ .sec-head+.disc{margin-top:0}
+}
+
+/* ── surfaces: rhythm and hairlines, not boxes ────────────────────────────── */
+.rec-tiles{background:none;border:0;gap:var(--s4) var(--s6);margin:var(--s6) 0}
+.rec-tile{background:none;padding:var(--s3) 0 0;border-top:1px solid var(--rule-strong);gap:var(--s2)}
+.rec-tile strong{font-weight:700;font-size:var(--t6)}
+.unk-gaps{background:none;border:0;gap:0;border-top:1px solid var(--rule-strong)}
+.unk-gap{background:none;padding:var(--s5) 0;border-bottom:1px solid var(--rule)}
+.refusal-list,.fin-bands{background:none;border:0;gap:0;border-top:1px solid var(--rule-strong)}
+.refusal,.fin-band{background:none;border-bottom:1px solid var(--rule)}
+.cov-svg{border:0;background:none}
+.rec-blank{border-radius:2px}
+.jump{border-radius:4px;overflow:hidden;overscroll-behavior:contain}
+
+/* ── controls: quiet, squared, reachable ──────────────────────────────────── */
+.chip{border-radius:3px;background:none;min-height:36px;padding:0 12px;border-color:var(--rule-strong);
+ font:500 var(--t1) var(--font-sans);color:var(--ink-2)}
+.chip b{font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ink-4)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip:active,.btn-ghost:active,.way:active,.jump-open:active{transform:scale(.98)}
+.btn-ghost,.jump-open{border-radius:3px;min-height:36px;padding:0 12px}
+.srch{border-radius:3px;min-height:36px;padding-block:0}
+.cty-search,.cty-select{border-radius:3px}
+.way{border-radius:3px}
+.way:not(.primary){border:0;background:none;padding:0 var(--s2);text-decoration:underline;
+ text-decoration-color:var(--rule-strong);text-underline-offset:5px;color:var(--ink-2)}
+.way:not(.primary):hover{text-decoration-color:var(--ndc);color:var(--ndc);transform:none}
+@media(pointer:coarse){.chip,.btn-ghost,.jump-open,.srch,.cty-search,.cty-select,.way,.disc>summary,.rail a{min-height:44px}}
+
+/* ── guidelines: touch, focus, overflow ───────────────────────────────────── */
+a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
+.jump-field:focus-within{color:var(--ndc);border-bottom-color:var(--ndc)}
+.jump-field input:focus-visible,.srch input:focus-visible{outline:none}
+.ref-rows>li,.div-country,.tray-grid>*{content-visibility:auto;contain-intrinsic-size:auto 56px}
+.tray-grid>*{contain-intrinsic-size:auto 480px}
+.claim-text h1 em{background:none;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;text-decoration-color:var(--ndc)}

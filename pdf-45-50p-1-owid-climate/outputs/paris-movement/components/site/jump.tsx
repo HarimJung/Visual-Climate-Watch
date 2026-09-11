@@ -54,11 +54,11 @@ export default function Jump(){
  useEffect(()=>{setI(0)},[q]);
  if(!open)return null;
  const go=(href:string)=>{location.href=href};
- return <div className="jump-back" onClick={e=>{if(e.target===e.currentTarget)setOpen(false)}}>
+ return <div className="jump-back" role="presentation" onClick={e=>{if(e.target===e.currentTarget)setOpen(false)}}>
   <div className="jump" role="dialog" aria-modal="true" aria-label="Jump to a record or a screen">
    <label className="jump-field">
     <Search size={16} aria-hidden="true"/>
-    <input ref={input} value={q} onChange={e=>setQ(e.target.value)} placeholder="Jump to a country or a screen…"
+    <input ref={input} type="search" name="jump" autoComplete="off" spellCheck={false} value={q} onChange={e=>setQ(e.target.value)} placeholder="Jump to a country or a screen…"
      aria-label="Jump to a country or a screen"
      onKeyDown={e=>{
       if(e.key==='ArrowDown'){e.preventDefault();setI(x=>Math.min(x+1,hits.length-1))}

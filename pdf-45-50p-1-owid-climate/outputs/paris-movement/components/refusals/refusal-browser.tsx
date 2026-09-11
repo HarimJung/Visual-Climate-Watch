@@ -55,7 +55,7 @@ export default function RefusalBrowser({log}:{log:Log}){
   <div className="ctl-row">
    <label className="srch">
     <Search size={14} aria-hidden="true"/>
-    <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search 364 sentences, or a country…" aria-label="Search the refusal sentences"/>
+    <input type="search" name="refusal-search" autoComplete="off" spellCheck={false} value={q} onChange={e=>setQ(e.target.value)} placeholder="Search 364 sentences, or a country…" aria-label="Search the refusal sentences"/>
     {q&&<button onClick={()=>setQ('')} aria-label="Clear the search"><X size={13}/></button>}
    </label>
    <span className="ctl-spacer"/>
