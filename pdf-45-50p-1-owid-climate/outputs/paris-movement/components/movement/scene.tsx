@@ -68,7 +68,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  // 1. NDC records become the target ring. The arc length is the actual pledged reduction.
  const promise=part('pledge',1,.40);clickable(annulus(promise,2.82,2.4,.12,0,clear),'pledge');ring(promise,2.85,.028,.12,edge);ring(promise,2.37,.015,.13,edge);const ratio=(data.ndc.reduction_pct??0)/100;
  const segments:THREE.Mesh[]=[];for(let i=0;i<50;i++){const g=new T.TorusGeometry(2.61,.082,8,8,Math.PI*2/50*.78);const m=mesh(g,i<Math.round(ratio*50)?blue:porcelain,promise,0,0,.17);m.rotation.z=Math.PI/2+i/50*Math.PI*2;segments.push(m);clickable(m,'pledge');}
- const anchorN=chip(promise,'NDC',blue,'#2b54b7',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC target ring',`${fmt(data.ndc.reduction_pct)}% pledged cut`,'#2b54b7',1,[-110,-28]);
+ const anchorN=chip(promise,'NDC',blue,'#2b54b7',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC target ring',data.ndc.reduction_pct==null?'No pledge figure read from the document':`${fmt(data.ndc.reduction_pct)}% pledged cut`,'#2b54b7',1,[-110,-28]);
  // 2. Only loaded observations become metal markers; the gear train has mechanical support, not invented time-series points.
  const inventory=part('delivery',2,.35);
  const sourceGears:[number,number,number,number,THREE.Material,number,string][]=[[-1.05,-.30,.87,36,teal,1,'delivery'],[.55,-.30,.70,29,steel,-1,'source:DS-05'],[1.33,.75,.58,24,steel,1,'source:DS-02']];
