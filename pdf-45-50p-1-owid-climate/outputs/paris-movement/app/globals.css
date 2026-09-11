@@ -1335,3 +1335,8 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 /* the collection card's region line was the one label the pass missed */
 .tray-country p{text-transform:none;letter-spacing:0;font:var(--t1) var(--font-sans);color:var(--ink-3)}
 .tray-meta span{font-family:var(--font-mono);font-size:var(--t0);letter-spacing:.06em;text-transform:none;color:var(--ink-4)}
+/* A wide trend figure (China: +322 Mt/yr) drops its caption underneath instead
+   of crushing it into a five-character column beside the number. */
+.primary-reading{flex-wrap:wrap;align-items:flex-end;row-gap:var(--s2)}
+.primary-reading>div{flex:1 1 170px;min-width:0}
+.primary-reading strong{font-size:clamp(34px,4.2vw,54px)}
