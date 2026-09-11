@@ -1,4 +1,4 @@
-// DS-06 — Climate Watch / CAIT (I)NDC content assessment (Pattern C).
+// DS-06, Climate Watch / CAIT (I)NDC content assessment (Pattern C).
 // Licence: CC BY 4.0, stated in the mirror's README beside the WRI citation.
 //
 // WHY A MIRROR, AGAIN. climatewatchdata.org/robots.txt carries

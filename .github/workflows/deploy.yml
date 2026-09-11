@@ -1,0 +1,36 @@
+# Deploy on every push to main: type-check, test, build, ship.
+#
+# The two Cloudflare secrets are the one manual step. Until they are set the
+# job stops after the build and says so; nothing is deployed by accident.
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency: deploy
+defaults:
+  run:
+    working-directory: pdf-45-50p-1-owid-climate/outputs/paris-movement
+jobs:
+  ship:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HAS_CLOUDFLARE: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: pdf-45-50p-1-owid-climate/outputs/paris-movement/package-lock.json }
+      - run: npm ci
+      - run: npm test
+      - run: npm run engine:verify
+      - run: npm run build
+      - name: deploy
+        if: ${{ env.HAS_CLOUDFLARE == 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --config dist/server/wrangler.json
+      - name: not deployed
+        if: ${{ env.HAS_CLOUDFLARE != 'true' }}
+        run: echo "::warning::Built and tested, not deployed — set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in the repository secrets."

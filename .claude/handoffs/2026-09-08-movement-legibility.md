@@ -5,6 +5,8 @@
 **Git root:** `/Users/harimgemmajung/Documents/Codex/Visual Climate Watch`
 **App:** `pdf-45-50p-1-owid-climate/outputs/paris-movement` (Next.js/vinext + Three.js)
 **Dev:** `npm run dev` → localhost:3000 (백그라운드로 이미 떠 있을 수 있음, PID 확인 후 재사용)
+**서버 두 개 필요:** `npm run engine:serve` (8787, `.dev.vars`의 `CLIMATE_API_BASE`가 가리키는 업스트림) + `npm run dev` (3000).
+엔진이 없으면 `/api/v1/country-dial`이 502 → 화면은 뜨는데 데이터가 안 붙음.
 
 ## Current State
 

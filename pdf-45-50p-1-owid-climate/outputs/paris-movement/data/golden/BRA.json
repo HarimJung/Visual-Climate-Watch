@@ -35,7 +35,7 @@
     },
     "source": {
       "id": "DS-06-NDC",
-      "name": "Brazil First NDC — 2023 adjustment",
+      "name": "Brazil First NDC: 2023 adjustment",
       "url": "https://unfccc.int/documents/633022",
       "retrieved_at": "2026-09-07"
     }
@@ -46,49 +46,67 @@
     "state": "unknown",
     "received_usd": null,
     "received_state": "unknown",
+    "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
-      "name": "Brazil First NDC — 2023 adjustment",
+      "name": "Brazil First NDC: 2023 adjustment",
       "url": "https://unfccc.int/documents/633022",
       "retrieved_at": "2026-09-07"
     }
   },
   "btr": {
     "version": "BTR1",
-    "submitted": null,
+    "submitted": true,
     "submission_date": null,
     "published_date": null,
     "components": {
       "nir": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "BRA_NIR_2024_ENG.pdf"
+        ]
       },
       "crt": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "BRA-CRT-2024-V0.4-1990-20241219-152333_started.xlsx",
+          "BRA-CRT-2024-V0.4-1991-20241219-152333_started.xlsx",
+          "BRA-CRT-2024-V0.4-1992-20241219-152333_started.xlsx"
+        ]
       },
       "ctf": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx"
+        ]
       },
       "ndc_track": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 71 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "adaptation": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "Adaptation reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       },
       "finance": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 71 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "redd_plus": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 71 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "article6": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
+    "$note": "71 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-10"
     }
   },
   "vulnerability": {
@@ -553,6 +571,7 @@
   },
   "derived": {
     "ambition_gap_factor": null,
+    "trend_annual_mtco2e": 2.367,
     "on_track": null,
     "gap_state": "unknown",
     "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
@@ -561,8 +580,10 @@
     "country_profile",
     "ndc_registry",
     "ndc_assessment",
+    "ndc_document",
     "emissions_profile",
     "projections",
+    "finance_flows",
     "verdict",
     "sources",
     "provenance"
@@ -573,10 +594,10 @@
     "population": 212812405,
     "population_year": 2025,
     "state": "observed",
-    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015-2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
     "source": {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
       "retrieved_at": "2026-09-07"
     }
@@ -613,13 +634,381 @@
     "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
     "source": {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
     }
   },
+  "ndc_document": {
+    "kind": "First NDC",
+    "language": "English",
+    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/BRA_Brazil_First_NDC_English.pdf",
+    "submission_date": "2022-04-07",
+    "pages": 9,
+    "reduction_pct": null,
+    "basis": null,
+    "base_year": null,
+    "target_year": null,
+    "unconditional_pct": null,
+    "conditional_pct": null,
+    "net_zero_year": 2060,
+    "confidence": "low",
+    "evidence": [
+      {
+        "page": 2,
+        "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 43% below 2005 levels in 2030."
+      }
+    ],
+    "state": "unknown",
+    "$reason": "the document states 2 different percentages on the same basis (37%, 43%) and does not label which is the pledge.",
+    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "source": {
+      "id": "DS-06-NDC",
+      "name": "Brazil First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+      "retrieved_at": "2026-09-11"
+    }
+  },
+  "finance_flows": {
+    "channel": "Green Climate Fund",
+    "approved_usd": 959411349,
+    "co_financing_usd": 2737950199,
+    "disbursed_usd": 140416928,
+    "projects": 21,
+    "regional_projects": 13,
+    "regional_disbursed_usd": 708563254,
+    "instruments": [
+      "Equity",
+      "Grants",
+      "Reimbursable Grants",
+      "Results-Based Payment",
+      "Senior Loans",
+      "Subordinated Loans"
+    ],
+    "latest_disbursement": "2026-05-29",
+    "received": [
+      {
+        "year": 2017,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 7571050,
+        "project_ref": "FP038",
+        "project_name": "Geeref Next",
+        "state": "observed"
+      },
+      {
+        "year": 2018,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 195000000,
+        "project_ref": "FP065",
+        "project_name": "Financial Instruments for Brazil Energy Efficient Cities (FinBRAZEEC)",
+        "state": "observed"
+      },
+      {
+        "year": 2019,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Results-Based Payment",
+        "provider": "Green Climate Fund",
+        "amount_usd": 96452228,
+        "project_ref": "FP100",
+        "project_name": "REDD-PLUS results-based payments for results achieved by Brazil in the Amazon biome in 2014 and 2015",
+        "state": "observed"
+      },
+      {
+        "year": 2020,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Results-Based Payment",
+        "provider": "UNDP",
+        "amount_usd": 96452228,
+        "project_ref": "FP100",
+        "project_name": "REDD-PLUS results-based payments for results achieved by Brazil in the Amazon biome in 2014 and 2015",
+        "state": "observed"
+      },
+      {
+        "year": 2020,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 99500000,
+        "project_ref": "FP143",
+        "project_name": "Planting Climate Resilience in Rural Communities of the Northeast (PCRP)",
+        "state": "observed"
+      },
+      {
+        "year": 2020,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 440485,
+        "project_ref": "FP151",
+        "project_name": "Global Subnational Climate Fund (SnCF Global) – Technical Assistance (TA) Facility",
+        "state": "observed"
+      },
+      {
+        "year": 2020,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 3571500,
+        "project_ref": "FP152",
+        "project_name": "Global Subnational Climate Fund (SnCF Global) – Equity",
+        "state": "observed"
+      },
+      {
+        "year": 2021,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Equity + Grants + Reimbursable Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 142290000,
+        "project_ref": "FP173",
+        "project_name": "The Amazon Bioeconomy Fund: Unlocking private capital by valuing bioeconomy products and services with climate mitigation and adaptation results in the Amazon",
+        "state": "observed"
+      },
+      {
+        "year": 2021,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 14000000,
+        "project_ref": "FP180",
+        "project_name": "Global Fund for Coral Reefs Investment Window",
+        "state": "observed"
+      },
+      {
+        "year": 2021,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 16667000,
+        "project_ref": "FP181",
+        "project_name": "CRAFT - Catalytic Capital for First Private Investment Fund for Adaptation Technologies in Developing Countries",
+        "state": "observed"
+      },
+      {
+        "year": 2022,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Reimbursable Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 8453500,
+        "project_ref": "FP190",
+        "project_name": "Climate Investor Two",
+        "state": "observed"
+      },
+      {
+        "year": 2022,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 5062500,
+        "project_ref": "FP197",
+        "project_name": "Green Guarantee Company (\"GGC\")",
+        "state": "observed"
+      },
+      {
+        "year": 2023,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants + Subordinated Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 17213808.5,
+        "project_ref": "FP212",
+        "project_name": "&Green Fund: Investing in Inclusive Agriculture and Protecting Forests",
+        "state": "observed"
+      },
+      {
+        "year": 2023,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 9388923,
+        "project_ref": "SAP031",
+        "project_name": "Marajó Resiliente: Enhancing the resilience of smallholders to climate change impacts through adapting and scaling up diversified agroforestry systems in the Marajo Archipelago of Brazil",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "IFAD",
+        "amount_usd": 16250000,
+        "project_ref": "FP143",
+        "project_name": "Planting Climate Resilience in Rural Communities of the Northeast (PCRP)",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "IFAD",
+        "amount_usd": 11500000,
+        "project_ref": "FP143",
+        "project_name": "Planting Climate Resilience in Rural Communities of the Northeast (PCRP)",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 5260485.48,
+        "project_ref": "FP230",
+        "project_name": "Kuali Fund-GCF",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 18735584.12,
+        "project_ref": "FP237",
+        "project_name": "E-Motion : E-Mobility and Low Carbon Transportation",
+        "state": "observed"
+      },
+      {
+        "year": 2024,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "FundacionAvina",
+        "amount_usd": 1059906,
+        "project_ref": "SAP031",
+        "project_name": "Marajó Resiliente: Enhancing the resilience of smallholders to climate change impacts through adapting and scaling up diversified agroforestry systems in the Marajo Archipelago of Brazil",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants + Senior Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 32430558.2,
+        "project_ref": "FP261",
+        "project_name": "Improving Climate Resilience by Increasing Water Security in the Amazon Basin",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 23204009.65,
+        "project_ref": "FP276",
+        "project_name": "GCF's investment into the Global Green Bond Initiative (GGBI) (previously known as Green and Resilience Debt Platform (GRDP)",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 86020000,
+        "project_ref": "FP284",
+        "project_name": "Amazonia Viva Program",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Equity",
+        "provider": "Green Climate Fund",
+        "amount_usd": 70000000,
+        "project_ref": "FP285",
+        "project_name": "GEF Latam Climate Solutions Fund IV",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "FundacionAvina",
+        "amount_usd": 4058090,
+        "project_ref": "SAP031",
+        "project_name": "Marajó Resiliente: Enhancing the resilience of smallholders to climate change impacts through adapting and scaling up diversified agroforestry systems in the Marajo Archipelago of Brazil",
+        "state": "observed"
+      },
+      {
+        "year": 2025,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 23149717,
+        "project_ref": "SAP061",
+        "project_name": "Mitigation and adaptation to climate change under agroforestry systems in cocoa production in the Amazon and Atlantic Forest biomes",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "approval",
+        "channel": "GCF",
+        "instrument": "Senior Loans",
+        "provider": "Green Climate Fund",
+        "amount_usd": 85000000,
+        "project_ref": "FP301",
+        "project_name": "Responsible Commodities Facility - Deforestation and Conversion Free: Finance for soy production in the Cerrado, Brazil (RCF-DCF Project)",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "FundacionAvina",
+        "amount_usd": 1394019.85,
+        "project_ref": "SAP031",
+        "project_name": "Marajó Resiliente: Enhancing the resilience of smallholders to climate change impacts through adapting and scaling up diversified agroforestry systems in the Marajo Archipelago of Brazil",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "disbursement",
+        "channel": "GCF",
+        "instrument": "Grants",
+        "provider": "IICA",
+        "amount_usd": 9702684,
+        "project_ref": "SAP061",
+        "project_name": "Mitigation and adaptation to climate change under agroforestry systems in cocoa production in the Amazon and Atlantic Forest biomes",
+        "state": "observed"
+      }
+    ],
+    "state": "observed",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 13 multi-country project(s) disbursing 708,563,254 USD in total are counted separately and never divided.",
+    "source": {
+      "id": "DS-15",
+      "name": "Green Climate Fund: projects and disbursements",
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "retrieved_at": "2026-09-10"
+    }
+  },
   "emissions_profile": {
     "latest_year": 2024,
+    "source_id": "DS-35",
     "total_mtco2e": 2804.431,
     "excluding_lucf_mtco2e": 681.164,
     "per_capita_tco2e": 13.229,
@@ -1285,7 +1674,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Brazil submitted its First NDC adjustment (2023) on 2023-10-27; no numeric target has been extracted from it. A later submission, Second Nationally Determined Contribution, was filed on 2024-11-13; it has not been read, so no figure here comes from it. 73 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (27). For 2024 the sources disagree: DS-35 2804.4 MtCO₂e, DS-02 1167.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. ND-GAIN scores it 50.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: Reduce GHG emissions by 37% in 2025, and by 43% (indicative) in 2030 below 2005 levels It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.15°C under SSP1-2.6 to +4.49°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Brazil submitted its First NDC adjustment (2023) on 2023-10-27; no numeric target has been extracted from it. A later submission, Second Nationally Determined Contribution, was filed on 2024-11-13; it has not been read, so no figure here comes from it. 73 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (27). For 2024 the sources disagree: DS-35 2804.4 MtCO₂e, DS-02 1167.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 50.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: Reduce GHG emissions by 37% in 2025, and by 43% (indicative) in 2030 below 2005 levels It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.15°C under SSP1-2.6 to +4.49°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc.version",
@@ -1306,6 +1695,10 @@
       {
         "field": "derived.$reason",
         "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+      },
+      {
+        "field": "btr.submitted",
+        "text": "It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1526,7 +1919,7 @@
   "sources": [
     {
       "id": "DS-35",
-      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "name": "Our World in Data: CO₂ and Greenhouse Gas Emissions",
       "pattern": "C",
       "tables": [
         "emissions"
@@ -1540,7 +1933,7 @@
     },
     {
       "id": "DS-02",
-      "name": "Climate TRACE — country emissions",
+      "name": "Climate TRACE: country emissions",
       "pattern": "A",
       "tables": [
         "emissions"
@@ -1582,7 +1975,7 @@
     },
     {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "pattern": "A",
       "tables": [
         "countries"
@@ -1596,7 +1989,7 @@
     },
     {
       "id": "DS-05",
-      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "name": "EDGAR: GHG emissions of all world countries (JRC)",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1610,7 +2003,7 @@
     },
     {
       "id": "DS-40",
-      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "name": "UNFCCC Data Interface: country-submitted GHG inventories",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1624,7 +2017,7 @@
     },
     {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "pattern": "C",
       "tables": [
         "ndc_content"
@@ -1659,30 +2052,44 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": null,
+      "last_run": "2026-09-11T13:55:27.940Z",
       "retrieved_at": "2026-09-07",
       "url": "https://unfccc.int/NDCREG",
-      "license": "public"
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-15",
+      "name": "Green Climate Fund: projects and disbursements",
+      "pattern": "A",
+      "tables": [
+        "climate_finance"
+      ],
+      "connection": "connected",
+      "records": 28,
+      "last_run": "2026-09-10T19:58:14.348Z",
+      "retrieved_at": "2026-09-10",
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "license": "GCF open data, attribution requested"
     },
     {
       "id": "DS-BTR",
       "name": "UNFCCC First Biennial Transparency Reports",
-      "pattern": "D",
+      "pattern": "C",
       "tables": [
         "btr_status"
       ],
-      "connection": "not-connected",
-      "records": 0,
-      "last_run": null,
-      "retrieved_at": null,
+      "connection": "connected",
+      "records": 71,
+      "last_run": "2026-09-10T20:12:43.405Z",
+      "retrieved_at": "2026-09-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "license": "public"
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ],
   "provenance": {
-    "run_id": "fef16b2afded317c7680a38053096fec",
-    "built_at": "2026-09-07T23:32:02.148Z",
-    "payload_sha256": "d8eb696e9e5dd1e958920e5b8a1067090a3a4d79342d763d3c6ac7c86e1c7467",
+    "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
+    "built_at": "2026-09-10T20:12:43.405Z",
+    "payload_sha256": "2745fe13e1528140e33e0c0e35fcb1005d407497d8a30965d6b032214ce3aad2",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1737,6 +2144,30 @@
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
         "retrieved_at": "2026-09-07T23:32:02.148Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
+      },
+      {
+        "source_id": "DS-15",
+        "file_sha256": "8c3d7e89f4770c525e8e446686c64fc62ba83bff4770a3ee3ba58a8a1254ca00",
+        "retrieved_at": "2026-09-10T19:58:14.348Z",
+        "url": "https://api.gcfund.org/v1/projects"
+      },
+      {
+        "source_id": "DS-BTR",
+        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
+        "retrieved_at": "2026-09-10T20:12:43.405Z",
+        "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
+        "retrieved_at": "2026-09-11T13:55:27.940Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "3863a9aa665454cd88bb9082570368f9baad1b2ab7d9953ecf32ef5e58f60225",
+        "retrieved_at": "2026-09-10T19:56:59.689Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/BRA_Brazil_First_NDC_English.pdf"
       }
     ]
   },
@@ -1794,13 +2225,18 @@
     },
     {
       "id": "DS-06-NDC",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, documents via openclimatedata",
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-15",
+      "org": "Green Climate Fund",
+      "license": "GCF open data, attribution requested"
     },
     {
       "id": "DS-BTR",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ]
 }

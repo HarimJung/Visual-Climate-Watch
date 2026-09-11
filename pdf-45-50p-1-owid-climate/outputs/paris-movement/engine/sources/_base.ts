@@ -2,8 +2,8 @@
 // bytes, and an etl_log record per run. Patterns A (REST) / B (bulk) / C
 // (GitHub CSV) all reduce to "fetch bytes, hash them, keep the original".
 //
-// P1 原文 보존: the cache holds the source bytes unmodified.
-// P3 멱등성: a cached file is reused, so two builds over one snapshot are
+// P1 keep the original bytes: the cache holds the source bytes unmodified.
+// P3 idempotence: a cached file is reused, so two builds over one snapshot are
 //    byte-identical. `--refresh` is the only way to pull new bytes.
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';

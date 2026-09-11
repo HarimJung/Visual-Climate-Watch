@@ -1,8 +1,8 @@
-// DS-18 — World Bank Climate Change Knowledge Portal (Pattern A, REST).
+// DS-18, World Bank Climate Change Knowledge Portal (Pattern A, REST).
 // CMIP6 ensemble median surface temperature by SSP scenario and period.
 //
 // These are PROJECTIONS. Every value here is tagged 'pledged', never
-// 'observed' — the schema's country_projections table defaults the same way.
+// 'observed', the schema's country_projections table defaults the same way.
 // A model run is not a measurement, and the material in the UI has to differ.
 //
 // `all_countries` returns every country in one response, so a full load is
@@ -11,6 +11,7 @@ import { snapshot, etlLog, type EtlLog, type Snapshot , asModule, type EtlModule
 
 export const ID = 'DS-18';
 export const HOME = 'https://climateknowledgeportal.worldbank.org';
+export const LICENSE = 'CC BY 4.0';
 const API = 'https://cckpapi.worldbank.org/cckp/v1';
 
 // CMIP6 reference period. Anomalies below are differences against it.

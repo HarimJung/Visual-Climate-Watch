@@ -40,3 +40,6 @@ next-env.d.ts
 # engine
 /engine/cache/
 .dev.vars
+
+# staged by scripts/stage-data.mjs
+/public/data/

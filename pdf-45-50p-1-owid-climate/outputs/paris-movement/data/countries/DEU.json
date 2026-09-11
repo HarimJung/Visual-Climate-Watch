@@ -10,34 +10,34 @@
     ]
   },
   "ndc": {
-    "version": "No NDC document loaded",
-    "submission_date": null,
-    "base_year": null,
+    "version": "First NDC of European Union and its Member States (joint) (2020)",
+    "submission_date": "2020-12-18",
+    "base_year": 1990,
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
-    "target_year": null,
+    "target_year": 2030,
     "bau_2030_mtco2e": null,
     "bau_state": "unknown",
     "reduction_mtco2e": null,
-    "reduction_pct": null,
+    "reduction_pct": 55,
     "target_emissions_mtco2e": null,
-    "target_state": "unknown",
+    "target_state": "pledged",
     "folu_share_of_reduction_pct": null,
     "sectors": [],
-    "net_zero_target_year": null,
-    "net_zero_state": "unknown",
+    "net_zero_target_year": 2050,
+    "net_zero_state": "pledged",
     "conditionality": {
       "statement": "The conditional / unconditional split has not been extracted from this document.",
       "unconditional_pct": null,
       "conditional_pct": null,
       "split_state": "unknown",
-      "extraction_confidence": "low"
+      "extraction_confidence": "high"
     },
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "European Union First NDC of European Union and its Member States (joint)",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/European%20Union%20First/EU_NDC_Submission_December%202020.pdf",
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_need": {
@@ -46,49 +46,68 @@
     "state": "unknown",
     "received_usd": null,
     "received_state": "unknown",
+    "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "European Union First NDC of European Union and its Member States (joint)",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/European%20Union%20First/EU_NDC_Submission_December%202020.pdf",
+      "retrieved_at": "2026-09-11"
     }
   },
   "btr": {
     "version": "BTR1",
-    "submitted": null,
+    "submitted": true,
     "submission_date": null,
     "published_date": null,
     "components": {
       "nir": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "2024-04-15_DE_NID_2024_UNFCCC_english.pdf"
+        ]
       },
       "crt": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "DEU-CRT-2024-V1.1-1990-20241206-101928_started.xlsx",
+          "DEU-CRT-2024-V1.1-1991-20241206-101928_started.xlsx",
+          "DEU-CRT-2024-V1.1-1992-20241206-101928_started.xlsx"
+        ]
       },
       "ctf": {
-        "state": "unknown"
+        "state": "observed",
+        "$evidence": [
+          "DEU-CTF-FTC-2024.xlsx",
+          "DEU-CTF-NDC-2024.xlsx"
+        ]
       },
       "ndc_track": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 38 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "adaptation": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "Adaptation reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       },
       "finance": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 38 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "redd_plus": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "none of the 38 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "article6": {
-        "state": "unknown"
+        "state": "unknown",
+        "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
+    "$note": "38 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
-      "name": "UNFCCC — First Biennial Transparency Reports",
+      "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-07"
+      "retrieved_at": "2026-09-10"
     }
   },
   "vulnerability": {
@@ -582,15 +601,17 @@
     "$note": "series.observed holds several sources and must not be read as one curve. DS-35: All greenhouse gases including land-use change, GWP100 (OWID, from Climate Watch / PIK), from 1990. DS-02: Asset-level observed emissions, CO₂e GWP100 (Climate TRACE); land use accounted differently from OWID, 2015-2025. DS-40: Total GHG emissions including LULUCF/LUCF exactly as the Party submitted them to the UNFCCC, on that Party’s own reporting guidelines and GWP set (UNFCCC Data Interface, snapshot of 2024-07-05). Non-Annex I Parties report only the years their national communications cover, and the figure is negative where reported removals exceed reported emissions. Points from an NDC document are that document's own inventory basis. The same year can appear more than once with different values; R3 keeps them side by side and never averages them."
   },
   "derived": {
-    "ambition_gap_factor": null,
-    "on_track": null,
-    "gap_state": "unknown",
-    "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+    "ambition_gap_factor": 1.1,
+    "trend_annual_mtco2e": -13.965,
+    "on_track": false,
+    "gap_state": "observed",
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 567.489 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note. The target tonnage is derived here, not quoted: 55% below DS-35's 1990 value of 1261.087 MtCO₂e. The document states the percentage; the level it is applied to comes from DS-35, on DS-35's inventory scope, which is not necessarily the document's."
   },
   "$extensions": [
     "country_profile",
     "ndc_registry",
     "ndc_assessment",
+    "ndc_document",
     "emissions_profile",
     "projections",
     "verdict",
@@ -603,10 +624,10 @@
     "population": 83491249,
     "population_year": 2025,
     "state": "observed",
-    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015–2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
+    "$note": "Population is World Bank SP.POP.TOTL for the latest year published in the 2015-2025 window. Income group is the World Bank's own classification, not a UNFCCC one.",
     "source": {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
       "retrieved_at": "2026-09-07"
     }
@@ -617,9 +638,9 @@
     "submission_date": "2025-11-05",
     "document_url": "https://unfccc.int/sites/default/files/2025-11/DK-2025-11-05%20EU%20NDC.pdf",
     "archived_submissions": 2,
-    "matches_parsed_document": null,
+    "matches_parsed_document": false,
     "state": "observed",
-    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
+    "$note": "The document this record was built from is dated 2020-12-18. The registry's latest active submission is The NDC of the European Union and its Member States, dated 2025-11-05, and has not been read; no figure above comes from it.",
     "source": {
       "id": "DS-08",
       "name": "UNFCCC NDC Registry index",
@@ -643,13 +664,44 @@
     "$note": "Third-party assessment of the first (I)NDC round. It is not merged into ndc.*, is not used by derive(), and does not appear on the dial as a target.",
     "source": {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "retrieved_at": "2026-09-07"
     }
   },
+  "ndc_document": {
+    "kind": "First NDC of European Union and its Member States (joint)",
+    "language": "English",
+    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/European%20Union%20First/EU_NDC_Submission_December%202020.pdf",
+    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/EUU_European-Union_First_NDC_English.pdf",
+    "submission_date": "2020-12-18",
+    "pages": 19,
+    "reduction_pct": 55,
+    "basis": "base-year",
+    "base_year": 1990,
+    "target_year": 2030,
+    "unconditional_pct": null,
+    "conditional_pct": null,
+    "net_zero_year": 2050,
+    "confidence": "high",
+    "evidence": [
+      {
+        "page": 6,
+        "sentence": "The EU and its Member States, acting jointly, are committed to a binding target of a net domestic reduction of at least 55% in greenhouse gas emissions by 2030 compared to 1990."
+      }
+    ],
+    "state": "pledged",
+    "$note": "A collective target of the European Union and its Member States acting jointly, filed as one document for all of them. It is not this Party's national figure: the share each Member contributes is set by EU effort-sharing law and is not read here. The parser refused this document (it states figures on several base years); the headline is a hand-verified reading of the sentence quoted, page 6. Read by DS-06-NDC from the First NDC of European Union and its Member States (joint) as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
+    "source": {
+      "id": "DS-06-NDC",
+      "name": "European Union First NDC of European Union and its Member States (joint)",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/European%20Union%20First/EU_NDC_Submission_December%202020.pdf",
+      "retrieved_at": "2026-09-11"
+    }
+  },
   "emissions_profile": {
     "latest_year": 2024,
+    "source_id": "DS-35",
     "total_mtco2e": 659.655,
     "excluding_lucf_mtco2e": 608.397,
     "per_capita_tco2e": 7.802,
@@ -1335,11 +1387,15 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is The NDC of the European Union and its Member States, filed 2025-11-05. 78 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (32). For 2024 the sources disagree: DS-02 749.6 MtCO₂e, DS-35 659.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. ND-GAIN scores it 69.2 for 2024. In the first NDC round, WRI's CAIT assessment recorded: The European Union and its 28 Member States submitted a joint NDC: at least 40% domestic reduction in GHG emissions by 2030 compared to 1990 It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.28°C under SSP1-2.6 to +4.61°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Germany pledges a 55% reduction by 2030 against 1990 baseline. A later submission, The NDC of the European Union and its Member States, was filed on 2025-11-05; it has not been read, so no figure here comes from it. 78 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (32). For 2024 the sources disagree: DS-02 749.6 MtCO₂e, DS-35 659.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. The target is not reached on the observed trend: it would need cuts 1.1× faster. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 69.2 for 2024. In the first NDC round, WRI's CAIT assessment recorded: The European Union and its 28 Member States submitted a joint NDC: at least 40% domestic reduction in GHG emissions by 2030 compared to 1990 It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.28°C under SSP1-2.6 to +4.61°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
+        "field": "ndc.reduction_pct",
+        "text": "Germany pledges a 55% reduction by 2030 against 1990 baseline."
+      },
+      {
         "field": "ndc_registry.submission_date",
-        "text": "The registry's current submission for this Party is The NDC of the European Union and its Member States, filed 2025-11-05."
+        "text": "A later submission, The NDC of the European Union and its Member States, was filed on 2025-11-05; it has not been read, so no figure here comes from it."
       },
       {
         "field": "series.observed",
@@ -1350,8 +1406,12 @@
         "text": "For 2024 the sources disagree: DS-02 749.6 MtCO₂e, DS-35 659.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
-        "field": "derived.$reason",
-        "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+        "field": "derived.on_track",
+        "text": "The target is not reached on the observed trend: it would need cuts 1.1× faster."
+      },
+      {
+        "field": "btr.submitted",
+        "text": "It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1572,7 +1632,7 @@
   "sources": [
     {
       "id": "DS-35",
-      "name": "Our World in Data — CO₂ and Greenhouse Gas Emissions",
+      "name": "Our World in Data: CO₂ and Greenhouse Gas Emissions",
       "pattern": "C",
       "tables": [
         "emissions"
@@ -1586,7 +1646,7 @@
     },
     {
       "id": "DS-02",
-      "name": "Climate TRACE — country emissions",
+      "name": "Climate TRACE: country emissions",
       "pattern": "A",
       "tables": [
         "emissions"
@@ -1628,7 +1688,7 @@
     },
     {
       "id": "DS-01",
-      "name": "World Bank — country register and World Development Indicators",
+      "name": "World Bank: country register and World Development Indicators",
       "pattern": "A",
       "tables": [
         "countries"
@@ -1642,7 +1702,7 @@
     },
     {
       "id": "DS-05",
-      "name": "EDGAR — GHG emissions of all world countries (JRC)",
+      "name": "EDGAR: GHG emissions of all world countries (JRC)",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1656,7 +1716,7 @@
     },
     {
       "id": "DS-40",
-      "name": "UNFCCC Data Interface — country-submitted GHG inventories",
+      "name": "UNFCCC Data Interface: country-submitted GHG inventories",
       "pattern": "B",
       "tables": [
         "emissions"
@@ -1670,7 +1730,7 @@
     },
     {
       "id": "DS-06",
-      "name": "Climate Watch / CAIT — (I)NDC content assessment",
+      "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "pattern": "C",
       "tables": [
         "ndc_content"
@@ -1703,32 +1763,46 @@
       "tables": [
         "ndc_targets"
       ],
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-09-11T13:55:27.940Z",
+      "retrieved_at": "2026-09-11",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-15",
+      "name": "Green Climate Fund: projects and disbursements",
+      "pattern": "A",
+      "tables": [
+        "climate_finance"
+      ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": null,
+      "last_run": "2026-09-10T19:58:14.348Z",
       "retrieved_at": null,
-      "url": "https://unfccc.int/NDCREG",
-      "license": "public"
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "license": "GCF open data, attribution requested"
     },
     {
       "id": "DS-BTR",
       "name": "UNFCCC First Biennial Transparency Reports",
-      "pattern": "D",
+      "pattern": "C",
       "tables": [
         "btr_status"
       ],
-      "connection": "not-connected",
-      "records": 0,
-      "last_run": null,
-      "retrieved_at": null,
+      "connection": "connected",
+      "records": 38,
+      "last_run": "2026-09-10T20:12:43.405Z",
+      "retrieved_at": "2026-09-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "license": "public"
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ],
   "provenance": {
-    "run_id": "fef16b2afded317c7680a38053096fec",
-    "built_at": "2026-09-07T23:32:02.148Z",
-    "payload_sha256": "9f5e86c8029e4478de9fa169e8ecde5d592d2df6a409152ab987c2eb74c8a1c1",
+    "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
+    "built_at": "2026-09-10T20:12:43.405Z",
+    "payload_sha256": "6aad71388164dc1fb17a2f1506a2b24e7281f58730423b7eda40418011876b94",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1783,14 +1857,38 @@
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
         "retrieved_at": "2026-09-07T23:32:02.148Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
+      },
+      {
+        "source_id": "DS-15",
+        "file_sha256": "8c3d7e89f4770c525e8e446686c64fc62ba83bff4770a3ee3ba58a8a1254ca00",
+        "retrieved_at": "2026-09-10T19:58:14.348Z",
+        "url": "https://api.gcfund.org/v1/projects"
+      },
+      {
+        "source_id": "DS-BTR",
+        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
+        "retrieved_at": "2026-09-10T20:12:43.405Z",
+        "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
+        "retrieved_at": "2026-09-11T13:55:27.940Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
+      },
+      {
+        "source_id": "DS-06-NDC",
+        "file_sha256": "4528d268ec75c6e394335e7f35453ba6b5eb0c7beb9ebbf0450468096356fc5b",
+        "retrieved_at": "2026-09-10T19:57:29.961Z",
+        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/EUU_European-Union_First_NDC_English.pdf"
       }
     ]
   },
   "$meta": {
-    "mode": "observations-only",
-    "snapshot": "OWID 관측 1990–2024",
-    "basis": "NDC 목표 미파싱",
-    "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
+    "mode": "document-parsed",
+    "snapshot": "First NDC of European Union and its Member States (joint) · 2020",
+    "basis": "1990 baseline",
+    "notice": "55% by 2030 was read out of the document by DS-06-NDC, not tabulated by it. The sentence it came from is on the record."
   },
   "$sources_index": [
     {
@@ -1840,13 +1938,18 @@
     },
     {
       "id": "DS-06-NDC",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, documents via openclimatedata",
+      "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-15",
+      "org": "Green Climate Fund",
+      "license": "GCF open data, attribution requested"
     },
     {
       "id": "DS-BTR",
-      "org": "UNFCCC",
-      "license": "public"
+      "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ]
 }

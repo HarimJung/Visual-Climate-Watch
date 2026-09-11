@@ -65,7 +65,13 @@ export const BTR_COMPONENTS = [
   'nir', 'crt', 'ctf', 'ndc_track', 'adaptation', 'finance', 'redd_plus', 'article6',
 ] as const;
 
-const component = z.object({ state, $reason: z.string().optional() }).strict();
+// $evidence names the attachment(s) a promotion rests on. Additive: a reader
+// that ignores it sees exactly the four-state field it saw before (R7).
+const component = z.object({
+  state,
+  $reason: z.string().optional(),
+  $evidence: z.array(z.string().min(1)).optional(),
+}).strict();
 
 const btr = z.object({
   version: z.string().min(1),
@@ -100,6 +106,7 @@ export const countrySchema = z.object({
     state,
     received_usd: num,
     received_state: state,
+    $reason: z.string().optional(),
     $note: z.string().optional(),
     source,
   }).strict(),
@@ -111,6 +118,7 @@ export const countrySchema = z.object({
     rank: z.number().int().nullable(),
     data_year: z.number().int().nullable(),
     state,
+    $reason: z.string().optional(),
     $note: z.string().optional(),
     source,
   }).strict(),
@@ -122,6 +130,9 @@ export const countrySchema = z.object({
   }).strict(),
   derived: z.object({
     ambition_gap_factor: num,
+    // Signed least-squares slope of the observed series, MtCO2e/yr. Negative
+    // falls. Null only when no trend was computable, never as a stand-in for 0.
+    trend_annual_mtco2e: num,
     on_track: z.boolean().nullable(),
     gap_state: state,
     $note: z.string().optional(),
@@ -136,6 +147,7 @@ export const countrySchema = z.object({
     population: num,
     population_year: z.number().int().nullable(),
     state,
+    $reason: z.string().optional(),
     $note: z.string().optional(),
     source,
   }).strict().optional(),
@@ -173,12 +185,73 @@ export const countrySchema = z.object({
     $note: z.string().optional(),
     source,
   }).strict().optional(),
+  // Pattern D output: what was read out of the NDC document itself, with the
+  // sentence and page it was read from. Kept beside `ndc` rather than inside
+  // it so a reader can check the engine's reading against the filing, and so a
+  // refusal carries its reason in the same shape as an acceptance.
+  ndc_document: z.object({
+    kind: z.string().min(1),
+    language: z.string(),
+    document_url: https,
+    retrieval_url: https,
+    submission_date: isoDate.nullable(),
+    pages: z.number().int().nonnegative(),
+    reduction_pct: num,
+    basis: z.enum(['base-year', 'bau']).nullable(),
+    base_year: z.number().int().nullable(),
+    target_year: z.number().int().nullable(),
+    unconditional_pct: num,
+    conditional_pct: num,
+    net_zero_year: z.number().int().nullable(),
+    confidence: z.enum(['high', 'medium', 'low']),
+    evidence: z.array(z.object({
+      page: z.number().int().positive(),
+      sentence: z.string().min(1),
+    }).strict()),
+    state,
+    $reason: z.string().optional(),
+    $note: z.string().optional(),
+    source,
+  }).strict().optional(),
+  // One channel of climate finance, named as one. `finance_need.received_usd`
+  // means everything a country received and stays unknown until a source
+  // reports that; this reports what the Green Climate Fund itself published.
+  finance_flows: z.object({
+    channel: z.string().min(1),
+    approved_usd: num,
+    co_financing_usd: num,
+    disbursed_usd: num,
+    projects: z.number().int().nonnegative(),
+    /** Multi-country projects. Their disbursements are counted, never split. */
+    regional_projects: z.number().int().nonnegative(),
+    regional_disbursed_usd: num,
+    instruments: z.array(z.string().min(1)),
+    latest_disbursement: isoDate.nullable(),
+    received: z.array(z.object({
+      year: z.number().int(),
+      flow_type: z.enum(['approval', 'disbursement']),
+      channel: z.string().min(1),
+      instrument: z.string().nullable(),
+      provider: z.string().nullable(),
+      amount_usd: z.number().finite(),
+      project_ref: z.string(),
+      project_name: z.string(),
+      state,
+    }).strict()),
+    state,
+    $reason: z.string().optional(),
+    $note: z.string().optional(),
+    source,
+  }).strict().optional(),
   emissions_profile: z.object({
     latest_year: z.number().int().nullable(),
+    /** v1.2, optional: the source the headline figures are taken from. */
+    source_id: z.string().optional(),
     total_mtco2e: num,
     excluding_lucf_mtco2e: num,
     per_capita_tco2e: num,
     state,
+    $reason: z.string().optional(),
     by_gas: z.array(z.object({ gas: z.string(), value_mtco2e: num, state, source_id: z.string() }).strict()),
     by_sector: z.array(z.object({ sector: z.string(), value_mtco2e: num, state, source_id: z.string() }).strict()),
     // R3: one entry per source, side by side. Never merged into one series.
@@ -245,6 +318,8 @@ export const countrySchema = z.object({
   if (d.country_profile) sources.push(d.country_profile.source);
   if (d.ndc_registry) sources.push(d.ndc_registry.source);
   if (d.ndc_assessment) sources.push(d.ndc_assessment.source);
+  if (d.ndc_document) sources.push(d.ndc_document.source);
+  if (d.finance_flows) sources.push(d.finance_flows.source);
   for (const s of sources) {
     seen.set(s.id, (seen.get(s.id) ?? false) || !!s.retrieved_at);
   }
