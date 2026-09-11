@@ -631,7 +631,7 @@
       "id": "DS-06-NDC",
       "name": "Montenegro First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Montenegro%20First/Updated%20NDC%20for%20Montenegro.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1415,8 +1415,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1452,7 +1452,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "ec01271d1918f8c150bef1381c19a60ed71d3702f9c1aa27bf6cd0cedc67b4b1",
+    "payload_sha256": "264bfe7c4730fece4b1e7dab9fab5f9a1730325f2e4f2017f5afe7eb369185bb",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1523,7 +1523,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

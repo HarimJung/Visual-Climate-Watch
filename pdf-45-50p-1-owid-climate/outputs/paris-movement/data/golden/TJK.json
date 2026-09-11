@@ -624,7 +624,7 @@
       "id": "DS-06-NDC",
       "name": "Tajikistan First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Tajikistan%20First/NDC_TAJIKISTAN_ENG.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -2012,8 +2012,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -2049,7 +2049,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "e33cc7383b16f83bb492383a1f7180383316d1e5b5a3ed0878f6719fb604ab90",
+    "payload_sha256": "f0d29d3f41442e0f8f0a13b8c128f2020eb63b6863068d523fe0e743c4bb5175",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -2120,7 +2120,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

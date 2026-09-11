@@ -529,7 +529,7 @@
       "id": "DS-06-NDC",
       "name": "Viet Nam First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Viet%20Nam%20First/Viet%20Nam_NDC_2020_Eng.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1757,8 +1757,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1794,7 +1794,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "48aad9772b9818ecd6c5911f008b1062266521e8c50bd5cb2220347a7b3005cc",
+    "payload_sha256": "8fc6703e67d9c434a3c04d2ce27d9f70dff36de252dea004fc62499dff04ad52",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1865,7 +1865,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

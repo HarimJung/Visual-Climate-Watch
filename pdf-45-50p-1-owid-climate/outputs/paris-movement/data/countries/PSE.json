@@ -293,7 +293,7 @@
       "id": "DS-06-NDC",
       "name": "State of Palestine First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/State%20of%20Palestine%20First/Updated%20NDC_%20State%20of%20Palestine_2021_FINAL.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -833,8 +833,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -870,7 +870,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "a3dbf0686d56692e38c94f467d76d2b0e58804615c959ff468a286b3812e5b42",
+    "payload_sha256": "2fa7f7d3aba2134acd3102ab40c89ac6d8c83188d9ede90d9248ffcde73c9d2d",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -941,7 +941,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

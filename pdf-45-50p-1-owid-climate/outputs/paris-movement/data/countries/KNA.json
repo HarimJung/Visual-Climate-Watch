@@ -498,7 +498,7 @@
       "id": "DS-06-NDC",
       "name": "Saint Kitts and Nevis First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Saint%20Kitts%20and%20Nevis%20First/St.%20Kitts%20and%20Nevis%20Revised%20NDC_Updated.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1478,8 +1478,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1515,7 +1515,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "1967c032d629bdd218aedcc207e8d624c55a3bb96471343485d02d47e489f02d",
+    "payload_sha256": "1f951f8798f95ab16feb2bb958a7d409f02674865e4e57db7e9e008112c4e84e",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1586,7 +1586,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

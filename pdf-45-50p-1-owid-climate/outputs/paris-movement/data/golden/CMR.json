@@ -496,15 +496,20 @@
     "conditional_pct": null,
     "net_zero_year": null,
     "confidence": "low",
-    "evidence": [],
+    "evidence": [
+      {
+        "page": 2,
+        "sentence": "Atténuation La Contribution du Cameroun Type de contribution Objectif national à long terme sur les émissions de GES Année cible Année de référence Objectifs sectoriels principaux Ambition de la Contribution Equité de la Contribution Un objectif de réduction des émissions assorti d'actions d'atténua"
+      }
+    ],
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$reason": "the only figure found (32%) is one the document conditions on international support, and the unconditional figure it is paired with was not found.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Cameroon First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Cameroon%20First/CDN%20révisée%20CMR%20finale%20sept%202021.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1572,8 +1577,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1609,7 +1614,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "58107e50d542e404fcdea1fe66853663109e86e08f69b1449c3d2d39371381bb",
+    "payload_sha256": "16a462aa7a8f173d81f9ff5d26d87a87643f6fd5d05e9602d3d2f0a414911fdd",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1680,7 +1685,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

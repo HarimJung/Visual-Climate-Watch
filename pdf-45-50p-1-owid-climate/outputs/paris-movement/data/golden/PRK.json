@@ -509,13 +509,13 @@
     "confidence": "low",
     "evidence": [],
     "state": "unknown",
-    "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+    "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Democratic People's Republic of Korea First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Democratic%20People%27s%20Republic%20of%20Korea%20First/2019.09.19_DPRK%20letter%20to%20SG%20special%20envoy%20for%20NDC.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "emissions_profile": {
@@ -1464,8 +1464,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1501,7 +1501,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "d38bd59cfdea78826ae5ca018e2884c44b44b6e81a1120f62e1e3d6af2e56c93",
+    "payload_sha256": "5a4ac9a3d252caea8f5c906954b9f6cd1924413ef678234e0f3b3221cd9b6d60",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1572,7 +1572,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

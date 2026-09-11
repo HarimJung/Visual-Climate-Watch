@@ -37,7 +37,7 @@
       "id": "DS-06-NDC",
       "name": "Indonesia First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_need": {
@@ -51,7 +51,7 @@
       "id": "DS-06-NDC",
       "name": "Indonesia First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "btr": {
@@ -545,7 +545,7 @@
       "id": "DS-06-NDC",
       "name": "Indonesia First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1902,8 +1902,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1939,7 +1939,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "daae8bf69181ff974c09aecff14126e4b1f6c094fdd8467ed1b3eb5258d0b908",
+    "payload_sha256": "196f7ab5ae8da3d0e12b0b82f75b1ab86fd54f5c56457ca4b1f1b14573296b51",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -2010,7 +2010,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

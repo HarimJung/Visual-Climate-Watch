@@ -510,7 +510,7 @@
       "id": "DS-06-NDC",
       "name": "Botswana First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Botswana%20First/BOTSWANA.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1558,8 +1558,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1595,7 +1595,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "70f4a17dd30b2e45e4f6d3fc7297bd9b2537fb9dc712f10953d287a6657900ac",
+    "payload_sha256": "33b57fbc397d92dc6c1cebdcb47b32c7bb432e441a0345550efb925f43317b11",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1666,7 +1666,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

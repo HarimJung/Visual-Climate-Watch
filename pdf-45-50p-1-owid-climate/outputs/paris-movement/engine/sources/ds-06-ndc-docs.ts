@@ -98,7 +98,7 @@ const norm = (s: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const PCT = String.raw`(\d{1,2}(?:[.,]\d{1,2})?)\s*(?:%|per\s?cent(?:age)?)`;
+const PCT = String.raw`(\d{1,2}(?:[.,]\d{1,2})?)\s*(?:%|per\s?cent(?:age)?|pour\s?cent|por\s?ciento)`;
 const AGAINST = String.raw`(?:below|beneath|compared?\s+(?:to|with)|relative\s+to|from|against|versus|vs\.?)`;
 const BAU = String.raw`(?:"?business[-\s]?as[-\s]?usual"?(?:\s*\(?BAU\)?)?|\bBAU\b|baseline\s+scenario|reference\s+scenario|business\s+as\s+usual\s+scenario)`;
 
@@ -116,12 +116,35 @@ const REV_BAU = new RegExp(String.raw`${AGAINST}\s+(?:the\s+|a\s+|its\s+)?(?:pro
 const REV_BASE = new RegExp(String.raw`${AGAINST}\s+(?:the\s+)?((?:19|20)\d{2})\s*(?:levels?|emissions?)[^.;]{0,70}?\bby\s+$`, 'i');
 
 /**
+ * French and Spanish, the other 21 filings in the mirror. Kept apart from the
+ * English forms on purpose: none of these prepositions occur in an English
+ * filing, so widening them cannot loosen an English reading, and the English
+ * regexes stay exactly as the regression cases pinned them.
+ *
+ * The scenario keyword may sit a few words after the preposition — "par
+ * rapport aux émissions projetées pour la même année selon un scénario de
+ * référence" — so the BAU form allows a short run of words between the two.
+ * The base-year form does not: it wants "niveles de 2010" directly.
+ */
+const AGAINST_ROM = String.raw`(?:par\s+rapport\s+(?:à|au|aux)|en\s+dessous\s+d[eu]|inf[ée]rieur(?:e|s|es)?\s+(?:à|au|aux)|(?:con\s+)?respecto\s+(?:a|al|de|del)|en\s+relaci[óo]n\s+(?:a|al|con)|en\s+comparaci[óo]n\s+(?:a|al|con)|frente\s+(?:a|al)|por\s+debajo\s+de(?:l)?|(?:las\s+)?emisiones\s+proyectadas\s+(?:en|del|de|para)|(?:les\s+)?[ée]missions\s+projet[ée]es\s+(?:pour|selon|du|de))`;
+const BAU_ROM = String.raw`(?:bus+ines+\s+as\s+usual|\bBAU\b|\bBaU\b|statu\s+quo|tendanciel|tendencial|inercial|de\s+r[ée]f[ée]rence|de\s+referencia|cours\s+normal\s+des\s+affaires|d[ée]veloppement\s+non\s+ma[îi]tris[ée]|l[íi]nea\s+(?:de\s+)?base|situation\s+de\s+r[ée]f[ée]rence)`;
+const FWD_BAU_ROM = new RegExp(String.raw`^[^.;]{0,60}?${AGAINST_ROM}\s+[^.;]{0,45}?${BAU_ROM}`, 'i');
+const FWD_BASE_ROM = new RegExp(String.raw`^[^.;]{0,60}?${AGAINST_ROM}\s+(?:los\s+|las\s+|les\s+|le\s+|el\s+|la\s+|l')?(?:niveaux?|niveles|nivel|[ée]missions|emisiones|a[ñn]o\s+base|ann[ée]e\s+de\s+r[ée]f[ée]rence)\s+(?:de\s+|del\s+|d')?((?:19|20)\d{2})\b`, 'i');
+
+/**
  * A window mentioning any of these is not an economy-wide absolute cut, even
  * when the sentence otherwise reads like one. India's 45% is intensity per
  * unit of GDP; a renewable share is not an emissions reduction at all.
  */
 const NOT_A_TOTAL = new RegExp([
   'intensity', String.raw`per\s+unit\s+of\s+GDP`, 'renewable', String.raw`electricity\s+generation`,
+  // The same disqualifiers in French and Spanish. "sector" alone is not one:
+  // Honduras pledges "para todos los sectores", which is the economy.
+  String.raw`intensit[ée]|intensidad|par\s+habitant|per\s+c[áa]pita|[ée]nergies?\s+renouvelables?|energ[íi]as?\s+renovables?|\bPIB\b`,
+  String.raw`(?:secteur|sector)\s+(?:de\s+l')?(?:[ée]nerg\w*|transport\w*|d[ée]chets|residuos|agr\w+|forest\w*|bosques|industri\w*)`,
+  String.raw`(?:[ée]nergie|transport|d[ée]chets|foresterie|agriculture|residuos|bosques|energ[íi]a)\s+(?:secteur|sector)`,
+  String.raw`d[ée]forestation|deforestaci[óo]n|forestier|forestal`,
+  String.raw`pertes?\s+d'eau|agua\s+no\s+facturada|accroissement|croissance|crecimiento|taux\s+de\s+croissance`,
   String.raw`forest\s+cover`, 'deforestation', String.raw`share\s+of\s+(?:energy|power|electricity)`,
   String.raw`water\s+use`, String.raw`installed\s+capacity`,
   // One sector is not the economy. Tuvalu's 60% is the energy sector, Saint
@@ -147,8 +170,8 @@ type Candidate = {
 };
 
 const conditionOf = (w: string): Candidate['condition'] =>
-  /unconditional|domestic\s+resources|own\s+resources|without\s+(?:international|external)\s+support/i.test(w) ? 'unconditional'
-    : /conditional|international\s+support|external\s+support|international\s+finance/i.test(w) ? 'conditional'
+  /unconditional|domestic\s+resources|own\s+resources|without\s+(?:international|external)\s+support|inconditionnel|incondicional|ressources\s+propres|recursos\s+propios/i.test(w) ? 'unconditional'
+    : /conditional|international\s+support|external\s+support|international\s+finance|conditionn[ée]|condicional|condicionad|appui\s+(?:de\s+la\s+communaut[ée\s]*)?international|soutien\s+international|apoyo\s+internacional|financiamiento\s+internacional/i.test(w) ? 'conditional'
       : null;
 
 /**
@@ -193,6 +216,8 @@ export function candidatesOf(text: string, page = 1): Candidate[] {
     else if ((m = after.match(FWD_BASE))) { basis = 'base-year'; base = Number(m[1]); }
     else if (REV_BAU.test(before)) basis = 'bau';
     else if ((m = before.match(REV_BASE))) { basis = 'base-year'; base = Number(m[1]); }
+    else if ((m = after.match(FWD_BASE_ROM))) { basis = 'base-year'; base = Number(m[1]); }
+    else if (FWD_BAU_ROM.test(after)) basis = 'bau';
     if (!basis) continue;
 
     // "40-50 % reduction" is a range quoted from somebody's pathway, not a
@@ -202,6 +227,10 @@ export function candidatesOf(text: string, page = 1): Candidate[] {
     // not a cut: Russia's target leaves emissions at 70% of 1990, which is a
     // 30% reduction. "by 70 percent below" is the cut. Only "by" is read.
     if (/\bto\s*$/.test(text.slice(Math.max(0, at - 24), at))) continue;
+    // The same level-not-cut trap in French and Spanish: "réduire à 70%" and
+    // "reducir a un 70%" leave emissions AT 70%; "de 17%" and "en un 20%" are
+    // the cut. "à hauteur de 32%" ends in "de" and is read.
+    if (/(?:^|\s)(?:à|a\s+una?|al)\s*$/i.test(text.slice(Math.max(0, at - 12), at))) continue;
 
     const from = text.lastIndexOf('. ', at) + 1;
     const to = text.indexOf('. ', at + hit[0].length);
@@ -215,10 +244,10 @@ export function candidatesOf(text: string, page = 1): Candidate[] {
     // The horizon may sit in the next sentence -- Albania states the
     // percentage in one and "less in 2030" in the one after -- so the year is
     // looked for more widely than the disqualifying words are.
-    const YEAR = /\bby\s+(?:the\s+)?(?:year\s+(?:of\s+)?)?(20[2-9]\d)\b|\bin\s+(20[2-9]\d)\b/i;
+    const YEAR = /\bby\s+(?:the\s+)?(?:year\s+(?:of\s+)?)?(20[2-9]\d)\b|\bin\s+(20[2-9]\d)\b|\bd'ici\s+(?:à\s+)?(20[2-9]\d)\b|(?:^|\s)à\s+l'horizon\s+(20[2-9]\d)\b|\bpour\s+(?:l'ann[ée]e\s+)?(20[2-9]\d)\b|\bpara\s+(?:el\s+)?(?:a[ñn]o\s+)?(20[2-9]\d)\b|\bal\s+(?:a[ñn]o\s+)?(20[2-9]\d)\b|\ben\s+(?:el\s+)?(20[2-9]\d)\b|(?:ann[ée]e|a[ñn]o)\s+(?:cible|meta|objetivo)\s*\(?(20[2-9]\d)/i;
     const near = text.slice(Math.max(0, at - 200), at + hit[0].length + 200);
     const byYear = sentence.match(YEAR) ?? near.match(YEAR);
-    let target = byYear ? Number(byYear[1] ?? byYear[2]) : null;
+    let target = byYear ? Number(byYear.slice(1).find(Boolean)) : null;
     if (target == null) {
       // Nothing nearby: accept a year only if the page names exactly one.
       const onPage = TARGET_YEARS.filter((y) => text.includes(String(y)));
@@ -243,7 +272,7 @@ export type Extraction = Pick<NdcTarget, 'reduction_pct' | 'basis' | 'base_year'
 function netZeroYear(pages: string[]): number | null {
   const years = new Set<number>();
   for (const p of pages) {
-    for (const hit of p.matchAll(/(?:net[-\s]?zero|carbon[-\s]neutral(?:ity)?|climate[-\s]neutral(?:ity)?)[^.;]{0,80}?\b(20[2-9]\d)\b/gi)) {
+    for (const hit of p.matchAll(/(?:net[-\s]?zero|carbon[-\s]neutral(?:ity)?|climate[-\s]neutral(?:ity)?|neutralit[ée]\s+carbone|z[ée]ro\s+(?:[ée]mission\s+)?nette?|neutralidad\s+(?:de\s+)?carbono|carbono\s+neutral|cero\s+neto)[^.;]{0,80}?\b(20[2-9]\d)\b/gi)) {
       years.add(Number(hit[1]));
     }
   }

@@ -529,7 +529,7 @@
       "id": "DS-06-NDC",
       "name": "Burundi First NDC (archived)",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Burundi%20First/Burundi_INDC-english%20version.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1607,8 +1607,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1644,7 +1644,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "fd6dc7ea1c9e41913d2e6fdd93fd2b8d5fe93b201c4b6d161b815fc45ec2c061",
+    "payload_sha256": "128c7d941f6ba3b7fe4f3c34759b74f632794f685d1e52390b4c50de7d00ba5f",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1715,7 +1715,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

@@ -529,15 +529,24 @@
     "conditional_pct": null,
     "net_zero_year": null,
     "confidence": "low",
-    "evidence": [],
+    "evidence": [
+      {
+        "page": 23,
+        "sentence": "del 4% en comparación a nivel de referencia al año 2025."
+      },
+      {
+        "page": 23,
+        "sentence": "Sin embargo, en el caso de contar con apoyo de la cooperación internacional para desarrollar las líneas de acción del escenario condicional de este sector, se contaría con un potencial adicional de mitigación de 16%, es decir, una reducción total de emisiones de GEI del 20% en comparación al nivel d"
+      }
+    ],
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$reason": "the document states 3 different percentages on the same basis (4%, 16%, 20%) and does not label which is the pledge.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Ecuador First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Ecuador%20First/Primera%20NDC%20Ecuador.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1845,8 +1854,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1882,7 +1891,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "5b2b9af197857e21cba3b90b466d18b80fb35bec5c1544508764f3f7ceda6a75",
+    "payload_sha256": "65f3c9fccf04a35bbdd4a119e7435419a18fe0b564d60b5c918cb76c10ccbff8",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1953,7 +1962,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

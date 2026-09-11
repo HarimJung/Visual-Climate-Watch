@@ -523,7 +523,7 @@
       "id": "DS-06-NDC",
       "name": "Yemen INDC",
       "url": "https://www4.unfccc.int/Submissions/INDC/Published%20Documents/Yemen/1/Yemen%20INDC%2021%20Nov.%202015.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "emissions_profile": {
@@ -1472,8 +1472,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1509,7 +1509,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "c5ab14f0aee7011309e9e6f15b364b14822dfb0a6c549233a9274778d35046bd",
+    "payload_sha256": "277ba7abf14a8919905cd67be725a2ec3212260dfd99af808bed40ebff1456f6",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1580,7 +1580,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

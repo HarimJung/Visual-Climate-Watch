@@ -10,18 +10,18 @@
     ]
   },
   "ndc": {
-    "version": "No NDC document loaded",
-    "submission_date": null,
+    "version": "First NDC (2020)",
+    "submission_date": "2020-05-20",
     "base_year": null,
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
-    "target_year": null,
+    "target_year": 2030,
     "bau_2030_mtco2e": null,
     "bau_state": "unknown",
     "reduction_mtco2e": null,
-    "reduction_pct": null,
+    "reduction_pct": 37,
     "target_emissions_mtco2e": null,
-    "target_state": "unknown",
+    "target_state": "pledged",
     "folu_share_of_reduction_pct": null,
     "sectors": [],
     "net_zero_target_year": null,
@@ -31,13 +31,13 @@
       "unconditional_pct": null,
       "conditional_pct": null,
       "split_state": "unknown",
-      "extraction_confidence": "low"
+      "extraction_confidence": "medium"
     },
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "Andorra First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Andorra%20First/20200514-%20Actualització%20NDC.pdf",
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_need": {
@@ -49,9 +49,9 @@
     "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "Andorra First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Andorra%20First/20200514-%20Actualització%20NDC.pdf",
+      "retrieved_at": "2026-09-11"
     }
   },
   "btr": {
@@ -404,7 +404,7 @@
     "trend_annual_mtco2e": -0.002,
     "on_track": null,
     "gap_state": "unknown",
-    "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+    "$reason": "the pledge is 37% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
   },
   "$extensions": [
     "country_profile",
@@ -437,9 +437,9 @@
     "submission_date": "2025-02-05",
     "document_url": "https://unfccc.int/sites/default/files/2025-02/NDC%203.0%20ANDORRA.pdf",
     "archived_submissions": 2,
-    "matches_parsed_document": null,
+    "matches_parsed_document": false,
     "state": "observed",
-    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
+    "$note": "The document this record was built from is dated 2020-05-20. The registry's latest active submission is Third NDC, dated 2025-02-05, and has not been read; no figure above comes from it.",
     "source": {
       "id": "DS-08",
       "name": "UNFCCC NDC Registry index",
@@ -475,23 +475,27 @@
     "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/AND_Andorra_First_NDC_Spanish.pdf",
     "submission_date": "2020-05-20",
     "pages": 23,
-    "reduction_pct": null,
-    "basis": null,
+    "reduction_pct": 37,
+    "basis": "bau",
     "base_year": null,
-    "target_year": null,
+    "target_year": 2030,
     "unconditional_pct": null,
     "conditional_pct": null,
     "net_zero_year": null,
-    "confidence": "low",
-    "evidence": [],
-    "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "page": 1,
+        "sentence": "Andorra fue una de las Partes pioneras en comunicar su INDC en 2015, según la cual el compromiso era reducir las emisiones de GEI en un 37% respecto al escenario Bussines as usual (BAU), 530,55 Gg CO2 eq.), para el año 2030."
+      }
+    ],
+    "state": "pledged",
+    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Andorra First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Andorra%20First/20200514-%20Actualització%20NDC.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "emissions_profile": {
@@ -760,11 +764,15 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is Third NDC, filed 2025-02-05. 46 observed values are loaded from DS-02 (11), DS-35 (35). For 2024 the sources disagree: DS-35 0.5 MtCO₂e, DS-02 0.3 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 0 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 63.0 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 37% (193.73 Gg CO2eq) reduction in 2030 compared to the BAU scenario It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.42°C under SSP1-2.6 to +4.87°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Andorra pledges a 37% reduction by 2030 against 2030 business-as-usual. A later submission, Third NDC, was filed on 2025-02-05; it has not been read, so no figure here comes from it. 46 observed values are loaded from DS-02 (11), DS-35 (35). For 2024 the sources disagree: DS-35 0.5 MtCO₂e, DS-02 0.3 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 37% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 0 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 63.0 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 37% (193.73 Gg CO2eq) reduction in 2030 compared to the BAU scenario It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.42°C under SSP1-2.6 to +4.87°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
+        "field": "ndc.reduction_pct",
+        "text": "Andorra pledges a 37% reduction by 2030 against 2030 business-as-usual."
+      },
+      {
         "field": "ndc_registry.submission_date",
-        "text": "The registry's current submission for this Party is Third NDC, filed 2025-02-05."
+        "text": "A later submission, Third NDC, was filed on 2025-02-05; it has not been read, so no figure here comes from it."
       },
       {
         "field": "series.observed",
@@ -776,7 +784,7 @@
       },
       {
         "field": "derived.$reason",
-        "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+        "text": "No implementation gap is reported: the pledge is 37% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
       },
       {
         "field": "btr.submitted",
@@ -1132,10 +1140,10 @@
       "tables": [
         "ndc_targets"
       ],
-      "connection": "not-connected",
-      "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1171,7 +1179,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "5faa33925916ff1f06d2e556ea329c81885fa12edd40babaa0651e32d0f02992",
+    "payload_sha256": "07717b8d9ccb756312e6a3eb96ddb9a6e418ace94d1d4748bfb5e71f1970ab31",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1242,7 +1250,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
@@ -1254,10 +1262,10 @@
     ]
   },
   "$meta": {
-    "mode": "observations-only",
-    "snapshot": "OWID observations 1990-2024",
-    "basis": "NDC target not parsed",
-    "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
+    "mode": "document-parsed",
+    "snapshot": "First NDC · 2020",
+    "basis": "2030 business-as-usual",
+    "notice": "37% by 2030 was read out of the document by DS-06-NDC, not tabulated by it. The sentence it came from is on the record."
   },
   "$sources_index": [
     {

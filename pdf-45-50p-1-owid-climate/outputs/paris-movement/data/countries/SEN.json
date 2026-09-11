@@ -498,13 +498,13 @@
     "confidence": "low",
     "evidence": [],
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$reason": "the document states targets on more than one basis or horizon (bau ·  · 2025; bau ·  · 2035); choosing between them would be a guess.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Senegal First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Senegal%20First/CDNSenegal%20approuvée-pdf-.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1867,8 +1867,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1904,7 +1904,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "1dbd47bac50e6faafef91a0c55bc4382a5eb72bbefa99b3119383db13e22d717",
+    "payload_sha256": "0b115b14e9b57591fa1d180ced6b13efedd22d1c0382a7ebf1cf56c9d336d589",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1975,7 +1975,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

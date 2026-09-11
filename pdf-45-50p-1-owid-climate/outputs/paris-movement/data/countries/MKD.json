@@ -612,7 +612,7 @@
       "id": "DS-06-NDC",
       "name": "The Republic of North Macedonia First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/The%20Republic%20of%20North%20Macedonia%20First/Macedonian%20enhanced%20NDC%20(002).pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1717,8 +1717,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1754,7 +1754,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "6efac5069c0da79d2ea51f3012e95d32ed86e8f8c8efab0977be6b837b0b17ed",
+    "payload_sha256": "55a1a336905f991ac9afae54cecb7d159561e69d219416e898d58579b6ac3f7d",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1825,7 +1825,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

@@ -525,7 +525,7 @@
       "id": "DS-06-NDC",
       "name": "India First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/India%20First/INDIA%20INDC%20TO%20UNFCCC.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1879,8 +1879,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1916,7 +1916,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "306978115bae302070279f90dcf95f3b507a192246d521b5f68c6fadd7946c1e",
+    "payload_sha256": "5ded5276a77e6e047b406aee698880ec268a0ce6b481e1451af763f2b9327353",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1987,7 +1987,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

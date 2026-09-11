@@ -538,15 +538,28 @@
     "conditional_pct": null,
     "net_zero_year": null,
     "confidence": "low",
-    "evidence": [],
+    "evidence": [
+      {
+        "page": 12,
+        "sentence": "Ostentando sus esfuerzos de mitigación a través de las buenas prácticas e innovaciones tecnológicas plausibles, el país asumió desde el 2015 y reafirma en la presente actualización, el compromiso de reducir en 20% las emisiones proyectadas en el escenario BAU (Business as usual) al 2030, correspondi"
+      },
+      {
+        "page": 76,
+        "sentence": "La meta de mitigación, consistente en reducir en 20% las emisiones proyectadas de los GEI en el escenario BAU al 2030 (estando condicionada y no condicionada en partes iguales), se extiende a todo el territorio nacional y los sectores de cuantificación de los INGEI según las guías metodológicas del "
+      },
+      {
+        "page": 99,
+        "sentence": "Por otro lado, considerando el estado de las medidas (conforme al Párrafo 94 del Anexo I de la Decisión 18/CMA.1), las medidas sectoriales priorizadas en los 5 Planes de Mitigación al Cambio Climático (incluyendo las del sector de UTCUTS) \"aprobadas y en aplicación\" permitirían al país lograr una re"
+      }
+    ],
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$reason": "the document states 4 different percentages on the same basis (1%, 2%, 20%, 55%) and does not label which is the pledge.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Paraguay First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Paraguay%20First/ACTUALIZACIÓN%20DE%20LA%20NDC%20DEL%20PARAGUAY_Versión%20Final.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1707,8 +1720,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1744,7 +1757,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "38acbead9d22513c07595088641b4b6e59811c66258bfe695a413eef0c650c9b",
+    "payload_sha256": "ff87e5589d0fb99e487443c3588be0404c17878f2eb4d4a6687097d9624234ed",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1815,7 +1828,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

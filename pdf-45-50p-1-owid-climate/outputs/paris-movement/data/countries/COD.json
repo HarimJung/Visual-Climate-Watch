@@ -10,18 +10,18 @@
     ]
   },
   "ndc": {
-    "version": "No NDC document loaded",
-    "submission_date": null,
+    "version": "First NDC (2021)",
+    "submission_date": "2021-12-28",
     "base_year": null,
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
-    "target_year": null,
+    "target_year": 2030,
     "bau_2030_mtco2e": null,
     "bau_state": "unknown",
     "reduction_mtco2e": null,
-    "reduction_pct": null,
+    "reduction_pct": 17,
     "target_emissions_mtco2e": null,
-    "target_state": "unknown",
+    "target_state": "pledged",
     "folu_share_of_reduction_pct": null,
     "sectors": [],
     "net_zero_target_year": null,
@@ -31,13 +31,13 @@
       "unconditional_pct": null,
       "conditional_pct": null,
       "split_state": "unknown",
-      "extraction_confidence": "low"
+      "extraction_confidence": "medium"
     },
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "Democratic Republic of the Congo First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Democratic%20Republic%20of%20the%20Congo%20First/CDN%20Revisée%20de%20la%20RDC.pdf",
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_need": {
@@ -49,9 +49,9 @@
     "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "Democratic Republic of the Congo First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Democratic%20Republic%20of%20the%20Congo%20First/CDN%20Revisée%20de%20la%20RDC.pdf",
+      "retrieved_at": "2026-09-11"
     }
   },
   "btr": {
@@ -440,7 +440,7 @@
     "trend_annual_mtco2e": 21.795,
     "on_track": null,
     "gap_state": "unknown",
-    "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+    "$reason": "the pledge is 17% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
   },
   "$extensions": [
     "country_profile",
@@ -474,7 +474,7 @@
     "submission_date": "2021-12-28",
     "document_url": "https://unfccc.int/sites/default/files/NDC/2022-06/CDN%20Revis%C3%A9e%20de%20la%20RDC.pdf",
     "archived_submissions": 1,
-    "matches_parsed_document": null,
+    "matches_parsed_document": true,
     "state": "observed",
     "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
     "source": {
@@ -512,23 +512,27 @@
     "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/COD_Democratic-Republic-of-the-Congo_First_NDC_French.pdf",
     "submission_date": "2021-12-28",
     "pages": 12,
-    "reduction_pct": null,
-    "basis": null,
+    "reduction_pct": 17,
+    "basis": "bau",
     "base_year": null,
-    "target_year": null,
+    "target_year": 2030,
     "unconditional_pct": null,
     "conditional_pct": null,
     "net_zero_year": null,
-    "confidence": "low",
-    "evidence": [],
-    "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "page": 9,
+        "sentence": "Réduction des émissions des GES La RDC s'engage à réduire ses émissions de 17% d'ici 2030 par rapport aux émissions du scénario des émissions du statu quo (430 Mt CO2e), soit une réduction d'un peu plus de 70 Mt CO2e évités (Ministère de l'Environnement, 2009)."
+      }
+    ],
+    "state": "pledged",
+    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Democratic Republic of the Congo First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Democratic%20Republic%20of%20the%20Congo%20First/CDN%20Revisée%20de%20la%20RDC.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1276,8 +1280,12 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is First NDC (Updated submission), filed 2021-12-28. 52 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (6). For 2024 the sources disagree: DS-35 680.7 MtCO₂e, DS-02 69 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. ND-GAIN scores it 30.4 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 17% reduction in GHG emissions by 2030 compared to the BAU scenario (430 MtCO2e), equivalent to slightly more than 70 MtCO2e reduction It was classed partial. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.15°C under SSP1-2.6 to +3.9°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Congo, Dem. Rep. pledges a 17% reduction by 2030 against 2030 business-as-usual. The registry's current submission for this Party is First NDC (Updated submission), filed 2021-12-28. 52 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (6). For 2024 the sources disagree: DS-35 680.7 MtCO₂e, DS-02 69 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 17% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. ND-GAIN scores it 30.4 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 17% reduction in GHG emissions by 2030 compared to the BAU scenario (430 MtCO2e), equivalent to slightly more than 70 MtCO2e reduction It was classed partial. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.15°C under SSP1-2.6 to +3.9°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
+      {
+        "field": "ndc.reduction_pct",
+        "text": "Congo, Dem. Rep. pledges a 17% reduction by 2030 against 2030 business-as-usual."
+      },
       {
         "field": "ndc_registry.submission_date",
         "text": "The registry's current submission for this Party is First NDC (Updated submission), filed 2021-12-28."
@@ -1292,7 +1300,7 @@
       },
       {
         "field": "derived.$reason",
-        "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+        "text": "No implementation gap is reported: the pledge is 17% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1644,10 +1652,10 @@
       "tables": [
         "ndc_targets"
       ],
-      "connection": "not-connected",
-      "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1683,7 +1691,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "0e09778e7230a2fb23364d487e91f4451307dcb54f99a88c98a817e41cf16d05",
+    "payload_sha256": "37f1d8087e67dca71e42371d0eeffa23fbcb610286e6f4ec0880d3bc3b92e09f",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1754,7 +1762,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
@@ -1766,10 +1774,10 @@
     ]
   },
   "$meta": {
-    "mode": "observations-only",
-    "snapshot": "OWID observations 1990-2024",
-    "basis": "NDC target not parsed",
-    "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
+    "mode": "document-parsed",
+    "snapshot": "First NDC · 2021",
+    "basis": "2030 business-as-usual",
+    "notice": "17% by 2030 was read out of the document by DS-06-NDC, not tabulated by it. The sentence it came from is on the record."
   },
   "$sources_index": [
     {

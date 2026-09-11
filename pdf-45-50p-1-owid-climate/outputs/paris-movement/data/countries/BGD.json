@@ -523,7 +523,7 @@
       "id": "DS-06-NDC",
       "name": "Bangladesh First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Bangladesh%20First/NDC_submission_20210826revised.pdf",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1894,8 +1894,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1931,7 +1931,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "1cf58e5277e7a63d0f700eb18547d514d1957723b83bcd757d449341cca692dc",
+    "payload_sha256": "4947e4ab8684012d6c1848e9c075782997f112a9b53b1454eb26338b85f33cf4",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -2002,7 +2002,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {

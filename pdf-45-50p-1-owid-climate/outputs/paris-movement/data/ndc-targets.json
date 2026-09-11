@@ -1,6 +1,6 @@
 {
   "$note": "Read by engine/sources/ds-06-ndc-docs.ts from the mirrored NDC documents. Committed so a build reproduces without a PDF extractor installed. Every accepted figure carries the sentence and page it came from; every refusal carries its reason.",
-  "extracted_at": "2026-09-10T21:09:45.434Z",
+  "extracted_at": "2026-09-11T13:49:09.691Z",
   "index_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
   "extractor": "ds-06-ndc-docs@1",
   "targets": [
@@ -93,16 +93,20 @@
       "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Andorra%20First/20200514-%20Actualització%20NDC.pdf",
       "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/AND_Andorra_First_NDC_Spanish.pdf",
       "submission_date": "2020-05-20",
-      "reduction_pct": null,
-      "basis": null,
+      "reduction_pct": 37,
+      "basis": "bau",
       "base_year": null,
-      "target_year": null,
+      "target_year": 2030,
       "unconditional_pct": null,
       "conditional_pct": null,
       "net_zero_year": null,
-      "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "page": 1,
+          "sentence": "Andorra fue una de las Partes pioneras en comunicar su INDC en 2015, según la cual el compromiso era reducir las emisiones de GEI en un 37% respecto al escenario Bussines as usual (BAU), 530,55 Gg CO2 eq.), para el año 2030."
+        }
+      ],
       "pages": 23,
       "text_sha256": "c3a4f143f6dd2e5278f980e63f4a4cef694874c6cf37999a4739b08fa9058d6b",
       "document_sha256": "0aab080c22d7e7ede742d67f84da54a52705ff05a0a548c65c65f427207a30ae",
@@ -421,7 +425,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "7995a91b84fce1970a67fae6817b52c7f8f71bb1be63ef8eed56940123474ddc",
@@ -467,7 +471,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "d8df1884487b964c104f124862cdc326f322e166dedca33a143b9f28208d2c4f",
@@ -780,10 +784,23 @@
       "target_year": null,
       "unconditional_pct": null,
       "conditional_pct": null,
-      "net_zero_year": null,
+      "net_zero_year": 2030,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 7,
+          "sentence": "En outre, l'inclusion de mesures supplémentaires dans le secteur de la Foresterie et autres Affectations des Terres pourrait porter l'ambition globale d'atténuation des GES à une réduction de 98,95 % des émissions totales en 2030 par rapport au scénario de référence, engageant résolument le pays ver"
+        },
+        {
+          "page": 7,
+          "sentence": "Cette contribution inconditionnelle se compose d'une réduction de 13,2 millions de tonnes des émissions de GES résultant de la mise en œuvre de mesures dans les secteurs de l'énergie, des déchets et de l'agriculture (correspondant à une réduction de 10,5% des émissions nationales totales de GES en 2"
+        },
+        {
+          "page": 8,
+          "sentence": "En effet, l'inclusion de onze (11) mesures conditionnelles supplémentaires dans la mise en œuvre des CDN pourrait porter l'ambition globale d'atténuation des GES à une réduction de 98,95% des émissions totales en 2030 par rapport au scénario de référence, engageant ainsi résolument le pays vers la n"
+        }
+      ],
+      "$reason": "the document states 7 different percentages on the same basis (10.5%, 19.6%, 20%, 25%, 28.25%, 30.41%, 98.95%) and does not label which is the pledge.",
       "pages": 46,
       "text_sha256": "6c681e98a4c885b7a78bdc1441a4085947ac7ee46ab1cdf364de6d437a587a08",
       "document_sha256": "6a52c3af0d38940b109dd8aac8ea746ce31284fffbb99865d5107ccc7d5cd404",
@@ -805,8 +822,13 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 2,
+          "sentence": "Atténuation La Contribution du Cameroun Type de contribution Objectif national à long terme sur les émissions de GES Année cible Année de référence Objectifs sectoriels principaux Ambition de la Contribution Equité de la Contribution Un objectif de réduction des émissions assorti d'actions d'atténua"
+        }
+      ],
+      "$reason": "the only figure found (32%) is one the document conditions on international support, and the unconditional figure it is paired with was not found.",
       "pages": 17,
       "text_sha256": "743274c6f87cc3b6a3b7a23e12f0283a6b0c87d42a444fc3c6d51b231845b00d",
       "document_sha256": "416dc7788c296006b13ca4ad89ea4ae7092bfdf5cc6aa400a3a9336cecc169e6",
@@ -820,16 +842,20 @@
       "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Democratic%20Republic%20of%20the%20Congo%20First/CDN%20Revisée%20de%20la%20RDC.pdf",
       "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/COD_Democratic-Republic-of-the-Congo_First_NDC_French.pdf",
       "submission_date": "2021-12-28",
-      "reduction_pct": null,
-      "basis": null,
+      "reduction_pct": 17,
+      "basis": "bau",
       "base_year": null,
-      "target_year": null,
+      "target_year": 2030,
       "unconditional_pct": null,
       "conditional_pct": null,
       "net_zero_year": null,
-      "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "page": 9,
+          "sentence": "Réduction des émissions des GES La RDC s'engage à réduire ses émissions de 17% d'ici 2030 par rapport aux émissions du scénario des émissions du statu quo (430 Mt CO2e), soit une réduction d'un peu plus de 70 Mt CO2e évités (Ministère de l'Environnement, 2009)."
+        }
+      ],
       "pages": 12,
       "text_sha256": "f430864597289fb3cca9b7491ad63d02a7adfc9d79c46ad5bf9319b26df96304",
       "document_sha256": "1897fce3a93881199263c7b8b1b632246d59eb727b843ad31ee2c1d14f4f195f",
@@ -851,8 +877,13 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 6,
+          "sentence": "Synthèse des scénarios La contribution de la République du Congo devrait permettre de réduire, dans un scénario bas-carbone conditionnel (dépendant de l'appui de la communauté internationale), les émissions de GES d'environ 48% en 2025 (soit 8MteqCO2), et 54% en 2035 (soit 19MteqCO2) par rapport au "
+        }
+      ],
+      "$reason": "the document states 2 different percentages on the same basis (48%, 54%) and does not label which is the pledge.",
       "pages": 15,
       "text_sha256": "7b6faec3c11760b285a98bac35df25f50d1bf1772675f64e36add1361a44dc30",
       "document_sha256": "616eafd0ba3b5f4f2ae69d0a8f25fcaeab136cfb61c92c56f6681a68ea6303d0",
@@ -917,16 +948,28 @@
       "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Comoros%20First/CDN_révisée_Comores_vf.pdf",
       "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/COM_Comoros_First_NDC_French.pdf",
       "submission_date": "2021-11-05",
-      "reduction_pct": null,
-      "basis": null,
+      "reduction_pct": 84,
+      "basis": "bau",
       "base_year": null,
-      "target_year": null,
+      "target_year": 2030,
       "unconditional_pct": null,
       "conditional_pct": null,
       "net_zero_year": null,
-      "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "page": 3,
+          "sentence": "L'ambition de l'Union des Comores est de réduire ses émissions de GES en 2030 de 84% environ par rapport aux émissions projetées pour la même année selon un scénario de référence."
+        },
+        {
+          "page": 5,
+          "sentence": "Atténuation 2.1 Contribution L'Union des Comores s'engage à réduire ses émissions de gaz à effet de serre de 84% à l'horizon 2030 par rapport aux émissions du scénario de référence de la même année."
+        },
+        {
+          "page": 6,
+          "sentence": "CPDN Comores Contribution en matière d'atténuation Réduction de GES Secteurs couverts Gaz à effet de serre couverts > L'Union des Comores s'est fixé comme cible une réduction de 84% en 2030 de ses émissions de gaz à effet de serre par rapport aux émissions du scénario de référence > Énergie > Indust"
+        }
+      ],
       "pages": 21,
       "text_sha256": "0abdccb0b03f89e392d24a4743f419f4532bcfeb40eedeb2ea6ca36487f08b91",
       "document_sha256": "bdcf2a1f0860dc6aa781d2a39aafbaa1f41508410a9fbf3cac120223a5217162",
@@ -1144,8 +1187,17 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 23,
+          "sentence": "del 4% en comparación a nivel de referencia al año 2025."
+        },
+        {
+          "page": 23,
+          "sentence": "Sin embargo, en el caso de contar con apoyo de la cooperación internacional para desarrollar las líneas de acción del escenario condicional de este sector, se contaría con un potencial adicional de mitigación de 16%, es decir, una reducción total de emisiones de GEI del 20% en comparación al nivel d"
+        }
+      ],
+      "$reason": "the document states 3 different percentages on the same basis (4%, 16%, 20%) and does not label which is the pledge.",
       "pages": 44,
       "text_sha256": "e69e522ddb27e56219c14b0b55e15b663c391a11a0834dd37b32e0f4128237e5",
       "document_sha256": "5b09921f640cb0d0b17b662768b98e7049f2ac196c44c0d771bccbbf418b8dc6",
@@ -1327,8 +1379,21 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 1,
+          "sentence": "Type d'engagement Périmètre GES Année de référence Période Niveau de réduction Crédits carbone Réduction par rapport à un scénario de développement non maîtrisé Ensemble des émissions de GES hors stockage de carbone dans la biomasse forestière CO2, CH4, N2O (HFC, PFC, SF6 et NF3 seront couverts ulté"
+        },
+        {
+          "page": 2,
+          "sentence": "République Gabonaise Cumulés, les engagements du Gabon doivent permettre de réduire les émissions de GES de plus de 1 500 000 GgCO2 sur 2010-2025, soit 65% par rapport au scénario tendanciel."
+        },
+        {
+          "page": 2,
+          "sentence": "200 000 180 000 160 000 GgCO2 140 000 120 000 100 000 80 000 60 000 40 000 20 000 Développement tendanciel 2025 2024 2022 2023 2020 2021 2018 2019 2016 2017 2015 2014 2012 2013 2011 2010 2008 2009 2006 2007 2005 2004 2002 2003 2000 2001 0 Développement maîtrisé En 2025, les gains représentent de l'o"
+        }
+      ],
+      "$reason": "the document states 7 different percentages on the same basis (8%, 16%, 31%, 50%, 62%, 65%, 68%) and does not label which is the pledge.",
       "pages": 14,
       "text_sha256": "2b43d67ce97b672a25ef55b9342bc55541d38c108f73c75bb8bd8ce41043057c",
       "document_sha256": "1553e1dd78fec9d74ad984986afba1fc60afe709169cbcbf31f13351624a87aa",
@@ -1489,16 +1554,20 @@
       "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Equatorial%20Guinea%20First/República%20de%20Guinea%20Ecuatorial_INDC.pdf",
       "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/GNQ_Equatorial-Guinea_First_NDC_Spanish.pdf",
       "submission_date": "2018-10-30",
-      "reduction_pct": null,
-      "basis": null,
-      "base_year": null,
-      "target_year": null,
+      "reduction_pct": 20,
+      "basis": "base-year",
+      "base_year": 2010,
+      "target_year": 2030,
       "unconditional_pct": null,
       "conditional_pct": null,
       "net_zero_year": null,
-      "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "page": 8,
+          "sentence": "En base a lo señalado anteriormente, la ambición de Guinea Ecuatorial es reducir en un 20% de sus emisiones para el año 2030, con respecto a los niveles de 2010; a fin de alcanzar una reducción de 50% para el año 2050."
+        }
+      ],
       "pages": 12,
       "text_sha256": "4b939e85d3a967093058e2a9e724cef1a11e11712dd4b84bfcfe48b12a0dfada",
       "document_sha256": "57ad529c8b0f2ffb72b9ae0958ee599d1eb5dc86bba910aa9d0ace3d34fcb5fe",
@@ -1589,8 +1658,21 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 27,
+          "sentence": "en la reducción del 16% de emisiones de GEI respecto al escenario \"business as usual\" (BaU) para el 2030."
+        },
+        {
+          "page": 28,
+          "sentence": "Desvío del escenario BaU Contribución en mitigación M1 Contribución ODS Objetivos NDC Honduras se compromete a una reducción de un 16% de las emisiones respecto al escenario \"business as usual\" (BaU) para el 2030 para todos los sectores sin incluir UTCUTS."
+        },
+        {
+          "page": 33,
+          "sentence": "Figura 1 - Emisiones de GEI en los escenarios BaU y de mitigación para el sector de Energía Año Fuente: CAEP (2021) Tabla 2 - Escenarios de mitigación para el sector de Energía Emisiones 2030 (Miles de toneladas métricas de CO2-eq) Reducción de emisiones calculada en 2030 en comparación con BAU (%) "
+        }
+      ],
+      "$reason": "the document states 2 different percentages on the same basis (16%, 20%) and does not label which is the pledge.",
       "pages": 68,
       "text_sha256": "b734c30a08a5b19fdca06391ce7116975f32a1d034d5619588433211b8141692",
       "document_sha256": "b85b869f295d83f00a262a2457ca2f976349a8941cf2f553fde8a60c932aa6d7",
@@ -1612,8 +1694,21 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 3,
+          "sentence": "Ce document fixe les orientations sur lesquelles reposeront les actions de l'Etat haïtien au cours des quinze prochaines années pour s'adapter aux changements climatiques et réduire de 31% ses émissions de Gaz à Effet de Serre (GES) par rapport à un scénario tendanciel, d'ici à 2030."
+        },
+        {
+          "page": 4,
+          "sentence": "Cible inconditionnelle Réduire de 5% les émissions de GES par rapport au scénario de référence Cible conditionnelle Réduire de 26% les émissions de GES par rapport au scénario de référence Besoins en financement 25.387 milliards USD (Atténuation: 8.773 milliards USD et pour la mise en œuvre Adaptati"
+        },
+        {
+          "page": 7,
+          "sentence": "CONTRIBUTION D'HAITI EN MATIÈRE D'ATTÉNUATION En matière d'atténuation, la République d'Haïti compte réduire ses émissions de 31% par rapport au scénario de développement tendanciel, représentant en valeur absolue 45.24 Mt éqCO2."
+        }
+      ],
+      "$reason": "the document states 3 different percentages on the same basis (5%, 26%, 31%) and does not label which is the pledge.",
       "pages": 15,
       "text_sha256": "bde9ea85ea7b904778fc7a26ae161006f169564bc9812e985b59880da252924c",
       "document_sha256": "e29f5b0cac13dcafc29f71270675a4cd3d0ee47300f5faf37f9467ae34f67a91",
@@ -1905,7 +2000,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "61ddd7c2ac2ed9ddcd832cc43f3d37493a7b8227ee29f87aa8cc57817d7e33db",
@@ -2465,7 +2560,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "d7cf5dfcb737aa7c5862f6342f7adafb3dc7c65487519b2273b6c6ef1f80a27c",
@@ -2793,7 +2888,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "7f0804c583c4d197b9db5ad90c93bb6b1450afe3deaa13f4fe9316dec3cf4f26",
@@ -2815,8 +2910,17 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 56,
+          "sentence": "Bosques y Cambio de uso de Suelo Incremento en la capacidad de absorción de Carbono en un 25% con respecto al Escenario de Referencia al 2030."
+        },
+        {
+          "page": 56,
+          "sentence": "Bosques y Cambio de uso de Suelo Incremento en la capacidad de absorción de Carbono en un 20% con respecto al Escenario de Referencia al 2030."
+        }
+      ],
+      "$reason": "the document states 2 different percentages on the same basis (20%, 25%) and does not label which is the pledge.",
       "pages": 71,
       "text_sha256": "3044cac0c98c59f0ecbcfcee067d28f562e3574f697a43846ab31e4e118a3442",
       "document_sha256": "74250240618dc558639151a26d1dc891f79e7c1b51041cd5db624bc7a3a1b493",
@@ -3018,7 +3122,7 @@
       "target_year": null,
       "unconditional_pct": null,
       "conditional_pct": null,
-      "net_zero_year": null,
+      "net_zero_year": 2050,
       "confidence": "low",
       "evidence": [],
       "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -3136,7 +3240,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "34a6542748c0ffa90ce4b9507a23ce36601a3aa4fe9f6a062afb5cc49fee29a1",
@@ -3158,8 +3262,21 @@
       "conditional_pct": null,
       "net_zero_year": null,
       "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "evidence": [
+        {
+          "page": 12,
+          "sentence": "Ostentando sus esfuerzos de mitigación a través de las buenas prácticas e innovaciones tecnológicas plausibles, el país asumió desde el 2015 y reafirma en la presente actualización, el compromiso de reducir en 20% las emisiones proyectadas en el escenario BAU (Business as usual) al 2030, correspondi"
+        },
+        {
+          "page": 76,
+          "sentence": "La meta de mitigación, consistente en reducir en 20% las emisiones proyectadas de los GEI en el escenario BAU al 2030 (estando condicionada y no condicionada en partes iguales), se extiende a todo el territorio nacional y los sectores de cuantificación de los INGEI según las guías metodológicas del "
+        },
+        {
+          "page": 99,
+          "sentence": "Por otro lado, considerando el estado de las medidas (conforme al Párrafo 94 del Anexo I de la Decisión 18/CMA.1), las medidas sectoriales priorizadas en los 5 Planes de Mitigación al Cambio Climático (incluyendo las del sector de UTCUTS) \"aprobadas y en aplicación\" permitirían al país lograr una re"
+        }
+      ],
+      "$reason": "the document states 4 different percentages on the same basis (1%, 2%, 20%, 55%) and does not label which is the pledge.",
       "pages": 125,
       "text_sha256": "a7140c826b207ed819e7d7cfd3e6ebf973ca5e9a940052332fbb3b87ffce5d8e",
       "document_sha256": "2b1bfeddc09d0f110ce7b51036681c6ca73c38a42456581ea202f30845d713f0",
@@ -3315,7 +3432,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "2dccaf5d6f25d7885bcc9d36d6fc9285419a9c5853755ad461b769fc23e581f6",
@@ -3338,7 +3455,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "$reason": "the document states targets on more than one basis or horizon (bau ·  · 2025; bau ·  · 2035); choosing between them would be a guess.",
       "pages": 47,
       "text_sha256": "b2e5ccea7d38bdca6f7879c1b53d3274c8da157f8d53df5844749c1a9a9ea3ad",
       "document_sha256": "754888d13f7c9d6ada7402fb9d6401b87646629fcaa095f1c6896dee6d2883c9",
@@ -3512,7 +3629,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "deac487c6ded13b5535d5b9882826f2fb1053fc8874c4ce622669b60b16831c6",
@@ -3727,7 +3844,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "01fe8abe891444ab9012a2d73e89af57586aaf5fd04e5c34975f4ac48461136d",
@@ -3796,7 +3913,7 @@
       "net_zero_year": null,
       "confidence": "low",
       "evidence": [],
-      "$reason": "the mirrored document has no extractable text layer: it is a scan: so nothing in it has been read.",
+      "$reason": "the mirrored document has no extractable text layer, it is a scan, so nothing in it has been read.",
       "pages": 0,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "508f43be4a5cc52ff9dcecda4289ab91a076614f284a208238534fd2fe83fce2",
@@ -4098,16 +4215,20 @@
       "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Venezuela%20(Bolivarian%20Republic%20of)%20First/Actualizacion%20NDC%20Venezuela.pdf",
       "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/VEN_Venezuela-Bolivarian-Republic-of_First_NDC_Spanish.pdf",
       "submission_date": "2021-11-09",
-      "reduction_pct": null,
-      "basis": null,
+      "reduction_pct": 20,
+      "basis": "bau",
       "base_year": null,
-      "target_year": null,
+      "target_year": 2030,
       "unconditional_pct": null,
       "conditional_pct": null,
       "net_zero_year": null,
-      "confidence": "low",
-      "evidence": [],
-      "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "page": 6,
+          "sentence": "El Plan Nacional de Mitigación apuntará a la reducción de las emisiones del país en al menos un 20% para 2030 en relación al escenario inercial, entendido este como un escenario hipotético en el cual no se implementa el plan."
+        }
+      ],
       "pages": 40,
       "text_sha256": "dbc0dfc3468bf94dc3667b64db5d58d9961b3a66a578e8c9e3cda4525dd667be",
       "document_sha256": "699ff584e3d867799c96bf447cab8d0171806d8602334011f534f839fab7e891",

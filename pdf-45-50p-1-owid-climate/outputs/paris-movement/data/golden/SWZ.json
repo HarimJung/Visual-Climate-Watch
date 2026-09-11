@@ -504,7 +504,7 @@
       "id": "DS-06-NDC",
       "name": "Eswatini First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Eswatini%20First/Eswatini%27s%20Revised%20NDC%2012%20Oct%202021.docx",
-      "retrieved_at": "2026-09-10"
+      "retrieved_at": "2026-09-11"
     }
   },
   "finance_flows": {
@@ -1490,8 +1490,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-10T21:09:45.434Z",
-      "retrieved_at": "2026-09-10",
+      "last_run": "2026-09-11T13:49:09.691Z",
+      "retrieved_at": "2026-09-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1527,7 +1527,7 @@
   "provenance": {
     "run_id": "def9168dcdeabc0ddd8e3ba1af696904",
     "built_at": "2026-09-10T20:12:43.405Z",
-    "payload_sha256": "4783c1e9e1c4dddec64d2eccfb2de24328e9117a35e733c9278f86cc2febd2fc",
+    "payload_sha256": "658e6545fd6037cd6143ff7e145f9009b19b5acb158fe2215bf7c0409b2776f0",
     "inputs": [
       {
         "source_id": "DS-35",
@@ -1598,7 +1598,7 @@
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-10T21:09:45.434Z",
+        "retrieved_at": "2026-09-11T13:49:09.691Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
