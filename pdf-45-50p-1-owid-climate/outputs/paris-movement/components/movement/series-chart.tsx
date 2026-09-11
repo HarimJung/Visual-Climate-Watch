@@ -19,11 +19,10 @@ export type Mark={id:'target'|'bau';points:{year:number;value:number}[]};
 // The categorical set validated for this paper. A source not in it takes ink,
 // never a fifth hue.
 const HUE:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)'};
-const hue=(id:string)=>HUE[id]??'var(--ink-3)';
-
 const W=640,H=300,PAD={l:52,r:16,t:14,b:34};
 
-export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=false}:{lines:Line[];marks?:Mark[];unit?:string;compact?:boolean}){
+export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=false,hues}:{lines:Line[];marks?:Mark[];unit?:string;compact?:boolean;hues?:Record<string,string>}){
+ const hue=(id:string)=>hues?.[id]??HUE[id]??'var(--ink-3)';
  const all=[...lines.flatMap(l=>l.points),...marks.flatMap(m=>m.points)];
  if(!all.length)return null;
  const years=all.map(p=>p.year),vals=all.map(p=>p.value);
@@ -59,10 +58,17 @@ export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=fals
    {(()=>{const ends=lines.map(l=>{const p=last(l);return p?{l,p,y:py(p.value)}:null}).filter((e):e is {l:Line;p:{year:number;value:number};y:number}=>!!e).sort((a,b)=>a.y-b.y);
      for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<13)ends[i].y=ends[i-1].y+13;
      return ends.map(({l,p,y})=><g key={l.id+'-end'}><circle cx={px(p.year)} cy={py(p.value)} r="4" fill={hue(l.id)} stroke="var(--paper-raised)" strokeWidth="2"/><text className="sc-end" x={px(p.year)+8} y={y} dy="0.35em" fill={hue(l.id)}>{l.id}</text></g>);})()}
-   {marks.map(m=>m.points.map((p,i)=><g key={m.id+i}>
-    <circle cx={px(p.year)} cy={py(p.value)} r="5" fill={m.id==='target'?'var(--paper-raised)':'none'} stroke={m.id==='target'?'var(--ndc)':'var(--ink-3)'} strokeWidth="2" strokeDasharray={m.id==='bau'?'2 2':undefined}/>
-    <text className="sc-mark" x={px(p.year)} y={py(p.value)-10} textAnchor="middle">{m.id==='target'?`target ${fmt(p.value,0)}`:`BAU ${fmt(p.value,0)}`}</text>
-   </g>))}
+   {/* Mark labels sit above their point, and step up if an end label or another
+       mark label is already there — the compact sheet chart had "target 90"
+       printing over a source's end label. */}
+   {(()=>{const taken=lines.map(l=>{const p=last(l);return p?{x:px(p.year),y:py(p.value)}:null}).filter((e):e is {x:number;y:number}=>!!e);
+     return marks.flatMap(m=>m.points.map((p,i)=>{let y=py(p.value)-10;const x=px(p.year);
+      for(let k=0;k<6;k++){const hit=taken.some(t=>Math.abs(t.x-x)<46&&Math.abs(t.y-y)<12);if(!hit)break;y-=12}
+      taken.push({x,y});
+      return <g key={m.id+i}>
+       <circle cx={x} cy={py(p.value)} r="5" fill={m.id==='target'?'var(--paper-raised)':'none'} stroke={m.id==='target'?'var(--ndc)':'var(--ink-3)'} strokeWidth="2" strokeDasharray={m.id==='bau'?'2 2':undefined}/>
+       <text className="sc-mark" x={x} y={y} textAnchor="middle">{m.id==='target'?`target ${fmt(p.value,0)}`:`BAU ${fmt(p.value,0)}`}</text>
+      </g>}));})()}
   </svg>
   <figcaption className="sc-key">
    {lines.map(l=><span key={l.id}><i style={{background:hue(l.id)}}/><b>{l.id}</b>{l.scope&&<small>{l.scope}</small>}</span>)}

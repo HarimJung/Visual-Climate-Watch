@@ -1,18 +1,18 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {ArrowLeft,ArrowUpRight,Check,Minus} from 'lucide-react';
-import {LineChart,Line,BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,Legend,ResponsiveContainer} from 'recharts';
 import {clauseFor,fmt,jewelNames,observedYears,validateCountry,type CountryData,type Source} from '@/lib/climate';
 import SectionRail from '@/components/record/section-rail';
 import Peers from '@/components/record/peers';
 import SeriesChart from '@/components/movement/series-chart';
+import Bars from '@/components/movement/bars';
 
 // One colour per inventory source, held steady across every chart on the page,
 // because R3 keeps the sources apart and the reader has to be able to tell them
 // apart too.
-const SOURCE_COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)','DS-06-NDC':'#a6432f'};
+const SOURCE_COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)','DS-06-NDC':'var(--ink-3)'};
 const colorOf=(id:string)=>SOURCE_COLOR[id]??'var(--ink-3)';
-const SCENARIO_COLOR:Record<string,string>={'SSP1-2.6':'var(--inv)','SSP2-4.5':'var(--ndc)','SSP3-7.0':'var(--fin)','SSP5-8.5':'#a6432f'};
+const SCENARIO_COLOR:Record<string,string>={'SSP1-2.6':'var(--inv)','SSP2-4.5':'var(--ndc)','SSP3-7.0':'var(--fin)','SSP5-8.5':'var(--btr)'};
 const SECTIONS=[['emissions','01','Emissions'],['pledge','02','The pledge'],['transparency','03','Transparency'],['vulnerability','04','Vulnerability'],['finance','05','Finance received'],['projections','06','Projections'],['assessment','07','The assessment'],['provenance','08','Provenance']] as const;
 /** Each chapter wears the hue of the evidence it is made of. */
 const TONE:Record<string,string>={emissions:'inv',pledge:'',transparency:'btr',vulnerability:'warn',finance:'fin',projections:'inv',assessment:'',provenance:''};
@@ -36,8 +36,6 @@ function Cite({source,extra}:{source?:Source;extra?:string}){
 function Blank({what,why}:{what:string;why:string}){
  return <div className="rec-blank"><Token state="unknown" label={what}/><p>{why}</p></div>;
 }
-const axis={stroke:'var(--ink-4)',fontSize:11,fontFamily:'var(--font-mono)'} as const;
-const tip={background:'var(--paper-raised)',border:'1px solid var(--rule-strong)',color:'var(--ink)',borderRadius:3,fontSize:12.5,fontFamily:'var(--font-sans)'} as const;
 
 // `initial` is the record the server already resolved. When it is there the
 // page is complete in the HTML, quotable, crawlable, printable, and the fetch
@@ -70,7 +68,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
  // Each bar carries the colour of the source that reported it, as a per-datum
  // fill, so two sources on one chart never read as two halves of one figure.
  const bars=(list:{value_mtco2e:number|null;source_id:string}[],key:'gas'|'sector')=>
-  list.filter(x=>x.value_mtco2e!=null).map(x=>({name:(x as never as Record<string,string>)[key],value:x.value_mtco2e as number,source_id:x.source_id,fill:colorOf(x.source_id)}))
+  list.filter(x=>x.value_mtco2e!=null).map(x=>({name:(x as never as Record<string,string>)[key],value:x.value_mtco2e as number,source_id:x.source_id}))
    .sort((a,b)=>Math.abs(b.value)-Math.abs(a.value));
  const confirmed=Object.values(btr.components).filter(v=>v.state==='observed').length;
  // Two sentences is a reading; the whole generated paragraph is a document, and
@@ -130,23 +128,11 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
     <div className="rec-split">
      <div>
       <h3>By gas <small>latest year</small></h3>
-      {ep?.by_gas.length?<ResponsiveContainer width="100%" height={Math.max(120,bars(ep.by_gas,'gas').length*34)}>
-       <BarChart data={bars(ep.by_gas,'gas')} layout="vertical" margin={{left:0,right:24}}>
-        <XAxis type="number" tick={axis} tickLine={false} axisLine={false}/>
-        <YAxis type="category" dataKey="name" tick={axis} tickLine={false} axisLine={false} width={82}/>
-        <Tooltip contentStyle={tip} cursor={{fill:'var(--paper-sunken)'}}/>
-        <Bar dataKey="value" radius={1} isAnimationActive={false}/>
-       </BarChart></ResponsiveContainer>:<Blank what="No gas split" why="No source reported a per-gas breakdown for this country."/>}
+      {ep?.by_gas.length?<Bars bars={bars(ep.by_gas,'gas')}/>:<Blank what="No gas split" why="No source reported a per-gas breakdown for this country."/>}
      </div>
      <div>
       <h3>By sector <small>latest year</small></h3>
-      {ep?.by_sector.length?<ResponsiveContainer width="100%" height={Math.max(120,bars(ep.by_sector,'sector').length*30)}>
-       <BarChart data={bars(ep.by_sector,'sector')} layout="vertical" margin={{left:0,right:24}}>
-        <XAxis type="number" tick={axis} tickLine={false} axisLine={false}/>
-        <YAxis type="category" dataKey="name" tick={axis} tickLine={false} axisLine={false} width={110}/>
-        <Tooltip contentStyle={tip} cursor={{fill:'var(--paper-sunken)'}}/>
-        <Bar dataKey="value" radius={1} isAnimationActive={false}/>
-       </BarChart></ResponsiveContainer>:<Blank what="No sector split" why="No source reported a per-sector breakdown for this country."/>}
+      {ep?.by_sector.length?<Bars bars={bars(ep.by_sector,'sector')}/>:<Blank what="No sector split" why="No source reported a per-sector breakdown for this country."/>}
      </div>
     </div>
     <p className="rec-note">A bar is coloured by the source that reported it. Two sources on the same chart are two measurements, not two halves of one.</p>
@@ -260,16 +246,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
     <Head id="projections" title="Projections" lead="CMIP6 scenarios. Models, not observations."/>{projRows.length?<>
      <p className="rec-note">CMIP6 ensemble medians for {pr?.variable==='tas'?'mean surface temperature':pr?.variable}, as an anomaly against {pr?.baseline_period}{pr?.baseline_c!=null?` (${fmt(pr.baseline_c,2)}°C)`:''}. These are model runs, not observations.</p>
      <div className="rec-chart">
-      <ResponsiveContainer width="100%" height={280}>
-       <LineChart data={projRows} margin={{top:8,right:12,left:0,bottom:0}}>
-        <CartesianGrid stroke="var(--rule)" strokeDasharray="2 4" vertical={false}/>
-        <XAxis dataKey="period" tick={axis} tickLine={false} axisLine={{stroke:'var(--rule-strong)'}}/>
-        <YAxis tick={axis} tickLine={false} axisLine={false} width={54} label={{value:'°C anomaly',angle:-90,position:'insideLeft',style:{...axis,fill:'var(--ink-4)'}}}/>
-        <Tooltip contentStyle={tip} labelStyle={{fontFamily:'var(--font-mono)',fontSize:11}}/>
-        <Legend wrapperStyle={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'.04em'}}/>
-        {scenarios.map(s=><Line key={s} type="monotone" dataKey={s} stroke={SCENARIO_COLOR[s]??'var(--ink-3)'} strokeWidth={1.6} dot={{r:2.5}} isAnimationActive={false}/>)}
-       </LineChart>
-      </ResponsiveContainer>
+      <SeriesChart unit="°C anomaly" hues={SCENARIO_COLOR} lines={scenarios.map(sc=>({id:sc,points:(pr?.scenarios??[]).filter(x=>x.scenario===sc&&x.anomaly!=null&&Number.isFinite(parseInt(x.period))).map(x=>({year:parseInt(x.period),value:x.anomaly as number}))}))}/>
      </div>
      <p className="rec-note">{pr?.scenarios[0]?.model} · one line per shared socio-economic pathway.</p>
     </>:<Blank what="No projections" why="The World Bank's CMIP6 climatology does not cover this territory."/>}

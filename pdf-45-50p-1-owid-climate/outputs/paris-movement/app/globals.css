@@ -1431,3 +1431,12 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .sc-unit{margin-left:auto;font-family:var(--font-mono);color:var(--ink-4)}
 .evidence-sheet .sc{margin-top:var(--s3)}
 .sc-key b{white-space:nowrap;font:600 var(--t1) var(--font-mono);letter-spacing:.04em;color:var(--ink-2)}
+
+/* ── hand-drawn bars ───────────────────────────────────────────────────────── */
+.hb{margin:var(--s3) 0}
+.hb-rows{list-style:none;display:flex;flex-direction:column;gap:6px}
+.hb-row{display:grid;grid-template-columns:minmax(90px,150px) minmax(0,1fr) 64px;align-items:center;gap:var(--s3)}
+.hb-name{font-size:var(--t1);color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-track{display:block;height:12px;background:var(--paper-sunken)}
+.hb-track i{display:block;height:100%;transform-origin:left}
+.hb-val{text-align:right;font:var(--t1) var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
