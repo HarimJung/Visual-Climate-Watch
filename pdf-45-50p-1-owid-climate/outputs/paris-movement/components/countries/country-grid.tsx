@@ -1,6 +1,6 @@
 'use client';
 import {useMemo,useState} from 'react';
-import {ArrowUpRight} from 'lucide-react';
+import {ArrowUpRight,ArrowRight} from 'lucide-react';
 import {fmt,type RosterRow} from '@/lib/climate';
 import {StaticDial} from '@/components/movement/static-dial';
 
@@ -71,12 +71,11 @@ export default function CountryGrid({roster,note}:{roster:RosterRow[];note?:stri
   {shown.length===0
    ?<div className="rec-blank"><span className="state-token unknown"><i/>No match</span><p>Nothing in the roster matches “{q}”{region?` in ${region}`:''}.</p></div>
    :<div className="tray-grid">{shown.map(c=>
-    <a className="tray-card" key={c.iso3} href={`/country/${c.iso3}`}>
+    <article className="tray-card" key={c.iso3}>
      <div className="tray-meta"><span>{c.iso3}</span><span>{c.edition}</span></div>
      <StaticDial data={{ndc:{reduction_pct:c.reduction_pct},btr:{components:c.btr_components??{}},emissions_profile:{total_mtco2e:c.total_mtco2e??null,latest_year:c.latest_year??null},observed_years:c.observed_years??null}}/>
      <div className="tray-country">
-      <div><h2>{c.name_en}</h2><p>{[c.region,c.income_group].filter(Boolean).join(' · ')||'Not classified by the World Bank register'}</p></div>
-      <ArrowUpRight size={25}/>
+      <div><h2><a href={`/country/${c.iso3}`}>{c.name_en}</a></h2><p>{[c.region,c.income_group].filter(Boolean).join(' · ')||'Not classified by the World Bank register'}</p></div>
      </div>
      <dl className="tray-stats">
       <div><dt>Observed</dt><dd>{c.observed_years??'-'}<small>yr</small></dd></div>
@@ -86,9 +85,12 @@ export default function CountryGrid({roster,note}:{roster:RosterRow[];note?:stri
      </dl>
      <div className="tray-reading">
       <span>{c.reduction_pct==null?'No target parsed':`${fmt(c.reduction_pct)}% pledged`}</span>
-      <span>Read the record</span>
      </div>
-    </a>)}
+     <div className="tray-actions">
+      <a className="tray-go" href={`/?country=${c.iso3}`}>Assemble it in 3D<ArrowRight size={13}/></a>
+      <a className="tray-go" href={`/country/${c.iso3}`}>Read the record<ArrowUpRight size={13}/></a>
+     </div>
+    </article>)}
    </div>}
  </>;
 }

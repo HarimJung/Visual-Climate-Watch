@@ -1314,3 +1314,21 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
  .unk-gap>.rec-note{grid-column:2;grid-row:1/span 3;margin:0;font-size:var(--t1);line-height:1.65}
  .unk-gap>.record-action{grid-row:4}
 }
+
+/* ── the instrument, from the reader's side ───────────────────────────────── */
+/* The country is the subject of the whole page; the control that changes it
+   was 38px and labelled "Document snapshot". */
+.workspace-right{font-size:var(--t2);color:var(--ink-2)}
+.country-picker{height:44px!important;min-width:240px!important;font:600 var(--t3) var(--font-sans)!important;
+ color:var(--ink)!important;border-color:var(--ink)!important;border-radius:3px!important}
+.country-picker:hover{border-color:var(--ndc)!important;color:var(--ndc)!important}
+.stage-more{margin:0 var(--gutter);border-top:1px solid var(--rule)}
+.stage-more>summary{padding-block:var(--s2)}
+/* the collection: two ways out of a card, and neither is the whole card */
+.tray-actions{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--rule)}
+.tray-go{display:inline-flex;align-items:center;gap:6px;font:500 var(--t1) var(--font-sans);color:var(--ink-2);
+ text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:4px;
+ transition:color var(--dur) var(--ease),text-decoration-color var(--dur) var(--ease)}
+.tray-go:hover{color:var(--ndc);text-decoration-color:var(--ndc)}
+.tray-card h2 a{color:inherit}
+.tray-card h2 a:hover{color:var(--ndc)}

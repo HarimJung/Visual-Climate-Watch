@@ -116,7 +116,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  let layout=createExplosionLayout(assemblies,1);
  const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableZoom=false;renderer.domElement.style.touchAction='pan-y';orbit.enableDamping=true;orbit.dampingFactor=.085;orbit.autoRotateSpeed=.65;orbit.minDistance=3;orbit.maxDistance=100;orbit.target.set(0,0,.25);
  camera.position.set(5.2,-16,10.8);camera.lookAt(orbit.target);orbit.update();
- let disposed=false,raf=0,last=performance.now(),amount=0,gearTime=0,lastPhase=-1,lastPercent=-1,lastReplay=current.current.replay,lastInput=current.current.inputToken;
+ let disposed=false,raf=0,last=performance.now(),amount=0,gearTime=0,lastPhase=-1,lastPercent=-1,lastReplay=-1,lastInput=current.current.inputToken;
  let dirty=true,fitDirty=true,manualCamera=false,lastKey='',lastProgress=current.current.progress,lastExplode=current.current.explode,lastPaused=current.current.paused;
  const replay=new AssemblyReplay();const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const pos=new T.Vector3(),pointer=new T.Vector2(),ray=new T.Raycaster(),tap=new PointerTap();
