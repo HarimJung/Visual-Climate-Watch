@@ -61,6 +61,11 @@ export default defineConfig(async ({ command }) => {
           // line is what makes them say visualclimate.org instead of a
           // workers.dev subdomain. The zone has to exist in the Cloudflare
           // account or `wrangler deploy` stops here rather than half-way.
+          // Adding routes makes wrangler switch the workers.dev address off by
+          // default, and a custom domain that cannot attach (no zone in the
+          // account yet) then leaves the site with no address at all: one
+          // deploy did exactly that. The subdomain stays on regardless.
+          workers_dev: true,
           routes: [
             { pattern: 'www.visualclimate.org', custom_domain: true },
             // The apex only exists to redirect: see proxy.ts.
