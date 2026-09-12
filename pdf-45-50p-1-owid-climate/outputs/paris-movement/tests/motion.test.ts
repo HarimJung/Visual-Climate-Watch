@@ -43,3 +43,14 @@ void test('one-shot narration remains open; pause, cancel, loop and reduced moti
  replay.cancel();assert.equal(replay.stage,'idle');
  replay.start(true);assert.equal(replay.stage,'hold');assert.equal(replay.target,1);
 });
+
+void test('a compressed spindle still seats every part exactly at home',()=>{
+ // The phone stage frames the whole spread, so scene.tsx shortens the lift
+ // rather than letting fit() pull back until the movement is a speck.
+ for(let layer=0;layer<5;layer++){
+  assert.equal(verticalOffset(0,layer,null,.6),0,'a shortened lift must still rest at zero');
+  assert.equal(verticalOffset(1,layer,null,.6),LAYER_LIFTS[layer]*.6);
+  assert.equal(verticalOffset(1,layer,null,1),LAYER_LIFTS[layer],'the default must stay the desktop spread');
+ }
+ assert.ok(verticalOffset(.08,4,'upper',.6)<verticalOffset(.08,4,'upper'),'the lid rides the same scale');
+});

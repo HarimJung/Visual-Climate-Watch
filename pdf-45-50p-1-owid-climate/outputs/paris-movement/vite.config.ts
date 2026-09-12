@@ -56,6 +56,16 @@ export default defineConfig(async ({ command }) => {
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
         config: {
           ...localBindingConfig,
+          // The site's own name. Every canonical and og:url is built from the
+          // host that served the request (lib/record.ts origin()), so this one
+          // line is what makes them say visualclimate.org instead of a
+          // workers.dev subdomain. The zone has to exist in the Cloudflare
+          // account or `wrangler deploy` stops here rather than half-way.
+          routes: [
+            { pattern: 'www.visualclimate.org', custom_domain: true },
+            // The apex only exists to redirect: see proxy.ts.
+            { pattern: 'visualclimate.org', custom_domain: true },
+          ],
           // Lets the worker read its own staged data files; see lib/record.ts.
           assets: { binding: 'ASSETS' },
           // The combined local launcher supplies this binding. Never bake a
