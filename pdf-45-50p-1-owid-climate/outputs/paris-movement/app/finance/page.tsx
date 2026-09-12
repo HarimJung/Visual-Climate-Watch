@@ -142,7 +142,7 @@ function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
     <div className="rec-shell">
 
     <section className="rec-section" id="gradient">
-     <div className="sec-head fin"><h2>The gradient</h2><p>Four equal groups by vulnerability. Approvals rise with need; payments do not.</p></div>
+     <div className="sec-head fin"><h2>The gradient</h2><p>Four equal groups by vulnerability. Approvals fall as need rises, and payments fall with them.</p></div>
      <details className="disc"><summary>How to read this</summary><div className="disc-body">The {h.plottable} plotted countries split into four equal groups by vulnerability, quartiles, so the cut is arithmetic rather than editorial. Approvals fall in step with need across all four bands, from {usd(v.bands[0].approved_usd)} to {usd(v.bands[3].approved_usd)}. Disbursement per country is not a clean staircase, the second quartile receives the most, but the most vulnerable quartile receives the least of any band, and it does so while carrying the most countries with a figure actually on the books ({v.bands[3].disbursed_read} of {v.bands[3].countries}), so this is not an artefact of thinner coverage.</div></details>
      <div className="fin-bands">
       {v.bands.map(b=>{
@@ -159,7 +159,7 @@ function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
        </div>;
       })}
      </div>
-     <p className="rec-note">Bars are disbursement per country with a read figure, so a band is never averaged over countries whose payment was never recorded. Readiness falls as vulnerability rises, and that is the mechanism rather than a coincidence: the fund pays against proposals, and the countries scored least able to prepare and absorb them are the ones scored most exposed. This page states the association it can measure. It does not claim the fund caused it, and no country here is ranked or graded.</p>
+     <p className="rec-note">Bars are disbursement per country with a read figure, so a band is never averaged over countries whose payment was never recorded. Readiness falls as vulnerability rises, and a mechanism consistent with that is this: the fund pays against proposals, and the countries scored least able to prepare and absorb them are the ones scored most exposed. This page states the association it can measure. It does not claim the fund caused it, and no country here is ranked or graded.</p>
     </section>
 
     <section className="rec-section" id="plot">

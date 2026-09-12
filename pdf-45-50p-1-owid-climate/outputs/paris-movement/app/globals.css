@@ -1028,21 +1028,37 @@ body::after{
 .eyebrow{font-weight:500;letter-spacing:.2em}
 
 /* ── the claim: what this is, before the instrument is beautiful at you ───── */
-.claim{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,56px);
- align-items:end;padding:clamp(28px,3.4vw,48px) var(--gutter) clamp(22px,2.6vw,34px);
+.claim{display:grid;grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);
+ align-items:start;padding:clamp(28px,3.4vw,48px) var(--gutter) clamp(22px,2.6vw,34px);
  border-bottom:1px solid var(--rule)}
 .claim-text h1{font-family:var(--font-display);font-weight:800;font-stretch:104%;
  font-size:clamp(27px,3.5vw,46px);line-height:1.04;letter-spacing:-.025em;text-wrap:balance;color:var(--ink)}
 .claim-text h1 em{font-style:normal;color:var(--ndc);
  background:linear-gradient(var(--ndc),var(--ndc)) 0 92%/100% 2px no-repeat}
 .claim-text p{margin-top:var(--s3);max-width:62ch;font-size:var(--t3);line-height:1.6;color:var(--ink-3)}
-.claim-figs{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s6);margin:0}
+.claim-text p.claim-why{font-size:var(--t2);color:var(--ink-3)}
+.claim-figs{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s6);margin:0;
+ padding-top:var(--s4);border-top:1px solid var(--rule)}
+.claim-denom{margin:0;max-width:96ch;font-size:var(--t1);line-height:1.55;color:var(--ink-3)}
 .claim-figs div{display:flex;flex-direction:column-reverse;gap:5px;min-width:0}
 .claim-figs dt{font:var(--t0) var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}
 .claim-figs dd{margin:0;font-family:var(--font-display);font-weight:800;font-stretch:96%;
  font-size:clamp(24px,2.6vw,34px);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
 .claim-figs dd span{font-size:.5em;font-weight:600;color:var(--ink-4);letter-spacing:0}
 .claim-ways{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s2)}
+.read-how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,34px);
+ margin:0;padding:clamp(16px,1.9vw,24px) var(--gutter);list-style:none;counter-reset:how;
+ background:var(--paper-raised);border-bottom:1px solid var(--rule)}
+.read-how li{counter-increment:how;position:relative;padding-left:28px;
+ font-size:var(--t2);line-height:1.55;color:var(--ink-3);text-wrap:pretty}
+.read-how li:before{content:counter(how,decimal-leading-zero);position:absolute;left:0;top:3px;
+ font:var(--t0) var(--font-mono);letter-spacing:.1em;color:var(--ndc)}
+.read-how b{color:var(--ink);font-weight:600}
+@media(max-width:860px){.read-how{grid-template-columns:1fr;gap:var(--s3)}}
+/* The registry's current filing, said at reading size beside the headline. */
+.stale-flag{margin-top:var(--s3);padding-left:var(--s3);border-left:2px solid var(--warn);
+ font-size:var(--t2);line-height:1.5;color:var(--ink-2);max-width:54ch}
+.stale-flag b{color:var(--ink);font-weight:600}
 .way{display:inline-flex;align-items:center;gap:var(--s2);min-height:42px;padding:0 var(--s4);
  border:1px solid var(--rule-strong);background:var(--paper-raised);
  font:500 var(--t2) var(--font-sans);color:var(--ink-2);

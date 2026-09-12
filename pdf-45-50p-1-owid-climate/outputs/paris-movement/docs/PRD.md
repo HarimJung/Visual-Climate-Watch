@@ -6,6 +6,12 @@
 
 > 이 문서의 모든 수치는 `npm run engine:census` 한 줄로 재생산된다. 손으로 옮겨
 > 적은 숫자는 하나도 없다. 재생산되지 않는 수치를 이 문서에 쓰지 마라.
+>
+> **그 약속을 테스트가 지킨다.** census에서 나온 숫자는 모두
+> `[값](../data/census.json#키)` 형태로 census 파일의 그 키를 가리킨다.
+> `tests/prd-census.test.ts`가 링크마다 값을 대조하고, 하나라도 어긋나면
+> `npm test`가 깨진다. 링크 없는 숫자는 census에서 온 수치가 아니다
+> (목표치, 설계 상한, 외부 사실).
 
 ---
 
@@ -42,7 +48,7 @@
 
 | 항목 | 값 |
 |---|---:|
-| 국가·영토 레코드 | 218 |
+| 국가·영토 레코드 | [218](../data/census.json#countries) |
 | 총 관측점 | 11,670 |
 | 관측 2년 이상 | 218 / 218 |
 | 배출 프로파일 보유 | 218 / 218 |
@@ -59,31 +65,33 @@
 
 | 항목 | 값 |
 |---|---:|
-| NDC 등록부에 현행 제출본 있음 | 193 / 218 |
-| 등록부가 "현행 없음"을 명시 | 2 / 218 |
-| NDC 문서를 실제로 확보 | 195 (168 + EU 공동 NDC가 덮는 27) |
-| **수치를 읽어낸 문서** | **18** |
-| 읽기를 거절한 문서 | 150 |
-| 문서가 절대 톤수까지 명시 | 1 |
+| NDC 등록부에 현행 제출본 있음 | [193](../data/census.json#ndc_registry_active) / 218 |
+| 등록부가 "현행 없음"을 명시 | [2](../data/census.json#ndc_registry_none_active) / 218 |
+| NDC 문서를 실제로 확보 | [195](../data/census.json#ndc_documents_held) (168 + EU 공동 NDC가 덮는 27) |
+| **수치를 읽어낸 문서** | **[50](../data/census.json#ndc_document_accepted)** |
+| 읽기를 거절한 문서 | [145](../data/census.json#ndc_target_refused) |
+| 문서가 절대 톤수까지 명시 | [1](../data/census.json#ndc_target_tonnage_stated) |
 
 거절 사유 분포 — 이것이 제품의 콘텐츠다:
 
 | 사유 | 건수 |
 |---|---:|
-| 조건에 맞는 문장이 없음 (궤적형·절대량형 목표) | 95 |
-| 같은 기준에 서로 다른 퍼센트가 여러 개, 라벨 없음 | 27 |
-| 기준연도와 BAU 등 기준·시계가 둘 이상 | 13 |
-| 텍스트 레이어 없음 (스캔 문서) | 10 |
-| 조건부 수치만 있고 무조건부 짝을 못 찾음 | 3 |
-| 문서 내려받기 실패 | 2 |
+| 조건에 맞는 문장이 없음 (궤적형·절대량형 목표) | [80](../data/census.json#refusals_by_family.doc.no-sentence) |
+| 같은 기준에 서로 다른 퍼센트가 여러 개, 라벨 없음 | [35](../data/census.json#refusals_by_family.doc.unlabelled-percentages) |
+| 기준연도와 BAU 등 기준·시계가 둘 이상 | [14](../data/census.json#refusals_by_family.doc.multiple-bases) |
+| 텍스트 레이어 없음 (스캔 문서) | [10](../data/census.json#refusals_by_family.doc.no-text-layer) |
+| 조건부 수치만 있고 무조건부 짝을 못 찾음 | [4](../data/census.json#refusals_by_family.doc.conditional-only) |
+| 문서 내려받기 실패 | [2](../data/census.json#refusals_by_family.doc.unreadable) |
+
+합계는 거절한 문서 수와 같다. 이 여섯 줄이 문서 읽기의 전부다.
 
 ### 1.3 투명성 (기능2의 재료)
 
 | 항목 | 값 |
 |---|---:|
-| BTR1 제출이 확인된 당사국 | 134 |
-| 8개 구성요소 소켓 | 1,744 |
-| **첨부 파일명으로 근거가 확인된 소켓** | **328 (18.8%)** |
+| BTR1 제출이 확인된 당사국 | [134](../data/census.json#btr_filing_found) |
+| 8개 구성요소 소켓 | [1,744](../data/census.json#btr_component_sockets) |
+| **첨부 파일명으로 근거가 확인된 소켓** | **[328](../data/census.json#btr_components_evidenced)** (18.8%) |
 
 구성요소별: `crt` 105 · `ctf` 100 · `nir` 84 · `ndc_track` 19 · `finance` 13 ·
 `redd_plus` 7 · **`adaptation` 0 · `article6` 0**.
@@ -96,10 +104,10 @@
 
 | 항목 | 값 |
 |---|---:|
-| GCF 재원이 도달한 국가 | 136 |
-| 승인액 합계 | $21.36bn |
-| 단일국 프로젝트로 귀속 가능한 집행액 | $4.55bn |
-| 집행액이 귀속된 국가 | 100 |
+| GCF 재원이 도달한 국가 | [136](../data/census.json#finance_countries) |
+| 승인액 합계 | [$21.15bn](../data/census.json#finance_total_approved_usd) |
+| 단일국 프로젝트로 귀속 가능한 집행액 | [$4.55bn](../data/census.json#finance_total_disbursed_usd) |
+| 집행액이 귀속된 국가 | [100](../data/census.json#finance_disbursement_attributed) |
 
 다국가 프로젝트의 집행액은 **세지되 나누지 않는다**. GCF가 국가별 분할을
 공표하지 않으므로 안분은 아무도 발표한 적 없는 숫자를 만드는 일이다.
@@ -108,12 +116,14 @@
 
 | 항목 | 값 |
 |---|---:|
-| 이행 격차를 판정함 | 38 / 218 |
-| 판정을 **거절**함 (R4) | 180 / 218 |
+| 이행 격차를 판정함 | [38](../data/census.json#gap_assessed) / 218 |
+| 판정을 **거절**함 (R4) | [180](../data/census.json#gap_refused) / 218 |
+| 거절 문장 전체 (판정 + 문서 읽기) | [325](../data/census.json#refusals_total) |
 
-214건의 거절은 실패가 아니라 출력물이다. 각 거절은 그 국가에만 해당하는
-문장을 갖는다. 예: 우간다는 "22% below BAU"인데 그 BAU 투영이 어떤 소스에도
-없어서 톤수로 환산할 수 없다고 말한다.
+[325](../data/census.json#refusals_total)건의 거절은 실패가 아니라 출력물이다. 각 거절은 그 국가에만 해당하는
+문장을 갖는다. 예: 아프가니스탄은 "13.6% below BAU"인데 그 BAU 투영이 어떤
+소스에도 없어서 톤수로 환산할 수 없다고 말한다. 우간다는 2026-09-11 이후
+이 목록에 없다 — M10이 그 나라의 BAU 77.3 MtCO₂e를 문서에서 읽어냈다.
 
 ### 1.6 소스 연결
 
@@ -122,16 +132,16 @@
 `DS-35` OWID 218 · `DS-02` Climate TRACE 218 · `DS-18` WB CCKP 217 ·
 `DS-01` World Bank 206 · `DS-05` EDGAR 197 · `DS-06` CAIT 196 ·
 `DS-08` NDC 등록부 193 · `DS-40` UNFCCC DI 191 · `DS-04` ND-GAIN 190 ·
-`DS-15` GCF 136 · `DS-BTR` BTR 첨부목록 134 · `DS-06-NDC` NDC 원문 20
+`DS-15` GCF [136](../data/census.json#connected_sources.DS-15) · `DS-BTR` BTR 첨부목록 [134](../data/census.json#connected_sources.DS-BTR) · `DS-06-NDC` NDC 원문 [52](../data/census.json#connected_sources.DS-06-NDC)
 
 ### 1.7 소스 불일치 — 팔 수 있는 사실
 
 2022년, OWID(DS-35)와 Climate TRACE(DS-02)가 모두 값을 가진 **199개국**:
 
-- 중앙값 차이 **22.7%**
-- 20% 초과로 다른 나라 **108개**
-- 50% 초과로 다른 나라 **28개**
-- 두 소스의 합계 차이 **4,032 MtCO₂e** (TRACE가 큼)
+- 중앙값 차이 **[22.7](../data/census.json#divergence_median_spread_pct)%**
+- 20% 초과로 다른 나라 **[108](../data/census.json#divergence_over_20pct)개**
+- 50% 초과로 다른 나라 **[28](../data/census.json#divergence_over_50pct)개**
+- 두 소스의 합계 차이 **[4,032](../data/census.json#divergence_total_gap_mtco2e) MtCO₂e** (TRACE가 큼)
 
 **반드시 같이 나가야 하는 단서:** 이 격차의 상당 부분은 오류가 아니라 토지이용
 회계 범위의 차이다. `DS-05`(EDGAR)는 비CO₂ 가스만 담고 있어 애초에 비교 대상이
@@ -160,16 +170,18 @@
 | ID | 제품 | 근거 데이터 | 상태 |
 |---|---|---|---|
 | **P1** | The Instrument — 3D 무브먼트 | 계약 전체 | **출시됨** |
-| **P2** | Divergence Atlas — 소스별 나란히 | `emissions_profile.by_source` (198개국 3소스 이상) | **출시됨** `/divergence` |
+| **P2** | Divergence Atlas — 소스별 나란히 | `emissions_profile.by_source` ([198](../data/census.json#inventory_sources_3plus)개국 3소스 이상) | **출시됨** `/divergence` |
 | **P3** | The Unknown Map — 우리 자신의 공백을 헤드라인 지표로 | `engine:census` → `data/census.json` | **출시됨** `/unknown` |
 | **P4** | Receipts — 수치별 출처 API + 인용 칩 | `provenance`, `$sources_index` | **출시됨** `/api/v1/receipt`, `/api/v1/related` |
-| **P5** | BTR Reading Room — 1,744 소켓 | `btr.components[].$evidence` 328 확보 | **부분 출시**, 문서 파싱 시 확대 |
-| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` 214 + `ndc_document.$reason` 150 | **출시됨** `/refusals` |
+| **P5** | BTR Reading Room — [1,744](../data/census.json#btr_component_sockets) 소켓 | `btr.components[].$evidence` [328](../data/census.json#btr_components_evidenced) 확보 | **부분 출시**, 문서 파싱 시 확대 |
+| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` [180](../data/census.json#gap_refused) + `ndc_document.$reason` [145](../data/census.json#ndc_target_refused) | **출시됨** `/refusals` |
 
-**P6이 지금 가장 저평가된 자산이다.** 거절 325건이 이미
-레코드 안에 있고, 그중 **서로 다른 문장은 61개**(거절 17 + 문서 44)다.
-325는 화면이 링크할 항목 수, 69는 사유 필터의 항목 수다. 어떤 경쟁 제품도
-이것을 갖고 있지 않다.
+**P6이 지금 가장 저평가된 자산이다.** 거절 [325](../data/census.json#refusals_total)건이 이미 레코드 안에 있고,
+서로 다른 문장은 [69](../data/census.json#refusals_distinct_sentences)개, 사유 가족(census `refusals_by_family`의 키)은 8개다.
+과장하지 않고 말하면: [325](../data/census.json#refusals_total)건 중 [168](../data/census.json#refusals_by_family.gap.no-target)건은 "목표 없음" 한 가족이고 숫자만 다르다.
+그래서 헤드라인으로 파는 숫자는 가족 8개이고, [325](../data/census.json#refusals_total)은 화면이 링크할 항목 수다.
+경쟁 제품이 갖지 못한 것은 개수가 아니라, 문장이 규칙에서 생성되고
+레코드·API·로그에서 바이트 동일하다는 점이다.
 
 ---
 
@@ -240,10 +252,10 @@
 
 | 지표 | 현재 | 6개월 목표 |
 |---|---:|---:|
-| 목표를 읽어낸 국가 | 18 | 60 |
-| 근거가 붙은 BTR 소켓 | 328 / 1,744 | 700 / 1,744 |
-| 재원 집행액이 귀속된 국가 | 100 | 130 |
-| 이행 판정이 가능한 국가 | 4 | 40 |
+| 목표를 읽어낸 국가 | [50](../data/census.json#ndc_target_accepted) | 60 |
+| 근거가 붙은 BTR 소켓 | [328](../data/census.json#btr_components_evidenced) / [1,744](../data/census.json#btr_component_sockets) | 700 / 1,744 |
+| 재원 집행액이 귀속된 국가 | [100](../data/census.json#finance_disbursement_attributed) | 130 |
+| 이행 판정이 가능한 국가 | [38](../data/census.json#gap_assessed) | 40 |
 | **근거 없는 `absent`** | **0** | **0 (불변)** |
 | **거절에 사유가 없는 건** | **0** | **0 (불변)** |
 | 연결 소스 | 12 / 42 | 16 / 42 |

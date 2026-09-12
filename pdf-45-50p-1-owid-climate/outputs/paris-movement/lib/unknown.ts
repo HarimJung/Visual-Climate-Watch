@@ -17,6 +17,7 @@ export type Census={
  generated_at:string;run_id:string;built_at:string;
  countries:number;observation_points:number;
  vulnerability:number;emissions_profile:number;projections:number;
+ ndc_registry_active:number;ndc_registry_none_active:number;
  ndc_documents_held:number;ndc_target_accepted:number;ndc_target_refused:number;ndc_target_tonnage_stated:number;
  btr_filing_found:number;btr_component_sockets:number;btr_components_evidenced:number;
  finance_countries:number;finance_disbursement_attributed:number;

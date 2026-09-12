@@ -19,7 +19,7 @@
 
 ```bash
 cd pdf-45-50p-1-owid-climate/outputs/paris-movement
-npm test                       # 58 통과가 기준
+npm test                       # 전부 통과가 기준 (2026-09-12: 119건)
 node engine/cli.ts verify      # 218 통과 + golden clean
 node engine/cli.ts report      # 사람이 읽는 커버리지
 node engine/cli.ts report --json   # 기계가 읽는 커버리지 (문서 인용은 전부 여기서)
@@ -312,7 +312,7 @@ DB는 지금 아무 문제도 풀지 않는다.
 
 ## 7. 테스트
 
-58개. `npm test`.
+`npm test` 전부 통과. 2026-09-12 기준 119건이며, 건수는 늘기만 한다.
 
 | 파일 | 지키는 것 |
 |---|---|
