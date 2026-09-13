@@ -145,3 +145,12 @@ void test('no published refusal leaks the build machine', () => {
     }
   }
 });
+
+void test('a two-ledgers refusal lands in its own family, not the BAU-not-loaded one', () => {
+  const d = structuredClone(records[0]);
+  d.derived = { ambition_gap_factor: null, trend_annual_mtco2e: 1, on_track: null, gap_state: 'unknown', trend_source_id: 'DS-35',
+    $reason: "the pledge is 22% below the document's own business-as-usual projection of 77.3 MtCO₂e for 2030, a tonnage on the document's inventory, and the trend is measured on DS-35's. Two ledgers; the engine does not judge one against the other, just as it does not reconcile them on the divergence atlas." };
+  d.ndc_document = undefined as never;
+  const fam = refusalLog([d]).families.find((f) => f.count === 1);
+  assert.equal(fam?.id, 'gap.two-ledgers');
+});

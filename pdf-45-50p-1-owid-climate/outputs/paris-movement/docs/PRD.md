@@ -116,14 +116,16 @@
 
 | 항목 | 값 |
 |---|---:|
-| 이행 격차를 판정함 | [38](../data/census.json#gap_assessed) / 218 |
-| 판정을 **거절**함 (R4) | [180](../data/census.json#gap_refused) / 218 |
-| 거절 문장 전체 (판정 + 문서 읽기) | [325](../data/census.json#refusals_total) |
+| 이행 격차를 판정함 | [31](../data/census.json#gap_assessed) / 218 |
+| 판정을 **거절**함 (R4) | [187](../data/census.json#gap_refused) / 218 |
+| 거절 문장 전체 (판정 + 문서 읽기) | [332](../data/census.json#refusals_total) |
 
-[325](../data/census.json#refusals_total)건의 거절은 실패가 아니라 출력물이다. 각 거절은 그 국가에만 해당하는
+[332](../data/census.json#refusals_total)건의 거절은 실패가 아니라 출력물이다. 각 거절은 그 국가에만 해당하는
 문장을 갖는다. 예: 아프가니스탄은 "13.6% below BAU"인데 그 BAU 투영이 어떤
-소스에도 없어서 톤수로 환산할 수 없다고 말한다. 우간다는 2026-09-11 이후
-이 목록에 없다 — M10이 그 나라의 BAU 77.3 MtCO₂e를 문서에서 읽어냈다.
+소스에도 없어서 톤수로 환산할 수 없다고 말한다. 우간다는 2026-09-12부터 다시
+이 목록에 있다 — M10이 그 나라의 BAU 77.3 MtCO₂e를 문서에서 읽어냈지만, 그 톤수는
+문서의 장부 위에 있고 추세는 DS-35의 장부 위에 있어서 판정 대신 거절한다
+(`gap.two-ledgers`, VERIFICATION §5).
 
 ### 1.6 소스 연결
 
@@ -174,12 +176,12 @@
 | **P3** | The Unknown Map — 우리 자신의 공백을 헤드라인 지표로 | `engine:census` → `data/census.json` | **출시됨** `/unknown` |
 | **P4** | Receipts — 수치별 출처 API + 인용 칩 | `provenance`, `$sources_index` | **출시됨** `/api/v1/receipt`, `/api/v1/related` |
 | **P5** | BTR Reading Room — [1,744](../data/census.json#btr_component_sockets) 소켓 | `btr.components[].$evidence` [328](../data/census.json#btr_components_evidenced) 확보 | **부분 출시**, 문서 파싱 시 확대 |
-| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` [180](../data/census.json#gap_refused) + `ndc_document.$reason` [145](../data/census.json#ndc_target_refused) | **출시됨** `/refusals` |
+| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` [187](../data/census.json#gap_refused) + `ndc_document.$reason` [145](../data/census.json#ndc_target_refused) | **출시됨** `/refusals` |
 
-**P6이 지금 가장 저평가된 자산이다.** 거절 [325](../data/census.json#refusals_total)건이 이미 레코드 안에 있고,
-서로 다른 문장은 [69](../data/census.json#refusals_distinct_sentences)개, 사유 가족(census `refusals_by_family`의 키)은 8개다.
-과장하지 않고 말하면: [325](../data/census.json#refusals_total)건 중 [168](../data/census.json#refusals_by_family.gap.no-target)건은 "목표 없음" 한 가족이고 숫자만 다르다.
-그래서 헤드라인으로 파는 숫자는 가족 8개이고, [325](../data/census.json#refusals_total)은 화면이 링크할 항목 수다.
+**P6이 지금 가장 저평가된 자산이다.** 거절 [332](../data/census.json#refusals_total)건이 이미 레코드 안에 있고,
+서로 다른 문장은 [76](../data/census.json#refusals_distinct_sentences)개, 사유 가족(census `refusals_by_family`의 키)은 9개다.
+과장하지 않고 말하면: [332](../data/census.json#refusals_total)건 중 [168](../data/census.json#refusals_by_family.gap.no-target)건은 "목표 없음" 한 가족이고 숫자만 다르다.
+그래서 헤드라인으로 파는 숫자는 가족 9개이고, [332](../data/census.json#refusals_total)은 화면이 링크할 항목 수다.
 경쟁 제품이 갖지 못한 것은 개수가 아니라, 문장이 규칙에서 생성되고
 레코드·API·로그에서 바이트 동일하다는 점이다.
 
@@ -189,7 +191,7 @@
 
 | # | 기능 | 사양서 요구 | 현재 | 남은 것 |
 |---|---|---|---|---|
-| 1 | NDC 격차 추적 | 목표 대비 궤적 | 50개국 목표 파싱, 38개국 판정, 180개국 사유 있는 거절 | BAU 투영 파싱(→톤수 환산), 기준연도 인벤토리 |
+| 1 | NDC 격차 추적 | 목표 대비 궤적 | 50개국 목표 파싱, 31개국 판정, 187개국 사유 있는 거절 | BAU 투영 파싱(→톤수 환산), 기준연도 인벤토리 |
 | 2 | 투명성 준수 | BTR 8요소 | 134개국 제출 확인, 328 소켓 근거 확보 | 본문 파싱 (적응·제6조는 여기서만 가능) |
 | 3 | 취약성 × 재원 삼각분석 | x축 취약성, y축 재원 | **양축 모두 확보** (190 × 136) | 교차 화면, 다국가 귀속 표기 |
 | 4 | 재해 귀속 | EM-DAT 이력 | 미착수 | `DS-03` 라이선스 확인 |
@@ -217,7 +219,7 @@
 /countries            218개 레코드의 컬렉션. 정렬·필터·카드.
 /divergence           같은 나라·같은 해·다른 장부. 병합 없음.
 /finance              취약성 × GCF 원장. 미귀속을 1급 시민으로.
-/refusals             거절 325건, 사유 문장 69종, 8개 가족으로 묶음.
+/refusals             거절 332건, 사유 문장 76종, 9개 가족으로 묶음.
 /api/v1/country-dial  계약 페이로드
 /api/v1/engine        로스터 + 소스 카탈로그 + 텔레메트리
 /api/v1/receipt       수치 하나의 출처·해시·라이선스
@@ -255,7 +257,7 @@
 | 목표를 읽어낸 국가 | [50](../data/census.json#ndc_target_accepted) | 60 |
 | 근거가 붙은 BTR 소켓 | [328](../data/census.json#btr_components_evidenced) / [1,744](../data/census.json#btr_component_sockets) | 700 / 1,744 |
 | 재원 집행액이 귀속된 국가 | [100](../data/census.json#finance_disbursement_attributed) | 130 |
-| 이행 판정이 가능한 국가 | [38](../data/census.json#gap_assessed) | 40 |
+| 이행 판정이 가능한 국가 | [31](../data/census.json#gap_assessed) | 40 |
 | **근거 없는 `absent`** | **0** | **0 (불변)** |
 | **거절에 사유가 없는 건** | **0** | **0 (불변)** |
 | 연결 소스 | 12 / 42 | 16 / 42 |
