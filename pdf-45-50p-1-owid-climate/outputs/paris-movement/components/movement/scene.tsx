@@ -14,7 +14,7 @@ import {cycleOffset,narrativeAmount,deskAmount,returnAmount,cyclePhase,reveal,bt
 import {createExplosionLayout} from './explosion-layout';
 import {PointerTap} from './pointer-tap';
 import {fmt,observedYears,type CountryData} from '@/lib/climate';
-export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;playSeconds?:number};
+export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;resetView?:number;playSeconds?:number};
 export const phases=[
  {title:'Opening the planet',description:'Scroll down and the connected data rises one layer at a time. The movement explains structure; it never stands for progress.'},
  {title:'01 · The Paris Agreement, the plate under every promise',description:'Pledges, observations, reporting and support conditions all seat on one shared design.'},
@@ -26,12 +26,12 @@ export const phases=[
  {title:'One by one, back into one machine',description:'Target ring, inventory gears, reporting and support return to the Paris plate. The shell closes last.'},
  {title:'One planet, connected again',description:'Every record is back in its seat. The gears keep turning. Scroll back to revisit any scene.'}
 ];
-export default function MovementScene({data,controls,onSelect,onReady,onPhase,onProgress}:{data:CountryData;controls:SceneControls;onSelect:(id:string)=>void;onReady?:(canvas:HTMLCanvasElement)=>void;onPhase?:(index:number)=>void;onProgress?:(value:number)=>void}){
- const host=useRef<HTMLDivElement>(null);const current=useRef(controls);const select=useRef(onSelect);const ready=useRef(onReady);const phaseCallback=useRef(onPhase);const progressCallback=useRef(onProgress);const [failed,setFailed]=useState(false);
- useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress},[controls,onSelect,onReady,onPhase,onProgress]);
+export default function MovementScene({data,controls,onSelect,onReady,onPhase,onProgress,onManual}:{data:CountryData;controls:SceneControls;onSelect:(id:string)=>void;onReady?:(canvas:HTMLCanvasElement,render:()=>void)=>void;onPhase?:(index:number)=>void;onProgress?:(value:number)=>void;onManual?:(manual:boolean)=>void}){
+ const host=useRef<HTMLDivElement>(null);const current=useRef(controls);const select=useRef(onSelect);const ready=useRef(onReady);const phaseCallback=useRef(onPhase);const progressCallback=useRef(onProgress);const manual=useRef(onManual);const [failed,setFailed]=useState(false);
+ useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress;manual.current=onManual},[controls,onSelect,onReady,onPhase,onProgress,onManual]);
  useEffect(()=>{let cleanup=()=>{};let cancelled=false;void(async()=>{try{
  const T=await import('three');const {RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');if(cancelled||!host.current)return;
- setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.92;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement);
+ setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.92;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
  const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.46;room.dispose();pm.dispose();
  const key=new T.DirectionalLight(0xfff5e5,2.1);key.position.set(-5,-3,11);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=4;scene.add(key);scene.add(new T.AmbientLight(0xf3f8ff,.38));
  const camera=new T.PerspectiveCamera(34,1,.1,100);const world=new T.Group();world.rotation.z=-.13;scene.add(world);
@@ -123,10 +123,13 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  world.rotation.z=-.13;
  let layout=createExplosionLayout(assemblies,1);
  const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableZoom=false;renderer.domElement.style.touchAction='pan-y';orbit.enableDamping=true;orbit.dampingFactor=.085;orbit.autoRotateSpeed=.65;orbit.minDistance=3;orbit.maxDistance=100;orbit.target.set(0,0,.25);
+ // Never under the floor. Every programmed view sits above 1.5 rad, so the
+ // clamp only ever binds a drag; it never fights a camera transition.
+ orbit.maxPolarAngle=1.5;
  camera.position.set(5.2,-16,10.8);camera.lookAt(orbit.target);orbit.update();
  let disposed=false,raf=0,last=performance.now(),amount=0,gearTime=0,lastPhase=-1,lastPercent=-1,lastReplay=-1,lastInput=current.current.inputToken;
  let liftScale=1;
- let dirty=true,fitDirty=true,manualCamera=false,lastKey='',lastProgress=current.current.progress,lastExplode=current.current.explode,lastPaused=current.current.paused;
+ let dirty=true,fitDirty=true,manualCamera=false,lastKey='',lastProgress=current.current.progress,lastExplode=current.current.explode,lastPaused=current.current.paused,lastReset=current.current.resetView;
  const replay=new AssemblyReplay();const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const pos=new T.Vector3(),pointer=new T.Vector2(),ray=new T.Raycaster(),tap=new PointerTap();
  const cameraGoal=new T.Vector3(),lookGoal=new T.Vector3();const front=new T.Vector3(0,-.001,1).normalize(),iso=new T.Vector3(.20,-1,.50).normalize(),back=new T.Vector3(-.3,.9,.6).normalize();
@@ -147,9 +150,11 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const threads=new T.LineSegments(threadGeometry,new T.LineBasicMaterial({color:0x9d93b2,transparent:true,opacity:.4}));threads.frustumCulled=false;evidence.add(threads);
  const markerGeometry=new T.BufferGeometry();const markerPositions=new Float32Array(assemblies.length*3);markerGeometry.setAttribute('position',new T.BufferAttribute(markerPositions,3));
  const markers=new T.Points(markerGeometry,new T.PointsMaterial({color:0x969ba1,size:3,sizeAttenuation:false,depthTest:false}));markers.frustumCulled=false;markers.renderOrder=10;world.add(markers);
- function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,w<768?1.5:2));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;fitDirty=dirty=true;}
+ function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;fitDirty=dirty=true;}
  const observer=new ResizeObserver(resize);observer.observe(el);resize();
- const changed=()=>{dirty=true};const started=()=>{manualCamera=true;fitDirty=false;dirty=true};
+ // Off the screen the loop idles: nothing is drawn and the gears do not advance.
+ let visible=true;const io=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)dirty=true});io.observe(el);
+ const changed=()=>{dirty=true};const started=()=>{manualCamera=true;fitDirty=false;dirty=true;manual.current?.(true)};
  orbit.addEventListener('change',changed);orbit.addEventListener('start',started);
  const motionChanged=()=>{replay.cancel();fitDirty=dirty=true;manualCamera=false;};reduced.addEventListener('change',motionChanged);
  const contextLost=(event:Event)=>{event.preventDefault();cleanup();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',contextLost);
@@ -222,7 +227,8 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    anchor.getWorldPosition(pos).project(camera);const cx=(pos.x*.5+.5)*el.clientWidth,cy=(-pos.y*.5+.5)*el.clientHeight;
    const reached=phase===0||story>=LAYER_WINDOWS[Math.min(4,phase)][0];
    const active=storyPhase(story)===phase+1;
-   const show=(amount<.70||amount>.99)&&reached&&inDepth&&cx>=0&&cx<=el.clientWidth&&cy>=0&&cy<=el.clientHeight&&(el.clientWidth>=600||active);
+   // While the eight BTR pieces are up, only their own label stays; the other four hid the machine.
+   const show=(amount<.70||amount>.99)&&reached&&inDepth&&cx>=0&&cx<=el.clientWidth&&cy>=0&&cy<=el.clientHeight&&(btrStepAt(story)<0||phase===3)&&(el.clientWidth>=600||active);
    tag.style.opacity=show?'1':'0';leaders[i].style.opacity=show?'1':'0';if(!show)return;
    const w=tag.offsetWidth,h=tag.offsetHeight;let x=Math.max(12,Math.min(el.clientWidth-w-12,cx+(i<2?-w-26:30)));let y=Math.max(48,Math.min(el.clientHeight-h-48,cy+offset[1]));
    let tries=0;while(placed.some(r=>x<r.x+r.w+8&&x+w+8>r.x&&y<r.y+r.h+8&&y+h+8>r.y)&&tries++<40){y+=22;if(y+h>el.clientHeight-48){y=48;x=x<el.clientWidth/2?el.clientWidth-w-12:12;}}
@@ -250,9 +256,10 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   });
  }
  placeParts();fit();camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);orbit.update();
- function frame(now:number){if(disposed)return;raf=requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.05);last=now;if(document.hidden)return;
+ function frame(now:number){if(disposed)return;raf=requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.05);last=now;if(document.hidden||!visible)return;
   const c=current.current,still=reduced.matches;
   if(c.replay!==lastReplay){lastReplay=c.replay;if(c.progress==null)replay.start(still);lastProgress=c.progress;lastExplode=c.explode;manualCamera=false;fitDirty=true;}
+  if(c.resetView!==lastReset){lastReset=c.resetView;manualCamera=false;fitDirty=dirty=true;manual.current?.(false);}
   if(c.inputToken!==lastInput||c.progress!==lastProgress||c.explode!==lastExplode){replay.cancel();lastInput=c.inputToken;lastProgress=c.progress;lastExplode=c.explode;manualCamera=false;fitDirty=dirty=true;}
   lastPaused=c.paused;
   replay.update(amount,dt,c.paused,c.loop===true&&!still);
@@ -281,7 +288,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   const percent=Math.round(amount*100);if(percent!==lastPercent){lastPercent=percent;progressCallback.current?.(percent);}
   if(dirty){camera.updateMatrixWorld();renderer.render(scene,camera);updateLabels();dirty=false;}
  }raf=requestAnimationFrame(frame);
- cleanup=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();reduced.removeEventListener('change',motionChanged);orbit.removeEventListener('change',changed);orbit.removeEventListener('start',started);orbit.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',cancel);renderer.domElement.removeEventListener('lostpointercapture',cancel);disposeScene();};
+ cleanup=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();io.disconnect();reduced.removeEventListener('change',motionChanged);orbit.removeEventListener('change',changed);orbit.removeEventListener('start',started);orbit.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',cancel);renderer.domElement.removeEventListener('lostpointercapture',cancel);disposeScene();};
  }catch(error){cleanup();console.error('3D movement unavailable',error);if(!cancelled)setFailed(true)}})();return()=>{cancelled=true;cleanup()}},[data]);
  return <div ref={host} className="scene-host" aria-label={`${data.country.name_en}: NDC, inventory, BTR and finance assemble into a climate evidence instrument.`}>{failed&&<div className="fallback"><StaticDial data={{...data,observed_years:observedYears(data)}}/><p>3D is unavailable in this browser. Every figure is still readable below.</p></div>}</div>
 }

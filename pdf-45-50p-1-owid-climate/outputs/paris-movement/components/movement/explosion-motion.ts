@@ -47,6 +47,9 @@ export const returnAmount=(progress:number,layer:number,shell:'upper'|'lower'|nu
  return reveal(progress,.84+slot*.022,.868+slot*.022);
 };
 export function cyclePhase(progress:number){return progress<.70?storyPhase(narrativeAmount(progress)):progress<.84?6:progress<1?7:8;}
+/** The progress at which chapter n begins: the inverse of cyclePhase, for the
+ *  chapter buttons. A hair past the boundary so the phase reads as n, not n-1. */
+export const chapterStart=(chapter:number)=>chapter<=0?0:chapter<=5?LAYER_WINDOWS[chapter-1][0]*.65+.005:chapter===6?.705:chapter===7?.845:1;
 export type Point3={x:number;y:number;z:number};
 /** Vertical chapters → a short inventory interlude → one-by-one homecoming. */
 export function cycleOffset(progress:number,layer:number,center:Point3,cell:Point3,shell:'upper'|'lower'|null=null,lift=1):Point3 {

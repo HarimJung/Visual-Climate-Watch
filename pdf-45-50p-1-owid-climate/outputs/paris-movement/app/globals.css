@@ -129,7 +129,7 @@ svg{flex-shrink:0}
 
 /* ── The pinned chapter ───────────────────────────────────────────────── */
 .scroll-chapter{position:relative;height:680svh}
-.scroll-pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.scroll-pin{position:sticky;top:var(--top-h);height:calc(100svh - var(--top-h));display:flex;flex-direction:column;overflow:hidden}
 .instrument{flex:1;min-height:0;display:grid;grid-template-columns:minmax(290px,25%) 1fr;gap:clamp(18px,2.6vw,44px);padding:0 var(--gutter);position:relative}
 
 /* ── Left column: the reading ─────────────────────────────────────────── */
@@ -185,11 +185,6 @@ svg{flex-shrink:0}
 .stage-key i{display:inline-block;width:9px;height:9px;margin-right:6px;vertical-align:-1px;border:1px solid var(--ink-4);border-radius:50%}
 .stage-key .key-cog{border-style:dashed}
 .stage-key .key-ghost{border-color:#99a1a760;background:#99a1a71f}
-.chapter-popup{position:absolute;left:0;top:52px;z-index:3;display:flex;flex-direction:column;gap:6px;max-width:282px;padding:13px 16px;border:1px solid var(--rule);border-left:2px solid var(--ndc);background:color-mix(in srgb,var(--paper-raised) 92%,transparent);backdrop-filter:blur(8px);box-shadow:var(--shadow-1);animation:chapter-pop .5s cubic-bezier(.22,1,.36,1) both}
-.chapter-popup>span{font:11px var(--font-mono);letter-spacing:.16em;color:var(--ink-4)}
-.chapter-popup strong{font-family:var(--font-display);font-size:18px;font-weight:500;line-height:1.25;color:var(--ink)}
-.chapter-popup p{font-size:12.5px;line-height:1.6;color:var(--ink-3)}
-@keyframes chapter-pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* Labels projected onto the canvas: hairline tags, never floating cards. */
 .projected-labels{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none}
@@ -232,8 +227,10 @@ svg{flex-shrink:0}
 .assembly-narration strong{font-size:15px;font-weight:500;color:var(--ink)}
 .assembly-narration p{max-width:88ch;margin-top:4px;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
 .phase-track{display:flex;gap:5px;margin-left:auto;flex-shrink:0}
-.phase-track span{width:17px;height:2px;background:var(--rule-strong);transition:background .3s}
-.phase-track .done{background:var(--ndc)}
+/* A 2px bar inside a 16px hit box: the buttons are the chapters. */
+.phase-track button{width:17px;height:2px;padding:7px 0;box-sizing:content-box;background-color:var(--rule-strong);background-clip:content-box;cursor:pointer;transition:background-color .3s}
+.phase-track button:hover,.phase-track button:focus-visible{background-color:var(--ink-3);outline:none}
+.phase-track .done{background-color:var(--ndc)}
 .loop-toggle{padding:7px 11px;border:1px solid var(--rule);font:11px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;transition:color .2s,border-color .2s}
 .loop-toggle:hover,.loop-toggle[aria-pressed=true]{color:var(--ndc);border-color:var(--ndc)}
 .control-rail{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 var(--gutter);padding:5px 0 11px;border-top:1px solid var(--rule)}
@@ -421,7 +418,6 @@ svg{flex-shrink:0}
  .control-rail button{min-height:38px;font-size:12.5px}
  .stage-key{bottom:34px;font-size:11px}
  .stage-bottom{bottom:10px}
- .chapter-popup{top:40px;max-width:204px;padding:10px 12px}
  .chapter-popup strong{font-size:15px}
  .chapter-popup p{font-size:11px}
  .component-label{min-width:104px;max-width:136px;padding:5px 8px}
@@ -447,7 +443,6 @@ svg{flex-shrink:0}
  .motion-controls{gap:8px}
  .right-controls{flex-wrap:wrap;justify-content:flex-start;gap:8px 14px}
  .stage-key{display:none}
- .chapter-popup{max-width:186px}
  .country-picker{min-width:136px!important;font-size:12.5px!important}
 }
 @media(min-width:1700px){
@@ -1374,7 +1369,7 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .stage-step:hover{color:var(--ndc);border-color:var(--ndc);opacity:1;transform:scale(1.06)}
 .stage-step:active{transform:scale(.96)}
 .stage-step:disabled{opacity:.3}
-.stage-hint{position:absolute;left:50%;bottom:50px;z-index:3;translate:-50% 0;padding:6px 12px;border-radius:999px;
+.stage-hint{position:absolute;left:50%;bottom:84px;z-index:3;translate:-50% 0;padding:6px 12px;border-radius:999px;
  background:color-mix(in srgb,var(--ink) 82%,transparent);color:var(--paper);font:500 var(--t1) var(--font-sans);white-space:nowrap;
  animation:riseIn 600ms var(--out) 1.2s both}
 @media(prefers-reduced-motion:reduce){.stage-hint{animation:none}}
@@ -1475,7 +1470,7 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
  .country-story{max-height:none;overflow:visible;padding:var(--s3) 0 0}
  .country-story>h1,.country-story>.verdict,.country-story>.assembly-action{display:block}
  .country-story>h1{font-size:28px}
- .projected-labels,.assembly-leaders,.chapter-popup{display:none}
+ .projected-labels,.assembly-leaders{display:none}
  .stage-step{width:40px;height:40px}
  .stage-hint{display:none}
  .calibre-row{grid-template-columns:repeat(3,minmax(0,1fr))}
