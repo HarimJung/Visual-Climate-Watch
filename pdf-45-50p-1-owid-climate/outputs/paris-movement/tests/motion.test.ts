@@ -1,6 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {verticalOffset,reveal,btrReveal,btrStepAt,storyPhase,LAYER_WINDOWS,LAYER_LIFTS,AssemblyReplay} from '../components/movement/explosion-motion.ts';
+import {verticalOffset,reveal,btrReveal,btrStepAt,storyPhase,cyclePhase,chapterStart,LAYER_WINDOWS,LAYER_LIFTS,AssemblyReplay} from '../components/movement/explosion-motion.ts';
+
+void test('a chapter button lands at the start of its own chapter, never the one before',()=>{
+ for(let chapter=1;chapter<=8;chapter++){
+  assert.equal(cyclePhase(chapterStart(chapter)),chapter);
+  assert.equal(cyclePhase(chapterStart(chapter)-.01),chapter-1);
+ }
+ assert.equal(chapterStart(0),0);assert.equal(chapterStart(8),1);
+});
 
 void test('layers rise on the common spindle and return exactly to their resting heights',()=>{
  for(let layer=0;layer<5;layer++){
