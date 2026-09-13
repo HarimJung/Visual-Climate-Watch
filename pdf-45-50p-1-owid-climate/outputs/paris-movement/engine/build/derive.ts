@@ -10,9 +10,9 @@ import type { CountryData } from '../contract/schema.ts';
 type Point = { year: number; value_mtco2e: number; source_id?: string };
 type Derived = CountryData['derived'];
 
-const refuse = (reason: string, trend: number | null = null): Derived => ({
+const refuse = (reason: string, trend: number | null = null, source?: string): Derived => ({
   ambition_gap_factor: null, on_track: null, gap_state: 'unknown',
-  trend_annual_mtco2e: trend, $reason: reason,
+  trend_annual_mtco2e: trend, $reason: reason, ...(source ? { trend_source_id: source } : {}),
 });
 
 /** Least-squares slope in MtCO2e per year. Negative means falling. */
@@ -48,6 +48,16 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   let target = ndc.target_emissions_mtco2e;
   let conversion = '';
 
+  // R10 for verdicts. A tonnage the document wrote -- quoted, or its own BAU
+  // times a percentage -- is on the document's inventory. The trend is on
+  // sourceId's. The engine judges only when both sit on one ledger; the
+  // divergence atlas does not reconcile them and neither does this.
+  const sameLedger = ndc.source?.id === sourceId;
+  const twoLedgers = ' Two ledgers; the engine does not judge one against the other, just as it does not reconcile them on the divergence atlas.';
+  if (target != null && targetYear != null && !sameLedger) {
+    return refuse(`the document states a target of ${target} MtCO₂e for ${targetYear} on its own inventory, and the trend is measured on ${sourceId}'s.${twoLedgers}`, trend, sourceId);
+  }
+
   // A percentage against a base year becomes a tonnage only with a base-year
   // level, and the document does not always publish one. The observed series
   // has one, on its own inventory scope, so the conversion is done here --
@@ -60,15 +70,18 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
       // conversion is done here and says so; when it does not, the refusal
       // below stands, and it is the document that is silent, not the engine.
       if (ndc.bau_state === 'pledged' && ndc.bau_2030_mtco2e != null && targetYear === 2030) {
+        if (!sameLedger) {
+          return refuse(`the pledge is ${ndc.reduction_pct}% below the document's own business-as-usual projection of ${ndc.bau_2030_mtco2e} MtCO₂e for 2030, a tonnage on the document's inventory, and the trend is measured on ${sourceId}'s.${twoLedgers}`, trend, sourceId);
+        }
         target = Number((ndc.bau_2030_mtco2e * (1 - ndc.reduction_pct / 100)).toFixed(3));
         conversion = ` The target tonnage is derived here, not quoted: ${ndc.reduction_pct}% below the document's own business-as-usual projection of ${ndc.bau_2030_mtco2e} MtCO₂e for 2030. The document states the percentage and the projection; the engine did the arithmetic.`;
       } else {
-        return refuse(`the pledge is ${ndc.reduction_pct}% below a business-as-usual projection for ${targetYear}. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it.`, trend);
+        return refuse(`the pledge is ${ndc.reduction_pct}% below a business-as-usual projection for ${targetYear}. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it.`, trend, sourceId);
       }
     }
     const basePoint = ndc.base_year == null ? undefined : sorted.find((p) => p.year === ndc.base_year);
     if (ndc.base_year != null && !basePoint) {
-      return refuse(`the pledge is ${ndc.reduction_pct}% below ${ndc.base_year} levels, and ${sourceId} carries no observation for ${ndc.base_year}, so there is no base-year level to apply it to.`, trend);
+      return refuse(`the pledge is ${ndc.reduction_pct}% below ${ndc.base_year} levels, and ${sourceId} carries no observation for ${ndc.base_year}, so there is no base-year level to apply it to.`, trend, sourceId);
     }
     if (basePoint) {
       target = Number((basePoint.value_mtco2e * (1 - ndc.reduction_pct / 100)).toFixed(3));
@@ -77,13 +90,13 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   }
 
   if (target == null || targetYear == null) {
-    return refuse(`${series.length} observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against.`, trend);
+    return refuse(`${series.length} observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against.`, trend, sourceId);
   }
 
   const latest = sorted[sorted.length - 1];
   const yearsLeft = targetYear - latest.year;
   if (yearsLeft <= 0) {
-    return refuse(`the target year ${targetYear} is not after the latest observation (${latest.year}). A forward trajectory cannot be measured.`, trend);
+    return refuse(`the target year ${targetYear} is not after the latest observation (${latest.year}). A forward trajectory cannot be measured.`, trend, sourceId);
   }
 
   const requiredAnnual = (target - latest.value_mtco2e) / yearsLeft;
@@ -96,7 +109,7 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   if (requiredAnnual >= 0) {
     const under = projected <= target;
     return {
-      ambition_gap_factor: null, on_track: under, gap_state: 'observed', trend_annual_mtco2e: trend,
+      ambition_gap_factor: null, on_track: under, gap_state: 'observed', trend_annual_mtco2e: trend, trend_source_id: sourceId,
       $reason: `the target (${target} MtCO₂e) is above the latest observed level (${latest.value_mtco2e} MtCO₂e), so no cut is required today. Carried forward at the observed ${observedAnnual >= 0 ? '+' : ''}${observedAnnual.toFixed(2)} MtCO₂e/yr, ${targetYear} projects ${projected.toFixed(1)} MtCO₂e, ${under ? 'still under it' : 'above it'}.`,
       $note: note,
     };
@@ -104,7 +117,7 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
   // Emissions flat or rising while a cut is required: no multiple of this trend arrives.
   if (observedAnnual >= 0) {
     return {
-      ambition_gap_factor: null, on_track: false, gap_state: 'observed', trend_annual_mtco2e: trend,
+      ambition_gap_factor: null, on_track: false, gap_state: 'observed', trend_annual_mtco2e: trend, trend_source_id: sourceId,
       $reason: `observed emissions are rising by ${observedAnnual.toFixed(2)} MtCO₂e/yr while the target requires a fall of ${Math.abs(requiredAnnual).toFixed(2)} MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported.`,
       $note: note,
     };
@@ -115,6 +128,7 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
     on_track: factor <= 1,
     gap_state: 'observed',
     trend_annual_mtco2e: trend,
+    trend_source_id: sourceId,
     $note: note,
   };
 }

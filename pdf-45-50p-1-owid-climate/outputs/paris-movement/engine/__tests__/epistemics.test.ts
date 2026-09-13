@@ -144,17 +144,18 @@ void test('a rising trend is never reported as on track', () => {
 // under it in the target year, or the verdict is off track.
 void test('a target above the observed level is not on track if the trend climbs past it', async () => {
   const { derive } = await import('../build/derive.ts');
+  // Same source on both sides: a quoted tonnage is judged only on its own ledger.
   const ndc = { target_emissions_mtco2e: 200, target_year: 2035, source: { id: 'T' } } as never;
   const rising = derive(ndc, [
-    { year: 2015, value_mtco2e: 0, source_id: 'S' },
-    { year: 2025, value_mtco2e: 120, source_id: 'S' },
+    { year: 2015, value_mtco2e: 0, source_id: 'T' },
+    { year: 2025, value_mtco2e: 120, source_id: 'T' },
   ]);
   assert.equal(rising.on_track, false, '120 rising 12/yr projects 240 in 2035, past a target of 200');
   assert.match(rising.$reason ?? '', /projects/);
 
   const gentle = derive(ndc, [
-    { year: 2015, value_mtco2e: 99, source_id: 'S' },
-    { year: 2025, value_mtco2e: 100, source_id: 'S' },
+    { year: 2015, value_mtco2e: 99, source_id: 'T' },
+    { year: 2025, value_mtco2e: 100, source_id: 'T' },
   ]);
   assert.equal(gentle.on_track, true, 'a 0.1/yr climb from 100 stays well under 200 by 2035');
 });

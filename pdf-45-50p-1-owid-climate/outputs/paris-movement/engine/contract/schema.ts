@@ -135,6 +135,9 @@ export const countrySchema = z.object({
     trend_annual_mtco2e: num,
     on_track: z.boolean().nullable(),
     gap_state: state,
+    // The one source whose observations the trend was measured on (R3). Present
+    // whenever a trend was computable, on refusals too. Optional: R7, additive.
+    trend_source_id: z.string().optional(),
     $note: z.string().optional(),
     $reason: z.string().optional(),
   }).strict(),
