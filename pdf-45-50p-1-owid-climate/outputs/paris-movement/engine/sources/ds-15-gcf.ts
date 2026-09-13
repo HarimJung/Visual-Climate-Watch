@@ -22,7 +22,7 @@ import { snapshot, etlLog, type EtlLog, type Snapshot, asModule, type EtlModule 
 export const ID = 'DS-15';
 export const URL = 'https://api.gcfund.org/v1/projects';
 export const HOME = 'https://www.greenclimate.fund/projects/dashboard';
-export const LICENSE = 'GCF open data, attribution requested';
+export const LICENSE = 'GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, "First published by the Green Climate Fund"; non-commercial use; commercial redistribution needs GCF written consent';
 export const SCOPE = 'Green Climate Fund only. Not total climate finance received.';
 
 export type Flow = {
