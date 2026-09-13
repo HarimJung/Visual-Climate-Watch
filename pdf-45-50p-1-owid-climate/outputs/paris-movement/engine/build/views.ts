@@ -18,6 +18,11 @@ import { ROOT } from './compose.ts';
  * silently mis-grouped log is worse than a broken build.
  */
 const FAMILIES = [
+  // First on purpose: its sentence also names a BAU projection, and the first
+  // match wins.
+  { id: 'gap.two-ledgers', field: 'derived.$reason', match: /Two ledgers;/,
+    label: 'The target and the trend are on different inventories',
+    note: 'The document states its tonnage on its own inventory; the trend is measured on another source’s. The engine does not judge one against the other, just as the divergence atlas does not reconcile them.' },
   { id: 'gap.no-target', field: 'derived.$reason', match: /no NDC target emissions figure has been parsed/,
     label: 'No target to measure the trend against',
     note: 'Observations are loaded, but no NDC document has yielded a target figure, so there is no line to compare the trend with.' },

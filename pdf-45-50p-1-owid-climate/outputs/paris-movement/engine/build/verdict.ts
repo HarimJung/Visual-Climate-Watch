@@ -68,11 +68,16 @@ export function verdict(d: CountryData, basis?: string): { clauses: Clause[]; te
     });
   }
 
-  // 5. the derived assessment, or the refusal
+  // 5. the derived assessment, or the refusal. A verdict says its ledger in the
+  // sentence, not in a footnote: the reader of a verdict does not read notes.
+  const src = d.derived.trend_source_id;
+  const ledger = !src ? '' : d.ndc.base_year != null && d.ndc.target_emissions_mtco2e == null
+    ? ` Both figures are on ${src}'s inventory: the document's percentage applied to ${src}'s ${d.ndc.base_year} level, not the document's own.`
+    : ` Both figures are on ${src}'s inventory.`;
   if (d.derived.on_track === true) {
-    c.push({ field: 'derived.on_track', text: d.derived.ambition_gap_factor != null ? `On the observed trend the target is reached; the required rate is ${d.derived.ambition_gap_factor}× the observed one.` : 'On the observed trend the target is already met.' });
+    c.push({ field: 'derived.on_track', text: (d.derived.ambition_gap_factor != null ? `On the observed trend the target is reached; the required rate is ${d.derived.ambition_gap_factor}× the observed one.` : 'On the observed trend the target is already met.') + ledger });
   } else if (d.derived.on_track === false) {
-    c.push({ field: 'derived.on_track', text: d.derived.ambition_gap_factor != null ? `The target is not reached on the observed trend: it would need cuts ${d.derived.ambition_gap_factor}× faster.` : 'The target is not reached on the observed trend.' });
+    c.push({ field: 'derived.on_track', text: (d.derived.ambition_gap_factor != null ? `The target is not reached on the observed trend: it would need cuts ${d.derived.ambition_gap_factor}× faster.` : 'The target is not reached on the observed trend.') + ledger });
   } else if (d.derived.$reason) {
     c.push({ field: 'derived.$reason', text: `No implementation gap is reported: ${d.derived.$reason}` });
   }

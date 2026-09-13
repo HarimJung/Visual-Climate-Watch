@@ -47,3 +47,11 @@ void test('the disagreement between sources is stated, not smoothed', () => {
   assert.ok(c, 'Cambodia has three sources for its emissions; the verdict must say they differ');
   assert.match(c.text, /does not reconcile/);
 });
+
+void test('a judged verdict names the ledger both figures sit on', () => {
+  const d = structuredClone(khm);
+  d.derived = { ambition_gap_factor: null, trend_annual_mtco2e: 1, on_track: false, gap_state: 'observed', trend_source_id: 'DS-35' };
+  d.ndc = { ...d.ndc, base_year: 1990, target_emissions_mtco2e: null };
+  const clause = verdict(d).clauses.find((c) => c.field === 'derived.on_track')?.text ?? '';
+  assert.match(clause, /Both figures are on DS-35's inventory: the document's percentage applied to DS-35's 1990 level/);
+});
