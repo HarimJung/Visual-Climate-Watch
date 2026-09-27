@@ -72,7 +72,7 @@ export default async function Page(){
 
    {map&&roster.length>0&&<section className="band" id="map">
     <div className="sec-head">
-     <h2>Where the dark is</h2>
+     <h2>Where the blanks are</h2>
      <p>Not emissions — how much of each country this engine has actually established.</p>
     </div>
     <CoverageMap map={map} roster={roster}/>
@@ -81,7 +81,7 @@ export default async function Page(){
    <section className="band raised" id="gaps">
     <div>
      <div className="sec-head warn">
-      <h2>What is dark, and how dark</h2>
+      <h2>What is blank, and how much</h2>
       <p>The dashed part of each bar is the unknown; the solid part is what the engine has actually established. Ordered by how dark the question is, not by the size of the number, so seventeen targets out of eighteen outranks eighty-two countries out of {census.countries}.</p>
      </div>
      <div className="ctl-row">

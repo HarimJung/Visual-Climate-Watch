@@ -22,6 +22,6 @@ export default function Mark({size=28,className}:{size?:number;className?:string
     ?<circle key={i} cx={cx} cy={cy} r={r} fill="currentColor"/>
     :<circle key={i} cx={cx} cy={cy} r={r-.5} fill="none" stroke="currentColor" strokeWidth="1.15" opacity=".45"/>;
   })}
-  <circle cx="16" cy="16" r="2.9" fill="var(--ndc,#1a5ac2)"/>
+  <circle cx="16" cy="16" r="2.9" fill="var(--un,#009EDB)"/>
  </svg>;
 }

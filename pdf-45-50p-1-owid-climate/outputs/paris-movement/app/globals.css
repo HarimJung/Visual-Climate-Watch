@@ -21,13 +21,21 @@
     all-pairs check fails (warn↔btr ΔE 14.5 normal vision, below the 15 floor),
     which is why two sources used to look alike on /divergence. Gold sits at
     2.91:1 on this paper, so anything drawn in it carries a visible label. */
- --ndc:#1a5ac2;--inv:#0d8a6e;--btr:#a13c95;--fin:#b8860b;--warn:#b23a26;
- --inv-ink:#0a6e58;--fin-ink:#8a6208;
+ /* The brand is UN blue (#009EDB), the colour every reader of a Paris filing
+    already knows. The four evidence hues are the UN's own SDG colours: the
+    pledge in UN blue, observations in SDG 13 Climate Action green, the
+    transparency report in SDG 10 magenta, finance in SDG 12 gold. Validated
+    all-pairs on this paper (normal-vision floor 18.8; CVD 6.0 needs the text
+    labels every use already carries). UN blue and SDG 12 sit under 3:1 as
+    text, so text takes the -ink steps. No black anywhere but the type. */
+ --un:#009EDB;--un-ink:#00689D;
+ --ndc:#009EDB;--inv:#3F7E44;--btr:#DD1367;--fin:#BF8B2E;--warn:#b23a26;
+ --ndc-ink:#00689D;--inv-ink:#3F7E44;--fin-ink:#8a6208;
  /* Sources are not evidence. A source line or bar never borrows an evidence
     hue (DS-02 in NDC blue read as "the pledge"); sources take inks, told apart
     by weight and pattern and always labelled in text. */
- --src-a:#1d2429;--src-b:#6b7680;--src-c:#a3acb4;
- --src-d:repeating-linear-gradient(135deg,#6b7680 0 2px,transparent 2px 4px);
+ --src-a:#4d6477;--src-b:#8fa3b3;--src-c:#c2ced8;
+ --src-d:repeating-linear-gradient(135deg,#4d6477 0 2px,transparent 2px 4px);
  /* Warming scenarios in the IPCC AR6 colours, the key readers already know. */
  --ssp126:#173c66;--ssp245:#f79420;--ssp370:#e71d25;--ssp585:#951b1e;
  --wash:#e9ecf7;
@@ -64,7 +72,7 @@
  --secondary:var(--paper-sunken);--secondary-foreground:var(--ink-2);
  --muted:var(--paper-sunken);--muted-foreground:var(--ink-3);
  --accent:var(--paper-sunken);--accent-foreground:var(--ink);
- --border:var(--rule);--input:var(--rule-strong);--ring:var(--ink);
+ --border:var(--rule);--input:var(--rule-strong);--ring:var(--un-ink);
  --destructive:var(--warn);--radius:3px;
 }
 
@@ -656,7 +664,7 @@ a.rec-contract:hover{color:var(--ink)}
 .site-nav a{position:relative;font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3);transition:color .2s;padding-block:6px}
 .site-nav a:hover{color:var(--ink-2)}
 .site-nav a[aria-current="page"]{color:var(--ink)}
-.site-nav a[aria-current="page"]:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--ink)}
+.site-nav a[aria-current="page"]:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--un)}
 .site-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;
  padding:22px var(--gutter);border-top:1px solid var(--rule);
  font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3)}
@@ -1032,7 +1040,7 @@ body::after{
 .read-how li{counter-increment:how;position:relative;padding-left:28px;
  font-size:var(--t2);line-height:1.55;color:var(--ink-3);text-wrap:pretty}
 .read-how li:before{content:counter(how,decimal-leading-zero);position:absolute;left:0;top:3px;
- font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ndc)}
+ font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ndc-ink)}
 .read-how b{color:var(--ink);font-weight:600}
 @media(max-width:860px){.read-how{grid-template-columns:1fr;gap:var(--s3)}}
 /* The registry's current filing, said at reading size beside the headline. */
@@ -1077,7 +1085,7 @@ body::after{
  border-bottom:2px solid transparent;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .rail a:hover{color:var(--ink-2)}
 .rail a i{font-style:normal;color:var(--ink-3)}
-.rail a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.rail a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--un)}
 .rail a[aria-current="true"] i{color:var(--ink);opacity:1}
 .record .rec-section{scroll-margin-top:calc(var(--top-h) + 54px)}
 @media(max-width:720px){.rail a span{display:none}.rail a{padding-right:10px}}
@@ -1103,11 +1111,11 @@ body::after{
    established nothing about is drawn the way every other blank here is. */
 .cov{margin:0}
 .cov-box{position:relative}
-.cov-svg{display:block;width:100%;height:auto;background:#070b1e;border-radius:6px}
-.cov-c{stroke:rgba(255,255,255,.07);stroke-width:.5;transition:stroke var(--dur) var(--ease)}
-.cov-out{fill:none;stroke:rgba(255,255,255,.14);stroke-width:.5;stroke-dasharray:1.5 1.5}
-.cov-a:hover .cov-c{stroke:rgba(255,255,255,.8);stroke-width:1}
-.cov-a:focus-visible .cov-c{stroke:#fff;stroke-width:1.6;outline:none}
+.cov-svg{display:block;width:100%;height:auto;background:#f4f9fc;border-radius:6px}
+.cov-c{stroke:rgba(0,104,157,.14);stroke-width:.5;transition:stroke var(--dur) var(--ease)}
+.cov-out{fill:none;stroke:rgba(0,104,157,.22);stroke-width:.5;stroke-dasharray:1.5 1.5}
+.cov-a:hover .cov-c{stroke:var(--un-ink);stroke-width:1.2}
+.cov-a:focus-visible .cov-c{stroke:var(--un-ink);stroke-width:1.8;outline:none}
 .cov-tip{position:absolute;z-index:5;transform:translate(14px,-50%);pointer-events:none;
  min-width:190px;padding:var(--s3);border:1px solid var(--rule-strong);background:var(--paper-raised);
  box-shadow:var(--shadow-1);animation:fadeIn 120ms var(--ease) both}
@@ -1235,9 +1243,9 @@ body::after{
 .sec-head h2{text-transform:none;font-size:clamp(24px,2.7vw,32px);font-weight:700;letter-spacing:-.02em;
  line-height:1.08}
 .sec-head h2:before{display:none}
-.sec-head{padding-top:var(--s3);border-top:2px solid var(--ink)}
+.sec-head{padding-top:var(--s3);border-top:2px solid var(--un)}
 .sec-head p{font-size:var(--t2)}
-.rec-section h2:not(.sec-head h2){border-bottom:0;border-top:2px solid var(--ink);padding-top:var(--s3);font-size:clamp(24px,2.7vw,32px);font-weight:700}
+.rec-section h2:not(.sec-head h2){border-bottom:0;border-top:2px solid var(--un);padding-top:var(--s3);font-size:clamp(24px,2.7vw,32px);font-weight:700}
 
 /* ── the figure band: the same paper, one step down ───────────────────────── */
 .kpi-band{background:var(--paper-sunken);color:var(--ink);
@@ -1414,7 +1422,7 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .compare-dial:not(:disabled):hover{border-color:var(--rule-strong);background:var(--paper-raised)}
 .compare-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .compare-table th,.compare-table td{padding:10px 0;border-bottom:1px solid var(--rule);text-align:right;vertical-align:baseline}
-.compare-table thead th{font:600 var(--t1) var(--font-sans);color:var(--ink-3);border-bottom:2px solid var(--ink)}
+.compare-table thead th{font:600 var(--t1) var(--font-sans);color:var(--ink-3);border-bottom:2px solid var(--un)}
 .compare-table thead th:first-child,.compare-table tbody th{text-align:left}
 .compare-table tbody th{font:500 var(--t2) var(--font-sans);color:var(--ink-2)}
 .compare-table tbody th small{display:block;font:var(--t0) var(--font-sans);color:var(--ink-4)}
@@ -1523,15 +1531,15 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
    every rule that reads --ink or --paper follows without a dark variant of its
    own, and the evidence inks step up to their light counterparts. */
 .scroll-chapter,body:has(.scroll-chapter) .site-top{
- --ink:#f3f5ff;--ink-2:#d9def2;--ink-3:#a9b2d2;--ink-4:#8a93b6;
+ --ink:#f2f8fc;--ink-2:#d6e6f1;--ink-3:#a6c2d6;--ink-4:#86a6bd;
  --rule:rgba(255,255,255,.12);--rule-strong:rgba(255,255,255,.26);
- --paper:#060a1c;--paper-raised:#0d1333;--paper-sunken:#141c44;--wash:#26336d;
- /* NDC and BTR were ΔE 14 apart here (below the 15 floor); these clear it,
-    and every pair clears colour-blind separation (worst ΔE 9.2). */
- --ndc:#5b8cff;--inv-ink:#52d7aa;--btr:#e59af2;--fin-ink:#f2c35b;color:var(--ink)}
-.scroll-chapter{background:#050818}
-.scroll-pin{background:radial-gradient(1100px 760px at 66% 46%,#1c2870 0%,#0c1440 40%,#050818 100%)}
-body:has(.scroll-chapter) .site-top{background:rgba(6,10,28,.82);border-bottom-color:rgba(255,255,255,.08)}
+ --paper:#062540;--paper-raised:#0a3357;--paper-sunken:#0e3e68;--wash:#145487;
+ /* The SDG hues lifted for the night stage; all pairs clear the normal-vision
+    floor (worst ΔE 15.3), and each use carries a text label. */
+ --ndc:#4cc3f5;--ndc-ink:#4cc3f5;--inv-ink:#7cc47f;--btr:#f06aa8;--fin-ink:#f2c35b;color:var(--ink)}
+.scroll-chapter{background:#041d33}
+.scroll-pin{background:radial-gradient(1100px 760px at 66% 46%,#0e5a92 0%,#073a63 42%,#041d33 100%)}
+body:has(.scroll-chapter) .site-top{background:rgba(4,29,51,.84);border-bottom-color:rgba(255,255,255,.08)}
 .scroll-chapter .step-in{border:1px solid rgba(255,255,255,.07);box-shadow:0 20px 60px rgba(0,0,0,.35)}
 .scroll-chapter .btr-piece-label.state-observed{--btr-color:#c9a6ff}
 .scroll-chapter .btr-piece-label.state-pledged{--btr-color:#8fb6ff}
