@@ -25,7 +25,7 @@ const BANDS=[
  {label:'Disagree by a fifth to a half',min:20,max:50},
  {label:'Broadly agree, under a fifth',min:0,max:20},
 ] as const;
-const COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)'};
+const COLOR:Record<string,string>={'DS-35':'var(--src-a)','DS-02':'var(--src-b)','DS-05':'var(--src-c)','DS-40':'var(--src-d)'};
 const colorOf=(id:string)=>COLOR[id]??'var(--ink-3)';
 
 /**
@@ -37,15 +37,15 @@ function Tornado({rows,a,b}:{rows:Row[];a:string;b:string}){
  // Rows are ordered by how far apart the two readings are as a share, so the
  // bar encodes that share too. Sizing it by absolute megatonnes instead made
  // Brazil the longest bar in a list Brazil is fifteenth in.
- return <div className="torn" role="table" aria-label={`${a} against ${b}, each country's two readings around their midpoint`}>
-  <div className="torn-head" role="row"><span>{a} reads lower</span><i/><span>{a} reads higher</span></div>
+ return <div className="torn" role="group" aria-label={`${a} against ${b}, each country's two readings around their midpoint`}>
+  <div className="torn-head" aria-hidden="true"><span>{a} reads lower</span><i/><span>{a} reads higher</span></div>
   {rows.map(r=>{
    const av=r.values.find(v=>v.source_id===a)?.value_mtco2e??0;
    const bv=r.values.find(v=>v.source_id===b)?.value_mtco2e??0;
    // Half the spread either side of the midpoint: a 100% spread fills the track.
    const w=r.spread_pct/2;
    const left=av<bv;
-   return <a className="torn-row row-hit" role="row" key={r.iso3} href={`/country/${r.iso3}#emissions`}>
+   return <a className="torn-row row-hit" key={r.iso3} href={`/country/${r.iso3}#emissions`}>
     <span className="torn-name"><i>{r.iso3}</i>{r.name_en}</span>
     <span className="torn-track">
      <b className="torn-mid"/>
@@ -63,7 +63,7 @@ function Tornado({rows,a,b}:{rows:Row[];a:string;b:string}){
 function Bars({row}:{row:Row}){
  const max=Math.max(...row.values.map(v=>Math.abs(v.value_mtco2e)))||1;
  return <div className="div-bars">{row.values.map(v=><div className="div-bar" key={v.source_id}>
-  <span className="div-src" style={{color:colorOf(v.source_id)}}>{v.source_id}</span>
+  <span className="div-src">{v.source_id}</span>
   <span className="div-track"><i style={{width:`${Math.abs(v.value_mtco2e)/max*100}%`,background:colorOf(v.source_id)}}/></span>
   <span className="div-val">{fmt(v.value_mtco2e,1)}</span>
  </div>)}</div>;
@@ -77,7 +77,7 @@ function Collision({h}:{h:Atlas['headline']}){
  const rows=[{id:h.a,v:h.a_total_mtco2e},{id:h.b,v:h.b_total_mtco2e}];
  return <figure className="div-collide" aria-label={`${h.a} totals ${Math.round(h.a_total_mtco2e)} Mt and ${h.b} totals ${Math.round(h.b_total_mtco2e)} Mt across the same ${h.countries} countries in ${h.year}.`}>
   {rows.map(r=><div className="div-collide-row" key={r.id}>
-   <span className="div-collide-id" style={{color:colorOf(r.id)}}>{r.id}</span>
+   <span className="div-collide-id">{r.id}</span>
    <span className="div-collide-track"><i style={{width:`${r.v/max*100}%`,background:colorOf(r.id)}}/></span>
    <span className="div-collide-val">{fmt(r.v,0)}<small>Mt</small></span>
   </div>)}
@@ -97,13 +97,13 @@ export default async function Page(){
    <section className="div-masthead">
     <div className="div-masthead-text">
      <h1 className="rec-title">Same country, same year, different ledgers</h1>
-     <p className="rec-lede">Every source this engine holds stays whole. Nothing is averaged or reconciled, rule R3 forbids it at the contract, not at the chart, so a disagreement between two respected datasets survives all the way to this page.</p>
+     <p className="rec-lede">Every source this engine holds stays whole. Nothing is averaged or reconciled, so a disagreement between two respected datasets survives all the way to this page.</p>
     </div>
     {h&&<Collision h={h}/>}
    </section>
   </div>
 
-  {!atlas||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Atlas unavailable</span><p>The divergence view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
+  {!atlas||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Atlas unavailable</span><p>The divergence view has not been published with this build. It will be back with the next build; every country record is still open.</p></div></div>:<>
     <section className="kpi-band" aria-label="The disagreement in five figures">
      <div className="kpi"><strong className="kpi-fig countup">{h.countries}</strong><span className="kpi-lab">Countries compared</span><span className="kpi-sub">{h.a} and {h.b} both report {h.year}</span></div>
      <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.median_spread_pct)}</span><sup>%</sup></strong><span className="kpi-lab">Median spread</span><span className="kpi-sub">of the larger of the two figures</span></div>

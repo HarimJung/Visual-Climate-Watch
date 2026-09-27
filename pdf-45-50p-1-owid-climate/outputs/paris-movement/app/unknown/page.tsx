@@ -56,7 +56,7 @@ export default async function Page(){
    </section>
   </div>
 
-  {!census?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Census unavailable</span><p>The census has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
+  {!census?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Census unavailable</span><p>The census has not been published with this build. It will be back with the next build; every country record is still open.</p></div></div>:<>
 
    {/* The finding, at reading distance. Four counts, each one a subtraction. */}
    <section className="kpi-band ink" aria-label="What is unknown, in four figures">

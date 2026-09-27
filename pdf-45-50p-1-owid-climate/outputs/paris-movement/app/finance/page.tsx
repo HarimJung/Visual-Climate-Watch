@@ -129,14 +129,14 @@ function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
   <div className="rec-shell">
    <section className="fin-masthead">
     <div className="fin-masthead-text">
-     <h1 className="rec-title">The money runs down the gradient</h1>
+     <h1 className="rec-title">Vulnerability, and the climate finance that reached it</h1>
      <p className="rec-lede">Two things every record already carries, how vulnerable a country is measured to be, and what the Green Climate Fund has actually paid it. Neither axis is new collection. The gap was a screen, not a source.</p>
     </div>
     {v&&h&&<Staircase bands={v.bands}/>}
    </section>
   </div>
 
-  {!v||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
+  {!v||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. It will be back with the next build; every country record is still open.</p></div></div>:<>
     <FinanceBand h={h} v={v}/>
     <div className="rec-shell">
 

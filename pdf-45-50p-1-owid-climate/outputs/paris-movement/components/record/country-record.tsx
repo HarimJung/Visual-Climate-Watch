@@ -10,9 +10,12 @@ import Bars from '@/components/movement/bars';
 // One colour per inventory source, held steady across every chart on the page,
 // because R3 keeps the sources apart and the reader has to be able to tell them
 // apart too.
-const SOURCE_COLOR:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)','DS-06-NDC':'var(--ink-3)'};
+const SOURCE_COLOR:Record<string,string>={'DS-35':'var(--src-a)','DS-02':'var(--src-b)','DS-05':'var(--src-c)','DS-40':'var(--src-d)','DS-06-NDC':'var(--ink-3)'};
 const colorOf=(id:string)=>SOURCE_COLOR[id]??'var(--ink-3)';
-const SCENARIO_COLOR:Record<string,string>={'SSP1-2.6':'var(--inv)','SSP2-4.5':'var(--ndc)','SSP3-7.0':'var(--fin)','SSP5-8.5':'var(--btr)'};
+// The assessment's clauses are keyed by contract field; a reader gets the name
+// of the thing, and the field stays in the title for anyone auditing it.
+const CLAUSE_LABEL:Record<string,string>={'series.observed':'Emissions observed','series.observed.$conflict':'Where sources disagree','derived.on_track':'Delivery against the target','derived.$reason':'Why delivery is not judged','projections.scenarios':'Projected warming','ndc.reduction_pct':'The pledge','ndc.version':'Which NDC','ndc.conditionality.statement':'Conditions on the pledge','ndc_registry.submission_date':'Latest registry filing','ndc_registry.state':'Registry status','ndc_assessment.ghg_target':'Target as CAIT reads it','vulnerability.ndgain_score':'Vulnerability','btr.submitted':'Transparency report'};
+const SCENARIO_COLOR:Record<string,string>={'SSP1-2.6':'var(--ssp126)','SSP2-4.5':'var(--ssp245)','SSP3-7.0':'var(--ssp370)','SSP5-8.5':'var(--ssp585)'};
 const SECTIONS=[['emissions','01','Emissions'],['pledge','02','The pledge'],['transparency','03','Transparency'],['vulnerability','04','Vulnerability'],['finance','05','Finance received'],['projections','06','Projections'],['assessment','07','The assessment'],['provenance','08','Provenance']] as const;
 /** Each chapter wears the hue of the evidence it is made of. */
 const TONE:Record<string,string>={emissions:'inv',pledge:'',transparency:'btr',vulnerability:'warn',finance:'fin',projections:'inv',assessment:'',provenance:''};
@@ -23,7 +26,7 @@ function Head({id,title,lead,long}:{id:string;title:string;lead:string;long?:Rea
 const usd=(n:number|null|undefined)=>n==null?'Unknown':n>=1e9?`$${(n/1e9).toFixed(2)}bn`:n>=1e6?`$${(n/1e6).toFixed(1)}m`:`$${n.toLocaleString('en-US',{maximumFractionDigits:0})}`;
 
 function Token({state,label}:{state:string;label?:string}){
- return <span className={`state-token ${state}`}><i/>{label??({observed:'Reported',pledged:'Pledged',unknown:'Unparsed',absent:'Confirmed absent'} as Record<string,string>)[state]??state}</span>;
+ return <span className={`state-token ${state}`}><i/>{label??({observed:'Reported',pledged:'Pledged',unknown:'Not read yet',absent:'Confirmed absent'} as Record<string,string>)[state]??state}</span>;
 }
 function Tile({label,value,unit,note,state}:{label:string;value:string;unit?:string;note?:string;state?:string}){
  return <div className="rec-tile"><span className="rec-tile-label">{label}</span><strong>{value}{unit?<sup>{unit}</sup>:null}</strong>{note?<small>{note}</small>:null}{state?<Token state={state}/>:null}</div>;
@@ -81,7 +84,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
  const lead=sentences.slice(0,2).join(' ').trim();
  const rest=sentences.slice(2).join(' ').trim();
 
- return <main className="record">
+ return <main className="record" id="main">
 
   <div className="rec-shell">
    <section className="cty-head">
@@ -98,7 +101,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
   <section className="kpi-band" aria-label={`${country.name_en} in four figures`}>
    <div className="kpi"><strong className="kpi-fig">{ep?.total_mtco2e==null?<span className="kpi-none">Unread</span>:<><span className="countup">{fmt(ep.total_mtco2e,0)}</span><sup>Mt</sup></>}</strong><span className="kpi-lab">Latest inventory</span><span className="kpi-sub">{ep?.latest_year?`CO₂e reported for ${ep.latest_year}`:'no source holds a total for this record'}</span></div>
    <div className="kpi"><strong className="kpi-fig">{ndc.reduction_pct==null?<span className="kpi-none">Unread</span>:<>−<span className="countup">{fmt(ndc.reduction_pct)}</span><sup>%</sup></>}</strong><span className="kpi-lab">Pledged reduction</span><span className="kpi-sub">{ndc.reduction_pct==null?(reg?.state==='observed'?'a filing exists; no figure has been read from it':'no filing found'):`by ${ndc.target_year}, read from the document`}</span></div>
-   <div className="kpi"><strong className="kpi-fig"><span className="countup">{confirmed}</span><sup>/{Object.keys(btr.components).length}</sup></strong><span className="kpi-lab">Evidence sockets</span><span className="kpi-sub">components a filed document names</span></div>
+   <div className="kpi"><strong className="kpi-fig"><span className="countup">{confirmed}</span><sup>/{Object.keys(btr.components).length}</sup></strong><span className="kpi-lab">BTR components read</span><span className="kpi-sub">the rest are unread, not missing</span></div>
    <div className="kpi"><strong className="kpi-fig">{vulnerability.ndgain_score==null?<span className="kpi-none">Unranked</span>:<span className="countup">{fmt(vulnerability.ndgain_score,1)}</span>}</strong><span className="kpi-lab">ND-GAIN</span><span className="kpi-sub">{vulnerability.data_year?`index · ${vulnerability.data_year}`:'the index does not rank this territory'}</span></div>
   </section>
 
@@ -117,7 +120,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
 
    <section className="rec-section" id="emissions">
     <Head id="emissions" title="Emissions" lead="One line per inventory. Never averaged."
-     long={<>Every source keeps its own line because rule R3 forbids merging them at the contract, not at the chart. Two lines that disagree are two measurements on different scopes, not an error: the scope string travels with each source below. A gap in a line is a year that source did not report, and it is drawn as a gap rather than bridged.</>}/>
+     long={<>Every source keeps its own line; merging them would hide the disagreement. Two lines that disagree are two measurements on different scopes, not an error: the scope string travels with each source below. A gap in a line is a year that source did not report, and it is drawn as a gap rather than bridged.</>}/>
     <Peers iso3={country.iso3} figure="emissions_profile.total_mtco2e"/>
     {pivot.length?<>
      <SeriesChart lines={(ep?.by_source??[]).map(sr=>({id:sr.source_id,scope:sr.scope,points:sr.series.map(p=>({year:p.year,value:p.value_mtco2e}))}))} marks={[{id:'target' as const,points:data.series.target.map(p=>({year:p.year,value:p.value_mtco2e}))},{id:'bau' as const,points:data.series.bau.map(p=>({year:p.year,value:p.value_mtco2e}))}].filter(m=>m.points.length)}/>
@@ -203,11 +206,15 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    </section>
 
    <section className="rec-section" id="transparency">
-    <Head id="transparency" title="Transparency" lead="Eight reporting components. A socket fills only when a document names it." long={<>{btr.submitted===true?`${btr.version} submitted${btr.submission_date?` on ${btr.submission_date}`:''}.`:btr.submitted===false?'A non-submission has been confirmed.':'Whether a report was submitted has not been read from the registry.'} Unparsed is not the same as missing: the engine has not opened the document, which is not a finding against the Party.</>}/>
+    <Head id="transparency" title="Transparency" lead="Eight reporting components. A socket fills only when a document names it." long={<>{btr.submitted===true?`${btr.version} submitted${btr.submission_date?` on ${btr.submission_date}`:''}.`:btr.submitted===false?'A non-submission has been confirmed.':'Whether a report was submitted has not been read from the registry.'} Not read is not the same as missing: the engine has not opened the document, which is not a finding against the Party.</>}/>
     <ul className="rec-components">{Object.entries(btr.components).map(([k,v])=>
      <li key={k} className={v.state}><span className="rec-comp-mark">{v.state==='observed'?<Check size={14}/>:v.state==='absent'?<Minus size={14}/>:'?'}</span><b>{jewelNames[k]??k}</b><Token state={v.state}/>
       {v.$evidence?.length?<small className="rec-comp-evidence">{v.$evidence.join(' · ')}</small>:null}</li>)}</ul>
-    {btr.$note?<p className="detail-note">{btr.$note}</p>:null}
+    {/* Every unread socket carries its own sentence. Components that share one
+        are listed together, so eight identical lines do not bury the two that
+        differ. btr.$note is engine commentary, not a reader sentence. */}
+    {(()=>{const why=new Map<string,string[]>();for(const [k,v] of Object.entries(btr.components))if(v.state!=='observed'&&v.$reason)why.set(v.$reason,[...(why.get(v.$reason)??[]),jewelNames[k]??k]);
+     return why.size?<dl className="rec-why">{[...why].map(([r,names])=><div key={r}><dt>{names.join(', ')}</dt><dd>{r}</dd></div>)}</dl>:null})()}
     <Cite source={btr.source}/>
    </section>
 
@@ -255,7 +262,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
    <section className="rec-section" id="assessment">
     <Head id="assessment" title="The assessment" lead="One clause per field, generated by rule, never by a model." long={<>Each sentence is generated from one field by a rule, and disappears when that field empties. No prose model wrote any of it.</>}/>
     {data.verdict?.clauses.length?<ol className="rec-clauses">{data.verdict.clauses.map(c=>
-     <li key={c.field}><code>{c.field}</code><p>{c.text}</p></li>)}</ol>
+     <li key={c.field}><b title={c.field}>{CLAUSE_LABEL[c.field]??c.field}</b><p>{c.text}</p></li>)}</ol>
      :<Blank what="No clauses" why="Nothing in this record carries a value that can be asserted."/>}
    </section>
 
@@ -267,7 +274,7 @@ export default function CountryRecord({iso3,initial}:{iso3:string;initial?:Count
      <div className="rec-table-scroll"><table className="rec-inputs"><thead><tr><th>Source</th><th>Retrieved</th><th>File SHA-256</th><th>Records here</th><th>Licence</th></tr></thead>
       <tbody>{data.provenance.inputs.map(i=>{const s=data.sources?.find(x=>x.id===i.source_id);const lic=data.$sources_index?.find(x=>x.id===i.source_id)?.license;
        return <tr key={i.source_id+i.file_sha256}><td><a href={i.url} target="_blank" rel="noreferrer">{i.source_id}</a><small>{s?.name}</small></td>
-        <td>{i.retrieved_at.slice(0,10)}</td><td className="rec-hash">{i.file_sha256.slice(0,20)}…</td>
+        <td className="rec-date">{i.retrieved_at.slice(0,10)}</td><td><code className="rec-hash rec-hash-cut" title={i.file_sha256}>{i.file_sha256}</code></td>
         <td>{s?.records!=null?fmt(s.records,0):'-'}</td><td>{lic??s?.license??'not declared'}</td></tr>})}</tbody></table></div>
     </>:<Blank what="No provenance" why="This record was not written by a build that recorded its inputs."/>}
     <p className="rec-note">{(data.sources??[]).filter(s=>s.connection==='connected').length} sources fed this record. A source in the catalogue that is not listed here contributed nothing to it.</p>

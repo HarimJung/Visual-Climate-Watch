@@ -42,7 +42,7 @@ export default async function Page(){
    </section>
   </div>
 
-  {!log?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Log unavailable</span><p>The refusal log has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
+  {!log?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Log unavailable</span><p>The refusal log has not been published with this build. It will be back with the next build; every country record is still open.</p></div></div>:<>
    <section className="kpi-band" aria-label="The log in four figures">
     <div className="kpi"><strong className="kpi-fig countup">{log.total}</strong><span className="kpi-lab">Calculations refused</span><span className="kpi-sub">each one with the sentence that says why</span></div>
     <div className="kpi"><strong className="kpi-fig countup">{log.distinct_sentences}</strong><span className="kpi-lab">Distinct wordings</span><span className="kpi-sub">one family can repeat with different figures</span></div>

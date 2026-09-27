@@ -31,7 +31,7 @@ export function SiteHeader(){
   <header className="site-top">
   <a className="brand" href="/" aria-label="Visual Climate, the Paris Movement">
    <Mark size={30} className="brand-mark"/>
-   <span className="brand-word">VISUAL&nbsp;CLIMATE<small>THE PARIS MOVEMENT</small></span>
+   <span className="brand-word">Visual Climate<small>The Paris Movement</small></span>
   </a>
   <nav className="site-nav" aria-label="Sections">
    {NAV.map(n=><a key={n.href} href={n.href} aria-current={active(n.href)?'page':undefined}>{n.label}</a>)}
@@ -45,7 +45,7 @@ export function SiteHeader(){
 
 export function SiteFooter(){
  return <footer className="site-foot">
-  <a className="foot-brand" href="/"><Mark size={22}/><b>VISUAL&nbsp;CLIMATE</b></a>
+  <a className="foot-brand" href="/"><Mark size={22}/><b>Visual Climate</b></a>
   <span className="foot-line">The climate record that publishes what it does not know.</span>
   <span>Reported ≠ independently verified · Unknown ≠ absent · Refused ≠ failed</span>
  </footer>;
