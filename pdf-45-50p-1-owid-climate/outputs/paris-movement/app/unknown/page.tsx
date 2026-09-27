@@ -49,8 +49,7 @@ export default async function Page(){
   <div className="rec-shell">
    <section className="unk-masthead">
     <div className="unk-masthead-text">
-     <p className="eyebrow">THE UNKNOWN MAP</p>
-     <h1 className="rec-title">What this engine does not know<span className="rec-stop">.</span></h1>
+     <h1 className="rec-title">What this engine does not know</h1>
      <p className="rec-lede">Every other page here answers a question. This one counts the questions it cannot answer yet, and prints that count where a coverage figure would normally go. Nothing below is a placeholder: every empty count has reasons attached to it, country by country, in the country&rsquo;s own record.</p>
     </div>
     {census&&roster.length>0&&<Lattice roster={roster} census={census}/>}

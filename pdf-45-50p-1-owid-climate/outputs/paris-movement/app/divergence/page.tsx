@@ -96,8 +96,7 @@ export default async function Page(){
     <div className="rec-shell">
    <section className="div-masthead">
     <div className="div-masthead-text">
-     <p className="eyebrow">DIVERGENCE ATLAS</p>
-     <h1 className="rec-title">Same country, same year, different ledgers<span className="rec-stop">.</span></h1>
+     <h1 className="rec-title">Same country, same year, different ledgers</h1>
      <p className="rec-lede">Every source this engine holds stays whole. Nothing is averaged or reconciled, rule R3 forbids it at the contract, not at the chart, so a disagreement between two respected datasets survives all the way to this page.</p>
     </div>
     {h&&<Collision h={h}/>}

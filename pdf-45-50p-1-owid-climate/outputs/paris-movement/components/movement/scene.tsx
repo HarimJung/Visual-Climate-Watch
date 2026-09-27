@@ -31,25 +31,40 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress;manual.current=onManual},[controls,onSelect,onReady,onPhase,onProgress,onManual]);
  useEffect(()=>{let cleanup=()=>{};let cancelled=false;void(async()=>{try{
  const T=await import('three');const {RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');if(cancelled||!host.current)return;
- setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
+ setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
  // Neutral (Khronos PBR Neutral) keeps a base colour what it was authored as.
  // ACES pulled the evidence inks off their twins on the cards beside them.
- renderer.toneMapping=T.NeutralToneMapping;renderer.toneMappingExposure=.9;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
- const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.46;room.dispose();pm.dispose();
+ renderer.toneMapping=T.NeutralToneMapping;renderer.toneMappingExposure=1;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
+ const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.75;room.dispose();pm.dispose();
  // The key sits nearly overhead so a lifted part shadows the part below it,
  // not a patch of floor five units away. The rim only draws edges.
  const key=new T.DirectionalLight(0xfff5e5,2.1);key.position.set(-2.4,-1.8,12);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=4;scene.add(key);scene.add(new T.AmbientLight(0xf3f8ff,.38));
  const rim=new T.DirectionalLight(0xeef2ff,.8);rim.position.set(4,9,6);scene.add(rim);
+ // A dark studio: two cool fills from the left and above give the globe its
+ // lit edge, the way a product is lit against black.
+ const fillLeft=new T.DirectionalLight(0x7b8cff,1.1);fillLeft.position.set(-9,3,4);scene.add(fillLeft);const fillTop=new T.DirectionalLight(0x9fd0ff,.55);fillTop.position.set(2,-6,10);scene.add(fillTop);
  const camera=new T.PerspectiveCamera(34,1,.1,100);const world=new T.Group();world.rotation.z=-.13;scene.add(world);
- const silver=new T.MeshStandardMaterial({color:0xa4afb2,metalness:.94,roughness:.27});const edge=new T.MeshStandardMaterial({color:0xe4e8e7,metalness:.9,roughness:.22});const steel=new T.MeshStandardMaterial({color:0x5f737b,metalness:.82,roughness:.3});const porcelain=new T.MeshPhysicalMaterial({color:0xa7b0b4,metalness:.86,roughness:.3,clearcoat:.28});const white=new T.MeshStandardMaterial({color:0xf9fbf5,metalness:.1,roughness:.38});const shadow=new T.MeshStandardMaterial({color:0x52616a,metalness:.5,roughness:.5});
- const blue=new T.MeshPhysicalMaterial({color:0x2b54b7,metalness:.18,roughness:.18,clearcoat:1});const teal=new T.MeshPhysicalMaterial({color:0x276f68,metalness:.35,roughness:.25,clearcoat:1});const violet=new T.MeshPhysicalMaterial({color:0x5b4c99,metalness:.2,roughness:.22,clearcoat:1});const gold=new T.MeshPhysicalMaterial({color:0x8f6b2a,metalness:.45,roughness:.24,clearcoat:1});const glass=new T.MeshPhysicalMaterial({color:0x86a5e4,transparent:true,opacity:.66,transmission:.3,thickness:.22,metalness:.05,roughness:.14,ior:1.45,side:T.DoubleSide,depthWrite:false});const clear=new T.MeshPhysicalMaterial({color:0xd1daf5,transparent:true,opacity:.32,transmission:.55,roughness:.12,side:T.DoubleSide,depthWrite:false});const ghost=new T.MeshStandardMaterial({color:0xada3bf,metalness:.35,roughness:.4,transparent:true,opacity:.65});
+ // The finishes of a movement: rhodium, polished and blackened steel, frosted
+ // silver. Colour is kept for the four evidence parts, and there it is a finish
+ // too: blued steel for the pledge, anodised teal for the inventory, a jewel for
+ // each reported BTR component, gold for finance.
+ const silver=new T.MeshStandardMaterial({color:0xd4d8db,metalness:1,roughness:.3});const edge=new T.MeshStandardMaterial({color:0xf1f3f4,metalness:1,roughness:.12});const steel=new T.MeshStandardMaterial({color:0x3c4347,metalness:.9,roughness:.26});const porcelain=new T.MeshPhysicalMaterial({color:0xcdd2d5,metalness:.95,roughness:.4});const white=new T.MeshStandardMaterial({color:0xeceeef,metalness:.55,roughness:.5});const shadow=new T.MeshStandardMaterial({color:0x1b2023,metalness:.7,roughness:.35});
+ const blue=new T.MeshPhysicalMaterial({color:0x1d3f96,metalness:.85,roughness:.2,iridescence:.35,iridescenceIOR:1.6});const teal=new T.MeshPhysicalMaterial({color:0x0f6f5c,metalness:.8,roughness:.3});const violet=new T.MeshPhysicalMaterial({color:0x6b2a93,metalness:0,roughness:.05,clearcoat:1,clearcoatRoughness:.02,ior:1.76,emissive:0x220933,emissiveIntensity:.5});const gold=new T.MeshPhysicalMaterial({color:0xcfa453,metalness:1,roughness:.26});const glass=new T.MeshPhysicalMaterial({color:0xe3e9f4,transparent:true,opacity:.7,metalness:0,roughness:.04,clearcoat:1,ior:1.77,side:T.DoubleSide,depthWrite:false});const clear=new T.MeshPhysicalMaterial({color:0xe6ebf5,transparent:true,opacity:.2,metalness:0,roughness:.05,clearcoat:1,side:T.DoubleSide,depthWrite:false});const ghost=new T.MeshStandardMaterial({color:0xb9bfc6,metalness:.4,roughness:.4,transparent:true,opacity:.5});
  const parts:THREE.Group[]=[];const gears:{g:THREE.Group;speed:number;phase:number}[]=[];const hits:THREE.Object3D[]=[];const textures:THREE.Texture[]=[];const labels:{el:HTMLDivElement;anchor:THREE.Object3D;offset:[number,number];phase:number;color:string}[]=[];const topLabels=document.createElement('div');topLabels.className='projected-labels';el.appendChild(topLabels);topLabels.setAttribute('aria-hidden','true');const btrLayer=document.createElement('div');btrLayer.className='projected-labels btr-layer';el.appendChild(btrLayer);
  // A soft contact shadow under the base. The floor used to take the cast shadow
  // of every part, and a part floating six units up printed its silhouette far
  // from itself: dark gear shapes with no owner. Parts still shadow each other.
- const blob=document.createElement('canvas');blob.width=blob.height=256;const bctx=blob.getContext('2d')!;const fall=bctx.createRadialGradient(128,128,0,128,128,128);fall.addColorStop(0,'rgba(38,34,26,.30)');fall.addColorStop(.5,'rgba(38,34,26,.13)');fall.addColorStop(1,'rgba(38,34,26,0)');bctx.fillStyle=fall;bctx.fillRect(0,0,256,256);
+ const blob=document.createElement('canvas');blob.width=blob.height=256;const bctx=blob.getContext('2d')!;const fall=bctx.createRadialGradient(128,128,0,128,128,128);fall.addColorStop(0,'rgba(90,120,255,.34)');fall.addColorStop(.5,'rgba(70,95,230,.12)');fall.addColorStop(1,'rgba(40,50,160,0)');bctx.fillStyle=fall;bctx.fillRect(0,0,256,256);
  const blobTexture=new T.CanvasTexture(blob);blobTexture.colorSpace=T.SRGBColorSpace;textures.push(blobTexture);
- const floor=new T.Mesh(new T.PlaneGeometry(9.6,9.6),new T.MeshBasicMaterial({map:blobTexture,transparent:true,depthWrite:false,toneMapped:false}));floor.position.set(.3,.2,-3.43);scene.add(floor);
+ // Perlage (overlapping circular graining) for the plate and Côtes de Genève
+ // (parallel polished bands) for bridges and plates: both drive roughness and
+ // bump, so the light shows the finish, not a colour.
+ function finish(draw:(c:CanvasRenderingContext2D,size:number)=>void,repeat:number,rotation=0){const cv=document.createElement('canvas');cv.width=cv.height=512;draw(cv.getContext('2d')!,512);const t=new T.CanvasTexture(cv);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(repeat,repeat);t.rotation=rotation;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());textures.push(t);return t;}
+ const perlage=finish((c,size)=>{c.fillStyle='#8a8a8a';c.fillRect(0,0,size,size);const step=size/8;for(let row=-1;row<=8;row++)for(let col=-1;col<=8;col++){const x=col*step+(row&1?step/2:0),y=row*step;const g=c.createConicGradient(((row+8)%8)*.7+((col+8)%8)*1.3,x,y);['#bdbdbd','#8f8f8f','#bdbdbd','#8f8f8f','#bdbdbd'].forEach((v,k)=>g.addColorStop(k/4,v));c.fillStyle=g;c.beginPath();c.arc(x,y,step*.62,0,Math.PI*2);c.fill();}},.8);
+ const cotesMap=finish((c,size)=>{const band=size/6;for(let i=0;i<6;i++){const g=c.createLinearGradient(i*band,0,(i+1)*band,0);g.addColorStop(0,'#5a5a5a');g.addColorStop(.5,'#d6d6d6');g.addColorStop(1,'#5a5a5a');c.fillStyle=g;c.fillRect(i*band,0,band+1,size);}},.9,Math.PI/4);
+ const plate=new T.MeshPhysicalMaterial({color:0xd8dcde,metalness:1,roughness:.3,roughnessMap:perlage,bumpMap:perlage,bumpScale:.22});
+ const cotes=new T.MeshPhysicalMaterial({color:0xd3d7da,metalness:1,roughness:.3,roughnessMap:cotesMap,bumpMap:cotesMap,bumpScale:.35});
+ const floor=new T.Mesh(new T.PlaneGeometry(9.6,9.6),new T.MeshBasicMaterial({map:blobTexture,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));floor.position.set(.3,.2,-3.43);scene.add(floor);
  function mesh(geometry:THREE.BufferGeometry,material:THREE.Material,parent:THREE.Object3D,x=0,y=0,z=0){const m=new T.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
  function cylinder(parent:THREE.Object3D,r:number,h:number,z:number,mat:THREE.Material=porcelain,x=0,y=0){const m=mesh(new T.CylinderGeometry(r,r,h,72),mat,parent,x,y,z);m.rotation.x=Math.PI/2;return m;}
  function ring(parent:THREE.Object3D,r:number,t:number,z:number,mat:THREE.Material=edge,arc=Math.PI*2){return mesh(new T.TorusGeometry(r,t,12,140,arc),mat,parent,0,0,z);}
@@ -76,45 +91,82 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  // The source document as a physical token. It rides with its component and
  // anchors that component's label, so the box, the leader line and the reading
  // are one object rather than three unrelated ones.
- function chip(parent:THREE.Group,name:string,mat:THREE.Material,css:string,x:number,y:number,z:number,id:string){const g=new T.Group();g.position.set(x,y,z);parent.add(g);clickable(slab(g,1.16,.86,0,mat,.2),id);slab(g,1.00,.70,.22,white,.06);engraving(g,name,css,.80,.28,.33);screw(g,-.38,-.24,.34,.028);screw(g,.38,.24,.34,.028);return g;}
+ function chip(parent:THREE.Group,name:string,css:string,x:number,y:number,z:number,id:string){const g=new T.Group();g.position.set(x,y,z);parent.add(g);clickable(slab(g,1.16,.86,0,cotes,.14),id);slab(g,1.00,.70,.18,white,.04);engraving(g,name,css,.80,.28,.262);screw(g,-.38,-.24,.26,.028);screw(g,.38,.24,.26,.028);return g;}
  // The neutral chassis is the shared country contract; it contains no claimed climate values.
- const chassis=part('treaty',0,-.22);clickable(annulus(chassis,2.96,1.04,.22,0,porcelain),'treaty');annulus(chassis,3.07,2.9,.14,-.12,silver);ring(chassis,3.04,.032,.11,edge);ring(chassis,2.94,.024,.25,white);cylinder(chassis,1.03,.11,.09,white);ring(chassis,1.07,.022,.19,silver);
+ const chassis=part('treaty',0,-.22);clickable(annulus(chassis,2.96,1.04,.22,0,plate),'treaty');annulus(chassis,3.07,2.9,.14,-.12,silver);ring(chassis,3.04,.032,.11,edge);ring(chassis,2.94,.024,.25,white);cylinder(chassis,1.03,.11,.09,white);ring(chassis,1.07,.022,.19,silver);
  engraving(chassis,'PARIS AGREEMENT · 2015',ink('--ink-2','#3c464d'),1.75,.14,.29).position.y=-2.42;
- const anchorT=chip(chassis,'PARIS',porcelain,ink('--engrave','#4c565c'),-2.62,-2.62,.30,'treaty');label(anchorT,'01 / Paris plate','The shared design every part seats on',ink('--engrave','#4c565c'),0,[-150,26]);
+ const anchorT=chip(chassis,'PARIS',ink('--engrave','#4c565c'),-2.62,-2.62,.30,'treaty');label(anchorT,'01 / Paris plate','The shared design every part seats on','#c3cae3',0,[-150,26]);
  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;screw(chassis,Math.cos(a)*2.73,Math.sin(a)*2.73,.28,.066);}
  // 1. NDC records become the target ring. The arc length is the actual pledged reduction.
  const promise=part('pledge',1,.40);clickable(annulus(promise,2.82,2.4,.12,0,clear),'pledge');ring(promise,2.85,.028,.12,edge);ring(promise,2.37,.015,.13,edge);const ratio=(data.ndc.reduction_pct??0)/100;
  const segments:THREE.Mesh[]=[];const pledgeUnknown=data.ndc.reduction_pct==null;for(let i=0;i<50;i++){const g=new T.TorusGeometry(2.61,.082,8,8,Math.PI*2/50*.78);const m=mesh(g,pledgeUnknown?ghost:i<Math.round(ratio*50)?blue:porcelain,promise,0,0,.17);m.rotation.z=Math.PI/2+i/50*Math.PI*2;segments.push(m);clickable(m,'pledge');}
- const anchorN=chip(promise,'NDC',blue,'#2b54b7',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC target ring',data.ndc.reduction_pct==null?'No pledge figure read from the document':`${fmt(data.ndc.reduction_pct)}% pledged cut`,'#2b54b7',1,[-110,-28]);
+ const anchorN=chip(promise,'NDC','#2b54b7',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC target ring',data.ndc.reduction_pct==null?'No pledge figure read from the document':`${fmt(data.ndc.reduction_pct)}% pledged cut`,'#79a8ff',1,[-110,-28]);
  // 2. Only loaded observations become metal markers; the gear train has mechanical support, not invented time-series points.
  const inventory=part('delivery',2,.35);
  const yearsOf=(id:string)=>Math.max(9,Math.min(64,id==='delivery'?new Set(data.series.observed.map(p=>p.year)).size||36:data.emissions_profile?.by_source.find(x=>x.source_id===id.slice(7))?.series.length||(id==='source:DS-05'?29:24)));
  const sourceGears:[number,number,number,number,THREE.Material,number,string][]=[[-1.05,-.30,.87,yearsOf('delivery'),teal,1,'delivery'],[.55,-.30,.70,yearsOf('source:DS-05'),steel,-1,'source:DS-05'],[1.33,.75,.58,yearsOf('source:DS-02'),steel,1,'source:DS-02']];
  sourceGears.forEach(([x,y,r,n,mat,sign,id])=>{const g=clickable(cog(inventory,x,y,r,n,mat,sign),id);g.userData.source=id;const available=id==='delivery'?data.series.observed.length>0:(data.sources??[]).some(s=>s.id===id.slice(7)&&s.connection==='connected');g.userData.available=available;if(!available)ghost_(g);const cap=new T.Group();cap.position.set(x,y,.43);inventory.add(cap);engraving(cap,id==='delivery'?(data.emissions_profile?.total_mtco2e!=null?`${fmt(data.emissions_profile.total_mtco2e,0)} Mt`:'INVENTORY'):id==='source:DS-05'?'EDGAR':'TRACE',ink('--ink-2','#3c464d'),r*1.22,r*.30,.02);clickable(cap,id);});
- const gearSupports:[[number,number],[number,number]][]=[[[-1.05,-.30],[.55,-.30]],[[.55,-.30],[1.33,.75]]];gearSupports.forEach(([a,b])=>{const dx=b[0]-a[0],dy=b[1]-a[1];const bar=new T.Group();bar.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,-.17);bar.rotation.z=Math.atan2(dy,dx);inventory.add(bar);slab(bar,Math.hypot(dx,dy),.13,0,silver,.065);});
+ const gearSupports:[[number,number],[number,number]][]=[[[-1.05,-.30],[.55,-.30]],[[.55,-.30],[1.33,.75]]];gearSupports.forEach(([a,b])=>{const dx=b[0]-a[0],dy=b[1]-a[1];const bar=new T.Group();bar.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,-.17);bar.rotation.z=Math.atan2(dy,dx);inventory.add(bar);slab(bar,Math.hypot(dx,dy),.13,0,cotes,.065);});
  const dataMarks:THREE.Mesh[]=[];data.series.observed.forEach((p,i)=>{const a=Math.PI*.1+i/Math.max(data.series.observed.length,15)*Math.PI*1.8;const m=cylinder(inventory,.075,.045,.25,teal,Math.cos(a)*2.26,Math.sin(a)*2.26);clickable(m,'delivery');dataMarks.push(m)});
- const anchorI=chip(inventory,'INV',teal,'#0d8a6e',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${data.series.observed.length} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#0a6e58',2,[-144,10]);
+ const anchorI=chip(inventory,'INV','#0d8a6e',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${data.series.observed.length} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#4fd6a8',2,[-144,10]);
  // 3. BTR submission seats a bridge. Eight individual states remain independent of submission.
- const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,porcelain,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#8e4a86':'#9a93a6',.7,.22,.174);
- const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);const pad=mesh(new T.CylinderGeometry(.34,.34,.6,8),new T.MeshBasicMaterial({visible:false}),g,0,0,.1);pad.rotation.x=Math.PI/2;pad.castShadow=pad.receiveShadow=false;clickable(pad,'evidence:'+key);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed')cylinder(g,.107,.08,.04,violet);else if(state.state==='pledged')cylinder(g,.107,.05,.04,glass);else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{annulus(g,.124,.082,.055,-.075,steel);cylinder(g,.082,.012,-.105,shadow);}sockets.push(g);g.userData.key=key});
+ const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,cotes,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#8e4a86':'#9a93a6',.7,.22,.174);
+ const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);const pad=mesh(new T.CylinderGeometry(.34,.34,.6,8),new T.MeshBasicMaterial({visible:false}),g,0,0,.1);pad.rotation.x=Math.PI/2;pad.castShadow=pad.receiveShadow=false;clickable(pad,'evidence:'+key);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed'||state.state==='pledged'){const jewel=mesh(new T.SphereGeometry(.112,32,16,0,Math.PI*2,0,Math.PI/2),state.state==='observed'?violet:glass,g,0,0,.02);jewel.rotation.x=Math.PI/2;jewel.scale.set(1,.62,1);}else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{annulus(g,.124,.082,.055,-.075,edge);cylinder(g,.082,.012,-.105,shadow);}sockets.push(g);g.userData.key=key});
  const btrUnread=Object.values(data.btr.components).every(c=>c.state==='unknown');
  if(btrUnread){bridge.position.z+=.32;bridge.rotation.y=-.19;}
- const anchorB=chip(evidence,'BTR',violet,'#8e4a86',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR reporting duty',data.btr.submitted===true?`Submitted · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length} unparsed`:'Submission unparsed','#8e4a86',3,[36,-42]);
+ const anchorB=chip(evidence,'BTR','#8e4a86',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR reporting duty',data.btr.submitted===true?`Submitted · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length} unparsed`:'Submission unparsed','#d68be9',3,[36,-42]);
  // 4. Finance docks beside the mechanism. Unknown receipts never make this conditional wheel mesh.
- const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN',gold,'#b07d1a',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#8a6208',4,[32,18]);
+ const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN','#b07d1a',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#f2c35b',4,[32,18]);
  // 5. The assessment core seats only after the inputs. It refuses an unsupported conclusion.
  const core=part('assessment',5,1.02);const corePlate=slab(core,.89,.75,0,porcelain,.13);clickable(corePlate,'delivery');engraving(core,data.country.iso3,ink('--ink-2','#3c464d'),.63,.24,.174);ring(core,.48,.018,.05,edge);
 
  function disposeScene(){const materials=new Set<THREE.Material>();scene.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Points||o instanceof T.Line){o.geometry.dispose();(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));}});materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());key.shadow.dispose();env.dispose();renderer.dispose();renderer.domElement.remove();topLabels.remove();btrLayer.remove();}
  cleanup=disposeScene;
- const earthTexture=await new T.TextureLoader().loadAsync('/textures/earth.jpg');if(cancelled){earthTexture.dispose();cleanup();return;}earthTexture.colorSpace=T.SRGBColorSpace;earthTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());textures.push(earthTexture);
- // The shell is evidence of scope, not a lid: the mechanism has to stay legible
- // through it, so it is glass rather than a painted ball.
- const earthMaterial=new T.MeshPhysicalMaterial({map:earthTexture,color:0xa9bccd,emissive:0xffffff,emissiveMap:earthTexture,emissiveIntensity:.58,metalness:.05,roughness:.44,clearcoat:.22,clearcoatRoughness:.3,transparent:true,opacity:.55,depthWrite:false,side:T.DoubleSide});
+ // The planet the way GitHub drew theirs: a lit blue sphere, the land as flat
+ // five-sided dots laid along rows of latitude, and a glow at its edge. The dots
+ // come from the Natural Earth base map /unknown draws; the country on the
+ // stage is the only land that lights up.
+ const basemap=await fetch('/data/basemap.json').then(r=>r.ok?r.json() as Promise<{shapes:Record<string,string>}>:null).catch(()=>null);if(cancelled){cleanup();return;}
+ const R=2.9;let beacon:THREE.Mesh|null=null;
+ const globeBase=new T.MeshStandardMaterial({color:0x1d3180,roughness:.62,metalness:.08,emissive:0x0a1550,emissiveIntensity:.55,side:T.DoubleSide});
+ const rimGlow=new T.ShaderMaterial({transparent:true,side:T.BackSide,depthWrite:false,blending:T.AdditiveBlending,uniforms:{glow:{value:new T.Color(0x5d7dff)}},vertexShader:'varying vec3 n; varying vec3 v; void main(){vec4 mv=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',fragmentShader:'varying vec3 n; varying vec3 v; uniform vec3 glow; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),2.4);gl_FragColor=vec4(glow*rim,rim*.9);}'});
  const north=new T.Group(),south=new T.Group();world.add(north,south);
- for(const [g,start] of [[north,0],[south,Math.PI/2]] as const){const shell=new T.SphereGeometry(2.90,128,72,0,Math.PI*2,start,Math.PI/2);shell.rotateX(Math.PI/2);const planet=clickable(mesh(shell,earthMaterial,g),'planet');planet.castShadow=true;planet.renderOrder=3;ring(g,2.90,.035,0,edge);ring(g,2.82,.020,.012,gold);}
- const atmosphereMaterial=new T.ShaderMaterial({transparent:true,side:T.BackSide,depthWrite:false,uniforms:{glowColor:{value:new T.Color(0x538fd3)}},vertexShader:'varying vec3 n; varying vec3 v; void main(){vec4 mv=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',fragmentShader:'varying vec3 n; varying vec3 v; uniform vec3 glowColor; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(glowColor,rim*.18);}'});
- const atmosphere=new T.SphereGeometry(2.935,96,48,0,Math.PI*2,0,Math.PI/2);atmosphere.rotateX(Math.PI/2);mesh(atmosphere,atmosphereMaterial,north);
+ for(const [g,start] of [[north,0],[south,Math.PI/2]] as const){
+  const shell=new T.SphereGeometry(R,96,48,0,Math.PI*2,start,Math.PI/2);shell.rotateX(Math.PI/2);const planet=clickable(mesh(shell,globeBase,g),'planet');planet.castShadow=false;planet.receiveShadow=false;
+  const halo=new T.SphereGeometry(R*1.07,96,48,0,Math.PI*2,start,Math.PI/2);halo.rotateX(Math.PI/2);const glow=new T.Mesh(halo,rimGlow);glow.renderOrder=4;g.add(glow);
+  ring(g,R,.03,0,edge);}
+ if(basemap){
+  // The base map was projected with Equal Earth and scaled to its own extent
+  // (scripts/build-basemap.mjs, re-run 2026-09-27); these are that extent, so a
+  // latitude and longitude fall on the pixel the map itself drew.
+  const A1=1.340264,A2=-0.081106,A3=0.000893,A4=0.003796,X0=-2.655978697909926,Y1=1.3054284640211968,K=188.2545219182164;
+  const toMap=(lon:number,lat:number)=>{const t=Math.asin(Math.sqrt(3)/2*Math.sin(lat)),t2=t*t,t6=t2*t2*t2;return [(2*Math.sqrt(3)*lon*Math.cos(t)/(3*(9*A4*t6*t2+7*A3*t6+3*A2*t2+A1))-X0)*K,(Y1-(A4*t6*t2*t+A3*t6*t+A2*t2*t+A1*t))*K];};
+  const mask=document.createElement('canvas');mask.width=2000;mask.height=988;const mc=mask.getContext('2d',{willReadFrequently:true})!;mc.scale(2,2);
+  for(const [iso,d] of Object.entries(basemap.shapes)){mc.fillStyle=iso===data.country.iso3?'#ff0000':'#ffffff';mc.fill(new Path2D(d));}
+  const px=mc.getImageData(0,0,2000,988).data;
+  // Rows of latitude from the south pole up, each row holding as many dots as
+  // its circumference allows, so the spacing is even everywhere.
+  const dots:{lon:number;lat:number;home:boolean}[]=[];let homeLon=0,homeN=0;const rows=180;
+  for(let r=0;r<rows;r++){const lat=-Math.PI/2+(r+.5)/rows*Math.PI;const count=Math.max(1,Math.round(Math.cos(lat)*rows*2));
+   for(let i=0;i<count;i++){const lon=-Math.PI+(i+.5)/count*Math.PI*2;const [x,y]=toMap(lon,lat);if(x<0||x>=1000||y<0||y>=494)continue;const k=(Math.floor(y*2)*2000+Math.floor(x*2))*4;if(px[k+3]<90)continue;
+    const home=px[k+1]<128;if(home){homeLon+=lon;homeN++;}dots.push({lon,lat,home});}}
+  // Turn the globe so the country on the stage faces the camera.
+  const turn=Math.atan2(-1,.2)+.13-(homeN?homeLon/homeN:0);
+  const landDot=new T.MeshBasicMaterial({color:0xb4c9ff,toneMapped:false}),homeDot=new T.MeshBasicMaterial({color:0xff7ac6,toneMapped:false});
+  const place=new T.Object3D(),out=new T.Vector3();
+  for(const [g,north_] of [[north,true],[south,false]] as const)for(const home of [false,true]){
+   const mine=dots.filter(d=>(d.lat>=0)===north_&&d.home===home);if(!mine.length)continue;
+   const inst=new T.InstancedMesh(new T.CircleGeometry(home?.021:.0155,5),home?homeDot:landDot,mine.length);
+   mine.forEach((d,i)=>{const c=Math.cos(d.lat),a=d.lon+turn;place.position.set((R+.006)*c*Math.cos(a),(R+.006)*c*Math.sin(a),(R+.006)*Math.sin(d.lat));out.copy(place.position).multiplyScalar(2);place.lookAt(out);place.updateMatrix();inst.setMatrixAt(i,place.matrix);});
+   inst.instanceMatrix.needsUpdate=true;inst.renderOrder=3;g.add(inst);}
+  // The country on the stage is marked the way GitHub marks a point: a beam
+  // standing out of the globe and a ring that keeps widening from its foot.
+  const homes=dots.filter(d=>d.home);
+  if(homes.length){const n=new T.Vector3();for(const d of homes){const c=Math.cos(d.lat),a=d.lon+turn;n.x+=c*Math.cos(a);n.y+=c*Math.sin(a);n.z+=Math.sin(d.lat);}n.normalize();
+   const g=n.z>=0?north:south,pink=new T.MeshBasicMaterial({color:0xff7ac6,toneMapped:false,transparent:true});
+   const beam=new T.Mesh(new T.CylinderGeometry(.009,.009,.55,8),pink);beam.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),n);beam.position.copy(n).multiplyScalar(R+.28);g.add(beam);
+   beacon=new T.Mesh(new T.RingGeometry(.05,.068,40),pink.clone());beacon.position.copy(n).multiplyScalar(R+.012);beacon.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),n);g.add(beacon);}
+ }
  const equator=part('planet-label',0,-.23);ring(equator,3.11,.01,0,steel);engraving(equator,'ONE PLANET · SHARED RESPONSIBILITY',ink('--engrave','#4c565c'),2.32,.17,.09).position.y=-2.82;
  const obligations=new T.Group();chassis.add(obligations);const obligationNames=['ARTICLE 2','ARTICLE 4','ARTICLE 13','ARTICLE 14'];for(let i=0;i<4;i++){const g=new T.Group();const a=i*Math.PI/2+.38;g.position.set(Math.cos(a)*2.08,Math.sin(a)*2.08,.22);g.rotation.z=a-Math.PI/2;obligations.add(g);clickable(slab(g,.80,.27,0,steel,.06),'treaty');engraving(g,obligationNames[i],'#d6e0e6',.68,.10,.094);}
  const confirmedGaps=Object.values(data.btr.components).filter(c=>c.state==='absent').length;const offTrack=data.derived.on_track===false;const unresolved=data.derived.on_track==null;
@@ -161,8 +213,8 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const btrAnchors=sockets.map(()=>({x:0,y:0,set:false}));
  const btrLeaders=sockets.map(()=>{const line=document.createElementNS(svg,'polyline');line.setAttribute('class','btr-leader');line.setAttribute('pathLength','1');lines.appendChild(line);return line;});
  const threadPositions=new Float32Array(sockets.length*6);const threadGeometry=new T.BufferGeometry();threadGeometry.setAttribute('position',new T.BufferAttribute(threadPositions,3));
- const threads=new T.LineSegments(threadGeometry,new T.LineBasicMaterial({color:0x9d93b2,transparent:true,opacity:.4}));threads.frustumCulled=false;evidence.add(threads);
- function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;shots.clear();warmShots();fitDirty=dirty=true;}
+ const threads=new T.LineSegments(threadGeometry,new T.LineBasicMaterial({color:0xa8adb3,transparent:true,opacity:.45}));threads.frustumCulled=false;evidence.add(threads);
+ function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;shots.clear();warmShots();fitDirty=dirty=true;}
  // Measure every shot while the page is idle, so no chapter pays for its own
  // framing in the middle of a scroll.
  let warming=0;function warmShots(){globalThis.cancelIdleCallback?.(warming);warming=(globalThis.requestIdleCallback??((f:()=>void)=>setTimeout(f,120)))(()=>{if(!disposed)for(const k of [0,1,2,3,4,5,6,8])shot(k);}) as number;}
@@ -195,7 +247,8 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    threadPositions.set([socketHomes[i].x,socketHomes[i].y,socketHomes[i].z,g.position.x,g.position.y,g.position.z],i*6);
   });
   threadGeometry.attributes.position.needsUpdate=true;threads.visible=internal(3)>.615;
-  north.rotation.z=south.rotation.z=gearTime*.085;
+  north.rotation.z=south.rotation.z=gearTime*.05;
+  if(beacon){const t=(gearTime*.55)%1;beacon.scale.setScalar(1+t*2.4);(beacon.material as THREE.MeshBasicMaterial).opacity=1-t;}
   world.rotation.z=-.13*(1-deskAmount(amount)*(1-returnAmount(amount,0)));floor.visible=amount<.7||amount>.99;equator.visible=amount<.7||amount>.99;world.updateMatrixWorld(true);
  }
 

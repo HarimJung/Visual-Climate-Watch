@@ -55,8 +55,7 @@ export default async function Page(){
   <div className="rec-shell">
    <section className="cty-masthead">
     <div className="cty-masthead-text">
-     <p className="eyebrow">THE COLLECTION</p>
-     <h1 className="rec-title">One calibre, different promises<span className="rec-stop">.</span></h1>
+     <h1 className="rec-title">One calibre, different promises</h1>
      <p className="rec-lede">Every country the engine has built, drawn by the same dial and the same code path. A card with no pledge is still a card with coverage on it, not an empty frame.</p>
     </div>
     {roster.length>0&&<ContactSheet roster={roster}/>}

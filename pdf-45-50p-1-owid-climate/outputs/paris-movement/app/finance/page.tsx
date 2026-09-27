@@ -129,8 +129,7 @@ function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
   <div className="rec-shell">
    <section className="fin-masthead">
     <div className="fin-masthead-text">
-     <p className="eyebrow">VULNERABILITY AND FINANCE</p>
-     <h1 className="rec-title">The money runs down the gradient<span className="rec-stop">.</span></h1>
+     <h1 className="rec-title">The money runs down the gradient</h1>
      <p className="rec-lede">Two things every record already carries, how vulnerable a country is measured to be, and what the Green Climate Fund has actually paid it. Neither axis is new collection. The gap was a screen, not a source.</p>
     </div>
     {v&&h&&<Staircase bands={v.bands}/>}

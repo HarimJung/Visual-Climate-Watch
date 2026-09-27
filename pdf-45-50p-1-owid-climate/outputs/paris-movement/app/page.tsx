@@ -1,7 +1,8 @@
 'use client';
 import {useEffect,useRef,useState,type CSSProperties,type ReactNode} from 'react';
 import {useSearchParams} from 'next/navigation';
-import {ArrowLeft,ArrowUpRight,ArrowRight,Layers3,RotateCcw,Pause,Play,ScanLine,Scan,Download,Globe2,Check,Minus,Plus,Repeat,Film} from 'lucide-react';
+import {ArrowLeft,ArrowUpRight,ArrowRight,Layers3,RotateCcw,Pause,Play,ScanLine,Scan,Download,Check,Minus,Plus,Repeat,Film,Ellipsis,Blocks} from 'lucide-react';
+import {Menu} from '@base-ui/react/menu';
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from '@/components/ui/select';
 import {Tabs,TabsList,TabsTrigger} from '@/components/ui/tabs';
 import {Sheet,SheetContent,SheetHeader,SheetTitle,SheetDescription} from '@/components/ui/sheet';
@@ -133,7 +134,6 @@ export default function Page(){
   </>:<>
    <h1>The public record of what each country <em>actually filed</em> under the Paris Agreement.</h1>
    <p>Every figure here is traced to the document it was read out of. Every blank is published with the sentence that says why it is blank.</p>
-   <p className="stage-note">{data.country.name_en} on the stage · {data.$meta?.snapshot??n.version}</p>
    <a className="primary-action" href="/unknown">See what we do not know <ArrowRight size={15}/></a>
    <p className="cue">Scroll ↓ the machine opens one layer at a time</p>
   </>},
@@ -211,7 +211,7 @@ export default function Page(){
   </>},
  ];
  return <main className="atelier" id="main">
- {mode==='tray'?<><div className="mode-strip">{tabs}</div><section className="tray-view"><div className="tray-heading"><p className="eyebrow">ONE CALIBRE. DIFFERENT PROMISES.</p><h1>The country collection<span>.</span></h1><p>Choose a country to open its movement. Each edition retains its original document context.</p></div><div className="tray-grid">{roster.map(country=>{const evidenced=Object.values(country.btr_components??{}).filter(c=>c.state==='observed').length;
+ {mode==='tray'?<><div className="mode-strip">{tabs}</div><section className="tray-view"><div className="tray-heading"><p className="eyebrow">ONE CALIBRE. DIFFERENT PROMISES.</p><h1>The country collection</h1><p>Choose a country to open its movement. Each edition retains its original document context.</p></div><div className="tray-grid">{roster.map(country=>{const evidenced=Object.values(country.btr_components??{}).filter(c=>c.state==='observed').length;
    return <button className="tray-card" key={country.iso3} onClick={()=>selectCountry(country.iso3)}><div className="tray-meta"><span>{country.iso3}</span><span>{country.edition}</span></div><StaticDial data={{ndc:{reduction_pct:country.reduction_pct},btr:{components:country.btr_components??{}},emissions_profile:{total_mtco2e:country.total_mtco2e??null,latest_year:country.latest_year??null},observed_years:country.observed_years??null}}/><div className="tray-country"><div><h2>{country.name_en}</h2><p>{[country.region,country.income_group].filter(Boolean).join(' · ')||'Not classified by the World Bank register'}</p></div><ArrowUpRight size={25}/></div>
    {/* Four readings every record actually holds, so a card without a pledge is
        still a card with coverage on it rather than an empty frame. */}
@@ -223,27 +223,34 @@ export default function Page(){
      scene keeps its progress → phase pipeline, the cards only follow `phase`.
      The story is scrolled on the desktop and played on the phone. */}
  <div className="scroll-chapter" ref={chapter} style={phone?undefined:{height:`${SCREENS*100}svh`}}><div className="scroll-pin"><section className={`instrument ${mode==='engine'?'engine-view':''} ${unavailable?'is-loading':''}`}>
- <div className="movement-stage"><div className="stage-heading">{tabs}
- {/* The two most useful things a stage can offer: the next country, and the
-     previous one. Arrow keys do the same when nothing is being typed. */}
- <span className="stage-pager"><Select disabled={recording} value={compare} onValueChange={v=>{const b=String(v??'');setCompare(b);if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);b?p.set('compare',b):p.delete('compare');window.history.replaceState(null,'',`?${p}`)}}} items={[{value:'',label:'Compare with…'},...roster.filter(c=>c.iso3!==iso).map(c=>({value:c.iso3,label:c.name_en}))]}><SelectTrigger aria-label="Compare with another country" className="compare-picker"><SelectValue/></SelectTrigger><SelectContent className="country-menu"><SelectItem value="">No comparison</SelectItem>{roster.filter(c=>c.iso3!==iso).map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select><button className="stage-step prev" onClick={()=>step(-1)} disabled={recording||roster.length<2} aria-label="Previous country"><ArrowLeft size={15}/></button><Select disabled={recording} value={iso} onValueChange={v=>v&&selectCountry(v)} items={roster.map(c=>({value:c.iso3,label:c.name_en}))}><SelectTrigger aria-label="Select country" className="country-picker"><Globe2 size={15}/><SelectValue/></SelectTrigger><SelectContent className="country-menu">{roster.map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select><button className="stage-step next" onClick={()=>step(1)} disabled={recording||roster.length<2} aria-label="Next country"><ArrowRight size={15}/></button></span></div><MovementScene data={data} controls={ctrl} onSelect={inspect} onReady={(c,render)=>{canvas.current=c;renderNow.current=render}} onManual={setManual} onPhase={setPhase} onProgress={setSceneProgress}/>
- {hint&&<p className="stage-hint" aria-hidden="true">Drag to turn · click a part · ← → other countries</p>}
+ <div className="movement-stage"><div className="stage-heading">{mode!=='instrument'&&tabs}
+ {/* The stage names its country the way a catalogue names a calibre: large,
+     with the documents it was built from under it, and the previous and next
+     country beside it. Arrow keys do the same when nothing is being typed. */}
+ <span className="stage-pager"><button className="stage-step prev" onClick={()=>step(-1)} disabled={recording||roster.length<2} aria-label="Previous country"><ArrowLeft size={15}/></button><Select disabled={recording} value={iso} onValueChange={v=>v&&selectCountry(v)} items={roster.map(c=>({value:c.iso3,label:c.name_en}))}><SelectTrigger aria-label="Select country" className="country-name"><SelectValue/></SelectTrigger><SelectContent className="country-menu">{roster.map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select><button className="stage-step next" onClick={()=>step(1)} disabled={recording||roster.length<2} aria-label="Next country"><ArrowRight size={15}/></button><small className="stage-edition">{data.$meta?.snapshot??n.version}</small></span></div><MovementScene data={data} controls={ctrl} onSelect={inspect} onReady={(c,render)=>{canvas.current=c;renderNow.current=render}} onManual={setManual} onPhase={setPhase} onProgress={setSceneProgress}/>
+ <div className="stage-foot"><button className="stage-how" onClick={()=>inspect('method')}>How to read this</button>{hint&&<span className="stage-hint" aria-hidden="true">Drag to turn · click a part · ← → other countries</span>}</div>
  {/* Scrub: the story's progress as a line along the floor. Controls: one
      cluster of squares, always there, labelled by title only. */}
  <div className="stage-scrub" onPointerDownCapture={()=>{setProgress(sceneProgress);setExploded(false);setMotionInput(v=>v+1)}} onKeyDownCapture={e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(e.key)){setProgress(sceneProgress);setExploded(false);setMotionInput(v=>v+1)}}}><Slider aria-label="Story progress" min={0} max={100} value={[progress!=null&&!exploded?progress:sceneProgress]} onValueChange={v=>{setProgress(Array.isArray(v)?v[0]:v);setExploded(false)}}/></div>
+ {/* Three controls stay on the stage: play, the view, and More. Everything
+     used less often lives behind More, and Reset view appears beside them the
+     moment a drag has moved the camera, so the way back is always findable. */}
  <div className="stage-ctl" role="group" aria-label="Movement controls"><div>
-  <button aria-pressed={exploded} aria-label={exploded?'Collapse layers':'Explode layers'} title={exploded?'Collapse layers':'Explode layers'} disabled={unavailable||recording} onClick={()=>{setProgress(0);setMotionInput(v=>v+1);setExploded(v=>!v)}}><Layers3 size={15}/></button>
-  <button onClick={replayAssembly} aria-label="Replay assembly" title="Replay assembly" disabled={recording}><RotateCcw size={15}/></button>
   <button onClick={()=>setPaused(v=>!v)} aria-pressed={paused} aria-label={paused?'Play motion':'Pause motion'} title={paused?'Play motion':'Pause motion'} disabled={recording}>{paused?<Play size={15}/>:<Pause size={15}/>}</button>
   <button onClick={()=>setCamera(v=>v==='plan'?'atelier':'plan')} aria-pressed={camera==='plan'} aria-label="Top-down view" title="Top-down view"><ScanLine size={15}/></button>
   {manual&&<button onClick={()=>setResetView(v=>v+1)} aria-label="Reset view" title="Reset view"><Scan size={15}/></button>}
-  {phone&&<button onClick={()=>setLoop(v=>!v)} aria-pressed={loop} aria-label={loop?'Looping':'Play once'} title={loop?'Looping':'Play once'}><Repeat size={15}/></button>}
- </div><div>
-  <button onClick={()=>setZoom(z=>Math.min(1.55,z+.1))} aria-label="Zoom in" title="Zoom in"><Plus size={15}/></button>
-  <button onClick={()=>setZoom(z=>Math.max(.75,z-.1))} aria-label="Zoom out" title="Zoom out"><Minus size={15}/></button>
- </div><div>
-  <button onClick={saveFrame} disabled={unavailable||recording} aria-label="Save frame" title="Save frame"><Download size={15}/></button>
-  <button onClick={saveMotion} disabled={unavailable||recording} aria-label={recording?'Recording…':'Export 10-second film'} title={recording?'Recording…':'Export 10-second film'}><Film size={15}/></button>
+  <Menu.Root><Menu.Trigger aria-label="More controls" title="More controls"><Ellipsis size={15}/></Menu.Trigger><Menu.Portal><Menu.Positioner side="left" align="end" sideOffset={8} className="ctl-menu-pos"><Menu.Popup className="ctl-menu">
+   <Menu.Item disabled={unavailable||recording} onClick={()=>{setProgress(0);setMotionInput(v=>v+1);setExploded(v=>!v)}}><Layers3 size={15}/>{exploded?'Collapse layers':'Explode layers'}</Menu.Item>
+   <Menu.Item disabled={recording} onClick={replayAssembly}><RotateCcw size={15}/>Replay assembly</Menu.Item>
+   {phone&&<Menu.Item onClick={()=>setLoop(v=>!v)}><Repeat size={15}/>{loop?'Play once':'Loop the assembly'}</Menu.Item>}
+   <Menu.Item onClick={()=>setZoom(z=>Math.min(1.55,z+.1))} closeOnClick={false}><Plus size={15}/>Zoom in</Menu.Item>
+   <Menu.Item onClick={()=>setZoom(z=>Math.max(.75,z-.1))} closeOnClick={false}><Minus size={15}/>Zoom out</Menu.Item>
+   <Menu.Separator className="ctl-menu-rule"/>
+   <Menu.Item disabled={unavailable||recording} onClick={saveFrame}><Download size={15}/>Save frame</Menu.Item>
+   <Menu.Item disabled={unavailable||recording} onClick={saveMotion}><Film size={15}/>{recording?'Recording…':'Export 10-second film'}</Menu.Item>
+   <Menu.Separator className="ctl-menu-rule"/>
+   <Menu.Item disabled={recording} onClick={()=>changeMode('engine')}><Blocks size={15}/>Architecture view</Menu.Item>
+  </Menu.Popup></Menu.Positioner></Menu.Portal></Menu.Root>
  </div></div>
  </div>
  {unavailable&&<output className="data-overlay"><p>{loading?'Assembling the country record…':error}</p>{!loading&&<button className="primary-action" onClick={()=>{setLoading(true);setError('');setRetry(v=>v+1)}}>Retry data request <RotateCcw size={16}/></button>}</output>}
@@ -284,7 +291,7 @@ export default function Page(){
    <p className="compare-note">A dash is a figure this engine has not read for that country. It is not a zero, and nothing above is computed across the two when either side is missing.</p>
   </section>;})()}
  {mode==='instrument'&&explore.length>0&&<section className="calibre" aria-label="Other countries on the same calibre">
-  <h2>Same calibre, other countries</h2>
+  <div className="calibre-head"><h2>Same calibre, other countries</h2><Select disabled={recording} value={compare} onValueChange={v=>{const b=String(v??'');setCompare(b);if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);b?p.set('compare',b):p.delete('compare');window.history.replaceState(null,'',`?${p}`)}}} items={[{value:'',label:'Compare with…'},...roster.filter(c=>c.iso3!==iso).map(c=>({value:c.iso3,label:c.name_en}))]}><SelectTrigger aria-label="Compare with another country" className="compare-picker"><SelectValue/></SelectTrigger><SelectContent className="country-menu"><SelectItem value="">No comparison</SelectItem>{roster.filter(c=>c.iso3!==iso).map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select></div>
   <div className="calibre-row">
    {[...(roster.find(c=>c.iso3===iso)?[{iso3:iso,name:data.country.name_en,why:'on the stage'}]:[]),...explore.filter(x=>x.iso3!==iso)].map(x=>{const c=roster.find(r=>r.iso3===x.iso3);if(!c)return null;
     return <button key={x.iso3} className="calibre-dial" aria-pressed={x.iso3===iso} disabled={recording} onClick={()=>{setHint(false);selectCountry(x.iso3)}}>

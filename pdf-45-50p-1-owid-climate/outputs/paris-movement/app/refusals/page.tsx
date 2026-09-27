@@ -26,8 +26,7 @@ export default async function Page(){
  return <main className="record" id="main">
   <div className="rec-shell">
    <section className="ref-masthead">
-    <p className="eyebrow">THE REFUSAL LOG</p>
-    <h1 className="rec-title">What the engine would not compute<span className="rec-stop">.</span></h1>
+    <h1 className="rec-title">What the engine would not compute</h1>
     {specimen&&<figure className="ref-specimen reveal">
      <blockquote>{specimen.reason}</blockquote>
      <figcaption>
