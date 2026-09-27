@@ -1,7 +1,7 @@
 'use client';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type CSSProperties,type ReactNode} from 'react';
 import {useSearchParams} from 'next/navigation';
-import {ArrowLeft,ArrowUpRight,ArrowRight,Layers3,RotateCcw,Pause,Play,ScanLine,Scan,Download,Globe2,Check,Minus,Film} from 'lucide-react';
+import {ArrowLeft,ArrowUpRight,ArrowRight,Layers3,RotateCcw,Pause,Play,ScanLine,Scan,Download,Globe2,Check,Minus,Plus,Repeat,Film} from 'lucide-react';
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from '@/components/ui/select';
 import {Tabs,TabsList,TabsTrigger} from '@/components/ui/tabs';
 import {Sheet,SheetContent,SheetHeader,SheetTitle,SheetDescription} from '@/components/ui/sheet';
@@ -31,13 +31,18 @@ const anchorFor=(id?:string|null)=>!id?'':RECORD_ANCHOR[id]??(id.startsWith('evi
 // The three tabs are a view of the same page, and a view you cannot link to
 // cannot be cited, screenshotted by a script, or reopened where you left it.
 const VIEWS=['instrument','engine','tray'];
+// The pinned chapter is this many screens tall: one of cover with the machine
+// closed, then the story over the rest. cardTop() places a chapter's card the
+// same way the scroll handler reads progress, so card and machine agree.
+const SCREENS=10;
+const cardTop=(k:number)=>(1+chapterStart(k)*(SCREENS-2))/SCREENS;
 const titles:Record<string,string>={planet:'The planet we hold',treaty:'The Paris Agreement · the shared plate',pledge:'The promise',conditions:'The conditions',delivery:'The trajectory',evidence:'The evidence',sources:'Behind the movement',method:'Reading the instrument'};
 function StateToken({state,label}:{state:string;label?:string}){return <span className={`state-token ${state}`}><i/>{label??({observed:'Reported',pledged:'Pledged',unknown:'Not read yet',absent:'Confirmed absent'}[state]??state)}</span>}
 function SourceLink({source}:{source:Source}){return <a className="source-link" href={source.document_url??source.url} target="_blank" rel="noopener noreferrer"><span><small>{source.id}</small>{source.name??'Source document'}<small>{source.retrieved_at?'Retrieved '+source.retrieved_at:'Retrieval not recorded'}</small></span><ArrowUpRight size={18}/></a>}
 function Reading({label,value,note,state='unknown'}:{label:string;value:string;note?:string;state?:string}){return <div className="reading"><div><span>{label}</span><StateToken state={state}/></div><strong>{value}</strong>{note&&<p>{note}</p>}</div>}
 export default function Page(){
- const chapter=useRef<HTMLDivElement>(null);const stepRef=useRef<(d:number)=>void>(()=>{});const [progress,setProgress]=useState<number|null>(0);const [zoom,setZoom]=useState(1);const [sceneProgress,setSceneProgress]=useState(0);const [motionInput,setMotionInput]=useState(0);const [phase,setPhase]=useState(0);const [loop,setLoop]=useState(false);const [data,setData]=useState<CountryData>(initial);const params=useSearchParams();const view=params.get('view');const wanted=params.get('country')?.toUpperCase();const [iso,setIso]=useState(wanted&&/^[A-Z]{3}$/.test(wanted)?wanted:'KHM');const [hint,setHint]=useState(true);const wantedB=params.get('compare')?.toUpperCase();const [compare,setCompare]=useState(wantedB&&/^[A-Z]{3}$/.test(wantedB)?wantedB:'');const [mode,setMode]=useState(view&&VIEWS.includes(view)?view:'instrument');const [loading,setLoading]=useState(false);const [error,setError]=useState('');const [detail,setDetail]=useState<string|null>(null);const [sheetOpen,setSheetOpen]=useState(false);const [exploded,setExploded]=useState(false);const [replay,setReplay]=useState(0);const [paused,setPaused]=useState(false);const [camera,setCamera]=useState<SceneControls['camera']>('atelier');const [notice,setNotice]=useState('');const [recording,setRecording]=useState(false);const [retry,setRetry]=useState(0);const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const canvas=useRef<HTMLCanvasElement|null>(null);const recorder=useRef<MediaRecorder|null>(null);const requestId=useRef(0);const [requestTime,setRequestTime]=useState<string|null>(null);const [payloadHash,setPayloadHash]=useState<string|null>(null);const [roster,setRoster]=useState<RosterRow[]>(fallbackRoster);const [catalog,setCatalog]=useState<CatalogRow[]>(sourceCatalog);const [telemetry,setTelemetry]=useState<Telemetry|null>(null);const [engineNote,setEngineNote]=useState<string|null>(null);const [resetView,setResetView]=useState(0);const [manual,setManual]=useState(false);const renderNow=useRef<(()=>void)|null>(null);
- useEffect(()=>{const abort=new AbortController();const id=++requestId.current;void fetch(`/api/v1/country-dial?country=${iso}`,{signal:abort.signal}).then(async r=>{if(!r.ok)throw Error('Country data is unavailable.');const d=await r.json();if(!validateCountry(d)||d.country.iso3!==iso)throw Error('Country data did not match the contract.');if(id!==requestId.current)return;setData(d);setReplay(v=>v+1);if(!matchMedia('(prefers-reduced-motion: reduce)').matches){setProgress(null);setPaused(false)}setRequestTime(new Date().toISOString());if(globalThis.crypto?.subtle){const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(d)));if(id===requestId.current)setPayloadHash(Array.from(new Uint8Array(digest),v=>v.toString(16).padStart(2,'0')).join(''));}}).catch(e=>{if(e.name!=='AbortError')setError(e.message);}).finally(()=>{if(id===requestId.current)setLoading(false)});return()=>abort.abort()},[iso,retry]);
+ const chapter=useRef<HTMLDivElement>(null);const stepRef=useRef<(d:number)=>void>(()=>{});const [progress,setProgress]=useState<number|null>(0);const [zoom,setZoom]=useState(1);const [sceneProgress,setSceneProgress]=useState(0);const [motionInput,setMotionInput]=useState(0);const [phase,setPhase]=useState(0);const [loop,setLoop]=useState(false);const [data,setData]=useState<CountryData>(initial);const params=useSearchParams();const view=params.get('view');const wanted=params.get('country')?.toUpperCase();const [iso,setIso]=useState(wanted&&/^[A-Z]{3}$/.test(wanted)?wanted:'KHM');const [hint,setHint]=useState(true);const [coverOn,setCoverOn]=useState(true);const wantedB=params.get('compare')?.toUpperCase();const [compare,setCompare]=useState(wantedB&&/^[A-Z]{3}$/.test(wantedB)?wantedB:'');const [mode,setMode]=useState(view&&VIEWS.includes(view)?view:'instrument');const [loading,setLoading]=useState(false);const [error,setError]=useState('');const [detail,setDetail]=useState<string|null>(null);const [sheetOpen,setSheetOpen]=useState(false);const [exploded,setExploded]=useState(false);const [replay,setReplay]=useState(0);const [paused,setPaused]=useState(false);const [camera,setCamera]=useState<SceneControls['camera']>('atelier');const [notice,setNotice]=useState('');const [recording,setRecording]=useState(false);const [retry,setRetry]=useState(0);const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const canvas=useRef<HTMLCanvasElement|null>(null);const recorder=useRef<MediaRecorder|null>(null);const requestId=useRef(0);const [requestTime,setRequestTime]=useState<string|null>(null);const [payloadHash,setPayloadHash]=useState<string|null>(null);const [roster,setRoster]=useState<RosterRow[]>(fallbackRoster);const [catalog,setCatalog]=useState<CatalogRow[]>(sourceCatalog);const [telemetry,setTelemetry]=useState<Telemetry|null>(null);const [engineNote,setEngineNote]=useState<string|null>(null);const [resetView,setResetView]=useState(0);const [manual,setManual]=useState(false);const renderNow=useRef<(()=>void)|null>(null);
+ useEffect(()=>{const abort=new AbortController();const id=++requestId.current;void fetch(`/api/v1/country-dial?country=${iso}`,{signal:abort.signal}).then(async r=>{if(!r.ok)throw Error('Country data is unavailable.');const d=await r.json();if(!validateCountry(d)||d.country.iso3!==iso)throw Error('Country data did not match the contract.');if(id!==requestId.current)return;setData(d);setReplay(v=>v+1);if(!matchMedia('(prefers-reduced-motion: reduce)').matches){if(matchMedia('(max-width:700px)').matches)setProgress(null);setPaused(false)}setRequestTime(new Date().toISOString());if(globalThis.crypto?.subtle){const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(d)));if(id===requestId.current)setPayloadHash(Array.from(new Uint8Array(digest),v=>v.toString(16).padStart(2,'0')).join(''));}}).catch(e=>{if(e.name!=='AbortError')setError(e.message);}).finally(()=>{if(id===requestId.current)setLoading(false)});return()=>abort.abort()},[iso,retry]);
  // data/census.json is what `report --json` printed for this build. The claim
  // above the instrument is read from it rather than counted a second way here,
  // so the first screen and the census cannot drift apart.
@@ -48,20 +53,20 @@ export default function Page(){
  // scrolls away with everything else. The scroll scrubber below must not run
  // there, or the assembly plays out above the fold while the reader scrolls
  // past an empty frame. The phone gets the narrated replay instead.
- const [phone,setPhone]=useState(false);
- useEffect(()=>{const m=matchMedia('(max-width:700px)');const read=()=>setPhone(m.matches);read();m.addEventListener('change',read);return()=>m.removeEventListener('change',read)},[]);
+ const [phone,setPhone]=useState(false);const [inset,setInset]=useState(0);
+ useEffect(()=>{const m=matchMedia('(max-width:700px)');const read=()=>{setPhone(m.matches);const card=chapter.current?.querySelector('.step-in');setInset(m.matches||!card?0:card.getBoundingClientRect().right-chapter.current!.getBoundingClientRect().left)};read();m.addEventListener('change',read);addEventListener('resize',read);return()=>{m.removeEventListener('change',read);removeEventListener('resize',read)}},[]);
  useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current);if(recorder.current?.state==='recording')recorder.current.stop()},[]);
  useEffect(()=>{const close=(e:KeyboardEvent)=>{if(e.key==='Escape'){if(timer.current)clearTimeout(timer.current);setSheetOpen(false);setExploded(false);setDetail(null)}};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close)},[]);
  useEffect(()=>{const key=(e:KeyboardEvent)=>{const t=e.target as HTMLElement|null;if(e.metaKey||e.ctrlKey||e.altKey)return;if(t&&/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)||t?.isContentEditable)return;if(document.querySelector('.jump-back'))return;if(e.key==='ArrowRight'){e.preventDefault();setHint(false);stepRef.current(1)}if(e.key==='ArrowLeft'){e.preventDefault();setHint(false);stepRef.current(-1)}};const quiet=()=>setHint(false);addEventListener('keydown',key);addEventListener('pointerdown',quiet,{once:true});return()=>{removeEventListener('keydown',key);removeEventListener('pointerdown',quiet)}},[]);
- useEffect(()=>{if(phone)return;let frame=0;const scroll=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{const el=chapter.current;if(!el)return;const r=el.getBoundingClientRect();const distance=el.offsetHeight-innerHeight;if(distance>100&&r.top<=0&&r.bottom>=0){setHint(false);setProgress(Math.max(0,Math.min(100,-r.top/distance*100)));setExploded(false);setMotionInput(v=>v+1)}})};window.addEventListener('scroll',scroll,{passive:true});return()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',scroll)}},[phone]);
+ useEffect(()=>{if(phone)return;let frame=0;const scroll=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{const el=chapter.current;if(!el)return;const r=el.getBoundingClientRect();setCoverOn(-r.top<innerHeight*.45);const lead=innerHeight,distance=el.offsetHeight-innerHeight-lead;if(distance>100&&r.top<=0&&r.bottom>=0){setHint(false);setProgress(Math.max(0,Math.min(100,(-r.top-lead)/distance*100)));setExploded(false);setMotionInput(v=>v+1)}})};window.addEventListener('scroll',scroll,{passive:true});return()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',scroll)}},[phone]);
  function inspect(id:string){if(loading||error||recording)return;if(timer.current)clearTimeout(timer.current);setDetail(id);if(id!=='method')setExploded(true);if(id==='sources')setCamera('back');timer.current=setTimeout(()=>setSheetOpen(true),matchMedia('(prefers-reduced-motion: reduce)').matches?0:480)}
  function closeSheet(open:boolean){setSheetOpen(open);if(!open){setExploded(false);setCamera('atelier');setDetail(null)}}
  // A chapter jump on the desktop is a scroll, so the wheel and the buttons
  // agree on where the story is. The phone has no scroll drive and seeks directly.
- function seek(amount:number){setHint(false);const el=chapter.current;if(!phone&&el){window.scrollTo(0,el.getBoundingClientRect().top+scrollY+(el.offsetHeight-innerHeight)*amount)}else{setProgress(amount*100);setExploded(false);setMotionInput(v=>v+1)}}
+ function seek(amount:number){setHint(false);const el=chapter.current;if(!phone&&el){window.scrollTo(0,el.getBoundingClientRect().top+scrollY+innerHeight+(el.offsetHeight-innerHeight*2)*amount)}else{setProgress(amount*100);setExploded(false);setMotionInput(v=>v+1)}}
  stepRef.current=(d)=>step(d);
  function step(d:number){const i=roster.findIndex(c=>c.iso3===iso);if(i<0||roster.length<2)return;selectCountry(roster[(i+d+roster.length)%roster.length].iso3)}
- function selectCountry(value:string){if(recording)return;if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);p.set('country',value);window.history.replaceState(null,'',`?${p}`)}setLoading(true);setError('');setPayloadHash(null);if(timer.current)clearTimeout(timer.current);setSheetOpen(false);setExploded(false);setCamera('atelier');setIso(value);setProgress(0);setMode('instrument')}
+ function selectCountry(value:string){if(recording)return;if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);p.set('country',value);window.history.replaceState(null,'',`?${p}`)}setLoading(true);setError('');setPayloadHash(null);if(timer.current)clearTimeout(timer.current);setSheetOpen(false);setExploded(false);setCamera('atelier');setIso(value);if(matchMedia('(max-width:700px)').matches)setProgress(0);setMode('instrument')}
  function changeMode(value:unknown){if(recording)return;if(timer.current)clearTimeout(timer.current);const next=String(value);
   // replaceState, not push: the tabs are a view of one page, not five pages of
   // history a reader has to walk back through.
@@ -85,7 +90,7 @@ export default function Page(){
  const btrIndex=btrStepAt(narrativeAmount(sceneProgress/100));const btrStory=btrIndex>=0?BTR_STORIES[btrIndex]:null;
  const btrState=btrStory?data.btr.components[btrStory.key]?.state:null;
  const btrStatus=btrState==='observed'?'Reported in the source':btrState==='pledged'?'A pledge':btrState==='absent'?'Confirmed absent in the source':'Not yet parsed';
- const ctrl:SceneControls={explode:exploded,replay,paused,camera,mode:mode==='engine'?'engine':'instrument',selected:detail,loop,progress,zoom,inputToken:motionInput,resetView,playSeconds:recording?9:phone?30:56};
+ const ctrl:SceneControls={explode:exploded,replay,paused,camera,mode:mode==='engine'?'engine':'instrument',selected:detail,loop,progress,zoom,inputToken:motionInput,resetView,inset,playSeconds:recording?9:phone?30:56};
  function download(blob:Blob,name:string){const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),20000)}
  function exportCanvas(){if(!canvas.current){setNotice('The 3D scene is still loading.');return null}const out=document.createElement('canvas');out.width=1800;out.height=1200;const ctx=out.getContext('2d')!;ctx.fillStyle='#f4f2ec';ctx.fillRect(0,0,1800,1200);renderNow.current?.();const src=canvas.current;const ratio=Math.min(1200/src.width,940/src.height);ctx.drawImage(src,570,110,src.width*ratio,src.height*ratio);ctx.fillStyle='#161a1e';ctx.font='22px Helvetica, Arial';ctx.fillText('VISUAL CLIMATE   /   THE PARIS MOVEMENT',70,75);ctx.font='66px Georgia, serif';ctx.fillText(data.country.name_en,70,255);ctx.font='104px Georgia, serif';ctx.fillText(trend!=null?`${sign}${Math.abs(trend).toFixed(2)} Mt/yr`:`${years} yr`,70,400);ctx.font='23px Helvetica, Arial';ctx.fillStyle='#6a747b';ctx.fillText(trend!=null?`${direction} · ${trendSpan} · ${trendSeries?.[0]??'source not recorded'}`:'Observed years held',75,450);ctx.fillText(n.reduction_pct!=null?`Pledge: −${fmt(n.reduction_pct)}% by ${n.target_year} against ${data.$meta?.basis??'the stated reference'}`:'No pledge figure read from any document',75,490);ctx.font='19px Helvetica, Arial';ctx.fillText(data.$meta?.snapshot??n.version,75,555);ctx.fillText('Historical snapshot · Not a live assessment',75,590);ctx.fillText('Conditional split: '+(c.conditional_pct==null?'unquantified':c.conditional_pct+'%'),75,660);ctx.fillText(`Observed: ${years} years · ${observed.length} values across sources`,75,695);ctx.fillText(`Evidence: ${evidence} reported / ${Object.keys(data.btr.components).length} components`,75,730);ctx.font='16px Helvetica, Arial';ctx.fillText(n.source.url.slice(0,155),70,1110);ctx.fillText('Reported ≠ independently verified. Unknown ≠ absent. Motion illustrates structure.',70,1145);return out}
  function saveFrame(){try{const out=exportCanvas();out?.toBlob(blob=>{if(blob){download(blob,`visual-climate-${data.country.iso3}.png`);setNotice('Frame saved with document context and source.')}})}catch{setNotice('This browser could not export the frame.')}}
@@ -106,68 +111,152 @@ export default function Page(){
   sockets:roster.length*8,
   empty:roster.length*8-roster.reduce((n,c)=>n+Object.values(c.btr_components??{}).filter(x=>x.state!=='unknown').length,0),
  }:null;
- return <main className="atelier" id="main">
- {/* The instrument is beautiful and says nothing about what this is. One line
-     that states the claim, three counts that prove it, and the three ways in.
-     Every figure is counted off the roster this page already loaded. */}
- <section className="claim">
-  <div className="claim-text">
+ const tabs=<><Tabs value={mode} onValueChange={changeMode}><TabsList variant="line" className="main-tabs"><TabsTrigger disabled={recording} value="instrument">Movement</TabsTrigger><TabsTrigger disabled={recording} value="engine">Architecture</TabsTrigger></TabsList></Tabs><button className="about-button" onClick={()=>inspect('method')}>How to read this <ArrowUpRight size={15}/></button></>;
+ // On the desktop the reader is the player: replay means back to the closed
+ // machine at the top of the story. The phone has no scroll drive and plays.
+ function replayAssembly(){setExploded(false);setCamera('atelier');setPaused(false);setReplay(v=>v+1);if(phone)setProgress(null);else seek(0)}
+ const receipt=(id:string,label:string)=><button className="primary-action" onClick={()=>inspect(id)} disabled={unavailable||recording}>{label} <ArrowUpRight size={15}/></button>;
+ const closing=phases[Math.max(7,Math.min(8,phase))];
+ // One card per chapter, in the scene's own order. Every sentence here was on
+ // the page before, in the claim, the story column, the parts index or the
+ // narration strip; nothing is written for the card that the record does not
+ // hold. A dash or a "not read" is printed as such, never as a zero.
+ const cards:{id:string;phase:number;at?:number;c?:string;body:ReactNode}[]=[
+  {id:'cover',phase:0,body:mode==='engine'?<>
+   <span className="kicker">Source → validation → preservation → country record</span>
+   <h1>Every promise.<br/><em>Its provenance.</em></h1>
+   <p>Follow the data from its source, through validation, into a country’s movement.</p>
+   <b className="big">{catalog.length}<small>source slots catalogued in the architecture</small></b>
+   <p className="verdict">{catalog.filter(s=>s.state==='connected').length} of {catalog.length} sources connected · one shared contract. {telemetry?.state==='observed'?`Run ${telemetry.run_id?.slice(0,8)} built ${telemetry.countries} country records from ${catalog.filter(s=>s.state==='connected').length} connected sources. Schedules are not connected.`:'This view maps the source architecture. Operational logs and schedules are not connected.'}</p>
+   {receipt('sources','Open source register')}
+   <p className="cue">Scroll ↓ the machine opens one layer at a time</p>
+  </>:<>
    <h1>The public record of what each country <em>actually filed</em> under the Paris Agreement.</h1>
    <p>Every figure here is traced to the document it was read out of. Every blank is published with the sentence that says why it is blank.</p>
+   <p className="stage-note">{data.country.name_en} on the stage · {data.$meta?.snapshot??n.version}</p>
+   <a className="primary-action" href="/unknown">See what we do not know <ArrowRight size={15}/></a>
+   <p className="cue">Scroll ↓ the machine opens one layer at a time</p>
+  </>},
+  ...(mode==='engine'?[]:[{id:'census',phase:0,at:.05,body:<>
+   <h2 className="figs-title">The record, in four figures</h2>
+   <dl className="claim-figs">
+    {/* Four figures, all of them subtracted from data/census.json. Until that
+        file answers they stay blank: printing a guessed count on the screen that
+        sells refusals would be this product's own cardinal sin. */}
+    <div><dt>Country records</dt><dd>{pub?fmt(pub.countries,0):<i className="fig-wait">&nbsp;</i>}</dd></div>
+    <div><dt>Targets read from a filing</dt><dd>{pub?fmt(pub.ndc_target_accepted,0):<i className="fig-wait">&nbsp;</i>}<span>/{pub?fmt(parties,0):'…'} Parties</span></dd></div>
+    <div><dt>Evidence seats still empty</dt><dd>{pub?fmt(pub.btr_component_sockets-pub.btr_components_evidenced,0):<i className="fig-wait">&nbsp;</i>}<span>/{pub?fmt(pub.btr_component_sockets,0):'…'}</span></dd></div>
+    <div><dt>Calculations refused, each with its reason</dt><dd>{pub?fmt(pub.refusals_total,0):<i className="fig-wait">&nbsp;</i>}</dd></div>
+   </dl>
+   {/* The denominator, said out loud. 23 of the records are territories with no
+       entry in the NDC registry: they are records here, never Parties. */}
+   {pub&&parties!=null&&<p className="claim-denom">{pub.countries} records: {parties} Parties with an entry in the UNFCCC NDC registry, and {pub.countries-parties} territories and regions the engine holds a document for but the registry does not list.</p>}
+   <nav className="claim-ways" aria-label="Ways in">
+    <button className="way" onClick={()=>inspect('sources')}>Sources & checksum</button>
+    <a className="way" href="/countries">Browse {census?`${census.built} records`:'the records'}</a>
+    <a className="way" href="/refusals">Read the refusals</a>
+   </nav>
+  </>}]),
+  {id:'treaty',phase:1,body:<>
+   <h2>The Paris Agreement, the plate under every promise</h2>
+   <p>{phases[1].description}</p>
+   {/* The three rules the scene below actually obeys, said where the plate
+       has just appeared. */}
+   <ol className="read-how" aria-label="How to read the instrument">
+    <li><b>One country, one movement.</b> Every part is one field of that country&rsquo;s record: the ring is its pledged cut, the gears are the inventory it filed, the eight sockets are the components of its transparency report.</li>
+    <li><b>What was not read is not drawn.</b> A figure the engine could not read is never filled in. The ring falls to zero, the seat stays an empty bore, and a gear with no measured trend stands still.</li>
+    <li><b>Every part opens its receipt.</b> Click one for the document it was read from, when that document was retrieved, its checksum, and the sentence that says why any figure is missing.</li>
+   </ol>
+   {receipt('treaty','What the plate is built to')}
+  </>},
+  {id:'pledge',phase:2,c:'var(--ndc)',body:<>
+   {n.reduction_pct==null?<b className="big word">No pledge figure read from any document</b>:<b className="big">−{fmt(n.reduction_pct)}%<small>by {n.target_year}</small></b>}
+   <h2>NDC, the pledge becomes a ring</h2>
+   <p>{phases[2].description}</p>
+   {!unavailable&&<p className="verdict" aria-live="polite">{lead}{follow?<><br/><b>{follow}</b></>:null}</p>}
+   {!unavailable&&stale&&<p className="stale-flag"><b>Not the current filing.</b> {stale.latest_version??'The registry&rsquo;s active submission'}{stale.submission_date?` (${stale.submission_date})`:''} is unread.</p>}
+   {receipt('pledge','Open the receipt')}
+  </>},
+  {id:'delivery',phase:3,c:'var(--inv-ink)',body:<>
+   {trend!=null?<b className="big">{sign}{Math.abs(trend).toFixed(Math.abs(trend)>=100?0:Math.abs(trend)>=10?1:2)}<small>Mt/yr · {direction}</small></b>:<b className="big">{years}<small>observed years held</small></b>}
+   <h2>Observations, the record becomes gears</h2>
+   <p>{phases[3].description}</p>
+   <p className="note">{trend!=null?`${trendSpan} observed · ${trendSeries?.[0]??'source not recorded'}`:'Too few observations from one source to measure a trend'} · {years} observed years · {observed.length} values kept per source</p>
+   {receipt('delivery','Open the receipt')}
+  </>},
+  {id:'evidence',phase:4,c:'var(--btr)',body:<>
+   <b className="big">{evidence}<small>of {Object.keys(data.btr.components).length} components read from the filing</small></b>
+   <h2>{btrStory?btrStory.title:'BTR, eight pieces inside one report'}{btrStory&&<small className="count">{btrIndex+1} of 8</small>}</h2>
+   <p>{btrStory?`${btrStory.description} Current record: ${btrStatus}.`:phases[4].description}</p>
+   {receipt(btrStory?`evidence:${btrStory.key}`:'evidence',btrStory?`Open ${btrStory.short}`:'Open the receipt')}
+  </>},
+  {id:'conditions',phase:5,c:'var(--fin-ink)',body:<>
+   {c.conditional_pct==null?<b className="big word">Conditional share not parsed</b>:<b className="big">{c.conditional_pct}%<small>of the pledge is conditional on support</small></b>}
+   <h2>International support, the condition on the promise</h2>
+   <p>{phases[5].description}</p>
+   <p className="verdict">{c.statement}</p>
+   {receipt('conditions','Open the receipt')}
+  </>},
+  {id:'flat',phase:6,body:<>
+   <h2>Laid flat, for one look at the whole</h2>
+   <p>{phases[6].description}</p>
+  </>},
+  {id:'return',phase:7,body:<>
+   <h2>{closing.title}</h2>
+   <p>{closing.description}</p>
    <p className="claim-why">Other climate dashboards fill those blanks with estimates. A government cannot argue with an estimate. It can argue with its own filing, so this record prints only filings.</p>
-  </div>
-  <dl className="claim-figs">
-   {/* Four figures, all of them subtracted from data/census.json. Until that
-       file answers they stay blank: printing a guessed count on the screen that
-       sells refusals would be this product's own cardinal sin. */}
-   <div><dt>Country records</dt><dd>{pub?fmt(pub.countries,0):<i className="fig-wait">&nbsp;</i>}</dd></div>
-   <div><dt>Targets read from a filing</dt><dd>{pub?fmt(pub.ndc_target_accepted,0):<i className="fig-wait">&nbsp;</i>}<span>/{pub?fmt(parties,0):'…'} Parties</span></dd></div>
-   <div><dt>Evidence seats still empty</dt><dd>{pub?fmt(pub.btr_component_sockets-pub.btr_components_evidenced,0):<i className="fig-wait">&nbsp;</i>}<span>/{pub?fmt(pub.btr_component_sockets,0):'1,744'}</span></dd></div>
-   <div><dt>Calculations refused, each with its reason</dt><dd>{pub?fmt(pub.refusals_total,0):<i className="fig-wait">&nbsp;</i>}</dd></div>
-  </dl>
-  {/* The denominator, said out loud. 23 of the records are territories with no
-      entry in the NDC registry: they are records here, never Parties. */}
-  {pub&&parties!=null&&<p className="claim-denom">{pub.countries} records: {parties} Parties with an entry in the UNFCCC NDC registry, and {pub.countries-parties} territories and non-Parties with none. A territory that files no NDC is never counted as a Party that failed to.</p>}
-  <nav className="claim-ways" aria-label="Ways in">
-   <a className="way primary" href="/unknown">See what we do not know<ArrowRight size={15}/></a>
-   <a className="way" href="/countries">Browse {census?`${census.built} records`:'the records'}</a>
-   <a className="way" href="/refusals">Read the refusals</a>
-  </nav>
- </section>
- {/* The instrument is the product, and on its own it is a beautiful object
-     with no stated subject. These three sentences are the subject, and each one
-     is a rule the scene below actually obeys. */}
- <ol className="read-how" aria-label="How to read the instrument below">
-  <li><b>One country, one movement.</b> Every part is one field of that country&rsquo;s record: the ring is its pledged cut, the gears are the inventory years actually loaded, the eight seats around the bridge are its transparency report.</li>
-  <li><b>What was not read is not drawn.</b> A figure the engine could not read is never filled in. The ring falls to zero, the seat stays an empty bore, and with no trend measured the gear train stands still.</li>
-  <li><b>Every part opens its receipt.</b> Click one for the document it was read from, when that document was retrieved, its checksum, and the sentence that says why a figure is missing.</li>
- </ol>
- <div className="mode-strip"><Tabs value={mode} onValueChange={changeMode}><TabsList variant="line" className="main-tabs"><TabsTrigger disabled={recording} value="instrument">Instrument</TabsTrigger><TabsTrigger disabled={recording} value="engine">Architecture</TabsTrigger></TabsList></Tabs><button className="about-button" onClick={()=>inspect('method')}>How to read this <ArrowUpRight size={15}/></button></div>
- <div className="workspace-bar"><div className="breadcrumb"><span className="tiny-cross">+</span><span>CALIBRE 2015</span><span className="slash">/</span><span>{mode==='engine'?'How the data connects':mode==='tray'?'One calibre, different promises':'How data becomes a machine'}</span></div><div className="workspace-right"><nav className="try" aria-label="Countries worth a look">{explore.map(x=><button key={x.iso3} className="chip" onClick={()=>{setHint(false);selectCountry(x.iso3)}} aria-pressed={x.iso3===iso} disabled={recording} title={x.why}>{x.name}<b>{x.why}</b></button>)}</nav><Select disabled={recording} value={compare} onValueChange={v=>{const b=String(v??'');setCompare(b);if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);b?p.set('compare',b):p.delete('compare');window.history.replaceState(null,'',`?${p}`)}}} items={[{value:'',label:'Compare with…'},...roster.filter(c=>c.iso3!==iso).map(c=>({value:c.iso3,label:c.name_en}))]}><SelectTrigger aria-label="Compare with another country" className="compare-picker"><SelectValue/></SelectTrigger><SelectContent className="country-menu"><SelectItem value="">No comparison</SelectItem>{roster.filter(c=>c.iso3!==iso).map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select><span className="snapshot-dot"/>Country<Select disabled={recording} value={iso} onValueChange={v=>v&&selectCountry(v)} items={roster.map(c=>({value:c.iso3,label:c.name_en}))}><SelectTrigger aria-label="Select country" className="country-picker"><Globe2 size={15}/><SelectValue/></SelectTrigger><SelectContent className="country-menu">{roster.map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select></div></div>
- {mode==='tray'?<section className="tray-view"><div className="tray-heading"><p className="eyebrow">ONE CALIBRE. DIFFERENT PROMISES.</p><h1>The country collection<span>.</span></h1><p>Choose a country to open its movement. Each edition retains its original document context.</p></div><div className="tray-grid">{roster.map(country=>{const evidenced=Object.values(country.btr_components??{}).filter(c=>c.state==='observed').length;
+   <div className="edition-note"><span>Snapshot</span><p>Built from the {data.$meta?.snapshot??n.version} documents. Not a live status, and not a current NDC assessment.</p></div>
+   <a className="record-action" href={`/country/${data.country.iso3}`}>Read the full record <ArrowRight size={15}/></a>
+   <button className="primary-action assembly-action" onClick={replayAssembly} disabled={unavailable||recording}><Play size={17}/> Replay the assembly <RotateCcw size={17}/></button>
+  </>},
+ ];
+ return <main className="atelier" id="main">
+ {mode==='tray'?<><div className="mode-strip">{tabs}</div><section className="tray-view"><div className="tray-heading"><p className="eyebrow">ONE CALIBRE. DIFFERENT PROMISES.</p><h1>The country collection<span>.</span></h1><p>Choose a country to open its movement. Each edition retains its original document context.</p></div><div className="tray-grid">{roster.map(country=>{const evidenced=Object.values(country.btr_components??{}).filter(c=>c.state==='observed').length;
    return <button className="tray-card" key={country.iso3} onClick={()=>selectCountry(country.iso3)}><div className="tray-meta"><span>{country.iso3}</span><span>{country.edition}</span></div><StaticDial data={{ndc:{reduction_pct:country.reduction_pct},btr:{components:country.btr_components??{}},emissions_profile:{total_mtco2e:country.total_mtco2e??null,latest_year:country.latest_year??null},observed_years:country.observed_years??null}}/><div className="tray-country"><div><h2>{country.name_en}</h2><p>{[country.region,country.income_group].filter(Boolean).join(' · ')||'Not classified by the World Bank register'}</p></div><ArrowUpRight size={25}/></div>
    {/* Four readings every record actually holds, so a card without a pledge is
        still a card with coverage on it rather than an empty frame. */}
    <dl className="tray-stats"><div><dt>Observed</dt><dd>{country.observed_years??'-'}<small>yr</small></dd></div><div><dt>Per capita</dt><dd>{country.per_capita_tco2e==null?'-':fmt(country.per_capita_tco2e,1)}<small>t</small></dd></div><div><dt>ND-GAIN</dt><dd>{country.ndgain_score==null?', ':fmt(country.ndgain_score,1)}</dd></div><div><dt>BTR</dt><dd>{evidenced}<small>/8</small></dd></div></dl>
-   <div className="tray-reading"><span>{country.reduction_pct==null?'No target parsed':`${fmt(country.reduction_pct)}% pledged`}</span><span>View instrument</span></div></button>})}</div><p className="tray-note">{roster.length} countries built by the engine.{engineNote?' '+engineNote:''}</p></section>:<>
- <div className="scroll-chapter" ref={chapter}><div className="scroll-pin"><section className={`instrument ${mode==='engine'?'engine-view':''} ${unavailable?'is-loading':''}`}>
- <aside className="country-story"><p className="eyebrow"><span className="index">{mode==='engine'?'02':'01'}</span> {mode==='engine'?'SOURCE → VALIDATION → PRESERVATION → COUNTRY RECORD':'THE ANATOMY OF CLIMATE ACTION'}</p><h1 key={data.country.iso3+mode}>{mode==='engine'?<>Every promise.<br/><em>Its provenance.</em></>:<>What we protect is<br/><em>one planet.</em></>}</h1><div className="country-context">{mode==='engine'?<><span>{catalog.filter(s=>s.state==='connected').length} OF {catalog.length} SOURCES CONNECTED</span><i/><span>ONE SHARED CONTRACT</span></>:<><span>{data.country.name_en}</span><i/><span>{data.$meta?.snapshot??n.version}</span></>}</div>
- {mode==='engine'?<><p className="engine-copy">Follow the data from its source, through validation, into a country’s movement.</p><div className="primary-reading"><strong>{catalog.length}<span>/</span></strong><div>source slots<br/><span>catalogued in the architecture</span></div></div><p className="verdict">{telemetry?.state==='observed'?`Run ${telemetry.run_id?.slice(0,8)} built ${telemetry.countries} country records from ${catalog.filter(s=>s.state==='connected').length} connected sources. Schedules are not connected.`:'This view maps the source architecture. Operational logs and schedules are not connected.'}</p><button className="primary-action" onClick={()=>inspect('sources')}>Open source register <ArrowUpRight size={18}/></button></>:<><div className="primary-reading">{trend!=null?<><strong>{sign}{Math.abs(trend).toFixed(Math.abs(trend)>=100?0:Math.abs(trend)>=10?1:2)}<sup>Mt/yr</sup></strong><div>{direction} · {trendSpan} observed<br/><span>{trendSeries?.[0]??'source not recorded'} · {n.reduction_pct!=null?`pledge −${fmt(n.reduction_pct)}% by ${n.target_year}`:'no pledge figure read from any document'}</span></div></>:<><strong>{years}<sup>yr</sup></strong><div>Observed years held<br/><span>Too few observations from one source to measure a trend</span></div></>}</div><p className="verdict" aria-live="polite">{unavailable?'':<>{lead}{follow?<><br/><b>{follow}</b></>:null}</>}</p>{!unavailable&&stale&&<p className="stale-flag"><b>Not the current filing.</b> {stale.latest_version??'The registry&rsquo;s active submission'}{stale.submission_date?` (${stale.submission_date})`:''} is unread.</p>}<button className="primary-action assembly-action" onClick={()=>{setExploded(false);setProgress(null);setPaused(false);setReplay(v=>v+1)}} disabled={unavailable||recording}><Play size={17}/> Replay the assembly <RotateCcw size={17}/></button><a className="record-action" href={`/country/${data.country.iso3}`}>Read the full record <ArrowRight size={15}/></a></>}
- <nav className="anatomy-key" aria-label="Parts of the instrument and what they carry">{[
- ['treaty','01','Paris Agreement','The shared plate every part sits on'],['pledge','02','NDC · pledged cut',n.reduction_pct==null?'No pledge figure read from any document':`−${fmt(n.reduction_pct)}% by ${n.target_year}`],['delivery','03','Emissions inventory',`${years} observed years · ${observed.length} values kept per source`],['evidence','04','BTR · transparency',`${evidence} of ${Object.keys(data.btr.components).length} components read from the filing`],['conditions','05','International finance','The support this pledge is conditioned on']
- ].map(([id,num,name,value])=><button key={id} data-active={phase===Number(num)} onClick={()=>inspect(id)} disabled={unavailable||recording}><span>{num}</span><div><strong>{name}</strong><small>{value}</small></div><ArrowUpRight size={14}/></button>)}</nav><div className="edition-note"><span>Snapshot</span><p>Built from the {data.$meta?.snapshot??n.version} documents. Not a live status, and not a current NDC assessment.</p></div></aside>
- <div className="movement-stage"><div className="stage-heading"><span><span className="stage-line"/> {camera==='plan'?'UPPER STUDY':camera==='back'?'CASE-BACK':'LAYER BY LAYER'}</span><span>{data.country.iso3} / {String(roster.findIndex(c=>c.iso3===data.country.iso3)+1).padStart(3,'0')}</span></div><MovementScene data={data} controls={ctrl} onSelect={inspect} onReady={(c,render)=>{canvas.current=c;renderNow.current=render}} onManual={setManual} onPhase={setPhase} onProgress={setSceneProgress}/>
+   <div className="tray-reading"><span>{country.reduction_pct==null?'No target parsed':`${fmt(country.reduction_pct)}% pledged`}</span><span>View instrument</span></div></button>})}</div><p className="tray-note">{roster.length} countries built by the engine.{engineNote?' '+engineNote:''}</p></section></>:<>
+ {/* The instrument is the product, and it is the first screen. Everything that
+     used to sit beside it (the story column, the parts index, the narration
+     strip, the claim) is now a card that passes over it, one per chapter: the
+     scene keeps its progress → phase pipeline, the cards only follow `phase`.
+     The story is scrolled on the desktop and played on the phone. */}
+ <div className="scroll-chapter" ref={chapter} style={phone?undefined:{height:`${SCREENS*100}svh`}}><div className="scroll-pin"><section className={`instrument ${mode==='engine'?'engine-view':''} ${unavailable?'is-loading':''}`}>
+ <div className="movement-stage"><div className="stage-heading">{tabs}
  {/* The two most useful things a stage can offer: the next country, and the
      previous one. Arrow keys do the same when nothing is being typed. */}
- <button className="stage-step prev" onClick={()=>step(-1)} disabled={recording||roster.length<2} aria-label="Previous country"><ArrowLeft size={20}/></button>
- <button className="stage-step next" onClick={()=>step(1)} disabled={recording||roster.length<2} aria-label="Next country"><ArrowRight size={20}/></button>
+ <span className="stage-pager"><Select disabled={recording} value={compare} onValueChange={v=>{const b=String(v??'');setCompare(b);if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);b?p.set('compare',b):p.delete('compare');window.history.replaceState(null,'',`?${p}`)}}} items={[{value:'',label:'Compare with…'},...roster.filter(c=>c.iso3!==iso).map(c=>({value:c.iso3,label:c.name_en}))]}><SelectTrigger aria-label="Compare with another country" className="compare-picker"><SelectValue/></SelectTrigger><SelectContent className="country-menu"><SelectItem value="">No comparison</SelectItem>{roster.filter(c=>c.iso3!==iso).map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select><button className="stage-step prev" onClick={()=>step(-1)} disabled={recording||roster.length<2} aria-label="Previous country"><ArrowLeft size={15}/></button><Select disabled={recording} value={iso} onValueChange={v=>v&&selectCountry(v)} items={roster.map(c=>({value:c.iso3,label:c.name_en}))}><SelectTrigger aria-label="Select country" className="country-picker"><Globe2 size={15}/><SelectValue/></SelectTrigger><SelectContent className="country-menu">{roster.map(c=><SelectItem value={c.iso3} key={c.iso3}>{c.name_en}<span className="iso-option">{c.iso3}</span></SelectItem>)}</SelectContent></Select><button className="stage-step next" onClick={()=>step(1)} disabled={recording||roster.length<2} aria-label="Next country"><ArrowRight size={15}/></button></span></div><MovementScene data={data} controls={ctrl} onSelect={inspect} onReady={(c,render)=>{canvas.current=c;renderNow.current=render}} onManual={setManual} onPhase={setPhase} onProgress={setSceneProgress}/>
  {hint&&<p className="stage-hint" aria-hidden="true">Drag to turn · click a part · ← → other countries</p>}
- <div className="stage-key" aria-label="How to read the parts"><span><i className="key-cog"/>Gears turn with the measured trend · still = no trend read</span><span><i className="key-ghost"/>Empty bore = nothing read for that seat</span></div><div className="stage-bottom"><span><span className="small-cross">+</span> {phone?'Playing':'Scroll down'} · the machine opens one layer at a time</span><span>A document-data assembly, not a live ETL feed</span></div></div>
+ {/* Scrub: the story's progress as a line along the floor. Controls: one
+     cluster of squares, always there, labelled by title only. */}
+ <div className="stage-scrub" onPointerDownCapture={()=>{setProgress(sceneProgress);setExploded(false);setMotionInput(v=>v+1)}} onKeyDownCapture={e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(e.key)){setProgress(sceneProgress);setExploded(false);setMotionInput(v=>v+1)}}}><Slider aria-label="Story progress" min={0} max={100} value={[progress!=null&&!exploded?progress:sceneProgress]} onValueChange={v=>{setProgress(Array.isArray(v)?v[0]:v);setExploded(false)}}/></div>
+ <div className="stage-ctl" role="group" aria-label="Movement controls"><div>
+  <button aria-pressed={exploded} aria-label={exploded?'Collapse layers':'Explode layers'} title={exploded?'Collapse layers':'Explode layers'} disabled={unavailable||recording} onClick={()=>{setProgress(0);setMotionInput(v=>v+1);setExploded(v=>!v)}}><Layers3 size={15}/></button>
+  <button onClick={replayAssembly} aria-label="Replay assembly" title="Replay assembly" disabled={recording}><RotateCcw size={15}/></button>
+  <button onClick={()=>setPaused(v=>!v)} aria-pressed={paused} aria-label={paused?'Play motion':'Pause motion'} title={paused?'Play motion':'Pause motion'} disabled={recording}>{paused?<Play size={15}/>:<Pause size={15}/>}</button>
+  <button onClick={()=>setCamera(v=>v==='plan'?'atelier':'plan')} aria-pressed={camera==='plan'} aria-label="Top-down view" title="Top-down view"><ScanLine size={15}/></button>
+  {manual&&<button onClick={()=>setResetView(v=>v+1)} aria-label="Reset view" title="Reset view"><Scan size={15}/></button>}
+  {phone&&<button onClick={()=>setLoop(v=>!v)} aria-pressed={loop} aria-label={loop?'Looping':'Play once'} title={loop?'Looping':'Play once'}><Repeat size={15}/></button>}
+ </div><div>
+  <button onClick={()=>setZoom(z=>Math.min(1.55,z+.1))} aria-label="Zoom in" title="Zoom in"><Plus size={15}/></button>
+  <button onClick={()=>setZoom(z=>Math.max(.75,z-.1))} aria-label="Zoom out" title="Zoom out"><Minus size={15}/></button>
+ </div><div>
+  <button onClick={saveFrame} disabled={unavailable||recording} aria-label="Save frame" title="Save frame"><Download size={15}/></button>
+  <button onClick={saveMotion} disabled={unavailable||recording} aria-label={recording?'Recording…':'Export 10-second film'} title={recording?'Recording…':'Export 10-second film'}><Film size={15}/></button>
+ </div></div>
+ </div>
  {unavailable&&<output className="data-overlay"><p>{loading?'Assembling the country record…':error}</p>{!loading&&<button className="primary-action" onClick={()=>{setLoading(true);setError('');setRetry(v=>v+1)}}>Retry data request <RotateCcw size={16}/></button>}</output>}
- </section>
- <details className="disc stage-more"><summary>Scrub the story, or zoom</summary><div className="object-controls"><div onPointerDownCapture={()=>{setProgress(sceneProgress);setExploded(false);setMotionInput(v=>v+1)}} onKeyDownCapture={e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(e.key)){setProgress(sceneProgress);setExploded(false);setMotionInput(v=>v+1)}}}><span>Story start <span>, </span> back to one</span><Slider aria-label="Story progress" min={0} max={100} value={[progress!=null&&!exploded?progress:sceneProgress]} onValueChange={v=>{setProgress(Array.isArray(v)?v[0]:v);setExploded(false)}}/><output>{Math.round(progress!=null&&!exploded?progress:sceneProgress)}%</output></div><div><span>Zoom</span><Slider aria-label="Zoom the instrument" min={.75} max={1.55} step={.01} value={[zoom]} onValueChange={v=>setZoom(Array.isArray(v)?v[0]:v)}/><output>{zoom.toFixed(2)}×</output></div></div></details>
- <section className="assembly-narration" aria-live="polite"><span className="step-number">{String(phase).padStart(2,'0')}</span><div><strong>{btrStory?`04 · BTR ${String(btrIndex+1).padStart(2,'0')} / 08, ${btrStory.title}`:phases[phase].title}</strong><p>{btrStory?`${btrStory.description} Current record: ${btrStatus}.`:phone&&phase===0?'The connected data rises one layer at a time. The movement explains structure; it never stands for progress.':phases[phase].description}</p></div><div className="phase-track" role="group" aria-label="Jump to a chapter">{phases.slice(1).map((p,i)=><button key={p.title} type="button" className={phase>=i+1?'done':''} aria-label={`Chapter ${String(i+1).padStart(2,'0')} · ${p.title}`} aria-current={phase===i+1?'step':undefined} title={p.title} onClick={()=>seek(chapterStart(i+1))}/>)}</div><button className="loop-toggle" aria-pressed={loop} onClick={()=>setLoop(v=>!v)}>{loop?'Looping':'Play once'}</button></section>
- <section className="control-rail" aria-label="Movement controls"><div className="motion-controls"><button className={exploded?'active':''} aria-pressed={exploded} disabled={unavailable||recording} onClick={()=>{setProgress(0);setMotionInput(v=>v+1);setExploded(v=>!v)}}><Layers3 size={16}/>{exploded?'Collapse layers':'Explode layers'}</button><span className="rail-divider"/><button onClick={()=>{setExploded(false);setCamera('atelier');setProgress(null);setPaused(false);setReplay(v=>v+1)}} aria-label="Replay assembly" disabled={recording}><RotateCcw size={16}/><span>Replay</span></button><button onClick={()=>setPaused(v=>!v)} aria-label={paused?'Play motion':'Pause motion'} aria-pressed={paused} disabled={recording}>{paused?<Play size={16}/>:<Pause size={16}/>}</button><button onClick={()=>setCamera(v=>v==='plan'?'atelier':'plan')} aria-pressed={camera==='plan'} aria-label="Top-down view"><ScanLine size={17}/></button>{manual&&<button onClick={()=>setResetView(v=>v+1)}><Scan size={16}/><span>Reset view</span></button>}</div><div className="right-controls"><button className="caseback-button" onClick={()=>inspect('sources')}>Sources & checksum <ArrowUpRight size={16}/></button><button onClick={saveFrame} disabled={unavailable||recording}><Download size={16}/><span>Save frame</span></button><button onClick={saveMotion} disabled={unavailable||recording} aria-label="Export 10-second motion"><Film size={16}/><span>{recording?'Recording…':'10-second film'}</span></button></div></section>
+ </section></div>
+ {/* The cards. Each one is placed where its chapter starts, as a fraction of
+     the chapter: one screen of cover, then the story over the rest. A card
+     lights when the scene reports its phase, so the text can never run ahead
+     of the machine. The track lets pointers through; only the card takes them. */}
+ <div className="steps" aria-label="The story, one card per chapter">{cards.map((card,k)=>{
+  const top=card.at??(k===0?0:cardTop(card.phase)),next=cards[k+1];const bottom=next?next.at??cardTop(next.phase):1;
+  const last=!next;const on=(last?phase>=card.phase:phase===card.phase)&&(card.id==='cover'?phone||coverOn:card.id==='census'?phone||!coverOn:true);
+  return <section key={card.id} className={`step ${k===0?'cover':''} ${on?'on':''}`} style={phone?undefined:{top:`${top*100}%`,height:`calc(${(bottom-top)*100}% + ${last?0:100}svh)`}}><div className="step-in" style={card.c?{'--c':card.c} as CSSProperties:undefined}>{card.body}</div></section>})}</div>
+ </div>
  {mode==='instrument'&&compare&&(()=>{const a=roster.find(c=>c.iso3===iso),b=roster.find(c=>c.iso3===compare);if(!a||!b)return null;
   const dial=(c:RosterRow)=>({ndc:{reduction_pct:c.reduction_pct},btr:{components:c.btr_components??{}},emissions_profile:{total_mtco2e:c.total_mtco2e??null,latest_year:c.latest_year??null},observed_years:c.observed_years??null});
   const sockets=(c:RosterRow)=>Object.values(c.btr_components??{}).filter(x=>x.state!=='unknown').length;
@@ -204,15 +293,33 @@ export default function Page(){
     </button>;})}
   </div>
  </section>}
- </div></div>
- {mode==='engine'?<section className="engine-flow"><button onClick={()=>inspect('sources')}><span>01 / SOURCE</span><h3>Original records</h3><p>Document editions retained</p><ArrowRight/></button><button onClick={()=>inspect('sources')}><span>02 / VALIDATE</span><h3>Evidence states</h3><p>Unknown is never absent</p><ArrowRight/></button><button onClick={()=>inspect('sources')}><span>03 / PRESERVE</span><h3>Parallel sources</h3><p>No averaging across sources</p><ArrowRight/></button><button onClick={()=>changeMode('instrument')}><span>04 / RENDER</span><h3>Country movement</h3><p>One contract, every country</p><ArrowUpRight/></button></section>:<section className="argument-chain" aria-label="Promise, conditions, delivery, evidence">
- <button className="clause-card" onClick={()=>inspect('pledge')} disabled={unavailable}><div className="clause-top"><span>01 <i/> Pledged cut</span><ArrowUpRight size={16}/></div><div className="clause-value">{fmt(n.target_emissions_mtco2e)} <small>MtCO₂e</small></div><p>Target emissions in {n.target_year}</p><StateToken state="pledged"/></button>
- <button className="clause-card" onClick={()=>inspect('conditions')} disabled={unavailable}><div className="clause-top"><span>02 <i/> Support conditions</span><ArrowUpRight size={16}/></div><div className="clause-value word">{c.conditional_pct==null?'Share not parsed':fmt(c.conditional_pct)+'%'}</div><p>The share conditioned on international support</p><StateToken state={c.split_state} label={c.conditional_pct==null?'Conditional share unparsed':'Conditional pledge'}/></button>
- <button className="clause-card" onClick={()=>inspect('delivery')} disabled={unavailable}><div className="clause-top"><span>03 <i/> Delivery</span><ArrowUpRight size={16}/></div><div className="clause-value word">{data.derived.on_track===true?'On the target path':data.derived.on_track===false?'Off the target path':direction??'Not yet assessable'}</div><p>{trend!=null?`${sign}${Math.abs(trend).toFixed(2)} MtCO₂e/yr over ${trendSpan} · ${trendSeries?.[0]??''}`:`Observations held: ${years} years · ${observed.length} values`}</p><StateToken state={data.derived.gap_state} label={data.derived.on_track!=null?'Engine assessment':trend!=null?'Observed trend · no target to judge it against':'More observations needed'}/></button>
- <button className="clause-card" onClick={()=>inspect('evidence')} disabled={unavailable}><div className="clause-top"><span>04 <i/> Evidence state</span><ArrowUpRight size={16}/></div><div className="clause-value word">{data.btr.submitted===true?'BTR submitted':data.btr.submitted===false?'Non-submission confirmed':'Submission unparsed'}</div><p>{data.btr.submission_date??'Submission record not loaded'}</p><div className="mini-jewels">{Object.entries(data.btr.components).map(([k,v])=><span key={k} className={v.state} title={`${jewelNames[k]}: ${v.state}`}/>)}<small>{Object.values(data.btr.components).filter(v=>v.state==='unknown').length} unparsed</small></div></button>
+ {mode==='engine'?<section className="engine-flow"><button onClick={()=>inspect('sources')}><span>01 / SOURCE</span><h3>Original records</h3><p>Document editions retained</p><ArrowRight/></button><button onClick={()=>inspect('sources')}><span>02 / VALIDATE</span><h3>Evidence states</h3><p>Unknown is never absent</p><ArrowRight/></button><button onClick={()=>inspect('sources')}><span>03 / PRESERVE</span><h3>Parallel sources</h3><p>No averaging across sources</p><ArrowRight/></button><button onClick={()=>changeMode('instrument')}><span>04 / RENDER</span><h3>Country movement</h3><p>One contract, every country</p><ArrowUpRight/></button></section>:<section className="argument-chain" aria-label="The four parts of the record">
+ {/* One row for the four parts, in the machine's order and under its part
+     numbers, so a card and a callout never disagree on what 02 is. The
+     argument and the source record behind it used to be two rows saying the
+     same four things twice; each card now carries both. */}
+ {[
+  {id:'pledge',no:'02',tag:'NDC',c:'var(--ndc)',label:'Pledged cut',value:<>{fmt(n.target_emissions_mtco2e)} <small>MtCO₂e</small></>,word:false,note:`Target emissions in ${n.target_year}`,
+   source:`${n.reduction_pct==null?(data.ndc_registry?.state==='observed'?'Filed · not yet parsed':'No filing found'):`−${fmt(n.reduction_pct)}% · ${n.target_year}`} · ${n.reduction_pct==null?(data.ndc_registry?.latest_version??data.ndc_registry?.$reason??'No NDC document has been read'):(data.$meta?.snapshot??n.version)}`,
+   foot:<StateToken state="pledged"/>},
+  {id:'delivery',no:'03',tag:'INV',c:'var(--inv-ink)',label:'Delivery',value:data.derived.on_track===true?'On the target path':data.derived.on_track===false?'Off the target path':direction??'Not yet assessable',word:true,
+   note:trend!=null?`${sign}${Math.abs(trend).toFixed(2)} MtCO₂e/yr over ${trendSpan} · ${trendSeries?.[0]??''}`:`Observations held: ${years} years · ${observed.length} values`,
+   source:`${ep?.total_mtco2e==null?`${years} observed years`:`${fmt(ep.total_mtco2e,0)} MtCO₂e · ${ep.latest_year}`} · ${years<2?'Too few to draw a trend':`${years} years · ${observed.length} values across ${ep?.by_source.length??0} sources`}`,
+   foot:<StateToken state={data.derived.gap_state} label={data.derived.on_track!=null?'Engine assessment':trend!=null?'Observed trend · no target to judge it against':'More observations needed'}/>},
+  {id:'evidence',no:'04',tag:'BTR',c:'var(--btr)',label:'Evidence state',value:data.btr.submitted===true?'BTR submitted':data.btr.submitted===false?'Non-submission confirmed':'Submission unparsed',word:true,
+   note:data.btr.submission_date??'Submission record not loaded',source:null,
+   foot:<div className="mini-jewels">{Object.entries(data.btr.components).map(([k,v])=><span key={k} className={v.state} title={`${jewelNames[k]}: ${v.state}`}/>)}<small>{Object.values(data.btr.components).filter(v=>v.state==='unknown').length} unparsed</small></div>},
+  {id:'conditions',no:'05',tag:'FIN',c:'var(--fin-ink)',label:'Support conditions',value:c.conditional_pct==null?'Share not parsed':fmt(c.conditional_pct)+'%',word:true,note:'The share conditioned on international support',
+   source:`${data.finance_need.mitigation_usd==null?'Need not parsed':`Mitigation > $${fmt(data.finance_need.mitigation_usd/1e9)}bn`} · Receipts unknown · no fulfilment rate computed`,
+   foot:<StateToken state={c.split_state} label={c.conditional_pct==null?'Conditional share unparsed':'Conditional pledge'}/>},
+ ].map(p=><button key={p.id} className="clause-card" style={{'--c':p.c} as CSSProperties} onClick={()=>inspect(p.id)} disabled={unavailable}>
+  <div className="clause-top"><span>{p.no} <b>{p.tag}</b> {p.label}</span><ArrowUpRight size={16}/></div>
+  <div className={`clause-value${p.word?' word':''}`}>{p.value}</div><p>{p.note}</p>
+  {p.source&&<p className="clause-source">{p.source}</p>}{p.foot}
+ </button>)}
  </section>}
  </>}
- {mode!=='tray'&&<section className="data-inputs" aria-label="The source records that feed the assembly">{[
+ {mode==='engine'&&<section className="data-inputs" aria-label="The source records that feed the assembly">{[
  {id:'pledge',tag:'NDC',name:'National pledge',value:n.reduction_pct==null?(data.ndc_registry?.state==='observed'?'Filed · not yet parsed':'No filing found'):`−${fmt(n.reduction_pct)}% · ${n.target_year}`,note:n.reduction_pct==null?(data.ndc_registry?.latest_version??data.ndc_registry?.$reason??'No NDC document has been read'):(data.$meta?.snapshot??n.version),color:'var(--ndc)',step:1,no:2},
  {id:'delivery',tag:'INV',name:'Emissions inventory',value:ep?.total_mtco2e==null?`${years} observed years`:`${fmt(ep.total_mtco2e,0)} MtCO₂e · ${ep.latest_year}`,note:years<2?'Too few to draw a trend':`${years} years · ${observed.length} values across ${ep?.by_source.length??0} sources`,color:'var(--inv)',step:2,no:3},
  {id:'evidence',tag:'BTR',name:'Transparency report',value:data.btr.submitted===true?'Submission confirmed':'Submission unparsed',note:`${Object.values(data.btr.components).filter(x=>x.state==='unknown').length} components unparsed`,color:'var(--btr)',step:3,no:4},

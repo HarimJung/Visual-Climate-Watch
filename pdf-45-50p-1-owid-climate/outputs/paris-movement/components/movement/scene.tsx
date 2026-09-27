@@ -10,11 +10,11 @@ const ink=(name:string,fallback:string)=>{
  try{return getComputedStyle(document.documentElement).getPropertyValue(name).trim()||fallback}catch{return fallback}
 };
 
-import {cycleOffset,narrativeAmount,deskAmount,returnAmount,cyclePhase,reveal,btrReveal,btrStepAt,storyPhase,BTR_STORIES,LAYER_WINDOWS,AssemblyReplay} from './explosion-motion';
+import {cycleOffset,narrativeAmount,deskAmount,returnAmount,cyclePhase,reveal,btrReveal,btrStepAt,storyPhase,BTR_STORIES,AssemblyReplay} from './explosion-motion';
 import {createExplosionLayout} from './explosion-layout';
 import {PointerTap} from './pointer-tap';
 import {fmt,observedYears,type CountryData} from '@/lib/climate';
-export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;resetView?:number;playSeconds?:number};
+export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;inset?:number;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;resetView?:number;playSeconds?:number};
 export const phases=[
  {title:'Opening the planet',description:'Scroll down and the connected data rises one layer at a time. The movement explains structure; it never stands for progress.'},
  {title:'01 · The Paris Agreement, the plate under every promise',description:'Pledges, observations, reporting and support conditions all seat on one shared design.'},
@@ -31,14 +31,25 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress;manual.current=onManual},[controls,onSelect,onReady,onPhase,onProgress,onManual]);
  useEffect(()=>{let cleanup=()=>{};let cancelled=false;void(async()=>{try{
  const T=await import('three');const {RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');if(cancelled||!host.current)return;
- setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.92;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
+ setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
+ // Neutral (Khronos PBR Neutral) keeps a base colour what it was authored as.
+ // ACES pulled the evidence inks off their twins on the cards beside them.
+ renderer.toneMapping=T.NeutralToneMapping;renderer.toneMappingExposure=.9;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
  const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.46;room.dispose();pm.dispose();
- const key=new T.DirectionalLight(0xfff5e5,2.1);key.position.set(-5,-3,11);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=4;scene.add(key);scene.add(new T.AmbientLight(0xf3f8ff,.38));
+ // The key sits nearly overhead so a lifted part shadows the part below it,
+ // not a patch of floor five units away. The rim only draws edges.
+ const key=new T.DirectionalLight(0xfff5e5,2.1);key.position.set(-2.4,-1.8,12);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=4;scene.add(key);scene.add(new T.AmbientLight(0xf3f8ff,.38));
+ const rim=new T.DirectionalLight(0xeef2ff,.8);rim.position.set(4,9,6);scene.add(rim);
  const camera=new T.PerspectiveCamera(34,1,.1,100);const world=new T.Group();world.rotation.z=-.13;scene.add(world);
  const silver=new T.MeshStandardMaterial({color:0xa4afb2,metalness:.94,roughness:.27});const edge=new T.MeshStandardMaterial({color:0xe4e8e7,metalness:.9,roughness:.22});const steel=new T.MeshStandardMaterial({color:0x5f737b,metalness:.82,roughness:.3});const porcelain=new T.MeshPhysicalMaterial({color:0xa7b0b4,metalness:.86,roughness:.3,clearcoat:.28});const white=new T.MeshStandardMaterial({color:0xf9fbf5,metalness:.1,roughness:.38});const shadow=new T.MeshStandardMaterial({color:0x52616a,metalness:.5,roughness:.5});
  const blue=new T.MeshPhysicalMaterial({color:0x2b54b7,metalness:.18,roughness:.18,clearcoat:1});const teal=new T.MeshPhysicalMaterial({color:0x276f68,metalness:.35,roughness:.25,clearcoat:1});const violet=new T.MeshPhysicalMaterial({color:0x5b4c99,metalness:.2,roughness:.22,clearcoat:1});const gold=new T.MeshPhysicalMaterial({color:0x8f6b2a,metalness:.45,roughness:.24,clearcoat:1});const glass=new T.MeshPhysicalMaterial({color:0x86a5e4,transparent:true,opacity:.66,transmission:.3,thickness:.22,metalness:.05,roughness:.14,ior:1.45,side:T.DoubleSide,depthWrite:false});const clear=new T.MeshPhysicalMaterial({color:0xd1daf5,transparent:true,opacity:.32,transmission:.55,roughness:.12,side:T.DoubleSide,depthWrite:false});const ghost=new T.MeshStandardMaterial({color:0xada3bf,metalness:.35,roughness:.4,transparent:true,opacity:.65});
- const floor=new T.Mesh(new T.PlaneGeometry(100,100),new T.ShadowMaterial({opacity:.14}));floor.position.z=-3.43;floor.receiveShadow=true;scene.add(floor);
- const parts:THREE.Group[]=[];const gears:{g:THREE.Group;speed:number;phase:number}[]=[];const hits:THREE.Object3D[]=[];const textures:THREE.Texture[]=[];const labels:{el:HTMLDivElement;anchor:THREE.Object3D;offset:[number,number];phase:number}[]=[];const topLabels=document.createElement('div');topLabels.className='projected-labels';el.appendChild(topLabels);topLabels.setAttribute('aria-hidden','true');const btrLayer=document.createElement('div');btrLayer.className='projected-labels btr-layer';el.appendChild(btrLayer);
+ const parts:THREE.Group[]=[];const gears:{g:THREE.Group;speed:number;phase:number}[]=[];const hits:THREE.Object3D[]=[];const textures:THREE.Texture[]=[];const labels:{el:HTMLDivElement;anchor:THREE.Object3D;offset:[number,number];phase:number;color:string}[]=[];const topLabels=document.createElement('div');topLabels.className='projected-labels';el.appendChild(topLabels);topLabels.setAttribute('aria-hidden','true');const btrLayer=document.createElement('div');btrLayer.className='projected-labels btr-layer';el.appendChild(btrLayer);
+ // A soft contact shadow under the base. The floor used to take the cast shadow
+ // of every part, and a part floating six units up printed its silhouette far
+ // from itself: dark gear shapes with no owner. Parts still shadow each other.
+ const blob=document.createElement('canvas');blob.width=blob.height=256;const bctx=blob.getContext('2d')!;const fall=bctx.createRadialGradient(128,128,0,128,128,128);fall.addColorStop(0,'rgba(38,34,26,.30)');fall.addColorStop(.5,'rgba(38,34,26,.13)');fall.addColorStop(1,'rgba(38,34,26,0)');bctx.fillStyle=fall;bctx.fillRect(0,0,256,256);
+ const blobTexture=new T.CanvasTexture(blob);blobTexture.colorSpace=T.SRGBColorSpace;textures.push(blobTexture);
+ const floor=new T.Mesh(new T.PlaneGeometry(9.6,9.6),new T.MeshBasicMaterial({map:blobTexture,transparent:true,depthWrite:false,toneMapped:false}));floor.position.set(.3,.2,-3.43);scene.add(floor);
  function mesh(geometry:THREE.BufferGeometry,material:THREE.Material,parent:THREE.Object3D,x=0,y=0,z=0){const m=new T.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
  function cylinder(parent:THREE.Object3D,r:number,h:number,z:number,mat:THREE.Material=porcelain,x=0,y=0){const m=mesh(new T.CylinderGeometry(r,r,h,72),mat,parent,x,y,z);m.rotation.x=Math.PI/2;return m;}
  function ring(parent:THREE.Object3D,r:number,t:number,z:number,mat:THREE.Material=edge,arc=Math.PI*2){return mesh(new T.TorusGeometry(r,t,12,140,arc),mat,parent,0,0,z);}
@@ -60,7 +71,8 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  function part(id:string,phase:number,z:number){const g=new T.Group();g.userData={id,phase,home:z};g.position.z=z;world.add(g);parts.push(g);return g;}
  function cog(parent:THREE.Object3D,x:number,y:number,r:number,count:number,mat:THREE.Material,sign=1){const g=new T.Group();g.position.set(x,y,.05);parent.add(g);const sh=new T.Shape();for(let i=0;i<count*4;i++){const a=i/count/4*Math.PI*2;const rr=r+(i%4===1||i%4===2?1:-1)*r/count;const x=Math.cos(a)*rr,y=Math.sin(a)*rr;if(i===0)sh.moveTo(x,y);else sh.lineTo(x,y);}sh.closePath();for(let j=0;j<5;j++){const a=j/5*Math.PI*2;const hole=new T.Path();hole.absarc(Math.cos(a)*r*.55,Math.sin(a)*r*.55,r*.2,0,Math.PI*2,true);sh.holes.push(hole);}const hole=new T.Path();hole.absarc(0,0,r*.17,0,Math.PI*2,true);sh.holes.push(hole);mesh(new T.ExtrudeGeometry(sh,{depth:.13,bevelEnabled:true,bevelSize:.015,bevelThickness:.017,bevelSegments:2,curveSegments:20}),mat,g);ring(g,r*.78,.023,.155,edge);cylinder(g,r*.16,.2,.12,steel);screw(g,0,0,.25,r*.075);gears.push({g,speed:sign*(((parent.userData.phase??2)===2)?turn:1)*24/count*.52,phase:parent.userData.phase??2});return g;}
  function engraving(parent:THREE.Object3D,text:string,color:string,w:number,h:number,z:number){const cv=document.createElement('canvas');cv.width=512;cv.height=160;const ctx=cv.getContext('2d')!;ctx.clearRect(0,0,512,160);ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='600 66px Helvetica, Arial';ctx.fillText(text,256,80);const texture=new T.CanvasTexture(cv);texture.colorSpace=T.SRGBColorSpace;textures.push(texture);return mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}),parent,0,0,z);}
- function label(anchor:THREE.Object3D,title:string,value:string,color:string,phase:number,offset:[number,number]){const div=document.createElement('div');div.className='component-label';div.style.setProperty('--component-color',color);const name=document.createElement('strong');name.textContent=title;const val=document.createElement('span');val.textContent=value;div.appendChild(name);div.appendChild(val);topLabels.appendChild(div);labels.push({el:div,anchor,offset,phase});}
+ // A callout as in a parts drawing: the part's number, its name, its reading.
+ function label(anchor:THREE.Object3D,title:string,value:string,color:string,phase:number,offset:[number,number]){const div=document.createElement('div');div.className='component-label';div.style.setProperty('--component-color',color);const [no,name]=title.split(' / ');const index=document.createElement('i');index.textContent=no;const strong=document.createElement('strong');strong.textContent=name??title;const val=document.createElement('span');val.textContent=value;div.appendChild(index);div.appendChild(strong);div.appendChild(val);topLabels.appendChild(div);labels.push({el:div,anchor,offset,phase,color});}
  // The source document as a physical token. It rides with its component and
  // anchors that component's label, so the box, the leader line and the reading
  // are one object rather than three unrelated ones.
@@ -81,7 +93,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  sourceGears.forEach(([x,y,r,n,mat,sign,id])=>{const g=clickable(cog(inventory,x,y,r,n,mat,sign),id);g.userData.source=id;const available=id==='delivery'?data.series.observed.length>0:(data.sources??[]).some(s=>s.id===id.slice(7)&&s.connection==='connected');g.userData.available=available;if(!available)ghost_(g);const cap=new T.Group();cap.position.set(x,y,.43);inventory.add(cap);engraving(cap,id==='delivery'?(data.emissions_profile?.total_mtco2e!=null?`${fmt(data.emissions_profile.total_mtco2e,0)} Mt`:'INVENTORY'):id==='source:DS-05'?'EDGAR':'TRACE',ink('--ink-2','#3c464d'),r*1.22,r*.30,.02);clickable(cap,id);});
  const gearSupports:[[number,number],[number,number]][]=[[[-1.05,-.30],[.55,-.30]],[[.55,-.30],[1.33,.75]]];gearSupports.forEach(([a,b])=>{const dx=b[0]-a[0],dy=b[1]-a[1];const bar=new T.Group();bar.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,-.17);bar.rotation.z=Math.atan2(dy,dx);inventory.add(bar);slab(bar,Math.hypot(dx,dy),.13,0,silver,.065);});
  const dataMarks:THREE.Mesh[]=[];data.series.observed.forEach((p,i)=>{const a=Math.PI*.1+i/Math.max(data.series.observed.length,15)*Math.PI*1.8;const m=cylinder(inventory,.075,.045,.25,teal,Math.cos(a)*2.26,Math.sin(a)*2.26);clickable(m,'delivery');dataMarks.push(m)});
- const anchorI=chip(inventory,'INV',teal,'#0d8a6e',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${data.series.observed.length} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#0d8a6e',2,[-144,10]);
+ const anchorI=chip(inventory,'INV',teal,'#0d8a6e',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${data.series.observed.length} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#0a6e58',2,[-144,10]);
  // 3. BTR submission seats a bridge. Eight individual states remain independent of submission.
  const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,porcelain,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#8e4a86':'#9a93a6',.7,.22,.174);
  const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);const pad=mesh(new T.CylinderGeometry(.34,.34,.6,8),new T.MeshBasicMaterial({visible:false}),g,0,0,.1);pad.rotation.x=Math.PI/2;pad.castShadow=pad.receiveShadow=false;clickable(pad,'evidence:'+key);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed')cylinder(g,.107,.08,.04,violet);else if(state.state==='pledged')cylinder(g,.107,.05,.04,glass);else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{annulus(g,.124,.082,.055,-.075,steel);cylinder(g,.082,.012,-.105,shadow);}sockets.push(g);g.userData.key=key});
@@ -89,7 +101,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  if(btrUnread){bridge.position.z+=.32;bridge.rotation.y=-.19;}
  const anchorB=chip(evidence,'BTR',violet,'#8e4a86',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR reporting duty',data.btr.submitted===true?`Submitted · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length} unparsed`:'Submission unparsed','#8e4a86',3,[36,-42]);
  // 4. Finance docks beside the mechanism. Unknown receipts never make this conditional wheel mesh.
- const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN',gold,'#b07d1a',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#b07d1a',4,[32,18]);
+ const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN',gold,'#b07d1a',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#8a6208',4,[32,18]);
  // 5. The assessment core seats only after the inputs. It refuses an unsupported conclusion.
  const core=part('assessment',5,1.02);const corePlate=slab(core,.89,.75,0,porcelain,.13);clickable(corePlate,'delivery');engraving(core,data.country.iso3,ink('--ink-2','#3c464d'),.63,.24,.174);ring(core,.48,.018,.05,edge);
 
@@ -132,29 +144,32 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  let dirty=true,fitDirty=true,manualCamera=false,lastKey='',lastProgress=current.current.progress,lastExplode=current.current.explode,lastPaused=current.current.paused,lastReset=current.current.resetView;
  const replay=new AssemblyReplay();const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const pos=new T.Vector3(),pointer=new T.Vector2(),ray=new T.Raycaster(),tap=new PointerTap();
- const cameraGoal=new T.Vector3(),lookGoal=new T.Vector3();const front=new T.Vector3(0,-.001,1).normalize(),iso=new T.Vector3(.20,-1,.50).normalize(),back=new T.Vector3(-.3,.9,.6).normalize();
- const lines=document.createElementNS('http://www.w3.org/2000/svg','svg');lines.classList.add('assembly-leaders');topLabels.insertBefore(lines,topLabels.firstChild);
- const leaders=labels.map(()=>{const line=document.createElementNS('http://www.w3.org/2000/svg','polyline');lines.appendChild(line);return line;});
+ const cameraGoal=new T.Vector3(),lookGoal=new T.Vector3(),cameraSpeed=new T.Vector3(),lookSpeed=new T.Vector3();const shots=new Map<number,THREE.Box3>();const front=new T.Vector3(0,-.001,1).normalize(),iso=new T.Vector3(.20,-1,.50).normalize(),back=new T.Vector3(-.3,.9,.6).normalize();
+ const svg='http://www.w3.org/2000/svg';const lines=document.createElementNS(svg,'svg');lines.classList.add('assembly-leaders');topLabels.insertBefore(lines,topLabels.firstChild);
+ // pathLength=1 lets the stylesheet draw any leader in from its part, whatever its length.
+ const leaders=labels.map(()=>{const line=document.createElementNS(svg,'polyline');line.setAttribute('pathLength','1');lines.appendChild(line);return line;});
+ const dots=labels.map(({color})=>{const dot=document.createElementNS(svg,'circle');dot.setAttribute('r','3');dot.style.stroke=color;lines.appendChild(dot);return dot;});
  sockets.sort((a,b)=>BTR_STORIES.findIndex(item=>item.key===a.userData.key)-BTR_STORIES.findIndex(item=>item.key===b.userData.key));
  const socketHomes=sockets.map(g=>g.position.clone());const gearHomes=gears.map(({g})=>g.position.z);
  const btrStateText:Record<string,string>={observed:'Reported',pledged:'Pledged',absent:'Confirmed absent',unknown:'Unparsed'};
  const btrTags=sockets.map((g,i)=>{const key=String(g.userData.key);const item=BTR_STORIES.find(item=>item.key===key);const state=data.btr.components[key]?.state??'unknown';
-  const tag=document.createElement('button');tag.type='button';tag.className='btr-piece-label state-'+state;tag.style.visibility='hidden';
+  const tag=document.createElement('button');tag.type='button';tag.className='btr-piece-label state-'+state;
   const num=document.createElement('small');num.textContent=`${String(i+1).padStart(2,'0')} / ${item?.short??key}`;
   const name=document.createElement('strong');name.textContent=item?.title??key;
   const read=document.createElement('span');read.textContent=btrStateText[state]??state;
   tag.appendChild(num);tag.appendChild(name);tag.appendChild(read);tag.addEventListener('click',()=>select.current('evidence:'+key));btrLayer.appendChild(tag);return tag;});
  const btrAnchors=sockets.map(()=>({x:0,y:0,set:false}));
- const btrLeaders=sockets.map(()=>{const line=document.createElementNS('http://www.w3.org/2000/svg','polyline');line.setAttribute('class','btr-leader');lines.appendChild(line);return line;});
+ const btrLeaders=sockets.map(()=>{const line=document.createElementNS(svg,'polyline');line.setAttribute('class','btr-leader');line.setAttribute('pathLength','1');lines.appendChild(line);return line;});
  const threadPositions=new Float32Array(sockets.length*6);const threadGeometry=new T.BufferGeometry();threadGeometry.setAttribute('position',new T.BufferAttribute(threadPositions,3));
  const threads=new T.LineSegments(threadGeometry,new T.LineBasicMaterial({color:0x9d93b2,transparent:true,opacity:.4}));threads.frustumCulled=false;evidence.add(threads);
- const markerGeometry=new T.BufferGeometry();const markerPositions=new Float32Array(assemblies.length*3);markerGeometry.setAttribute('position',new T.BufferAttribute(markerPositions,3));
- const markers=new T.Points(markerGeometry,new T.PointsMaterial({color:0x969ba1,size:3,sizeAttenuation:false,depthTest:false}));markers.frustumCulled=false;markers.renderOrder=10;world.add(markers);
- function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;fitDirty=dirty=true;}
+ function resize(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();liftScale=w>700?1:Math.max(.5,Math.min(1,(h-70)/560));layout=createExplosionLayout(assemblies,w/Math.max(1,h-90));manualCamera=false;shots.clear();warmShots();fitDirty=dirty=true;}
+ // Measure every shot while the page is idle, so no chapter pays for its own
+ // framing in the middle of a scroll.
+ let warming=0;function warmShots(){globalThis.cancelIdleCallback?.(warming);warming=(globalThis.requestIdleCallback??((f:()=>void)=>setTimeout(f,120)))(()=>{if(!disposed)for(const k of [0,1,2,3,4,5,6,8])shot(k);}) as number;}
  const observer=new ResizeObserver(resize);observer.observe(el);resize();
  // Off the screen the loop idles: nothing is drawn and the gears do not advance.
  let visible=true;const io=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)dirty=true});io.observe(el);
- const changed=()=>{dirty=true};const started=()=>{manualCamera=true;fitDirty=false;dirty=true;manual.current?.(true)};
+ const changed=()=>{dirty=true};const started=()=>{manualCamera=true;fitDirty=false;dirty=true;cameraSpeed.set(0,0,0);lookSpeed.set(0,0,0);manual.current?.(true)};
  orbit.addEventListener('change',changed);orbit.addEventListener('start',started);
  const motionChanged=()=>{replay.cancel();fitDirty=dirty=true;manualCamera=false;};reduced.addEventListener('change',motionChanged);
  const contextLost=(event:Event)=>{event.preventDefault();cleanup();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',contextLost);
@@ -166,11 +181,10 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  renderer.domElement.addEventListener('pointerdown',down);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',cancel);renderer.domElement.addEventListener('lostpointercapture',cancel);
  function placeParts(){
   const story=narrativeAmount(amount);const internal=(layer:number)=>story*(1-returnAmount(amount,layer));
-  assemblies.forEach((part,i)=>{
+  assemblies.forEach(part=>{
    const cell=layout.cells.get(part.id)!;const offset=cycleOffset(amount,part.layer,part.center,{x:cell.x,y:cell.y,z:0},part.shell,liftScale);
    const float=part.shell?0:Math.sin(gearTime*.8+part.layer*.9)*.025*(part.layer===0?.25:1);
    part.g.position.copy(part.home).add(pos.set(offset.x,offset.y,offset.z+float));
-   markerPositions[i*3]=part.center.x+offset.x;markerPositions[i*3+1]=part.center.y+offset.y;markerPositions[i*3+2]=part.center.z+offset.z+float;
   });
   // Each family has its own secondary motion, after its supporting layer lifts.
   segments.forEach((m,i)=>{const t=reveal(internal(1),.235+i*.0014,.26+i*.0014);m.position.z=.17+t*(.12+.012*Math.sin(gearTime+i*.16));});
@@ -181,24 +195,50 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    threadPositions.set([socketHomes[i].x,socketHomes[i].y,socketHomes[i].z,g.position.x,g.position.y,g.position.z],i*6);
   });
   threadGeometry.attributes.position.needsUpdate=true;threads.visible=internal(3)>.615;
-  markerGeometry.attributes.position.needsUpdate=true;markers.visible=amount>.12;
   north.rotation.z=south.rotation.z=gearTime*.085;
   world.rotation.z=-.13*(1-deskAmount(amount)*(1-returnAmount(amount,0)));floor.visible=amount<.7||amount>.99;equator.visible=amount<.7||amount>.99;world.updateMatrixWorld(true);
  }
 
- function fit(){
+ // Where every part stands now. The shells are trimmed so their poles do not
+ // set the distance; `lidAway` leaves out the lid, which rises out of the shot,
+ // and `waiting` leaves out a shell still lying on the desk: the return frames
+ // the movement coming together, and each shell enters the shot as it flies in.
+ function measure(lidAway:boolean,waiting=false){
   const c=current.current;const bounds=new T.Box3();const story=narrativeAmount(amount);const deskView=deskAmount(amount)*(1-reveal(amount,.84,.96));
-  assemblies.forEach(part=>{const box=part.box.clone().translate(part.g.position.clone().sub(part.home));
+  assemblies.forEach(part=>{if(lidAway&&part.shell==='upper'||waiting&&part.shell&&returnAmount(amount,0,part.shell)<=0)return;const box=part.box.clone().translate(part.g.position.clone().sub(part.home));
    // Frame the mechanism generously; the decorative poles may extend beyond
    // the study's edge, as in the previous close-up. Fit complete shells in plan.
    if(c.camera==='atelier'&&deskView<.001){
     if(part.shell==='upper')box.max.z=box.min.z+.45;
     if(part.shell==='lower')box.min.z=box.max.z-1.0;
    }
-   if(part.shell==='upper'&&deskView<.001){const fade=1-reveal(story,.08,.22); const anchor=assemblies.find(p=>p.id==='evidence')!;const focusZ=anchor.g.position.z+1;box.min.z=focusZ+(box.min.z-focusZ)*fade;box.max.z=focusZ+(box.max.z-focusZ)*fade;}
    if(part.g===evidence)box.max.z+=1.3*btrReveal(story*(1-returnAmount(amount,3)),7);
    box.applyMatrix4(world.matrixWorld);bounds.union(box);
   });
+  return bounds;
+ }
+ // One shot per chapter. The camera frames everything its chapter is going to
+ // do and holds while the parts move, so a lift reads as a lift; it travels
+ // only when the chapter changes. Fitting the live bounds instead pulled the
+ // camera back as every part rose, and the machine shrank and slid instead of
+ // opening. The return (7) is the one moving shot: it closes in as parts land.
+ const SHOTS:Record<number,number[]>={0:[0],1:[.052,.1365],2:[.1365,.234],3:[.234,.3315],4:[.3315,.5915],5:[.5915,.6999],6:[.8,.8399],8:[1]};
+ function shot(chapter:number){
+  let box=shots.get(chapter);if(box)return box;
+  const now=amount;box=new T.Box3();
+  for(const at of SHOTS[chapter]){amount=at;placeParts();box.union(measure(chapter>0&&chapter<6));}
+  amount=now;placeParts();shots.set(chapter,box);return box;
+ }
+ // Critically damped (the SmoothDamp form): it leaves from rest, keeps its
+ // speed when the goal moves on, and lands without overshoot.
+ function glide(at:THREE.Vector3,speed:THREE.Vector3,goal:THREE.Vector3,dt:number,time=.42){
+  const w=2/time,k=w*dt,e=1/(1+k+.48*k*k+.235*k*k*k);
+  const dx=at.x-goal.x,dy=at.y-goal.y,dz=at.z-goal.z,tx=(speed.x+w*dx)*dt,ty=(speed.y+w*dy)*dt,tz=(speed.z+w*dz)*dt;
+  speed.set((speed.x-w*tx)*e,(speed.y-w*ty)*e,(speed.z-w*tz)*e);at.set(goal.x+(dx+tx)*e,goal.y+(dy+ty)*e,goal.z+(dz+tz)*e);
+ }
+ function fit(){
+  const c=current.current;const deskView=deskAmount(amount)*(1-reveal(amount,.84,.96));const chapter=cyclePhase(amount);
+  const bounds=chapter===7?measure(false,true):shot(chapter);
   bounds.getCenter(lookGoal);
   const direction=(c.camera==='plan'?new T.Vector3(.16,-.8,1).normalize():c.camera==='back'?back:iso).clone().lerp(front,deskView).normalize();
   const right=new T.Vector3().crossVectors(camera.up,direction).normalize();const up=new T.Vector3().crossVectors(direction,right).normalize();
@@ -206,7 +246,10 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   // 80px of reserved chrome is a tenth of a desktop stage and a fifth of a phone's.
   const padY=el.clientWidth>700?80:Math.min(80,el.clientHeight*.12);
   const tanY=tangent*Math.max(.5,(el.clientHeight-padY)/el.clientHeight);
-  const tanX=tangent*camera.aspect*Math.max(.5,(el.clientWidth-36)/el.clientWidth);
+  // A story card covers the left `inset` px of the stage; the machine is fitted
+  // into, and centred on, the width it leaves.
+  const inset=Math.min(c.inset??0,el.clientWidth*.5);
+  const edge=el.clientWidth>700?96:36;const tanX=tangent*camera.aspect*Math.max(.5,(el.clientWidth-edge-inset)/el.clientWidth);
   let distance=0;
   // Fit in camera space. World-Z depth is not screen height in this oblique view.
   for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){
@@ -214,45 +257,56 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    distance=Math.max(distance,depth+Math.abs(corner.dot(right))/tanX,depth+Math.abs(corner.dot(up))/tanY);
   }
   distance=distance*1.04/(c.zoom??1);
+  // Centred on the free width: between the card on the left and the controls on the right.
+  lookGoal.addScaledVector(right,-(inset+36-edge)/el.clientWidth*distance*tangent*camera.aspect);
   cameraGoal.copy(direction).multiplyScalar(distance).add(lookGoal);camera.far=Math.max(150,distance+80);camera.updateProjectionMatrix();
  }
  function updateLabels(){
   const story=narrativeAmount(amount);
+  // The card beside the machine reads the step from the rounded percent the
+  // scene reports; the callouts read the same number, or near a boundary the
+  // card names one BTR piece while the machine labels the next.
+  const step=btrStepAt(narrativeAmount(Math.round(amount*100)/100));
   const placed:{x:number;y:number;w:number;h:number}[]=[];
+  // The heading line and the scrub line overlay the stage on the desktop, and a story card covers its left `inset` px.
+  const [padT,padB]=el.clientWidth>700?[60,44]:[12,34];const keep=(current.current.inset??0)+12;
+  // A callout goes out on its own part's side of the machine, into open paper,
+  // never back across the mechanism.
+  pos.set(0,0,0).applyMatrix4(world.matrixWorld).project(camera);const midX=(pos.x*.5+.5)*el.clientWidth;
   labels.forEach(({el:tag,anchor,offset,phase},i)=>{
    const part=assemblies.find(p=>p.g===anchor||p.g===anchor.parent);
    if(!part)return;const box=part.box.clone().translate(part.g.position.clone().sub(part.home));
    const projected=new T.Box2();let inDepth=false;
    for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z]){pos.set(x,y,z).applyMatrix4(world.matrixWorld).project(camera);inDepth ||= pos.z>=-1&&pos.z<=1;projected.expandByPoint(pointer.set((pos.x*.5+.5)*el.clientWidth,(-pos.y*.5+.5)*el.clientHeight));}
    anchor.getWorldPosition(pos).project(camera);const cx=(pos.x*.5+.5)*el.clientWidth,cy=(-pos.y*.5+.5)*el.clientHeight;
-   const reached=phase===0||story>=LAYER_WINDOWS[Math.min(4,phase)][0];
-   const active=storyPhase(story)===phase+1;
-   // While the eight BTR pieces are up, only their own label stays; the other four hid the machine.
-   const show=(amount<.70||amount>.99)&&reached&&inDepth&&cx>=0&&cx<=el.clientWidth&&cy>=0&&cy<=el.clientHeight&&(btrStepAt(story)<0||phase===3)&&(el.clientWidth>=600||active);
-   tag.style.opacity=show?'1':'0';leaders[i].style.opacity=show?'1':'0';if(!show)return;
-   const w=tag.offsetWidth,h=tag.offsetHeight;let x=Math.max(12,Math.min(el.clientWidth-w-12,cx+(i<2?-w-26:30)));let y=Math.max(48,Math.min(el.clientHeight-h-48,cy+offset[1]));
-   let tries=0;while(placed.some(r=>x<r.x+r.w+8&&x+w+8>r.x&&y<r.y+r.h+8&&y+h+8>r.y)&&tries++<40){y+=22;if(y+h>el.clientHeight-48){y=48;x=x<el.clientWidth/2?el.clientWidth-w-12:12;}}
+   // One callout at a time: the part its chapter is about, or the part the
+   // reader opened. A callout that outlives its chapter only hides the machine,
+   // and while the eight BTR pieces are up their own labels speak instead.
+   const chosen=current.current.selected?.split(':')[0]===part.id;
+   const show=(amount<.70&&storyPhase(story)===phase+1&&step<0||chosen)&&inDepth&&cx>=0&&cx<=el.clientWidth&&cy>=0&&cy<=el.clientHeight;
+   tag.classList.toggle('is-shown',show);leaders[i].classList.toggle('is-shown',show);dots[i].classList.toggle('is-shown',show);if(!show)return;
+   const w=tag.offsetWidth,h=tag.offsetHeight;let x=Math.max(keep,Math.min(el.clientWidth-w-12,cx+(cx<midX?-w-26:30)));let y=Math.max(padT,Math.min(el.clientHeight-h-padB,cy+offset[1]));
+   let tries=0;while(placed.some(r=>x<r.x+r.w+8&&x+w+8>r.x&&y<r.y+r.h+8&&y+h+8>r.y)&&tries++<40){y+=22;if(y+h>el.clientHeight-padB){y=padT;x=x<el.clientWidth/2?el.clientWidth-w-12:keep;}}
    placed.push({x,y,w,h});tag.style.transform=`translate(${x}px,${y}px)`;
-   tag.classList.toggle('is-active',current.current.selected?.split(':')[0]===part.id||storyPhase(story)===phase+1);
-   const edgeX=cx<x?x:cx>x+w?x+w:x+w/2;leaders[i].setAttribute('points',`${edgeX},${y+h/2} ${cx},${y+h/2} ${cx},${cy}`);
-  });  btrTags.forEach((tag,i)=>{sockets[i].getWorldPosition(pos);pos.project(camera);const active=btrStepAt(story)===i;
-   const show=btrReveal(story,i)>.05&&story<.91&&pos.z>=-1&&pos.z<=1&&(el.clientWidth>=600||active);
-   tag.style.opacity=show?(active?'1':'.74'):'0';tag.style.visibility=show?'visible':'hidden';btrLeaders[i].style.opacity=show?'1':'0';
-   tag.classList.toggle('is-active',active);if(!show)return;
+   // Drawn from the part out to its callout, so the part seems to speak.
+   const edgeX=cx<x?x:cx>x+w?x+w:x+w/2;leaders[i].setAttribute('points',`${cx},${cy} ${cx},${y+h/2} ${edgeX},${y+h/2}`);dots[i].setAttribute('cx',String(cx));dots[i].setAttribute('cy',String(cy));
+  });  btrTags.forEach((tag,i)=>{sockets[i].getWorldPosition(pos);pos.project(camera);
+   const show=(amount<.70&&step===i||current.current.selected==='evidence:'+sockets[i].userData.key)&&pos.z>=-1&&pos.z<=1;
+   tag.classList.toggle('is-shown',show);btrLeaders[i].classList.toggle('is-shown',show);if(!show)return;
    let cx=(pos.x*.5+.5)*el.clientWidth,cy=(-pos.y*.5+.5)*el.clientHeight;const anchor=btrAnchors[i];
    if(anchor.set&&Math.hypot(cx-anchor.x,cy-anchor.y)<4){cx=anchor.x;cy=anchor.y}else{anchor.x=cx;anchor.y=cy;anchor.set=true}
-   const w=tag.offsetWidth,h=tag.offsetHeight;let x=Math.max(6,Math.min(el.clientWidth-w-6,cx-w/2)),y=cy-h-16,free=false;
+   const w=tag.offsetWidth,h=tag.offsetHeight;let x=Math.max(keep,Math.min(el.clientWidth-w-6,cx-w/2)),y=cy-h-16,free=false;
    for(const dx of [0,-w*.8,w*.8,-w*1.6,w*1.6]){
     for(const step of [0,-1,-2,-3,1,2,3,-4,4]){
      const ty=step<=0?cy-h-16+step*(h+8):cy+16+(step-1)*(h+8);
-     if(ty<6||ty>el.clientHeight-h-34)continue;
-     x=Math.max(6,Math.min(el.clientWidth-w-6,cx-w/2+dx));y=ty;
+     if(ty<padT||ty>el.clientHeight-h-padB)continue;
+     x=Math.max(keep,Math.min(el.clientWidth-w-6,cx-w/2+dx));y=ty;
      if(!placed.some(r=>x<r.x+r.w+6&&x+w+6>r.x&&y<r.y+r.h+6&&y+h+6>r.y)){free=true;break}
     }
     if(free)break;
    }
    placed.push({x,y,w,h});tag.style.transform=`translate(${x}px,${y}px)`;
-   btrLeaders[i].setAttribute('points',`${cx<x?x:cx>x+w?x+w:x+w/2},${y<cy?y+h:y} ${cx},${cy}`);
+   btrLeaders[i].setAttribute('points',`${cx},${cy} ${cx<x?x:cx>x+w?x+w:x+w/2},${y<cy?y+h:y}`);
   });
  }
  placeParts();fit();camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);orbit.update();
@@ -272,7 +326,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   if(still)amount=target;
   else if(!c.paused||replay.stage==='idle')amount=scrub?(Math.abs(target-amount)<.0001?target:T.MathUtils.damp(amount,target,8,dt)):(Math.abs(target-amount)<=step?target:amount+Math.sign(target-amount)*step);
   const moving=previous!==amount;
-  const key=[c.camera,c.zoom,c.selected,c.paused,still].join('|');if(key!==lastKey){if(c.camera!==lastKey.split('|')[0]||String(c.zoom)!==lastKey.split('|')[1]){fitDirty=true;manualCamera=false;}lastKey=key;dirty=true;}
+  const key=[c.camera,c.zoom,c.selected,c.paused,still,c.inset].join('|');if(key!==lastKey){const was=lastKey.split('|');if(c.camera!==was[0])shots.clear();if(c.camera!==was[0]||String(c.zoom)!==was[1]||String(c.inset)!==was[5]){fitDirty=true;manualCamera=false;}lastKey=key;dirty=true;}
   if(moving){dirty=true;if(!manualCamera)fitDirty=true;}
   orbit.enableRotate=true;orbit.mouseButtons.LEFT=T.MOUSE.ROTATE;orbit.touches.ONE=T.TOUCH.ROTATE;
   // Keep the readable study angle steady; the gears supply the motion.
@@ -281,7 +335,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   if(animate){gearTime+=dt;dirty=true;}
   if(moving||animate)placeParts();
 
-  if(fitDirty){fit();const rate=still?1:1-Math.exp(-8*dt);camera.position.lerp(cameraGoal,rate);orbit.target.lerp(lookGoal,rate);if(camera.position.distanceTo(cameraGoal)<.0001&&orbit.target.distanceTo(lookGoal)<.0001){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);fitDirty=false;}dirty=true;}
+  if(fitDirty){fit();if(still){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);}else{glide(camera.position,cameraSpeed,cameraGoal,dt);glide(orbit.target,lookSpeed,lookGoal,dt);}if(camera.position.distanceTo(cameraGoal)<.0001&&orbit.target.distanceTo(lookGoal)<.0001&&cameraSpeed.lengthSq()<1e-8){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);cameraSpeed.set(0,0,0);lookSpeed.set(0,0,0);fitDirty=false;}dirty=true;}
   orbit.update(dt);
   const phase=cyclePhase(amount);
   if(phase!==lastPhase){lastPhase=phase;phaseCallback.current?.(phase);dirty=true;}
