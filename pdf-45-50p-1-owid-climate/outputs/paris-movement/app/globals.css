@@ -68,7 +68,7 @@
  --background:var(--paper);--foreground:var(--ink);
  --card:var(--paper-raised);--card-foreground:var(--ink);
  --popover:var(--paper-raised);--popover-foreground:var(--ink);
- --primary:var(--ink);--primary-foreground:#fff;
+ --primary:var(--un-ink);--primary-foreground:#fff;
  --secondary:var(--paper-sunken);--secondary-foreground:var(--ink-2);
  --muted:var(--paper-sunken);--muted-foreground:var(--ink-3);
  --accent:var(--paper-sunken);--accent-foreground:var(--ink);
@@ -127,7 +127,7 @@ svg{flex-shrink:0}
 .main-tabs button{height:74px!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;font-size:15px!important;font-weight:400!important;letter-spacing:0;color:var(--ink-3)!important;transition:color .2s}
 .main-tabs button:hover{color:var(--ink-2)!important}
 .main-tabs button[data-active]{color:var(--ink)!important}
-.main-tabs button:after{bottom:0!important;height:1.5px!important;background:var(--ink)!important}
+.main-tabs button:after{bottom:0!important;height:1.5px!important;background:var(--un)!important}
 .about-button{display:flex;align-items:center;gap:9px;font-size:15px;color:var(--ink-3);white-space:nowrap;transition:color .2s}
 .about-button:hover{color:var(--ink)}
 
@@ -400,7 +400,7 @@ svg{flex-shrink:0}
  .instrument{display:flex;flex-direction:column}
  /* svh follows the browser's own chrome: it measured 471px in an 844px
     viewport, making the stage smaller than the 304px it replaced. */
- .movement-stage{position:relative;flex:none;height:min(108vw,480px,62vh);min-height:300px}
+ .movement-stage{position:relative;flex:none;height:min(92vw,46vh);min-height:300px}
  /* the heading sits above the machine here, not over its dome */
  .movement-stage{display:flex;flex-direction:column}
  .stage-heading{position:static;flex:none;flex-wrap:wrap;row-gap:6px;margin:10px 16px 6px}
@@ -693,6 +693,11 @@ a.rec-contract:hover{color:var(--ink)}
 .cty-select{max-width:100%;min-width:0;padding:11px 12px;border:1px solid var(--rule-strong);background:var(--paper-raised);
  color:var(--ink-2);font:13px var(--font-mono);letter-spacing:.04em}
 .cty-search:focus-visible,.cty-select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.cty-controls .chip{min-height:44px}
+.cty-table{margin-top:18px}
+.cty-table td{font-variant-numeric:tabular-nums;white-space:nowrap}
+.cty-table td a{font:500 var(--t2) var(--font-sans)}
+.cty-table td small{display:inline;margin-left:8px;font-family:var(--font-mono)}
 /* the grid was a fixed 3 columns; on a route of its own it has to breathe */
 .tray-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 
@@ -903,8 +908,8 @@ body::after{
 .chip:hover{border-color:var(--ink-3);transform:translateY(-1px)}
 @media(max-width:560px){.chip{white-space:normal}}
 .chip b{font:var(--t0) var(--font-mono);color:var(--ink-4)}
-.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.chip[aria-pressed="true"] b{color:#ffffffa8}
+.chip[aria-pressed="true"]{background:var(--un-ink);border-color:var(--un-ink);color:#fff}
+.chip[aria-pressed="true"] b{color:#fff}
 .ctl-spacer{flex:1 1 auto}
 .btn-ghost{display:inline-flex;align-items:center;gap:var(--s2);padding:7px 13px;
  border:1px solid var(--rule-strong);border-radius:2px;background:none;
@@ -1052,8 +1057,8 @@ body::after{
  font:500 var(--t2) var(--font-sans);color:var(--ink-2);
  transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease),transform 120ms var(--out)}
 .way:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
-.way.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.way.primary:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.way.primary{background:var(--un-ink);border-color:var(--un-ink);color:#fff}
+.way.primary:hover{background:var(--un-ink);border-color:var(--un-ink);color:#fff}
 @media(max-width:860px){.claim{grid-template-columns:1fr;align-items:start;gap:var(--s5)}}
 /* A figure that has not arrived is a held space, never a placeholder number. */
 .fig-wait{display:inline-block;width:1.6em;height:.62em;border-radius:2px;background:var(--paper-sunken);
@@ -1291,7 +1296,7 @@ body::after{
 .chip{border-radius:3px;background:none;min-height:36px;padding:0 12px;border-color:var(--rule-strong);
  font:500 var(--t1) var(--font-sans);color:var(--ink-2)}
 .chip b{font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip[aria-pressed="true"]{background:var(--un-ink);border-color:var(--un-ink);color:#fff}
 .chip:active,.btn-ghost:active,.way:active,.jump-open:active{transform:scale(.98)}
 .btn-ghost,.jump-open{border-radius:3px;min-height:36px;padding:0 12px}
 .srch{border-radius:3px;min-height:36px;padding-block:0}
@@ -1359,7 +1364,7 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .stage-heading>*{pointer-events:auto}
 .stage-heading{justify-content:flex-start}
 .stage-heading .stage-pager{margin-left:auto}
-.stage-heading .main-tabs button:after{background:var(--ink)!important}
+.stage-heading .main-tabs button:after{background:var(--un)!important}
 .stage-heading .main-tabs,.stage-heading .main-tabs button{height:32px!important;font-size:var(--t2)!important}
 .stage-heading .main-tabs{gap:20px!important}
 .stage-heading .about-button{margin-left:var(--s3);font-size:var(--t2)}
@@ -1367,7 +1372,7 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .stage-heading .compare-picker{margin-right:var(--s2)!important;color:var(--ink-3)!important}
 .stage-scrub{position:absolute;left:0;right:0;bottom:0;z-index:3}
 .stage-scrub [data-slot=slider-track]{height:2px;border-radius:0;background:var(--rule)}
-.stage-scrub [data-slot=slider-range]{background:var(--ink)}
+.stage-scrub [data-slot=slider-range]{background:var(--un)}
 .stage-scrub [data-slot=slider-thumb]{width:10px;height:10px;background:var(--paper-raised);border:1px solid var(--ink);box-shadow:none}
 .stage-ctl{position:absolute;right:var(--gutter);bottom:var(--s4);z-index:3;display:flex;flex-direction:column;gap:6px}
 .stage-ctl>div{display:flex;flex-direction:column;gap:1px}
@@ -1375,15 +1380,9 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
  background:color-mix(in srgb,var(--paper-raised) 92%,transparent);backdrop-filter:blur(8px);color:var(--ink-2);
  transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .stage-ctl button:hover:not(:disabled),.stage-ctl button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-@media(pointer:coarse){.stage-ctl button,.stage-step{width:36px;height:36px}}
 /* on the phone the stage is 300px tall: the cluster lies along its floor instead */
 @media(max-width:700px){.stage-ctl{left:16px;right:16px;bottom:10px;flex-direction:row;flex-wrap:wrap;justify-content:flex-end}.stage-ctl>div{flex-direction:row}}
-.try{display:flex;flex-wrap:wrap;gap:6px;margin-right:var(--s4)}
-.try .chip{min-height:32px;padding:0 10px;font-size:var(--t0);gap:6px}
-.try .chip b{font:var(--t0) var(--font-sans);font-weight:400;color:var(--ink-4);letter-spacing:0}
-.try .chip[aria-pressed="true"] b{color:#ffffff9c}
-@media(max-width:1100px){.try .chip b{display:none}}
-@media(max-width:720px){.try{display:none}.stage-hint{display:none}}
+@media(max-width:720px){.stage-hint{display:none}}
 
 /* ── same calibre, other countries ─────────────────────────────────────────── */
 .calibre{margin:var(--s5) var(--gutter) 0;padding-top:var(--s4);border-top:1px solid var(--rule)}
@@ -1465,16 +1464,16 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
    The desktop chapter pins a 100svh frame while a 680svh track scrolls under
    it. On a phone that frame cannot hold the stage, the reading, the anatomy,
    the narration, the rail and the calibre strip at once, so they were drawn
-   on top of each other. Below 700px nothing is pinned: everything flows, the
-   stage keeps its own height, and the machine still assembles itself on load.
+   on top of each other. Below 700px only the stage is pinned, short, and the
+   cards pass under it; the card nearest the top seeks the machine to its
+   chapter, so the part and its sentence are on screen together.
    The projected labels and the chapter popup are the narration strip's text
    again, drawn onto a stage too small for them, so they go. */
 @media(max-width:700px){
  .scroll-chapter{height:auto}
- .scroll-pin{position:static;height:auto;overflow:visible}
+ .scroll-pin{position:sticky;top:0;z-index:3;height:auto;overflow:visible}
  .instrument{padding-bottom:var(--s3)}
  .projected-labels,.assembly-leaders{display:none}
- .stage-step{width:36px;height:36px}
  .stage-hint{display:none}
  .calibre-row{grid-template-columns:repeat(3,minmax(0,1fr))}
  .calibre-dial{min-width:0;padding-inline:4px}
@@ -1502,6 +1501,7 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .stage-heading .country-name svg{width:16px;height:16px;opacity:.55}
 .stage-heading .country-name:hover svg{opacity:1}
 .stage-heading .stage-step{width:36px;height:36px;border-radius:50%}
+@media(pointer:coarse){.stage-ctl button,.stage-step,.stage-heading .stage-step{width:44px;height:44px}}
 .stage-edition{grid-area:2/2;justify-self:center;font:500 var(--t0)/1.2 var(--font-mono);letter-spacing:0;color:var(--ink-3)}
 /* one help line at the foot of the stage */
 .stage-foot{position:absolute;left:var(--gutter);bottom:var(--s4);z-index:3;display:flex;align-items:baseline;gap:18px}

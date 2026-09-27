@@ -69,6 +69,14 @@ function Bars({row}:{row:Row}){
  </div>)}</div>;
 }
 
+// Each band opens on its first twenty rows and folds the rest: every row is
+// still in the page, but the page no longer runs to 33,000px before the foot.
+const SHOWN=20;
+const DivRow=({r,year}:{r:Row;year?:boolean})=><div className="div-country row-hit">
+ <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}{year&&<small>{r.year}</small>}</a>
+ <Bars row={r}/>
+ <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
+</div>;
 
 // Two respected datasets, the same 199 countries, the same year, drawn as the
 // disagreement they are. The page opens on the argument instead of describing it.
@@ -125,11 +133,7 @@ export default async function Page(){
      <div className="sec-head btr"><h2>{h.a} against {h.b}, {h.year}</h2><p>Widest disagreement first. The percentage is the gap as a share of the larger figure.</p></div>
      <details className="disc"><summary>How to read this</summary><div className="disc-body">All {h.countries} countries for which both sources publish a {h.year} figure, widest disagreement first. The percentage is the gap as a share of the larger figure, so neither source is treated as the one the other deviates from.</div></details>
      <Tornado rows={h.rows.slice(0,24)} a={h.a} b={h.b}/>
-     <div className="div-rows">{h.rows.map(r=><div className="div-country row-hit reveal" key={r.iso3}>
-      <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}</a>
-      <Bars row={r}/>
-      <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
-     </div>)}</div>
+     <details className="disc"><summary>All {h.rows.length} countries, both figures</summary><div className="div-rows">{h.rows.map(r=><DivRow key={r.iso3} r={r}/>)}</div></details>
     </section>
 
     <section className="rec-section" id="countries">
@@ -140,11 +144,8 @@ export default async function Page(){
       if(!rows.length)return null;
       return <section className="div-band" key={b.label}>
        <h3 className="band-head"><span>{b.label}</span><b>{rows.length}</b></h3>
-       <div className="div-rows">{rows.map(r=><div className="div-country row-hit reveal" key={r.iso3}>
-        <a className="div-name" href={`/country/${r.iso3}#emissions`}><i>{r.iso3}</i>{r.name_en}<small>{r.year}</small></a>
-        <Bars row={r}/>
-        <span className="div-spread" data-wide={r.spread_pct>50||undefined}>{fmt(r.spread_pct)}%</span>
-       </div>)}</div>
+       <div className="div-rows">{rows.slice(0,SHOWN).map(r=><DivRow key={r.iso3} r={r} year/>)}</div>
+       {rows.length>SHOWN&&<details className="disc"><summary>The other {rows.length-SHOWN}</summary><div className="div-rows">{rows.slice(SHOWN).map(r=><DivRow key={r.iso3} r={r} year/>)}</div></details>}
       </section>;
      })}
     </section>

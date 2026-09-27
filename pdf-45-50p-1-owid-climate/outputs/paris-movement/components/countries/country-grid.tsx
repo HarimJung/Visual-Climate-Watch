@@ -27,6 +27,9 @@ export default function CountryGrid({roster,note}:{roster:RosterRow[];note?:stri
  const [q,setQ]=useState('');
  const [sort,setSort]=useState<SortKey>('name');
  const [region,setRegion]=useState('');
+ // A table by default: 218 cards ran to 41,000px, and a reader looking for one
+ // country scans a column faster than a wall of dials. The cards stay one click away.
+ const [cards,setCards]=useState(false);
 
  const regions=useMemo(()=>[...new Set(roster.map(c=>c.region).filter((r):r is string=>!!r))].sort(),[roster]);
 
@@ -59,6 +62,8 @@ export default function CountryGrid({roster,note}:{roster:RosterRow[];note?:stri
    <select className="cty-select" value={sort} onChange={e=>setSort(e.target.value as SortKey)} aria-label="Sort countries">
     {Object.entries(SORTS).map(([k,v])=><option key={k} value={k}>{v.label}</option>)}
    </select>
+   <button type="button" className="chip" aria-pressed={!cards} onClick={()=>setCards(false)}>Table</button>
+   <button type="button" className="chip" aria-pressed={cards} onClick={()=>setCards(true)}>Cards</button>
   </div>
 
   <p className="tray-note" aria-live="polite">
@@ -70,6 +75,18 @@ export default function CountryGrid({roster,note}:{roster:RosterRow[];note?:stri
 
   {shown.length===0
    ?<div className="rec-blank"><span className="state-token unknown"><i/>No match</span><p>Nothing in the roster matches “{q}”{region?` in ${region}`:''}.</p></div>
+   :!cards?<div className="rec-table-scroll"><table className="rec-inputs cty-table">
+    <thead><tr><th>Country</th><th>Region</th><th>Pledge</th><th>BTR confirmed</th><th>Observed</th><th>Per capita</th><th>ND‑GAIN</th></tr></thead>
+    <tbody>{shown.map(c=><tr key={c.iso3}>
+     <td><a href={`/country/${c.iso3}`}>{c.name_en}</a><small>{c.iso3}</small></td>
+     <td>{c.region??'-'}</td>
+     <td>{c.reduction_pct==null?'Not parsed':`${fmt(c.reduction_pct)}%`}</td>
+     <td>{evidenced(c)}/8</td>
+     <td>{c.observed_years==null?'-':`${c.observed_years} yr`}</td>
+     <td>{c.per_capita_tco2e==null?'-':`${fmt(c.per_capita_tco2e,1)} t`}</td>
+     <td>{c.ndgain_score==null?'-':fmt(c.ndgain_score,1)}</td>
+    </tr>)}</tbody>
+   </table></div>
    :<div className="tray-grid">{shown.map(c=>
     <article className="tray-card" key={c.iso3}>
      <div className="tray-meta"><span>{c.iso3}</span><span>{c.edition}</span></div>
