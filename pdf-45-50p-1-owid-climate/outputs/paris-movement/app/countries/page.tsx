@@ -1,78 +1,56 @@
+/// <reference types="vite/client" />
 import type {Metadata} from 'next';
-import CountryGrid from '@/components/countries/country-grid';
-import {loadIndex} from '@/lib/record';
-import type {RosterRow} from '@/lib/climate';
+import CountryGrid,{type Row} from '@/components/countries/country-grid';
+import {loadIndex,loadView} from '@/lib/record';
+import type {Census} from '@/lib/unknown';
 
-// The collection, promoted out of the instrument's tab strip into a route it
-// can be linked to. Rendered on the server so all 218 cards are in the HTML.
 export const metadata:Metadata={
- title:'The country collection, Visual Climate',
- description:'Every country the engine has built, as a dial you can sort, filter and open. One calibre, different promises.',
+ title:'Find a country · Visual Climate',
+ description:'Every country record in one table: what was filed, whether the pledge was read, the first transparency report, emissions, vulnerability and Green Climate Fund money. Search, filter, download.',
 };
 
+// Two fields the engine index does not carry, read from the records the site
+// already publishes: the registry entry (what was filed, and the 23 the
+// registry does not list) and whether a BTR1 was found. Vite keeps only the
+// named key of each JSON file, so the rest of every record stays out of the build.
+type Registry={latest_version:string|null;submission_date:string|null;matches_parsed_document:boolean|null;state:string;$reason?:string};
+const registry=import.meta.glob<Registry>('/data/countries/*.json',{eager:true,import:'ndc_registry'});
+const btr=import.meta.glob<{submitted:boolean|null}>('/data/countries/*.json',{eager:true,import:'btr'});
 
-// The whole roster at a glance, one ring per country, in the same order as the
-// grid below. A ring gets a blue arc only if a pledge figure was actually read
-// from that country's document, so the masthead states the collection's real
-// condition instead of advertising it: 218 rings, and you can count the arcs.
-const COLS=26,PITCH=17,R=6.4;
-function ContactSheet({roster}:{roster:RosterRow[]}){
- const rows=Math.ceil(roster.length/COLS);
- const W=COLS*PITCH,H=rows*PITCH;
- const pledged=roster.filter(c=>c.reduction_pct!=null).length;
- return <figure className="cty-sheet">
-  <svg viewBox={`0 0 ${W} ${H}`} role="img"
-   aria-label={`${roster.length} countries, one ring each. ${pledged} carry a parsed pledge figure; the remaining ${roster.length-pledged} rings are open.`}>
-   {roster.map((c,i)=>{
-    const cx=(i%COLS)*PITCH+PITCH/2, cy=Math.floor(i/COLS)*PITCH+PITCH/2;
-    const ev=Object.values(c.btr_components??{}).filter(x=>x.state==='observed').length;
-    const pct=c.reduction_pct;
-    return <g key={c.iso3}>
-     <circle cx={cx} cy={cy} r={R} fill="none" stroke="var(--rule-strong)" strokeWidth="1"/>
-     {ev>0&&<circle cx={cx} cy={cy} r={R-3.4} fill="var(--btr)" opacity={0.18+ev/8*0.62}/>}
-     {pct!=null&&<circle cx={cx} cy={cy} r={R} fill="none" stroke="var(--ndc)" strokeWidth="2.2"
-      strokeDasharray={`${Math.min(pct,100)/100*2*Math.PI*R} ${2*Math.PI*R}`}
-      transform={`rotate(-90 ${cx} ${cy})`}/>}
-    </g>;
-   })}
-  </svg>
-  <figcaption>
-   <span><i className="key-ring"/>{roster.length} countries built</span>
-   <span><i className="key-arc"/>{pledged} with a pledge figure read from the document</span>
-   <span><i className="key-dot"/>shaded by BTR components confirmed</span>
-  </figcaption>
- </figure>;
-}
+type Finance={rows:{iso3:string;disbursed_usd:number|null}[];unknowns:{iso3:string}[]};
 
 export default async function Page(){
- const index=await loadIndex();
+ const [index,census,finance]=await Promise.all([loadIndex(),loadView<Census>('census'),loadView<Finance>('finance')]);
  const roster=index?.countries??[];
- // Counted here rather than typed: the roster is the only thing this page has.
- const pledged=roster.filter(c=>c.reduction_pct!=null).length;
- const sockets=roster.reduce((n,c)=>n+Object.values(c.btr_components??{}).filter(x=>x.state!=='unknown').length,0);
- const years=roster.reduce((n,c)=>n+(c.observed_years??0),0);
- return <main className="record" id="main">
+ const gcf=new Map(finance?.rows.map(r=>[r.iso3,r.disbursed_usd]));
+ const noGcf=new Set(finance?.unknowns.map(r=>r.iso3));
+ const rows:Row[]=roster.map(c=>{
+  const reg=registry[`/data/countries/${c.iso3}.json`];
+  return {
+   iso3:c.iso3,name:c.name_en,region:c.region,
+   registry:reg?.state==='observed'?'entry':reg?.state==='absent'?'none-active':'no-entry',
+   registryWhy:reg?.$reason??null,
+   filed:reg?.latest_version??null,filedOn:reg?.submission_date??null,
+   pledge:c.reduction_pct,pledgeCurrent:reg?.matches_parsed_document===true,
+   btrFiled:btr[`/data/countries/${c.iso3}.json`]?.submitted===true,
+   btrRead:Object.values(c.btr_components??{}).filter(x=>x.state==='observed').length,
+   mt:c.total_mtco2e??null,mtYear:c.latest_year??null,
+   ndgain:c.ndgain_score??null,
+   // finance.json only compares countries with an ND-GAIN score, so a country
+   // outside it is "not compared", never "no record".
+   gcf:gcf.get(c.iso3)??null,
+   gcfState:gcf.has(c.iso3)?(gcf.get(c.iso3)==null?'unread':'read'):noGcf.has(c.iso3)?'none':'not-compared',
+  };
+ });
+ // The split the home page and /refusals already state, read from the census.
+ const parties=census?census.ndc_registry_active+census.ndc_registry_none_active:null;
+ return <main className="record dir" id="main">
   <div className="rec-shell">
-   <section className="cty-masthead">
-    <div className="cty-masthead-text">
-     <h1 className="rec-title">One calibre, different promises</h1>
-     <p className="rec-lede">Every country the engine has built, drawn by the same dial and the same code path. A card with no pledge is still a card with coverage on it, not an empty frame.</p>
-    </div>
-    {roster.length>0&&<ContactSheet roster={roster}/>}
-   </section>
+   <h1 className="rec-title">Find a country</h1>
+   {census&&parties!=null&&<p className="rec-lede dir-lede">{census.countries} records. {parties} are Parties with an entry in the UNFCCC NDC registry; the rest are listed apart, below the table.</p>}
+   {rows.length===0
+    ?<div className="rec-blank"><span className="state-token unknown"><i/>Table unavailable</span><p>The engine index was not published with this build. It comes back with the next build; every country record is still open at /country/ followed by its ISO3 code.</p></div>
+    :<CountryGrid rows={rows}/>}
   </div>
-  {roster.length===0
-   ?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>Roster unavailable</span><p>The engine index has not been published with this build. It will be back with the next build; every country record is still open.</p></div></div>
-   :<>
-    <section className="kpi-band" aria-label="The collection in four figures">
-     <div className="kpi"><strong className="kpi-fig countup">{roster.length}</strong><span className="kpi-lab">Records built</span><span className="kpi-sub">one contract, one code path, every one of them</span></div>
-     <div className="kpi"><strong className="kpi-fig countup">{pledged}</strong><span className="kpi-lab">Pledge figures read</span><span className="kpi-sub">of {roster.length} · the rest are unread, not absent</span></div>
-     <div className="kpi"><strong className="kpi-fig countup">{sockets}</strong><span className="kpi-lab">BTR components read</span><span className="kpi-sub">of {roster.length*8} · unread is not missing</span></div>
-     <div className="kpi"><strong className="kpi-fig countup">{years}</strong><span className="kpi-lab">Country-years observed</span><span className="kpi-sub">summed across the collection</span></div>
-    </section>
-    <div className="rec-shell">
-     <CountryGrid roster={roster} note={index?.telemetry?.run_id?`Run ${index.telemetry.run_id.slice(0,8)}.`:undefined}/>
-    </div>
-   </>}
  </main>;
 }

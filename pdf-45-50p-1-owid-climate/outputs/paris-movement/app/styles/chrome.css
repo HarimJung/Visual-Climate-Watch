@@ -1,0 +1,32 @@
+/* chrome — owned by one page team during the 2026-09-27 UX overhaul. Tokens come from globals.css :root.
+   This file is imported before the rest of globals.css, so every override here
+   carries one more class than the rule it replaces. */
+
+/* Header: logo left, five links and Jump right. */
+.site-top .site-nav{margin-left:auto}
+@media(max-width:720px){
+ /* Row one: logo and Jump. Row two: the five links, all visible. They wrap
+    rather than scroll, so nothing hides behind a fade. */
+ .site-top .jump-open{margin-left:auto}
+ .site-top .site-nav{order:1;flex-wrap:wrap;gap:2px 18px;width:100%;margin-inline:0;padding-inline:0;
+  overflow:visible;mask-image:none}
+}
+
+/* Footer: who, the one sentence, three links. */
+.site-foot .foot-nav{display:flex;flex-wrap:wrap;gap:var(--s4)}
+.site-foot .foot-nav a{color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--rule-strong);
+ text-underline-offset:3px;transition:color var(--dur) var(--ease),text-decoration-color var(--dur) var(--ease)}
+.site-foot .foot-nav a:hover{color:var(--ink);text-decoration-color:currentColor}
+
+/* Home: three doors directly under the stage chapter. */
+.doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);margin:var(--s7) var(--gutter) 0}
+.door{display:grid;align-content:start;gap:var(--s2);padding:var(--s4) var(--s4) var(--s5);
+ border:1px solid var(--rule);border-top:3px solid var(--un);background:var(--paper-raised);color:var(--ink);
+ transition:border-color var(--dur) var(--ease)}
+.door h2{margin:0;font:600 var(--t4)/1.25 var(--font-display);letter-spacing:0;color:var(--ink)}
+.door h2 label{cursor:pointer}
+.door p{margin:0;font:var(--t2)/1.45 var(--font-sans);color:var(--ink-2)}
+.door .cty-search{width:100%;margin-top:var(--s2)}
+a.door:hover{border-color:var(--rule-strong);border-top-color:var(--un-ink)}
+a.door:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+@media(max-width:640px){.doors{grid-template-columns:1fr;margin-top:var(--s6)}}

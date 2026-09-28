@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@import './styles/chrome.css';
+@import './styles/teach-about.css';
+@import './styles/method-compare.css';
+@import './styles/compare-pages.css';
+@import './styles/directory.css';
 @custom-variant dark (&:is(.dark *));
 
 /* Visual Climate — The Paris Movement.
@@ -420,7 +425,8 @@ svg{flex-shrink:0}
 .rec-back{display:inline-flex;align-items:center;gap:8px;font:12px var(--font-mono);letter-spacing:0;color:var(--ink-2);transition:color .2s}
 .rec-back:hover{color:var(--ink)}
 .rec-shell{max-width:1120px;margin:0 auto;padding-block:clamp(28px,4vw,56px) 72px;padding-inline:var(--gutter)}
-.rec-title{font-family:var(--font-display);font-weight:500;font-size:clamp(36px,5.4vw,66px);line-height:1.02;letter-spacing:-.035em;margin:12px 0 14px;text-wrap:balance}
+/* one title size site-wide: page titles are now questions, and a question at 66px wraps to three lines */
+.rec-title{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-.035em;margin:12px 0 14px;text-wrap:balance}
 .rec-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
 .rec-chips span{padding:4px 9px;border:1px solid var(--rule-strong);border-radius:2px;background:var(--paper-raised);font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3)}
 .rec-lede{font-size:18px;line-height:1.85;color:var(--ink-2);text-wrap:pretty}
@@ -533,11 +539,6 @@ svg{flex-shrink:0}
 .rec-components li.observed .rec-comp-mark{border:1px solid var(--btr);background:var(--btr);color:#fff}
 .rec-components li.absent .rec-comp-mark{border-color:#4c565c;background:#4c565c;color:#fff}
 
-.rec-clauses{display:flex;flex-direction:column;gap:0;margin-top:22px;list-style:none;counter-reset:clause}
-.rec-clauses li{display:grid;grid-template-columns:minmax(150px,210px) 1fr;gap:12px 24px;padding:16px 0;border-top:1px solid var(--rule)}
-.rec-clauses b{font:600 var(--t2)/1.5 var(--font-sans);color:var(--ink)}
-.rec-clauses p{font-size:15px;line-height:1.8;color:var(--ink-2);text-wrap:pretty}
-
 .rec-run{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;margin:22px 0;background:var(--rule);border:1px solid var(--rule)}
 .rec-run>div{padding:14px 15px;background:var(--paper-raised)}
 .rec-run dt{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
@@ -557,7 +558,6 @@ svg{flex-shrink:0}
 .rec-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:64px;padding-top:20px;border-top:1px solid var(--rule-strong);font-size:13px;color:var(--ink-4)}
 
 @media (max-width:640px){
- .rec-clauses li{grid-template-columns:1fr;gap:6px}
  .rec-title{font-size:clamp(30px,9vw,44px)}
 }
 
@@ -1014,10 +1014,74 @@ body::after{
 .cty-name{font-family:var(--font-display);font-weight:600;
  font-size:clamp(44px,7.4vw,96px);line-height:.94;letter-spacing:-.035em;margin:var(--s3) 0 var(--s4);
  text-wrap:balance;color:var(--ink)}
-.cty-verdict{margin:var(--s5) 0 0;padding-left:clamp(14px,1.8vw,22px);border-left:1px solid var(--rule-strong);
- font-family:var(--font-display);font-weight:500;font-size:clamp(18px,1.9vw,25px);line-height:1.42;
- letter-spacing:-.012em;color:var(--ink-2);max-width:70ch;text-wrap:pretty}
-.kpi-none{font-size:.52em;font-weight:600;letter-spacing:.04em;opacity:.62}
+.cty-lede{margin:var(--s4) 0 0;font-size:clamp(17px,1.6vw,21px);line-height:1.5;color:var(--ink-2);max-width:62ch;text-wrap:pretty}
+
+/* what a reader takes away: the citation, a printout, the record as data */
+.rec-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2);margin-top:var(--s5)}
+.rec-act{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--un-ink);border-radius:var(--radius);
+ background:var(--paper-raised);color:var(--un-ink);font:500 var(--t2) var(--font-sans);cursor:pointer;transition:background var(--dur) var(--ease)}
+.rec-act:hover{background:color-mix(in srgb,var(--un) 8%,var(--paper-raised))}
+.rec-act:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+.rec-act-msg{font-size:var(--t1);color:var(--ink-3)}
+
+/* a tighter top: the first filing should be in the first screen */
+.cty-record .cty-head{padding-block:clamp(24px,3vw,40px) clamp(12px,1.6vw,20px)}
+.cty-record .rail+.rec-shell{padding-top:clamp(20px,2.4vw,32px)}
+.cty-record .rail+.rec-shell>.rec-section:first-child{margin-top:0}
+@media(max-width:720px){.cty-record .rail a span{display:inline}}
+/* the block's own figure, with a copy of it that carries its source */
+.rec-figure{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--s3) var(--s5);margin:var(--s2) 0 0}
+.rec-figure p{display:flex;flex-direction:column;gap:2px}
+.rec-figure strong{font-family:var(--font-display);font-size:var(--t7);font-weight:600;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rec-figure strong sup{font-size:var(--t2);font-weight:500;margin-left:4px;color:var(--ink-3);vertical-align:super}
+.rec-figure span{font-size:var(--t2);color:var(--ink-3)}
+.rec-figure .rec-actions{margin:0}
+
+/* each block's rule is the hue of the evidence it holds; the blanks are dashed */
+.cty-record .sec-head.btr{border-top-color:var(--btr)}
+.cty-record .sec-head.inv{border-top-color:var(--inv)}
+.cty-record .sec-head.fin{border-top-color:var(--fin)}
+.cty-record .sec-head.unk{border-top:2px dashed var(--src-b)}
+
+/* 01 · every filing, newest first */
+.rec-filings{list-style:none;margin:var(--s4) 0 0;padding:0;border-top:1px solid var(--rule)}
+.rec-filings li{display:grid;grid-template-columns:128px minmax(0,1fr) auto;gap:var(--s2) var(--s5);align-items:baseline;
+ padding:var(--s4) 0;border-bottom:1px solid var(--rule)}
+.rec-filing-date{font-size:var(--t2);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rec-filing-name{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2);font-size:var(--t4);font-weight:500;color:var(--ink)}
+.rec-filing-name a{display:inline-flex;align-items:baseline;gap:4px;color:inherit;text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.rec-filing-name a:hover{text-decoration-color:var(--un-ink)}
+.rec-tag{padding:1px 8px;border:1px solid currentColor;border-radius:999px;font:600 var(--t0) var(--font-sans);font-style:normal;letter-spacing:.04em;text-transform:uppercase;color:var(--un-ink)}
+@media(max-width:720px){.rec-filings li{grid-template-columns:1fr;gap:var(--s1)}}
+
+/* 02 · whether the figure comes from the current filing, said as loud as the figure */
+.rec-current{margin:0;padding:var(--s4) var(--s5);border:1px dashed var(--src-b);border-left:4px solid var(--src-b);background:var(--paper-sunken);
+ font:500 var(--t5)/1.4 var(--font-display);letter-spacing:-.01em;color:var(--ink);text-wrap:pretty}
+.rec-current.read{border:1px solid var(--rule);border-left:4px solid var(--ndc);background:var(--paper-raised)}
+.rec-more{margin-top:var(--s5)}
+/* a fold that holds content, not a side note: it stays in the reading column */
+.cty-record .rec-section>.disc.rec-inline{grid-column:1;grid-row:auto;position:static;margin-top:var(--s4)}
+.rec-more .disc-body p+p{margin-top:var(--s2)}
+
+/* 05 · two readings under one head */
+.rec-section h3.rec-sub{margin-top:var(--s7)}
+
+/* 06 · every blank once, linked to where it sits */
+.rec-unread dt a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.rec-unread dt a:hover{text-decoration-color:var(--un-ink)}
+
+/* 07 · the citation as text you can select, and a button that copies it */
+.rec-cite{margin:var(--s4) 0 var(--s5);padding:var(--s4) var(--s5);border:1px solid var(--rule);background:var(--paper-raised)}
+.rec-cite p{font-size:var(--t3);line-height:1.7;color:var(--ink-2);overflow-wrap:anywhere}
+.rec-cite .rec-actions{margin-top:var(--s3)}
+.rec-context{margin-top:var(--s7);scroll-margin-top:calc(var(--top-h) + 54px)}
+
+@media print{
+ .site-top,.site-foot,.skip-link,.rail,.rec-actions,.jump-back,.peers .record-action,.rec-back{display:none!important}
+ body,.record{background:#fff}
+ .rec-card,.rec-filings li,.rec-unread>div,.rec-tile,.rec-current{break-inside:avoid}
+ .rec-filings a::after{content:" " attr(href);font-size:10px;font-weight:400;color:var(--ink-3);overflow-wrap:anywhere}
+}
 
 /* the spine: sticky under the site header, and it says where you are */
 .rail{position:sticky;top:var(--top-h);z-index:30;
@@ -1050,8 +1114,6 @@ body::after{
 .peers-where{font-size:var(--t2);color:var(--ink-2)}
 .peers-gap{font:var(--t0) var(--font-mono);color:var(--ink-3)}
 .peers .record-action{margin:0}
-.cty-rest{margin-top:var(--s3);border-top:0}
-.cty-rest>summary{padding-top:0}
 
 /* ── the coverage map ────────────────────────────────────────────────────────
    A country is filled by how much of it we established; a country we
@@ -1157,8 +1219,8 @@ body::after{
 :root{--dur-quick:180ms;--dur:300ms;--dur-slow:640ms}
 .reveal.is-in{animation-duration:var(--dur-slow);animation-delay:calc(min(var(--i,0),6)*60ms)}
 .cty-name,.rec-title{animation:riseIn 760ms var(--emph) both}
-.claim-figs,.claim-ways,.cty-verdict,.rec-lede{animation:riseIn 560ms var(--out) 140ms both}
-@media(prefers-reduced-motion:reduce){.cty-name,.rec-title,.claim-figs,.claim-ways,.cty-verdict,.rec-lede{animation:none}}
+.claim-figs,.claim-ways,.cty-lede,.rec-lede{animation:riseIn 560ms var(--out) 140ms both}
+@media(prefers-reduced-motion:reduce){.cty-name,.rec-title,.claim-figs,.claim-ways,.cty-lede,.rec-lede{animation:none}}
 
 /* ── labels: sentence case, the interface face, medium weight ─────────────── */
 .eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.tally,.peers-lab,.claim-figs dt,.unk-legend,
@@ -1203,7 +1265,6 @@ body::after{
 .kpi-fig{color:var(--ink)}
 .kpi-lab{border-top:1px solid var(--rule-strong);color:var(--ink-2)}
 .kpi-sub{color:var(--ink-3);opacity:1}
-.kpi-none{color:var(--ink-4)}
 .band{padding-left:max(var(--gutter),env(safe-area-inset-left),(100% - 1120px)/2);
  padding-right:max(var(--gutter),env(safe-area-inset-right),(100% - 1120px)/2);
  padding-block:clamp(40px,4.8vw,72px) clamp(52px,6vw,96px)}

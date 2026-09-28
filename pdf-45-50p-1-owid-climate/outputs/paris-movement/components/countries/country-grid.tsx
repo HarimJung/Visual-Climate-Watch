@@ -1,113 +1,152 @@
 'use client';
 import {useMemo,useState} from 'react';
-import {ArrowUpRight,ArrowRight} from 'lucide-react';
-import {fmt,type RosterRow} from '@/lib/climate';
-import {StaticDial} from '@/components/movement/static-dial';
+import {Search} from 'lucide-react';
+import {fmt} from '@/lib/climate';
+import ExportCsv from '@/components/site/export-csv';
 
-// The collection as a route of its own. It used to be a tab inside the
-// instrument, which meant it had no URL to link or share, and every card
-// swapped the 3D scene instead of opening the record behind it.
-//
-// The six roster fields the engine has always built are the sort keys here:
-// observed years, latest year, total, per capita, ND-GAIN, income group.
-// They were computed and never read by anything until now.
-const SORTS={
- name:{label:'Name (A-Z)',key:(c:RosterRow)=>c.name_en,dir:1 as const,text:true},
- emissions:{label:'Emissions, highest first',key:(c:RosterRow)=>c.total_mtco2e,dir:-1 as const},
- per_capita:{label:'Per capita, highest first',key:(c:RosterRow)=>c.per_capita_tco2e,dir:-1 as const},
- ndgain:{label:'ND‑GAIN, lowest first',key:(c:RosterRow)=>c.ndgain_score,dir:1 as const},
- observed:{label:'Observed years, most first',key:(c:RosterRow)=>c.observed_years,dir:-1 as const},
- pledge:{label:'Pledged cut, deepest first',key:(c:RosterRow)=>c.reduction_pct,dir:-1 as const},
- evidence:{label:'BTR evidence, most first',key:(c:RosterRow)=>evidenced(c),dir:-1 as const},
+// One row per country, columns in the order a visitor asks: what was filed,
+// what was promised, what was reported, what is emitted, how vulnerable, what
+// money reached it. A blank is a word with its dot, never a dash or a zero.
+export type Row={
+ iso3:string;name:string;region:string|null;
+ registry:'entry'|'none-active'|'no-entry';registryWhy:string|null;
+ filed:string|null;filedOn:string|null;
+ pledge:number|null;pledgeCurrent:boolean;
+ btrFiled:boolean;btrRead:number;
+ mt:number|null;mtYear:number|null;
+ ndgain:number|null;
+ gcf:number|null;gcfState:'read'|'unread'|'none'|'not-compared';
 };
-type SortKey=keyof typeof SORTS;
-const evidenced=(c:RosterRow)=>Object.values(c.btr_components??{}).filter(x=>x.state==='observed').length;
 
-export default function CountryGrid({roster,note}:{roster:RosterRow[];note?:string}){
+const one=(n:number)=>n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});
+const usd=(n:number)=>n>=1e9?`$${(n/1e9).toFixed(2)}bn`:n>=1e6?`$${(n/1e6).toFixed(1)}m`:`$${n.toLocaleString('en-US',{maximumFractionDigits:0})}`;
+const Blank=({children,title}:{children:string;title?:string})=><span className="state-token unknown" title={title}><i/>{children}</span>;
+const pledgeState=(r:Row)=>r.pledge==null?'not-read':r.pledgeCurrent?'current':'older';
+const GCF_WORD={unread:'not read',none:'no GCF record','not-compared':'not compared'} as const;
+const GCF_WHY={
+ unread:'A Green Climate Fund record exists; the disbursed amount was not read.',
+ none:'No Green Climate Fund record was read for this country. An unread ledger, not a country that received nothing.',
+ 'not-compared':'The finance comparison covers countries with an ND-GAIN score. The country record has its own finance block.',
+} as const;
+
+// Each column sorts; a country with no figure sorts last either way, never as 0.
+const COLS=[
+ {id:'name',label:'Country',key:(r:Row)=>r.name,dir:1},
+ {id:'filed',label:'Current NDC',key:(r:Row)=>r.filed,dir:1},
+ {id:'filedOn',label:'Submitted',key:(r:Row)=>r.filedOn,dir:-1},
+ {id:'pledge',label:'Pledge figure',key:(r:Row)=>r.pledge,dir:-1},
+ {id:'btr',label:'BTR1',key:(r:Row)=>r.btrFiled?r.btrRead:null,dir:-1},
+ {id:'mt',label:'Emissions',key:(r:Row)=>r.mt,dir:-1},
+ {id:'ndgain',label:'ND‑GAIN',key:(r:Row)=>r.ndgain,dir:1},
+ {id:'gcf',label:'GCF disbursed',key:(r:Row)=>r.gcfState==='read'?r.gcf:null,dir:-1},
+] as const;
+type ColId=typeof COLS[number]['id'];
+
+export default function CountryGrid({rows}:{rows:Row[]}){
  const [q,setQ]=useState('');
- const [sort,setSort]=useState<SortKey>('name');
  const [region,setRegion]=useState('');
- // A table by default: 218 cards ran to 41,000px, and a reader looking for one
- // country scans a column faster than a wall of dials. The cards stay one click away.
- const [cards,setCards]=useState(false);
+ const [pledge,setPledge]=useState('');
+ const [btr,setBtr]=useState('');
+ const [sort,setSort]=useState<{id:ColId;dir:number}>({id:'name',dir:1});
 
- const regions=useMemo(()=>[...new Set(roster.map(c=>c.region).filter((r):r is string=>!!r))].sort(),[roster]);
+ const regions=useMemo(()=>[...new Set(rows.map(r=>r.region).filter((r):r is string=>!!r))].sort(),[rows]);
+ const needle=q.trim().toLowerCase();
+ const filtered=needle||region||pledge||btr;
 
- const shown=useMemo(()=>{
-  const needle=q.trim().toLowerCase();
-  const list=roster.filter(c=>
-   (!region||c.region===region)&&
-   (!needle||c.name_en.toLowerCase().includes(needle)||c.iso3.toLowerCase().includes(needle)));
-  const s=SORTS[sort];
-  return [...list].sort((a,b)=>{
-   const x=s.key(a),y=s.key(b);
-   if('text' in s)return String(x).localeCompare(String(y));
-   // A country with no figure sorts last in every numeric order, never as 0.
-   if(x==null&&y==null)return a.name_en.localeCompare(b.name_en);
-   if(x==null)return 1;
-   if(y==null)return -1;
-   return (Number(y)-Number(x))*(s.dir===1?-1:1);
-  });
- },[roster,q,sort,region]);
+ const [parties,apart]=useMemo(()=>{
+  const col=COLS.find(c=>c.id===sort.id)!;
+  const list=rows.filter(r=>
+   (!needle||r.name.toLowerCase().includes(needle)||r.iso3.toLowerCase().startsWith(needle))&&
+   (!region||r.region===region)&&
+   (!pledge||pledgeState(r)===pledge)&&
+   (!btr||(btr==='filed')===r.btrFiled))
+   .sort((a,b)=>{
+    const x=col.key(a),y=col.key(b);
+    if(x==null||y==null)return x==null&&y==null?a.name.localeCompare(b.name):x==null?1:-1;
+    return (typeof x==='string'?x.localeCompare(y as string):(x as number)-(y as number))*sort.dir;
+   });
+  return [list.filter(r=>r.registry!=='no-entry'),list.filter(r=>r.registry==='no-entry')];
+ },[rows,needle,region,pledge,btr,sort]);
+ // Every emissions figure is the same year today; say it once in the header.
+ const years=[...new Set(rows.filter(r=>r.mt!=null).map(r=>r.mtYear))];
+ const oneYear=years.length===1?years[0]:null;
+ const apartTotal=useMemo(()=>rows.filter(r=>r.registry==='no-entry').length,[rows]);
+ const apartReasons=[...new Set(rows.filter(r=>r.registry==='no-entry').map(r=>r.registryWhy).filter(Boolean))];
+
+ const csv=[...parties,...apart].map(r=>({
+  iso3:r.iso3,country:r.name,region:r.region,
+  ndc_registry:{entry:'entry','none-active':'entry, none active','no-entry':'no entry'}[r.registry],
+  current_ndc:r.filed,submitted:r.filedOn,
+  pledge_pct:r.pledge==null?null:-r.pledge,
+  pledge_state:{'not-read':'not read',current:'read from the current filing',older:'read from an older filing'}[pledgeState(r)],
+  btr1:r.btrFiled?'filed':'not found',btr1_parts_read:r.btrFiled?r.btrRead:null,
+  emissions_mtco2e:r.mt,emissions_year:r.mt==null?null:r.mtYear,
+  ndgain:r.ndgain,
+  gcf_disbursed_usd:r.gcfState==='read'?r.gcf:null,gcf_state:r.gcfState==='read'?'read':GCF_WORD[r.gcfState],
+ }));
+
+ const head=(c:typeof COLS[number])=>{
+  const on=sort.id===c.id;
+  return <th key={c.id} aria-sort={on?(sort.dir===1?'ascending':'descending'):undefined}>
+   <button type="button" onClick={()=>setSort({id:c.id,dir:on?-sort.dir:c.dir})}>{c.id==='mt'&&oneYear?`Emissions, ${oneYear}`:c.label}<span aria-hidden="true">{on?(sort.dir===1?'↑':'↓'):''}</span></button>
+  </th>;
+ };
 
  return <>
-  <div className="cty-controls">
-   <input className="cty-search" type="search" name="country-search" value={q} onChange={e=>setQ(e.target.value)}
+  <label className="dir-search">
+   <Search size={20} aria-hidden="true"/>
+   <input type="search" name="country-search" value={q} onChange={e=>setQ(e.target.value)}
     autoComplete="off" spellCheck={false} enterKeyHint="search"
-    placeholder={`Search ${roster.length} countries by name or ISO3\u2026`} aria-label="Search countries"/>
-   <select className="cty-select" value={region} onChange={e=>setRegion(e.target.value)} aria-label="Filter by region">
+    placeholder="Type a country name or ISO3 code" aria-label="Find a country by name or ISO3 code"/>
+  </label>
+
+  <div className="dir-filters">
+   <select className="cty-select" value={region} onChange={e=>setRegion(e.target.value)} aria-label="Region">
     <option value="">All regions</option>
     {regions.map(r=><option key={r} value={r}>{r}</option>)}
    </select>
-   <select className="cty-select" value={sort} onChange={e=>setSort(e.target.value as SortKey)} aria-label="Sort countries">
-    {Object.entries(SORTS).map(([k,v])=><option key={k} value={k}>{v.label}</option>)}
+   <select className="cty-select" value={pledge} onChange={e=>setPledge(e.target.value)} aria-label="Pledge figure">
+    <option value="">Pledge: any</option>
+    <option value="current">Pledge read from the current NDC</option>
+    <option value="older">Pledge read from an older filing</option>
+    <option value="not-read">Pledge not read</option>
    </select>
-   <button type="button" className="chip" aria-pressed={!cards} onClick={()=>setCards(false)}>Table</button>
-   <button type="button" className="chip" aria-pressed={cards} onClick={()=>setCards(true)}>Cards</button>
+   <select className="cty-select" value={btr} onChange={e=>setBtr(e.target.value)} aria-label="First transparency report (BTR1)">
+    <option value="">BTR1: any</option>
+    <option value="filed">BTR1 filed</option>
+    <option value="not-found">BTR1 not found</option>
+   </select>
+   <span className="ctl-spacer"/>
+   <ExportCsv name="visual-climate-countries" rows={csv} label="Download CSV"/>
   </div>
 
-  <p className="tray-note" aria-live="polite">
-   {shown.length===roster.length
-    ?`${roster.length} countries built by the engine.${note?' '+note:''}`
-    :`${shown.length} of ${roster.length} countries shown.`}
-   {' '}A dash is a figure this engine has not read, never a zero.
-  </p>
+  <p className="dir-tally" aria-live="polite">{filtered?`${parties.length} ${parties.length===1?'Party matches':'Parties match'}${apart.length?`, and ${apart.length} listed apart`:''}.`:''}</p>
 
-  {shown.length===0
-   ?<div className="rec-blank"><span className="state-token unknown"><i/>No match</span><p>Nothing in the roster matches “{q}”{region?` in ${region}`:''}.</p></div>
-   :!cards?<div className="rec-table-scroll"><table className="rec-inputs cty-table">
-    <thead><tr><th>Country</th><th>Region</th><th>Pledge</th><th>BTR confirmed</th><th>Observed</th><th>Per capita</th><th>ND‑GAIN</th></tr></thead>
-    <tbody>{shown.map(c=><tr key={c.iso3}>
-     <td><a href={`/country/${c.iso3}`}>{c.name_en}</a><small>{c.iso3}</small></td>
-     <td>{c.region??'-'}</td>
-     <td>{c.reduction_pct==null?'Not parsed':`${fmt(c.reduction_pct)}%`}</td>
-     <td>{evidenced(c)}/8</td>
-     <td>{c.observed_years==null?'-':`${c.observed_years} yr`}</td>
-     <td>{c.per_capita_tco2e==null?'-':`${fmt(c.per_capita_tco2e,1)} t`}</td>
-     <td>{c.ndgain_score==null?'-':fmt(c.ndgain_score,1)}</td>
+  {parties.length===0
+   ?<div className="rec-blank"><span className="state-token unknown"><i/>No match</span><p>No Party matches{needle?` “${q.trim()}”`:''} with these filters.{apart.length?' Look in the list below the table.':''}</p></div>
+   :<div className="rec-table-scroll dir-scroll"><table className="rec-inputs dir-table">
+    <thead><tr>{COLS.map(head)}</tr></thead>
+    <tbody>{parties.map(r=><tr key={r.iso3}>
+     <th scope="row"><a href={`/country/${r.iso3}`}>{r.name}</a> <small>{r.iso3}</small></th>
+     {r.registry==='entry'
+      ?<><td className="dir-wrap">{r.filed}</td><td>{r.filedOn}</td></>
+      :<td className="dir-wrap" colSpan={2}>None active <small>{r.registryWhy}</small></td>}
+     <td>{pledgeState(r)==='current'?`−${fmt(r.pledge)}%`
+      :pledgeState(r)==='older'?<><Blank title="The current NDC has not been read. The figure comes from an earlier filing.">not read</Blank><small>older filing −{fmt(r.pledge)}%</small></>
+      :<Blank>not read</Blank>}</td>
+     <td>{r.btrFiled?<>filed <small>{r.btrRead}/8 parts read</small></>:<Blank title="No BTR1 was found in the UNFCCC listing. Not found is not the same as not submitted.">not found</Blank>}</td>
+     <td>{r.mt==null?<Blank>not read</Blank>:<>{one(r.mt)} Mt{!oneYear&&<small>{r.mtYear}</small>}</>}</td>
+     <td>{r.ndgain==null?<Blank title="The ND-GAIN index does not score this country.">not ranked</Blank>:one(r.ndgain)}</td>
+     <td>{r.gcfState==='read'&&r.gcf!=null?usd(r.gcf):<Blank title={GCF_WHY[r.gcfState as keyof typeof GCF_WHY]}>{GCF_WORD[r.gcfState as keyof typeof GCF_WORD]}</Blank>}</td>
     </tr>)}</tbody>
-   </table></div>
-   :<div className="tray-grid">{shown.map(c=>
-    <article className="tray-card" key={c.iso3}>
-     <div className="tray-meta"><span>{c.iso3}</span><span>{c.edition}</span></div>
-     <StaticDial data={{ndc:{reduction_pct:c.reduction_pct},btr:{components:c.btr_components??{}},emissions_profile:{total_mtco2e:c.total_mtco2e??null,latest_year:c.latest_year??null},observed_years:c.observed_years??null}}/>
-     <div className="tray-country">
-      <div><h2><a href={`/country/${c.iso3}`}>{c.name_en}</a></h2><p>{[c.region,c.income_group].filter(Boolean).join(' · ')||'Not classified by the World Bank register'}</p></div>
-     </div>
-     <dl className="tray-stats">
-      <div><dt>Observed</dt><dd>{c.observed_years??'-'}<small>yr</small></dd></div>
-      <div><dt>Per capita</dt><dd>{c.per_capita_tco2e==null?'-':fmt(c.per_capita_tco2e,1)}<small>t</small></dd></div>
-      <div><dt>ND‑GAIN</dt><dd>{c.ndgain_score==null?'-':fmt(c.ndgain_score,1)}</dd></div>
-      <div><dt>BTR</dt><dd>{evidenced(c)}<small>/8</small></dd></div>
-     </dl>
-     <div className="tray-reading">
-      <span>{c.reduction_pct==null?'No target parsed':`${fmt(c.reduction_pct)}% pledged`}</span>
-     </div>
-     <div className="tray-actions">
-      <a className="tray-go" href={`/?country=${c.iso3}`}>Assemble it in 3D<ArrowRight size={13}/></a>
-      <a className="tray-go" href={`/country/${c.iso3}`}>Read the record<ArrowUpRight size={13}/></a>
-     </div>
-    </article>)}
-   </div>}
+   </table></div>}
+
+  <details className="disc dir-apart" open={needle&&apart.length?true:undefined}>
+   <summary>{apart.length===apartTotal?`${apartTotal} places the NDC registry does not list`:`${apart.length} of ${apartTotal} places the NDC registry does not list`}</summary>
+   <div className="disc-body">
+    {apartReasons.map(w=><p key={w} className="rec-note">{w!.charAt(0).toUpperCase()+w!.slice(1)} Each still has a record, and none is counted as a Party that failed to file.</p>)}
+    {apart.length>0&&<ul className="dir-apart-list">{apart.map(r=><li key={r.iso3}><a href={`/country/${r.iso3}`}>{r.name}</a><small>{r.iso3}</small></li>)}</ul>}
+   </div>
+  </details>
  </>;
 }

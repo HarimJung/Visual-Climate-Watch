@@ -72,6 +72,13 @@ export default function Page(){
  function seek(amount:number){setHint(false);const el=chapter.current;if(!phone&&el){window.scrollTo(0,el.getBoundingClientRect().top+scrollY+innerHeight+(el.offsetHeight-innerHeight*2)*amount)}else{setProgress(amount*100);setExploded(false);setMotionInput(v=>v+1)}}
  stepRef.current=(d)=>step(d);
  function step(d:number){const i=roster.findIndex(c=>c.iso3===iso);if(i<0||roster.length<2)return;selectCountry(roster[(i+d+roster.length)%roster.length].iso3)}
+ // The home search: an exact name or ISO3 first, then the first name that
+ // starts with, then contains, what was typed. Accents do not count. A picked
+ // suggestion (exact) opens only on an exact match and never complains.
+ function openCountry(el:HTMLInputElement,exact=false){const fold=(s:string)=>s.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().trim();const q=fold(el.value);if(!q)return;
+  const hit=roster.find(c=>fold(c.name_en)===q||c.iso3.toLowerCase()===q)??(exact?undefined:roster.find(c=>fold(c.name_en).startsWith(q))??roster.find(c=>fold(c.name_en).includes(q)));
+  if(hit){location.href=`/country/${hit.iso3}`;return}
+  if(!exact){el.setCustomValidity('No country by that name. Try another spelling or its three-letter code.');el.reportValidity()}}
  function selectCountry(value:string){if(recording)return;if(typeof window!=='undefined'){const p=new URLSearchParams(window.location.search);p.set('country',value);window.history.replaceState(null,'',`?${p}`)}setLoading(true);setError('');setPayloadHash(null);if(timer.current)clearTimeout(timer.current);setSheetOpen(false);setExploded(false);setCamera('atelier');setIso(value);if(matchMedia('(max-width:700px)').matches)setProgress(0);setMode('instrument')}
  function changeMode(value:unknown){if(recording)return;if(timer.current)clearTimeout(timer.current);const next=String(value);
   // replaceState, not push: the tabs are a view of one page, not five pages of
@@ -272,6 +279,21 @@ export default function Page(){
   const last=!next;const on=(last?phase>=card.phase:phase===card.phase)&&(card.id==='cover'?phone||coverOn:card.id==='census'?phone||!coverOn:true);
   return <section key={card.id} data-phase={card.phase} className={`step ${k===0?'cover':''} ${on?'on':''}`} style={phone?undefined:{top:`${top*100}%`,height:`calc(${(bottom-top)*100}% + ${last?0:100}svh)`}}><div className="step-in" style={card.c?{'--c':card.c} as CSSProperties:undefined}>{card.body}</div></section>})}</div>
  </div>
+ {/* Three ways out of the stage. The country search reads the roster the
+     stage already holds; a name that matches nothing says so in place. */}
+ <section className="doors" aria-label="Where to go next">
+  <form className="door" role="search" onSubmit={e=>{e.preventDefault();openCountry(e.currentTarget.elements.namedItem('country') as HTMLInputElement)}}>
+   <h2><label htmlFor="door-country">Find a country</label></h2>
+   <p>Type a name and press Enter to open its record.</p>
+   <input id="door-country" className="cty-search" name="country" type="search" list="door-roster" autoComplete="off" spellCheck={false} placeholder="Cambodia"
+    onInput={e=>{const el=e.currentTarget,how=(e.nativeEvent as InputEvent).inputType;el.setCustomValidity('');
+     // A pick from the suggestion list, not a keystroke: open it at once.
+     if(!how||how==='insertReplacementText')openCountry(el,true)}}/>
+   <datalist id="door-roster">{roster.map(c=><option key={c.iso3} value={c.name_en}>{c.iso3}</option>)}</datalist>
+  </form>
+  <a className="door" href="/compare"><h2>Compare countries</h2><p>Finance, emission sources, and what could not be read.</p></a>
+  <a className="door" href="/teach"><h2>Teach with the record</h2><p>A 90-minute session in five tasks.</p></a>
+ </section>
  {mode==='instrument'&&compare&&(()=>{const a=roster.find(c=>c.iso3===iso),b=roster.find(c=>c.iso3===compare);if(!a||!b)return null;
   const dial=(c:RosterRow)=>({ndc:{reduction_pct:c.reduction_pct},btr:{components:c.btr_components??{}},emissions_profile:{total_mtco2e:c.total_mtco2e??null,latest_year:c.latest_year??null},observed_years:c.observed_years??null});
   const sockets=(c:RosterRow)=>Object.values(c.btr_components??{}).filter(x=>x.state!=='unknown').length;

@@ -1,0 +1,77 @@
+/* teach-about — owned by one page team during the 2026-09-27 UX overhaul. Tokens come from globals.css :root. */
+
+.teach .rec-lede,.about .rec-lede{max-width:62ch}
+.teach .rec-section{display:block}
+.about a,.ta-note a{color:var(--un-ink);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--un-ink) 35%,transparent);text-underline-offset:3px}
+.about a:hover{text-decoration-color:var(--un-ink)}
+
+/* /teach · the run sheet */
+.ta-run{display:flex;gap:2px;list-style:none;margin:var(--s5) 0 0;padding:0}
+.ta-run li{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:2px;padding:var(--s3) var(--s4) var(--s4);
+ border-top:3px solid var(--rule-strong);background:var(--paper-raised);box-shadow:inset 0 -1px 0 var(--rule)}
+.ta-run b{font:600 var(--t5)/1.2 var(--font-sans);font-variant-numeric:tabular-nums;color:var(--ink)}
+.ta-run span{font:500 var(--t3)/1.4 var(--font-sans);color:var(--ink)}
+.ta-run small{font-size:var(--t2);line-height:1.45;color:var(--ink-3)}
+
+/* /teach · five tasks; the rule on each is the hue of the evidence it sends people to */
+.ta-tasks{list-style:none;margin:var(--s5) 0 0;padding:0;display:grid;gap:var(--s6)}
+.ta-task{--c:var(--rule-strong);display:grid;grid-template-columns:56px minmax(0,1.2fr) minmax(0,1fr);gap:var(--s3) var(--s6);
+ padding-top:var(--s4);border-top:2px solid var(--c)}
+.ta-task.inv{--c:var(--inv)}.ta-task.ndc{--c:var(--ndc)}.ta-task.btr{--c:var(--btr)}
+.ta-task.unk{border-top:2px dashed var(--src-b)}
+.ta-id{font:600 var(--t5)/1.3 var(--font-sans);font-variant-numeric:tabular-nums;color:var(--ink)}
+.ta-task .ta-ask h3{margin:0;font:500 var(--t4)/1.4 var(--font-display);letter-spacing:-.01em;color:var(--ink);text-wrap:pretty}
+.ta-open{display:inline-flex;align-items:center;gap:4px;min-height:32px;margin-top:var(--s2);font:500 var(--t2) var(--font-sans);color:var(--un-ink);
+ text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--un-ink) 35%,transparent);text-underline-offset:3px}
+.ta-open:hover{text-decoration-color:var(--un-ink)}
+.ta-open:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+.ta-test{display:grid;gap:var(--s3);margin:0;align-content:start}
+.ta-test dt{font:600 var(--t1)/1.4 var(--font-sans);color:var(--ink)}
+.ta-test dd{margin:2px 0 0;font:400 var(--t3)/1.55 var(--font-sans);color:var(--ink-2)}
+.ta-url,.ta-answer,.ta-print-head{display:none}
+.ta-note p{max-width:68ch;margin-top:var(--s4);font-size:var(--t4);line-height:1.6;color:var(--ink-2);text-wrap:pretty}
+.ta-note b{color:var(--ink);font-weight:600}
+
+@media(max-width:720px){
+ .ta-run{flex-direction:column}
+ .ta-run li{min-width:0;display:grid;grid-template-columns:5.5rem minmax(0,1fr);column-gap:var(--s3)}
+ .ta-run b{grid-row:span 2}
+ .ta-task{grid-template-columns:40px minmax(0,1fr);column-gap:var(--s3)}
+ .ta-test{grid-column:2}
+}
+
+/* /teach · printed, the page becomes the participants' task sheet: tasks, where to start, room to answer */
+@media print{
+ @page{margin:15mm}
+ body:has(main.teach)>:not(main){display:none!important}
+ .teach{min-height:0}
+ .teach .rec-shell{max-width:none;padding:0}
+ .teach .rec-title,.teach .rec-lede,.teach .ta-screen,.teach .ta-open,.teach .ta-test{display:none!important}
+ .teach .rec-section{margin:0}
+ .ta-print-head{display:block;margin-bottom:7mm;font-size:11pt;line-height:1.45;color:var(--ink-2)}
+ .ta-print-title{margin-bottom:1mm;font:600 20pt/1.2 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+ .ta-tasks{margin:0;gap:6mm}
+ .ta-task{grid-template-columns:11mm minmax(0,1fr);gap:1.5mm 3mm;padding-top:2.5mm;break-inside:avoid}
+ .ta-id{font-size:13pt}
+ .ta-task .ta-ask h3{font-size:13pt}
+ .ta-url{display:block;margin-top:1mm;font-size:10pt;color:var(--ink-3);overflow-wrap:anywhere}
+ .ta-answer{display:block;grid-column:2;height:22mm;font-size:9pt;color:var(--ink-4);
+  background:repeating-linear-gradient(transparent 0 7.1mm,var(--rule-strong) 7.1mm 7.33mm);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* /about · one row per question a citing reader asks */
+.ab-rows{margin-top:var(--s7);border-bottom:1px solid var(--rule)}
+.ab-rows>section{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:var(--s3) var(--s7);padding-block:var(--s6);
+ border-top:1px solid var(--rule);scroll-margin-top:calc(var(--top-h) + 20px)}
+.ab-rows h2{font:600 var(--t4)/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.ab-rows section>div{max-width:68ch}
+.ab-rows section>div>p,.ab-list li{font-size:var(--t4);line-height:1.65;color:var(--ink-2);text-wrap:pretty}
+.ab-rows section>div>*+*{margin-top:var(--s4)}
+.ab-rows .rec-cite{margin-bottom:0}
+.ab-rows .rec-note{margin:var(--s4) 0 0}
+.ab-list{list-style:none;margin:0;padding:0;display:grid;gap:var(--s4)}
+.ab-list b{font-weight:600;color:var(--ink)}
+.ab-rows .ab-tbd{padding:var(--s3) var(--s4);border:1px dashed var(--src-b);background:var(--paper-sunken);font-size:var(--t3);color:var(--ink-3)}
+
+@media(max-width:720px){.ab-rows>section{grid-template-columns:minmax(0,1fr);padding-block:var(--s5)}}
+.ab-nowrap{white-space:nowrap}

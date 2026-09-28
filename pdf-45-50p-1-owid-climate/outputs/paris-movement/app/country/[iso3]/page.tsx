@@ -47,5 +47,6 @@ export default async function Page({params}:{params:Promise<{iso3:string}>}){
  const iso3=await iso3Of(params);
  const initial=await tryLoad(iso3);
  if(initial===null)notFound();
- return <CountryRecord iso3={iso3} initial={initial}/>;
+ // The citation on the page has to resolve from wherever it is pasted.
+ return <CountryRecord iso3={iso3} initial={initial} url={`${await origin()}/country/${iso3}`}/>;
 }

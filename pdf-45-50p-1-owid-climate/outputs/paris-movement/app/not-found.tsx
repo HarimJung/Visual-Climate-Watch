@@ -1,18 +1,16 @@
 import type {Metadata} from 'next';
-export const metadata:Metadata={title:'No such record, Visual Climate'};
+export const metadata:Metadata={title:'Page not found · Visual Climate'};
 
-// A 404 in the product's own voice: a page it does not have is an unknown,
-// not a fault in the reader, and it says where the known things are.
+// Short, and two ways out: the country search, where most wrong addresses were
+// headed, and home.
 export default function NotFound(){
  return <main className="record" id="main">
   <div className="rec-shell">
-   <p className="eyebrow">Nothing at this address</p>
-   <h1 className="rec-title">This is a page the engine does not hold<span className="rec-stop">.</span></h1>
-   <p className="rec-lede">A country is addressed by its ISO3 code, <code>/country/KEN</code>, and only the 218 the engine has built resolve. Nothing is substituted for one it has not.</p>
+   <h1 className="rec-title">There is no page at this address<span className="rec-stop">.</span></h1>
+   <p className="rec-lede">A country record lives at its three-letter code, like <code>/country/KHM</code>. Search by name instead.</p>
    <nav className="claim-ways" aria-label="Where to go instead">
-    <a className="way primary" href="/countries">Browse the 218 records</a>
-    <a className="way" href="/unknown">See what we do not know</a>
-    <a className="way" href="/">The instrument</a>
+    <a className="way primary" href="/countries">Find a country</a>
+    <a className="way" href="/">Home</a>
    </nav>
   </div>
  </main>;
