@@ -24,7 +24,7 @@ export function StaticDial({data}:{data:DialData}){
     fill={v.state==='observed'?'var(--btr)':v.state==='absent'?'var(--dial-absent)':'none'}
     stroke="var(--dial-socket)" strokeDasharray={v.state==='unknown'?'2 3':undefined}/>;
   })}
-  <text x="210" y="203" textAnchor="middle" fill="var(--ink)" fontSize="42" fontFamily="Geist, Helvetica Neue, Arial, sans-serif" fontWeight="500">{reading.value}</text>
+  <text x="210" y="203" textAnchor="middle" fill="var(--ink)" fontSize="42" fontFamily="Hanken Grotesk, Helvetica, Arial, sans-serif" fontWeight="500">{reading.value}</text>
   <text x="210" y="234" textAnchor="middle" fill="var(--ink-3)" fontSize="20" letterSpacing="1">{reading.label}</text>
  </svg>;
 }

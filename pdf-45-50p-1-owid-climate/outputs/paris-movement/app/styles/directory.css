@@ -1,0 +1,108 @@
+/* directory — owned by one page team during the 2026-09-27 UX overhaul. Tokens come from globals.css :root.
+   This file is imported before the global rules, so every selector is scoped
+   under the page class (.dir = /countries, .rfl = /refusals) to win on specificity. */
+
+/* One head for both pages: a question, one line, the tool. */
+:is(.dir,.rfl) .rec-lede{max-width:70ch;font-size:var(--t4);line-height:1.6}
+.rfl .rfl-note{margin:8px 0 0;font-size:var(--t2);line-height:1.65;max-width:70ch}
+
+/* unread is a dashed blue-grey dot on these pages (brief R-4) */
+:is(.dir,.rfl) .state-token{font-size:var(--t1)}
+:is(.dir,.rfl) .state-token.unknown i{border-color:var(--src-b)}
+
+/* Shared table surface: row headers read as names, numbers line up. */
+:is(.dir,.rfl) .rec-inputs{margin-top:4px;font-size:var(--t2)}
+:is(.dir,.rfl) .rec-inputs thead th{padding-top:0;font-size:var(--t1);color:var(--ink-3);background:var(--paper)}
+:is(.dir,.rfl) .rec-inputs td{padding:9px 14px 9px 0}
+:is(.dir,.rfl) .rec-inputs tbody th{padding:9px 16px 9px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;
+ font:500 var(--t3)/1.4 var(--font-sans);color:var(--ink);white-space:normal;background:var(--paper)}
+:is(.dir,.rfl) .rec-inputs tbody th a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule-strong);
+ transition:text-decoration-color var(--dur) var(--ease)}
+:is(.dir,.rfl) .rec-inputs tbody th a:hover{text-decoration-color:var(--un-ink)}
+:is(.dir,.rfl) .rec-inputs tbody th small{display:inline;margin:0 0 0 6px;font:var(--t0) var(--font-code);color:var(--ink-4)}
+:is(.dir,.rfl) .rec-inputs tbody tr:hover>*{background:var(--paper-sunken)}
+
+/* ── /countries ─────────────────────────────────────────────────────────── */
+.dir .dir-search{display:flex;align-items:center;gap:12px;margin-top:24px;padding:0 18px;min-height:60px;
+ border:1px solid var(--rule-strong);border-radius:3px;background:var(--paper-raised);color:var(--ink-3);
+ transition:border-color var(--dur) var(--ease)}
+.dir .dir-search:focus-within{border-color:var(--un-ink);outline:2px solid color-mix(in srgb,var(--un) 35%,transparent);outline-offset:1px}
+.dir .dir-search input{flex:1;min-width:0;padding:14px 0;border:0;background:none;outline:none;
+ font:400 var(--t5) var(--font-sans);color:var(--ink)}
+.dir .dir-search input::placeholder{color:var(--ink-4)}
+.dir .dir-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.dir .dir-filters .cty-select{min-height:40px;font:var(--t1) var(--font-sans);letter-spacing:0}
+.dir .dir-tally{min-height:20px;margin:8px 0 0;font-size:var(--t1);color:var(--ink-3)}
+
+.dir .dir-table td{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dir .dir-table td.dir-wrap{white-space:normal;min-width:20ch;max-width:32ch}
+.dir .dir-table tr>:nth-last-child(-n+3){text-align:right}
+.dir .dir-table td small{display:inline;margin:0 0 0 4px;font-size:var(--t0);color:var(--ink-4)}
+.dir .dir-table td.dir-wrap small{display:block;margin:2px 0 0}
+.dir .dir-table thead th button{display:inline-flex;align-items:center;gap:4px;padding:0;background:none;border:0;
+ font:inherit;color:inherit;cursor:pointer;white-space:nowrap}
+.dir .dir-table thead th button:hover,.dir .dir-table thead th[aria-sort] button{color:var(--ink)}
+.dir .dir-table thead th button span{display:inline-block;min-width:.7em;color:var(--un-ink)}
+.dir .dir-table thead th button:focus-visible{outline:2px solid var(--un-ink);outline-offset:3px}
+
+.dir .dir-apart{margin-top:28px}
+.dir .dir-apart>summary{font-size:var(--t2);color:var(--ink-2)}
+.dir .dir-apart .rec-note{margin:0 0 14px;font-size:var(--t2)}
+.dir .dir-apart-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 24px;margin:0;padding:0;list-style:none}
+.dir .dir-apart-list li{display:flex;align-items:baseline;gap:8px;font-size:var(--t2)}
+.dir .dir-apart-list a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule-strong)}
+.dir .dir-apart-list small{font:var(--t0) var(--font-code);color:var(--ink-4)}
+
+/* Phone: filters pair up, and the country column stays put while the figures scroll under it. */
+@media(max-width:760px){
+ .dir .dir-search{min-height:54px;padding:0 14px}
+ .dir .dir-search input{font-size:var(--t4)}
+ .dir .dir-filters>*{flex:1 1 calc(50% - 4px);min-width:0}
+ .dir .dir-filters .ctl-spacer{display:none}
+ .dir .dir-filters .rec-act{justify-content:center}
+ .dir .dir-scroll{margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
+ .dir .dir-table tbody th,.dir .dir-table thead th:first-child{position:sticky;left:calc(-1 * var(--gutter));z-index:1;
+  min-width:120px;max-width:140px;padding-left:var(--gutter);box-shadow:inset -1px 0 0 var(--rule)}
+ .dir .dir-table tbody th small{display:block;margin:2px 0 0}
+ .dir .dir-table thead th:first-child{z-index:2}
+ .dir .dir-table td.dir-wrap{min-width:26ch}
+}
+
+/* ── /refusals ──────────────────────────────────────────────────────────── */
+.rfl .rfl-families{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;scroll-margin-top:calc(var(--top-h,64px) + 16px)}
+.rfl .rfl-families .chip{animation:none}
+.rfl .rfl-family-note{max-width:70ch;margin:12px 0 0;font-size:var(--t2);line-height:1.6;color:var(--ink-3)}
+.rfl .rfl-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 8px}
+.rfl .rfl-tools .srch{flex:0 1 420px}
+.rfl .rfl-tally{font-size:var(--t1);color:var(--ink-3)}
+.rfl .rfl-table td{line-height:1.55}
+.rfl .rfl-table thead th:first-child{width:13rem}
+.rfl .rfl-table .rfl-why{color:var(--ink-2)}
+.rfl .rfl-table tr.rfl-group th{padding:26px 0 8px;border-bottom:1px solid var(--rule-strong);
+ font:600 var(--t3) var(--font-sans);color:var(--ink);background:none}
+.rfl .rfl-table tr.rfl-group:hover>*,.rfl .rfl-table tr.rfl-more:hover>*{background:none}
+.rfl .rfl-table tbody:first-of-type tr.rfl-group th{padding-top:8px}
+.rfl .rfl-table tr.rfl-more td{padding:8px 0 4px;border-bottom:0}
+.rfl .rfl-more button{padding:0;background:none;border:0;border-bottom:1px solid var(--rule-strong);
+ font:500 var(--t1) var(--font-sans);color:var(--un-ink);cursor:pointer}
+.rfl .rfl-more button:hover{border-color:var(--un-ink)}
+.rfl .rfl-more button:focus-visible{outline:2px solid var(--un-ink);outline-offset:3px}
+
+@media(max-width:760px){
+ .rfl .rfl-tools .srch{flex:1 1 100%}
+ .rfl .rfl-tools .ctl-spacer{display:none}
+ .rfl .rfl-tally{order:3}
+ /* nine reasons ride one line that scrolls sideways instead of filling the first screen */
+ .rfl .rfl-families{flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(-1 * var(--gutter));padding:2px var(--gutter);scrollbar-width:none}
+ .rfl .rfl-families .chip{flex:none;white-space:nowrap}
+ /* two columns do not fit a phone: each refusal becomes a short stack */
+ .rfl .rfl-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .rfl .rfl-table,.rfl .rfl-table tbody,.rfl .rfl-table tr,.rfl .rfl-table tr>*{display:block;width:auto}
+ .rfl .rfl-table tbody tr:not(.rfl-group,.rfl-more){padding:10px 0;border-bottom:1px solid var(--rule)}
+ .rfl .rfl-table tbody tr:not(.rfl-group,.rfl-more)>*{padding:0;border:0}
+ .rfl .rfl-table .rfl-why{margin-top:4px}
+}
+
+@media print{
+ .dir .dir-search,.dir .dir-filters,.rfl .rfl-families,.rfl .rfl-tools{display:none}
+}

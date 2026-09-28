@@ -1,0 +1,121 @@
+/* method-compare — owned by one page team during the 2026-09-27 UX overhaul. Tokens come from globals.css :root. */
+
+/* ── /compare: three doors, each a question and one census number ─────────── */
+.mc-doors{list-style:none;margin:var(--s6) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}
+.mc-door{display:flex;flex-direction:column;gap:var(--s3);height:100%;padding:var(--s5);
+ background:var(--paper-raised);border:1px solid var(--rule);border-top:3px solid var(--ev);
+ transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.mc-door.fin{--ev:var(--fin);--ev-ink:var(--fin-ink)}
+.mc-door.inv{--ev:var(--inv);--ev-ink:var(--inv-ink)}
+.mc-door.unk{--ev:var(--src-b);--ev-ink:var(--ink-3);border-top-style:dashed}
+.mc-door h2{font:600 var(--t5)/1.25 var(--font-display);letter-spacing:-.012em;color:var(--ink);text-wrap:balance}
+.mc-door-fig{margin-top:var(--s2);font:600 clamp(32px,3.2vw,var(--t7))/1 var(--font-display);letter-spacing:-.025em;color:var(--ink);font-variant-numeric:tabular-nums}
+.mc-door p{font-size:var(--t2);line-height:1.55;color:var(--ink-3);text-wrap:pretty}
+.mc-door-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-top:auto;padding-top:var(--s4);border-top:1px solid var(--rule);color:var(--ev-ink)}
+.mc-door-tag{display:inline-flex;align-items:center;gap:var(--s2);font:500 var(--t1) var(--font-sans);color:var(--ev-ink)}
+.mc-door-tag i{width:9px;height:9px;border-radius:50%;background:var(--ev)}
+.mc-door.unk .mc-door-tag i{background:none;border:1px dashed var(--src-b)}
+.mc-door-foot svg{transition:transform var(--dur) var(--out)}
+.mc-door:hover{border-color:var(--rule-strong);border-top-color:var(--ev);box-shadow:var(--shadow-1)}
+.mc-door:hover .mc-door-foot svg{transform:translateX(3px)}
+.mc-door:focus-visible{outline:2px solid var(--un-ink);outline-offset:3px}
+@media(max-width:900px){.mc-doors{grid-template-columns:1fr;gap:var(--s4)}}
+.mc-inline{color:var(--un-ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.mc-inline:hover{text-decoration-color:var(--un-ink)}
+.mc-method code,.mc-cmp code{font-family:var(--font-code);font-size:.9em}
+
+/* ── /method ───────────────────────────────────────────────────────────── */
+/* The page's gist: every section title, readable in the first screen. */
+.mc-toc{max-width:880px;margin-top:var(--s6);padding-top:var(--s4);border-top:1px solid var(--rule)}
+.mc-toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:var(--s2) var(--s6)}
+.mc-toc a{display:block;padding:var(--s1) 0;font-size:var(--t3);line-height:1.45;color:var(--ink-2);
+ text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:4px}
+.mc-toc a:hover{color:var(--ink);text-decoration-color:var(--un-ink)}
+@media(max-width:720px){.mc-toc ol{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+
+/* Sections run in one reading column; the shared record grid's 232px rail stays empty here. */
+.mc-method .mc-sec{display:block;max-width:880px}
+.mc-sec .sec-head h2{border-bottom:0;padding-bottom:0}
+.mc-h3{margin-top:var(--s6)}
+
+/* four states: token, then one line */
+.mc-states{margin:0;border-top:1px solid var(--rule)}
+.mc-states>div{display:grid;grid-template-columns:180px minmax(0,1fr);gap:var(--s2) var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--rule)}
+.mc-states dt .state-token{font-size:var(--t2);font-weight:600;color:var(--ink)}
+.mc-states dd{margin:0;font-size:var(--t3);line-height:1.6;color:var(--ink-2);max-width:64ch}
+@media(max-width:600px){.mc-states>div{grid-template-columns:1fr}}
+
+/* reading one document: registry → held → sentence → accepted or refused */
+.mc-flow{list-style:none;margin:var(--s5) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:var(--s5)}
+.mc-flow>li{position:relative;display:flex;flex-direction:column;gap:var(--s1);padding-top:var(--s3);border-top:2px solid var(--ndc)}
+.mc-flow b{font:600 var(--t4)/1.25 var(--font-display);color:var(--ink)}
+.mc-flow b.mc-n{font-size:var(--t7);line-height:1;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.mc-flow span{font-size:var(--t2);line-height:1.5;color:var(--ink-3);text-wrap:pretty}
+.mc-flow-arrow{position:absolute;top:-9px;right:calc(-1 * var(--s5) + 4px);padding:0 2px;background:var(--paper);color:var(--ndc-ink)}
+.mc-flow>li.mc-flow-end{border-top:0;padding-top:0;gap:var(--s3)}
+.mc-flow-end>div{display:flex;flex-direction:column;gap:var(--s1);padding:var(--s3) var(--s4)}
+.mc-flow-end .ok{border:1px solid var(--rule);border-top:2px solid var(--ndc);background:var(--paper-raised)}
+.mc-flow-end .no{border:1px dashed var(--src-b);background:var(--paper-sunken)}
+@media(max-width:860px){
+ .mc-flow{grid-template-columns:1fr;gap:var(--s4)}
+ .mc-flow-arrow{top:auto;bottom:-14px;right:auto;left:0;transform:rotate(90deg)}
+ .mc-flow>li:not(.mc-flow-end){padding-bottom:var(--s2)}
+}
+
+.mc-reasons{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.mc-reasons a{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--rule);
+ font-size:var(--t3);line-height:1.45;color:var(--ink-2);transition:color var(--dur) var(--ease)}
+.mc-reasons b{font:600 var(--t4) var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums}
+.mc-reasons a:hover{color:var(--ink)}
+.mc-reasons a:hover span{text-decoration:underline;text-decoration-color:var(--un-ink);text-underline-offset:3px}
+
+/* sources and licences */
+.mc-table{width:100%;border-collapse:collapse;font-size:var(--t2);line-height:1.5}
+.mc-table th{padding:0 var(--s4) var(--s2) 0;text-align:left;font:500 var(--t1) var(--font-sans);color:var(--ink-3);border-bottom:1px solid var(--rule-strong)}
+.mc-table td{padding:var(--s3) var(--s4) var(--s3) 0;vertical-align:baseline;border-bottom:1px solid var(--rule);color:var(--ink-3)}
+.mc-table td:first-child{color:var(--ink);min-width:220px}
+.mc-table td:first-child a{text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.mc-table td:first-child a:hover{text-decoration-color:var(--un-ink)}
+.mc-table code{font-size:var(--t0);color:var(--ink-4);white-space:nowrap}
+.mc-table .mc-num,.mc-table th:nth-child(2){text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mc-table .mc-num{color:var(--ink);font-weight:600}
+@media(max-width:720px){
+ .mc-table thead{display:none}
+ .mc-table tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s1) var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--rule)}
+ .mc-table td{padding:0;border:0}
+ .mc-table td:first-child{min-width:0}
+ .mc-table td:nth-child(3){grid-column:1/-1}
+ .mc-table .mc-num:after{content:" countries";font-weight:400;color:var(--ink-3)}
+}
+
+/* API: the address is the thing you take away */
+.mc-api{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.mc-api li{padding:var(--s4) 0;border-bottom:1px solid var(--rule)}
+.mc-api-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
+.mc-api-row a{min-width:0;overflow-wrap:break-word}
+.mc-api code{font-size:var(--t2);color:var(--un-ink);user-select:all}
+.mc-api-row a:hover code{text-decoration:underline;text-underline-offset:3px}
+.mc-api p{margin-top:var(--s1);font-size:var(--t2);line-height:1.55;color:var(--ink-3);max-width:70ch}
+/* the same button as .rec-act, the one action style across the site */
+.mc-copy{display:inline-flex;flex:none;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--un-ink);border-radius:var(--radius);
+ font:500 var(--t2) var(--font-sans);color:var(--un-ink);background:var(--paper-raised);cursor:pointer;transition:background var(--dur) var(--ease)}
+.mc-copy:hover{background:color-mix(in srgb,var(--un) 8%,var(--paper-raised))}
+.mc-copy:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+@media(pointer:coarse){.mc-copy{min-height:44px}}
+
+/* what this is not */
+.mc-not{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.mc-not li{padding:var(--s3) 0;border-bottom:1px solid var(--rule);font-size:var(--t3);line-height:1.6;color:var(--ink-3)}
+.mc-not b{color:var(--ink);font-weight:600}
+.mc-cat{margin:var(--s5) 0 0;padding:var(--s4) var(--s5);background:var(--paper-sunken);border-radius:var(--radius)}
+.mc-cat blockquote{margin:0;font-size:var(--t3);line-height:1.65;color:var(--ink-2);max-width:72ch;text-wrap:pretty}
+.mc-cat figcaption{margin-top:var(--s2);font-size:var(--t1);color:var(--ink-3)}
+.mc-cat a{text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.mc-cat a:hover{text-decoration-color:var(--un-ink)}
+
+/* the three caveats, set once, each with its plain line */
+.mc-caveats{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}
+.mc-caveats>div{padding-top:var(--s3);border-top:1px solid var(--rule-strong)}
+.mc-caveats dt{font:600 var(--t4)/1.3 var(--font-display);color:var(--ink)}
+.mc-caveats dd{margin:var(--s2) 0 0;font-size:var(--t2);line-height:1.55;color:var(--ink-3);text-wrap:pretty}
+@media(max-width:760px){.mc-caveats{grid-template-columns:1fr;gap:var(--s4)}}

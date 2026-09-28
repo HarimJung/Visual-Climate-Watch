@@ -16,9 +16,10 @@ import {fmt} from '@/lib/climate';
 export type Line={id:string;points:{year:number;value:number}[];scope?:string};
 export type Mark={id:'target'|'bau';points:{year:number;value:number}[]};
 
-// The categorical set validated for this paper. A source not in it takes ink,
-// never a fifth hue.
-const HUE:Record<string,string>={'DS-35':'var(--inv)','DS-02':'var(--ndc)','DS-40':'var(--fin)','DS-05':'var(--btr)'};
+// Sources take inks, never evidence hues (a source line in NDC blue read as the
+// pledge). The fourth is told apart by its dash; every line ends in its label.
+const HUE:Record<string,string>={'DS-35':'var(--src-a)','DS-02':'var(--src-b)','DS-05':'var(--src-c)','DS-40':'var(--src-b)'};
+const DASH:Record<string,string>={'DS-40':'5 4'};
 const W=640,H=300,PAD={l:52,r:16,t:14,b:34};
 
 export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=false,hues,gap=1}:{lines:Line[];marks?:Mark[];unit?:string;compact?:boolean;hues?:Record<string,string>;
@@ -55,13 +56,13 @@ export default function SeriesChart({lines,marks=[],unit='MtCO₂e',compact=fals
    {lo<0&&<line className="sc-zero" x1={PAD.l} x2={W-PAD.r} y1={py(0)} y2={py(0)}/>}
    {xticks.map(y=><text key={y} className="sc-tick" x={px(y)} y={h-PAD.b+18} textAnchor="middle">{y}</text>)}
    <line className="sc-axis" x1={PAD.l} x2={W-PAD.r} y1={h-PAD.b} y2={h-PAD.b}/>
-   {lines.map(l=><path key={l.id} d={path(l.points)} fill="none" stroke={hue(l.id)} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>)}
+   {lines.map(l=><path key={l.id} d={path(l.points)} fill="none" stroke={hue(l.id)} strokeDasharray={DASH[l.id]} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>)}
    {/* the last reading of each line, labelled: identity is never colour alone */}
    {/* End labels, nudged apart: two sources ending within a few megatonnes of
        each other (Kenya's DS-35 and DS-02 both close at ~100) overprinted. */}
    {(()=>{const ends=lines.map(l=>{const p=last(l);return p?{l,p,y:py(p.value)}:null}).filter((e):e is {l:Line;p:{year:number;value:number};y:number}=>!!e).sort((a,b)=>a.y-b.y);
      for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<13)ends[i].y=ends[i-1].y+13;
-     return ends.map(({l,p,y})=><g key={l.id+'-end'}><circle cx={px(p.year)} cy={py(p.value)} r="4" fill={hue(l.id)} stroke="var(--paper-raised)" strokeWidth="2"/><text className="sc-end" x={px(p.year)+8} y={y} dy="0.35em" fill={hue(l.id)}>{l.id}</text></g>);})()}
+     return ends.map(({l,p,y})=><g key={l.id+'-end'}><circle cx={px(p.year)} cy={py(p.value)} r="4" fill={hue(l.id)} stroke="var(--paper-raised)" strokeWidth="2"/><text className="sc-end" x={px(p.year)+8} y={y} dy="0.35em" fill="var(--ink-2)">{l.id}</text></g>);})()}
    {/* Mark labels sit above their point, and step up if an end label or another
        mark label is already there — the compact sheet chart had "target 90"
        printing over a source's end label. */}

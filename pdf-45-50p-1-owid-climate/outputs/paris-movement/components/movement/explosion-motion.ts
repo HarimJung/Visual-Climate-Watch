@@ -21,7 +21,7 @@ export function storyPhase(amount:number){return amount<.08?0:amount<.21?1:amoun
  *  fits the whole spread, so 6.8 units into 400px of phone is a speck. 1 on the
  *  desktop, where the spread was measured. */
 export function verticalOffset(amount:number,layer:number,shell:'upper'|'lower'|null=null,lift=1){
- if(shell==='upper')return reveal(amount,0,.11)*7.4*lift;
+ if(shell==='upper')return reveal(amount,0,.11)*12*lift;
  if(shell==='lower')return -reveal(amount,0,.11)*.22*lift;
  const [start,end]=LAYER_WINDOWS[Math.min(4,layer)];
  return LAYER_LIFTS[Math.min(4,layer)]*reveal(amount,start,end)*lift;

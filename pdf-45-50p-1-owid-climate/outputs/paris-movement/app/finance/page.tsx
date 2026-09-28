@@ -1,15 +1,17 @@
 import type {Metadata} from 'next';
-import {ArrowLeft,ArrowUpRight} from 'lucide-react';
+import {ArrowDown,ArrowLeft} from 'lucide-react';
 import {fmt} from '@/lib/climate';
 import {loadView} from '@/lib/record';
 import Ledger from '@/components/finance/ledger';
-import SectionRail from '@/components/record/section-rail';
+import ExportCsv from '@/components/site/export-csv';
 
-// Feature 3, the crossing. ND-GAIN on one axis, the Green Climate Fund ledger
-// on the other, both already in every record, never yet drawn together.
+// Persona C: "Who is vulnerable, and what reached them?" ND-GAIN on one axis,
+// the Green Climate Fund ledger on the other, both already in every record.
+// Every figure on this page is read from data/finance.json; no sentence states
+// a direction the numbers do not show.
 export const metadata:Metadata={
- title:'Vulnerability and Finance, Visual Climate',
- description:'Where the Green Climate Fund has actually disbursed, set against how vulnerable each country is measured to be. One channel, plotted honestly, with the unread ledgers kept visible.',
+ title:'Who is vulnerable, and what reached them? · Visual Climate',
+ description:'Who is vulnerable, and what the Green Climate Fund approved and paid them. One channel among many, with the unread ledgers kept visible.',
 };
 
 type Row={
@@ -40,6 +42,16 @@ const usd=(n:number|null|undefined)=>{
  if(a>=1e3)return `$${(n/1e3).toFixed(0)}k`;
  return `$${n.toFixed(0)}`;
 };
+
+// The verb is read off the bands, not typed: an old page said "rise with need"
+// and "fall in step with need" at once. A weekly refresh that breaks the
+// staircase changes the sentence instead of leaving it false.
+function trend(bands:Band[]){
+ const a=bands.map(b=>b.approved_usd);
+ if(a.every((x,i)=>i===0||x<a[i-1]))return 'Approvals fall as vulnerability rises';
+ if(a.every((x,i)=>i===0||x>a[i-1]))return 'Approvals rise with vulnerability';
+ return 'Approvals do not move in step with vulnerability';
+}
 
 // ── the scatter ───────────────────────────────────────────────────────────
 // x is vulnerability, y is what this fund actually disbursed. Disbursement
@@ -86,103 +98,66 @@ function Scatter({rows}:{rows:Row[]}){
  </div>;
 }
 
-
-// The page's finding, drawn as the masthead rather than announced above a row
-// of identical stat cards. Four bars, one per vulnerability quartile, in the
-// order a reader travels: least exposed on the left, most exposed on the right.
-function Staircase({bands}:{bands:Band[]}){
- const max=Math.max(...bands.map(b=>b.disbursed_per_read_country_usd))||1;
- return <figure className="fin-stair" aria-label={bands.map(b=>`${b.label}: ${usd(b.disbursed_per_read_country_usd)} per country`).join('; ')}>
-  <div className="fin-stair-bars">
-   {bands.map((b,i)=><div className="fin-stair-col" key={b.label}>
-    <span className="fin-stair-fig">{usd(b.disbursed_per_read_country_usd)}</span>
-    <span className="fin-stair-bar" style={{height:`${Math.max(b.disbursed_per_read_country_usd/max*100,6)}%`,animationDelay:`${i*90}ms`}}/>
-    <span className="fin-stair-q">Q{i+1}</span>
-   </div>)}
-  </div>
-  <figcaption>Disbursed per country, by vulnerability quartile.<br/>Least exposed <span aria-hidden="true">→</span> most exposed.</figcaption>
+// The gradient: four equal groups by vulnerability, approvals as the bar.
+// Disbursement is printed per country with a payment figure, because the
+// groups carry different numbers of read figures and a total would compare
+// unlike with unlike.
+function Gradient({bands}:{bands:Band[]}){
+ const max=Math.max(...bands.map(b=>b.approved_usd))||1;
+ return <figure className="fin-grad">
+  <ol>{bands.map(b=><li key={b.label}>
+   <span className="fin-grad-name">{b.label}<small>{b.countries} countries</small></span>
+   <span className="fin-grad-track" aria-hidden="true"><i style={{width:`${b.approved_usd/max*100}%`}}/></span>
+   <span className="fin-grad-fig">{usd(b.approved_usd)}<small>approved</small></span>
+   <span className="fin-grad-paid">{usd(b.disbursed_per_read_country_usd)} disbursed per country with a payment figure ({b.disbursed_read} of {b.countries})</span>
+  </li>)}</ol>
+  <figcaption>Equal groups by ND-GAIN vulnerability. An association, not a cause. No country is ranked.</figcaption>
  </figure>;
 }
 
 export default async function Page(){
  const v=await loadView<Finance>('finance');
  const h=v?.headline;
-// The finding, at reading distance, and the caveat as a latch rather than a
-// paragraph every reader must cross before the first chart.
-function FinanceBand({h,v}:{h:Finance['headline'];v:Finance}){
- return <>
-  <section className="kpi-band" aria-label="The ledger in five figures">
-   <div className="kpi"><strong className="kpi-fig countup">{h.plottable}</strong><span className="kpi-lab">Countries plotted</span><span className="kpi-sub">a vulnerability score and a fund ledger, both</span></div>
-   <div className="kpi"><strong className="kpi-fig">{usd(h.total_approved_usd)}</strong><span className="kpi-lab">Approved</span><span className="kpi-sub">across those countries</span></div>
-   <div className="kpi"><strong className="kpi-fig">{usd(h.total_disbursed_usd)}</strong><span className="kpi-lab">Disbursed</span><span className="kpi-sub">over the {h.disbursed_read_countries} whose payment figure was read</span></div>
-   <div className="kpi"><strong className="kpi-fig"><span className="countup">{fmt(h.median_disbursed_pct)}</span><sup>%</sup></strong><span className="kpi-lab">Median country</span><span className="kpi-sub">of its approval actually received</span></div>
-   <div className="kpi"><strong className="kpi-fig countup">{h.no_gcf_record}</strong><span className="kpi-lab">Ledgers never read</span><span className="kpi-sub">plus {h.disbursement_unread} approvals with no payment figure — unknown, not zero</span></div>
-  </section>
-  <SectionRail sections={[['gradient','01','The gradient'] as const,['plot','02','Every plotted country'] as const,['countries','03','The ledger'] as const,['unread','04','The ledgers not read'] as const]}/>
+ const first=v?.bands[0],last=v?.bands[v.bands.length-1];
+ const reasons=v?[...Map.groupBy(v.unknowns,u=>u.$reason)]:[];
+ return <main className="record cmp" id="main">
   <div className="rec-shell">
-   <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{v.caveat}</div></details>
-  </div>
- </>;
-}
-
- return <main className="record" id="main">
-  <div className="rec-shell">
-   <section className="fin-masthead">
-    <div className="fin-masthead-text">
-     <p className="eyebrow">VULNERABILITY AND FINANCE</p>
-     <h1 className="rec-title">The money runs down the gradient<span className="rec-stop">.</span></h1>
-     <p className="rec-lede">Two things every record already carries, how vulnerable a country is measured to be, and what the Green Climate Fund has actually paid it. Neither axis is new collection. The gap was a screen, not a source.</p>
+   <a className="cmp-back" href="/compare"><ArrowLeft size={14} aria-hidden="true"/>Compare</a>
+   <header className="cmp-head">
+    <div className="cmp-head-text">
+     <h1 className="rec-title">Who is vulnerable, and what reached them?</h1>
+     {v&&h&&first&&last&&<>
+      <p className="rec-lede">{trend(v.bands)}: the least vulnerable quartile was approved {usd(first.approved_usd)}, the most vulnerable {usd(last.approved_usd)}. {h.channel} only, one channel among many.</p>
+      <div className="cmp-actions">
+       <ExportCsv name="visual-climate-gcf-ledger" label={`Download ${v.rows.length} rows (CSV)`}
+        rows={v.rows.map(r=>({iso3:r.iso3,country:r.name_en,region:r.region,income_group:r.income_group,vulnerability:r.vulnerability,approved_usd:r.approved_usd,disbursed_usd:r.disbursed_usd,disbursed_pct:r.disbursed_pct}))}/>
+       <a className="record-action" href="#countries">Find a country or filter the ledger<ArrowDown size={13} aria-hidden="true"/></a>
+      </div>
+      <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{v.caveat}</div></details>
+     </>}
     </div>
-    {v&&h&&<Staircase bands={v.bands}/>}
-   </section>
-  </div>
+    {v&&<Gradient bands={v.bands}/>}
+   </header>
 
-  {!v||!h?<div className="rec-shell"><div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. Run <code>npm run engine:index</code> and redeploy.</p></div></div>:<>
-    <FinanceBand h={h} v={v}/>
-    <div className="rec-shell">
-
-    <section className="rec-section" id="gradient">
-     <div className="sec-head fin"><h2>The gradient</h2><p>Four equal groups by vulnerability. Approvals fall as need rises, and payments fall with them.</p></div>
-     <details className="disc"><summary>How to read this</summary><div className="disc-body">The {h.plottable} plotted countries split into four equal groups by vulnerability, quartiles, so the cut is arithmetic rather than editorial. Approvals fall in step with need across all four bands, from {usd(v.bands[0].approved_usd)} to {usd(v.bands[3].approved_usd)}. Disbursement per country is not a clean staircase, the second quartile receives the most, but the most vulnerable quartile receives the least of any band, and it does so while carrying the most countries with a figure actually on the books ({v.bands[3].disbursed_read} of {v.bands[3].countries}), so this is not an artefact of thinner coverage.</div></details>
-     <div className="fin-bands">
-      {v.bands.map(b=>{
-       const max=Math.max(...v.bands.map(x=>x.disbursed_per_read_country_usd))||1;
-       return <div className="fin-band" key={b.label}>
-        <div className="fin-band-name"><b>{b.label}</b><span>{b.countries} countries · vulnerability {b.from.toFixed(3)}-{b.to.toFixed(3)}</span></div>
-        <div className="fin-band-track"><i style={{width:`${b.disbursed_per_read_country_usd/max*100}%`}}/></div>
-        <div className="fin-band-figs">
-         <span><b>{usd(b.disbursed_per_read_country_usd)}</b>per country with a read figure</span>
-         <span><b>{usd(b.disbursed_usd)}</b>disbursed, over {b.disbursed_read} of {b.countries}</span>
-         <span><b>{usd(b.approved_usd)}</b>approved, all {b.countries}</span>
-         <span><b>{b.median_readiness.toFixed(3)}</b>median readiness</span>
-        </div>
-       </div>;
-      })}
-     </div>
-     <p className="rec-note">Bars are disbursement per country with a read figure, so a band is never averaged over countries whose payment was never recorded. Readiness falls as vulnerability rises, and a mechanism consistent with that is this: the fund pays against proposals, and the countries scored least able to prepare and absorb them are the ones scored most exposed. This page states the association it can measure. It does not claim the fund caused it, and no country here is ranked or graded.</p>
-    </section>
-
+   {!v||!h?<div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. It will be back with the next build; every country record is still open.</p></div>:<>
     <section className="rec-section" id="plot">
-     <div className="sec-head fin"><h2>Every plotted country</h2><p>One dot per country. The lane under the break is unread, not nought.</p></div>
-     <details className="disc"><summary>How to read this</summary><div className="disc-body">One dot per country. Vertical axis is disbursement on a log scale, because the range runs from tens of thousands to over a billion. The lane beneath the break is not a low number, it is {h.disbursement_unread} countries that hold an approval and whose disbursement figure this engine has never read. Every other product would print them as zero.</div></details>
+     <div className="sec-head fin"><h2>Every country, vulnerability against payment</h2><p>One dot per country, {h.plottable} in all, payments on a log scale. The dashed lane holds the {h.disbursement_unread} with an approval whose payment figure was not read: not read, not zero.</p></div>
      <Scatter rows={v.rows}/>
     </section>
 
     <section className="rec-section" id="countries">
-     <div className="sec-head fin"><h2>The ledger</h2><p>Most vulnerable first. A dash means a figure was never read.</p></div>
-     <details className="disc"><summary>How to read this</summary><div className="disc-body">Approved, disbursed, and the share of the approval that has actually arrived. A dash is not nought per cent: it means one of the two figures was never read, so the ratio does not exist.</div></details>
+     <div className="sec-head fin"><h2>The ledger, most vulnerable first</h2><p>The median country has received {fmt(h.median_disbursed_pct)}% of its approval. A dash means a figure was not read. Each row opens that country&rsquo;s finance block.</p></div>
      <Ledger rows={v.rows}/>
     </section>
 
     <section className="rec-section" id="unread">
-     <div className="sec-head warn"><h2>The ledgers not read</h2><p>Vulnerability known, no fund record. Absent from every figure above.</p></div>
-     <details className="disc"><summary>How to read this</summary><div className="disc-body">{v.unknowns.length} countries have a vulnerability score and no fund record in this engine. They are absent from every figure above. Printing them here is the point: a country missing from a finance chart usually disappears, and disappearing reads as having received nothing.</div></details>
-     <ul className="rec-scopes">{v.unknowns.map(u=>
-      <li key={u.iso3}><i className="fin-unknown-dot"/><b>{u.iso3}</b><span>{u.name_en}</span><small>vul {u.vulnerability.toFixed(3)}</small></li>)}
-     </ul>
-     <div className="rec-blank"><span className="state-token unknown"><i/>Why they are unknown and not zero</span><p>{v.unknowns[0]?.$reason}</p></div>
+     <div className="sec-head unk"><h2>Vulnerability known, no fund record: {v.unknowns.length}</h2><p>These countries are in no figure above. Each opens its own record.</p></div>
+     {reasons.map(([why,list])=><div className="fin-unread" key={why}>
+      <p><span className="state-token unknown"><i/>Not read</span>{why}</p>
+      <ul>{list.map(u=><li key={u.iso3}><a href={`/country/${u.iso3}#finance`}><i>{u.iso3}</i>{u.name_en}</a></li>)}</ul>
+     </div>)}
     </section>
-    </div>
    </>}
+  </div>
  </main>;
 }

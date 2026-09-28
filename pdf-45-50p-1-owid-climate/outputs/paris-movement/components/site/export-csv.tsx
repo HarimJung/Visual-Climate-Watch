@@ -22,5 +22,5 @@ export default function ExportCsv({rows,name,label='Export view · CSV'}:{rows:R
   a.href=url;a.download=`${name}.csv`;a.click();
   URL.revokeObjectURL(url);
  };
- return <button className="btn-ghost" onClick={save} type="button"><Download size={13}/>{label}</button>;
+ return <button className="rec-act" onClick={save} type="button"><Download size={14} aria-hidden="true"/>{label}</button>;
 }
