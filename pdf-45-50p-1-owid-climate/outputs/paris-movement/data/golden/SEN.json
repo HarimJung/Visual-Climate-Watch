@@ -98,7 +98,7 @@
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "vulnerability": {
@@ -113,7 +113,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "series": {
@@ -442,7 +442,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "ndc_registry": {
@@ -459,7 +459,7 @@
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/NDC/2022-06/CDNSenegal%20approuv%C3%A9e-pdf-.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "ndc_assessment": {
@@ -479,7 +479,7 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "ndc_document": {
@@ -505,7 +505,7 @@
       "id": "DS-06-NDC",
       "name": "Senegal First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Senegal%20First/CDNSenegal%20approuvée-pdf-.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "finance_flows": {
@@ -927,7 +927,7 @@
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-09-14"
     }
   },
   "emissions_profile": {
@@ -1742,8 +1742,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:21.406Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1756,8 +1756,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:33.188Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1770,8 +1770,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:22.623Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1784,8 +1784,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:50.237Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1798,8 +1798,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:52.196Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1812,8 +1812,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:56.003Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1826,8 +1826,8 @@
       ],
       "connection": "connected",
       "records": 2,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:08:03.259Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1840,8 +1840,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:56.390Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1854,8 +1854,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:57.362Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1868,8 +1868,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:05:20.986Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -1882,8 +1882,8 @@
       ],
       "connection": "connected",
       "records": 36,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-09-14T09:08:34.141Z",
+      "retrieved_at": "2026-09-14",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -1896,93 +1896,93 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:23:49.115Z",
+      "last_run": "2026-09-14T09:08:35.106Z",
       "retrieved_at": null,
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "26a8bf7313f5de1ef6ac00c16f0623fd7bc7d0d5aad48a331e80c8ac2482fd3b",
+    "run_id": "80a96cc9d04eb5fb6a7c9b24b0f0d37a",
+    "built_at": "2026-09-14T09:08:35.106Z",
+    "payload_sha256": "a039872b424336ebbfeb073185af077b7486e4ade3b619a5da3bc0055c0430b6",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-09-14T09:05:21.406Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-09-14T09:05:22.623Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
         "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "retrieved_at": "2026-09-14T09:05:33.188Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-09-14T09:05:50.237Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
         "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "retrieved_at": "2026-09-14T09:05:52.196Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-09-14T09:05:56.003Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-09-14T09:05:56.390Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
         "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "retrieved_at": "2026-09-14T09:05:57.362Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-09-14T09:08:03.259Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "481e307257dbfb56a15887cb07804f7e1cc215304822f333869098d07c551de5",
+        "retrieved_at": "2026-09-14T09:08:34.141Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
         "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "retrieved_at": "2026-09-14T09:08:35.106Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-09-14T09:05:20.986Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "754888d13f7c9d6ada7402fb9d6401b87646629fcaa095f1c6896dee6d2883c9",
-        "retrieved_at": "2026-09-13T03:20:15.744Z",
+        "retrieved_at": "2026-09-14T09:04:41.936Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/SEN_Senegal_First_NDC_French.pdf"
       }
     ]
