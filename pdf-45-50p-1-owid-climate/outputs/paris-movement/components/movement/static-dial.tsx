@@ -5,14 +5,15 @@ import {dialReading} from '@/lib/climate';
 // movement assembles: the instrument should be recognisable on every screen,
 // not only on the one that can run WebGL.
 export type DialData={
- ndc:{reduction_pct:number|null};
+ ndc:{reduction_pct:number|null;reduction_range_pct?:[number,number]|null};
  btr:{components:Record<string,{state:string}>};
  emissions_profile?:{total_mtco2e:number|null;latest_year:number|null};
  observed_years?:number|null;
 };
 
 export function StaticDial({data}:{data:DialData}){
- const pct=data.ndc.reduction_pct;
+ // A range draws its lower bound, the cut every reading of it states.
+ const pct=data.ndc.reduction_pct??data.ndc.reduction_range_pct?.[0]??null;
  const reading=dialReading(data);
  return <svg viewBox="0 0 420 420" aria-label="Static climate evidence dial">
   <circle cx="210" cy="210" r="185" fill="var(--dial-face)" stroke="var(--dial-edge)"/>

@@ -47,7 +47,7 @@ export default async function Page(){
  const labels=Object.fromEntries((log?.families??[]).map(f=>[f.id,f.label]));
  const docReasons=c?Object.entries(c.refusals_by_family).filter(([id])=>id.startsWith('doc.')).sort((a,b)=>b[1]-a[1]):[];
  // One EU filing stands for every member state; an auditor needs that said beside the count.
- const eu=(index?.countries??[]).filter(r=>r.reduction_pct!=null&&/European Union/.test(r.edition)).length;
+ const eu=(index?.countries??[]).filter(r=>(r.reduction_pct!=null||r.reduction_range_pct!=null)&&/European Union/.test(r.edition)).length;
  const blank=(what:string)=><div className="rec-blank"><span className="state-token unknown"><i/>Not in this build</span><p>{what} It will be back with the next build.</p></div>;
 
  return <main className="record" id="main">
@@ -68,7 +68,7 @@ export default async function Page(){
    </section>
 
    <section className="rec-section mc-sec" id="reading">
-    <div className="sec-head"><h2>{title('reading')}</h2><p>We look for one sentence that states an economy-wide percentage cut against a base year or a business-as-usual path. If the document has none, or several, we refuse and write down why.</p></div>
+    <div className="sec-head"><h2>{title('reading')}</h2><p>We look for the sentence that states the economy-wide cut: one percentage or a range, against a base year or a business-as-usual path, kept with its condition when the sentence says whether it depends on international support. If the document states none, or several it does not tell apart, we refuse and write down why.</p></div>
     {!c?blank('The document counts come from the census, which is not in this build.'):<>
      <ol className="mc-flow">
       <li><b>UNFCCC NDC registry</b><span>names each country’s current filing</span><ArrowRight className="mc-flow-arrow" size={16} aria-hidden="true"/></li>
@@ -79,7 +79,7 @@ export default async function Page(){
        <div className="no"><b className="mc-n">{c.ndc_target_refused}</b><span>refused, each with its reason</span></div>
       </li>
      </ol>
-     {eu>0&&<p className="rec-note">{eu} of the accepted figures come from one filing: the joint NDC of the European Union and its member states.</p>}
+     {eu>0&&<p className="rec-note">{eu} of the targets read come from one filing: the joint NDC of the European Union and its member states, one collective target.</p>}
      <h3 className="mc-h3">Why a document was refused</h3>
      <ul className="mc-reasons">
       {docReasons.map(([id,n])=><li key={id}><a href={`/refusals?reason=${id}`}><span>{labels[id]??id}</span><b>{n}</b></a></li>)}

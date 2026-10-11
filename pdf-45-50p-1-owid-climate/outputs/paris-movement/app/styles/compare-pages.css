@@ -1,36 +1,47 @@
-/* compare-pages — owned by one page team during the 2026-09-27 UX overhaul. Tokens come from globals.css :root. */
-/* /finance, /divergence, /unknown. This file loads before the globals, so
-   every override here carries one more class (.cmp) than the rule it beats. */
+/* compare-pages — /finance, /divergence, /unknown (.cmp). Tokens come from globals.css :root.
+   This file loads before the globals, so every override here carries one more class (.cmp) than the rule it beats.
+   The head these pages share with the home (.cmp-hero, .figs, .lede, .source, .take) is in directory.css. */
 
-/* ── shared frame: back link, question, answer, one next step ───────────── */
-.cmp-back{display:inline-flex;align-items:center;gap:6px;min-height:32px;font-size:var(--t1);color:var(--ink-3);transition:color var(--dur) var(--ease)}
-.cmp-back:hover{color:var(--un-ink)}
-.cmp-back:focus-visible{outline:2px solid var(--un-ink);outline-offset:3px}
-@media(pointer:coarse){.cmp-back{min-height:44px}}
-
-.cmp-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s6) clamp(32px,5vw,72px);align-items:start;padding-bottom:var(--s4)}
-.cmp-head.single{grid-template-columns:minmax(0,1fr)}
-.cmp-head-text{min-width:0}
-.cmp .cmp-head .rec-lede{max-width:62ch;line-height:1.6}
-.cmp-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-top:var(--s5)}
-.cmp-actions .record-action{margin-top:0}
-.cmp-head .disc{margin-top:var(--s5);max-width:62ch}
-@media(max-width:899px){.cmp-head{grid-template-columns:minmax(0,1fr)}}
+/* ── the head: statement left, the one chart right ──────────────────────── */
+.cmp .cmp-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s6) clamp(32px,4.5vw,64px);align-items:start;padding-bottom:var(--s5);border-bottom:1px solid var(--rule)}
+.cmp .cmp-hero.single{grid-template-columns:minmax(0,1fr)}
+.cmp .cmp-hero-text{min-width:0;max-width:62ch}
+.cmp .cmp-hero .disc{margin-top:var(--s5);max-width:62ch}
+.cmp .cmp-chart{margin:0;min-width:0}
+.cmp .cmp-chart .source{margin-top:var(--s3)}
+.cmp .take .way{min-height:40px}
+@media(max-width:899px){.cmp .cmp-hero{grid-template-columns:minmax(0,1fr)}}
 
 /* sections run the full column: no empty rail beside them */
 .cmp .rec-section{display:block}
 .cmp .sec-head.fin{border-top-color:var(--fin)}
 .cmp .sec-head.inv{border-top-color:var(--inv)}
 .cmp .sec-head.unk{border-top:2px dashed var(--src-b)}
+.cmp.fin .figs div:first-child dd{color:var(--fin-ink)}
+.cmp.inv .figs div:first-child dd,.cmp.inv h1 em{color:var(--ink)}
 
 /* a row that is a link, all of it */
 .cmp a.div-country{color:inherit}
 .cmp a.div-country:hover .div-name{color:var(--ink)}
 .cmp a.div-country:focus-visible{outline:2px solid var(--un-ink);outline-offset:-2px}
 
+/* the floating tooltip every mark gets; the box style is the map's */
+.tip-box{position:relative}
+.tip-box .cov-tip{max-width:260px}
+.tip-box .tip-line{display:block;margin-top:3px;font-size:var(--t1);line-height:1.45;color:var(--ink-3);font-variant-numeric:tabular-nums}
+
 /* ── /finance ───────────────────────────────────────────────────────────── */
-.fin-grad{margin:0;min-width:0;padding-top:var(--s3);border-top:2px solid var(--fin)}
-.fin-grad ol{list-style:none;display:flex;flex-direction:column;gap:var(--s5);margin-top:var(--s3)}
+.cmp .fin-plot-scroll{margin-top:0;border:0;background:none;overflow-x:auto}
+.cmp .fin-plot{min-width:0}
+.cmp .fin-plot a{outline:none}
+.cmp .fin-plot a:focus-visible circle{stroke:var(--ink);stroke-width:2}
+.cmp .fin-dot.none{fill:none;stroke:var(--src-b);stroke-width:1.2;stroke-dasharray:2 2}
+.cmp .fin-plot a:hover .fin-dot{fill:var(--fin)}
+.cmp .fin-plot a:hover .fin-dot.none{fill:none;stroke:var(--ink)}
+@media(max-width:767px){.cmp .fin-plot{min-width:560px}}
+
+.fin-grad{margin:0;min-width:0;max-width:720px}
+.fin-grad ol{list-style:none;display:flex;flex-direction:column;gap:var(--s4);margin:0;padding:0}
 .fin-grad li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px var(--s3)}
 .fin-grad-name{grid-column:1/-1;display:flex;justify-content:space-between;gap:var(--s3);font-size:var(--t2);font-weight:600;color:var(--ink)}
 .fin-grad-name small{font-size:var(--t1);font-weight:400;color:var(--ink-3)}
@@ -39,9 +50,6 @@
 .fin-grad-fig{font:700 var(--t5)/1 var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .fin-grad-fig small{margin-left:5px;font:400 var(--t1) var(--font-sans);color:var(--ink-3)}
 .fin-grad-paid{grid-column:1/-1;font-size:var(--t1);line-height:1.5;color:var(--ink-3)}
-.fin-grad figcaption{margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid var(--rule);font-size:var(--t1);line-height:1.6;color:var(--ink-3)}
-
-.cmp .fin-dot.none{stroke:var(--src-b)}
 
 .fin-filters .cty-select{height:36px;padding:0 10px;font-size:var(--t2)}
 .fin-more{margin-top:var(--s4)}
@@ -54,19 +62,31 @@
 .fin-unread a:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
 
 /* ── /divergence ────────────────────────────────────────────────────────── */
-.div-scopes{min-width:0;padding-top:var(--s3);border-top:2px solid var(--inv)}
-.div-scopes h2{font:700 var(--t5)/1.2 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
-.div-scopes ul{list-style:none;display:flex;flex-direction:column;gap:var(--s4);margin-top:var(--s4)}
-.div-scopes li{display:grid;grid-template-columns:10px minmax(0,1fr);align-items:baseline;gap:4px var(--s3)}
-.div-scopes li i{width:10px;height:10px;border-radius:2px}
-.div-scopes li b{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2);font-size:var(--t3);font-weight:600;color:var(--ink)}
-.div-scopes li code{font:400 var(--t0) var(--font-code);color:var(--ink-4)}
-.div-scopes li span{grid-column:2;font-size:var(--t1);line-height:1.55;color:var(--ink-3)}
-.div-scopes>p{margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--rule);font-size:var(--t1);color:var(--ink-2)}
+.dv-strip{display:block;width:100%;height:auto;overflow:visible}
+.dv-axis{stroke:var(--rule-strong);stroke-width:1}
+.dv-ax{font:12px var(--font-sans);fill:var(--ink-4)}
+.dv-tick{stroke:var(--rule-strong);stroke-width:1;stroke-dasharray:3 3}
+.dv-lab{font:12px var(--font-sans);fill:var(--ink-3)}
+.dv-lab.med{fill:var(--ink);font-weight:600}
+.dv-median{stroke:var(--ink);stroke-width:1.5}
+.dv-dot{fill:color-mix(in srgb,var(--src-b) 85%,var(--ink));transition:fill var(--dur) var(--ease)}
+.dv-dot.wide{fill:var(--src-a)}
+.dv-strip a{outline:none}
+.dv-strip a:hover .dv-dot,.dv-strip a:focus-visible .dv-dot{fill:var(--un)}
+.dv-strip a:focus-visible .dv-dot{stroke:var(--ink);stroke-width:2}
+@media(max-width:767px){.cmp .cmp-chart .tip-box{overflow-x:auto}.dv-strip{min-width:560px}}
+
+.cmp .div-scopes ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4) var(--s6);margin:0;padding:0;max-width:960px}
+.cmp .div-scopes li{display:grid;grid-template-columns:10px minmax(0,1fr);align-items:baseline;gap:4px var(--s3)}
+.cmp .div-scopes li i{width:10px;height:10px;border-radius:2px}
+.cmp .div-scopes li b{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2);font-size:var(--t3);font-weight:600;color:var(--ink)}
+.cmp .div-scopes li code{font:400 var(--t0) var(--font-code);color:var(--ink-4)}
+.cmp .div-scopes li span{grid-column:2;font-size:var(--t1);line-height:1.55;color:var(--ink-3)}
+@media(max-width:640px){.cmp .div-scopes ul{grid-template-columns:1fr}}
 .cmp .div-bar{grid-template-columns:52px minmax(0,1fr) 74px}
 
 /* ── /unknown ───────────────────────────────────────────────────────────── */
-.cmp-gaps{list-style:none;border-top:1px solid var(--rule-strong)}
+.cmp-gaps{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-strong)}
 .cmp-gap{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:var(--s3) var(--s7);padding:var(--s5) 0;border-bottom:1px solid var(--rule)}
 .cmp-gap-what b{display:block;font-size:var(--t3);font-weight:600;color:var(--ink);text-wrap:pretty}
 .cmp-gap-what p{margin-top:6px;max-width:72ch;font-size:var(--t1);line-height:1.6;color:var(--ink-3);text-wrap:pretty}

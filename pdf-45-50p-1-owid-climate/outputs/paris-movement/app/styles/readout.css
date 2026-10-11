@@ -1,0 +1,239 @@
+/* readout — the studio readout panel and the context strip. Owned by agent R (2026-10-09). Tokens come from globals.css :root.
+   Hairlines, Hanken 13–15 px, tabular figures. The part colour appears once as a swatch and once on the figure; the rest is ink and grey.
+   world.css is pulled in here because the context strip draws the world chart and the studio page does not load the home's stylesheet. */
+@import './world.css';
+
+/* The column (.st-readout, studio.css) carries the side padding; the readout adds none, so the sheet keeps the column's full width. */
+.readout{padding:var(--s4) 0 var(--s5);font-family:var(--font-sans);font-size:var(--t2);line-height:1.45;color:var(--ink);font-variant-numeric:tabular-nums}
+.readout-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
+.readout-kicker{display:flex;align-items:center;gap:8px;margin:0;font:600 var(--t1)/1.4 var(--font-sans);letter-spacing:0;color:var(--ink-3)}
+.readout-kicker i{flex:none;width:10px;height:10px;border-radius:2px;background:var(--c,var(--rule-strong))}
+.readout[data-part] .readout-kicker{color:var(--c-ink)}
+.readout-all{padding:0;font-size:var(--t1);color:var(--ink-3);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px;transition:color var(--dur) var(--ease)}
+.readout-all:hover,.readout-all:focus-visible{color:var(--un-ink);text-decoration-color:currentColor}
+
+/* ── no part: the three cover figures, then the five parts as rows ───── */
+.readout-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);margin:var(--s4) 0 0;padding:var(--s4) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.readout-figs div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.readout-figs dd{margin:0;font:800 26px/1 var(--font-display);letter-spacing:-.03em;color:var(--ink)}
+.readout-figs dd span{font-size:.55em;font-weight:600;color:var(--ink-4)}
+.readout-figs dt{font-size:var(--t0);line-height:1.3;color:var(--ink-3)}
+.readout-parts{list-style:none;margin:0;padding:0}
+.readout-parts li+li{border-top:1px solid var(--rule)}
+.readout-parts button{display:grid;grid-template-columns:10px 2.3ch minmax(0,1fr) auto;align-items:center;gap:0 10px;width:100%;padding:11px 0;text-align:left;color:var(--ink-2);transition:color var(--dur) var(--ease)}
+.readout-parts button:hover,.readout-parts button:focus-visible{color:var(--ink)}
+.readout-parts button:focus-visible{outline:2px solid var(--un-ink);outline-offset:-2px}
+.readout-parts i{width:10px;height:10px;border-radius:2px;background:var(--c)}
+.readout-parts .no{font-size:var(--t1);color:var(--ink-4)}
+.readout-parts .name{font-size:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.readout-parts .val{display:flex;flex-direction:column;align-items:flex-end;gap:1px;text-align:right;white-space:nowrap}
+.readout-parts .val b{font-weight:600;color:var(--ink)}
+.readout-parts .val small{font-size:var(--t0);color:var(--ink-3)}
+.readout-parts .val.blank b{font-weight:400;color:var(--ink-3)}
+
+.readout-notice{margin:var(--s2) 0 0;font-size:var(--t1);line-height:1.45;color:var(--ink-3)}
+
+/* ── a part: the chart, then the sheet (components/studio/sheets), the source, the actions ─ */
+.readout-body{margin:var(--s2) 0 0;font-size:var(--t2);line-height:1.5;color:var(--ink-2)}
+.readout .stage{margin-top:var(--s4)}
+.sheet{margin-top:var(--s4);min-width:0}
+.sheet .readout-blanks{margin-top:var(--s3)}
+/* the one big figure per sheet: Bricolage, the part colour once */
+.sheet-big{display:flex;flex-direction:column;gap:4px;margin:0}
+.sheet-big b{font:800 34px/1 var(--font-display);letter-spacing:-.03em;color:var(--c-ink,var(--ink));font-variant-numeric:tabular-nums}
+.sheet-big b .fig{text-decoration-thickness:2px;text-underline-offset:5px}
+.sheet-big>span{font-size:var(--t1);line-height:1.45;color:var(--ink-3)}
+.sheet-big .state-token{vertical-align:baseline}
+.sheet-model{margin:0 0 var(--s2);font-size:var(--t0);font-weight:600;letter-spacing:.02em;color:var(--ink-3)}
+/* sections: one small heading, a hairline above */
+.sheet-sec{margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--rule)}
+.sheet-sec h3{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin:0 0 var(--s2);font-size:var(--t1);font-weight:600;color:var(--ink)}
+.sheet-sec h3 span{font-weight:400;color:var(--ink-3)}
+.sheet-sec .sheet-big{margin-bottom:var(--s3)}
+/* label and value rows */
+.sheet-kv{margin:0}
+.sheet-kv div{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:6px 0;border-top:1px solid var(--rule)}
+.sheet-kv div:first-child{border-top:0}
+.sheet-kv dt{flex:1 1 auto;min-width:0;font-size:var(--t1);line-height:1.4;color:var(--ink-3)}
+.sheet-kv dd{flex:none;margin:0;max-width:60%;text-align:right;font-size:var(--t2);font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.sheet-kv dd .state-token{font-size:11px}
+.sheet-fold{margin-top:var(--s2);border-top:1px solid var(--rule)}
+.sheet-fold summary{padding:7px 0;font-size:var(--t1);color:var(--ink-2);cursor:pointer;list-style-position:inside}
+.sheet-fold summary:hover{color:var(--un-ink)}
+.sheet-fold .sheet-kv{margin:0 0 var(--s2) 14px}
+.sheet-fold .sheet-kv div{padding:4px 0}
+/* quoted record sentences */
+.sheet-quote{margin:var(--s2) 0 0;padding-left:12px;border-left:2px solid var(--c,var(--un));font-size:var(--t1);line-height:1.5;color:var(--ink-2)}
+.sheet-quote cite{display:block;margin-top:2px;font-style:normal;font-size:var(--t0);color:var(--ink-3)}
+.sheet-notice{margin:0 0 var(--s2);font-size:var(--t1);line-height:1.45;color:var(--ink-3)}
+/* tokens (sectors) and files */
+.sheet-tokens{display:flex;flex-wrap:wrap;gap:6px;margin:var(--s3) 0 0;padding:0;list-style:none}
+.sheet-tokens li{padding:3px 8px;border:1px solid var(--rule-strong);border-radius:3px;font-size:var(--t0);color:var(--ink-2)}
+.sheet-files{margin:2px 0 0;padding:0;list-style:none;font:var(--t0)/1.5 var(--font-code);color:var(--ink-3);overflow-wrap:anywhere}
+/* 02 the arithmetic strip: base → BAU → target */
+.sheet-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);margin:0 0 var(--s2);padding:0;list-style:none}
+.sheet-strip li{display:flex;flex-direction:column;gap:3px;min-width:0;padding:8px 0 0;border-top:2px solid var(--rule-strong)}
+.sheet-strip li:nth-child(3){border-top-color:var(--c,var(--un))}
+.sheet-strip li>span{font-size:var(--t0);color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sheet-strip li>.fig,.sheet-strip li>span:last-child{font-size:var(--t4);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.sheet-strip li>span:last-child:not(:first-child){font-weight:400;color:var(--ink-3);font-size:var(--t2)}
+/* 02 vintages */
+.sheet-vintages{margin:0;padding:0;list-style:none}
+.sheet-vintages li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:var(--s3);padding:8px 0;border-top:1px solid var(--rule)}
+.sheet-vintages li:first-child{border-top:0}
+.sheet-vstate{font-size:var(--t0);font-weight:600;color:var(--ink-3);padding-top:2px}
+.sheet-vintages li[data-state=read] .sheet-vstate{color:var(--c-ink,var(--un-ink))}
+.sheet-vintages b{font-size:var(--t1);font-weight:600;color:var(--ink)}
+.sheet-vintages small{font-size:var(--t0);color:var(--ink-3)}
+.sheet-vintages p{margin:3px 0 0;font-size:var(--t1);line-height:1.45;color:var(--ink-2)}
+/* 01 filings list */
+.sheet-filings{margin:var(--s3) 0 0;padding:0;list-style:none}
+.sheet-filings li{padding:8px 0;border-top:1px solid var(--rule)}
+.sheet-filings li>div:first-child{display:flex;align-items:baseline;gap:8px;min-width:0}
+.sheet-filings a,.sheet-filings b{font-size:var(--t2);font-weight:600;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-filings a:hover{color:var(--un-ink);text-decoration:underline;text-underline-offset:3px}
+.sheet-filings a svg{vertical-align:-1px;margin-left:2px}
+.sheet-link{display:inline-flex;align-items:center;gap:3px;margin-top:var(--s2);font-size:var(--t0);font-weight:600;color:var(--un-ink)}
+.sheet-link:hover{text-decoration:underline;text-underline-offset:3px}
+.sheet-kind{flex:none;font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 5px;border-radius:2px;color:#fff;background:var(--un-ink)}
+.sheet-kind.btr{background:var(--btr)}
+.sheet-filing-meta{display:flex;gap:10px;margin-top:2px;font-size:var(--t1);color:var(--ink-2)}
+.sheet-filing-meta span:last-child{color:var(--ink-3)}
+.sheet-filings p{margin:3px 0 0;font-size:var(--t1);line-height:1.45;color:var(--ink-3)}
+/* tables: inputs, ledger */
+.sheet-table{width:100%;margin-top:var(--s2);border-collapse:collapse;font-size:var(--t1);font-variant-numeric:tabular-nums;table-layout:fixed}
+.sheet-table th{padding:4px 0;text-align:left;font-size:var(--t0);font-weight:600;color:var(--ink-3);border-bottom:1px solid var(--rule-strong)}
+.sheet-table td{padding:6px 0;vertical-align:top;border-bottom:1px solid var(--rule);color:var(--ink-2);overflow-wrap:anywhere}
+.sheet-table td+td,.sheet-table th+th{padding-left:8px}
+.sheet-table th:last-child,.sheet-table td:last-child{text-align:right;color:var(--ink);font-weight:500}
+.sheet-table small{display:block;font-size:var(--t0);line-height:1.35;color:var(--ink-3);font-weight:400}
+.sheet-table a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.sheet-table a:hover{color:var(--un-ink);text-decoration-color:currentColor}
+.sheet-inputs th:nth-child(1){width:44%}.sheet-inputs th:nth-child(2){width:30%}
+.sheet-ledger th:nth-child(1){width:38px}.sheet-ledger th:nth-child(3){width:34%}
+.sheet-ledger td:nth-child(2){text-transform:capitalize}
+.sheet-ledger td:nth-child(2) small{text-transform:none}
+.sheet-hash{padding:0;border:0;background:none;font:var(--t0)/1.4 var(--font-code);color:var(--ink-2);cursor:pointer;text-decoration:underline dotted;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.sheet-hash:hover{color:var(--un-ink)}
+/* 03 sources kept apart */
+.sheet-sources{margin:0;padding:0;list-style:none}
+.sheet-sources li{padding:8px 0;border-top:1px solid var(--rule)}
+.sheet-sources li:first-child{border-top:0}
+.sheet-sources li>div{display:flex;align-items:baseline;gap:8px;min-width:0}
+.sheet-sources a,.sheet-sources li>div>b:first-child{font-size:var(--t1);font-weight:600;color:var(--ink)}
+.sheet-sources a:hover{color:var(--un-ink);text-decoration:underline;text-underline-offset:3px}
+.sheet-sources small{flex:1 1 auto;min-width:0;font-size:var(--t0);color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sheet-num{flex:none;font-size:var(--t1);font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.sheet-sources p{margin:3px 0 0;font-size:var(--t0);line-height:1.45;color:var(--ink-3)}
+/* 04 sockets */
+.sheet-sockets{margin:0;padding:0;list-style:none}
+.sheet-sockets li{padding:8px 0;border-top:1px solid var(--rule)}
+.sheet-sockets li:first-child{border-top:0}
+.sheet-sockets li>div{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2)}
+.sheet-sockets b{font-size:var(--t1);font-weight:600;color:var(--ink)}
+.sheet-sockets li[data-state=observed] b{color:var(--c-ink,var(--ink))}
+.sheet-sockets .state-token{font-size:11px}
+.sheet-sockets p{margin:3px 0 0;font-size:var(--t0);line-height:1.45;color:var(--ink-3)}
+/* 06 the scenario grid */
+.sheet-grid{width:100%;margin-top:var(--s3);border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
+.sheet-grid th{font-size:var(--t0);font-weight:600;color:var(--ink-3);text-align:right;padding:0 0 6px}
+.sheet-grid thead th:first-child{width:72px}
+.sheet-grid tbody th{text-align:left;color:var(--ink);white-space:nowrap;padding:8px 0;font-weight:600}
+.sheet-grid tbody th i{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:2px;vertical-align:-1px;background:var(--sc)}
+.sheet-grid tbody tr{border-top:1px solid var(--rule)}
+.sheet-grid td{padding:8px 0 8px 6px;text-align:right;font-size:var(--t2);font-weight:500;color:var(--ink)}
+.sheet-grid td .fig{color:var(--sc)}
+.sheet-grid td .fig:hover{color:var(--un-ink)}
+.sheet .readout-src{margin-top:var(--s3)}
+.readout-src{margin:var(--s3) 0 0;padding-top:var(--s3);border-top:1px solid var(--rule);font-size:var(--t1);line-height:1.5;color:var(--ink-3)}
+.readout-src a{color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px;transition:color var(--dur) var(--ease)}
+.readout-src a:hover,.readout-src a:focus-visible{color:var(--un-ink);text-decoration-color:currentColor}
+.readout-blanks{margin:var(--s3) 0 0;padding-top:var(--s3);border-top:1px solid var(--rule)}
+.readout-blanks div+div{margin-top:var(--s3)}
+.readout-blanks dt{font-size:var(--t1);font-weight:600;line-height:1.4;color:var(--ink)}
+.readout-blanks dt span{margin-left:6px;font-weight:400;color:var(--ink-3)}
+.readout-blanks dd{margin:2px 0 0;font-size:var(--t1);line-height:1.5;color:var(--ink-3)}
+.readout-acts{margin-top:var(--s4)}
+.readout .rec-act{min-height:34px;padding:0 12px;font-size:var(--t1)}
+
+/* ── the tour: one chapter at a time ─────────────────────────────────── */
+.readout-tour{animation:readout-in .5s var(--out) both}
+.readout-dots{display:flex;gap:4px;margin-bottom:var(--s3)}
+.readout-dots i{width:6px;height:6px;border-radius:50%;background:var(--rule-strong);transition:background .3s}
+.readout-dots i.done{background:var(--ink-4)}
+.readout-dots i.on{background:var(--un)}
+.readout-title{display:block;margin-top:var(--s2);font:700 19px/1.25 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+@keyframes readout-in{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ── the story stage at panel width (StoryStage `compact`) ───────────── */
+/* The viewBox lands at about 0.35 scale: the small labels are gone (stage.tsx), the rest comes up a size so it reads at 12 px. */
+.stage.compact text{font-size:34px}
+.stage.compact .lbl-s{font-size:30px}
+.stage.compact .kind{font-size:26px;letter-spacing:.06em}
+.stage.compact .grp{font-size:32px}
+.stage.compact .stage-caption{display:block;margin-top:var(--s2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--t0)}
+.stage.compact .stage-caption .stage-key{display:inline-flex;flex-wrap:nowrap;gap:var(--s2)}
+.stage.compact .stage-caption .stage-key+.stage-why,.stage.compact .stage-caption .stage-why+.stage-key{margin-left:var(--s2)}
+.stage.compact .stage-key i{width:10px;height:10px}
+.stage.compact .stage-note{margin-top:var(--s2);font-size:var(--t0)}
+.stage.compact .stage-tip{max-width:240px;font-size:var(--t0)}
+
+/* ── the context strip ───────────────────────────────────────────────── */
+.ctx{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);border-top:1px solid var(--rule);font-family:var(--font-sans);font-size:var(--t1);line-height:1.45;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.ctx>section{min-width:0;padding:var(--s3) var(--s5) var(--s3)}
+.ctx>section+section{border-left:1px solid var(--rule)}
+.ctx-cap{display:flex;align-items:baseline;gap:8px;margin:0;font-size:var(--t1);color:var(--ink-3)}
+.ctx-cap b{font-weight:600;color:var(--ink)}
+/* the dated strip: a hairline track, the marks sitting on it, the documents under it */
+.ctx-strip{list-style:none;margin:var(--s4) 0 0;padding:14px 0 0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:var(--s4);border-top:1px solid var(--rule-strong)}
+.ctx-strip li{position:relative;min-width:0}
+.ctx-mark{position:absolute;top:-23px;left:-1px;width:18px;height:18px;background:var(--paper);border-radius:50%}
+.ctx-strip a,.ctx-doc{display:block;font-size:var(--t2);font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctx-strip a:hover,.ctx-strip a:focus-visible{color:var(--un-ink);text-decoration:underline;text-underline-offset:3px}
+.ctx-strip small{display:block;margin-top:1px;font-size:var(--t0);color:var(--ink-3);white-space:normal;line-height:1.35}
+.ctx-src{margin:var(--s3) 0 0;font-size:var(--t0);color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctx-src a{color:var(--ink-3);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.ctx-src a:hover,.ctx-src a:focus-visible{color:var(--un-ink);text-decoration-color:currentColor}
+/* the world chart, drawn small beside its words: the chart's own caption and in-chart labels are illegible at this size and stay off; the tooltip and the sentence carry them */
+.ctx-world{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s5);align-items:start}
+.ctx-world .stage{margin:0}
+.ctx-world .world-stage svg{width:auto;height:156px}
+.ctx-world .stage-caption,.ctx-world .stage-note,.ctx-world .world-stage .stage-x text{display:none}
+.ctx-world .world-stage .hl text{font-size:40px;font-weight:600;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:10px;stroke-linejoin:round}
+.ctx-world .world-stage .hl .ring{stroke-width:8}
+.ctx-world .world-stage .hl .hl-gap{stroke-width:7}
+.ctx-world .world-stage .hl .leader{stroke-width:3}
+.ctx-world .stage-tip{max-width:240px;font-size:var(--t0)}
+.ctx-where{margin:var(--s2) 0 0;max-width:62ch;font-size:var(--t2);line-height:1.5;color:var(--ink-2)}
+
+@media(max-width:1100px){
+ .ctx{grid-template-columns:1fr}
+ .ctx>section+section{border-left:0;border-top:1px solid var(--rule)}
+}
+@media(max-width:767px){
+ .readout{padding:var(--s4) var(--gutter)}
+ .ctx>section{padding:var(--s3) var(--gutter)}
+ .ctx-strip{flex-wrap:wrap;gap:var(--s3) var(--s5)}
+ .ctx-world{grid-template-columns:1fr}
+ .ctx-world .world-stage svg{width:100%;height:auto}
+ .ctx-world .world-stage .hl text{font-size:44px}
+}
+@media(prefers-reduced-motion:reduce){
+ .readout-tour{animation:none}
+ .readout-dots i,.readout-parts button,.readout-all,.readout-src a{transition:none}
+}
+
+/* ── Wide screens: the display sizes step up with the tokens (studio.css redefines --t0..--t5 there) ── */
+@media(min-width:1700px){
+ .readout-figs dd{font-size:32px}
+ .sheet-big b{font-size:42px}
+ .readout-title{font-size:22px}
+ .ctx-world .world-stage svg{height:200px}
+ .ctx-where{max-width:72ch}
+}
+@media(min-width:2200px){
+ .readout-figs dd{font-size:36px}
+ .sheet-big b{font-size:48px}
+ .ctx-world .world-stage svg{height:240px}
+}
+.sheet-cell{font-size:var(--t0);color:var(--ink-3);font-variant-numeric:tabular-nums;margin-left:4px}

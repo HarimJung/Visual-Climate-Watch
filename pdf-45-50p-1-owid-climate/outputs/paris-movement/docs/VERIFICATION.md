@@ -71,8 +71,8 @@ T4의 첫 표본은 캄보디아와 우간다다. 09-12부터 첫 화면의 두 
 |---|---:|---|
 | 레코드가 있는 국가·영토 | [218](../data/census.json#countries) | `report --json` |
 | 병합하지 않고 나란히 보관하는 연결 소스 | 12 | 〃 |
-| 계산을 거절하고 사유를 기록한 건 | [332](../data/census.json#refusals_total) | 〃 |
-| 그 사유의 서로 다른 문장 | [76](../data/census.json#refusals_distinct_sentences) | 〃 |
+| 계산을 거절하고 사유를 기록한 건 | [370](../data/census.json#refusals_total) | 〃 |
+| 그 사유의 서로 다른 문장 | [131](../data/census.json#refusals_distinct_sentences) | 〃 |
 | 순위·등급을 매긴 국가 | 0 | 설계상 없음 |
 
 **CAT 쪽 — CAT 자신의 페이지에서 읽었다, 2026-09-12.** 요약이 아니라 문장이다.
@@ -138,10 +138,10 @@ document's own." 거절은 새 가족 `gap.two-ledgers`로 묶이고, 추세는 
 
 | 수치 | 09-10 | 09-12 |
 |---|---:|---:|
-| 이행 판정 | 38 | [31](../data/census.json#gap_assessed) |
-| 거절 전체 | 325 | [332](../data/census.json#refusals_total) |
-| 서로 다른 문장 | 69 | [76](../data/census.json#refusals_distinct_sentences) |
-| 두 장부 거절 | — | [7](../data/census.json#refusals_by_family.gap.two-ledgers) |
+| 이행 판정 | 38 | [12](../data/census.json#gap_assessed) |
+| 거절 전체 | 325 | [370](../data/census.json#refusals_total) |
+| 서로 다른 문장 | 69 | [131](../data/census.json#refusals_distinct_sentences) |
+| 두 장부 거절 | — | [1](../data/census.json#refusals_by_family.gap.two-ledgers) |
 
 첫 화면의 두 나라(KHM·UGA)가 판정 대신 거절문을 보여준다. 그게 맞다. 거절은
 실패가 아니라 출력물이다.
@@ -149,6 +149,40 @@ document's own." 거절은 새 가족 `gap.two-ledgers`로 묶이고, 추세는 
 **확인 방법.** `/refusals`에서 "The target and the trend are on different
 inventories" 가족 7건. `/country/KHM`의 판정 토큰이 "Not assessable", 사유 문장에
 "Two ledgers".
+
+## 6. 문서의 정체 — 미러 파일이 그 링크의 문서인가 (2026-10-11)
+
+**발견.** NDC 원문 169개는 openclimatedata 미러(2022-06-07 보관)에서 왔다. 미러는 파일을
+등록부 링크와 날짜 아래 두지만, 당사국이 같은 링크의 문서를 바꾸기 전에 받은 파일은 옛 바이트
+그대로 새 링크·날짜를 달고 있었다. 2026-10-11 손 감사(인터넷 아카이브 CDX 색인 대조)에서 앞의
+47개 중 16개가 그 링크의 어떤 캡처와도 바이트가 달랐고, 아카이브 사본을 받아 텍스트를 비교한
+10개 중 9개가 다른 판본이었다. 예: 알바니아 "2021 개정 NDC"는 3쪽짜리 2015년 파일, 브라질
+"2022-04-07"은 2020년 갱신본(그 43%를 2022년 문서가 50%로 바꿨다), 한국 "2021-12-23 상향
+NDC"는 2020년 갱신본(24.4%, 2017년 대비).
+
+**닫힌 부분.** `ndc-parse`가 매주 모든 미러 파일을 그 링크의 아카이브 색인과 SHA-1로 대조한다
+(D14, ENGINEERING R11). 레코드의 문서마다 `mirror_check`가 결과를 싣고 레코드 화면이 그 문장을 보인다.
+
+| 결과 (레코드 수) | 값 |
+|---|---:|
+| 미러 파일이 아카이브의 최신 캡처와 같은 바이트 | [134](../data/census.json#ndc_mirror_verified) |
+| 다른 판본이라 아카이브 캡처를 대신 읽음 | [54](../data/census.json#ndc_mirror_replaced) |
+| 다른 판본이고 캡처도 검사를 못 넘어 거절 | [0](../data/census.json#ndc_mirror_refused) |
+| 아카이브에 캡처가 없어 대조 불가 | [5](../data/census.json#ndc_mirror_unverifiable) |
+
+2026-10-11 실행에서 두 파일(태국, 남수단)은 아카이브 캡처 내려받기가 끊겨(`transient`) 다음 주간 갱신 때
+다시 대조한다. 둘 다 지금 읽은 수치가 없다(하나는 거절, 하나는 스캔). 다른 판본으로 확인된 문서 54개 중
+여덟은 미러 파일의 수치가 사라졌다. 여섯은 실제 문서를 리더가 거절한 경우(스위스, 카메룬, 코모로, 가나,
+우간다, 베네수엘라)이고, 둘은 옛 판본의 수치였다(한국 24.4%, 세인트키츠네비스 35%). 숫자가 바로잡힌 곳이
+둘(브라질 43→50%, 콩고민주공화국 17→21%), 새로 생긴 곳이 여덟이다. 옛 판본의 숫자 대신 이유 문장이 붙은
+빈칸을 싣는다.
+
+**열린 부분.** 대조 불가 파일은 그대로 쓴다. 손 감사의 비율로 보면 그중 일부는 옛 판본일
+수 있다. 다음 단계는 PRIMAP R2 사본의 MD5로 같은 대조를 하는 것이다. EU 공동 NDC와 캄보디아의
+손 검증 판독은 `verify-evidence`가 인용 페이지를 다시 읽어 지킨다.
+
+**확인 방법.** `/country/BRA`의 "The document, as read"에서 "Checked against the Archive" 줄과
+아카이브 캡처 링크. `data/ndc-targets.json`의 `mirror_check`.
 
 ---
 
@@ -159,4 +193,4 @@ inventories" 가족 7건. `/country/KHM`의 판정 토큰이 "Not assessable", �
 갈렸다. 1번은 상세 패널 URL 하나가 남았다. 2번은 사람 5명이 필요하고, 코드로는
 닫히지 않는다.
 
-테스트 128건 (2026-09-12, 이 브랜치).
+테스트 324건 (2026-10-11, 이 브랜치).

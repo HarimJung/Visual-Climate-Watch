@@ -1,20 +1,37 @@
-/* directory — owned by one page team during the 2026-09-27 UX overhaul. Tokens come from globals.css :root.
-   This file is imported before the global rules, so every selector is scoped
-   under the page class (.dir = /countries, .rfl = /refusals) to win on specificity. */
+/* directory — /countries (.dir) and /refusals (.rfl), plus the head every deep view shares with the home (.cmp too).
+   Tokens come from globals.css :root. This file is imported before the global rules, so every selector is
+   scoped under a page class to win on specificity. */
 
-/* One head for both pages: a question, one line, the tool. */
-:is(.dir,.rfl) .rec-lede{max-width:70ch;font-size:var(--t4);line-height:1.6}
-.rfl .rfl-note{margin:8px 0 0;font-size:var(--t2);line-height:1.65;max-width:70ch}
+/* ── the head: a statement, one lede, figures only where the page shows them nowhere else, a source line ── */
+:is(.dir,.rfl,.cmp) h1{margin:0;font:800 clamp(34px,4.2vw,60px)/1.02 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-wrap:balance;font-variant-numeric:tabular-nums}
+:is(.dir,.rfl,.cmp) h1 em{font-style:normal;color:var(--un-ink)}
+:is(.dir,.rfl,.cmp) .lede{margin:var(--s4) 0 0;max-width:52ch;font-size:clamp(16px,1.2vw,18px);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
+:is(.dir,.rfl,.cmp) .figs{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:var(--s3) var(--s6);margin:var(--s5) 0 0;padding-top:var(--s4);border-top:1px solid var(--rule-strong)}
+:is(.dir,.rfl,.cmp) .figs div{display:flex;flex-direction:column;gap:5px;min-width:0}
+:is(.dir,.rfl,.cmp) .figs dd{margin:0;font:800 clamp(28px,2.6vw,40px)/.95 var(--font-display);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+:is(.dir,.rfl,.cmp) .figs div:first-child dd{color:var(--un-ink)}
+:is(.dir,.rfl,.cmp) .figs dd span{font-size:.5em;font-weight:600;color:var(--ink-4)}
+:is(.dir,.rfl,.cmp) .figs dt{font-size:var(--t1);line-height:1.35;color:var(--ink-3)}
+:is(.dir,.rfl,.cmp) .source{margin:var(--s3) 0 0;font-size:var(--t1);line-height:1.5;color:var(--ink-3);text-wrap:pretty}
+:is(.dir,.rfl,.cmp) .source a{color:inherit;text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+:is(.dir,.rfl,.cmp) .source a:hover,:is(.dir,.rfl,.cmp) .source a:focus-visible{color:var(--un-ink);text-decoration-color:currentColor}
+:is(.dir,.rfl,.cmp) .source code{font:var(--t0) var(--font-code)}
+:is(.dir,.rfl,.cmp) .take{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-top:var(--s5)}
+@media(max-width:767px){
+ :is(.dir,.rfl,.cmp) h1{font-size:clamp(32px,8.6vw,40px)}
+ :is(.dir,.rfl,.cmp) .figs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
+ :is(.dir,.rfl,.cmp) .figs dd{font-size:clamp(22px,6.4vw,30px)}
+}
 
-/* unread is a dashed blue-grey dot on these pages (brief R-4) */
+/* unread is a dashed blue-grey dot on these pages */
 :is(.dir,.rfl) .state-token{font-size:var(--t1)}
 :is(.dir,.rfl) .state-token.unknown i{border-color:var(--src-b)}
 
 /* Shared table surface: row headers read as names, numbers line up. */
 :is(.dir,.rfl) .rec-inputs{margin-top:4px;font-size:var(--t2)}
-:is(.dir,.rfl) .rec-inputs thead th{padding-top:0;font-size:var(--t1);color:var(--ink-3);background:var(--paper)}
-:is(.dir,.rfl) .rec-inputs td{padding:9px 14px 9px 0}
-:is(.dir,.rfl) .rec-inputs tbody th{padding:9px 16px 9px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;
+:is(.dir,.rfl) .rec-inputs thead th{padding-top:0;font-size:var(--t1);color:var(--ink-3);background:var(--paper);vertical-align:bottom}
+:is(.dir,.rfl) .rec-inputs td{padding:10px 14px 10px 0}
+:is(.dir,.rfl) .rec-inputs tbody th{padding:10px 16px 10px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;
  font:500 var(--t3)/1.4 var(--font-sans);color:var(--ink);white-space:normal;background:var(--paper)}
 :is(.dir,.rfl) .rec-inputs tbody th a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule-strong);
  transition:text-decoration-color var(--dur) var(--ease)}
@@ -23,27 +40,40 @@
 :is(.dir,.rfl) .rec-inputs tbody tr:hover>*{background:var(--paper-sunken)}
 
 /* ── /countries ─────────────────────────────────────────────────────────── */
-.dir .dir-search{display:flex;align-items:center;gap:12px;margin-top:24px;padding:0 18px;min-height:60px;
+.dir .dir-head{max-width:72ch}
+.dir .dir-top{display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s3);margin-top:var(--s6)}
+.dir .dir-search{flex:1 1 420px;display:flex;align-items:center;gap:12px;min-height:60px;padding:0 18px;
  border:1px solid var(--rule-strong);border-radius:3px;background:var(--paper-raised);color:var(--ink-3);
  transition:border-color var(--dur) var(--ease)}
 .dir .dir-search:focus-within{border-color:var(--un-ink);outline:2px solid color-mix(in srgb,var(--un) 35%,transparent);outline-offset:1px}
-.dir .dir-search input{flex:1;min-width:0;padding:14px 0;border:0;background:none;outline:none;
- font:400 var(--t5) var(--font-sans);color:var(--ink)}
+.dir .dir-search input{flex:1;min-width:0;padding:14px 0;border:0;background:none;outline:none;font:400 var(--t5) var(--font-sans);color:var(--ink)}
 .dir .dir-search input::placeholder{color:var(--ink-4)}
-.dir .dir-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.dir .dir-top .rec-act{min-height:60px;padding-inline:20px}
+.dir .dir-map{margin-top:var(--s5)}
+.dir .dir-map .cov figcaption{margin-top:var(--s3)}
+.dir .dir-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:var(--s6);padding-top:var(--s4);border-top:1px solid var(--rule-strong)}
 .dir .dir-filters .cty-select{min-height:40px;font:var(--t1) var(--font-sans);letter-spacing:0}
+.dir .dir-filters .btn-ghost[aria-pressed=true]{border-color:var(--ink);color:var(--ink)}
 .dir .dir-tally{min-height:20px;margin:8px 0 0;font-size:var(--t1);color:var(--ink-3)}
 
-.dir .dir-table td{font-variant-numeric:tabular-nums;white-space:nowrap}
-.dir .dir-table td.dir-wrap{white-space:normal;min-width:20ch;max-width:32ch}
-.dir .dir-table tr>:nth-last-child(-n+3){text-align:right}
-.dir .dir-table td small{display:inline;margin:0 0 0 4px;font-size:var(--t0);color:var(--ink-4)}
-.dir .dir-table td.dir-wrap small{display:block;margin:2px 0 0}
+.dir .dir-table td{vertical-align:top;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dir .dir-table td.dir-wrap{white-space:normal;min-width:18ch;max-width:36ch}
+.dir .dir-table .num{text-align:right}
+.dir .dir-table td b{font-weight:600;color:var(--ink)}
+.dir .dir-table td a{font-family:var(--font-sans);font-size:inherit;color:var(--ink-2)}
+.dir .dir-table td small{display:block;margin:2px 0 0;font-size:var(--t0);line-height:1.45;color:var(--ink-4)}
+/* the record's own sentence under a blank: small, in ink, never a tooltip */
+.dir .dir-table td small.why{max-width:36ch;white-space:normal;color:var(--ink-3);text-wrap:pretty}
+.dir .dir-table td .state-token{white-space:nowrap}
+.dir .sockets{display:inline-flex;gap:3px;margin:0 8px 0 0;vertical-align:middle}
+.dir .sockets i{width:8px;height:8px;border-radius:50%;border:1px dashed var(--src-b)}
+.dir .sockets i.lit{border:0;background:var(--btr)}
 .dir .dir-table thead th button{display:inline-flex;align-items:center;gap:4px;padding:0;background:none;border:0;
  font:inherit;color:inherit;cursor:pointer;white-space:nowrap}
 .dir .dir-table thead th button:hover,.dir .dir-table thead th[aria-sort] button{color:var(--ink)}
 .dir .dir-table thead th button span{display:inline-block;min-width:.7em;color:var(--un-ink)}
 .dir .dir-table thead th button:focus-visible{outline:2px solid var(--un-ink);outline-offset:3px}
+.dir .dir-more{margin-top:var(--s4)}
 
 .dir .dir-apart{margin-top:28px}
 .dir .dir-apart>summary{font-size:var(--t2);color:var(--ink-2)}
@@ -53,26 +83,40 @@
 .dir .dir-apart-list a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule-strong)}
 .dir .dir-apart-list small{font:var(--t0) var(--font-code);color:var(--ink-4)}
 
-/* Phone: filters pair up, and the country column stays put while the figures scroll under it. */
+/* Phone: search and the file stack, filters pair up, the country column stays put while the figures scroll under it. */
 @media(max-width:760px){
+ .dir .dir-top>*{flex:1 1 100%}
  .dir .dir-search{min-height:54px;padding:0 14px}
  .dir .dir-search input{font-size:var(--t4)}
+ .dir .dir-top .rec-act{min-height:48px;justify-content:center}
  .dir .dir-filters>*{flex:1 1 calc(50% - 4px);min-width:0}
  .dir .dir-filters .ctl-spacer{display:none}
- .dir .dir-filters .rec-act{justify-content:center}
+ .dir .dir-filters .btn-ghost{justify-content:center}
  .dir .dir-scroll{margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
  .dir .dir-table tbody th,.dir .dir-table thead th:first-child{position:sticky;left:calc(-1 * var(--gutter));z-index:1;
   min-width:120px;max-width:140px;padding-left:var(--gutter);box-shadow:inset -1px 0 0 var(--rule)}
  .dir .dir-table tbody th small{display:block;margin:2px 0 0}
  .dir .dir-table thead th:first-child{z-index:2}
- .dir .dir-table td.dir-wrap{min-width:26ch}
+ .dir .dir-table td.dir-wrap{min-width:24ch;max-width:30ch}
+ .dir .dir-table td small.why{max-width:30ch}
 }
 
 /* ── /refusals ──────────────────────────────────────────────────────────── */
-.rfl .rfl-families{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;scroll-margin-top:calc(var(--top-h,64px) + 16px)}
-.rfl .rfl-families .chip{animation:none}
-.rfl .rfl-family-note{max-width:70ch;margin:12px 0 0;font-size:var(--t2);line-height:1.6;color:var(--ink-3)}
-.rfl .rfl-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 8px}
+/* the families as one chart: a row each, the count as a bar, the row is the filter */
+.rfl .rfl-fams{list-style:none;margin:var(--s5) 0 0;padding:0;display:grid;gap:2px;max-width:820px}
+.rfl .rfl-fam{display:grid;grid-template-columns:minmax(0,21rem) minmax(0,1fr) 3.2rem;align-items:center;gap:var(--s3);width:100%;min-height:36px;padding:4px 10px;
+ border:0;border-radius:3px;background:none;font:500 var(--t2)/1.3 var(--font-sans);color:var(--ink-2);text-align:left;cursor:pointer;
+ transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.rfl .rfl-fam:hover{background:var(--paper-sunken);color:var(--ink)}
+.rfl .rfl-fam[aria-pressed=true]{background:var(--paper-sunken);color:var(--ink)}
+.rfl .rfl-fam:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+.rfl .rfl-fam.all{grid-template-columns:minmax(0,1fr)}
+.rfl .rfl-fam-bar{display:block;height:10px}
+.rfl .rfl-fam-bar i{display:block;height:100%;min-width:2px;background:color-mix(in srgb,var(--ink-3) 42%,var(--paper));transition:background var(--dur) var(--ease),width .6s var(--out)}
+.rfl .rfl-fam[aria-pressed=true] .rfl-fam-bar i,.rfl .rfl-fam:hover .rfl-fam-bar i{background:var(--un)}
+.rfl .rfl-fam b{font:600 var(--t2) var(--font-sans);color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.rfl .rfl-family-note{max-width:70ch;margin:var(--s3) 0 0;font-size:var(--t2);line-height:1.6;color:var(--ink-3)}
+.rfl .rfl-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:var(--s6) 0 8px;padding-top:var(--s4);border-top:1px solid var(--rule-strong)}
 .rfl .rfl-tools .srch{flex:0 1 420px}
 .rfl .rfl-tally{font-size:var(--t1);color:var(--ink-3)}
 .rfl .rfl-table td{line-height:1.55}
@@ -89,12 +133,11 @@
 .rfl .rfl-more button:focus-visible{outline:2px solid var(--un-ink);outline-offset:3px}
 
 @media(max-width:760px){
+ .rfl .rfl-fam{grid-template-columns:minmax(0,1fr) 3rem;gap:4px var(--s3)}
+ .rfl .rfl-fam-bar{grid-column:1/-1;height:7px}
  .rfl .rfl-tools .srch{flex:1 1 100%}
  .rfl .rfl-tools .ctl-spacer{display:none}
  .rfl .rfl-tally{order:3}
- /* nine reasons ride one line that scrolls sideways instead of filling the first screen */
- .rfl .rfl-families{flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(-1 * var(--gutter));padding:2px var(--gutter);scrollbar-width:none}
- .rfl .rfl-families .chip{flex:none;white-space:nowrap}
  /* two columns do not fit a phone: each refusal becomes a short stack */
  .rfl .rfl-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
  .rfl .rfl-table,.rfl .rfl-table tbody,.rfl .rfl-table tr,.rfl .rfl-table tr>*{display:block;width:auto}
@@ -104,5 +147,5 @@
 }
 
 @media print{
- .dir .dir-search,.dir .dir-filters,.rfl .rfl-families,.rfl .rfl-tools{display:none}
+ .dir .dir-top,.dir .dir-filters,.rfl .rfl-fams,.rfl .rfl-tools{display:none}
 }

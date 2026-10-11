@@ -1,0 +1,206 @@
+/* studio — the one-screen instrument dashboard (/studio). Owned by agent S (2026-10-09). Tokens come from globals.css :root.
+   One screen: the grid fills the viewport under the site header and only the
+   country list and the readout panel scroll. Hairlines between panels, no
+   boxed cards, no shadows but the one the scene draws on its ground. Reduced
+   motion needs nothing here: globals.css turns every transition off. */
+.studio{display:grid;grid-template-columns:240px minmax(0,1fr) 380px;grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"kpi kpi kpi" "rail stage readout" "rail context context";
+ height:calc(100dvh - var(--top-h));overflow:hidden;background:var(--paper);color:var(--ink);font:400 var(--t2)/1.45 var(--font-sans);font-variant-numeric:tabular-nums}
+/* The footer would be the only thing left to scroll to. */
+.studio~.site-foot{display:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── KPI strip: four figures, each a door to the view it was counted from ── */
+.st-kpi{grid-area:kpi;display:flex;align-items:stretch;gap:0;min-height:44px;padding:0 var(--s5) 0 0;border-bottom:1px solid var(--rule)}
+.st-kpi-fig{display:flex;align-items:baseline;gap:6px;padding:0 var(--s4);border:0;border-right:1px solid var(--rule);background:none;white-space:nowrap;cursor:pointer;color:var(--ink);
+ transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.st-kpi-fig b{font-size:var(--t3);font-weight:600;color:var(--ink)}
+.st-kpi-fig b small{font-size:inherit;font-weight:500;color:var(--ink-3)} /* ink-3: ink-4 fails 4.5:1 on the hover paper */
+.st-kpi-fig span{font-size:var(--t1);color:var(--ink-3);text-decoration:underline dotted;text-decoration-color:var(--rule-strong);text-underline-offset:3px;text-decoration-thickness:1px}
+.st-kpi-fig:hover{background:var(--paper-sunken)}
+.st-kpi-fig:hover span,.st-kpi-fig[aria-expanded=true] span{color:var(--un-ink);text-decoration-color:var(--un-ink)}
+.st-kpi-fig[aria-expanded=true]{box-shadow:inset 0 -2px 0 var(--un)}
+.st-kpi-fig:focus-visible{outline-offset:-2px}
+.st-run{margin-left:auto;align-self:center;font-size:var(--t0);color:var(--ink-4);white-space:nowrap}
+
+/* The drill-down: a sheet on the left under the strip, the receipt's twin. */
+.kpi-sheet{position:fixed;top:calc(var(--top-h) + 45px);left:0;bottom:0;z-index:60;width:min(520px,100vw);overflow:auto;padding:var(--s4) var(--s5) var(--s6);
+ background:var(--paper-raised);border-right:1px solid var(--rule);box-shadow:var(--shadow-2);font-size:var(--t2);line-height:1.5;color:var(--ink);animation:kpi-in .26s var(--out) both}
+@keyframes kpi-in{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+.kpi-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s3);padding-bottom:var(--s3);border-bottom:1px solid var(--rule)}
+.kpi-head h2{margin:2px 0 0;font:700 var(--t5)/1.2 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.kpi-k{display:block;margin:var(--s4) 0 0;font-size:var(--t0);font-weight:600;color:var(--ink-3)}
+.kpi-close{flex:none;width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:3px;background:none;color:var(--ink-2);cursor:pointer}
+.kpi-close:hover{border-color:var(--ink);color:var(--ink)}
+.kpi-chart{margin:var(--s4) 0 0}
+.kpi-chart .stage-note{display:none}
+.kpi-text{margin:var(--s3) 0 0;color:var(--ink-2)}
+.kpi-list{list-style:none;margin:var(--s3) 0 0;padding:0;display:grid;gap:4px}
+.kpi-list li{display:grid;grid-template-columns:4ch minmax(0,1fr);gap:var(--s3);align-items:baseline;font-size:var(--t1);color:var(--ink-2)}
+.kpi-list b{font-weight:600;color:var(--ink);text-align:right}
+.kpi-refusals{list-style:none;margin:var(--s2) 0 0;padding:0;display:grid;gap:var(--s3)}
+.kpi-refusals li{padding-left:12px;border-left:2px solid var(--un)}
+.kpi-refusals b{display:block;font-weight:600;color:var(--ink)}
+.kpi-refusals p{margin:2px 0 0;font-size:var(--t1);line-height:1.5;color:var(--ink-2)}
+.kpi-file{margin:var(--s4) 0 0;padding-top:var(--s3);border-top:1px solid var(--rule);font-size:var(--t0);color:var(--ink-3)}
+.kpi-file a{color:var(--un-ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.kpi-file a:hover{text-decoration-color:currentColor}
+.st-run a{text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.st-run a:hover{color:var(--un-ink);text-decoration-color:currentColor}
+
+/* ── Rail: the search, two filters, the 218 ────────────────────────────── */
+.st-rail{grid-area:rail;display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--rule)}
+.st-find{position:relative;display:flex;align-items:center;flex:none;border-bottom:1px solid var(--rule);transition:border-color var(--dur) var(--ease)}
+.st-find:focus-within{border-color:var(--un-ink)}
+.st-find input{width:100%;height:44px;padding:0 40px 0 var(--s4);border:0;border-radius:0;background:none;font:400 var(--t2) var(--font-sans);color:var(--ink);outline:0;-webkit-appearance:none;appearance:none}
+.st-find input::placeholder{color:var(--ink-4)}
+.st-find kbd{position:absolute;right:var(--s4);top:50%;translate:0 -50%;padding:1px 6px;border:1px solid var(--rule);border-radius:3px;font:500 var(--t0)/1.4 var(--font-sans);color:var(--ink-4)}
+.st-find:focus-within kbd{display:none}
+.st-pick{display:none}
+.st-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);flex:none;border-bottom:1px solid var(--rule)}
+.st-filters select{min-width:0;height:36px;padding:0 var(--s3);border:0;border-radius:0;background:none;font:500 var(--t1) var(--font-sans);color:var(--ink-2);text-overflow:ellipsis;cursor:pointer}
+.st-filters select+select{border-left:1px solid var(--rule)}
+.st-filters select:hover{color:var(--ink)}
+.st-filters select:focus-visible{outline-offset:-2px}
+.st-list{position:relative;flex:1;min-height:0;margin:0;padding:var(--s1) 0;list-style:none;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.st-list button{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);width:100%;min-height:30px;padding:0 var(--s4) 0 calc(var(--s4) - 2px);border-left:2px solid transparent;text-align:left;font-size:var(--t2);color:var(--ink-2);
+ transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.st-list button span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-list button small{flex:none;font-size:var(--t1);color:var(--ink-3)}
+.st-list button:hover{background:var(--paper-sunken);color:var(--ink)}
+.st-list button[aria-current]{border-left-color:var(--un);color:var(--un-ink);font-weight:600}
+.st-list button[aria-current] small{color:var(--un-ink);font-weight:500}
+.st-list button:focus-visible{outline-offset:-2px}
+.st-empty{padding:var(--s4);font-size:var(--t1);color:var(--ink-3)}
+
+/* ── Stage: the head, the instrument, the five parts ───────────────────── */
+.st-stage{grid-area:stage;position:relative;display:flex;flex-direction:column;min-width:0;min-height:0}
+.st-head{display:flex;align-items:center;gap:var(--s3);flex:none;padding:var(--s3) var(--s5) 0}
+.st-step{display:grid;place-items:center;flex:none;width:32px;height:32px;border:1px solid var(--rule);border-radius:99px;color:var(--ink-2);transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.st-step:hover,.st-step:focus-visible{border-color:var(--ink);color:var(--ink)}
+.st-head h1{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:var(--s3);min-width:0;font:700 var(--t5)/1.1 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.st-head h1 small{font:400 var(--t1)/1.3 var(--font-sans);letter-spacing:0;color:var(--ink-3);white-space:nowrap}
+.st-tour{display:inline-flex;align-items:center;gap:7px;flex:none;height:32px;margin-left:auto;padding:0 var(--s3) 0 11px;border:1px solid var(--rule-strong);border-radius:99px;font:600 var(--t1) var(--font-sans);color:var(--ink-2);
+ transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.st-tour svg{fill:currentColor}
+.st-tour:hover:not(:disabled){border-color:var(--ink);color:var(--ink)}
+.st-tour.is-on{border-color:var(--un-ink);color:var(--un-ink)}
+.st-scene{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);flex:1;min-height:0;overflow:hidden}
+/* Compare: two panes, two scenes, one set of controls. */
+.st-scene.is-split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.st-pane{position:relative;min-width:0;min-height:0}
+.st-pane+.st-pane{border-left:1px solid var(--rule)}
+/* The flat dial stands in until the scene draws its first frame, so a country change never shows an empty stage. */
+.st-pane>svg{position:absolute;inset:8%;width:84%;height:84%;transition:opacity .3s var(--out)}
+.st-pane.is-live>svg{opacity:0}
+.st-pane .scene-host{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--out)}
+.st-pane.is-live .scene-host{opacity:1}
+.st-who{position:absolute;left:var(--s4);top:var(--s3);z-index:1;margin:0;font:600 var(--t1)/1.3 var(--font-sans);color:var(--ink-2);pointer-events:none}
+.st-readout .st-who{position:static;margin:0 0 var(--s2)}
+.st-readout .st-who-2{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--rule)}
+.st-cmp{min-width:0;max-width:168px;height:32px;padding:0 var(--s2);border:0;border-radius:0;background:none;font:500 var(--t1) var(--font-sans);color:var(--ink-3);text-overflow:ellipsis;cursor:pointer}
+.st-cmp:hover{color:var(--ink)}
+.st-hover{position:absolute;left:50%;top:var(--s3);translate:-50% 0;margin:0;font:600 var(--t1)/1.3 var(--font-sans);color:var(--ink-2);white-space:nowrap;pointer-events:none}
+.st-hint{position:absolute;left:0;right:0;bottom:var(--s2);margin:0;text-align:center;font-size:var(--t0);color:var(--ink-4);pointer-events:none;transition:opacity .6s var(--out)}
+.st-hint[aria-hidden=true]{opacity:0}
+.st-error{position:absolute;inset:0;display:grid;place-items:center;margin:0;padding:var(--s5);text-align:center;font-size:var(--t3);color:var(--warn)}
+.st-parts{display:flex;flex-wrap:wrap;gap:var(--s1);flex:none;padding:var(--s2) var(--s5) var(--s3)}
+.st-parts button{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 var(--s3) 0 10px;border:1px solid transparent;border-radius:99px;font:500 var(--t1) var(--font-sans);color:var(--ink-2);
+ transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.st-parts button i{width:9px;height:9px;border:1.5px solid var(--c);border-radius:50%;transition:background-color var(--dur) var(--ease)}
+.st-parts button:hover{background:var(--paper-sunken);color:var(--ink)}
+.st-parts button[aria-pressed=true]{border-color:var(--rule-strong);background:var(--paper-raised);color:var(--ink);font-weight:600}
+.st-parts button[aria-pressed=true] i{background:var(--c)}
+
+/* ── Readout and context ───────────────────────────────────────────────── */
+/* position:relative on both: the visually hidden labels (.vh, absolute) inside the sheets then clip with the column instead of stretching the document. */
+.st-readout{grid-area:readout;position:relative;min-height:0;padding:var(--s4) var(--s5) var(--s5);border-left:1px solid var(--rule);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;transition:opacity var(--dur) var(--ease)}
+.st-context{grid-area:context;position:relative;min-height:0;max-height:clamp(150px,26vh,236px);padding:var(--s3) var(--s5);border-top:1px solid var(--rule);overflow:hidden;transition:opacity var(--dur) var(--ease)}
+.studio[aria-busy=true] .st-readout,.studio[aria-busy=true] .st-context{opacity:.5}
+/* Each source's scope sentence under the emissions sentence, two lines at most. */
+.ctx-scope{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:1px;max-width:62ch}
+.ctx-scope li{font-size:var(--t0);line-height:1.35;color:var(--ink-3);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ctx-scope b{font-weight:600;color:var(--ink-2)}
+
+/* ── Compare: two records side by side, one row per record path, no deltas ── */
+.cmp{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--rule)}
+.cmp-cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:0 0 var(--s3);font-size:var(--t1);color:var(--ink-3)}
+.cmp-cap b{font-weight:600;color:var(--ink)}
+.cmp-table{width:100%;border-collapse:collapse;font-size:var(--t1);line-height:1.4;font-variant-numeric:tabular-nums}
+.cmp-table th,.cmp-table td{padding:6px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.cmp-table thead th{font-weight:600;color:var(--ink);border-bottom-color:var(--rule-strong)}
+.cmp-table tbody th{width:38%;padding-right:var(--s3);font-weight:400;color:var(--ink-3)}
+.cmp-table td{width:31%;padding-right:var(--s3);color:var(--ink);word-break:break-word}
+.cmp-table td:last-child{padding-right:0}
+.cmp-guard{color:var(--ink-2);font-style:normal}
+.cmp-fine{margin:var(--s3) 0 0;font-size:var(--t0);color:var(--ink-3)}
+
+/* ── Export: the record, the ledger, the link ──────────────────────────── */
+.st-export{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin:var(--s5) 0 0;padding-top:var(--s3);border-top:1px solid var(--rule);font-size:var(--t1);color:var(--ink-3)}
+.st-export a,.st-export button,.st-export span{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:none;font:500 var(--t1) var(--font-sans);color:var(--ink-2);cursor:pointer;text-decoration:none}
+.st-export span{color:var(--ink-4);cursor:default}
+.st-export a:hover,.st-export button:hover{color:var(--un-ink)}
+.st-export small{font-size:var(--t0);font-weight:400;color:var(--ink-4)}
+
+/* ── Tablet: one column, the rail is the search and a select ───────────── */
+@media(max-width:1100px){
+ .studio{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;grid-template-areas:"kpi" "rail" "stage" "readout" "context";height:auto;overflow:visible}
+ .studio~.site-foot{display:flex}
+ .st-rail{flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid var(--rule)}
+ .st-find{flex:1 1 auto;border-bottom:0}
+ .st-pick{display:block;flex:none;max-width:46%;height:44px;padding:0 var(--s4);border:0;border-left:1px solid var(--rule);border-radius:0;background:none;font:500 var(--t2) var(--font-sans);color:var(--ink);text-overflow:ellipsis;cursor:pointer}
+ .st-filters,.st-list{display:none}
+ .st-scene{flex:none;height:min(56vh,520px)}
+ .st-cmp{display:none}
+ .st-readout{padding:var(--s4) var(--s5);border-left:0;border-top:1px solid var(--rule);overflow:visible}
+ .st-context{max-height:none;overflow:visible}
+}
+
+/* ── Phone: the stage sticks, the rest passes under it ─────────────────── */
+@media(max-width:767px){
+ .studio{grid-template-areas:"kpi" "find" "stage" "readout" "context" "filters" "list"}
+ .st-kpi{display:grid;grid-template-columns:1fr 1fr;min-height:0;padding:0}
+ .st-kpi-fig{display:block;min-width:0;padding:var(--s2) var(--s4);border-right:0;white-space:normal;line-height:1.35;text-align:left}
+ .st-kpi-fig:nth-child(odd){border-right:1px solid var(--rule)}
+ .st-kpi-fig:nth-child(n+3){border-top:1px solid var(--rule)}
+ .st-kpi-fig b{font-size:var(--t2);margin-right:5px}
+ .st-run{display:none}
+ .kpi-sheet{top:0;width:100vw;z-index:80}
+ .cmp-table tbody th{width:34%}
+ .st-rail{display:contents}
+ .st-find{grid-area:find;border-bottom:1px solid var(--rule)}
+ .st-pick{display:none}
+ .st-filters{grid-area:filters;display:grid;border-top:1px solid var(--rule)}
+ .st-list{grid-area:list;display:block;max-height:60svh}
+ .st-stage{position:sticky;top:var(--top-h);z-index:2;height:48svh;background:var(--paper);border-bottom:1px solid var(--rule)}
+ .st-head{gap:var(--s2);padding:var(--s2) var(--s4) 0}
+ .st-head h1{font-size:var(--t4)}
+ .st-head h1 small{white-space:normal}
+ .st-scene{flex:1;height:auto}
+ .st-pane>svg{inset:4%;width:92%;height:92%}
+ .st-hint{display:none}
+ .st-parts{flex-wrap:nowrap;gap:2px;padding:var(--s1) var(--s3) var(--s2);overflow-x:auto;scrollbar-width:none}
+ .st-parts::-webkit-scrollbar{display:none}
+ .st-parts button{flex:none;height:30px}
+ .st-readout,.st-context{padding:var(--s4)}
+}
+/* Under 720px the site header is static, so the stage sticks to the top edge. */
+@media(max-width:720px){.st-stage{top:0}}
+@media(pointer:coarse){.st-step,.st-tour{height:36px;min-width:36px}.st-list button{min-height:40px}}
+
+/* ── Wide screens: the same one screen, a size up ──────────────────────── */
+/* The type tokens are redefined on the studio and the receipt, so every panel
+   steps up together; the fixed display sizes in readout.css follow below.
+   The 3D stage is fluid and takes the rest. Nothing is hidden or clipped. */
+@media(min-width:1700px){
+ .studio,.receipt,.kpi-sheet{--t0:13px;--t1:14px;--t2:15px;--t3:17px;--t4:19px;--t5:23px}
+ .studio{grid-template-columns:280px minmax(0,1fr) 460px}
+ .st-kpi{min-height:52px}
+ .st-list button{min-height:34px}
+ .st-context{max-height:clamp(200px,28vh,320px)}
+ .kpi-sheet{width:min(600px,100vw);top:calc(var(--top-h) + 53px)}
+}
+@media(min-width:2200px){
+ .studio,.receipt,.kpi-sheet{--t0:14px;--t1:15px;--t2:16px;--t3:18px;--t4:21px;--t5:25px}
+ .studio{grid-template-columns:320px minmax(0,1fr) 540px}
+ .st-context{max-height:clamp(240px,30vh,380px)}
+}

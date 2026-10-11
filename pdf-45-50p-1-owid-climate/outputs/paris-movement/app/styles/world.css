@@ -1,0 +1,75 @@
+/* world — the home as the world story: every record at once, one chart per step. Owned by agent W (2026-10-09).
+   Layout, the scroll engine and the stage's mark classes come from story.css and stage.css, read-only;
+   this file adds only what the world charts need. Tokens come from globals.css :root. */
+
+/* the hero: the sentence, three figures, the search, the quiet link */
+.world .hero-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3) var(--s4);margin-top:var(--s3);max-width:none}
+.world .hero-search{display:flex;flex:1 1 300px;max-width:460px;gap:var(--s2)}
+.world .hero-search .cty-search{flex:1 1 auto;min-width:0;height:44px;padding:0 var(--s4);font-size:var(--t3)}
+.world .hero-search .way.primary{height:44px;padding:0 var(--s4)}
+.world .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.world .source code{font-family:var(--font-code);font-size:inherit}
+
+/* the graphic has no head here: the chart sits centred in the sticky area */
+.world .graphic{grid-template-rows:minmax(0,1fr)}
+.world .graphic .stage{align-self:center}
+
+/* ── pledges: one cell per record ────────────────────────────────────── */
+.world-stage .stage-cell.read{fill:var(--un)}
+.world-stage .stage-cell.f0{fill:url(#w-hatch-0)}
+.world-stage .stage-cell.f1{fill:url(#w-hatch-1)}
+.world-stage .stage-cell.f2{fill:url(#w-hatch-2)}
+.world-stage .stage-cell.f3{fill:url(#w-hatch-3)}
+.world-stage .stage-cell.f4{fill:url(#w-hatch-4)}
+.world-stage .stage-cell.f5{fill:url(#w-hatch-5)}
+.world-stage .stage-cell.none{fill:var(--paper-raised);stroke:var(--rule-strong);stroke-dasharray:4 3}
+.world-stage .stage-cell[data-pick],.world-stage .stage-cell[data-key]{cursor:pointer}
+.world-stage .stage-cell[data-pick]:hover,.world-stage .stage-cell[data-key]:hover{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:none}
+/* blanks: the part not read, as dots on a hairline track */
+.world-stage .stage-cell.gap{fill:url(#w-grey-dots)}
+.world-stage .track{fill:none;stroke:var(--rule-strong);stroke-width:1}
+
+/* ── beads: the emissions strip and the finance scatter ──────────────── */
+.world-stage .stage-bead.spread{fill:var(--ink-3);fill-opacity:.9}
+.world-stage .stage-bead.fin{fill:var(--fin);fill-opacity:.85}
+.world-stage .stage-bead.fin.hair{fill:var(--paper-raised);fill-opacity:1;stroke:var(--fin);stroke-width:1.4}
+.world-stage .stage-bead:hover,.world-stage .stage-bead:focus-visible{fill-opacity:1;stroke:var(--ink);stroke-width:1.5}
+.world-stage .band{fill:var(--ink);fill-opacity:.035}
+.world-stage .median{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:4 3}
+.world-stage .grid{stroke:var(--rule);stroke-width:1}
+.world-stage .break{stroke:var(--rule-strong);stroke-dasharray:4 4}
+
+/* ── reports: 218 dots per part, the lit ones magenta, the unread hollow ─ */
+.world-stage .dot{fill:none;stroke:var(--rule-strong);stroke-width:.8}
+.world-stage .dot.lit{fill:var(--btr);stroke:none}
+.world-stage .dot:hover{stroke:var(--ink);stroke-width:1.5}
+.world-stage .by-design{fill:none;stroke:var(--rule-strong);stroke-dasharray:5 4}
+.world-stage .bar{outline:none}
+.world-stage .bar:focus-visible text{fill:var(--un-ink)}
+
+/* ── text and links inside the SVG ───────────────────────────────────── */
+.world-stage .ink{fill:var(--ink)}
+.world-stage a text{pointer-events:auto;cursor:pointer}
+.world-stage a:hover text,.world-stage a:focus-visible text{fill:var(--un-ink);text-decoration:underline}
+.world-stage a:focus-visible{outline:none}
+.world-stage .stage-note b{font-weight:600;color:var(--ink)}
+.world-stage .stage-note a{color:var(--un-ink);text-decoration:underline;text-underline-offset:3px}
+
+/* ── keys ────────────────────────────────────────────────────────────── */
+.stage-key i.q0,.stage-key i.hair,.stage-key i.fin-hair{background:var(--paper-raised);border:1px solid var(--rule-strong)}
+.stage-key i.hair{border-style:dashed}
+.stage-key i.fin{background:var(--fin)}
+.stage-key i.fin-hair{border:1.5px solid var(--fin)}
+.stage-key i.f0{background:repeating-linear-gradient(135deg,var(--ink-4) 0 1.5px,var(--paper-sunken) 1.5px 5px)}
+.stage-key i.f1{background:repeating-linear-gradient(45deg,var(--ink-4) 0 1.5px,var(--paper-sunken) 1.5px 5px)}
+.stage-key i.f2{background:repeating-linear-gradient(90deg,var(--ink-4) 0 1.5px,var(--paper-sunken) 1.5px 5px)}
+.stage-key i.f3{background:repeating-linear-gradient(0deg,var(--ink-4) 0 1.5px,var(--paper-sunken) 1.5px 5px)}
+.stage-key i.f4{background:repeating-linear-gradient(45deg,var(--ink-4) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(135deg,var(--ink-4) 0 1.5px,var(--paper-sunken) 1.5px 5px)}
+.stage-key i.f5{background:radial-gradient(var(--ink-4) 1.1px,var(--paper-sunken) 1.3px) 0 0/4px 4px}
+.stage-key.fam{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s1) var(--s4);flex-basis:100%}
+
+@media(max-width:767px){
+ .world .graphic .stage{align-self:start}
+ .world .hero-search{max-width:none}
+ .stage-key.fam{grid-template-columns:1fr}
+}

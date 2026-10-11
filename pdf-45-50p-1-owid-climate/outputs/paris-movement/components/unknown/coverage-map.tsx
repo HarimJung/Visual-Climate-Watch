@@ -32,7 +32,7 @@ const CHECKS=[
 
 const scoreOf=(r:RosterRow)=>({
  inventory:r.total_mtco2e!=null,
- target:r.reduction_pct!=null,
+ target:r.reduction_pct!=null||r.reduction_range_pct!=null,
  evidence:Object.values(r.btr_components??{}).some(c=>c.state!=='unknown'),
  vulnerability:r.ndgain_score!=null,
 });
@@ -61,7 +61,7 @@ export default function CoverageMap({map,roster}:{map:Basemap;roster:RosterRow[]
      const s=scoreOf(r);
      const have=CHECKS.filter(([k])=>s[k as keyof typeof s]);
      const miss=CHECKS.filter(([k])=>!s[k as keyof typeof s]);
-     return <a key={iso} href={`/country/${iso}#unread`} className="cov-a" aria-label={`${r.name_en}: ${have.length} of 4 established`}>
+     return <a key={iso} href={`/country/${iso}`} className="cov-a" aria-label={`${r.name_en}: ${have.length} of 4 established`}>
       <path d={d} className="cov-c" data-iso={iso} data-name={r.name_en}
        data-have={have.map(([,t])=>t).join('|')} data-miss={miss.map(([,t])=>t).join('|')}
        data-score={have.length}
@@ -73,12 +73,12 @@ export default function CoverageMap({map,roster}:{map:Basemap;roster:RosterRow[]
   <figcaption>
    {/* The map's own sentence, counted rather than asserted: what almost every
        country has not had read is the one thing only its own filing can supply. */}
-   <p className="cov-lede"><b>{tally[4]} of {drawn.length} countries have all four.</b> The one read for almost none of them is a target from their own filing: {drawn.filter(iso=>by.get(iso)!.reduction_pct==null).length} of the {drawn.length} drawn here have not had one read yet.</p>
+   <p className="cov-lede"><b>{tally[4]} of {drawn.length} countries have all four.</b> The one read for almost none of them is a target from their own filing: {drawn.filter(iso=>!scoreOf(by.get(iso)!).target).length} of the {drawn.length} drawn here have not had one read yet.</p>
    <ul className="cov-key">
     <li><svg className="cov-swatch" viewBox="0 0 22 13" aria-hidden="true"><rect width="22" height="13" fill="#f4f9fc"/></svg>nothing established<b>{tally[0]}</b></li>
     {RAMP.map((c,i)=><li key={c}><svg className="cov-swatch" viewBox="0 0 22 13" aria-hidden="true"><rect width="22" height="13" fill="#f4f9fc"/><rect width="22" height="13" fill={`url(#cov-dots-${i+1})`}/></svg>{i+1} of 4<b>{tally[i+1]}</b></li>)}
    </ul>
-   <p>Four things this engine could establish about a country: {CHECKS.map(([,t])=>t).join(', ')}.</p>
+   <p>Four things we could establish about a country: {CHECKS.map(([,t])=>t).join(', ')}.</p>
    <p className="cov-gaps">The map has its own gaps: {noShape.length} records we hold have no shape in this 110m base map ({noShape.slice(0,4).map(r=>r.iso3).join(', ')}…), and {noRecord.length} shapes on it have no record behind them. Base map: {map.$source}</p>
   </figcaption>
  </figure>;

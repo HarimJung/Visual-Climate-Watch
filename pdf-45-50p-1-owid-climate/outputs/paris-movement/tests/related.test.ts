@@ -14,28 +14,30 @@ test('a comparable figure places the country in three cohorts', () => {
  assert.deepEqual(r.cohorts.map(c=>c.basis),['region','income_group','all']);
  const all = r.cohorts.find(c=>c.basis==='all')!;
  assert.equal(all.countries,218);
- assert.ok(all.rank! >= 1 && all.rank! <= all.of);
- // the asked-for country is always in the returned rows, flagged
- assert.ok(r.cohorts.every(c=>c.rows.some(x=>x.iso3==='KHM'&&x.self)));
+ assert.equal(all.carries,true);
+ assert.ok(all.median!=null);
 });
 
 test('a cohort states how many of its members lack the figure', () => {
  const r = buildRelated(khm,'ndc.reduction_pct',roster);
  for (const c of r.cohorts) assert.equal(c.countries, c.of + c.without_figure, c.label);
- // 18 of 218 countries carry an accepted NDC target; the rest are not zeroes.
+ // 50 of 218 countries carry a read NDC target; the rest are not zeroes.
  const all = r.cohorts.find(c=>c.basis==='all')!;
  assert.equal(all.of + all.without_figure, 218);
  assert.ok(all.without_figure > all.of);
+ const region = r.cohorts.find(c=>c.basis==='region')!;
+ assert.ok(region.countries < all.countries);
 });
 
-test('cohorts are ranked high to low and the region cohort is a subset', () => {
- const r = buildRelated(khm,'ndc.reduction_pct',roster);
- const region = r.cohorts.find(c=>c.basis==='region')!;
- const all = r.cohorts.find(c=>c.basis==='all')!;
- assert.ok(region.countries < all.countries);
- for (const c of r.cohorts) {
-  const ranks = c.rows.map(x=>x.rank);
-  assert.deepEqual(ranks,[...ranks].sort((a,b)=>a-b));
+// PRD §8: no ranks, no grades. The word must not appear anywhere in the output.
+test('nothing in the output is a rank', () => {
+ for (const path of comparableFigures()) {
+  const r = buildRelated(khm,path,roster);
+  const keys = new Set<string>();
+  JSON.stringify(r,(k,v)=>{keys.add(k);return v});
+  assert.ok(!keys.has('rank'),`${path} carries a rank key`);
+  assert.ok(!keys.has('rows'),`${path} carries ranked rows`);
+  assert.ok(!/\brank/i.test(JSON.stringify(r)),`${path} says rank`);
  }
 });
 

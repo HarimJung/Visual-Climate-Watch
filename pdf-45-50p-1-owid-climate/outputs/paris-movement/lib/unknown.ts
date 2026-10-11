@@ -24,7 +24,11 @@ export type Census={
  gap_assessed:number;gap_refused:number;
  connected_sources:Record<string,number>;
  refusals_total:number;refusals_distinct_sentences:number;
+ /** v1.3: a headline read as a single figure or a range; ndc_target_accepted counts single figures only. */
+ ndc_headline_read?:number;ndc_target_ranges?:number;
 };
+/** Records whose headline pledge was read, a range included. Older censuses carry single figures only. */
+export const headlineRead=(c:Census)=>c.ndc_headline_read??c.ndc_target_accepted;
 
 export type Gap={
  id:string;label:string;
@@ -52,13 +56,13 @@ export function gaps(c:Census):Gap[]{
   {id:'btr-sockets',label:'BTR parts not read',
    unknown:c.btr_component_sockets-c.btr_components_evidenced,of:c.btr_component_sockets,unit:'parts',
    href:'/countries',link:'Pick a country: its record says which parts and why',
-   note:'Eight reporting parts for each of the '+c.countries+' countries. A part counts only when a filed document is named for it. The rest are unread, not unreported: adaptation and Article 6 sit in the body text of a filing this engine has not parsed.'},
+   note:'Eight reporting parts for each of the '+c.countries+' countries. A part counts only when a filed document is named for it. The rest are unread, not unreported: adaptation and Article 6 sit in the body text of a filing we have not parsed.'},
   {id:'ndc-target',label:'Countries with no target figure read from their own filing',
-   unknown:c.countries-c.ndc_target_accepted,of:c.countries,unit:'countries',
+   unknown:c.countries-headlineRead(c),of:c.countries,unit:'countries',
    href:'/refusals',link:'Why each filing was refused',
-   note:c.ndc_target_refused+' of them were read end to end and refused with a reason; the remaining '+(c.countries-c.ndc_documents_held)+' have no document this engine holds yet. A country here has not failed to pledge, we have failed to read a number out of what it filed.'},
-  {id:'target-tonnage',label:'Accepted targets that are still only a percentage',
-   unknown:c.ndc_target_accepted-c.ndc_target_tonnage_stated,of:c.ndc_target_accepted,unit:'targets',
+   note:(c.ndc_documents_held-headlineRead(c))+' of them were read end to end and refused with a reason; the remaining '+(c.countries-c.ndc_documents_held)+' have no document we hold yet. A country here has not failed to pledge, we have failed to read a number out of what it filed.'},
+  {id:'target-tonnage',label:'Targets read that are still only a percentage',
+   unknown:headlineRead(c)-c.ndc_target_tonnage_stated,of:headlineRead(c),unit:'targets',
    href:'/refusals',link:'The targets that stop at a percentage',
    note:'A percentage becomes tonnes only against a base year inventory or a published business-as-usual path. Without one the pledge cannot be put on the same axis as the emissions it is about.'},
   {id:'gap',label:'Countries whose delivery was not judged',
@@ -68,11 +72,11 @@ export function gaps(c:Census):Gap[]{
   {id:'finance',label:'Countries with no Green Climate Fund record read',
    unknown:c.countries-c.finance_countries,of:c.countries,unit:'countries',
    href:'/finance#unread',link:'The countries with no fund record read',
-   note:'An unread ledger, never a country that received nothing. The GCF is also one channel: bilateral aid, the Adaptation Fund, the GEF and the development banks are not counted anywhere in this engine.'},
+   note:'An unread ledger, never a country that received nothing. The GCF is also one channel: bilateral aid, the Adaptation Fund, the GEF and the development banks are not counted anywhere here.'},
   {id:'disbursement',label:'Fund records with no disbursement figure attributed',
    unknown:c.finance_countries-c.finance_disbursement_attributed,of:c.finance_countries,unit:'records',
    href:'/finance#plot',link:'The not-read lane on the finance chart',
-   note:'Approved and disbursed are different columns, and an unread disbursement is not a zero. Any rate quoted from this engine divides the countries that carry both figures, never the two totals.'},
+   note:'Approved and disbursed are different columns, and an unread disbursement is not a zero. Any rate quoted from this record divides the countries that carry both figures, never the two totals.'},
   {id:'vulnerability',label:'Countries with no vulnerability score',
    unknown:c.countries-c.vulnerability,of:c.countries,unit:'countries',
    href:'/countries',link:'Pick a country: its record says why',

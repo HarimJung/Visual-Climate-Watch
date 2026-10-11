@@ -1,0 +1,54 @@
+/* figure — every number is a door (components/studio/figure.tsx). Owned by the orchestrator (2026-10-10). Tokens come from globals.css :root. */
+
+/* The figure button: the number as set, with a dotted underline that says it opens.
+   Scoped to the button: the charts' SVG <text class="fig"> (stage.css) shares the class name and must not wear a door's underline. */
+button.fig{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer;text-align:inherit;
+ text-decoration:underline dotted;text-decoration-color:var(--rule-strong);text-underline-offset:3px;text-decoration-thickness:1px;
+ border-radius:2px;transition:text-decoration-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+button.fig:hover{text-decoration-color:var(--un-ink);color:var(--un-ink)}
+button.fig.is-open{text-decoration-style:solid;text-decoration-color:var(--un-ink)}
+button.fig:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+
+/* The receipt: a sheet on the right, over the readout, under the site header. */
+.receipt{position:fixed;top:var(--top-h);right:0;bottom:0;z-index:60;width:min(460px,100vw);overflow:auto;
+ background:var(--paper-raised);border-left:1px solid var(--rule);box-shadow:var(--shadow-2);
+ padding:var(--s4) var(--s5) var(--s6);font-family:var(--font-sans);font-size:var(--t2);line-height:1.5;color:var(--ink);font-variant-numeric:tabular-nums;
+ animation:receipt-in .26s var(--out) both}
+@keyframes receipt-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.receipt-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s3);padding-bottom:var(--s3);border-bottom:1px solid var(--rule)}
+.receipt-head h2{margin:2px 0 0;font:700 var(--t5)/1.2 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.receipt-k{display:block;font-size:var(--t0);font-weight:600;color:var(--ink-3)}
+.receipt-path{display:block;margin-top:4px;font:var(--t0) var(--font-code);color:var(--ink-4);word-break:break-all}
+.receipt-close{flex:none;width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:3px;background:none;color:var(--ink-2);cursor:pointer}
+.receipt-close:hover{border-color:var(--ink);color:var(--ink)}
+.receipt-sec{padding:var(--s3) 0;border-bottom:1px solid var(--rule)}
+.receipt-sec p{margin:0}
+.receipt-sec p+p{margin-top:4px}
+.receipt-value{display:block;font:800 clamp(28px,3vw,40px)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);margin-bottom:8px}
+.receipt blockquote{margin:6px 0 0;padding-left:12px;border-left:2px solid var(--un)}
+.receipt blockquote p{font-size:var(--t2);color:var(--ink)}
+.receipt blockquote cite{display:block;margin-top:2px;font-style:normal;font-size:var(--t0);color:var(--ink-3)}
+.receipt-quote{color:var(--ink-2);font-size:var(--t1);line-height:1.5}
+.receipt-reading p:first-of-type{color:var(--ink-2)}
+.receipt-fine{font-size:var(--t0);color:var(--ink-3)}
+.receipt-hash{display:grid;gap:2px;margin-top:6px!important}
+.receipt-hash span{font-size:var(--t0);color:var(--ink-3)}
+.receipt-hash code{font:var(--t0)/1.4 var(--font-code);color:var(--ink-2);word-break:break-all}
+.receipt a{color:var(--un-ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px;word-break:break-all}
+.receipt a:hover{text-decoration-color:currentColor}
+.receipt a svg{vertical-align:-1px;margin-left:2px}
+.receipt-cohorts{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}
+.receipt-cohorts li{display:grid;gap:1px}
+.receipt-cohorts b{font-weight:600;color:var(--ink)}
+.receipt-cohorts span{font-size:var(--t1);color:var(--ink-2)}
+.receipt-actions{display:flex;flex-wrap:wrap;gap:var(--s2);border-bottom:0}
+.receipt-actions .way{min-height:36px;font-size:var(--t1)}
+.receipt-actions .way svg{margin-left:2px}
+.receipt-cite{margin:0;padding-top:var(--s3);border-top:1px solid var(--rule);font:var(--t0)/1.5 var(--font-code);color:var(--ink-3);word-break:break-word}
+.receipt-wait,.receipt-error{margin:var(--s4) 0 0;font-size:var(--t1);color:var(--ink-3)}
+.receipt-error{color:var(--warn)}
+@media(max-width:767px){.receipt{top:0;width:100vw;z-index:80}}
+@media(prefers-reduced-motion:reduce){.receipt{animation:none}}
+/* Wide screens: the sheet keeps pace with the studio's larger type (studio.css). */
+@media(min-width:1700px){.receipt{width:min(520px,100vw)}}
+@media(min-width:2200px){.receipt{width:min(600px,100vw)}}

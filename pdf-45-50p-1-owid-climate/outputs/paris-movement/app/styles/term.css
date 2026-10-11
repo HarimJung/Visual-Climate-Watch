@@ -1,0 +1,20 @@
+/* term — a word that explains itself (components/studio/term.tsx). Owned by agent G (2026-10-10). Tokens from globals.css :root. */
+
+/* Not a door: a solid grey underline, the word's own colour, no blue. */
+button.term{display:inline;padding:0;margin:0;border:0;background:none;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;text-align:inherit;cursor:help;
+ text-decoration:underline solid 1px;text-decoration-color:var(--ink-4);text-underline-offset:3px;border-radius:2px}
+button.term:hover{text-decoration-color:var(--ink-2)}
+/* The ring sits on the word, and the fill carries focus where a clipping label (the pledge strip) cuts the ring. */
+button.term:focus-visible{outline:2px solid var(--ink-3);outline-offset:1px;background:var(--paper-sunken)}
+
+/* Placed by term.tsx (fixed, clamped to its column and the viewport). */
+.term-tip{position:fixed;z-index:90;max-width:32ch;padding:8px 10px;
+ background:var(--paper-raised);border:1px solid var(--rule);border-radius:3px;
+ font:400 var(--t1)/1.45 var(--font-sans);letter-spacing:0;text-transform:none;text-align:left;white-space:normal;color:var(--ink-2);
+ pointer-events:none;animation:term-in .6s var(--out) both}
+.term-tip b{display:block;margin-bottom:2px;font-weight:600;color:var(--ink)}
+@keyframes term-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.term-tip{animation:none}}
+
+/* The fixed explainer under the first refused and the first not-read blank (sheets/common.tsx Blanks). */
+.readout-blanks .blank-why{margin-top:4px;font-size:var(--t0);line-height:1.45;color:var(--ink-3)}

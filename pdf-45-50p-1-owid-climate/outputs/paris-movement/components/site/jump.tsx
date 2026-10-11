@@ -13,7 +13,7 @@ import type {RosterRow} from '@/lib/climate';
  */
 const PAGES=[
  {label:'Find a country',href:'/countries',hint:'search every record'},
- {label:'Compare countries',href:'/compare',hint:'finance, emission sources, what could not be read'},
+ {label:'The record as an instrument',href:'/movement',hint:'the instrument, one country in 3D'},
  {label:'Who is vulnerable, and what reached them?',href:'/finance',hint:'vulnerability and climate finance'},
  {label:'Where do the emission sources disagree?',href:'/divergence',hint:'same country, same year, different ledgers'},
  {label:'What could not be read, and why?',href:'/unknown',hint:'every blank and its reason'},
@@ -21,7 +21,7 @@ const PAGES=[
  {label:'Every figure we declined to compute',href:'/refusals',hint:'refusals and their reasons'},
  {label:'Teach with the record',href:'/teach',hint:'a 90-minute session in five tasks'},
  {label:'Who makes this record',href:'/about',hint:'about, how to cite, report an error'},
- {label:'Home',href:'/',hint:'the 3D record of one country'},
+ {label:'Home',href:'/',hint:'what has been filed, across 218 records'},
 ];
 
 export default function Jump(){
