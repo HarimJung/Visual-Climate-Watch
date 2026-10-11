@@ -1,0 +1,25 @@
+/* find — "Find in the record", retrieval over the record's own sentences (components/studio/find.tsx). Owned by agent F2 (2026-10-10). Tokens come from globals.css :root. */
+/* One hairline row at the top of the readout: the box, then the hits as quotes under it. No card, no shadow; the readout column (380 px) scrolls. */
+.find{min-width:0;margin:0 0 var(--s3);padding:0 0 var(--s2);border-bottom:1px solid var(--rule)}
+.find-q{width:100%;height:36px;padding:0;border:0;border-radius:0;background:none;font:400 var(--t2) var(--font-sans);color:var(--ink);outline:0;-webkit-appearance:none;appearance:none}
+.find-q::placeholder{color:var(--ink-4)}
+.find-q::-webkit-search-cancel-button,.find-q::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
+.find-q:focus-visible{box-shadow:inset 0 -1px 0 var(--un-ink)}
+
+.find-none{margin:var(--s2) 0 0;font-size:var(--t1);line-height:1.5;color:var(--ink-3)}
+.find-hits{margin:var(--s2) 0 0;padding:0;list-style:none}
+.find-hits li+li{border-top:1px solid var(--rule)}
+
+/* A hit: the sentence as quoted, the path under it in code. The same block whether it opens a receipt (button) or only quotes (blockquote). */
+.find-hit{display:block;width:100%;margin:0;padding:var(--s3) 0;border:0;background:none;font:400 var(--t1)/1.5 var(--font-sans);color:var(--ink-2);text-align:left;overflow-wrap:anywhere}
+.find-text{display:block;color:var(--ink)}
+.find-meta{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s1);font-size:var(--t0);color:var(--ink-4)}
+.find-path{font:var(--t0) var(--font-code);letter-spacing:0;color:var(--ink-4)}
+
+/* The door: the path wears the figure's dotted underline; hover and focus take UN blue, as every <Fig> does. */
+button.find-hit{cursor:pointer;border-radius:2px;transition:color var(--dur) var(--ease)}
+button.find-hit .find-path{text-decoration:underline dotted;text-decoration-color:var(--rule-strong);text-underline-offset:3px;text-decoration-thickness:1px;transition:text-decoration-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+button.find-hit:hover .find-text,button.find-hit:hover .find-path{color:var(--un-ink)}
+button.find-hit:hover .find-path{text-decoration-color:var(--un-ink)}
+button.find-hit:focus-visible{outline:2px solid var(--un-ink);outline-offset:-2px}
+@media(prefers-reduced-motion:reduce){.find-hit,.find-path{transition:none}}

@@ -1,0 +1,85 @@
+/* record — the full record as details on demand under the country story. Owned by agent C (2026-10-09). Tokens come from globals.css :root.
+   One column, the same 1320px as the story; summaries in Bricolage, figures in Hanken tabular; colour only on data. */
+
+/* ── the compact head: who this is, and the three take-aways first ───── */
+.rec-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s3) var(--s5);
+ max-width:1320px;margin:0 auto;padding:var(--s4) var(--gutter) 0;font-family:var(--font-sans)}
+.rec-id{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2) var(--s3);margin:0;font-size:var(--t2);color:var(--ink-3)}
+.rec-id b{font:700 var(--t4)/1.2 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.rec-id span+span::before{content:'·';margin-right:var(--s3);color:var(--rule-strong)}
+.rec-head .rec-actions{margin:0}
+
+/* ── the details ─────────────────────────────────────────────────────── */
+.rec-details{max-width:1320px;margin:0 auto;padding:0 var(--gutter) var(--s8);font-family:var(--font-sans);color:var(--ink)}
+.rec-details-h{margin:0 0 var(--s3);font:700 clamp(24px,2.2vw,32px)/1.1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-wrap:balance}
+.rec-sec{border-top:1px solid var(--rule);scroll-margin-top:calc(var(--top-h) + 12px)}
+.rec-sec:last-of-type{border-bottom:1px solid var(--rule)}
+.rec-sec>summary{display:grid;grid-template-columns:2.5ch minmax(0,1fr) auto;align-items:baseline;gap:var(--s2) var(--s4);padding:var(--s4) 0;cursor:pointer;list-style:none;
+ font-size:var(--t3);color:var(--ink-3);transition:color var(--dur) var(--ease)}
+.rec-sec>summary::-webkit-details-marker{display:none}
+.rec-sec>summary:hover,.rec-sec[open]>summary{color:var(--ink-2)}
+.rec-sec>summary:focus-visible{outline:2px solid var(--un-ink);outline-offset:2px}
+.rec-sec>summary i{font-style:normal;font-size:var(--t1);color:var(--ink-4);font-variant-numeric:tabular-nums}
+.rec-sec>summary b{font:700 var(--t5)/1.2 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.rec-sec>summary span{grid-column:2;font-variant-numeric:tabular-nums}
+.rec-sec>summary::after{content:'';grid-column:3;grid-row:1;width:8px;height:8px;margin-left:auto;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+ transform:rotate(45deg) translate(-2px,-2px);transition:transform var(--dur) var(--ease)}
+.rec-sec[open]>summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.rec-sec-body{padding:0 0 var(--s6) calc(2.5ch + var(--s4));max-width:1080px}
+.rec-sec-body>*+*{margin-top:var(--s4)}
+.rec-sec-body h3{margin:var(--s5) 0 var(--s2);font:600 var(--t3)/1.3 var(--font-sans);color:var(--ink)}
+.rec-sec-body h3 small{margin-left:var(--s2);font-weight:400;color:var(--ink-4)}
+.rec-sec-body .rec-note{margin:var(--s4) 0 0;font-size:var(--t2);line-height:1.6;max-width:72ch}
+.rec-sec-body .rec-actions{margin:0}
+.rec-sec-body .source-link{margin-top:var(--s3)}
+
+/* facts: a two-column list, the value in tabular figures */
+.rec-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 var(--s6);margin:0}
+.rec-facts>div{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--rule);font-size:var(--t2)}
+.rec-facts dt{color:var(--ink-3)}
+.rec-facts dt small{display:block;color:var(--ink-4)}
+.rec-facts dd{margin:0;text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* the eight parts of the report: magenta only where a part is read */
+.rec-parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s2) var(--s5);margin:0;padding:0;list-style:none}
+.rec-parts li{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2) var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--rule);font-size:var(--t2)}
+.rec-parts li::before{content:'';width:9px;height:9px;border:1px dashed var(--rule-strong);border-radius:50%;transform:translateY(1px)}
+.rec-parts li.observed::before{border:0;background:var(--btr)}
+.rec-parts li.absent::before{border:0;background:var(--dial-absent)}
+.rec-parts b{flex:1;font-weight:500;color:var(--ink)}
+.rec-parts span{color:var(--ink-3)}
+.rec-parts small{flex-basis:100%;padding-left:calc(9px + var(--s3));font:var(--t0)/1.5 var(--font-code);color:var(--ink-4);word-break:break-word}
+
+/* a blank and its reason, quoted; a verdict and its clause, quoted */
+.rec-details .rec-blank{display:block;margin:var(--s3) 0;padding:var(--s3) var(--s4);border:1px dashed var(--rule-strong);background:var(--paper-sunken);font-size:var(--t2);line-height:1.6;color:var(--ink-2);max-width:72ch}
+.rec-details .rec-blank b{font-weight:600;color:var(--ink)}
+.rec-verdict{margin:var(--s4) 0 0;padding:var(--s3) var(--s4);border-left:2px solid var(--rule-strong);font-size:var(--t2);line-height:1.6;color:var(--ink-2);max-width:72ch}
+.rec-verdict b{font-weight:600;color:var(--ink)}
+.rec-details .rec-cite{margin:0;padding:var(--s3) var(--s4);border:1px solid var(--rule);background:var(--paper-raised);font-size:var(--t2);line-height:1.6;color:var(--ink-2);overflow-wrap:anywhere}
+.rec-details .rec-why{margin:0}
+.rec-details .rec-why dt a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.rec-details .rec-why dt a:hover{color:var(--un-ink);text-decoration-color:currentColor}
+.rec-details .rec-scopes{margin:0}
+.rec-details .rec-split{margin-top:var(--s4);gap:var(--s5)}
+.rec-details .rec-inputs td.rec-num,.rec-details .rec-inputs th:has(+ th):nth-child(2){font-variant-numeric:tabular-nums}
+.rec-details .rec-inputs td.rec-num{text-align:right;white-space:nowrap}
+.rec-details .rec-inputs td a{font-family:var(--font-sans)}
+.rec-details .rec-run dd{font-family:var(--font-code)}
+.rec-details .disc.rec-inline{margin-top:var(--s4)}
+.rec-details .rec-foot{margin-top:var(--s6)}
+
+@media (max-width:767px){
+ .rec-head{padding-top:var(--s3)}
+ /* The title has to reach the first screen: the actions take one row, and Print (a desk task) steps aside. */
+ .rec-head .rec-actions{flex-wrap:nowrap}
+ .rec-head .rec-act{min-height:36px;padding:0 10px;font-size:13px}
+ .rec-head .rec-print{display:none}
+ .rec-sec>summary{grid-template-columns:2.5ch minmax(0,1fr) 12px}
+ .rec-sec>summary span{grid-column:2}
+ .rec-sec-body{padding-left:0}
+ .rec-facts>div{flex-wrap:wrap}
+ .rec-facts dd{text-align:left}
+}
+@media print{
+ .rec-sec>summary::after{display:none}
+}

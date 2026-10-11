@@ -33,6 +33,11 @@
       "split_state": "unknown",
       "extraction_confidence": "low"
     },
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "$reason": "the only figure read (13%) is one the document conditions on international support, and the document also labels a figure unconditional (8.11%, page 8) that could not be read against a basis and a year, so 13% alone would overstate the pledge.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -73,14 +78,13 @@
       "ctf": {
         "state": "observed",
         "$evidence": [
-          "CTF_Tables_NDC_Tracking___Sri_Lanka.xlsx",
-          "CTF_Tables__FTC___Sri_Lanka.xlsx"
+          "CTF_Tables_NDC_Tracking___Sri_Lanka.xlsx!Table 4!D7"
         ]
       },
       "ndc_track": {
         "state": "observed",
         "$evidence": [
-          "CTF_Tables_NDC_Tracking___Sri_Lanka.xlsx"
+          "CTF_Tables_NDC_Tracking___Sri_Lanka.xlsx!Table 4!D7"
         ]
       },
       "adaptation": {
@@ -100,12 +104,12 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "5 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
+    "$note": "5 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -120,7 +124,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -289,7 +293,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 35.148025374228226,
+        "value_mtco2e": 35.05687820937199,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -301,7 +305,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 39.52032995461352,
+        "value_mtco2e": 39.40795885330543,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -313,7 +317,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 39.29763093554511,
+        "value_mtco2e": 39.19873829754141,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -325,7 +329,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 39.415615477041854,
+        "value_mtco2e": 39.412548559106426,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -337,7 +341,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 41.50848195064285,
+        "value_mtco2e": 41.58041620725745,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -349,7 +353,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 40.080821747896756,
+        "value_mtco2e": 40.13463090378938,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -361,7 +365,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 39.648197897929606,
+        "value_mtco2e": 39.706330233714624,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -373,7 +377,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 40.23952869316968,
+        "value_mtco2e": 40.174601309624045,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -385,7 +389,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 40.14119791183251,
+        "value_mtco2e": 40.10593754512439,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -397,7 +401,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 42.22874790338231,
+        "value_mtco2e": 42.010238944380916,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -409,7 +413,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 43.0000919054058,
+        "value_mtco2e": 42.81489676830524,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -431,6 +435,10 @@
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
     "finance_flows",
@@ -449,7 +457,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
@@ -458,7 +466,14 @@
     "submission_date": "2025-09-25",
     "document_url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
     "archived_submissions": 2,
-    "matches_parsed_document": null,
+    "matches_parsed_document": true,
+    "latest_retrieval": {
+      "state": "observed",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260811115002id_/https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+      "capture_timestamp": "20260811115002",
+      "checked_at": "2026-10-10T21:25:32.260Z"
+    },
     "state": "observed",
     "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
     "source": {
@@ -466,7 +481,7 @@
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -486,48 +501,654 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
-    "kind": "First NDC",
+    "kind": "NDC 3.0",
     "language": "English",
-    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Sri%20Lanka%20First/Amendmend%20to%20the%20Updated%20Nationally%20Determined%20Contributions%20of%20Sri%20Lanka.pdf",
-    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/LKA_Sri-Lanka_First_NDC_English.pdf",
-    "submission_date": "2021-09-24",
-    "pages": 26,
+    "document_url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+    "retrieval_url": "https://web.archive.org/web/20260811115002id_/https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+    "submission_date": "2025-09-25",
+    "pages": 114,
     "reduction_pct": null,
     "basis": null,
     "base_year": null,
     "target_year": null,
     "unconditional_pct": null,
     "conditional_pct": null,
-    "net_zero_year": null,
+    "net_zero_year": 2050,
     "confidence": "low",
     "evidence": [
       {
-        "page": 7,
-        "sentence": "This will be 3% unconditional and 7% conditional against BAU scenarios."
+        "page": 37,
+        "sentence": "Targets and Ambition The implementation of the sectoral NDCs is projected to cumulatively reduce 13.0% or 8,130,200 MT CO2e between 2026 and 2035 against the BAU scenario with a total saving of 3,148,500 MT CO2e to be achieved already by 2030 through NDC 2.0."
+      },
+      {
+        "page": 8,
+        "sentence": "Of this reduction, 8.11% is unconditional, representing domestic efforts irrespective of external assistance, while 11.98% is conditional, contingent upon the availability of international financial, technical, and capacity-building support."
       }
     ],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "wayback",
+    "capture_timestamp": "20260811115002",
+    "document_sha256": "3f0435608e71e561c84eb3875d0994f2249b222455e4e5d9cba2460c7f21ec91",
     "state": "unknown",
-    "$reason": "the document states 2 different percentages on the same basis (3%, 7%) and does not label which is the pledge.",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "$reason": "the only figure read (13%) is one the document conditions on international support, and the document also labels a figure unconditional (8.11%, page 8) that could not be read against a basis and a year, so 13% alone would overstate the pledge.",
+    "$note": "Read by DS-06-NDC from the NDC 3.0 from the Internet Archive's capture of 2026-08-11 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
-      "id": "DS-06-NDC",
-      "name": "Sri Lanka First NDC",
-      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Sri%20Lanka%20First/Amendmend%20to%20the%20Updated%20Nationally%20Determined%20Contributions%20of%20Sri%20Lanka.pdf",
-      "retrieved_at": "2026-09-13"
+      "id": "DS-06-NDC-LATEST",
+      "name": "Sri Lanka NDC 3.0",
+      "url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "NDC 3.0",
+      "language": "English",
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+      "retrieval_url": "https://web.archive.org/web/20260811115002id_/https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+      "submission_date": "2025-09-25",
+      "pages": 114,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": 2050,
+      "confidence": "low",
+      "evidence": [
+        {
+          "page": 37,
+          "sentence": "Targets and Ambition The implementation of the sectoral NDCs is projected to cumulatively reduce 13.0% or 8,130,200 MT CO2e between 2026 and 2035 against the BAU scenario with a total saving of 3,148,500 MT CO2e to be achieved already by 2030 through NDC 2.0."
+        },
+        {
+          "page": 8,
+          "sentence": "Of this reduction, 8.11% is unconditional, representing domestic efforts irrespective of external assistance, while 11.98% is conditional, contingent upon the availability of international financial, technical, and capacity-building support."
+        }
+      ],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20260811115002",
+      "document_sha256": "3f0435608e71e561c84eb3875d0994f2249b222455e4e5d9cba2460c7f21ec91",
+      "headline": false,
+      "state": "unknown",
+      "$reason": "the only figure read (13%) is one the document conditions on international support, and the document also labels a figure unconditional (8.11%, page 8) that could not be read against a basis and a year, so 13% alone would overstate the pledge.",
+      "$note": "Read by DS-06-NDC from the NDC 3.0 from the Internet Archive's capture of 2026-08-11 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC-LATEST",
+        "name": "Sri Lanka NDC 3.0",
+        "url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    },
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Sri%20Lanka%20First/Amendmend%20to%20the%20Updated%20Nationally%20Determined%20Contributions%20of%20Sri%20Lanka.pdf",
+      "retrieval_url": "https://web.archive.org/web/20220110005918id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Sri%20Lanka%20First/Amendmend%20to%20the%20Updated%20Nationally%20Determined%20Contributions%20of%20Sri%20Lanka.pdf",
+      "submission_date": "2021-09-24",
+      "pages": 69,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": 2050,
+      "confidence": "low",
+      "evidence": [],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20220110005918",
+      "document_sha256": "76ba03a2b914280c9692804c6ac7984ddcddc517796ad42e26d8f798030543fb",
+      "headline": false,
+      "mirror_check": {
+        "result": "replaced",
+        "checked_at": "2026-10-11T14:22:38.077Z",
+        "capture_timestamp": "20220110005918"
+      },
+      "state": "unknown",
+      "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "$note": "Read by DS-06-NDC from the First NDC from the Internet Archive's capture of 2022-01-10 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Sri Lanka First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Sri%20Lanka%20First/Amendmend%20to%20the%20Updated%20Nationally%20Determined%20Contributions%20of%20Sri%20Lanka.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Sri Lanka",
+      "notes": [],
+      "signature": "1992-06-10",
+      "consent": "1993-11-23",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 3,
+          "sentence": "Sri Lanka 10 Jun 1992 23 Nov 1993"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Sri Lanka",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2016-09-21",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 3,
+          "sentence": "Sri Lanka 22 Apr 2016 21 Sep 2016"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "CTF_Tables_NDC_Tracking___Sri_Lanka.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/CTF%20Tables_NDC%20Tracking%20_%20Sri%20Lanka.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s492513--147a6d5bf4371f1a280a160ebf34e82a.xlsx",
+    "file_sha256": "42a53498627cc4cd3709f231f24df1c4f7b8a7a6b3eb247c26f0bf7f6d0cae4a",
+    "tables": [
+      {
+        "sheet": "Table 4",
+        "title": {
+          "cell": "Table 4!A1",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreementa"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table 4!A7",
+              "text": "Electricity (Power) sector GHG emission"
+            },
+            "unit": {
+              "cell": "Table 4!B7",
+              "text": "Gg"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": {
+                "cell": "Table 4!C7",
+                "value": 14650.43,
+                "literal": "14650.43"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D7",
+                "value": 7767.59,
+                "literal": "7767.59",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!J7",
+              "value": 49093,
+              "literal": "49093"
+            },
+            "target_period": {
+              "cell": "Table 4!K7",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L7",
+              "text": "-0.14000000000000001"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A8",
+              "text": "Total GHG emission in transport sector "
+            },
+            "unit": {
+              "cell": "Table 4!B8",
+              "text": "Gg"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": {
+                "cell": "Table 4!C8",
+                "value": 10985.32,
+                "literal": "10985.32"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D8",
+                "value": 9928,
+                "literal": "9928",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!J8",
+              "value": 5348,
+              "literal": "5348"
+            },
+            "target_period": {
+              "cell": "Table 4!K8",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L8",
+              "text": "-0.2"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A9",
+              "text": "Total GHG emission in IPPU sector"
+            },
+            "unit": {
+              "cell": "Table 4!B9",
+              "text": "gG "
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": null,
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D9",
+                "value": 519.29,
+                "literal": "519.29",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table 4!K9",
+              "text": "2030"
+            },
+            "progress": null,
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A10",
+              "text": "Total GHG removals in Forestry sector"
+            },
+            "unit": {
+              "cell": "Table 4!B10",
+              "text": "Gg CO2-eq"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": null,
+              "as_written": {
+                "cell": "Table 4!C10",
+                "text": "Base year (2010): -3,611.8"
+              }
+            },
+            "series": [],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table 4!K10",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L10",
+              "text": "Net removals increased by 101 Gg CO2-eq compared to base year, showing positive progress toward enhanced sink capacity"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!D10",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!E10",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!F10",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!J10",
+                "text": "Increase in net removals compared to 2010 levels"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A11",
+              "text": "Forest cover increase"
+            },
+            "unit": {
+              "cell": "Table 4!B11",
+              "text": "ha "
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": null,
+              "as_written": {
+                "cell": "Table 4!C11",
+                "text": "29.15% (2015)"
+              }
+            },
+            "series": [],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table 4!K11",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L11",
+              "text": "Land identification completed. Reforestation ongoing but below annual target of 2,000 ha. Management plans at 54% completion (271 of 500)"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!D11",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!E11",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!F11",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!J11",
+                "text": "32% of land area"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A12",
+              "text": "Quality improvement of growing stock"
+            },
+            "unit": {
+              "cell": "Table 4!B12",
+              "text": "% of land area"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": null,
+              "as_written": {
+                "cell": "Table 4!C12",
+                "text": "Base (2021): 200,000 ha degraded forests identified"
+              }
+            },
+            "series": [],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table 4!K12",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L12",
+              "text": "Assessment tools nearly complete. Initial restoration work begun. Boundary demarcation advancing"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!D12",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!E12",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!F12",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!J12",
+                "text": "200,000 ha restored"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A13",
+              "text": "Catchment protection"
+            },
+            "unit": {
+              "cell": "Table 4!B13",
+              "text": "ha"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": null,
+              "as_written": {
+                "cell": "Table 4!C13",
+                "text": "Baseline (2021): 3 plans"
+              }
+            },
+            "series": [],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table 4!K13",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L13",
+              "text": "Management planning on track. Tree planting meeting annual targets. Initial hazard assessments completed"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!D13",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!E13",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!F13",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!J13",
+                "text": "10 attachment management plans & associated planting"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A14",
+              "text": "Trees outside forests"
+            },
+            "unit": {
+              "cell": "Table 4!B14",
+              "text": "No. of plans & ha"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": null,
+              "as_written": {
+                "cell": "Table 4!C14",
+                "text": "Baseline: 100,000 trees/year"
+              }
+            },
+            "series": [],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table 4!K14",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!L14",
+              "text": "Exceeding annual baseline in 2021-2022. Decline in 2023. Implementation mechanism established"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!D14",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!E14",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!F14",
+                "text": "NE"
+              },
+              {
+                "cell": "Table 4!J14",
+                "text": "1,000,000 trees"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A15",
+              "text": "GHG reduction against the BAU scenario by 11% reduction in the waste sector"
+            },
+            "unit": {
+              "cell": "Table 4!B15",
+              "text": "Gg"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C4",
+                "text": "2021 (BAU)"
+              },
+              "value": {
+                "cell": "Table 4!C15",
+                "value": 657.9,
+                "literal": "657.9"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D15",
+                "value": 657.9,
+                "literal": "657.9",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!J15",
+              "value": 2549,
+              "literal": "2549"
+            },
+            "target_period": {
+              "cell": "Table 4!K15",
+              "text": "2030"
+            },
+            "progress": null,
+            "unread": []
+          }
+        ]
+      }
+    ],
+    "target_text": null,
+    "reference_text": [
+      {
+        "cell": "Table 1!B7",
+        "text": "Base year: 2021     Reference Point (base year emissions): BAU baseline"
+      }
+    ],
+    "superseded": [],
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/CTF%20Tables_NDC%20Tracking%20_%20Sri%20Lanka.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "unknown",
+    "$reason": "None of the 5 file(s) in the mirror's BTR1 folder for Sri Lanka is a CRT workbook by its name, so no inventory total was read. This is unread, not missing.",
+    "file": null,
+    "year": null,
+    "year_cell": null,
+    "party_cell": null,
+    "unit": null,
+    "totals": null,
+    "document_url": null,
+    "retrieval_url": null,
+    "file_sha256": null,
+    "in_by_source": false,
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_flows": {
     "channel": "Green Climate Fund",
-    "approved_usd": 106081256,
-    "co_financing_usd": 145582970,
+    "approved_usd": 105997470,
+    "co_financing_usd": 145181992,
     "disbursed_usd": 50410385,
     "projects": 5,
     "regional_projects": 3,
-    "regional_disbursed_usd": 106180481,
+    "regional_disbursed_usd": 105608249,
     "instruments": [
       "Equity",
       "Grants",
@@ -640,7 +1261,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 4638256.08,
+        "amount_usd": 4554469.58,
         "project_ref": "FP194",
         "project_name": "Programme for Energy Efficiency in Buildings (PEEB) Cool",
         "state": "observed"
@@ -702,12 +1323,12 @@
       }
     ],
     "state": "observed",
-    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 3 multi-country project(s) disbursing 106,180,481 USD in total are counted separately and never divided.",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 3 multi-country project(s) disbursing 105,608,249 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -994,47 +1615,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 35.148025374228226
+            "value_mtco2e": 35.05687820937199
           },
           {
             "year": 2016,
-            "value_mtco2e": 39.52032995461352
+            "value_mtco2e": 39.40795885330543
           },
           {
             "year": 2017,
-            "value_mtco2e": 39.29763093554511
+            "value_mtco2e": 39.19873829754141
           },
           {
             "year": 2018,
-            "value_mtco2e": 39.415615477041854
+            "value_mtco2e": 39.412548559106426
           },
           {
             "year": 2019,
-            "value_mtco2e": 41.50848195064285
+            "value_mtco2e": 41.58041620725745
           },
           {
             "year": 2020,
-            "value_mtco2e": 40.080821747896756
+            "value_mtco2e": 40.13463090378938
           },
           {
             "year": 2021,
-            "value_mtco2e": 39.648197897929606
+            "value_mtco2e": 39.706330233714624
           },
           {
             "year": 2022,
-            "value_mtco2e": 40.23952869316968
+            "value_mtco2e": 40.174601309624045
           },
           {
             "year": 2023,
-            "value_mtco2e": 40.14119791183251
+            "value_mtco2e": 40.10593754512439
           },
           {
             "year": 2024,
-            "value_mtco2e": 42.22874790338231
+            "value_mtco2e": 42.010238944380916
           },
           {
             "year": 2025,
-            "value_mtco2e": 43.0000919054058
+            "value_mtco2e": 42.81489676830524
           }
         ]
       },
@@ -1278,7 +1899,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-09-25. 48 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (2). For 2024 the sources disagree: DS-35 42.7 MtCO₂e, DS-02 42.2 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 45.5 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 4% (unconditional) to 20% (conditional) reduction in GHG emissions from the energy sector, and 3% (unconditional) to 10% (conditional) from other sectors (transport, industry, forests and waste) by 2030 compared to the BAU scenario It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.88°C under SSP1-2.6 to +3.27°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-09-25. 48 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (2). For 2024 the sources disagree: DS-35 42.7 MtCO₂e, DS-02 42 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 45.5 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 4% (unconditional) to 20% (conditional) reduction in GHG emissions from the energy sector, and 3% (unconditional) to 10% (conditional) from other sectors (transport, industry, forests and waste) by 2030 compared to the BAU scenario It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.88°C under SSP1-2.6 to +3.27°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc_registry.submission_date",
@@ -1290,7 +1911,7 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-35 42.7 MtCO₂e, DS-02 42.2 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-35 42.7 MtCO₂e, DS-02 42 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
@@ -1526,8 +2147,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1540,8 +2161,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1554,8 +2175,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1568,8 +2189,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1582,8 +2203,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1596,8 +2217,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1610,8 +2231,8 @@
       ],
       "connection": "connected",
       "records": 2,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1624,8 +2245,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1638,8 +2259,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1652,10 +2273,24 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-11T14:22:35.888Z",
+      "retrieved_at": "2026-10-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -1666,8 +2301,8 @@
       ],
       "connection": "connected",
       "records": 15,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:43.203Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -1680,94 +2315,146 @@
       ],
       "connection": "connected",
       "records": 5,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "03ee6a4773438b7954b09b1d493943f177c26a1a0b73275a47de95aabd3272cc",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "c20d4f5b92c5b3552d69ac5335ae42411dc3fc1f0b09afad062ebf96cf4f0e8f",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
+        "source_id": "DS-06-NDC-LATEST",
+        "file_sha256": "3f0435608e71e561c84eb3875d0994f2249b222455e4e5d9cba2460c7f21ec91",
+        "retrieved_at": "2026-10-10T21:03:02.760Z",
+        "url": "https://web.archive.org/web/20260811115002id_/https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf"
+      },
+      {
         "source_id": "DS-06-NDC",
-        "file_sha256": "2b264afa6268857b4526c1a088e5a2eb49c4a5f8787b8d0c9b9fe7440e674274",
-        "retrieved_at": "2026-09-13T03:20:24.781Z",
-        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/LKA_Sri-Lanka_First_NDC_English.pdf"
+        "file_sha256": "76ba03a2b914280c9692804c6ac7984ddcddc517796ad42e26d8f798030543fb",
+        "retrieved_at": "2026-10-11T14:22:38.077Z",
+        "url": "https://web.archive.org/web/20220110005918id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Sri%20Lanka%20First/Amendmend%20to%20the%20Updated%20Nationally%20Determined%20Contributions%20of%20Sri%20Lanka.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "42a53498627cc4cd3709f231f24df1c4f7b8a7a6b3eb247c26f0bf7f6d0cae4a",
+        "retrieved_at": "2026-10-10T20:43:26.109Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s492513--147a6d5bf4371f1a280a160ebf34e82a.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
@@ -1829,6 +2516,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -1837,6 +2529,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }

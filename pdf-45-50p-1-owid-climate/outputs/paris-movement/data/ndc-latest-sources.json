@@ -1,0 +1,2624 @@
+{
+  "$note": "Where the bytes of each NDC filing the registry lists as newer than the document DS-06-NDC read came from, written by engine/sources/ds-06-ndc-latest.ts. document_url is the registry link a reader is shown; retrieval_url is the copy that was fetched and checked (an R2 object of the PRIMAP mirror whose git-annex key names its size and MD5, or an Internet Archive capture whose SHA-1 equals the digest the Archive indexes), never unfccc.int itself. A row without a route says why in $reason.",
+  "resolver": "ds-06-ndc-latest@1",
+  "rows": [
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2022-06/NDC%20-%20Guatemala%202021.pdf",
+      "iso3": [
+        "GTM"
+      ],
+      "version": "Contribución Nacionalmente Determinada de Guatemala(Updated submission)",
+      "submission_date": "2022-05-23",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-11T14:23:50.196Z",
+      "rejected": [
+        {
+          "route": "primap-r2",
+          "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s224934746--5e83ed0bab19d99c8340f41b359dac9f.pdf",
+          "capture_timestamp": null,
+          "why": "the mirror's copy (224,934,746 bytes) has none of the 3 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
+        },
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260602163114id_/https://unfccc.int/sites/default/files/2022-06/NDC%20-%20Guatemala%202021.pdf",
+          "capture_timestamp": "20260602163114",
+          "why": "it has no end-of-file marker in its last 2 KB (230,686,724 bytes in all)"
+        }
+      ],
+      "$reason": "the Internet Archive's capture of 2024-11-25 could not be fetched on this run (failed: other side closed (4 attempts)), after a newer capture failed a check (the capture of 2026-06-02: it has no end-of-file marker in its last 2 KB (230,686,724 bytes in all)); the filing is looked for again on the next run.",
+      "transient": true
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2022-07/The%20Commonwealth%20of%20Dominica%20updated%20NDC%20July%204%20%2C.pdf",
+      "iso3": [
+        "DMA"
+      ],
+      "version": "The Commonwealth of Dominica Updated National Determined Contribution",
+      "submission_date": "2022-07-04",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260517215128id_/https://unfccc.int/sites/default/files/2022-07/The%20Commonwealth%20of%20Dominica%20updated%20NDC%20July%204%20%2C.pdf",
+      "capture_timestamp": "20260517215128",
+      "sha1": "6U6WJHZFZXTVQOPFSK5JO6WE3OQ26SCD",
+      "sha256": "9a162ddb7d40f5715b7e22049e76487a205eb5e29425efb90378b7d0553a65f7",
+      "size": 20730946,
+      "pages": 110,
+      "checked_at": "2026-10-10T21:25:30.783Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+      "iso3": [
+        "BRA"
+      ],
+      "version": "Second Nationally Determined Contribution",
+      "submission_date": "2024-11-13",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261002184710id_/https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+      "capture_timestamp": "20261002184710",
+      "sha1": "GBUP4QSI6NCQEM53FWFEX4WFHZRBFQF5",
+      "sha256": "ebbf1fdf7b35506bf86f5300e0f908af4f2f7ee3bb0e0b7ed8d845431ef4911b",
+      "size": 599738,
+      "pages": 44,
+      "checked_at": "2026-10-10T21:25:30.326Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2024-11/UAE-NDC3.0.pdf",
+      "iso3": [
+        "ARE"
+      ],
+      "version": "The United Arab Emirates’ Third Nationally Determined Contribution (NDC 3.0)",
+      "submission_date": "2024-11-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261005011735id_/https://unfccc.int/sites/default/files/2024-11/UAE-NDC3.0.pdf",
+      "capture_timestamp": "20261005011735",
+      "sha1": "VSAZMHBRNWO7BKOHZSG5EMS5VYZSSRQK",
+      "sha256": "bba950c864f5b985fbc580face7bef7062cbda722c60fe53b5710ddd35d5b060",
+      "size": 3573865,
+      "pages": 101,
+      "checked_at": "2026-10-10T21:25:29.956Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2024-12/BOTSWANA_NDC_2%20REPORT.pdf",
+      "iso3": [
+        "BWA"
+      ],
+      "version": "Botswana’s 2nd Updated Nationally Determined Contribution under the Paris Agreement",
+      "submission_date": "2024-12-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260807103023id_/https://unfccc.int/sites/default/files/2024-12/BOTSWANA_NDC_2%20REPORT.pdf",
+      "capture_timestamp": "20260807103023",
+      "sha1": "DN3A5H4TV6Z6MDZN3ZQII7KV6JD6HUEA",
+      "sha256": "a08cbe1fad58fc618cd698177253d6abfc4005dacb5ebcdec81f350ec94d17be",
+      "size": 1149536,
+      "pages": 48,
+      "checked_at": "2026-10-10T21:25:30.385Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+      "iso3": [
+        "URY"
+      ],
+      "version": "Third NDC",
+      "submission_date": "2024-12-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260809070233id_/https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+      "capture_timestamp": "20260809070233",
+      "sha1": "S7M3CGZ33PIISLCK4N2GQZQIVHDXPOP4",
+      "sha256": "1917f0814081daeb97d6f274900c62506baa757a6edc22d28b3634744f6875ea",
+      "size": 3027922,
+      "pages": 77,
+      "checked_at": "2026-10-10T21:25:33.460Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-01/New%20Zealand%27s%20second%20Nationally%20Determined%20Contribution.pdf",
+      "iso3": [
+        "NZL"
+      ],
+      "version": "New Zealand’s second Nationally Determined Contribution",
+      "submission_date": "2025-01-31",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260310024744id_/https://unfccc.int/sites/default/files/2025-01/New%20Zealand%27s%20second%20Nationally%20Determined%20Contribution.pdf",
+      "capture_timestamp": "20260310024744",
+      "sha1": "TBIBTEZUPM5PO7TQ4RDWLRSSUXB6UQ6N",
+      "sha256": "5ca0640e025d2895dc52ae70a43e426666299aa87fa65b1849c7be560bc720fe",
+      "size": 6372098,
+      "pages": 34,
+      "checked_at": "2026-10-10T21:25:32.881Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260510201121id_/https://unfccc.int/sites/default/files/2025-01/New%20Zealand%27s%20second%20Nationally%20Determined%20Contribution.pdf",
+          "capture_timestamp": "20260510201121",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-01/Switzerland%20second%20NDC%202031-2035.pdf",
+      "iso3": [
+        "CHE"
+      ],
+      "version": "second NDC 2031-2035",
+      "submission_date": "2025-01-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260727201517id_/https://unfccc.int/sites/default/files/2025-01/Switzerland%20second%20NDC%202031-2035.pdf",
+      "capture_timestamp": "20260727201517",
+      "sha1": "AT6EZKAHG54RZPFVCN3PEXEIXTPTM74Q",
+      "sha256": "a90b9753e0290131d27d27a14587448af46e6dc6240382274ee603f6b6d002af",
+      "size": 5613751,
+      "pages": 23,
+      "checked_at": "2026-10-10T21:25:30.462Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-01/UK%27s%202035%20NDC%20ICTU.pdf",
+      "iso3": [
+        "GBR"
+      ],
+      "version": "The UK’s 2035 NDC ICTU",
+      "submission_date": "2025-01-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260812132120id_/https://unfccc.int/sites/default/files/2025-01/UK%27s%202035%20NDC%20ICTU.pdf",
+      "capture_timestamp": "20260812132120",
+      "sha1": "SYRZMTOVEXBDV7RMBBPY7NNHVQOBQIK5",
+      "sha256": "5a9374f34d9d05da0fba48389ed5651d56fb0fc078fb35d9f84dbef62ce1b274",
+      "size": 623273,
+      "pages": 74,
+      "checked_at": "2026-10-10T21:25:31.008Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/001_eng_NDC_Montenegro.pdf",
+      "iso3": [
+        "MNE"
+      ],
+      "version": "Third NDC",
+      "submission_date": "2025-02-21",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260721050926id_/https://unfccc.int/sites/default/files/2025-02/001_eng_NDC_Montenegro.pdf",
+      "capture_timestamp": "20260721050926",
+      "sha1": "YIKBMRF7MDA4N5DMTMJPMNFCLBW2XCZG",
+      "sha256": "48fcc5bf7567b402034e62b0ee50143c1de5f481b991031a2f5b27da96d275ea",
+      "size": 453856,
+      "pages": 14,
+      "checked_at": "2026-10-10T21:25:32.634Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Canada%27s%202035%20Nationally%20Determined%20Contribution_ENc.pdf",
+      "iso3": [
+        "CAN"
+      ],
+      "version": "Canada's 2035 NDC",
+      "submission_date": "2025-02-12",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260905212647id_/https://unfccc.int/sites/default/files/2025-02/Canada%27s%202035%20Nationally%20Determined%20Contribution_ENc.pdf",
+      "capture_timestamp": "20260905212647",
+      "sha1": "RDUGKHZWMGNVBMOV6OBQQ7V3YOMFWZGN",
+      "sha256": "21eff012c7f0256155b012530c1adbd660ba0da91be3e321072c93393cd99ae5",
+      "size": 21314114,
+      "pages": 188,
+      "checked_at": "2026-10-10T21:25:30.411Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Japans%202035-2040%20NDC.pdf",
+      "iso3": [
+        "JPN"
+      ],
+      "version": "Japan's 2035/2040 NDC",
+      "submission_date": "2025-02-18",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260812132119id_/https://unfccc.int/sites/default/files/2025-02/Japans%202035-2040%20NDC.pdf",
+      "capture_timestamp": "20260812132119",
+      "sha1": "J6CT5OHRRECNVVYMAWLQ2L4ZXUU336IF",
+      "sha256": "b8adda6936562d6dfd14e1fcdf6a63a9dedf0c45bd40f19b6132a1647d95b20c",
+      "size": 290924,
+      "pages": 15,
+      "checked_at": "2026-10-10T21:25:31.986Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Lesotho%20SECOND%20NDC.pdf",
+      "iso3": [
+        "LSO"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-02-05",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251225031603id_/https://unfccc.int/sites/default/files/2025-02/Lesotho%20SECOND%20NDC.pdf",
+      "capture_timestamp": "20251225031603",
+      "sha1": "2Y45WG4YFUMXASUQSOJY4K4AFFG3RSRE",
+      "sha256": "d8de5a10167dfe243e1e0df34e8059d9ab29331f3f6f11b87c4f1b781ca74de2",
+      "size": 175509571,
+      "pages": 111,
+      "checked_at": "2026-10-10T21:25:32.276Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Maldives%E2%80%99%20Third%20Nationally%20Determined%20Contribution.pdf",
+      "iso3": [
+        "MDV"
+      ],
+      "version": "Maldives' Third Nationally Determined Contribution",
+      "submission_date": "2025-02-27",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260130095545id_/https://unfccc.int/sites/default/files/2025-02/Maldives%E2%80%99%20Third%20Nationally%20Determined%20Contribution.pdf",
+      "capture_timestamp": "20260130095545",
+      "sha1": "EYCGE7ONVW36KUMWUM7ABHYQHRF7HJUX",
+      "sha256": "b0e389a98ebe94e5cb9e8977c02b12a9220de531e572eaad26c47c7115092663",
+      "size": 2754706,
+      "pages": 50,
+      "checked_at": "2026-10-10T21:25:32.540Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/NDC%203.0%20ANDORRA.pdf",
+      "iso3": [
+        "AND"
+      ],
+      "version": "Third NDC",
+      "submission_date": "2025-02-05",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260221093807id_/https://unfccc.int/sites/default/files/2025-02/NDC%203.0%20ANDORRA.pdf",
+      "capture_timestamp": "20260221093807",
+      "sha1": "H7XMY35WGATATYWQA6UXU65HMSXT6OBP",
+      "sha256": "16aec478656af99f9c7e44e208e846188e80e8ae4f9ce567b65f0d42eb169b15",
+      "size": 7489975,
+      "pages": 18,
+      "checked_at": "2026-10-10T21:25:29.956Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Republic%20of%20the%20Marshall%20Islands%20NDC%203.0.pdf",
+      "iso3": [
+        "MHL"
+      ],
+      "version": "Third NDC",
+      "submission_date": "2025-02-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260516190322id_/https://unfccc.int/sites/default/files/2025-02/Republic%20of%20the%20Marshall%20Islands%20NDC%203.0.pdf",
+      "capture_timestamp": "20260516190322",
+      "sha1": "OFMNXMHFGIIRFU2US2ZNTGG3AGCWTWHM",
+      "sha256": "6b117dcf5e8a246a75a3772c98d5f1c71589c4fe0d44f85dacc4ef707338147a",
+      "size": 6027479,
+      "pages": 39,
+      "checked_at": "2026-10-10T21:25:32.614Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/REPUBLICA%20DE%20CUBA%20CND3.0.pdf",
+      "iso3": [
+        "CUB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-02-27",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260825110630id_/https://unfccc.int/sites/default/files/2025-02/REPUBLICA%20DE%20CUBA%20CND3.0.pdf",
+      "capture_timestamp": "20260825110630",
+      "sha1": "SLGYVMYN63AL4WBAQHRWFV4LLMWAQND4",
+      "sha256": "4c1c3389b78f7e921d0bc18b89a30353e3b183697f287b32e7e42c1d86c0def9",
+      "size": 1304499,
+      "pages": 42,
+      "checked_at": "2026-10-10T21:25:30.751Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Saint%20Lucias%20Third%20Nationally%20Determined%20Contribution.pdf",
+      "iso3": [
+        "LCA"
+      ],
+      "version": "Third NDC",
+      "submission_date": "2025-02-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260119061433id_/https://unfccc.int/sites/default/files/2025-02/Saint%20Lucias%20Third%20Nationally%20Determined%20Contribution.pdf",
+      "capture_timestamp": "20260119061433",
+      "sha1": "C2UG6QRFKDOEQ764JNJ63VBG4YY6GU47",
+      "sha256": "6e83f59f881b62bdcc0f361b39f77012f4950c02dba96f573fff53b1cfd1a299",
+      "size": 1466113,
+      "pages": 35,
+      "checked_at": "2026-10-10T21:25:32.233Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
+      "iso3": [
+        "ECU"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-02-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260920074101id_/https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
+      "capture_timestamp": "20260920074101",
+      "sha1": "KMAWGZBTVKZWLQRIFV5JKGNZIYSBIMBV",
+      "sha256": "c257cb90f1ac8ced54c346cff669384f3526e38ccf7ee5578e48dfc412998838",
+      "size": 17468791,
+      "pages": 118,
+      "checked_at": "2026-10-10T21:25:30.839Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Singapore%20Second%20Nationally%20Determined%20Contribution.pdf",
+      "iso3": [
+        "SGP"
+      ],
+      "version": "Second Nationally Determined Contribution",
+      "submission_date": "2025-02-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260831101845id_/https://unfccc.int/sites/default/files/2025-02/Singapore%20Second%20Nationally%20Determined%20Contribution.pdf",
+      "capture_timestamp": "20260831101845",
+      "sha1": "2BD5K5ZO5KHPXR7M6GFS4OYSD3OT33PX",
+      "sha256": "3793cf660dc97d66e4a7ed5a4ec0407e62f18f1f0f75cd06fb0c61356de9c6c0",
+      "size": 297205,
+      "pages": 31,
+      "checked_at": "2026-10-10T21:25:33.118Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-02/Zimbabwe%20NDC3.0%20Country%20Statement_2025_35.pdf",
+      "iso3": [
+        "ZWE"
+      ],
+      "version": "NDC3.0 Country Statement",
+      "submission_date": "2025-02-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260115110300id_/https://unfccc.int/sites/default/files/2025-02/Zimbabwe%20NDC3.0%20Country%20Statement_2025_35.pdf",
+      "capture_timestamp": "20260115110300",
+      "sha1": "K5SOICEJ4JXG2T3MTWWQWA2K6TD3IZFP",
+      "sha256": "8020becc08b5cd998ee98d64f7a5cdeb439935331bc0ff2b5fbd200c76ed17cb",
+      "size": 2415391,
+      "pages": 42,
+      "checked_at": "2026-10-10T21:25:33.673Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-05/KENYAS%20SECOND%20NATIONALLY%20DETERMINED%20CONTRIBUTION%202031_2035.pdf",
+      "iso3": [
+        "KEN"
+      ],
+      "version": "Kenya's Second Nationally Determined Contribution 2031 - 2035",
+      "submission_date": "2025-04-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260827140233id_/https://unfccc.int/sites/default/files/2025-05/KENYAS%20SECOND%20NATIONALLY%20DETERMINED%20CONTRIBUTION%202031_2035.pdf",
+      "capture_timestamp": "20260827140233",
+      "sha1": "M432U3GXDZYP4Y4M2QNABSA66KJL3SKZ",
+      "sha256": "ba0ad03ed3e42f242204e3e67a5597e2dfd107e2e804be80a42ef35552399d1a",
+      "size": 3134115,
+      "pages": 21,
+      "checked_at": "2026-10-10T21:25:32.054Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-05/MD_NDC_3.pdf",
+      "iso3": [
+        "MDA"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-05-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260608223530id_/https://unfccc.int/sites/default/files/2025-05/MD_NDC_3.pdf",
+      "capture_timestamp": "20260608223530",
+      "sha1": "G6LUCZ3V2ZO4PDT7SLWOG7P4NHRUVGDM",
+      "sha256": "ecf8d194e4613af949232c8e928d7a9c1f018c62ad81aa3a00008ad8d118c833",
+      "size": 1930139,
+      "pages": 81,
+      "checked_at": "2026-10-10T21:25:32.505Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-05/Nepal%20NDC3.pdf",
+      "iso3": [
+        "NPL"
+      ],
+      "version": "Nationally Determined Contribution (NDC) 3.0",
+      "submission_date": "2025-05-19",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261007085435id_/https://unfccc.int/sites/default/files/2025-05/Nepal%20NDC3.pdf",
+      "capture_timestamp": "20261007085435",
+      "sha1": "IDMPFHSOFX7NVU57KO2JNABZ5VYQJ4YT",
+      "sha256": "e5f996abd4b253414f9616ea6aeaef6e32e6778907326073ffd506649cf9383c",
+      "size": 927675,
+      "pages": 40,
+      "checked_at": "2026-10-10T21:25:32.851Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-06/BELIZE%20FINAL%20NDC%203.0.pdf",
+      "iso3": [
+        "BLZ"
+      ],
+      "version": "NDC 3.0 Update",
+      "submission_date": "2025-06-14",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260721050926id_/https://unfccc.int/sites/default/files/2025-06/BELIZE%20FINAL%20NDC%203.0.pdf",
+      "capture_timestamp": "20260721050926",
+      "sha1": "7CD4MEYAOSWSJ5KEXEPAWK5LSGXY4IRP",
+      "sha256": "7f10d27eda15207681abc249e226428b8db093f63eb46e54331192cd800d7e0d",
+      "size": 99503448,
+      "pages": 128,
+      "checked_at": "2026-10-10T21:25:30.196Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-06/Norways%20NDC%20for%202035..pdf",
+      "iso3": [
+        "NOR"
+      ],
+      "version": "NDC 2035",
+      "submission_date": "2025-06-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260812132116id_/https://unfccc.int/sites/default/files/2025-06/Norways%20NDC%20for%202035..pdf",
+      "capture_timestamp": "20260812132116",
+      "sha1": "6SWIYT423U3VYZMOHLRC5UUL7NPTQCVX",
+      "sha256": "799419225f0d5b04924d2c8ef72a5c95a66ba009bb8807e2bf2c2740bad06d88",
+      "size": 699070,
+      "pages": 16,
+      "checked_at": "2026-10-10T21:25:32.836Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-07/NDC_2025_Monaco.pdf",
+      "iso3": [
+        "MCO"
+      ],
+      "version": "MONACO NDC 2025",
+      "submission_date": "2025-07-16",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260902175027id_/https://unfccc.int/sites/default/files/2025-07/NDC_2025_Monaco.pdf",
+      "capture_timestamp": "20260902175027",
+      "sha1": "ELWKA5NID3M2MFXEPIB3OKDLS3FLRMMT",
+      "sha256": "0474615130f19c37224fd9e2a236060f0e57d93b0867b2e0f3c1bfe2c75f3684",
+      "size": 2276463,
+      "pages": 52,
+      "checked_at": "2026-10-10T21:25:32.490Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-07/NIUE%20NDC%203.0.pdf",
+      "iso3": [
+        "NIU"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-07-17",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251207011409id_/https://unfccc.int/sites/default/files/2025-07/NIUE%20NDC%203.0.pdf",
+      "capture_timestamp": "20251207011409",
+      "sha1": "NREW6LLRSO2X3HIQFLRTTB3ZLSR5SHKV",
+      "sha256": "58ffb07ee7e75e97f69fdd64392e936899a9e3bc4aebb54d615432290ee11523",
+      "size": 4230068,
+      "pages": 40,
+      "checked_at": "2026-10-10T21:25:32.819Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-08/Cambodia-NDC%203.0_0.pdf",
+      "iso3": [
+        "KHM"
+      ],
+      "version": "Cambodia’s NDC 3.0",
+      "submission_date": "2025-08-08",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260921203338id_/https://unfccc.int/sites/default/files/2025-08/Cambodia-NDC%203.0_0.pdf",
+      "capture_timestamp": "20260921203338",
+      "sha1": "TLEXHIR7HDWLUYEO2XDQIU5TYHPU3IQ2",
+      "sha256": "246c838fe60b582f7aaccea8966af70e20483ae0c5efe018c421325ca29155c4",
+      "size": 3003382,
+      "pages": 158,
+      "checked_at": "2026-10-10T21:25:32.103Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/%D0%A0%D0%A4%20%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9%20%D0%9E%D0%9D%D0%A3%D0%92.pdf",
+      "iso3": [
+        "RUS"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-09-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260606031946id_/https://unfccc.int/sites/default/files/2025-09/%D0%A0%D0%A4%20%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9%20%D0%9E%D0%9D%D0%A3%D0%92.pdf",
+      "capture_timestamp": "20260606031946",
+      "sha1": "4O7BOU7G5HMAEOUEOTHZWAJZLFPMMJYP",
+      "sha256": "9b397c5d7fa564a0f6d62137498756a6b90092929c956c2eb07985db0389e0da",
+      "size": 6115711,
+      "pages": 48,
+      "checked_at": "2026-10-10T21:25:33.041Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Angola%20NDC_September2025_Upload.pdf",
+      "iso3": [
+        "AGO"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-13",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260314014653id_/https://unfccc.int/sites/default/files/2025-09/Angola%20NDC_September2025_Upload.pdf",
+      "capture_timestamp": "20260314014653",
+      "sha1": "Y4CKA5VFGREIA2Q5O3WYHHE6D3ICBODI",
+      "sha256": "df9b234bcda291bd71ddf0bf7e053686a6581bf40399db93d59e6fae80f3e0ba",
+      "size": 9502602,
+      "pages": 114,
+      "checked_at": "2026-10-10T21:25:29.905Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Australias%20Second%20NDC.pdf",
+      "iso3": [
+        "AUS"
+      ],
+      "version": "Australia’s second NDC",
+      "submission_date": "2025-09-18",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260812072916id_/https://unfccc.int/sites/default/files/2025-09/Australias%20Second%20NDC.pdf",
+      "capture_timestamp": "20260812072916",
+      "sha1": "5GT7SXWVQWPJ6X4P7XCRBJDVNSDJ5DNR",
+      "sha256": "7dfc0d143285bcff73a900a133adf1e01d4ca5988de5471b27ce96f028e6d8aa",
+      "size": 4421665,
+      "pages": 36,
+      "checked_at": "2026-10-10T21:25:30.026Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Bangladesh%20Third%20Nationally%20Determined%20Contribution%20%28NDC%203.0%29.pdf",
+      "iso3": [
+        "BGD"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260927185548id_/https://unfccc.int/sites/default/files/2025-09/Bangladesh%20Third%20Nationally%20Determined%20Contribution%20%28NDC%203.0%29.pdf",
+      "capture_timestamp": "20260927185548",
+      "sha1": "225KFPIA5LVW5NYR6DSPG4T6YXKAIZ4B",
+      "sha256": "860841fa3ed37025990d89e8eaf81d2ab58b0b45604a9725a4fefa98f9b128d3",
+      "size": 6091033,
+      "pages": 80,
+      "checked_at": "2026-10-10T21:25:30.121Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Barbados%20Second%20NDC.pdf",
+      "iso3": [
+        "BRB"
+      ],
+      "version": "2025 Second Nationally Determined Contribution",
+      "submission_date": "2025-08-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251206074218id_/https://unfccc.int/sites/default/files/2025-09/Barbados%20Second%20NDC.pdf",
+      "capture_timestamp": "20251206074218",
+      "sha1": "T23E4EGQUYXVTRP64B4V5P2DGOAK5ENR",
+      "sha256": "7bccbe7949a7bd242d41738f3a44c80e5a697d2fdb73ab1f75d7a59a0cecbb86",
+      "size": 1373089,
+      "pages": 52,
+      "checked_at": "2026-10-10T21:25:30.357Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Bolivia_NDC3.0_2026-2035%20final%2029.09.2024.pdf",
+      "iso3": [
+        "BOL"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260827113441id_/https://unfccc.int/sites/default/files/2025-09/Bolivia_NDC3.0_2026-2035%20final%2029.09.2024.pdf",
+      "capture_timestamp": "20260827113441",
+      "sha1": "DQUGQX64FMASVQCLMFFS52OTBJHUJWSC",
+      "sha256": "181148e41d5c31b05a537086fe3fc2d3f95cc3115dacfae48e32e4919d94b801",
+      "size": 1603300,
+      "pages": 112,
+      "checked_at": "2026-10-10T21:25:30.326Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Eswatini%20NDC%203.0%20Report_for%20Submission%20-FINAL%20f.pdf",
+      "iso3": [
+        "SWZ"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-22",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251226060043id_/https://unfccc.int/sites/default/files/2025-09/Eswatini%20NDC%203.0%20Report_for%20Submission%20-FINAL%20f.pdf",
+      "capture_timestamp": "20251226060043",
+      "sha1": "CHFNQT6JRRZ7JW3BD4WVHB3JWDHLTFAP",
+      "sha256": "f9111a86cccf3e4e8f55782ac1233a576b6f298f23e9aa16b99a40dd7f691fa6",
+      "size": 3153360,
+      "pages": 42,
+      "checked_at": "2026-10-10T21:25:33.268Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Ethiopia%20NDC%203.0%20Final.pdf",
+      "iso3": [
+        "ETH"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260925175105id_/https://unfccc.int/sites/default/files/2025-09/Ethiopia%20NDC%203.0%20Final.pdf",
+      "capture_timestamp": "20260925175105",
+      "sha1": "VQAQN5C2WEZ347KG2THTNPAX6PXEAJSB",
+      "sha256": "2c7dadc4cd2f3fa50fa5adbf683d13df860ea06357b367de5e07d492c9a90df0",
+      "size": 1930617,
+      "pages": 29,
+      "checked_at": "2026-10-10T21:25:30.891Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/FSM%20NDC%203.0.pdf",
+      "iso3": [
+        "FSM"
+      ],
+      "version": "Federated States of Micronesia NDC 3.0",
+      "submission_date": "2025-09-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260225155145id_/https://unfccc.int/sites/default/files/2025-09/FSM%20NDC%203.0.pdf",
+      "capture_timestamp": "20260225155145",
+      "sha1": "RC4DYRU52G2XFYEMMCVCKT6EWRPKEU6Z",
+      "sha256": "4d52c8627b6d17a5eca48dd67db1a2a7f318171519876aeb1f01f9ead5f2c421",
+      "size": 4761338,
+      "pages": 68,
+      "checked_at": "2026-10-10T21:25:30.922Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Holy%20See_NDC%202035_September%202025.pdf",
+      "iso3": [
+        "VAT"
+      ],
+      "version": "NDC 2035",
+      "submission_date": "2025-09-16",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251206133150id_/https://unfccc.int/sites/default/files/2025-09/Holy%20See_NDC%202035_September%202025.pdf",
+      "capture_timestamp": "20251206133150",
+      "sha1": "HOP2J7OBULWFHMHBBYLX23ZQUNPCFINK",
+      "sha256": "b3d0aa6a650e15c0d804c34c2c93d5d46cbb990afa78ce8b639685145361e5af",
+      "size": 409731,
+      "pages": 6,
+      "checked_at": "2026-10-10T21:25:33.490Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Iceland%27s%202035%20NDC.pdf",
+      "iso3": [
+        "ISL"
+      ],
+      "version": "Iceland‘s NDC 2035",
+      "submission_date": "2025-09-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260508095730id_/https://unfccc.int/sites/default/files/2025-09/Iceland%27s%202035%20NDC.pdf",
+      "capture_timestamp": "20260508095730",
+      "sha1": "CL2HKQLR2HWIFWPINRXGQGYH2CNULDUQ",
+      "sha256": "e48c7b7c6c9a1a3987f6194856594dcc6494b471b75bcf7da6e86d020d274915",
+      "size": 485969,
+      "pages": 13,
+      "checked_at": "2026-10-10T21:25:31.945Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/ICTU%20Update%202025%20for%20Seychelles%20new%20NDC%203.0.pdf",
+      "iso3": [
+        "SYC"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251212034314id_/https://unfccc.int/sites/default/files/2025-09/ICTU%20Update%202025%20for%20Seychelles%20new%20NDC%203.0.pdf",
+      "capture_timestamp": "20251212034314",
+      "sha1": "ZFIO2YM6U5ZMXYT5BQPPDBMH3ESBHCEN",
+      "sha256": "bb8d43e263a81b9942b7c3f2496bb83def6848e997b8d58d4f10076873e01c9d",
+      "size": 489460,
+      "pages": 40,
+      "checked_at": "2026-10-10T21:25:33.284Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Jamaica%20ICTU%20Final%20Report%20Sep19.pdf",
+      "iso3": [
+        "JAM"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-22",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260906213200id_/https://unfccc.int/sites/default/files/2025-09/Jamaica%20ICTU%20Final%20Report%20Sep19.pdf",
+      "capture_timestamp": "20260906213200",
+      "sha1": "C36CBF4BBPGLXZ5P3AUAVUSG452LMP4H",
+      "sha256": "40fc66bd4d4d13a9125dd9e02ea4755023a689f73ab3b3fa9b971159624ac6b1",
+      "size": 1026523,
+      "pages": 23,
+      "checked_at": "2026-10-10T21:25:31.959Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Jordan%20NDC%203.0%20Vision_final.pdf",
+      "iso3": [
+        "JOR"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-22",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260217015720id_/https://unfccc.int/sites/default/files/2025-09/Jordan%20NDC%203.0%20Vision_final.pdf",
+      "capture_timestamp": "20260217015720",
+      "sha1": "Y7EZ5I5CVTUD6LBVNWM5E3MW2Y2OBBJX",
+      "sha256": "08bc02ded7914109e61ddc56e09b4415c1fac1ad80fcdb856fa170df41869ab9",
+      "size": 331100,
+      "pages": 12,
+      "checked_at": "2026-10-10T21:25:31.972Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/LBN%20NDC%203.0%2030.09.2025%20Final.pdf",
+      "iso3": [
+        "LBN"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251021221546id_/https://unfccc.int/sites/default/files/2025-09/LBN%20NDC%203.0%2030.09.2025%20Final.pdf",
+      "capture_timestamp": "20251021221546",
+      "sha1": "5TKZ6LFAUZ2SJWMUGHF4YAIDBSJOKGNV",
+      "sha256": "75e368032fd263bd7ba62757515f19e1c7bbd1b0cae67a8cc80299d40f6c47eb",
+      "size": 33987991,
+      "pages": 102,
+      "checked_at": "2026-10-10T21:25:32.162Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260711211928id_/https://unfccc.int/sites/default/files/2025-09/LBN%20NDC%203.0%2030.09.2025%20Final.pdf",
+          "capture_timestamp": "20260711211928",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Liberias_2035_NDC_3.0_Final.pdf",
+      "iso3": [
+        "LBR"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251212035109id_/https://unfccc.int/sites/default/files/2025-09/Liberias_2035_NDC_3.0_Final.pdf",
+      "capture_timestamp": "20251212035109",
+      "sha1": "QHI37TPNQIW4UXZFD6FACS7ZV72OWBYW",
+      "sha256": "66ccb345080e44d95dc63a829c97cb12d4f2e22552f6cfecd9468d617ec9111c",
+      "size": 2316080,
+      "pages": 61,
+      "checked_at": "2026-10-10T21:25:32.218Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Liechtensteins%20Second%20NDC%202035_September%202025.pdf",
+      "iso3": [
+        "LIE"
+      ],
+      "version": "Second NDC Submission",
+      "submission_date": "2025-09-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251126185543id_/https://unfccc.int/sites/default/files/2025-09/Liechtensteins%20Second%20NDC%202035_September%202025.pdf",
+      "capture_timestamp": "20251126185543",
+      "sha1": "HIRPLJ3UEST43O3HFE3IDLKX4KMHIMQL",
+      "sha256": "bb66fa1f89caa28ba9371c0035a2dc8777a2e66e7098b739d73401ca04dadfc6",
+      "size": 1132497,
+      "pages": 15,
+      "checked_at": "2026-10-10T21:25:32.247Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Mongolia%20NDC3_0%20under%20UNFCCC_PA%20FINAL.pdf",
+      "iso3": [
+        "MNG"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260827113440id_/https://unfccc.int/sites/default/files/2025-09/Mongolia%20NDC3_0%20under%20UNFCCC_PA%20FINAL.pdf",
+      "capture_timestamp": "20260827113440",
+      "sha1": "SYRIWFOGDKLR47UPYHNJPIRJE6MWERCS",
+      "sha256": "31596c3607191e45cd95858812bd5817834d9e2e1c71faa773bc40e0db6bf813",
+      "size": 801750,
+      "pages": 36,
+      "checked_at": "2026-10-10T21:25:32.647Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/NDC-2025-220925%201.pdf",
+      "iso3": [
+        "CHL"
+      ],
+      "version": "NDC 2025",
+      "submission_date": "2025-09-23",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260430210830id_/https://unfccc.int/sites/default/files/2025-09/NDC-2025-220925%201.pdf",
+      "capture_timestamp": "20260430210830",
+      "sha1": "MJZN7ZLUY3RKUETYVKBMC5NLDBZHRAI3",
+      "sha256": "63fb1af56d710ca5c5f4c3536332650216623a977a3fe55a4fccb831e1a369f3",
+      "size": 53555917,
+      "pages": 82,
+      "checked_at": "2026-10-10T21:25:30.462Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/NDC%203.0%20%20Mauritius.pdf",
+      "iso3": [
+        "MUS"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251122003246id_/https://unfccc.int/sites/default/files/2025-09/NDC%203.0%20%20Mauritius.pdf",
+      "capture_timestamp": "20251122003246",
+      "sha1": "Z3IBZSYQP57HB2Q6UUB6JTCEXIF7BH6G",
+      "sha256": "2548b70f8069047d984a131d0b01d2b9fdb0527438bc98165b2c34569fe77f0a",
+      "size": 1347708,
+      "pages": 51,
+      "checked_at": "2026-10-10T21:25:32.713Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/NDC%20NICARAGUA%202025%20-12.09.2025.pdf",
+      "iso3": [
+        "NIC"
+      ],
+      "version": "NDC 2025",
+      "submission_date": "2025-09-19",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260519080243id_/https://unfccc.int/sites/default/files/2025-09/NDC%20NICARAGUA%202025%20-12.09.2025.pdf",
+      "capture_timestamp": "20260519080243",
+      "sha1": "4D2NC77BWSRKNBOEFGVCF2GGCSE2QQFJ",
+      "sha256": "000a03cdd7e0bfe502b4060e27794876bcb0ba761b08a0ebb4d9d00b0e604cf6",
+      "size": 3482863,
+      "pages": 92,
+      "checked_at": "2026-10-10T21:25:32.801Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/NDC3%20of%20the%20Republic%20of%20Serbia.pdf",
+      "iso3": [
+        "SRB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-12",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251129210637id_/https://unfccc.int/sites/default/files/2025-09/NDC3%20of%20the%20Republic%20of%20Serbia.pdf",
+      "capture_timestamp": "20251129210637",
+      "sha1": "YAZ6RPCALDRQHMRRDZZXT6UVDUYXMY24",
+      "sha256": "b9dd6dcffac3fb81737ffb2c57007a80d291ea8470390701fb43874d1b983a3f",
+      "size": 329259,
+      "pages": 13,
+      "checked_at": "2026-10-10T21:25:33.218Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Nigeria%20NDC%203.0%20-%20Transimission%20Version%202.pdf",
+      "iso3": [
+        "NGA"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-22",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260925064506id_/https://unfccc.int/sites/default/files/2025-09/Nigeria%20NDC%203.0%20-%20Transimission%20Version%202.pdf",
+      "capture_timestamp": "20260925064506",
+      "sha1": "DEILBR543C7S3JOQKN52X3IH662SMKT2",
+      "sha256": "ccb575a010fb041532eda55b2a34d821b3efa4a1f345f96dd12a053e5bb8060e",
+      "size": 13282131,
+      "pages": 70,
+      "checked_at": "2026-10-10T21:25:32.773Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Pakistan_NDC3.0_24%20Sep.pdf",
+      "iso3": [
+        "PAK"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260811114959id_/https://unfccc.int/sites/default/files/2025-09/Pakistan_NDC3.0_24%20Sep.pdf",
+      "capture_timestamp": "20260811114959",
+      "sha1": "CZYFMMESW25AQBBORITCK7CSXOLVXQSP",
+      "sha256": "31eb0c497d0e620ac05ee35521d12df1fc29fca46a8cc35077dcd6187fc4112d",
+      "size": 1041574,
+      "pages": 59,
+      "checked_at": "2026-10-10T21:25:32.906Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Solomon%20Islands%20NDC%203.0.pdf",
+      "iso3": [
+        "SLB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-08-13",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260226000528id_/https://unfccc.int/sites/default/files/2025-09/Solomon%20Islands%20NDC%203.0.pdf",
+      "capture_timestamp": "20260226000528",
+      "sha1": "RWXSRPPGPRVZZPLMMUGYOJF5TYIY2LLG",
+      "sha256": "f1cb0fc9d6cb532784474bfc08da25300cfb90f8212a0bda68bdc85965c480e6",
+      "size": 1284179,
+      "pages": 34,
+      "checked_at": "2026-10-10T21:25:33.131Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Somalia%20NDC%203.0_Official_2025.pdf",
+      "iso3": [
+        "SOM"
+      ],
+      "version": "Updated Somalia's NDC 3.0",
+      "submission_date": "2025-09-08",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251128165217id_/https://unfccc.int/sites/default/files/2025-09/Somalia%20NDC%203.0_Official_2025.pdf",
+      "capture_timestamp": "20251128165217",
+      "sha1": "QBPCRA4U356WXN46ECLJDODGIP3POU2T",
+      "sha256": "38f99173365cedfaa0d11ce0fd6d6561e27f35941d46dbf0b79cc5f9253679e7",
+      "size": 18679184,
+      "pages": 58,
+      "checked_at": "2026-10-10T21:25:33.186Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+      "iso3": [
+        "LKA"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-25",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260811115002id_/https://unfccc.int/sites/default/files/2025-09/Sri%20Lankas%20Nationally%20Determined%20Contributions%203.0%20%282026-2035%29%20submitted%2022.09.2025%20%281%29.pdf",
+      "capture_timestamp": "20260811115002",
+      "sha1": "DOIQWJMATVJXPVR6KB7JKLRZ3GUQPJHE",
+      "sha256": "3f0435608e71e561c84eb3875d0994f2249b222455e4e5d9cba2460c7f21ec91",
+      "size": 2973253,
+      "pages": 114,
+      "checked_at": "2026-10-10T21:25:32.260Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Tongas%20Third%20Nationally%20Determined%20Contribution.pdf",
+      "iso3": [
+        "TON"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-23",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251206132745id_/https://unfccc.int/sites/default/files/2025-09/Tongas%20Third%20Nationally%20Determined%20Contribution.pdf",
+      "capture_timestamp": "20251206132745",
+      "sha1": "A7IS5UI4BGDRUNOHWLEXXGS327HBBAUX",
+      "sha256": "f0842c3e83d3184e811222165f4a8e89935da7516648f8b2f671afdf1390508e",
+      "size": 11186585,
+      "pages": 92,
+      "checked_at": "2026-10-10T21:25:33.348Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Tuvalu%20NDC%203.0%20-%20Secretariat%20Submission%20FINAL.pdf",
+      "iso3": [
+        "TUV"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260317040459id_/https://unfccc.int/sites/default/files/2025-09/Tuvalu%20NDC%203.0%20-%20Secretariat%20Submission%20FINAL.pdf",
+      "capture_timestamp": "20260317040459",
+      "sha1": "GQYSKY3LUXZQT2EGR6WFTNI4GKS67E2B",
+      "sha256": "64d2d14059f0cb296f03fef4fc4fb2c44a18912b177c80de69e3cbd3c6c837e1",
+      "size": 1588563,
+      "pages": 33,
+      "checked_at": "2026-10-10T21:25:33.420Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-09/Vanuatu%20NDC%203.0.pdf",
+      "iso3": [
+        "VUT"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251125020458id_/https://unfccc.int/sites/default/files/2025-09/Vanuatu%20NDC%203.0.pdf",
+      "capture_timestamp": "20251125020458",
+      "sha1": "HYC47536NY7H4VDDP7HEQCLPIVLOHVWQ",
+      "sha256": "437f336e620e8db666e1954ea023bcdaf37804853c93371592f66109b769e574",
+      "size": 31806522,
+      "pages": 146,
+      "checked_at": "2026-10-10T21:25:33.577Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/%5BFinal%5D%20Brunei%20Darussalam%27s%20Nationally%20Determined%20Contribution%203.0.pdf",
+      "iso3": [
+        "BRN"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-16",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260310213005id_/https://unfccc.int/sites/default/files/2025-10/%5BFinal%5D%20Brunei%20Darussalam%27s%20Nationally%20Determined%20Contribution%203.0.pdf",
+      "capture_timestamp": "20260310213005",
+      "sha1": "ZOD66DT56JE4QLRWHUYOHGVVWFDYPWWX",
+      "sha256": "ee5da96dc53e40247f3d414d06cde92f20b944da1104803d3c5acb986b7c548b",
+      "size": 789184,
+      "pages": 27,
+      "checked_at": "2026-10-10T21:25:30.357Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/CDN%203.0%20COTE%20D%27IVOIRE.pdf",
+      "iso3": [
+        "CIV"
+      ],
+      "version": "Côte D'Ivoire NDC 3.0",
+      "submission_date": "2025-10-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261008081548id_/https://unfccc.int/sites/default/files/2025-10/CDN%203.0%20COTE%20D%27IVOIRE.pdf",
+      "capture_timestamp": "20261008081548",
+      "sha1": "MNYI6O64VXYDDTKQWBNDR52WLDRBWCJP",
+      "sha256": "3112096186a9d06fecd02216fb800a7fa372227fd418cfbdcf3a78bd2b43e0b9",
+      "size": 5313706,
+      "pages": 132,
+      "checked_at": "2026-10-10T21:25:30.559Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/CDN3.0_Mauritanie_Signed.pdf",
+      "iso3": [
+        "MRT"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-10-28",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251122234225id_/https://unfccc.int/sites/default/files/2025-10/CDN3.0_Mauritanie_Signed.pdf",
+      "capture_timestamp": "20251122234225",
+      "sha1": "RCD2J4PCMN546YGOEVECKUFZHKHCYNJA",
+      "sha256": "0e899d0b7eb48409bbcba41e02c2f1f914e05ffaa95a57a06a7ed28e8065c907",
+      "size": 20138192,
+      "pages": 137,
+      "checked_at": "2026-10-10T21:25:32.674Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260518041558id_/https://unfccc.int/sites/default/files/2025-10/CDN3.0_Mauritanie_Signed.pdf",
+          "capture_timestamp": "20260518041558",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+      "iso3": [
+        "IDN"
+      ],
+      "version": "Republic Of Indonesia Second NDC",
+      "submission_date": "2025-10-27",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260907091725id_/https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+      "capture_timestamp": "20260907091725",
+      "sha1": "HEWSKVVC7O7DHPZLHGVJVTUXNWX7JFOB",
+      "sha256": "14819c3311fa9b23800b6169312432e93738e0e21aba6aa2a6b85a440b7d2b61",
+      "size": 1181333,
+      "pages": 56,
+      "checked_at": "2026-10-10T21:25:31.892Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/Malaysia%20NDC%203.0%20to%20UNFCCC%202025%20final.pdf",
+      "iso3": [
+        "MYS"
+      ],
+      "version": "NDC 3.0 2025",
+      "submission_date": "2025-10-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260811131549id_/https://unfccc.int/sites/default/files/2025-10/Malaysia%20NDC%203.0%20to%20UNFCCC%202025%20final.pdf",
+      "capture_timestamp": "20260811131549",
+      "sha1": "IOXPAFTVY4FEHLXK5HZ3WILGNXYHRDYB",
+      "sha256": "de76fc51ef71c816bdb00f8f2b4be100404f3c3a91d0c816feae1b74148bcb1d",
+      "size": 411099,
+      "pages": 16,
+      "checked_at": "2026-10-10T21:25:32.746Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/NDC3.0_Kyrgyzstan_Russian_30-09-2025.pdf",
+      "iso3": [
+        "KGZ"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-10-02",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251121233128id_/https://unfccc.int/sites/default/files/2025-10/NDC3.0_Kyrgyzstan_Russian_30-09-2025.pdf",
+      "capture_timestamp": "20251121233128",
+      "sha1": "ZSJFPZ6AMI34TIHYQ5HILAH2YPEKZJCT",
+      "sha256": "8c9954b70adac1493506f71ad25567b0406e0a2dc925283a4662037d763fa909",
+      "size": 12303333,
+      "pages": 99,
+      "checked_at": "2026-10-10T21:25:32.070Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260115002200id_/https://unfccc.int/sites/default/files/2025-10/NDC3.0_Kyrgyzstan_Russian_30-09-2025.pdf",
+          "capture_timestamp": "20260115002200",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/Revised%20NDC%202.0%20Final.pdf",
+      "iso3": [
+        "VCT"
+      ],
+      "version": "NDC 2.0",
+      "submission_date": "2025-09-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251123103041id_/https://unfccc.int/sites/default/files/2025-10/Revised%20NDC%202.0%20Final.pdf",
+      "capture_timestamp": "20251123103041",
+      "sha1": "IA4A64FS4V7RKJIOQGFXVAXHJKX5Y33W",
+      "sha256": "18645bb3dda43fd5b17c7fbe6ec2df036102766dd976b3e64ac841fb17ea57a6",
+      "size": 1692813,
+      "pages": 46,
+      "checked_at": "2026-10-10T21:25:33.503Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/Segunda%20Contribuci%C3%B3n%20Determinada%20Nacional%20CDN%202025-2030.pdf",
+      "iso3": [
+        "VEN"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-10-28",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260116042548id_/https://unfccc.int/sites/default/files/2025-10/Segunda%20Contribuci%C3%B3n%20Determinada%20Nacional%20CDN%202025-2030.pdf",
+      "capture_timestamp": "20260116042548",
+      "sha1": "JLMHAX3EYY7NLOPMLTI2BF3COX6RU37A",
+      "sha256": "054a52d6c0bea3315af703c1c68708fc1e4f3e4b2c0c9234b46260356c7533da",
+      "size": 31590865,
+      "pages": 302,
+      "checked_at": "2026-10-10T21:25:33.518Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/South%20Africa%27s%20second%20Nationally%20Determined%20Contribution_2025.pdf",
+      "iso3": [
+        "ZAF"
+      ],
+      "version": "South Africa's Second NDC",
+      "submission_date": "2025-10-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260929043319id_/https://unfccc.int/sites/default/files/2025-10/South%20Africa%27s%20second%20Nationally%20Determined%20Contribution_2025.pdf",
+      "capture_timestamp": "20260929043319",
+      "sha1": "BRFIL25M3CIRPENY2NXODJ3TRQDJER2B",
+      "sha256": "a7a7bdb078042570bac0d84b4f7521cd699a983588570da8b733579d1a50d4cb",
+      "size": 1001481,
+      "pages": 50,
+      "checked_at": "2026-10-10T21:25:33.643Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/%D9%88%D8%AB%D9%8A%D9%82%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%87%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AD%D8%AF%D8%AF%D8%A9%20%D9%88%D8%B7%D9%86%D9%8A%D8%A7%20-%202025.pdf",
+      "iso3": [
+        "IRQ"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-13",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251206023233id_/https://unfccc.int/sites/default/files/2025-11/%D9%88%D8%AB%D9%8A%D9%82%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%87%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AD%D8%AF%D8%AF%D8%A9%20%D9%88%D8%B7%D9%86%D9%8A%D8%A7%20-%202025.pdf",
+      "capture_timestamp": "20251206023233",
+      "sha1": "6MSBYJ4U4KRJAM3AHSBZCKZGYIH5TTJB",
+      "sha256": "f46723c9e7276d842d5c5e53d8f4b80a67cf79e16bd4d71e5a8497e68e669426",
+      "size": 5253271,
+      "pages": 50,
+      "checked_at": "2026-10-10T21:25:31.921Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260218021948id_/https://unfccc.int/sites/default/files/2025-11/%D9%88%D8%AB%D9%8A%D9%82%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%87%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AD%D8%AF%D8%AF%D8%A9%20%D9%88%D8%B7%D9%86%D9%8A%D8%A7%20-%202025.pdf",
+          "capture_timestamp": "20260218021948",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/2%20%D0%9D%D0%92%D0%922%20%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82%20%28%D0%B7%D0%BC%D1%96%D0%BD%D0%B5%D0%BD%D0%B0%20%D1%86%D1%96%D0%BB%D1%8C%20_%20%D0%B7%D0%B2%D1%96%D1%82%29%20.pdf",
+      "iso3": [
+        "UKR"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-11-11",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260715002025id_/https://unfccc.int/sites/default/files/2025-11/2%20%D0%9D%D0%92%D0%922%20%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82%20%28%D0%B7%D0%BC%D1%96%D0%BD%D0%B5%D0%BD%D0%B0%20%D1%86%D1%96%D0%BB%D1%8C%20_%20%D0%B7%D0%B2%D1%96%D1%82%29%20.pdf",
+      "capture_timestamp": "20260715002025",
+      "sha1": "OI522TFR7P637WAGZ2JL3JJQQD2G5XZK",
+      "sha256": "eb124ed64bb7faf2fc088a5a300d9bdf07a33bb7c1a1a7d114cfb5a73256331a",
+      "size": 404830,
+      "pages": 24,
+      "checked_at": "2026-10-10T21:25:33.449Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/2035%E5%B9%B4%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E8%87%AA%E4%B8%BB%E8%B4%A1%E7%8C%AE%E6%8A%A5%E5%91%8A.pdf",
+      "iso3": [
+        "CHN"
+      ],
+      "version": "China’s 2035 National Determined Contributions",
+      "submission_date": "2025-11-03",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260812125232id_/https://unfccc.int/sites/default/files/2025-11/2035%E5%B9%B4%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E8%87%AA%E4%B8%BB%E8%B4%A1%E7%8C%AE%E6%8A%A5%E5%91%8A.pdf",
+      "capture_timestamp": "20260812125232",
+      "sha1": "6ALJYIKJWYTIJO5CSHYFMFZKGYYJWO64",
+      "sha256": "33aa0cb3b4a1862496a39522b47d3c1ed2be0a52a54a9b1a1cd1764568c99167",
+      "size": 526879,
+      "pages": 35,
+      "checked_at": "2026-10-10T21:25:30.559Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/CDN%203.0%20DE%20LA%20REPUBLIQUE%20DE%20GUINEE.pdf",
+      "iso3": [
+        "GIN"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260823205321id_/https://unfccc.int/sites/default/files/2025-11/CDN%203.0%20DE%20LA%20REPUBLIQUE%20DE%20GUINEE.pdf",
+      "capture_timestamp": "20260823205321",
+      "sha1": "IWDIRHZ2IFLNW5HOYGFCWMPLLYUAK446",
+      "sha256": "ee5d4b3cfaebfb24ed481ab1e2190301e4479eb73d616fdd721f3353f0b5c194",
+      "size": 764979,
+      "pages": 37,
+      "checked_at": "2026-10-10T21:25:31.041Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/CDN%20revisee_Djibouti_Novembre%202025.pdf",
+      "iso3": [
+        "DJI"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-11-12",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260617105724id_/https://unfccc.int/sites/default/files/2025-11/CDN%20revisee_Djibouti_Novembre%202025.pdf",
+      "capture_timestamp": "20260617105724",
+      "sha1": "JET75OTSHXFHHF2GTIOLNSQE5KIIKNIL",
+      "sha256": "59f648b6ccc4e63b6d28a975bedf9ddfb821f6fdd002fb5b6428400d181a3f6c",
+      "size": 2087627,
+      "pages": 71,
+      "checked_at": "2026-10-10T21:25:30.752Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/CDN3.0%20%20BURUNDI.pdf",
+      "iso3": [
+        "BDI"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251125183039id_/https://unfccc.int/sites/default/files/2025-11/CDN3.0%20%20BURUNDI.pdf",
+      "capture_timestamp": "20251125183039",
+      "sha1": "I3VXBLS7CDBOWCMGILHY3S435EAGM2QV",
+      "sha256": "8f6d4b82104f9bc5059d7bbda1a959de3c788fe231e7d9b88ce5539f9afcfa65",
+      "size": 39363951,
+      "pages": 92,
+      "checked_at": "2026-10-10T21:25:30.057Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260606134557id_/https://unfccc.int/sites/default/files/2025-11/CDN3.0%20%20BURUNDI.pdf",
+          "capture_timestamp": "20260606134557",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/CND-2025-2035.pdf",
+      "iso3": [
+        "CRI"
+      ],
+      "version": "NDC 2025 - 2035",
+      "submission_date": "2025-11-14",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260305163119id_/https://unfccc.int/sites/default/files/2025-11/CND-2025-2035.pdf",
+      "capture_timestamp": "20260305163119",
+      "sha1": "FQDGO35WACERPYC5E4PW76MTIYJ73LZC",
+      "sha256": "57606c72910cf29435395b00b0107a0896046b99e29dc76b44f3523bb3acf2b4",
+      "size": 27876699,
+      "pages": 157,
+      "checked_at": "2026-10-10T21:25:30.686Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/DK-2025-11-05%20EU%20NDC.pdf",
+      "iso3": [
+        "AUT",
+        "BEL",
+        "BGR",
+        "CYP",
+        "CZE",
+        "DEU",
+        "DNK",
+        "ESP",
+        "EST",
+        "EUU",
+        "FIN",
+        "FRA",
+        "GRC",
+        "HRV",
+        "HUN",
+        "IRL",
+        "ITA",
+        "LTU",
+        "LUX",
+        "LVA",
+        "MLT",
+        "NLD",
+        "POL",
+        "PRT",
+        "ROU",
+        "SVK",
+        "SVN",
+        "SWE"
+      ],
+      "version": "The NDC of the European Union and its Member States",
+      "submission_date": "2025-11-05",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260928104649id_/https://unfccc.int/sites/default/files/2025-11/DK-2025-11-05%20EU%20NDC.pdf",
+      "capture_timestamp": "20260928104649",
+      "sha1": "ZAKGKHQHHXTIF5NQJTRCYF3PQQ4PMSYY",
+      "sha256": "407ddef0519841d4491d3a0cb51162d5fdd9b019fe5d94e51e0b8a67ee66566f",
+      "size": 514457,
+      "pages": 47,
+      "checked_at": "2026-10-10T21:25:30.026Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Documento%20NDC%203.0_UNFCCC.pdf",
+      "iso3": [
+        "PER"
+      ],
+      "version": "Peru’s Updated Nationally Determined Contribution (NDC 3.0)",
+      "submission_date": "2025-11-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260825204954id_/https://unfccc.int/sites/default/files/2025-11/Documento%20NDC%203.0_UNFCCC.pdf",
+      "capture_timestamp": "20260825204954",
+      "sha1": "C6YP62GBFQVYG3CK46T5TMTNYLPNLDHQ",
+      "sha256": "b3466638616e93b570f6d99b2a4ec3dc0b1b2dc48426591a49fe01408e7d6357",
+      "size": 9408586,
+      "pages": 87,
+      "checked_at": "2026-10-10T21:25:32.938Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Fiji%20NDC3.0_Final.pdf",
+      "iso3": [
+        "FJI"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251109080131id_/https://unfccc.int/sites/default/files/2025-11/Fiji%20NDC3.0_Final.pdf",
+      "capture_timestamp": "20251109080131",
+      "sha1": "PGPUEHPNAHINC46K5Z5TMRZ2YVATVMHP",
+      "sha256": "febfc2e79f408333e2369787f73c0b26c0a448a638c47bf2570c3fa9b88d56ac",
+      "size": 46327814,
+      "pages": 76,
+      "checked_at": "2026-10-10T21:25:30.904Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260613003036id_/https://unfccc.int/sites/default/files/2025-11/Fiji%20NDC3.0_Final.pdf",
+          "capture_timestamp": "20260613003036",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Mozambique%20ProvNDC_ENG.pdf",
+      "iso3": [
+        "MOZ"
+      ],
+      "version": "Mozambique's Provisional NDC 3.0",
+      "submission_date": "2025-11-05",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260517184733id_/https://unfccc.int/sites/default/files/2025-11/Mozambique%20ProvNDC_ENG.pdf",
+      "capture_timestamp": "20260517184733",
+      "sha1": "53JNZ6KJZOIAZNCZCZTOXOXGB5AEES7V",
+      "sha256": "afe71334291353893227a6d92fc1a8091b1be9d1c211bdcb1c96d8c265c25add",
+      "size": 213971,
+      "pages": 25,
+      "checked_at": "2026-10-10T21:25:32.660Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/NDC%203.0%20Cabo%20Verde.pdf",
+      "iso3": [
+        "CPV"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-01",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260816054739id_/https://unfccc.int/sites/default/files/2025-11/NDC%203.0%20Cabo%20Verde.pdf",
+      "capture_timestamp": "20260816054739",
+      "sha1": "QVOBOCOZNDHRX7XOXD5LAYJVUQR4JFIY",
+      "sha256": "c1bf6951cf9b0385ca2b2480e67adcd502f2f766985e24fd7c599cb91b12d7de",
+      "size": 8902578,
+      "pages": 94,
+      "checked_at": "2026-10-10T21:25:30.685Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/NDC%203%20report%20Suriname%20251104%20Final%20Publication%20Version.pdf",
+      "iso3": [
+        "SUR"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-05",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260207110759id_/https://unfccc.int/sites/default/files/2025-11/NDC%203%20report%20Suriname%20251104%20Final%20Publication%20Version.pdf",
+      "capture_timestamp": "20260207110759",
+      "sha1": "YUKSWVELJILK2DI4DNMNCYRKRNICQ5UK",
+      "sha256": "12fe31f49c73ee27cd175b5b6843f2148c9b7bf63425158791bc1c34cad97283",
+      "size": 21488623,
+      "pages": 166,
+      "checked_at": "2026-10-10T21:25:33.232Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/NDC%20Kazakhstan%203.0%20russ.pdf",
+      "iso3": [
+        "KAZ"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251202132707id_/https://unfccc.int/sites/default/files/2025-11/NDC%20Kazakhstan%203.0%20russ.pdf",
+      "capture_timestamp": "20251202132707",
+      "sha1": "EAUFYHRUX34X744RYEO5YPVDMEBIOROX",
+      "sha256": "c96864ef3893ce2529bb12ea2fb7e4ee9508266fab040701bab99cbfbb2cba50",
+      "size": 40310109,
+      "pages": 102,
+      "checked_at": "2026-10-10T21:25:31.998Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Pacto%20de%20Panam%C3%A1%20con%20la%20Naturaleza%20%28Nature%20Pledge%29.pdf",
+      "iso3": [
+        "PAN"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-27",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260605224411id_/https://unfccc.int/sites/default/files/2025-11/Pacto%20de%20Panam%C3%A1%20con%20la%20Naturaleza%20%28Nature%20Pledge%29.pdf",
+      "capture_timestamp": "20260605224411",
+      "sha1": "QIQS42BLPPJ76BKKDBP5CYUTK2VREN3P",
+      "sha256": "dc15f8b66632bc052ccc7c043d7f7f68b2aa18bddaa311dfbaffd8c7f1a392ce",
+      "size": 6642971,
+      "pages": 39,
+      "checked_at": "2026-10-10T21:25:32.919Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Paraguay%20NDC%203.0.pdf",
+      "iso3": [
+        "PRY"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260921165414id_/https://unfccc.int/sites/default/files/2025-11/Paraguay%20NDC%203.0.pdf",
+      "capture_timestamp": "20260921165414",
+      "sha1": "FDBZEOB4QGHG5ZTTXL645TEN6PM3VRPI",
+      "sha256": "b4ea9e20bd288be90599718a9e27cc022a5ac003de5c3b9c5daddffe0665e336",
+      "size": 29070172,
+      "pages": 138,
+      "checked_at": "2026-10-10T21:25:32.981Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+      "iso3": [
+        "QAT"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-21",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260730010532id_/https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+      "capture_timestamp": "20260730010532",
+      "sha1": "DL4J3VBSC373PJWBA6M4WMEW2AUYGZTU",
+      "sha256": "1ac0e67c3f1f1e45fb7e199f520f1aded441d23e96d69cf619982ca275385a7c",
+      "size": 722979,
+      "pages": 39,
+      "checked_at": "2026-10-10T21:25:33.028Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Republic%20of%20Belarus%20NDC%20for%202026-2035.pdf",
+      "iso3": [
+        "BLR"
+      ],
+      "version": "Republic of Belarus NDC for 2026-2035",
+      "submission_date": "2025-11-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260610191317id_/https://unfccc.int/sites/default/files/2025-11/Republic%20of%20Belarus%20NDC%20for%202026-2035.pdf",
+      "capture_timestamp": "20260610191317",
+      "sha1": "4MSUICSG2PCAR3ES4P5LNZR35SRDOUC2",
+      "sha256": "879977c958b50ff1daf6af6461ae35b840d6d119f18e1ea2dd95089a864add76",
+      "size": 590142,
+      "pages": 25,
+      "checked_at": "2026-10-10T21:25:30.196Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/The%20Bahamas%20NDC%203.0.pdf",
+      "iso3": [
+        "BHS"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-07",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260715002025id_/https://unfccc.int/sites/default/files/2025-11/The%20Bahamas%20NDC%203.0.pdf",
+      "capture_timestamp": "20260715002025",
+      "sha1": "E3P36GT6NNRLBK4DVGSWQCPCBC4FD2OU",
+      "sha256": "76f07cabeba8618b814b6392783856541a61ad5063ad2bba15269583846577f0",
+      "size": 3403497,
+      "pages": 153,
+      "checked_at": "2026-10-10T21:25:30.155Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/The%20Second%20NDC%20of%20T%C3%BCrkiye.pdf",
+      "iso3": [
+        "TUR"
+      ],
+      "version": "Second NDC (NDC 3.0)",
+      "submission_date": "2025-11-09",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260715002025id_/https://unfccc.int/sites/default/files/2025-11/The%20Second%20NDC%20of%20T%C3%BCrkiye.pdf",
+      "capture_timestamp": "20260715002025",
+      "sha1": "RJZ7Y6IKD56DCVOJCOEB7CWVHZ5GLIV2",
+      "sha256": "5e9ee188b3ddc97eb72d9a04465170672119f93878ddf7beb37a4d19a56e5de8",
+      "size": 366771,
+      "pages": 21,
+      "checked_at": "2026-10-10T21:25:33.408Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Third%20NDC%20%28Provisional%29_10%20November%202025.pdf",
+      "iso3": [
+        "BTN"
+      ],
+      "version": "Bhutan's NDC 3.0 (Provisional)",
+      "submission_date": "2025-11-10",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260305163118id_/https://unfccc.int/sites/default/files/2025-11/Third%20NDC%20%28Provisional%29_10%20November%202025.pdf",
+      "capture_timestamp": "20260305163118",
+      "sha1": "YEPIBRAXE76ECZUP7EMU5IZAOK3NLLSD",
+      "sha256": "aba94e2fd4b18b3b0c9f83e632276f4f1e581f7c34601d70ec44d854b10eaa4a",
+      "size": 349938,
+      "pages": 30,
+      "checked_at": "2026-10-10T21:25:30.384Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Uzbekistan%20Third%20NDC%20rus.pdf",
+      "iso3": [
+        "UZB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-06",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260311142357id_/https://unfccc.int/sites/default/files/2025-11/Uzbekistan%20Third%20NDC%20rus.pdf",
+      "capture_timestamp": "20260311142357",
+      "sha1": "4RMQZ76ZU3RP3OZ3GRA6I5R2N65NPPYP",
+      "sha256": "6a987b3ef19d76e3f53993cdd1a500b724929338a4e813055656498dfa6dd5ee",
+      "size": 834784,
+      "pages": 68,
+      "checked_at": "2026-10-10T21:25:33.475Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-12/30112025_Bahrain_2025NDC3.0_vSubmitted.pdf",
+      "iso3": [
+        "BHR"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-01",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260814121825id_/https://unfccc.int/sites/default/files/2025-12/30112025_Bahrain_2025NDC3.0_vSubmitted.pdf",
+      "capture_timestamp": "20260814121825",
+      "sha1": "YGI4UTNGXHCK5CVU753XTKQMFTGA3WMX",
+      "sha256": "ae228e210341f3c03b5d87dcab5a784ae94ff3d95044d0ecfd6784eb6447bcd6",
+      "size": 9479450,
+      "pages": 32,
+      "checked_at": "2026-10-10T21:25:30.155Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-12/NDC%203.0%20Transformaciones%20para%20la%20Vida%20%28Colombia%29.pdf",
+      "iso3": [
+        "COL"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-19",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260916113213id_/https://unfccc.int/sites/default/files/2025-12/NDC%203.0%20Transformaciones%20para%20la%20Vida%20%28Colombia%29.pdf",
+      "capture_timestamp": "20260916113213",
+      "sha1": "YXRNGA6EFDTTSIAONFLE6ECU7TGW2RFK",
+      "sha256": "e917b6213232efa601ce9bb74b71ea7b0e9ee6cdc144372fc683f43b700baf64",
+      "size": 7010133,
+      "pages": 458,
+      "checked_at": "2026-10-10T21:25:30.646Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-12/NDC3.0_Gabon_5_11_2025-final%20version.pdf",
+      "iso3": [
+        "GAB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260827113440id_/https://unfccc.int/sites/default/files/2025-12/NDC3.0_Gabon_5_11_2025-final%20version.pdf",
+      "capture_timestamp": "20260827113440",
+      "sha1": "PHB4D3H4SUTGBF25OAGHUH5GGTXWVWLL",
+      "sha256": "68cc14774c2cc3a5dd27c506aaa133987266ad1fe35009d0892c0abe87132c98",
+      "size": 4782854,
+      "pages": 110,
+      "checked_at": "2026-10-10T21:25:30.993Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-12/Rwanda%20NDC3.0%20Final.pdf",
+      "iso3": [
+        "RWA"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-08",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260102203926id_/https://unfccc.int/sites/default/files/2025-12/Rwanda%20NDC3.0%20Final.pdf",
+      "capture_timestamp": "20260102203926",
+      "sha1": "66MZKIZTAPCCGYT3J4SN4Y63N7RL4W7C",
+      "sha256": "950e71bd945a4a165aba3aed93546796584894ebe0093b9cc7deab9341d3f4f5",
+      "size": 5927668,
+      "pages": 152,
+      "checked_at": "2026-10-10T21:25:33.059Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260410162002id_/https://unfccc.int/sites/default/files/2025-12/Rwanda%20NDC3.0%20Final.pdf",
+          "capture_timestamp": "20260410162002",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-12/Sierra%20Leone%20NDC%203.0.pdf",
+      "iso3": [
+        "SLE"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-09",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261007014308id_/https://unfccc.int/sites/default/files/2025-12/Sierra%20Leone%20NDC%203.0.pdf",
+      "capture_timestamp": "20261007014308",
+      "sha1": "BLODGYA6RSTK5OH536MRAFT5BLW4RFRV",
+      "sha256": "49f41f21ddf19e7b0ec710e3a7afe7f05b7423533062fb17ccbf43006fdf123e",
+      "size": 2846602,
+      "pages": 147,
+      "checked_at": "2026-10-10T21:25:33.148Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2025-12/The%20Republic%20of%20Koreas%202035%20NDC.pdf",
+      "iso3": [
+        "KOR"
+      ],
+      "version": "The Republic of Korea's 2035 NDC",
+      "submission_date": "2025-12-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261004164451id_/https://unfccc.int/sites/default/files/2025-12/The%20Republic%20of%20Koreas%202035%20NDC.pdf",
+      "capture_timestamp": "20261004164451",
+      "sha1": "NSWI47T5EQTNLSBDIKPASVBQJVMOANZT",
+      "sha256": "f5f90ef5ff7050f33a821c614866bc326f7630c614ebdbe791feb00a1b6617ef",
+      "size": 232326,
+      "pages": 28,
+      "checked_at": "2026-10-10T21:25:32.150Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/2nd%20KSA%20NDC%20Document%20Final%20Document%20%2828122025%29_DNA.pdf",
+      "iso3": [
+        "SAU"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2025-12-31",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260701012350id_/https://unfccc.int/sites/default/files/2026-01/2nd%20KSA%20NDC%20Document%20Final%20Document%20%2828122025%29_DNA.pdf",
+      "capture_timestamp": "20260701012350",
+      "sha1": "BORAYVGHPAMLXBRK3PQW7L4N4O7O5CXW",
+      "sha256": "62ebc8f07146ae0cff63673b1cff2cc2912cc4200284c74580b476a91e372bc3",
+      "size": 855289,
+      "pages": 27,
+      "checked_at": "2026-10-10T21:25:33.089Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/Armenia%27s%20NDC%203.0.pdf",
+      "iso3": [
+        "ARM"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-31",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260504142217id_/https://unfccc.int/sites/default/files/2026-01/Armenia%27s%20NDC%203.0.pdf",
+      "capture_timestamp": "20260504142217",
+      "sha1": "C75AF5KXDTXD5WKSTQVB4FSSUVRATNKV",
+      "sha256": "f9625c8a2cfab7d77638f1d0013bd7e30fecd189b491a83a350a58906f3f7e19",
+      "size": 447164,
+      "pages": 43,
+      "checked_at": "2026-10-10T21:25:29.997Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/BKF-CDN%203.0_BURKINA%20FASO.pdf",
+      "iso3": [
+        "BFA"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-31",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260510025956id_/https://unfccc.int/sites/default/files/2026-01/BKF-CDN%203.0_BURKINA%20FASO.pdf",
+      "capture_timestamp": "20260510025956",
+      "sha1": "NLZBCVJJGQZO5KOHSOZXOR5DTWJHCTSU",
+      "sha256": "bce223b98e46e29a83aa3561699f06628f708a3e7af0ad9de8b70c698d946fc6",
+      "size": 1843358,
+      "pages": 91,
+      "checked_at": "2026-10-10T21:25:30.121Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/HON%20NDC%203.0%202026%20Oficial.pdf",
+      "iso3": [
+        "HND"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-01-21",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261009062236id_/https://unfccc.int/sites/default/files/2026-01/HON%20NDC%203.0%202026%20Oficial.pdf",
+      "capture_timestamp": "20261009062236",
+      "sha1": "XJHRQCYZXYNEGOXYLEI27MNYUYFJ7QN7",
+      "sha256": "a219759c7ae2e5b66dce93f1ade3125ef577079a6178e885a0034d7b65340714",
+      "size": 69420158,
+      "pages": 72,
+      "checked_at": "2026-10-10T21:25:31.687Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/Nauru%20NDC%203.pdf",
+      "iso3": [
+        "NRU"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-01-08",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260610190644id_/https://unfccc.int/sites/default/files/2026-01/Nauru%20NDC%203.pdf",
+      "capture_timestamp": "20260610190644",
+      "sha1": "IVNAD52PWQIPH4PPY4FI3U2EOLXLFVSX",
+      "sha256": "7e3f8ea926079eedfc6c0fd3ec0754aa62a0c3ed8fa53acc8225e4c17e97270d",
+      "size": 2070186,
+      "pages": 63,
+      "checked_at": "2026-10-10T21:25:32.866Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/Palau%20Final%20Endorsed%20NDC%203.0.pdf",
+      "iso3": [
+        "PLW"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-01-29",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260410162247id_/https://unfccc.int/sites/default/files/2026-01/Palau%20Final%20Endorsed%20NDC%203.0.pdf",
+      "capture_timestamp": "20260410162247",
+      "sha1": "PLJAQYZD5RYJZ6YII66UTZJ26RPHNB2K",
+      "sha256": "f95dfd3236d0615d2b03331676c32ba893244b1ad94b779ed68682c9acffc976",
+      "size": 4031385,
+      "pages": 58,
+      "checked_at": "2026-10-10T21:25:32.965Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/Samoa%20NDC3.0_FINAL.pdf",
+      "iso3": [
+        "WSM"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-01-14",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260404180131id_/https://unfccc.int/sites/default/files/2026-01/Samoa%20NDC3.0_FINAL.pdf",
+      "capture_timestamp": "20260404180131",
+      "sha1": "PMJUVWUHUWN3JXWXIPWG7BNITDO2GJDC",
+      "sha256": "449ab27e7034184eda0638979b39ca39f73acb84b56dc09521c36283ac868471",
+      "size": 6150514,
+      "pages": 45,
+      "checked_at": "2026-10-10T21:25:33.623Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/TH%20NDC%203.0.pdf",
+      "iso3": [
+        "THA"
+      ],
+      "version": "Thailand​ NDC 3.0",
+      "submission_date": "2025-11-04",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260428173814id_/https://unfccc.int/sites/default/files/2026-01/TH%20NDC%203.0.pdf",
+      "capture_timestamp": "20260428173814",
+      "sha1": "EEBCL7RTDDPQW6JQMA4GYD54YK4GLG6Y",
+      "sha256": "747620021ad2acecb9c0e57ed48e2f48905c3e9a24cf90ca696b02318aed2c9b",
+      "size": 513932,
+      "pages": 15,
+      "checked_at": "2026-10-10T21:25:33.299Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-01/Trinidad%20and%20Tobago%20Second%20NDC%20%20.pdf",
+      "iso3": [
+        "TTO"
+      ],
+      "version": "Second NDC",
+      "submission_date": "2026-01-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260415141510id_/https://unfccc.int/sites/default/files/2026-01/Trinidad%20and%20Tobago%20Second%20NDC%20%20.pdf",
+      "capture_timestamp": "20260415141510",
+      "sha1": "COIFI6Q625DX66PGJ6XSXM3OLI2Q7SUN",
+      "sha256": "a23c6ed3cdf63ddd347b15b170c426fc8301cb5052352d475820a1daf88fe997",
+      "size": 514816,
+      "pages": 21,
+      "checked_at": "2026-10-10T21:25:33.380Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-02/1Final%20Submission%20of%20Zambia%20NDC%203.0%20.pdf",
+      "iso3": [
+        "ZMB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-15",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260415065659id_/https://unfccc.int/sites/default/files/2026-02/1Final%20Submission%20of%20Zambia%20NDC%203.0%20.pdf",
+      "capture_timestamp": "20260415065659",
+      "sha1": "NXYMOIF6FR2NRCIKO3NKC2CHOHBWYWKR",
+      "sha256": "8fe5f2ca91390c4d99ad85fbbb1b42095265d9a00e813cd7dc0210c7afdb9a9c",
+      "size": 4964045,
+      "pages": 38,
+      "checked_at": "2026-10-10T21:25:33.656Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-02/CDN%203.0%20de%20la%20R%C3%A9publique%20du%20Congo%20version%20finale.pdf",
+      "iso3": [
+        "COG"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-02-12",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260914170526id_/https://unfccc.int/sites/default/files/2026-02/CDN%203.0%20de%20la%20R%C3%A9publique%20du%20Congo%20version%20finale.pdf",
+      "capture_timestamp": "20260914170526",
+      "sha1": "TX5AQ5XT6IKL4BYLIRKTJV3EUN5LX2B2",
+      "sha256": "45d9b7d2da844ea75d868cc0fafc90f52e5aa8890bf9f648120cb9fcf94278a7",
+      "size": 20315044,
+      "pages": 100,
+      "checked_at": "2026-10-10T21:25:30.598Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-02/Eri-NDC3.0%2007112025.pdf",
+      "iso3": [
+        "ERI"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-02-18",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260331182638id_/https://unfccc.int/sites/default/files/2026-02/Eri-NDC3.0%2007112025.pdf",
+      "capture_timestamp": "20260331182638",
+      "sha1": "TKHFSI2Z6IPNLD62AP4EILCVVKKBKPVB",
+      "sha256": "9fbfb5389f75c013f5a34d2344bee3954144acbcd0e9db93e72de8b117955bd9",
+      "size": 2832796,
+      "pages": 71,
+      "checked_at": "2026-10-10T21:25:30.875Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-03/CDN%203.0%20CAR%202025.pdf",
+      "iso3": [
+        "CAF"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-03-09",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260613143304id_/https://unfccc.int/sites/default/files/2026-03/CDN%203.0%20CAR%202025.pdf",
+      "capture_timestamp": "20260613143304",
+      "sha1": "DHUH2YJHXZC276QHAVERQQ3OATNIJZPQ",
+      "sha256": "4742f0941581eec1f69cca1ade081b63643cf9463b4337bac8e8aa113c67362f",
+      "size": 2144866,
+      "pages": 66,
+      "checked_at": "2026-10-10T21:25:30.411Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-03/CDN3.0%20Comores..pdf",
+      "iso3": [
+        "COM"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-03-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260428115227id_/https://unfccc.int/sites/default/files/2026-03/CDN3.0%20Comores..pdf",
+      "capture_timestamp": "20260428115227",
+      "sha1": "SQX4BEAGWWXBJ6SELDP4CZYGLCB6V3B6",
+      "sha256": "e0a6cfe9e2430fa599015501d32871ff5725713024d653bdb1d30db12fd5b62d",
+      "size": 7708653,
+      "pages": 135,
+      "checked_at": "2026-10-10T21:25:30.646Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-03/NDC_3.0_Georgia_EN.pdf",
+      "iso3": [
+        "GEO"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-03-25",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260331094519id_/https://unfccc.int/sites/default/files/2026-03/NDC_3.0_Georgia_EN.pdf",
+      "capture_timestamp": "20260331094519",
+      "sha1": "VGSJEN6WVZ7EVOKQPU3BDZ6UWTBBQTGM",
+      "sha256": "cabf1528cf49ac728ca703fbf8de9f34b6edc7b5a2590735995d6a8553ab9176",
+      "size": 27633681,
+      "pages": 37,
+      "checked_at": "2026-10-10T21:25:31.028Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260416174119id_/https://unfccc.int/sites/default/files/2026-03/NDC_3.0_Georgia_EN.pdf",
+          "capture_timestamp": "20260416174119",
+          "why": "it is cut off at exactly 5 MiB (5,242,880 bytes), the size at which crawlers cut a capture off"
+        }
+      ]
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-03/NDC%20de%20El%20Salvador%202025%20impresa_compressed%20vf.pdf",
+      "iso3": [
+        "SLV"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-12-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260708191746id_/https://unfccc.int/sites/default/files/2026-03/NDC%20de%20El%20Salvador%202025%20impresa_compressed%20vf.pdf",
+      "capture_timestamp": "20260708191746",
+      "sha1": "RAXIYB43NGEYGMKRVFUMA4SGRSLURKQM",
+      "sha256": "982c0e8c652384fca18518f3825c9fb152f59aae5c04b9ea20ca6c30588fec69",
+      "size": 7710852,
+      "pages": 82,
+      "checked_at": "2026-10-10T21:25:33.166Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-04/CDN%203.0%20DU%20MAROC.pdf",
+      "iso3": [
+        "MAR"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-09-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260604135451id_/https://unfccc.int/sites/default/files/2026-04/CDN%203.0%20DU%20MAROC.pdf",
+      "capture_timestamp": "20260604135451",
+      "sha1": "B6KBNSJQHI5GLRBLYKP3WTRXTSZNHDMC",
+      "sha256": "b6d73695e9c3d0cafad4767a1dcb5988de467aa4318c792062a2ee18732295e3",
+      "size": 3401782,
+      "pages": 110,
+      "checked_at": "2026-10-10T21:25:32.472Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-04/Document%20CDN3.0%20-version%20Finale.pdf",
+      "iso3": [
+        "TUN"
+      ],
+      "version": "Tunisian NDC 3.0",
+      "submission_date": "2025-09-22",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260503123938id_/https://unfccc.int/sites/default/files/2026-04/Document%20CDN3.0%20-version%20Finale.pdf",
+      "capture_timestamp": "20260503123938",
+      "sha1": "AJFFUET4ZOTU6R4VQ6RLFWZ5XERS4IUD",
+      "sha256": "b0bac076dcb21838b3af1c6af9993ecdc3e320410f80c066a3924fafc814091f",
+      "size": 2445049,
+      "pages": 67,
+      "checked_at": "2026-10-10T21:25:33.394Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-04/INDIA%20NDC%202031-35.pdf",
+      "iso3": [
+        "IND"
+      ],
+      "version": "NDC (2031 - 2035)",
+      "submission_date": "2026-04-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260912014051id_/https://unfccc.int/sites/default/files/2026-04/INDIA%20NDC%202031-35.pdf",
+      "capture_timestamp": "20260912014051",
+      "sha1": "YCAMJGMQBI6NUSQKEEYMPMIIIOPAI3HF",
+      "sha256": "700a448ce022b34fda0384f545b8e35978c05c1615b4efcf872fafbcfe25622a",
+      "size": 1083623,
+      "pages": 34,
+      "checked_at": "2026-10-10T21:25:31.907Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-06/CDN%203.0_BENIN.pdf",
+      "iso3": [
+        "BEN"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-06-01",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:30.063Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-06-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-06/CDN%203.0%20CMR%20FINAL.pdf",
+      "iso3": [
+        "CMR"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-06-17",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260816143919id_/https://unfccc.int/sites/default/files/2026-06/CDN%203.0%20CMR%20FINAL.pdf",
+      "capture_timestamp": "20260816143919",
+      "sha1": "3KT6ML5USHUUATHPICCKPJ3SZDA5I5WN",
+      "sha256": "725d8d896760de2b627e87750f3997455e8fbd61e9e2a5f16a4680210c37c292",
+      "size": 1751254,
+      "pages": 65,
+      "checked_at": "2026-10-10T21:25:30.598Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-06/CDN%20Algeria.pdf",
+      "iso3": [
+        "DZA"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-06-24",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:30.839Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-06-24) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-06/NDC_3.0_Versio%CC%81n%20Final_1303_conAnexos_REV_2.pdf",
+      "iso3": [
+        "DOM"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-06-09",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260716111513id_/https://unfccc.int/sites/default/files/2026-06/NDC_3.0_Versio%CC%81n%20Final_1303_conAnexos_REV_2.pdf",
+      "capture_timestamp": "20260716111513",
+      "sha1": "YW4I2RNF3GPC2AWNWHGYSPA6ME3TUSCE",
+      "sha256": "2636efb7ca69e74a99fb849e4d4dd1f061fce27499e5150ed3ffbc8ecac5cfab",
+      "size": 6724830,
+      "pages": 222,
+      "checked_at": "2026-10-10T21:25:30.783Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-06/Timor-Leste%20Updated%20NDC%203.0.pdf",
+      "iso3": [
+        "TLS"
+      ],
+      "version": "3.0",
+      "submission_date": "2026-06-09",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260807164752id_/https://unfccc.int/sites/default/files/2026-06/Timor-Leste%20Updated%20NDC%203.0.pdf",
+      "capture_timestamp": "20260807164752",
+      "sha1": "P5AQHAFHR3UZBEHJBGJPRVDWZG6MTBCL",
+      "sha256": "d850dbe364b36d9939885587c95fcf5ba10e1b2b7ec89567de225f0f71fbc151",
+      "size": 7234435,
+      "pages": 137,
+      "checked_at": "2026-10-10T21:25:33.324Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-07/Guyanas%20NDC%202025-2035%20V2.pdf",
+      "iso3": [
+        "GUY"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-07-01",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:31.117Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-07-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-07/NDC3.0%20Malawi_17June2026_Final%20Version.pdf",
+      "iso3": [
+        "MWI"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-07-01",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260810110305id_/https://unfccc.int/sites/default/files/2026-07/NDC3.0%20Malawi_17June2026_Final%20Version.pdf",
+      "capture_timestamp": "20260810110305",
+      "sha1": "XDX2LSZNIQELGQPQCPROMJR7W5LJYH52",
+      "sha256": "358805ee53eaba5e8908cb6c97ac8cbeb6dc06b765bea618b491a95407ed7a40",
+      "size": 5591142,
+      "pages": 95,
+      "checked_at": "2026-10-10T21:25:32.726Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-07/The%20Sultanate%20of%20Omans%20Third%20Nationally%20Determined%20Contributions%20%20%28NDC%203.0%29.pdf",
+      "iso3": [
+        "OMN"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-07-30",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:32.905Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-07-30) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-08/NDC%203.0%20M%C3%A9xico_spanish.pdf",
+      "iso3": [
+        "MEX"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-17",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260929042410id_/https://unfccc.int/sites/default/files/2026-08/NDC%203.0%20M%C3%A9xico_spanish.pdf",
+      "capture_timestamp": "20260929042410",
+      "sha1": "UGHZKEQJSTB3K5CAIVREHDT5M3BWODR5",
+      "sha256": "c03ec188aeee889c37317fba99d5f4ed41f3b0019883f8ff788c1ffbdc59292e",
+      "size": 40493761,
+      "pages": 172,
+      "checked_at": "2026-10-10T21:25:32.555Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-08/NDC%203.0%20Report_Azerbaijan_UPD.pdf",
+      "iso3": [
+        "AZE"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2025-11-05",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:30.057Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2025-11-05) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-08/State%20of%20Palestine%20NDC%203.pdf",
+      "iso3": [
+        "PSE"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-08-31",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:33.027Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-08/The%20Gambia%20NDC%203.0%20-30%20AUG%202026.pdf",
+      "iso3": [
+        "GMB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-08-31",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:31.100Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/1.%20PH%20Nationally%20Determined%20Contribution%202026.0715.pdf",
+      "iso3": [
+        "PHL"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-09-08",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:32.964Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-09-08) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/2026_MADAGASCAR_NDC3.0.pdf",
+      "iso3": [
+        "MDG"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-09-08",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261002121005id_/https://unfccc.int/sites/default/files/2026-09/2026_MADAGASCAR_NDC3.0.pdf",
+      "capture_timestamp": "20261002121005",
+      "sha1": "2MPXU4EFFY74R52TTR3PZIEIZMULTS5X",
+      "sha256": "77c1abc61693e42af38f3b725f37f313ef05a6c68ecc9e9dd5ed51e5c4cd46fb",
+      "size": 6060600,
+      "pages": 227,
+      "checked_at": "2026-10-10T21:25:32.520Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/2026.08.27%20NDC3_0_Updated%20VF-Eng.pdf",
+      "iso3": [
+        "STP"
+      ],
+      "version": "Updated NDC 3.0",
+      "submission_date": "2026-08-31",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:33.231Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/Albania%20NDC%203.0-%20Revised.pdf",
+      "iso3": [
+        "ALB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-09-16",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:32:15.283Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-09-16) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/CDN%20_3.0_Niger.pdf",
+      "iso3": [
+        "NER"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-09-23",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:32.772Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-09-23) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/NDC3.0%20_Guinea%20Bissau_EN.pdf",
+      "iso3": [
+        "GNB"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-09-22",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:31.100Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-09-22) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/TOGO_CDN3.0_2026.pdf",
+      "iso3": [
+        "TGO"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-09-07",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:33.298Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-09-07) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-10/CDN%203.0%20Tchad.pdf",
+      "iso3": [
+        "TCD"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-10-05",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:33.297Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-10-05) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/2026-10/NDC_Grenada_2025-v4-WEB.pdf",
+      "iso3": [
+        "GRD"
+      ],
+      "version": "NDC 3.0",
+      "submission_date": "2026-10-07",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:31.102Z",
+      "rejected": [],
+      "$reason": "no copy of this filing (filed 2026-10-07) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-05/Actualizacio%CC%81n%20meta%20de%20emisiones%202030.pdf",
+      "iso3": [
+        "ARG"
+      ],
+      "version": "Second NDC (Updated submission)",
+      "submission_date": "2021-11-02",
+      "route": "primap-r2",
+      "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s231518--48d391e8d60ffa603e5d741d8de5d2b0.pdf",
+      "capture_timestamp": null,
+      "mirror_path": "downloaded_data/UNFCCC/Argentina/NDC_Second_2021-11-02/Actualización_meta_de_emisiones_2030.pdf",
+      "annex_key": "MD5E-s231518--48d391e8d60ffa603e5d741d8de5d2b0.pdf",
+      "sha1": "M2PD6O2VNL5MQW7KJDLGVMEVYEDM5R67",
+      "sha256": "a1c15b35fad3b159d76fc6b4fe6d0cd0659159fef4917ccf54c4b468dd0c2401",
+      "size": 231518,
+      "pages": 18,
+      "checked_at": "2026-10-10T21:25:29.997Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-06/CDN%20Revisee%20Haiti%202022.pdf",
+      "iso3": [
+        "HTI"
+      ],
+      "version": "NDC revised(Updated submission)",
+      "submission_date": "2022-06-01",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "sha1": null,
+      "sha256": null,
+      "size": null,
+      "pages": null,
+      "checked_at": "2026-10-10T21:25:31.867Z",
+      "rejected": [
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20260623044820id_/https://unfccc.int/sites/default/files/NDC/2022-06/CDN%20Revisee%20Haiti%202022.pdf",
+          "capture_timestamp": "20260623044820",
+          "why": "it is cut off at exactly 30 MiB (31,457,280 bytes), the size at which crawlers cut a capture off"
+        },
+        {
+          "route": "wayback",
+          "retrieval_url": "https://web.archive.org/web/20220813130036id_/https://unfccc.int/sites/default/files/NDC/2022-06/CDN%20Revisee%20Haiti%202022.pdf",
+          "capture_timestamp": "20220813130036",
+          "why": "it is cut off at exactly 1 MiB (1,048,576 bytes), the size at which crawlers cut a capture off"
+        }
+      ],
+      "$reason": "no complete copy of this filing (filed 2022-06-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the PRIMAP mirror holds no file of this name filed that day, and each of the Internet Archive's 2 captured version(s) of its link failed a check (the capture of 2026-06-23: it is cut off at exactly 30 MiB (31,457,280 bytes), the size at which crawlers cut a capture off; the capture of 2022-08-13: it is cut off at exactly 1 MiB (1,048,576 bytes), the size at which crawlers cut a capture off)."
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-09/Updated%20NDC%20_Uganda_2022%20Final.pdf",
+      "iso3": [
+        "UGA"
+      ],
+      "version": "Uganda's Updated NDC",
+      "submission_date": "2022-09-12",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260214185612id_/https://unfccc.int/sites/default/files/NDC/2022-09/Updated%20NDC%20_Uganda_2022%20Final.pdf",
+      "capture_timestamp": "20260214185612",
+      "sha1": "FTSM2N3WYSSBDAXXCRIWDJ5VAUYJSBVC",
+      "sha256": "f704389e933535b320f3f1b64e8fd894153b795944b62760e996faa92aa699de",
+      "size": 1234539,
+      "pages": 69,
+      "checked_at": "2026-10-10T21:25:33.434Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-10/CND-GuineaEcuatorial-Version2022-Actualizada.pdf",
+      "iso3": [
+        "GNQ"
+      ],
+      "version": "NDC 2022 Update",
+      "submission_date": "2022-10-24",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20251121164041id_/https://unfccc.int/sites/default/files/NDC/2022-10/CND-GuineaEcuatorial-Version2022-Actualizada.pdf",
+      "capture_timestamp": "20251121164041",
+      "sha1": "XAPTE37B746V2ZZ7UCTOVVBWCZDNLC6K",
+      "sha256": "f0d652be87581a055dfbfb01fbaece0acb6084d5126180e053a878f94ee1d132",
+      "size": 1105030,
+      "pages": 40,
+      "checked_at": "2026-10-10T21:25:31.101Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-10/Sudan%20Updated%20First%20NDC-12102021.pdf",
+      "iso3": [
+        "SDN"
+      ],
+      "version": "Sudan's First NDC",
+      "submission_date": "2022-09-22",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260327132253id_/https://unfccc.int/sites/default/files/NDC/2022-10/Sudan%20Updated%20First%20NDC-12102021.pdf",
+      "capture_timestamp": "20260327132253",
+      "sha1": "BUJDUAUFX7SNLMCOFHO346QLMB53WZZE",
+      "sha256": "1b6e7095db731a527507ee539462c660a20560ff4690c8c1638865766afb9c70",
+      "size": 874410,
+      "pages": 30,
+      "checked_at": "2026-10-10T21:25:33.104Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-11/Viet%20Nam%20NDC%202022%20Update.pdf",
+      "iso3": [
+        "VNM"
+      ],
+      "version": "NDC 2022 Update",
+      "submission_date": "2022-11-08",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260221112702id_/https://unfccc.int/sites/default/files/NDC/2022-11/Viet%20Nam%20NDC%202022%20Update.pdf",
+      "capture_timestamp": "20260221112702",
+      "sha1": "DQCZ3U6QKWFTFKB7JOR4JXCHZPALYQAP",
+      "sha256": "cf3db69d1e217e4e866fe8e9c1c573e066e6ef0e7251b4230ec6460bbc4f44b5",
+      "size": 772987,
+      "pages": 43,
+      "checked_at": "2026-10-10T21:25:33.564Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2023-01/NDC_Turkmenistan_12-05-2022_approv.%20by%20Decree_Rus.pdf",
+      "iso3": [
+        "TKM"
+      ],
+      "version": "Nationally Determined Contribution of Turkmenistan under the Paris Agreement",
+      "submission_date": "2023-01-30",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260524031321id_/https://unfccc.int/sites/default/files/NDC/2023-01/NDC_Turkmenistan_12-05-2022_approv.%20by%20Decree_Rus.pdf",
+      "capture_timestamp": "20260524031321",
+      "sha1": "AJ53OEZZI4K746IBI6DJCI6E5AQVCWQI",
+      "sha256": "f3ecc942aebd1064e1de8203afc43d792b022f51456f729715c2e2f24d4729af",
+      "size": 834091,
+      "pages": 70,
+      "checked_at": "2026-10-10T21:25:33.312Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2023-03/221213%20Kiribati%20NDC%20Web%20Quality.pdf",
+      "iso3": [
+        "KIR"
+      ],
+      "version": "Enhanced NDC",
+      "submission_date": "2023-03-02",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260114035631id_/https://unfccc.int/sites/default/files/NDC/2023-03/221213%20Kiribati%20NDC%20Web%20Quality.pdf",
+      "capture_timestamp": "20260114035631",
+      "sha1": "KQTFETZO3WDNGBCYB5OIALALNNTUROST",
+      "sha256": "0e9dbb5526c98feaf560c7e9342838d703506a03ad762cc9cb8220f2e0913e47",
+      "size": 16192638,
+      "pages": 38,
+      "checked_at": "2026-10-10T21:25:32.119Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2023-06/Egypts%20Updated%20First%20Nationally%20Determined%20Contribution%202030%20%28Second%20Update%29.pdf",
+      "iso3": [
+        "EGY"
+      ],
+      "version": "Egypt’s Updated First Nationally Determined Contribution 2030 (Second Update)",
+      "submission_date": "2023-06-26",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260906002338id_/https://unfccc.int/sites/default/files/NDC/2023-06/Egypts%20Updated%20First%20Nationally%20Determined%20Contribution%202030%20%28Second%20Update%29.pdf",
+      "capture_timestamp": "20260906002338",
+      "sha1": "NICA5FVCG3MURTMDTCDRFHSHCOEBIOM5",
+      "sha256": "f2b26a8822519e951b6ae901a90cfb01046681ad2577cf92e646e86431433777",
+      "size": 671603,
+      "pages": 47,
+      "checked_at": "2026-10-10T21:25:30.850Z",
+      "rejected": []
+    },
+    {
+      "document_url": "https://unfccc.int/sites/default/files/NDC/2024-01/FINAL%20UPDATED%20NAMIBIA%20NDC%202023.pdf",
+      "iso3": [
+        "NAM"
+      ],
+      "version": "NDC UPDATE",
+      "submission_date": "2024-01-17",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260219181937id_/https://unfccc.int/sites/default/files/NDC/2024-01/FINAL%20UPDATED%20NAMIBIA%20NDC%202023.pdf",
+      "capture_timestamp": "20260219181937",
+      "sha1": "3NSEAWOR42UYTMUUDSFDIYNDLPVETS56",
+      "sha256": "9fa52b610f4492318ff689a0310fdfe283745bb532468ec24944c16874576b82",
+      "size": 2495751,
+      "pages": 44,
+      "checked_at": "2026-10-10T21:25:32.757Z",
+      "rejected": []
+    }
+  ]
+}

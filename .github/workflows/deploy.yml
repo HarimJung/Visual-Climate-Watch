@@ -19,6 +19,7 @@ jobs:
       HAS_CLOUDFLARE: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
     steps:
       - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
       - uses: actions/setup-node@v4
         with: { node-version: 24, cache: npm, cache-dependency-path: pdf-45-50p-1-owid-climate/outputs/paris-movement/package-lock.json }
       # npm ci refuses this lockfile on Linux: an optional chain the macOS-written
@@ -27,6 +28,18 @@ jobs:
       - run: npm install --no-audit --no-fund
       - run: npm test
       - run: npm run engine:verify
+      # The records may change; they may not lose a value without saying why.
+      # Compared with the commit this one replaces (the published state).
+      - name: regression gate against the published records
+        run: |
+          # git archive run from a subfolder archives only that subfolder, so it runs at the root.
+          if git -C "$GITHUB_WORKSPACE" cat-file -e HEAD~1 2>/dev/null; then
+            mkdir -p "$RUNNER_TEMP/published"
+            git -C "$GITHUB_WORKSPACE" archive HEAD~1:pdf-45-50p-1-owid-climate/outputs/paris-movement/data/countries | tar -x -C "$RUNNER_TEMP/published"
+            node scripts/regression-gate.mjs --base "$RUNNER_TEMP/published"
+          else
+            echo "No earlier commit in this checkout; nothing to compare."
+          fi
       - run: npm run build
       - name: deploy
         if: ${{ env.HAS_CLOUDFLARE == 'true' }}

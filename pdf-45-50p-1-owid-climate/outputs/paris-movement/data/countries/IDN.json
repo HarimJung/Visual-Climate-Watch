@@ -27,17 +27,38 @@
     "net_zero_target_year": null,
     "net_zero_state": "unknown",
     "conditionality": {
-      "statement": "The conditional / unconditional split has not been extracted from this document.",
-      "unconditional_pct": null,
+      "statement": "Indonesia has committed to reduce unconditionally 29% of its greenhouse gasses emissions against the business as usual scenario by the year of 2030.",
+      "unconditional_pct": 29,
       "conditional_pct": null,
-      "split_state": "unknown",
+      "split_state": "pledged",
       "extraction_confidence": "medium"
     },
+    "headline_condition": "unconditional",
+    "gas_scope": "ghg",
+    "reduction_range_pct": null,
+    "targets": [
+      {
+        "reduction_pct": 29,
+        "reduction_range_pct": null,
+        "basis": "bau",
+        "base_year": null,
+        "target_year": 2030,
+        "condition": "unconditional",
+        "unconditional_pct": 29,
+        "conditional_pct": null,
+        "evidence": [
+          {
+            "page": 20,
+            "sentence": "Indonesia has committed to reduce unconditionally 29% of its greenhouse gasses emissions against the business as usual scenario by the year of 2030."
+          }
+        ]
+      }
+    ],
     "source": {
       "id": "DS-06-NDC",
       "name": "Indonesia First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_need": {
@@ -51,7 +72,7 @@
       "id": "DS-06-NDC",
       "name": "Indonesia First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-11"
     }
   },
   "btr": {
@@ -69,22 +90,19 @@
       "crt": {
         "state": "observed",
         "$evidence": [
-          "IDN-CRT-2024-V0.16-2000-20241212-204251_started.xlsx",
-          "IDN-CRT-2024-V0.16-2001-20241212-204251_started.xlsx",
-          "IDN-CRT-2024-V0.16-2002-20241212-204251_started.xlsx"
+          "IDN-CRT-2024-V0.16-2022-20241212-204251_started.xlsx!Summary2!K72"
         ]
       },
       "ctf": {
         "state": "observed",
         "$evidence": [
-          "2._CTF_Tables_NDC_Tracking_FINAL.xlsx",
-          "3._CTF_Tables_FTC_Support_Needed_and_Received_11_Dec_2024_Final.xlsx"
+          "2._CTF_Tables_NDC_Tracking_FINAL.xlsx!Table 4!F7"
         ]
       },
       "ndc_track": {
         "state": "observed",
         "$evidence": [
-          "2._CTF_Tables_NDC_Tracking_FINAL.xlsx"
+          "2._CTF_Tables_NDC_Tracking_FINAL.xlsx!Table 4!F7"
         ]
       },
       "adaptation": {
@@ -106,12 +124,12 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "31 attachment(s) are listed for this Party's BTR1. 5 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
+    "$note": "31 attachment(s) are listed for this Party's BTR1. 5 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -126,7 +144,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -319,7 +337,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 1200.0735295298139,
+        "value_mtco2e": 1140.9453290325812,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -331,7 +349,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 1170.624864470552,
+        "value_mtco2e": 1110.835186853159,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -343,7 +361,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 1230.205619619183,
+        "value_mtco2e": 1174.2322902653732,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -355,7 +373,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 1324.4766035592916,
+        "value_mtco2e": 1273.9151586152302,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -367,7 +385,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 1359.6563808722724,
+        "value_mtco2e": 1315.6272436472989,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -379,7 +397,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 1319.1939922409106,
+        "value_mtco2e": 1282.1515901969583,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -391,7 +409,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 1374.5504220053788,
+        "value_mtco2e": 1336.3159020754542,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -403,7 +421,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 1496.4717407411754,
+        "value_mtco2e": 1456.0887630725933,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -415,7 +433,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 1569.840575436885,
+        "value_mtco2e": 1544.7873939140973,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -427,7 +445,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 1612.1224319796177,
+        "value_mtco2e": 1569.978733729924,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -439,7 +457,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 1628.7611117859499,
+        "value_mtco2e": 1591.4685668135974,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -461,6 +479,10 @@
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
     "finance_flows",
@@ -479,7 +501,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
@@ -488,15 +510,22 @@
     "submission_date": "2025-10-27",
     "document_url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
     "archived_submissions": 2,
-    "matches_parsed_document": false,
+    "matches_parsed_document": true,
+    "latest_retrieval": {
+      "state": "observed",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260907091725id_/https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+      "capture_timestamp": "20260907091725",
+      "checked_at": "2026-10-10T21:25:31.892Z"
+    },
     "state": "observed",
-    "$note": "The document this record was built from is dated 2021-07-22. The registry's latest active submission is Republic Of Indonesia Second NDC, dated 2025-10-27, and has not been read; no figure above comes from it.",
+    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
     "source": {
       "id": "DS-08",
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -516,47 +545,590 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
-    "kind": "First NDC",
+    "kind": "Republic Of Indonesia Second NDC",
     "language": "English",
-    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/IDN_Indonesia_First_NDC_English.pdf",
-    "submission_date": "2021-07-22",
-    "pages": 38,
-    "reduction_pct": 29,
-    "basis": "bau",
+    "document_url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+    "retrieval_url": "https://web.archive.org/web/20260907091725id_/https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+    "submission_date": "2025-10-27",
+    "pages": 56,
+    "reduction_pct": null,
+    "basis": null,
     "base_year": null,
-    "target_year": 2030,
+    "target_year": null,
     "unconditional_pct": null,
     "conditional_pct": null,
-    "net_zero_year": null,
-    "confidence": "medium",
-    "evidence": [
+    "net_zero_year": 2060,
+    "confidence": "low",
+    "evidence": [],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "wayback",
+    "capture_timestamp": "20260907091725",
+    "document_sha256": "14819c3311fa9b23800b6169312432e93738e0e21aba6aa2a6b85a440b7d2b61",
+    "state": "unknown",
+    "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$note": "Read by DS-06-NDC from the Republic Of Indonesia Second NDC from the Internet Archive's capture of 2026-09-07 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "source": {
+      "id": "DS-06-NDC-LATEST",
+      "name": "Republic Of Indonesia Second NDC",
+      "url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "Republic Of Indonesia Second NDC",
+      "language": "English",
+      "document_url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+      "retrieval_url": "https://web.archive.org/web/20260907091725id_/https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+      "submission_date": "2025-10-27",
+      "pages": 56,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": 2060,
+      "confidence": "low",
+      "evidence": [],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20260907091725",
+      "document_sha256": "14819c3311fa9b23800b6169312432e93738e0e21aba6aa2a6b85a440b7d2b61",
+      "headline": false,
+      "state": "unknown",
+      "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "$note": "Read by DS-06-NDC from the Republic Of Indonesia Second NDC from the Internet Archive's capture of 2026-09-07 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC-LATEST",
+        "name": "Republic Of Indonesia Second NDC",
+        "url": "https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    },
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
+      "retrieval_url": "https://web.archive.org/web/20220318011510id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
+      "submission_date": "2021-07-22",
+      "pages": 46,
+      "reduction_pct": 29,
+      "basis": "bau",
+      "base_year": null,
+      "target_year": 2030,
+      "unconditional_pct": 29,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "medium",
+      "evidence": [
+        {
+          "page": 20,
+          "sentence": "Indonesia has committed to reduce unconditionally 29% of its greenhouse gasses emissions against the business as usual scenario by the year of 2030."
+        }
+      ],
+      "headline_condition": "unconditional",
+      "gas_scope": "ghg",
+      "reduction_range_pct": null,
+      "targets": [
+        {
+          "reduction_pct": 29,
+          "reduction_range_pct": null,
+          "basis": "bau",
+          "base_year": null,
+          "target_year": 2030,
+          "condition": "unconditional",
+          "unconditional_pct": 29,
+          "conditional_pct": null,
+          "evidence": [
+            {
+              "page": 20,
+              "sentence": "Indonesia has committed to reduce unconditionally 29% of its greenhouse gasses emissions against the business as usual scenario by the year of 2030."
+            }
+          ]
+        }
+      ],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20220318011510",
+      "document_sha256": "aee5486fcbea52f3ca6d5afd96a361a948a4f30e2ee1e9dd224847a27b522dcf",
+      "headline": true,
+      "mirror_check": {
+        "result": "replaced",
+        "checked_at": "2026-10-11T14:22:37.539Z",
+        "capture_timestamp": "20220318011510"
+      },
+      "state": "pledged",
+      "$note": "Read by DS-06-NDC from the First NDC from the Internet Archive's capture of 2022-03-18 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Indonesia First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Indonesia",
+      "notes": [],
+      "signature": "1992-06-05",
+      "consent": "1994-08-23",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 2,
+          "sentence": "Indonesia 5 Jun 1992 23 Aug 1994"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Indonesia",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2016-10-31",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 2,
+          "sentence": "Indonesia 22 Apr 2016 31 Oct 2016"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "2._CTF_Tables_NDC_Tracking_FINAL.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/2.%20CTF%20Tables_NDC%20Tracking_FINAL.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s144799--f2a08a32e920de394d5d68664558ba99.xlsx",
+    "file_sha256": "d9ce9fa9cbd0583d5f4396f27163417cf6292042245ceb7bf7468c0171678b2b",
+    "tables": [
       {
-        "page": 14,
-        "sentence": "Indonesia has committed to reduce unconditionally 29% of its greenhouse gasses emissions against the business as usual scenario by the year of 2030."
+        "sheet": "Table 4",
+        "title": {
+          "cell": "Table 4!A1",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreementa"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table 4!A7",
+              "text": "Energy"
+            },
+            "unit": {
+              "cell": "Table 4!B7",
+              "text": "kt CO2eq"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C5",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table 4!C7",
+                "value": 836683.481764923,
+                "literal": "836683.48176492297"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!F7",
+                "value": 605366.876099617,
+                "literal": "605366.87609961699",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table 4!G7",
+                "value": 623126.719952428,
+                "literal": "623126.71995242801",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!H7",
+                "value": 738753.392596715,
+                "literal": "738753.39259671501",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!L7",
+              "value": 1273815.2284676814,
+              "literal": "1273815.2284676814"
+            },
+            "target_period": {
+              "cell": "Table 4!N7",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!O7",
+              "text": "231316.60566530598"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A8",
+              "text": "IPPU"
+            },
+            "unit": {
+              "cell": "Table 4!B8",
+              "text": "kt CO2eq"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C5",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table 4!C8",
+                "value": 63623.20120212216,
+                "literal": "63623.20120212216"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!F8",
+                "value": 54974.5066715956,
+                "literal": "54974.506671595598",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table 4!G8",
+                "value": 58394.1093360397,
+                "literal": "58394.109336039699",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!H8",
+                "value": 57361.6252122542,
+                "literal": "57361.625212254199",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!L8",
+              "value": 64566.25571948559,
+              "literal": "64566.255719485591"
+            },
+            "target_period": {
+              "cell": "Table 4!N8",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!O8",
+              "text": "8648.6945305265617"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A9",
+              "text": "Agriculture"
+            },
+            "unit": {
+              "cell": "Table 4!B9",
+              "text": "kt CO2eq"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C5",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table 4!C9",
+                "value": 129060.729785824,
+                "literal": "129060.72978582401"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!F9",
+                "value": 126936.591620671,
+                "literal": "126936.591620671",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table 4!G9",
+                "value": 140172.588907217,
+                "literal": "140172.588907217",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!H9",
+                "value": 135565.843573692,
+                "literal": "135565.84357369199",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!L9",
+              "value": 121985.66738277301,
+              "literal": "121985.66738277301"
+            },
+            "target_period": {
+              "cell": "Table 4!N9",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!O9",
+              "text": "2124.13816515301"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A10",
+              "text": "LULUCFc"
+            },
+            "unit": {
+              "cell": "Table 4!B10",
+              "text": "kt CO2eq"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C5",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table 4!C10",
+                "value": 532573.656006701,
+                "literal": "532573.65600670106"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!F10",
+                "value": 285580.424101238,
+                "literal": "285580.42410123802",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table 4!G10",
+                "value": 237215.68337126,
+                "literal": "237215.68337126001",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!H10",
+                "value": 225773.476913019,
+                "literal": "225773.476913019",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!L10",
+              "value": 72517.6242343025,
+              "literal": "72517.624234302493"
+            },
+            "target_period": {
+              "cell": "Table 4!N10",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!O10",
+              "text": "246993.23190546304"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table 4!A11",
+              "text": "Waste"
+            },
+            "unit": {
+              "cell": "Table 4!B11",
+              "text": "kt CO2eq"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table 4!C5",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table 4!C11",
+                "value": 157942.68014776768,
+                "literal": "157942.68014776768"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!F11",
+                "value": 130510.507644698,
+                "literal": "130510.50764469799",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table 4!G11",
+                "value": 136170.68741035,
+                "literal": "136170.68741034999",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!H11",
+                "value": 138862.070832382,
+                "literal": "138862.07083238201",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!L11",
+              "value": 277094.56150345196,
+              "literal": "277094.56150345196"
+            },
+            "target_period": {
+              "cell": "Table 4!N11",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!O11",
+              "text": "27432.172503069683"
+            },
+            "unread": []
+          }
+        ]
       }
     ],
-    "state": "pledged",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
+    "target_text": {
+      "cell": "Appendix!B5",
+      "text": "Emission reduction relative to Business as Usual (BAU) baseline. With measures (CM1), the level of emission in 2030 will be 30.62 % below the BaU, and with additional measures, it will be 38.71% below the BaU"
+    },
+    "reference_text": [
+      {
+        "cell": "Table 1!B5",
+        "text": "Baseline emission from 2010 (Base year)  to 2030 (target year).  The baseline emission is economy-wide national GHG emissions (Emissions from energym, IPPU, Agriculture, Forest and Other Land Uses, and waste."
+      }
+    ],
+    "superseded": [],
     "source": {
-      "id": "DS-06-NDC",
-      "name": "Indonesia First NDC",
-      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf",
-      "retrieved_at": "2026-09-13"
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/2.%20CTF%20Tables_NDC%20Tracking_FINAL.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "observed",
+    "file": "IDN-CRT-2024-V0.16-2022-20241212-204251_started.xlsx",
+    "year": 2022,
+    "year_cell": {
+      "cell": "Summary2!K1",
+      "text": "2022"
+    },
+    "party_cell": {
+      "cell": "Summary2!K3",
+      "text": "Indonesia"
+    },
+    "unit": {
+      "cell": "Summary2!C9",
+      "text": "CO2 equivalents (kt ) (2)"
+    },
+    "totals": {
+      "without_lulucf": {
+        "cell": "Summary2!K71",
+        "value": 1070542.9322150443,
+        "literal": "1070542.9322150443",
+        "label": {
+          "cell": "Summary2!J71",
+          "text": "Total CO2 equivalent emissions without LULUCF"
+        }
+      },
+      "with_lulucf": {
+        "cell": "Summary2!K72",
+        "value": 1382854.5030270144,
+        "literal": "1382854.5030270144",
+        "label": {
+          "cell": "Summary2!J72",
+          "text": "Total CO2 equivalent emissions with LULUCF"
+        }
+      },
+      "with_indirect_without_lulucf": {
+        "cell": "Summary2!K73",
+        "value": 1070542.9322150443,
+        "literal": "1070542.9322150443",
+        "label": {
+          "cell": "Summary2!J73",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  without LULUCF"
+        }
+      },
+      "with_indirect_with_lulucf": {
+        "cell": "Summary2!K74",
+        "value": 1382854.5030270144,
+        "literal": "1382854.5030270144",
+        "label": {
+          "cell": "Summary2!J74",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  with LULUCF"
+        }
+      }
+    },
+    "document_url": "https://unfccc.int/sites/default/files/resource/IDN-CRT-2024-V0.16-20241212-204251_started.zip",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s4728866--e280ed047d6f8beb11fd50cfe9dee4c8.xlsx",
+    "file_sha256": "e05eb5da546b8dbc7c349ea185443fd03547ae8f0642101ce19941f52f2dc960",
+    "in_by_source": true,
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/IDN-CRT-2024-V0.16-20241212-204251_started.zip",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_flows": {
     "channel": "Green Climate Fund",
-    "approved_usd": 613785482,
-    "co_financing_usd": 1954526709,
-    "disbursed_usd": 202557008,
+    "approved_usd": 611961387,
+    "co_financing_usd": 1955714798,
+    "disbursed_usd": 202382951,
     "projects": 22,
     "regional_projects": 15,
-    "regional_disbursed_usd": 679960713,
+    "regional_disbursed_usd": 687388481,
     "instruments": [
       "Equity",
       "Grants",
@@ -706,7 +1278,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 16667957.68,
+        "amount_usd": 16366863.95,
         "project_ref": "FP194",
         "project_name": "Programme for Energy Efficiency in Buildings (PEEB) Cool",
         "state": "observed"
@@ -827,7 +1399,7 @@
         "channel": "GCF",
         "instrument": "Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 69014236.82,
+        "amount_usd": 67491236.37,
         "project_ref": "FP248",
         "project_name": "Land-based Mitigation and Adaptation through a Jurisdictional Approach in West Kalimantan",
         "state": "observed"
@@ -904,7 +1476,7 @@
         "channel": "GCF",
         "instrument": "Grants",
         "provider": "GIZ",
-        "amount_usd": 7887341.354186,
+        "amount_usd": 7713284.159887,
         "project_ref": "FP248",
         "project_name": "Land-based Mitigation and Adaptation through a Jurisdictional Approach in West Kalimantan",
         "state": "observed"
@@ -933,12 +1505,12 @@
       }
     ],
     "state": "observed",
-    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 15 multi-country project(s) disbursing 679,960,713 USD in total are counted separately and never divided.",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 15 multi-country project(s) disbursing 687,388,481 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -1225,47 +1797,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 1200.0735295298139
+            "value_mtco2e": 1140.9453290325812
           },
           {
             "year": 2016,
-            "value_mtco2e": 1170.624864470552
+            "value_mtco2e": 1110.835186853159
           },
           {
             "year": 2017,
-            "value_mtco2e": 1230.205619619183
+            "value_mtco2e": 1174.2322902653732
           },
           {
             "year": 2018,
-            "value_mtco2e": 1324.4766035592916
+            "value_mtco2e": 1273.9151586152302
           },
           {
             "year": 2019,
-            "value_mtco2e": 1359.6563808722724
+            "value_mtco2e": 1315.6272436472989
           },
           {
             "year": 2020,
-            "value_mtco2e": 1319.1939922409106
+            "value_mtco2e": 1282.1515901969583
           },
           {
             "year": 2021,
-            "value_mtco2e": 1374.5504220053788
+            "value_mtco2e": 1336.3159020754542
           },
           {
             "year": 2022,
-            "value_mtco2e": 1496.4717407411754
+            "value_mtco2e": 1456.0887630725933
           },
           {
             "year": 2023,
-            "value_mtco2e": 1569.840575436885
+            "value_mtco2e": 1544.7873939140973
           },
           {
             "year": 2024,
-            "value_mtco2e": 1612.1224319796177
+            "value_mtco2e": 1569.978733729924
           },
           {
             "year": 2025,
-            "value_mtco2e": 1628.7611117859499
+            "value_mtco2e": 1591.4685668135974
           }
         ]
       },
@@ -1520,20 +2092,30 @@
             "value_mtco2e": 1375.58793
           }
         ]
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "scope": "The Party's own CRT national total with LULUCF for 2022 only (IDN-CRT-2024-V0.16-2022-20241212-204251_started.xlsx Summary2!K72, 1382854.5030270144 CO2 equivalents (kt ) (2) as filed), shown in Mt; its own inventory and LULUCF accounting",
+        "series": [
+          {
+            "year": 2022,
+            "value_mtco2e": 1382.8545030270145
+          }
+        ]
       }
     ],
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Indonesia pledges a 29% reduction by 2030 against 2030 business-as-usual. A later submission, Republic Of Indonesia Second NDC, was filed on 2025-10-27; it has not been read, so no figure here comes from it. 52 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (6). For 2024 the sources disagree: DS-35 1902.5 MtCO₂e, DS-02 1612.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 29% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 5 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 48.3 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 29% (unconditional) and up to 41% (conditional) by 2030 compared to the business as usual scenario; 26% (unconditional) reduction in GHG emissions by 2020 compared to business as usual scenario It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.9°C under SSP1-2.6 to +3.43°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Indonesia pledges a 29% reduction by 2030 against 2030 business-as-usual (unconditional). The registry's current submission for this Party is Republic Of Indonesia Second NDC, filed 2025-10-27. It was read and refused, so the figure above comes from the First NDC (2021). 52 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (6). For 2024 the sources disagree: DS-35 1902.5 MtCO₂e, DS-02 1570 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 29% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 5 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 48.3 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 29% (unconditional) and up to 41% (conditional) by 2030 compared to the business as usual scenario; 26% (unconditional) reduction in GHG emissions by 2020 compared to business as usual scenario It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.9°C under SSP1-2.6 to +3.43°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc.reduction_pct",
-        "text": "Indonesia pledges a 29% reduction by 2030 against 2030 business-as-usual."
+        "text": "Indonesia pledges a 29% reduction by 2030 against 2030 business-as-usual (unconditional)."
       },
       {
         "field": "ndc_registry.submission_date",
-        "text": "A later submission, Republic Of Indonesia Second NDC, was filed on 2025-10-27; it has not been read, so no figure here comes from it."
+        "text": "The registry's current submission for this Party is Republic Of Indonesia Second NDC, filed 2025-10-27. It was read and refused, so the figure above comes from the First NDC (2021)."
       },
       {
         "field": "series.observed",
@@ -1541,7 +2123,7 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-35 1902.5 MtCO₂e, DS-02 1612.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-35 1902.5 MtCO₂e, DS-02 1570 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
@@ -1777,8 +2359,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1791,8 +2373,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1805,8 +2387,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1819,8 +2401,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1833,8 +2415,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1847,8 +2429,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1861,8 +2443,8 @@
       ],
       "connection": "connected",
       "records": 6,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1875,8 +2457,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1889,8 +2471,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1903,10 +2485,24 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-11T14:22:35.888Z",
+      "retrieved_at": "2026-10-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -1917,8 +2513,8 @@
       ],
       "connection": "connected",
       "records": 33,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:43.203Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -1931,94 +2527,152 @@
       ],
       "connection": "connected",
       "records": 31,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "386e2e51791977c01ed7a6477621bf9a047cf8672a6dd8d78c4b7c5889b7ec74",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "6d493050fa6ea46563e85bbae99242c2920144636199957fb52e371136290b0f",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
+        "source_id": "DS-06-NDC-LATEST",
+        "file_sha256": "14819c3311fa9b23800b6169312432e93738e0e21aba6aa2a6b85a440b7d2b61",
+        "retrieved_at": "2026-10-10T20:55:29.390Z",
+        "url": "https://web.archive.org/web/20260907091725id_/https://unfccc.int/sites/default/files/2025-10/Indonesia_Second%20NDC_2025.10.24.pdf"
+      },
+      {
         "source_id": "DS-06-NDC",
-        "file_sha256": "70d380e50f0213d16c4dfab2289d72210660d14a314afd141b3a47373b3f7d32",
-        "retrieved_at": "2026-09-13T03:19:11.649Z",
-        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/IDN_Indonesia_First_NDC_English.pdf"
+        "file_sha256": "aee5486fcbea52f3ca6d5afd96a361a948a4f30e2ee1e9dd224847a27b522dcf",
+        "retrieved_at": "2026-10-11T14:22:37.539Z",
+        "url": "https://web.archive.org/web/20220318011510id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Indonesia%20First/Updated%20NDC%20Indonesia%202021%20-%20corrected%20version.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "d9ce9fa9cbd0583d5f4396f27163417cf6292042245ceb7bf7468c0171678b2b",
+        "retrieved_at": "2026-10-10T20:42:03.286Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s144799--f2a08a32e920de394d5d68664558ba99.xlsx"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "e05eb5da546b8dbc7c349ea185443fd03547ae8f0642101ce19941f52f2dc960",
+        "retrieved_at": "2026-10-10T20:42:05.546Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s4728866--e280ed047d6f8beb11fd50cfe9dee4c8.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
@@ -2026,7 +2680,7 @@
     "mode": "document-parsed",
     "snapshot": "First NDC · 2021",
     "basis": "2030 business-as-usual",
-    "notice": "29% by 2030 was read out of the document by DS-06-NDC, not tabulated by it. The sentence it came from is on the record."
+    "notice": "Republic Of Indonesia Second NDC (2025-10-27) was read and refused: no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection. The figure shown is from First NDC (2021-07-22)."
   },
   "$sources_index": [
     {
@@ -2080,6 +2734,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -2088,6 +2747,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }

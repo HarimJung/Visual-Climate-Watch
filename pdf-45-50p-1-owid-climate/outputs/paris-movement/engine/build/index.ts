@@ -13,6 +13,13 @@ export type RosterRow = {
   // State only. The socket reasons are 1,744 sentences long across the roster
   // and belong on the record page that shows one country, not in a list.
   reduction_pct: number | null; btr_components: Record<string, { state: string }>;
+  // v1.3, additive: a headline stated as a range (reduction_pct is then null),
+  // and the record's Paris Agreement standing, so a map can say which blank is
+  // a range, which a refusal and which a record that is not a Party.
+  reduction_range_pct: [number, number] | null; paris_status: string | null;
+  // The headline filing's submission date, so a list can tell a pledge read
+  // from the registry's current filing from one read from an older filing.
+  edition_date: string | null;
   // Coverage the tray can rank and filter on without pulling 218 full payloads.
   observed_years: number; latest_year: number | null; total_mtco2e: number | null;
   per_capita_tco2e: number | null; ndgain_score: number | null; income_group: string | null;
@@ -39,6 +46,9 @@ export function buildIndex(records: CountryData[], etl?: EtlFile): EngineIndex {
     region: d.country_profile?.region ?? null,
     edition: d.ndc.version,
     reduction_pct: d.ndc.reduction_pct,
+    reduction_range_pct: d.ndc.reduction_range_pct ?? null,
+    paris_status: d.party_status?.paris_status ?? null,
+    edition_date: d.ndc.submission_date ?? null,
     btr_components: Object.fromEntries(Object.entries(d.btr.components).map(([k, v]) => [k, { state: v.state }])),
     observed_years: observedYears(d),
     latest_year: d.emissions_profile?.latest_year ?? null,

@@ -6,12 +6,13 @@ import {citableFigures,resolveFigure} from './receipt.ts';
  * else sits at that address — who else has it, what we could not work out
  * here, and what you can take away.
  *
- * It answers with cohorts rather than a single ranking, because "12th of 218"
- * and "2nd of 24 in its region" are different sentences and a reader who came
- * for one is usually asking the other.
+ * It answers with cohorts, never a ranking: how many records in the region,
+ * the income group and the world carry the same figure, how many carry none,
+ * and the median among those that do. A rank is a grade on a government
+ * (PRD §8), so none is computed here and none is published.
  */
 
-export const RELATED_CONTRACT='visual-climate/related@1.0.0';
+export const RELATED_CONTRACT='visual-climate/related@1.1.0';
 
 /**
  * Only these figures are comparable across countries, because only these are
@@ -19,10 +20,10 @@ export const RELATED_CONTRACT='visual-climate/related@1.0.0';
  * quietly assembled from 218 full records the edge would have to fetch.
  */
 const COMPARABLE={
- 'ndc.reduction_pct':{field:'reduction_pct',label:'Headline reduction',unit:'%',better:'high'},
- 'emissions_profile.total_mtco2e':{field:'total_mtco2e',label:'Total emissions',unit:'MtCO₂e',better:null},
- 'emissions_profile.per_capita_tco2e':{field:'per_capita_tco2e',label:'Emissions per person',unit:'tCO₂e',better:null},
- 'vulnerability.ndgain_score':{field:'ndgain_score',label:'ND-GAIN score',unit:'',better:'high'},
+ 'ndc.reduction_pct':{field:'reduction_pct',label:'Headline reduction',unit:'%'},
+ 'emissions_profile.total_mtco2e':{field:'total_mtco2e',label:'Total emissions',unit:'MtCO₂e'},
+ 'emissions_profile.per_capita_tco2e':{field:'per_capita_tco2e',label:'Emissions per person',unit:'tCO₂e'},
+ 'vulnerability.ndgain_score':{field:'ndgain_score',label:'ND-GAIN score',unit:''},
 } as const;
 
 export const comparableFigures=()=>Object.keys(COMPARABLE);
@@ -32,34 +33,22 @@ const median=(xs:number[])=>{const s=[...xs].sort((a,b)=>a-b);return s.length?s.
 
 export type Cohort={
  basis:'region'|'income_group'|'all';label:string;countries:number;
- /** Where this country sits among the cohort members that carry the figure. */
- rank:number|null;
  /** How many of `countries` actually carry it. Usually far fewer. */
  of:number;
- /** Said out loud so `rank 1 of 4` inside a cohort of 34 cannot read as first of 34. */
+ /** Said out loud so `3 of 34 carry it` cannot read as a world of 34 that all do. */
  without_figure:number;
+ /** The country asked for carries the figure (true) or does not (false). */
+ carries:boolean;
  median:number|null;
- /** The country asked for, its nearest neighbours either side, and the extremes. */
- rows:{iso3:string;name_en:string;value:number;rank:number;self?:true}[];
 };
 
-/** One cohort: everyone who shares a bucket and carries the figure. */
+/** One cohort: everyone who shares a bucket, counted by whether they carry the figure. */
 function cohort(roster:RosterRow[],iso3:string,field:string,basis:Cohort['basis'],label:string):Cohort|null{
  const self=roster.find(r=>r.iso3===iso3);
  if(!self)return null;
  const pool=basis==='all'?roster:roster.filter(r=>(r as unknown as Record<string,unknown>)[basis]===(self as unknown as Record<string,unknown>)[basis]);
- const vals=pool.map(r=>({r,v:num((r as unknown as Record<string,unknown>)[field])})).filter((x):x is {r:RosterRow;v:number}=>x.v!==null)
-  .sort((a,b)=>b.v-a.v).map((x,i)=>({iso3:x.r.iso3,name_en:x.r.name_en,value:x.v,rank:i+1}));
- const i=vals.findIndex(v=>v.iso3===iso3);
- // Three highest, three lowest, and the asked-for country with a neighbour
- // either side. Enough to place it without shipping the whole cohort.
- const pick=new Map<string,typeof vals[number]>();
- for(const v of [...vals.slice(0,3),...vals.slice(-3),...(i>=0?vals.slice(Math.max(0,i-1),i+2):[])])pick.set(v.iso3,v);
- return {
-  basis,label,countries:pool.length,
-  rank:i>=0?i+1:null,of:vals.length,without_figure:pool.length-vals.length,median:median(vals.map(v=>v.value)),
-  rows:[...pick.values()].sort((a,b)=>a.rank-b.rank).map(v=>v.iso3===iso3?{...v,self:true as const}:v),
- };
+ const vals=pool.map(r=>num((r as unknown as Record<string,unknown>)[field])).filter((v):v is number=>v!==null);
+ return {basis,label,countries:pool.length,of:vals.length,without_figure:pool.length-vals.length,carries:num((self as unknown as Record<string,unknown>)[field])!==null,median:median(vals)};
 }
 
 /**

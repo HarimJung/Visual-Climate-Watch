@@ -65,11 +65,13 @@ export default defineConfig(async ({ command }) => {
           // default, and a custom domain that cannot attach (no zone in the
           // account yet) then leaves the site with no address at all: one
           // deploy did exactly that. The subdomain stays on regardless.
+          // zone_name is required: without it the API answers 10082
+          // "Can't infer zone from route" (five deploys, 11–13 Sep 2026).
           workers_dev: true,
           routes: [
-            { pattern: 'www.visualclimate.org', custom_domain: true },
+            { pattern: 'www.visualclimate.org', custom_domain: true, zone_name: 'visualclimate.org' },
             // The apex only exists to redirect: see proxy.ts.
-            { pattern: 'visualclimate.org', custom_domain: true },
+            { pattern: 'visualclimate.org', custom_domain: true, zone_name: 'visualclimate.org' },
           ],
           // Lets the worker read its own staged data files; see lib/record.ts.
           assets: { binding: 'ASSETS' },

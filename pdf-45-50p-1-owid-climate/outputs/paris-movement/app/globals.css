@@ -6,6 +6,9 @@
 @import './styles/method-compare.css';
 @import './styles/compare-pages.css';
 @import './styles/directory.css';
+@import './styles/story.css';
+@import './styles/stage.css';
+@import './styles/record.css';
 @custom-variant dark (&:is(.dark *));
 
 /* Visual Climate — The Paris Movement.
@@ -53,7 +56,7 @@
     name so every rule that labelled a measurement still resolves, and now
     resolves to the same face. Monospace is only for what is character-for-
     character: hashes, run IDs, code (--font-code). */
- --font-display:'Hanken Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+ --font-display:'Bricolage Grotesque','Hanken Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
  --font-sans:'Hanken Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
  --font-mono:var(--font-sans);
  --font-code:'Fragment Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -126,13 +129,6 @@ svg{flex-shrink:0}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .brand>span:last-child{display:flex;flex-direction:column;gap:4px;font-size:15px;font-weight:600;letter-spacing:0}
 .brand small{font:12px/1 var(--font-mono);font-weight:400;letter-spacing:0;color:var(--ink-3)}
-.main-tabs{height:74px!important;gap:30px!important;background:none!important;border:0!important}
-.main-tabs button{height:74px!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;font-size:15px!important;font-weight:400!important;letter-spacing:0;color:var(--ink-3)!important;transition:color .2s}
-.main-tabs button:hover{color:var(--ink-2)!important}
-.main-tabs button[data-active]{color:var(--ink)!important}
-.main-tabs button:after{bottom:0!important;height:1.5px!important;background:var(--un)!important}
-.about-button{display:flex;align-items:center;gap:9px;font-size:15px;color:var(--ink-3);white-space:nowrap;transition:color .2s}
-.about-button:hover{color:var(--ink)}
 
 /* ── Workspace bar ────────────────────────────────────────────────────── */
 .country-menu{min-width:236px;padding:4px;border-radius:2px}
@@ -146,16 +142,11 @@ svg{flex-shrink:0}
 
 .eyebrow{display:flex;align-items:center;gap:2px;font:12px/1.6 var(--font-mono);letter-spacing:0;color:var(--ink-3)}
 .eyebrow .index{padding-right:10px;color:var(--ink)}
-.verdict b{font-weight:400;color:var(--ink-2)}
 .primary-action{display:inline-flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--rule-strong);font-size:15px;text-align:left;transition:color .2s,border-color .2s}
 .primary-action svg{transition:transform 200ms var(--out)}
 .primary-action:hover:not(:disabled){color:var(--ink);border-color:var(--ink)}
 @media(hover:hover){.primary-action:hover:not(:disabled) svg:last-child{transform:translateX(3px)}}
 .assembly-action svg:first-child{fill:none}
-
-.edition-note{max-width:40ch;margin-top:auto;padding:11px 0 6px}
-.edition-note>span{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.edition-note p{margin-top:5px;font-size:12px;line-height:1.65;color:var(--ink-3)}
 
 /* ── Stage: the instrument itself ─────────────────────────────────────── */
 .movement-stage{position:absolute;inset:0;isolation:isolate}
@@ -188,80 +179,59 @@ svg{flex-shrink:0}
 .btr-piece-label{display:flex;flex-direction:column;align-items:flex-start;gap:1px;cursor:pointer;pointer-events:auto}
 .btr-piece-label small{font:500 var(--t0)/1.3 var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
 .btr-piece-label strong{font:600 13px/1.3 var(--font-sans);color:var(--ink);white-space:nowrap}
-.btr-piece-label span{font-size:var(--t1);color:var(--btr-color)}
+.btr-piece-label span{font-size:var(--t1);color:var(--ink-2)}
 .btr-piece-label:focus-visible{outline:1.5px solid var(--ink);outline-offset:2px}
 .data-overlay{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:color-mix(in srgb,var(--paper) 94%,transparent);font-size:15px;color:var(--ink-2)}
 .fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;padding:40px}
 .fallback svg{width:70%;max-height:74%}
 .fallback p{font-size:15px;color:var(--ink-3)}
 
+/* ── The instrument as a hero ──────────────────────────────────────────────
+   One record's machine on paper, for the home and the record page. The flat
+   dial sits under the canvas and shows until the first frame; the scene's own
+   labels, fallback message and chrome never appear here. */
+.instrument-hero{position:relative;width:100%;aspect-ratio:4/3;min-height:280px;margin:0;isolation:isolate}
+.instrument-hero>svg{position:absolute;inset:8%;width:84%;height:84%;transition:opacity 400ms var(--out)}
+.instrument-hero.is-live>svg{opacity:0}
+.instrument-hero .projected-labels,.instrument-hero .fallback{display:none}
 
 /* ── The cards: the story passes over the machine ─────────────────────────
    The track covers the chapter and lets every pointer through; only a card
    takes them, so the machine stays draggable beside it. A card is invisible
    until the scene reports its phase, then its lines come in one after another
-   (kicker, figure, title, paragraphs) and it leaves faster than it came. */
+   (title, paragraphs) and it leaves faster than it came. */
 .steps{position:absolute;inset:0;z-index:6;pointer-events:none}
 .step{position:absolute;left:0;width:100%}
 .step:not(.on) .step-in{pointer-events:none}
-.step-in{position:sticky;top:calc(var(--top-h) + 64px);width:min(520px,42vw);max-height:calc(100svh - var(--top-h) - 80px);margin-left:var(--gutter);
+.step-in{position:sticky;top:calc(var(--top-h) + var(--s4));width:min(520px,42vw);max-height:calc(100svh - var(--top-h) - 80px);margin-left:var(--gutter);
  overflow-y:auto;scrollbar-width:none;pointer-events:auto;padding:clamp(24px,2.8vw,40px);
- background:color-mix(in srgb,var(--paper-raised) 70%,transparent);backdrop-filter:blur(6px);
+ background:color-mix(in srgb,var(--paper-raised) 80%,transparent);backdrop-filter:blur(8px);border:1px solid var(--rule);border-radius:12px;
  opacity:0;transform:translateY(10px);visibility:hidden;transition:opacity 260ms var(--in),transform 260ms var(--in),visibility 0s 260ms}
 .step-in::-webkit-scrollbar{display:none}
 .step.on .step-in{opacity:1;transform:none;visibility:visible;transition:opacity 300ms var(--out),transform 420ms var(--out),visibility 0s}
 .step-in>*+*{margin-top:var(--s4)}
-/* --c is the one evidence colour a card may use: the colour of the part the
-   machine has just lit. The cover and the chassis cards have none. */
-.step-in .kicker{display:block;font:600 var(--t0) var(--font-mono);letter-spacing:0;color:var(--c,var(--ink-3))}
-.step-in h1{font-family:var(--font-display);font-weight:600;font-size:clamp(30px,3.1vw,44px);line-height:1.04;letter-spacing:-.025em;text-wrap:balance;color:var(--ink)}
-.step-in h1 em{font-style:normal;color:var(--c,var(--ink));background:linear-gradient(currentColor,currentColor) 0 92%/100% 2px no-repeat}
-.step-in h2{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,1.9vw,27px);line-height:1.15;letter-spacing:-.02em;text-wrap:balance;color:var(--ink)}
-.step-in .big{display:block;font-family:var(--font-display);font-weight:600;font-size:clamp(40px,4.4vw,64px);line-height:.92;letter-spacing:-.04em;color:var(--c,var(--ink));font-variant-numeric:tabular-nums}
-.step-in .big small{display:block;margin-top:6px;font:400 var(--t1)/1.4 var(--font-sans);letter-spacing:0;color:var(--ink-3)}
-.step-in .big.word{font-size:var(--t5);line-height:1.2;letter-spacing:-.01em;color:var(--ink-2)}
+/* display type: Bricolage carries the voice, heavy and tight; Hanken reads.
+   --c is the one evidence colour a card may use: the colour of the part the
+   machine has just lit. The cover and the plate cards have none. */
+.step-in h1{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,3.3vw,46px);line-height:1;letter-spacing:-.03em;text-wrap:balance;color:var(--ink)}
+.step-in h1 em{font-style:normal;color:var(--un-ink)}
+.step-in h2{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,1.9vw,27px);line-height:1.15;letter-spacing:-.02em;text-wrap:balance;color:var(--ink);font-variant-numeric:tabular-nums}
 .step-in p{font-size:16px;line-height:1.55;color:var(--ink-3)}
-.step-in .verdict{color:var(--ink-2)}
 .step-in .note{font:var(--t1)/1.5 var(--font-mono);color:var(--ink-3)}
-.step-in .cue{font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ink-3)}
-.step-in .figs-title{font:600 var(--t3)/1.3 var(--font-sans);letter-spacing:0;color:var(--ink-2)}
+.step-in .cue{font:500 var(--t2)/1.4 var(--font-sans);letter-spacing:0;color:var(--ink-3)}
+.step-in .source{padding-top:var(--s3);border-top:1px solid var(--rule);font-size:var(--t1);line-height:1.5;color:var(--ink-3)}
+.step-in .source a{color:inherit;text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+.step-in .source a:hover,.step-in .source a:focus-visible{color:var(--un-ink);text-decoration-color:currentColor}
 .step-in h2 .count{display:inline-block;margin-left:10px;font:500 var(--t1) var(--font-mono);letter-spacing:0;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.step-in .claim-figs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3) var(--s4);padding-top:var(--s3)}
-.step-in .claim-figs dd{font-size:clamp(20px,1.9vw,26px)}
-.step-in .claim-denom{font-size:var(--t0)}
-.step-in .way{min-height:36px;padding:0 var(--s3);font-size:var(--t1)}
+.step-in .ways{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2)}
+.step-in .way{min-height:36px;padding:0 var(--s3);font-size:var(--t1);font-weight:600}
+.step-in .way svg{margin-left:2px}
 .step-in .read-how{grid-template-columns:1fr;gap:var(--s2);padding:0;background:none;border:0}
 .step-in .read-how li{font-size:var(--t1)}
 .step-in .read-how li:before{color:var(--c,var(--ink-3))}
-.step-in .edition-note{padding:0}
-.step-in .stale-flag{margin-top:var(--s3)}
 .step-in .primary-action{font-size:var(--t2)}
-@keyframes heroIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
-.step.on .kicker{animation:riseIn 280ms var(--out) both}
-.step.on .big{animation:heroIn 420ms var(--out) 40ms both}
 .step.on h1,.step.on h2{animation:riseIn 320ms var(--out) 90ms both}
 .step.on .step-in>p,.step.on .step-in>dl,.step.on .step-in>ol,.step.on .step-in>nav,.step.on .step-in>div,.step.on .step-in>button,.step.on .step-in>a{animation:riseIn 320ms var(--out) 140ms both}
-
-/* ── The argument: promise, conditions, delivery, evidence ────────────── */
-.argument-chain,.engine-flow{display:grid;grid-template-columns:repeat(4,1fr);margin:0 var(--gutter);padding:clamp(30px,3.6vw,52px) 0;border-top:1px solid var(--rule)}
-.clause-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:0 26px;border-right:1px solid var(--rule);text-align:left}
-.clause-card:first-child,.engine-flow button:first-child{padding-left:0}
-.clause-card:last-child,.engine-flow button:last-child{border-right:0;padding-right:0}
-.clause-top{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3)}
-.clause-top>span{display:flex;align-items:center;gap:10px}
-.clause-top b{font-weight:500;color:var(--c,var(--ink-3))}
-.clause-card svg{color:var(--ink-4);transition:transform .25s,color .2s}
-@media(hover:hover){.clause-card:hover:not(:disabled) svg{transform:translate(2px,-2px);color:var(--ink)}}
-.clause-value{min-height:40px;margin-top:16px;font-family:var(--font-display);font-size:34px;line-height:1.2;letter-spacing:-.015em;color:var(--ink);font-variant-numeric:tabular-nums}
-.clause-value small{margin-left:5px;font-size:15px;color:var(--ink-3)}
-.clause-value.word{font-size:22px;letter-spacing:0}
-.clause-card p{margin:6px 0 14px;font-size:13px;line-height:1.55;color:var(--ink-3)}
-.clause-card .clause-source{margin-top:-8px;font:var(--t0)/1.6 var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
-.engine-flow button{position:relative;padding:0 22px;border-right:1px solid var(--rule);text-align:left}
-.engine-flow button>span{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.engine-flow h3{margin:14px 0 8px;font-family:var(--font-display);font-size:22px;letter-spacing:-.01em}
-.engine-flow p{font-size:13px;color:var(--ink-3)}
-.engine-flow svg{position:absolute;top:0;right:14px;width:15px;color:var(--ink-4)}
 
 /* ── Evidence tokens: material stands for state ───────────────────────── */
 .state-token{display:inline-flex;align-items:center;gap:7px;font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3);white-space:nowrap}
@@ -269,49 +239,6 @@ svg{flex-shrink:0}
 .state-token.pledged i{border-color:var(--ndc);background:color-mix(in srgb,var(--ndc) 22%,transparent)}
 .state-token.unknown i{border:1px dashed #a294b3;background:none}
 .state-token.absent i{border-color:#4c565c;background:#4c565c;box-shadow:inset 1px 1px 2px #0e1a1f80}
-.mini-jewels{display:flex;align-items:center;gap:6px;min-height:12px}
-.mini-jewels>span{width:8px;height:8px;border:1px dashed #a294b3;border-radius:50%}
-.mini-jewels .observed{background:var(--btr);border-color:var(--btr)}
-.mini-jewels .absent{background:#4c565c;border-color:#4c565c}
-.mini-jewels small{margin-left:4px;font:12px var(--font-mono);color:var(--ink-3)}
-
-/* ── The records that feed the assembly ───────────────────────────────── */
-.data-inputs{display:grid;grid-template-columns:repeat(4,1fr);margin:0 var(--gutter) clamp(28px,3.6vw,50px);border:1px solid var(--rule);background:var(--paper-raised)}
-.input-record{position:relative;display:flex;align-items:flex-start;gap:14px;min-height:94px;padding:16px 18px;border-right:1px solid var(--rule);text-align:left;transition:background .25s}
-.input-record:last-child{border-right:0}
-.input-record:hover:not(:disabled){background:var(--paper-sunken)}
-.input-record:before{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--input-color);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--out)}
-.input-record.current:before,.input-record.assembled:before{transform:none}
-.input-record.current{background:color-mix(in srgb,var(--input-color) 5%,var(--paper-raised))}
-.input-type{display:grid;place-items:center;width:36px;height:36px;flex-shrink:0;border-radius:2px;background:color-mix(in srgb,var(--input-color) 13%,var(--paper-raised));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--input-color) 45%,transparent);color:var(--ink);font:12px var(--font-mono);font-weight:500;letter-spacing:0}
-.input-record>div{display:flex;flex-direction:column;gap:5px;min-width:0}
-.input-name{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3)}
-.input-record strong{font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink);font-variant-numeric:tabular-nums}
-.input-record small{font-size:12px;line-height:1.5;color:var(--ink-3)}
-.input-progress{margin-left:auto;padding-top:3px;align-self:flex-start;font:12px var(--font-mono);letter-spacing:0;color:var(--ink-2);white-space:nowrap}
-
-/* ── The country collection ───────────────────────────────────────────── */
-.tray-view{padding:clamp(30px,4vw,58px) var(--gutter)}
-.tray-heading h1{margin:16px 0 12px;font-family:var(--font-display);font-weight:500;font-size:clamp(38px,4.6vw,62px);line-height:1.04;letter-spacing:-.032em}
-.tray-heading h1>span{color:var(--ink)}
-.tray-heading>p:last-child{max-width:52ch;font-size:15px;color:var(--ink-3)}
-.tray-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
-.tray-card{display:flex;flex-direction:column;padding:22px;border:1px solid var(--rule);background:var(--paper-raised);text-align:left;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s,border-color .3s}
-.tray-card:hover{border-color:var(--rule-strong);box-shadow:var(--shadow-2)}
-.tray-meta{display:flex;justify-content:space-between;font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.tray-card>svg{display:block;width:100%;max-width:168px;margin:10px auto 2px}
-.tray-country{display:flex;align-items:center;justify-content:space-between;gap:18px}
-.tray-country h2{margin:14px 0 6px;font-family:var(--font-display);font-size:30px;letter-spacing:-.015em}
-.tray-country p{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3)}
-.tray-country svg{color:var(--ink-4);transition:transform .3s,color .3s}
-.tray-card:hover svg{transform:translate(3px,-3px);color:var(--ink)}
-.tray-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)}
-.tray-stats dt{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.tray-stats dd{margin-top:3px;font:18px var(--font-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
-.tray-stats dd small{margin-left:1px;font-size:12px;color:var(--ink-4)}
-.tray-reading{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.tray-reading>span:last-child{color:var(--ink)}
-.tray-note{max-width:62ch;margin-top:22px;font-size:13px;color:var(--ink-3)}
 
 /* ── Evidence panel ───────────────────────────────────────────────────── */
 .evidence-sheet{width:min(520px,100vw)!important;max-width:520px!important;padding:18px 18px 0!important;border-left:1px solid var(--rule)!important;background:var(--paper-raised)!important;color:var(--ink)!important;box-shadow:-24px 0 70px #2a271f1a!important;overflow-y:auto!important}
@@ -330,59 +257,9 @@ svg{flex-shrink:0}
 .source-link:hover{color:var(--ink)}
 .source-link>span{display:flex;flex-direction:column;gap:4px}
 .source-link small{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.submission-status{display:flex;align-items:center;gap:14px;margin:18px 0;padding:16px;background:var(--paper-sunken)}
-.submission-status>span{padding:6px;border:1px solid var(--rule-strong);border-radius:50%;color:var(--ink-2)}
-.submission-status h3{font-size:15px;font-weight:500}
-.submission-status p{margin-top:4px;font-size:13px;color:var(--ink-3)}
 .evidence-list>div{display:flex;justify-content:space-between;gap:15px;padding:13px 0;border-bottom:1px solid var(--rule);font-size:15px}
-.series-table>div{display:grid;grid-template-columns:66px 1fr 118px;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--rule);font:13px var(--font-mono);font-variant-numeric:tabular-nums}
-.series-table .table-heading{font-size:12px;letter-spacing:0;color:var(--ink-4)}
-.request-audit{display:flex;flex-direction:column;gap:8px;margin:18px 0;padding:16px 18px;background:var(--paper-sunken)}
-.request-audit>span{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.request-audit b,.request-audit code{font:13px var(--font-mono);font-weight:400;color:var(--ink-2);overflow-wrap:anywhere}
-.request-audit small{font-size:13px;line-height:1.65;color:var(--ink-3)}
-.register-heading{display:flex;align-items:baseline;gap:10px;margin-top:32px;font-family:var(--font-display);font-size:30px;letter-spacing:-.015em}
-.register-heading>span{font:13px var(--font-mono);color:var(--ink-3)}
-.source-register>a{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule);transition:color .2s}
-.source-register>a:hover{color:var(--ink)}
-.source-register>a>span{font:12px var(--font-mono);color:var(--ink-4)}
-.source-register b{flex:1;font-size:15px;font-weight:400}
-.source-register small{display:block;font:12px var(--font-mono);color:var(--ink-4)}
-.method-row{padding:14px 0;border-bottom:1px solid var(--rule)}
-.method-row h3{margin:9px 0;font-size:18px;font-weight:500}
-.method-row p{font-size:15px;color:var(--ink-3)}
-
-/* ── Footer and notices ───────────────────────────────────────────────── */
-.page-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px var(--gutter);border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3)}
-.page-footer>div{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
-.footer-label{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.export-notice{position:fixed;bottom:22px;left:50%;z-index:70;display:flex;align-items:center;gap:20px;width:max-content;max-width:calc(100vw - 40px);padding:14px 18px;border:1px solid var(--rule-strong);border-left:2px solid var(--ndc);background:var(--paper-raised);box-shadow:var(--shadow-2);font-size:15px;color:var(--ink-2);transform:translateX(-50%)}
-.export-notice button{font-size:22px;line-height:1;color:var(--ink-4)}
-.export-notice button:hover{color:var(--ink)}
 
 /* ── Responsive ───────────────────────────────────────────────────────── */
-@media(max-width:1200px){
- .clause-card{padding:0 18px}
- .clause-value{font-size:30px}
- .clause-value.word{font-size:22px}
- .input-record{padding:14px;gap:11px}
- .input-progress{display:none}
-}
-@media(max-width:950px){
- .about-button{margin-left:auto}
- .main-tabs,.main-tabs button{height:34px!important}
- .main-tabs{width:100%!important;gap:28px!important}
- .data-inputs{grid-template-columns:repeat(2,1fr)}
- .input-record:nth-child(2){border-right:0}
- .input-record:nth-child(-n+2){border-bottom:1px solid var(--rule)}
- .argument-chain{grid-template-columns:repeat(2,1fr);row-gap:28px}
- .clause-card:nth-child(2){border-right:0;padding-right:0}
- .clause-card:nth-child(3){padding-left:0}
- .engine-flow{grid-template-columns:repeat(2,1fr);row-gap:28px}
- .engine-flow button:nth-child(2){border-right:0}
- .engine-flow button:nth-child(3){padding-left:0}
- .tray-grid{grid-template-columns:repeat(2,1fr)}
-}
 @media(max-width:700px){
  .instrument{display:flex;flex-direction:column}
  /* svh follows the browser's own chrome: it measured 471px in an 844px
@@ -401,22 +278,12 @@ svg{flex-shrink:0}
  .component-label{min-width:104px;max-width:136px;padding:5px 8px}
  .component-label strong{font-size:12px}
  .component-label span{font-size:12px}
- .argument-chain,.engine-flow{grid-template-columns:1fr;row-gap:26px;padding:26px 0}
- .clause-card,.engine-flow button{padding:0;border-right:0}
- .clause-card:not(:last-child),.engine-flow button:not(:last-child){padding-bottom:22px;border-bottom:1px solid var(--rule)}
- .data-inputs{grid-template-columns:1fr}
- .input-record{border-right:0;border-bottom:1px solid var(--rule)}
- .input-record:last-child{border-bottom:0}
- .tray-grid{grid-template-columns:1fr}
- .page-footer{flex-direction:column;align-items:flex-start;gap:12px}
- .page-footer>span{display:none}
  .evidence-sheet{padding:14px 8px 0!important}
  .detail-title{font-size:30px!important}
 }
 @media(min-width:701px) and (max-width:1199px){.projected-labels .component-label span{display:none}}
 @media(prefers-reduced-motion:reduce){
  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
- .tray-card:hover{transform:none}
 }
 
 /* ── the country record ───────────────────────────────────────────────────
@@ -517,6 +384,9 @@ svg{flex-shrink:0}
 .rec-evidence i{font:12px var(--font-mono);letter-spacing:0;color:var(--ink-4);padding-top:3px;font-style:normal}
 .rec-evidence q{font-size:15px;line-height:1.7;color:var(--ink-2);border-left:1px solid var(--rule-strong);padding-left:12px;display:block}
 .rec-evidence q::before,.rec-evidence q::after{content:''}
+.rec-evidence.wide li{grid-template-columns:minmax(84px,auto) 1fr}
+.rec-evidence span{font-size:15px;line-height:1.6;color:var(--ink-2)}
+.rec-evidence span q{display:inline;border:0;padding:0}
 .rec-card .source-link{margin-top:auto}
 .rec-card .detail-note{margin-bottom:0}
 
@@ -622,11 +492,6 @@ svg{flex-shrink:0}
  padding:22px var(--gutter);border-top:1px solid var(--rule);
  font:12px var(--font-mono);letter-spacing:0;color:var(--ink-3)}
 
-/* the instrument's own view modes, one level below the site nav */
-.mode-strip{display:flex;align-items:center;justify-content:space-between;gap:24px;
- padding:0 var(--gutter);border-bottom:1px solid var(--rule)}
-.mode-strip .main-tabs,.mode-strip .main-tabs button{height:52px!important}
-
 /* the record shell keeps a back link to the instrument, not a second nav */
 
 @media(max-width:720px){
@@ -634,7 +499,6 @@ svg{flex-shrink:0}
  .site-nav{flex-wrap:nowrap;gap:18px;width:calc(100% + 2*var(--gutter));margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter);overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 88%,transparent)}
  .site-nav::-webkit-scrollbar{display:none}
  .site-nav a,.jump-open{flex:none;white-space:nowrap}
- .mode-strip{flex-wrap:wrap;gap:8px}
 }
 
 /* ── /countries — the collection as a route ─────────────────────────────── */
@@ -968,19 +832,8 @@ body::after{
 .fin-band-figs b,.fin-stair-fig{font-family:var(--font-display);font-weight:700}
 .eyebrow{font-weight:500;letter-spacing:0}
 
-/* ── the claim: what this is, before the instrument is beautiful at you ───── */
-.claim{display:grid;grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);
- align-items:start;padding:clamp(28px,3.4vw,48px) var(--gutter) clamp(22px,2.6vw,34px);
- border-bottom:1px solid var(--rule)}
-.claim-figs{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s6);margin:0;
- padding-top:var(--s4);border-top:1px solid var(--rule)}
-.claim-denom{margin:var(--s3) 0 0;max-width:96ch;font-size:var(--t1);line-height:1.55;color:var(--ink-3)}
-.claim-figs div{display:flex;flex-direction:column-reverse;gap:5px;min-width:0}
-.claim-figs dt{font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ink-4)}
-.claim-figs dd{margin:0;font-family:var(--font-display);font-weight:600;
- font-size:clamp(24px,2.6vw,34px);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
-.claim-figs dd span{font-size:.5em;font-weight:600;color:var(--ink-4);letter-spacing:0}
-.claim-ways{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s2)}
+/* ── the ways out of a page, and the three rules of the instrument ──────── */
+.claim-ways{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s2)}
 .read-how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,34px);
  margin:0;padding:clamp(16px,1.9vw,24px) var(--gutter);list-style:none;counter-reset:how;
  background:var(--paper-raised);border-bottom:1px solid var(--rule)}
@@ -990,10 +843,6 @@ body::after{
  font:var(--t0) var(--font-mono);letter-spacing:0;color:var(--ndc-ink)}
 .read-how b{color:var(--ink);font-weight:600}
 @media(max-width:860px){.read-how{grid-template-columns:1fr;gap:var(--s3)}}
-/* The registry's current filing, said at reading size beside the headline. */
-.stale-flag{margin-top:var(--s3);padding-left:var(--s3);border-left:1px solid var(--warn);
- font-size:var(--t2);line-height:1.5;color:var(--ink-2);max-width:54ch}
-.stale-flag b{color:var(--ink);font-weight:600}
 .way{display:inline-flex;align-items:center;gap:var(--s2);min-height:42px;padding:0 var(--s4);
  border:1px solid var(--rule-strong);background:var(--paper-raised);
  font:500 var(--t2) var(--font-sans);color:var(--ink-2);
@@ -1001,11 +850,6 @@ body::after{
 .way:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
 .way.primary{background:var(--un-ink);border-color:var(--un-ink);color:#fff}
 .way.primary:hover{background:var(--un-ink);border-color:var(--un-ink);color:#fff}
-@media(max-width:860px){.claim{grid-template-columns:1fr;align-items:start;gap:var(--s5)}}
-/* A figure that has not arrived is a held space, never a placeholder number. */
-.fig-wait{display:inline-block;width:1.6em;height:.62em;border-radius:2px;background:var(--paper-sunken);
- animation:fadeIn .9s var(--ease) infinite alternate}
-@media(prefers-reduced-motion:reduce){.fig-wait{animation:none}}
 
 /* ── the country record ──────────────────────────────────────────────────────
    A record is a document: a name you can read across a room, a reading under
@@ -1219,19 +1063,19 @@ body::after{
 :root{--dur-quick:180ms;--dur:300ms;--dur-slow:640ms}
 .reveal.is-in{animation-duration:var(--dur-slow);animation-delay:calc(min(var(--i,0),6)*60ms)}
 .cty-name,.rec-title{animation:riseIn 760ms var(--emph) both}
-.claim-figs,.claim-ways,.cty-lede,.rec-lede{animation:riseIn 560ms var(--out) 140ms both}
-@media(prefers-reduced-motion:reduce){.cty-name,.rec-title,.claim-figs,.claim-ways,.cty-lede,.rec-lede{animation:none}}
+.claim-ways,.cty-lede,.rec-lede{animation:riseIn 560ms var(--out) 140ms both}
+@media(prefers-reduced-motion:reduce){.cty-name,.rec-title,.claim-ways,.cty-lede,.rec-lede{animation:none}}
 
 /* ── labels: sentence case, the interface face, medium weight ─────────────── */
-.eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.tally,.peers-lab,.claim-figs dt,.unk-legend,
+.eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.tally,.peers-lab,.unk-legend,
 .unk-lattice figcaption span,.fin-band-figs span,.band-head span,.unk-lat-name,.jump-hits small,
 .record-action,.btn-ghost,.jump-open,.disc>summary,.rail a,.site-nav a,.cov-tip-score,.src-n,
 .fin-stair figcaption,.div-collide figcaption span,.cty-sheet figcaption span,.ref-specimen figcaption>span,
-.rec-chips span,.rec-section h3 small,.unk-gap-fig small,.cov-key li,.torn-head,.footer-label,
-.stage-heading,.tray-stats dt,.reading>div,.state-token,.edition-note>span,.clause-top,.input-name,
-.rec-card-tag,.rec-card dt,.rec-run dt,.rec-inputs th,.request-audit>span,.site-foot{
+.rec-chips span,.rec-section h3 small,.unk-gap-fig small,.cov-key li,.torn-head,
+.stage-heading,.reading>div,.state-token,
+.rec-card-tag,.rec-card dt,.rec-run dt,.rec-inputs th,.site-foot{
  text-transform:none;letter-spacing:0;font-family:var(--font-sans);font-weight:500}
-.eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.peers-lab,.claim-figs dt,.band-head span,.cov-key li,.torn-head,
+.eyebrow,.kpi-lab,.rec-tile-label,.ctl-lab,.peers-lab,.band-head span,.cov-key li,.torn-head,
 .unk-lattice figcaption span,.fin-stair figcaption,.div-collide figcaption span,.cty-sheet figcaption span,
 .ref-specimen figcaption>span,.unk-legend,.src-n,.fin-band-figs span{font-size:var(--t1);color:var(--ink-3)}
 .eyebrow{font-weight:600;color:var(--ink)}
@@ -1325,26 +1169,10 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
  .unk-gap>.record-action{grid-row:4}
 }
 
-/* ── the instrument, from the reader's side ───────────────────────────────── */
-/* The country is the subject of the whole page; the control that changes it
-   was 38px and labelled "Document snapshot". */
-/* the collection: two ways out of a card, and neither is the whole card */
-.tray-actions{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--rule)}
-.tray-go{display:inline-flex;align-items:center;gap:6px;font:500 var(--t1) var(--font-sans);color:var(--ink-2);
- text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:4px;
- transition:color var(--dur) var(--ease),text-decoration-color var(--dur) var(--ease)}
-.tray-go:hover{color:var(--ink);text-decoration-color:var(--ink)}
-.tray-card h2 a{color:inherit}
-.tray-card h2 a:hover{color:var(--ink)}
-/* the collection card's region line was the one label the pass missed */
-.tray-country p{text-transform:none;letter-spacing:0;font:var(--t1) var(--font-sans);color:var(--ink-3)}
-.tray-meta span{font-family:var(--font-mono);font-size:var(--t0);letter-spacing:0;text-transform:none;color:var(--ink-4)}
-
 /* ── the stage as a stage ───────────────────────────────────────────────────
-   A pool of brighter paper behind the machine and nothing else — the guide
-   rings were graph paper. A way to the next country on either side, and a
-   hint that leaves once the reader has touched anything. */
-.movement-stage{background:radial-gradient(72% 64% at 52% 46%,var(--paper-raised) 0,transparent 74%)}
+   The machine stands on the page's own paper and nothing else. A way to the
+   next country on either side, and a hint that leaves once the reader has
+   touched anything. */
 .stage-step{width:32px;height:32px;display:grid;place-items:center;
  border:1px solid var(--rule-strong);border-radius:3px;background:color-mix(in srgb,var(--paper-raised) 86%,transparent);
  backdrop-filter:blur(4px);color:var(--ink-2);opacity:.85;
@@ -1361,12 +1189,6 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .stage-heading>*{pointer-events:auto}
 .stage-heading{justify-content:flex-start}
 .stage-heading .stage-pager{margin-left:auto}
-.stage-heading .main-tabs button:after{background:var(--un)!important}
-.stage-heading .main-tabs,.stage-heading .main-tabs button{height:32px!important;font-size:var(--t2)!important}
-.stage-heading .main-tabs{gap:20px!important}
-.stage-heading .about-button{margin-left:var(--s3);font-size:var(--t2)}
-.stage-heading .compare-picker{height:32px!important;min-width:0!important;margin:0!important;padding:0 10px!important;font:500 var(--t2) var(--font-sans)!important;border-color:var(--rule-strong)!important}
-.stage-heading .compare-picker{margin-right:var(--s2)!important;color:var(--ink-3)!important}
 .stage-scrub{position:absolute;left:0;right:0;bottom:0;z-index:3}
 .stage-scrub [data-slot=slider-track]{height:2px;border-radius:0;background:var(--rule)}
 .stage-scrub [data-slot=slider-range]{background:var(--un)}
@@ -1380,53 +1202,6 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 /* on the phone the stage is 300px tall: the cluster lies along its floor instead */
 @media(max-width:700px){.stage-ctl{left:16px;right:16px;bottom:10px;flex-direction:row;flex-wrap:wrap;justify-content:flex-end}.stage-ctl>div{flex-direction:row}}
 @media(max-width:720px){.stage-hint{display:none}}
-
-/* ── same calibre, other countries ─────────────────────────────────────────── */
-.calibre{margin:var(--s5) var(--gutter) 0;padding-top:var(--s4);border-top:1px solid var(--rule)}
-.calibre h2{font:600 var(--t2) var(--font-sans);color:var(--ink-3);margin-bottom:var(--s3)}
-.calibre-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:var(--s3)}
-.calibre-dial{display:flex;flex-direction:column;align-items:center;gap:4px;padding:var(--s3) var(--s2);
- border:1px solid transparent;border-radius:4px;text-align:center;color:var(--ink-2);
- transition:border-color var(--dur) var(--ease),background var(--dur) var(--ease),transform 120ms var(--out)}
-.calibre-dial svg{width:96px;height:96px}
-.calibre-dial b{font:600 var(--t1) var(--font-sans);color:var(--ink)}
-.calibre-dial span{font:var(--t0) var(--font-sans);color:var(--ink-3)}
-.calibre-dial:hover{border-color:var(--rule-strong);background:var(--paper-raised)}
-@media(hover:hover){.calibre-dial:hover{transform:translateY(-2px)}}
-.calibre-dial[aria-pressed="true"]{border-color:var(--ink);background:var(--paper-raised)}
-.calibre-dial[aria-pressed="true"] span{color:var(--ink)}
-.calibre-dial:disabled{opacity:.5}
-/* the cohort strip inside a sheet is tighter than on the record page */
-.evidence-sheet .peers{margin:var(--s3) 0 var(--s4)}
-
-/* ── two countries, one calibre ─────────────────────────────────────────────
-   Two of the flat dials and a table of the figures both records carry, on
-   one WebGL context: the second machine is a picture, not a second scene. */
-.compare-picker{height:44px!important;min-width:200px!important;margin-right:var(--s3);font:500 var(--t2) var(--font-sans)!important;
- color:var(--ink-2)!important;border:1px solid var(--rule-strong)!important;border-radius:3px!important;padding:0 12px!important}
-.compare-picker:hover{border-color:var(--ink)!important;color:var(--ink)!important}
-.compare{margin:var(--s5) var(--gutter) 0;padding-top:var(--s4);border-top:1px solid var(--rule);
- display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:var(--s5) var(--s7);align-items:start}
-.compare-dials{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
-.compare-dial{display:flex;flex-direction:column;align-items:center;gap:4px;padding:var(--s3) var(--s2);
- border:1px solid transparent;border-radius:4px;text-align:center;color:var(--ink-2);
- transition:border-color var(--dur) var(--ease),background var(--dur) var(--ease)}
-.compare-dial svg{width:120px;height:120px}
-.compare-dial b{font:600 var(--t2) var(--font-sans);color:var(--ink)}
-.compare-dial span{font:var(--t0) var(--font-sans);color:var(--ink-4)}
-.compare-dial[aria-pressed="true"]{border-color:var(--ink)}
-.compare-dial:not(:disabled):hover{border-color:var(--rule-strong);background:var(--paper-raised)}
-.compare-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.compare-table th,.compare-table td{padding:10px 0;border-bottom:1px solid var(--rule);text-align:right;vertical-align:baseline}
-.compare-table thead th{font:600 var(--t1) var(--font-sans);color:var(--ink-3);border-bottom:2px solid var(--un)}
-.compare-table thead th:first-child,.compare-table tbody th{text-align:left}
-.compare-table tbody th{font:500 var(--t2) var(--font-sans);color:var(--ink-2)}
-.compare-table tbody th small{display:block;font:var(--t0) var(--font-sans);color:var(--ink-4)}
-.compare-table td{font:600 var(--t4) var(--font-display);color:var(--ink);width:26%}
-.compare-table td[data-unread]{color:var(--ink-4);font-weight:400}
-.compare-note{grid-column:1/-1;font-size:var(--t1);line-height:1.6;color:var(--ink-4);max-width:80ch}
-@media(max-width:860px){.compare{grid-template-columns:1fr}}
-@media(max-width:720px){.compare-picker{display:none}}
 
 /* ── the series chart, on the page's grid ──────────────────────────────────── */
 .sc{margin:var(--s4) 0 var(--s3)}
@@ -1458,24 +1233,18 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .hb-src{margin-left:6px;font:var(--t0) var(--font-mono);color:var(--ink-3)}
 
 /* ── the instrument on a phone: unpinned ──────────────────────────────────────
-   The desktop chapter pins a 100svh frame while a 680svh track scrolls under
-   it. On a phone that frame cannot hold the stage, the reading, the anatomy,
-   the narration, the rail and the calibre strip at once, so they were drawn
-   on top of each other. Below 700px only the stage is pinned, short, and the
-   cards pass under it; the card nearest the top seeks the machine to its
-   chapter, so the part and its sentence are on screen together.
-   The projected labels and the chapter popup are the narration strip's text
-   again, drawn onto a stage too small for them, so they go. */
+   The desktop chapter pins a 100svh frame while a 1000svh track scrolls under
+   it. On a phone that frame cannot hold the stage and the cards at once, so
+   below 700px only the stage is pinned, short, and the cards pass under it;
+   the card nearest the top seeks the machine to its chapter, so the part and
+   its sentence are on screen together. The projected labels are the cards'
+   text again, drawn onto a stage too small for them, so they go. */
 @media(max-width:700px){
  .scroll-chapter{height:auto}
  .scroll-pin{position:sticky;top:0;z-index:3;height:auto;overflow:visible}
  .instrument{padding-bottom:var(--s3)}
  .projected-labels,.assembly-leaders{display:none}
  .stage-hint{display:none}
- .calibre-row{grid-template-columns:repeat(3,minmax(0,1fr))}
- .calibre-dial{min-width:0;padding-inline:4px}
- .calibre-dial svg{width:100%;max-width:96px;height:auto}
- .compare{grid-template-columns:1fr}
 }
 
 /* ── white paper (2026-09-27) ─────────────────────────────────────────────
@@ -1514,27 +1283,16 @@ a,button,summary,input,select{-webkit-tap-highlight-color:transparent}
 .ctl-menu [role=menuitem][data-highlighted]{background:var(--paper-sunken)}
 .ctl-menu [role=menuitem][data-disabled]{opacity:.4;cursor:default}
 .ctl-menu-rule{height:1px;margin:6px 4px;background:var(--rule)}
-/* compare sits with the other countries */
-.calibre-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s3)}
-.calibre-head h2{margin:0}
-.calibre-head .compare-picker{height:36px!important;min-width:190px!important;margin:0!important}
-/* the scroll cue is an instruction, in words */
-.step-in .cue{font:500 var(--t2)/1.4 var(--font-sans);letter-spacing:0;text-transform:none;color:var(--ink-3)}
 @media(max-width:700px){.stage-foot{display:none}.stage-heading .stage-pager{margin-left:0}}
 
-/* ── the stage at night (2026-09-27) ─────────────────────────────────────
-   The instrument is shown the way hardware is shown: a dark studio, the object
-   lit, the interface receding. Inside the chapter the tokens turn over, so
-   every rule that reads --ink or --paper follows without a dark variant of its
-   own, and the evidence inks step up to their light counterparts. */
-.scroll-chapter,body:has(.scroll-chapter) .site-top{
- --ink:#f2f8fc;--ink-2:#d6e6f1;--ink-3:#a6c2d6;--ink-4:#86a6bd;
- --rule:rgba(255,255,255,.12);--rule-strong:rgba(255,255,255,.26);
- --paper:#062540;--paper-raised:#0a3357;--paper-sunken:#0e3e68;--wash:#145487;
- /* The SDG hues lifted for the night stage; all pairs clear the normal-vision
-    floor (worst ΔE 15.3), and each use carries a text label. */
- --ndc:#4cc3f5;--ndc-ink:#4cc3f5;--inv-ink:#7cc47f;--btr:#f06aa8;--fin-ink:#f2c35b;color:var(--ink)}
-.scroll-chapter{background:#041d33}
-.scroll-pin{background:radial-gradient(1100px 760px at 66% 46%,#0e5a92 0%,#073a63 42%,#041d33 100%)}
-body:has(.scroll-chapter) .site-top{background:rgba(4,29,51,.84);border-bottom-color:rgba(255,255,255,.08)}
-.scroll-chapter .step-in{border:1px solid rgba(255,255,255,.07);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+/* display type (2026-10-09): Bricolage carries the voice, heavy and tight */
+.rec-title{font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.brand-word{font-family:var(--font-display);font-weight:700;letter-spacing:-.01em}
+
+/* Tap targets (2026-10-11): links and buttons that sit alone, not inside a sentence, get at least
+   a 24px hit area (WCAG 2.5.8). Padding and an equal negative margin enlarge the hit area without
+   moving anything on screen. */
+.dir-table tbody th a,.site-foot .foot-nav a,.rec-why dt a,button.readout-all{display:inline-block;padding-block:8px;margin-block:-8px}
+.foot-brand,.rec-back{padding-block:8px;margin-block:-8px}
+.dir-table thead th button{min-height:32px}
+.rec-hash{font:12px var(--font-mono);overflow-wrap:anywhere;word-break:break-all}

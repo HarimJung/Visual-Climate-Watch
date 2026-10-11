@@ -10,18 +10,18 @@
     ]
   },
   "ndc": {
-    "version": "No NDC document loaded",
-    "submission_date": null,
+    "version": "First NDC (2021)",
+    "submission_date": "2021-08-24",
     "base_year": null,
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
-    "target_year": null,
+    "target_year": 2030,
     "bau_2030_mtco2e": null,
     "bau_state": "unknown",
     "reduction_mtco2e": null,
-    "reduction_pct": null,
+    "reduction_pct": 25,
     "target_emissions_mtco2e": null,
-    "target_state": "unknown",
+    "target_state": "pledged",
     "folu_share_of_reduction_pct": null,
     "sectors": [],
     "net_zero_target_year": null,
@@ -31,13 +31,38 @@
       "unconditional_pct": null,
       "conditional_pct": null,
       "split_state": "unknown",
-      "extraction_confidence": "low"
+      "extraction_confidence": "high"
     },
+    "headline_condition": "not-read",
+    "gas_scope": "ghg",
+    "reduction_range_pct": null,
+    "targets": [
+      {
+        "reduction_pct": 25,
+        "reduction_range_pct": null,
+        "basis": "bau",
+        "base_year": null,
+        "target_year": 2030,
+        "condition": "not-read",
+        "unconditional_pct": null,
+        "conditional_pct": null,
+        "evidence": [
+          {
+            "page": 2,
+            "sentence": "Qatar intends to reduce 25% of its GHG emissions by the year 2030, relative to baseline scenario {BusinessAs-Usual (BAU)}."
+          },
+          {
+            "page": 2,
+            "sentence": "The reduction of 25% in GHG emissions for the year 2030, relative to BAU scenario is consistent with provisions stipulated in Articles 4.3, 4.4 and 4.7 of PA."
+          }
+        ]
+      }
+    ],
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "Qatar First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_need": {
@@ -49,56 +74,62 @@
     "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
-      "name": "UNFCCC NDC registry",
-      "url": "https://unfccc.int/NDCREG",
-      "retrieved_at": "2026-09-07"
+      "name": "Qatar First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
+      "retrieved_at": "2026-10-11"
     }
   },
   "btr": {
     "version": "BTR1",
-    "submitted": null,
+    "submitted": true,
     "submission_date": null,
     "published_date": null,
     "components": {
       "nir": {
         "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "$reason": "none of the 13 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "crt": {
-        "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "state": "observed",
+        "$evidence": [
+          "QAT-CRT-2024-V0.1-2023.xlsx!Summary2!K72"
+        ]
       },
       "ctf": {
-        "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "state": "observed",
+        "$evidence": [
+          "QAT-CTF-NDC-2024-V2.0_.xlsx!Table4.1!F9"
+        ]
       },
       "ndc_track": {
-        "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "state": "observed",
+        "$evidence": [
+          "QAT-CTF-NDC-2024-V2.0_.xlsx!Table4.1!F9"
+        ]
       },
       "adaptation": {
         "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "$reason": "Adaptation reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       },
       "finance": {
         "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "$reason": "none of the 13 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "redd_plus": {
         "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "$reason": "none of the 13 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "article6": {
         "state": "unknown",
-        "$reason": "no BTR1 filing for this Party is held by the mirror this engine can reach, so no attachment name has been read. It is not a statement that this Party filed nothing."
+        "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "No BTR1 filing for this Party is held by the mirror this engine can reach. That is not a statement that none was filed, unfccc.int refuses this engine's requests, so the registry itself has not been read.",
+    "$note": "13 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -113,7 +144,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -276,7 +307,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 235.72487249951362,
+        "value_mtco2e": 188.73428465934194,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -288,7 +319,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 234.76041448664088,
+        "value_mtco2e": 188.77207885961886,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -300,7 +331,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 238.1213722564998,
+        "value_mtco2e": 192.58493677686943,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -312,7 +343,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 240.56333102724525,
+        "value_mtco2e": 195.07278842092296,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -324,7 +355,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 241.17757306215572,
+        "value_mtco2e": 196.85575191057958,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -336,7 +367,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 238.18318070517063,
+        "value_mtco2e": 193.79678711570315,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -348,7 +379,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 243.92673214863223,
+        "value_mtco2e": 197.89520617617555,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -360,7 +391,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 248.91836450583526,
+        "value_mtco2e": 206.34303488711478,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -372,7 +403,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 254.64356637174737,
+        "value_mtco2e": 212.62661476192272,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -384,7 +415,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 256.4697880975383,
+        "value_mtco2e": 215.16803914224926,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -396,7 +427,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 250.60857064674283,
+        "value_mtco2e": 218.93562426398142,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -411,15 +442,20 @@
     "on_track": null,
     "gap_state": "unknown",
     "trend_source_id": "DS-35",
-    "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+    "$reason": "the pledge is 25% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
   },
   "$extensions": [
     "country_profile",
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
+    "finance_listing",
     "verdict",
     "sources",
     "provenance"
@@ -435,7 +471,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
@@ -444,7 +480,14 @@
     "submission_date": "2025-11-21",
     "document_url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
     "archived_submissions": 1,
-    "matches_parsed_document": null,
+    "matches_parsed_document": true,
+    "latest_retrieval": {
+      "state": "observed",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260730010532id_/https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+      "capture_timestamp": "20260730010532",
+      "checked_at": "2026-10-10T21:25:33.028Z"
+    },
     "state": "observed",
     "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
     "source": {
@@ -452,7 +495,7 @@
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -472,16 +515,16 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
-    "kind": "First NDC",
+    "kind": "NDC 3.0",
     "language": "English",
-    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
-    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/QAT_Qatar_First_NDC_Translation_English.pdf",
-    "submission_date": "2021-08-24",
-    "pages": 6,
+    "document_url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+    "retrieval_url": "https://web.archive.org/web/20260730010532id_/https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+    "submission_date": "2025-11-21",
+    "pages": 39,
     "reduction_pct": null,
     "basis": null,
     "base_year": null,
@@ -491,14 +534,356 @@
     "net_zero_year": null,
     "confidence": "low",
     "evidence": [],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "wayback",
+    "capture_timestamp": "20260730010532",
+    "document_sha256": "1ac0e67c3f1f1e45fb7e199f520f1aded441d23e96d69cf619982ca275385a7c",
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$note": "Read by DS-06-NDC from the NDC 3.0 from the Internet Archive's capture of 2026-07-30 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
-      "id": "DS-06-NDC",
-      "name": "Qatar First NDC",
-      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
-      "retrieved_at": "2026-09-13"
+      "id": "DS-06-NDC-LATEST",
+      "name": "Qatar NDC 3.0",
+      "url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "NDC 3.0",
+      "language": "English",
+      "document_url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+      "retrieval_url": "https://web.archive.org/web/20260730010532id_/https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+      "submission_date": "2025-11-21",
+      "pages": 39,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "low",
+      "evidence": [],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20260730010532",
+      "document_sha256": "1ac0e67c3f1f1e45fb7e199f520f1aded441d23e96d69cf619982ca275385a7c",
+      "headline": false,
+      "state": "unknown",
+      "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "$note": "Read by DS-06-NDC from the NDC 3.0 from the Internet Archive's capture of 2026-07-30 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC-LATEST",
+        "name": "Qatar NDC 3.0",
+        "url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    },
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
+      "retrieval_url": "https://web.archive.org/web/20220324224045id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
+      "submission_date": "2021-08-24",
+      "pages": 13,
+      "reduction_pct": 25,
+      "basis": "bau",
+      "base_year": null,
+      "target_year": 2030,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "high",
+      "evidence": [
+        {
+          "page": 2,
+          "sentence": "Qatar intends to reduce 25% of its GHG emissions by the year 2030, relative to baseline scenario {BusinessAs-Usual (BAU)}."
+        },
+        {
+          "page": 2,
+          "sentence": "The reduction of 25% in GHG emissions for the year 2030, relative to BAU scenario is consistent with provisions stipulated in Articles 4.3, 4.4 and 4.7 of PA."
+        }
+      ],
+      "headline_condition": "not-read",
+      "gas_scope": "ghg",
+      "reduction_range_pct": null,
+      "targets": [
+        {
+          "reduction_pct": 25,
+          "reduction_range_pct": null,
+          "basis": "bau",
+          "base_year": null,
+          "target_year": 2030,
+          "condition": "not-read",
+          "unconditional_pct": null,
+          "conditional_pct": null,
+          "evidence": [
+            {
+              "page": 2,
+              "sentence": "Qatar intends to reduce 25% of its GHG emissions by the year 2030, relative to baseline scenario {BusinessAs-Usual (BAU)}."
+            },
+            {
+              "page": 2,
+              "sentence": "The reduction of 25% in GHG emissions for the year 2030, relative to BAU scenario is consistent with provisions stipulated in Articles 4.3, 4.4 and 4.7 of PA."
+            }
+          ]
+        }
+      ],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20220324224045",
+      "document_sha256": "9d2afa4d7e0242758bd095e0cf47cc8fec06ada77d76e27a8486b988626153e0",
+      "headline": true,
+      "mirror_check": {
+        "result": "replaced",
+        "checked_at": "2026-10-11T14:22:39.400Z",
+        "capture_timestamp": "20220324224045"
+      },
+      "state": "pledged",
+      "$note": "Read by DS-06-NDC from the First NDC from the Internet Archive's capture of 2022-03-24 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Qatar First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Qatar",
+      "notes": [],
+      "signature": null,
+      "consent": "1996-04-18",
+      "consent_kind": "accession",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 3,
+          "sentence": "Qatar 18 Apr 1996 a"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Qatar",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2017-06-23",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 3,
+          "sentence": "Qatar 22 Apr 2016 23 Jun 2017"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "QAT-CTF-NDC-2024-V2.0_.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/QAT-CTF-NDC-2024-V2.0_.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s76839--c0a7c21ae60958841e9586b3ede13b42.xlsx",
+    "file_sha256": "05cc0f6bf260b14f0620782a35db1c3196f37a2e62004aa2646fa8b7d9a833a8",
+    "tables": [
+      {
+        "sheet": "Table4.1",
+        "title": {
+          "cell": "Table4.1!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.1!B9",
+              "text": "National total GHG emissions "
+            },
+            "unit": {
+              "cell": "Table4.1!C9",
+              "text": "kt CO₂ equivalent"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.1!D7",
+                "text": "2019"
+              },
+              "value": {
+                "cell": "Table4.1!D9",
+                "value": 113195.85427589777,
+                "literal": "113195.85427589777"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.1!F9",
+                "value": 111637.19044793553,
+                "literal": "111637.19044793553",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.1!G9",
+                "value": 115414.54064561905,
+                "literal": "115414.54064561905",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table4.1!H9",
+                "value": 118253.21119513332,
+                "literal": "118253.21119513332",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table4.1!J9",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table4.1!K9",
+              "text": "The BAU baseline has not been clearly defined. Therefore, progress towards the BAU-based target cannot be assessed against a clearly established reference point. The target is subject to periodic review and may be refined or updated. "
+            },
+            "unread": [
+              {
+                "cell": "Table4.1!I9",
+                "text": "emission reduction target below a projected baseline"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "target_text": {
+      "cell": "Appendix!C7",
+      "text": "Qatar's NDC emissions reduction target was previously defined as a projected percentage reduction by 2030 below business-as-usual (BAU) levels (an emission reduction target below a projected baseline). The target is consistent with Articles 4.3, 4.4, and 4.7 of the Paris Agreement, reflecting progression and the highest possible ambition, while acknowledging the role of international support in enabling implementation for developing country Parties. All national actions and plans described will be implemented in accordance with the principles and provisions of the UNFCCC, particularly Articles 4.7 and 12.4."
+    },
+    "reference_text": [
+      {
+        "cell": "Table1!C8",
+        "text": "The reference level is total net GHG emissions in 2019"
+      }
+    ],
+    "superseded": [],
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/QAT-CTF-NDC-2024-V2.0_.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "observed",
+    "file": "QAT-CRT-2024-V0.1-2023.xlsx",
+    "year": 2023,
+    "year_cell": {
+      "cell": "Summary2!K1",
+      "text": "2023"
+    },
+    "party_cell": {
+      "cell": "Summary2!K3",
+      "text": "Qatar"
+    },
+    "unit": {
+      "cell": "Summary2!C9",
+      "text": "CO2 equivalents (kt ) (2)"
+    },
+    "totals": {
+      "without_lulucf": {
+        "cell": "Summary2!K71",
+        "value": 118830.04559602743,
+        "literal": "118830.04559602743",
+        "label": {
+          "cell": "Summary2!J71",
+          "text": "Total CO2 equivalent emissions without LULUCF"
+        }
+      },
+      "with_lulucf": {
+        "cell": "Summary2!K72",
+        "value": 118830.04559602743,
+        "literal": "118830.04559602743",
+        "label": {
+          "cell": "Summary2!J72",
+          "text": "Total CO2 equivalent emissions with LULUCF"
+        }
+      },
+      "with_indirect_without_lulucf": {
+        "cell": "Summary2!K73",
+        "value": 118830.04559602743,
+        "literal": "118830.04559602743",
+        "label": {
+          "cell": "Summary2!J73",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  without LULUCF"
+        }
+      },
+      "with_indirect_with_lulucf": {
+        "cell": "Summary2!K74",
+        "value": 118830.04559602743,
+        "literal": "118830.04559602743",
+        "label": {
+          "cell": "Summary2!J74",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  with LULUCF"
+        }
+      }
+    },
+    "document_url": "https://unfccc.int/sites/default/files/resource/QAT-CRT-2024_2019-2020-2021-2022-2023.zip",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s468550--0cd37aee6bcfeaffd3cc1d920a761501.xlsx",
+    "file_sha256": "4161078aa8257827fe482c93ad57b4aadd0f90373b1bcc426b0c1ecb3045f926",
+    "in_by_source": true,
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/QAT-CRT-2024_2019-2020-2021-2022-2023.zip",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "finance_listing": {
+    "channel": "Green Climate Fund",
+    "projects_listed": 372,
+    "statuses": {
+      "Under Implementation": 332,
+      "Approved": 17,
+      "Lapsed": 9,
+      "Completed": 8,
+      "Discontinued": 6
+    },
+    "read_on": "2026-10-10",
+    "projects_named": 0,
+    "state": "absent",
+    "$reason": "The Green Climate Fund's project list, read on 2026-10-10 (372 projects of every status: 332 Under Implementation, 17 Approved, 9 Lapsed, 8 Completed, 6 Discontinued), names no project for Qatar.",
+    "$note": "The Fund's readiness support is approved outside this project list, so this does not say Qatar received nothing from the Fund.",
+    "source": {
+      "id": "DS-15",
+      "name": "Green Climate Fund: projects and disbursements",
+      "url": "https://www.greenclimate.fund/projects/dashboard",
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -785,47 +1170,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 235.72487249951362
+            "value_mtco2e": 188.73428465934194
           },
           {
             "year": 2016,
-            "value_mtco2e": 234.76041448664088
+            "value_mtco2e": 188.77207885961886
           },
           {
             "year": 2017,
-            "value_mtco2e": 238.1213722564998
+            "value_mtco2e": 192.58493677686943
           },
           {
             "year": 2018,
-            "value_mtco2e": 240.56333102724525
+            "value_mtco2e": 195.07278842092296
           },
           {
             "year": 2019,
-            "value_mtco2e": 241.17757306215572
+            "value_mtco2e": 196.85575191057958
           },
           {
             "year": 2020,
-            "value_mtco2e": 238.18318070517063
+            "value_mtco2e": 193.79678711570315
           },
           {
             "year": 2021,
-            "value_mtco2e": 243.92673214863223
+            "value_mtco2e": 197.89520617617555
           },
           {
             "year": 2022,
-            "value_mtco2e": 248.91836450583526
+            "value_mtco2e": 206.34303488711478
           },
           {
             "year": 2023,
-            "value_mtco2e": 254.64356637174737
+            "value_mtco2e": 212.62661476192272
           },
           {
             "year": 2024,
-            "value_mtco2e": 256.4697880975383
+            "value_mtco2e": 215.16803914224926
           },
           {
             "year": 2025,
-            "value_mtco2e": 250.60857064674283
+            "value_mtco2e": 218.93562426398142
           }
         ]
       },
@@ -1060,16 +1445,30 @@
             "value_mtco2e": 61.592971858
           }
         ]
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "scope": "The Party's own CRT national total with LULUCF for 2023 only (QAT-CRT-2024-V0.1-2023.xlsx Summary2!K72, 118830.04559602743 CO2 equivalents (kt ) (2) as filed), shown in Mt; its own inventory and LULUCF accounting",
+        "series": [
+          {
+            "year": 2023,
+            "value_mtco2e": 118.83004559602743
+          }
+        ]
       }
     ],
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-11-21. 47 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (1). For 2024 the sources disagree: DS-02 256.5 MtCO₂e, DS-35 149.2 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. ND-GAIN scores it 52.2 for 2024. Projected warming for 2080-2099 against 1995-2014 ranges from +1.4°C under SSP1-2.6 to +5.22°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Qatar pledges a 25% reduction by 2030 against 2030 business-as-usual (condition not read). The registry's current submission for this Party is NDC 3.0, filed 2025-11-21. It was read and refused, so the figure above comes from the First NDC (2021). 47 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (1). For 2024 the sources disagree: DS-02 215.2 MtCO₂e, DS-35 149.2 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 25% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 52.2 for 2024. Projected warming for 2080-2099 against 1995-2014 ranges from +1.4°C under SSP1-2.6 to +5.22°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
+        "field": "ndc.reduction_pct",
+        "text": "Qatar pledges a 25% reduction by 2030 against 2030 business-as-usual (condition not read)."
+      },
+      {
         "field": "ndc_registry.submission_date",
-        "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-11-21."
+        "text": "The registry's current submission for this Party is NDC 3.0, filed 2025-11-21. It was read and refused, so the figure above comes from the First NDC (2021)."
       },
       {
         "field": "series.observed",
@@ -1077,11 +1476,15 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-02 256.5 MtCO₂e, DS-35 149.2 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-02 215.2 MtCO₂e, DS-35 149.2 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
-        "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+        "text": "No implementation gap is reported: the pledge is 25% below a business-as-usual projection for 2030. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it."
+      },
+      {
+        "field": "btr.submitted",
+        "text": "It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1305,8 +1708,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1319,8 +1722,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1333,8 +1736,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1347,8 +1750,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1361,8 +1764,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1375,8 +1778,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1389,8 +1792,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1403,8 +1806,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1417,8 +1820,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1429,12 +1832,26 @@
       "tables": [
         "ndc_targets"
       ],
-      "connection": "not-connected",
-      "records": 0,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-10-11T14:22:35.888Z",
+      "retrieved_at": "2026-10-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -1445,7 +1862,7 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:23:48.160Z",
+      "last_run": "2026-10-10T16:28:43.203Z",
       "retrieved_at": null,
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -1457,104 +1874,162 @@
       "tables": [
         "btr_status"
       ],
-      "connection": "not-connected",
-      "records": 0,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": null,
+      "connection": "connected",
+      "records": 13,
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "06d4534958a006aea1ac9ef8feafac17c65288313dd20e2316375f071a319f4c",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "5d03225214500996f54a333afb86a95466b36f4e2e1e085571a945d87e77ee50",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
+        "source_id": "DS-06-NDC-LATEST",
+        "file_sha256": "1ac0e67c3f1f1e45fb7e199f520f1aded441d23e96d69cf619982ca275385a7c",
+        "retrieved_at": "2026-10-10T21:15:45.125Z",
+        "url": "https://web.archive.org/web/20260730010532id_/https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf"
+      },
+      {
         "source_id": "DS-06-NDC",
-        "file_sha256": "f4e64480c176914c19a9ddabe7857034d5b3b47c7c64ec0ba6b7e549aa6bec72",
-        "retrieved_at": "2026-09-13T03:20:03.193Z",
-        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/QAT_Qatar_First_NDC_Translation_English.pdf"
+        "file_sha256": "9d2afa4d7e0242758bd095e0cf47cc8fec06ada77d76e27a8486b988626153e0",
+        "retrieved_at": "2026-10-11T14:22:39.400Z",
+        "url": "https://web.archive.org/web/20220324224045id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Qatar%20First/Qatar%20NDC.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "05cc0f6bf260b14f0620782a35db1c3196f37a2e62004aa2646fa8b7d9a833a8",
+        "retrieved_at": "2026-10-10T20:45:42.705Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s76839--c0a7c21ae60958841e9586b3ede13b42.xlsx"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "4161078aa8257827fe482c93ad57b4aadd0f90373b1bcc426b0c1ecb3045f926",
+        "retrieved_at": "2026-10-10T20:45:44.498Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s468550--0cd37aee6bcfeaffd3cc1d920a761501.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
   "$meta": {
-    "mode": "observations-only",
-    "snapshot": "OWID observations 1990-2024",
-    "basis": "NDC target not parsed",
-    "notice": "Observed emissions from Our World in Data (CC BY). No NDC target has been parsed for this country."
+    "mode": "document-parsed",
+    "snapshot": "First NDC · 2021",
+    "basis": "2030 business-as-usual",
+    "notice": "NDC 3.0 (2025-11-21) was read and refused: no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection. The figure shown is from First NDC (2021-08-24)."
   },
   "$sources_index": [
     {
@@ -1608,6 +2083,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -1616,6 +2096,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }

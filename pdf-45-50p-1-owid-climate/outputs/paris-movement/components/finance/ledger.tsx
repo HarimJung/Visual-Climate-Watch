@@ -8,7 +8,7 @@ export type Row={iso3:string;name_en:string;region:string|null;income_group:stri
  approved_usd:number|null;disbursed_usd:number|null;disbursed_pct:number|null};
 
 const usd=(n:number|null|undefined)=>{
- if(n==null)return 'Unknown';
+ if(n==null)return 'not read';
  const a=Math.abs(n);
  if(a>=1e9)return `$${(n/1e9).toFixed(a>=1e10?0:1)}bn`;
  if(a>=1e6)return `$${(n/1e6).toFixed(a>=1e7?0:1)}m`;
@@ -95,13 +95,13 @@ export default function Ledger({rows}:{rows:Row[]}){
     <span className="fin-vul"><i style={{width:vul(r.vulnerability)}}/><small>{r.vulnerability.toFixed(3)}</small></span>
     <span className="fin-money"><b>{usd(r.disbursed_usd)}</b><small>of {usd(r.approved_usd)}</small></span>
     <span className="div-spread" data-wide={(r.disbursed_pct!=null&&r.disbursed_pct<10)||undefined}>
-     {r.disbursed_pct==null?'—':`${fmt(r.disbursed_pct)}%`}
+     {r.disbursed_pct==null?'not read':`${fmt(r.disbursed_pct)}%`}
     </span>
    </a>)}
   </div>}
   {sorted.length>SHOWN&&<button type="button" className="btn-ghost fin-more" onClick={()=>setAll(a=>!a)} aria-expanded={all}>
    {all?`Show the first ${SHOWN}`:`Show all ${sorted.length} rows`}
   </button>}
-  <p className="rec-note">Vulnerability bars span the plotted range, {lo.toFixed(3)} to {hi.toFixed(3)}, not zero.</p>
+  <p className="rec-note">Vulnerability bars span the plotted range, {lo.toFixed(3)} to {hi.toFixed(3)}. A row that says not read holds a fund record whose payment figure was never read.</p>
  </>;
 }

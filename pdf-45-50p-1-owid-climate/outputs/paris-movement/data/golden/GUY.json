@@ -33,6 +33,11 @@
       "split_state": "unknown",
       "extraction_confidence": "low"
     },
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -67,23 +72,19 @@
       "crt": {
         "state": "observed",
         "$evidence": [
-          "CRT_-_Guyana_BTR_2024.zip",
-          "GUY-CRT-2024-V0.3-1990-20240927-184609_started.xlsx",
-          "GUY-CRT-2024-V0.3-1991-20240927-190656_started.xlsx"
+          "GUY-CRT-2024-V0.3-2022-20240927-213052_started.xlsx!Summary2!K72"
         ]
       },
       "ctf": {
         "state": "observed",
         "$evidence": [
-          "GUY-CTF-FTC-2024-V0.1-20240916-175133_started.xlsx",
-          "GUY-CTF-NDC-2024-V0.1-20240906-184627_started.xlsx",
-          "GUY-CTF-NDC-2024-V0.1-20240906-184627_started_-_Revised_220126.xlsx"
+          "GUY-CTF-NDC-2024-V0.1-20240906-184627_started_-_Revised_220126.xlsx!Table4.1!E9"
         ]
       },
       "ndc_track": {
         "state": "observed",
         "$evidence": [
-          "D1_BTR_Guyana_NDC_Tracking_v2.pdf"
+          "GUY-CTF-NDC-2024-V0.1-20240906-184627_started_-_Revised_220126.xlsx!Table4.1!E9"
         ]
       },
       "adaptation": {
@@ -105,12 +106,12 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "43 attachment(s) are listed for this Party's BTR1. 4 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
+    "$note": "43 attachment(s) are listed for this Party's BTR1. 4 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -125,7 +126,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -372,7 +373,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 8.682662598713941,
+        "value_mtco2e": 8.730697281161069,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -384,7 +385,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 8.72664868339431,
+        "value_mtco2e": 8.756806252419393,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -396,7 +397,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 8.833036942160224,
+        "value_mtco2e": 8.908451578867606,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -408,7 +409,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 8.907782642936043,
+        "value_mtco2e": 8.967690037127866,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -420,7 +421,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 9.293764688058042,
+        "value_mtco2e": 11.028664236015187,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -432,7 +433,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 10.977326092671301,
+        "value_mtco2e": 13.897739067639646,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -444,7 +445,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 13.004880315046234,
+        "value_mtco2e": 14.262044005600398,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -456,7 +457,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 17.058276577637056,
+        "value_mtco2e": 16.399586991643112,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -468,7 +469,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 19.397489456186428,
+        "value_mtco2e": 16.937873298732853,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -480,7 +481,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 21.759515782940884,
+        "value_mtco2e": 19.707978942886633,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -492,7 +493,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 24.187739336902,
+        "value_mtco2e": 21.748020814525375,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -514,6 +515,10 @@
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
     "finance_flows",
@@ -532,7 +537,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
@@ -541,15 +546,23 @@
     "submission_date": "2026-07-01",
     "document_url": "https://unfccc.int/sites/default/files/2026-07/Guyanas%20NDC%202025-2035%20V2.pdf",
     "archived_submissions": 1,
-    "matches_parsed_document": null,
+    "matches_parsed_document": false,
+    "latest_retrieval": {
+      "state": "unknown",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "checked_at": "2026-10-10T21:25:31.117Z",
+      "$reason": "no copy of this filing (filed 2026-07-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
     "state": "observed",
-    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
+    "$note": "The document this record was built from is dated 2016-05-20. The registry's latest active submission is NDC 3.0, dated 2026-07-01, and has not been read; no figure above comes from it. Why: no copy of this filing (filed 2026-07-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day.",
     "source": {
       "id": "DS-08",
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2026-07/Guyanas%20NDC%202025-2035%20V2.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -569,7 +582,7 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
@@ -588,14 +601,538 @@
     "net_zero_year": null,
     "confidence": "low",
     "evidence": [],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "openclimatedata",
+    "capture_timestamp": null,
+    "document_sha256": "a73d50716be529f60878b7f71a58c007510e1c9da3dcb96a4618877cbb5e1ea1",
+    "mirror_check": {
+      "result": "verified",
+      "checked_at": "2026-10-11T14:22:37.362Z",
+      "capture_timestamp": "20220315014434"
+    },
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+    "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Guyana First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Guyana%20First/Guyana%27s%20revised%20NDC%20-%20Final.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Guyana%20First/Guyana%27s%20revised%20NDC%20-%20Final.pdf",
+      "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/GUY_Guyana_First_NDC_English.pdf",
+      "submission_date": "2016-05-20",
+      "pages": 13,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "low",
+      "evidence": [],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "openclimatedata",
+      "capture_timestamp": null,
+      "document_sha256": "a73d50716be529f60878b7f71a58c007510e1c9da3dcb96a4618877cbb5e1ea1",
+      "headline": false,
+      "mirror_check": {
+        "result": "verified",
+        "checked_at": "2026-10-11T14:22:37.362Z",
+        "capture_timestamp": "20220315014434"
+      },
+      "state": "unknown",
+      "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Guyana First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Guyana%20First/Guyana%27s%20revised%20NDC%20-%20Final.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Guyana",
+      "notes": [],
+      "signature": "1992-06-13",
+      "consent": "1994-08-29",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 2,
+          "sentence": "Guyana 13 Jun 1992 29 Aug 1994"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Guyana",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2016-05-20",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 2,
+          "sentence": "Guyana 22 Apr 2016 20 May 2016"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "GUY-CTF-NDC-2024-V0.1-20240906-184627_started_-_Revised_220126.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/GUY-CTF-NDC-2024-V0.1-20240906-184627_started%20-%20Revised%20220126.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s102795--471789008c9be954b13ef1a1406c80b0.xlsx",
+    "file_sha256": "a4c1e0caa157c6cd8281dc7500cff5f9c8bc2e1f53320dff8415807d7569c92c",
+    "tables": [
+      {
+        "sheet": "Table4.1",
+        "title": {
+          "cell": "Table4.1!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.1!B9",
+              "text": "Energy supply from renewable sources-Renewable energy sources produce less CO2 compared to fossil fuels, and increasing their proportion in the national energy supply supports climate change mitigation efforts in Guyana. The indicator includes the renewable energy sources specified in the NDC (wind, solar, biomass, hydropower), but Guyana does not restrict itself to only these sources. The indicator is expressed in terajoules (TJ)."
+            },
+            "unit": {
+              "cell": "Table4.1!C9",
+              "text": "TJ"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.1!D7",
+                "text": "2016"
+              },
+              "value": {
+                "cell": "Table4.1!D9",
+                "value": 12602,
+                "literal": "12602"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.1!E9",
+                "value": 12602,
+                "literal": "12602",
+                "year": 2016,
+                "year_label": "2016"
+              },
+              {
+                "cell": "Table4.1!K9",
+                "value": 7864,
+                "literal": "7864",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.1!L9",
+              "value": 12602,
+              "literal": "12602"
+            },
+            "target_period": {
+              "cell": "Table4.1!M9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.1!N9",
+              "text": "While some capacity was installed during the period, this indicator still shows a decrease in the total energy supply from renewable sources. This decline is largely due to a significant reduction in sugarcane production in the country. Additionally, the lack of available data on energy supply from solar, wind, and hydropower further contributed to the observed downward trend as only data on biomass used is available."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.2",
+        "title": {
+          "cell": "Table4.2!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.2!B9",
+              "text": "Energy consumption from fossil sources-Energy consumption from fossil sources refers to the total amount of energy that is derived from fossil sources. This indicator measures the quantity of energy consumed that comes from these non-renewable sources. Higher energy consumption from fossil sources generally leads to higher GHG emissions. The indicator is expressed in terajoules (TJ)."
+            },
+            "unit": {
+              "cell": "Table4.2!C9",
+              "text": "TJ"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.2!D7",
+                "text": "2016"
+              },
+              "value": {
+                "cell": "Table4.2!D9",
+                "value": 44720,
+                "literal": "44720"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.2!E9",
+                "value": 44720,
+                "literal": "44720",
+                "year": 2016,
+                "year_label": "2016"
+              },
+              {
+                "cell": "Table4.2!K9",
+                "value": 48391,
+                "literal": "48391",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.2!L9",
+              "value": 44720,
+              "literal": "44720"
+            },
+            "target_period": {
+              "cell": "Table4.2!M9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.2!N9",
+              "text": "This indicator shows an increase in fossil fuel energy consumption between 2016 and 2022, driven primarily by a substantial 221.2% growth in the national GDP. During this period, fossil fuel consumption rose by 8.2%."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.3",
+        "title": {
+          "cell": "Table4.3!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.3!B9",
+              "text": "Energy consumption from fossil sources per unit of GDP-It measures the amount of energy derived from fossil sources consumed to produce a unit economic output (GDP). This reflects the energy efficiency of an economy in utilising fossil sources. When less fossil sources are used to produce a given amount of economic output this can indicate more efficient use of energy."
+            },
+            "unit": {
+              "cell": "Table4.3!C9",
+              "text": "TJ/Million USD"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.3!D7",
+                "text": "2016"
+              },
+              "value": {
+                "cell": "Table4.3!D9",
+                "value": 10.06,
+                "literal": "10.06"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.3!E9",
+                "value": 10.06,
+                "literal": "10.06",
+                "year": 2016,
+                "year_label": "2016"
+              },
+              {
+                "cell": "Table4.3!K9",
+                "value": 3.39,
+                "literal": "3.39",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.3!L9",
+              "value": 10.06,
+              "literal": "10.06"
+            },
+            "target_period": {
+              "cell": "Table4.3!M9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.3!N9",
+              "text": "This indicator reflects a significant decrease in the amount of fossil energy consumed per unit of GDP in Guyana, indicating that the country is on track towards achieving its energy efficiency target."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.4",
+        "title": {
+          "cell": "Table4.4!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.4!B9",
+              "text": "Percentage of staff dedicated to field monitoring-The indicator measures the percentage of forestry staff actively involved in field monitoring activities related to sustainable forest management out of the total relevant workforce. This includes overseeing compliance with national and international standards and agreements, including legal timber extraction, sustainable practices, and carbon storage potential. It assumes that the percentage of staff actively involved in monitoring activities is a reliable proxy for overall forest management effectiveness where an increase in the percentage of staff dedicated to field monitoring directly improves the effectiveness of sustainable forest management practices."
+            },
+            "unit": {
+              "cell": "Table4.4!C9",
+              "text": "%"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.4!D7",
+                "text": "2016"
+              },
+              "value": {
+                "cell": "Table4.4!D9",
+                "value": 50,
+                "literal": "50"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.4!E9",
+                "value": 50,
+                "literal": "50",
+                "year": 2016,
+                "year_label": "2016"
+              },
+              {
+                "cell": "Table4.4!K9",
+                "value": 50,
+                "literal": "50",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.4!L9",
+              "value": 50,
+              "literal": "50"
+            },
+            "target_period": {
+              "cell": "Table4.4!M9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.4!N9",
+              "text": "The indicator indicates that the percentage of staff conducting field monitoring for sustainable forest management has been consistent throughout the implementation period of the NDC, indicating that the country is on track towards the continuation and improvement of sustainable forest management."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.5",
+        "title": {
+          "cell": "Table4.5!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.5!B9",
+              "text": "Number of staff dedicated to field monitoring-This indicator (number of staff) complements the previous indicator to evaluate the overall dedication of Guyana to monitoring of sustainable practices in forest management. It tracks the number of staff assigned specifically to monitor and enforce sustainable forest management practices, which include compliance with national and international standards and agreements, including legal timber extraction, sustainable practices, and carbon storage potential."
+            },
+            "unit": {
+              "cell": "Table4.5!C9",
+              "text": "Number"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.5!D7",
+                "text": "2016"
+              },
+              "value": {
+                "cell": "Table4.5!D9",
+                "value": 172,
+                "literal": "172"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.5!E9",
+                "value": 172,
+                "literal": "172",
+                "year": 2016,
+                "year_label": "2016"
+              },
+              {
+                "cell": "Table4.5!K9",
+                "value": 194,
+                "literal": "194",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.5!L9",
+              "value": 209,
+              "literal": "209"
+            },
+            "target_period": {
+              "cell": "Table4.5!M9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.5!N9",
+              "text": "This indicator (number of staff) complements the previous indicator to evaluate the overall dedication of Guyana to monitoring of sustainable practices in forest management."
+            },
+            "unread": []
+          }
+        ]
+      }
+    ],
+    "target_text": {
+      "cell": "Appendix!C7",
+      "text": "In the energy sector: \n•\tExpansion of a renewable energy supply of wind, solar, biomass and hydropower.\n•\tReduction of energy consumption and increase of energy efficiency.\nIn the forestry sector:\n•\tContinuation and improvement of sustainable forest management.\nThese targets are policy-based including measures to reduce the normative \"business-as-usual\" growth in emissions."
+    },
+    "reference_text": [
+      {
+        "cell": "Table1!C8",
+        "text": "2016"
+      },
+      {
+        "cell": "Table1!C12",
+        "text": "2016"
+      },
+      {
+        "cell": "Table1!C16",
+        "text": "2016"
+      },
+      {
+        "cell": "Table1!C20",
+        "text": "2016"
+      },
+      {
+        "cell": "Table1!C24",
+        "text": "2016"
+      },
+      {
+        "cell": "Table1!C28",
+        "text": "2016"
+      }
+    ],
+    "superseded": [
+      {
+        "file": "GUY-CTF-NDC-2024-V0.1-20240906-184627_started.xlsx",
+        "listed_in": "00_new_downloads_BTR1-2024-10-09.csv",
+        "by": "GUY-CTF-NDC-2024-V0.1-20240906-184627_started_-_Revised_220126.xlsx"
+      }
+    ],
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/GUY-CTF-NDC-2024-V0.1-20240906-184627_started%20-%20Revised%20220126.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "observed",
+    "file": "GUY-CRT-2024-V0.3-2022-20240927-213052_started.xlsx",
+    "year": 2022,
+    "year_cell": {
+      "cell": "Summary2!K1",
+      "text": "2022"
+    },
+    "party_cell": {
+      "cell": "Summary2!K3",
+      "text": "Guyana"
+    },
+    "unit": {
+      "cell": "Summary2!C9",
+      "text": "CO2 equivalents (kt ) (2)"
+    },
+    "totals": {
+      "without_lulucf": {
+        "cell": "Summary2!K71",
+        "value": 8459.46242687339,
+        "literal": "8459.46242687339",
+        "label": {
+          "cell": "Summary2!J71",
+          "text": "Total CO2 equivalent emissions without LULUCF"
+        }
+      },
+      "with_lulucf": {
+        "cell": "Summary2!K72",
+        "value": -133920.98983980625,
+        "literal": "-133920.98983980625",
+        "label": {
+          "cell": "Summary2!J72",
+          "text": "Total CO2 equivalent emissions with LULUCF"
+        }
+      },
+      "with_indirect_without_lulucf": {
+        "cell": "Summary2!K73",
+        "value": 8459.46242687339,
+        "literal": "8459.46242687339",
+        "label": {
+          "cell": "Summary2!J73",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  without LULUCF"
+        }
+      },
+      "with_indirect_with_lulucf": {
+        "cell": "Summary2!K74",
+        "value": -133920.98983980625,
+        "literal": "-133920.98983980625",
+        "label": {
+          "cell": "Summary2!J74",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  with LULUCF"
+        }
+      }
+    },
+    "document_url": null,
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s4617138--5a7c705af4c842c4a52d303e761470b6.xlsx",
+    "file_sha256": "975fe4cbd693679194f6b950683c71e97db5ba7d053493a92d455a9f1a3d739d",
+    "in_by_source": false,
+    "$note": "No other figure the Party filed and this record read (its CTF Table 4) confirms the magnitude of these kt totals, so they are shown as filed and not converted to Mt for emissions_profile.by_source.",
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_flows": {
@@ -605,7 +1142,7 @@
     "disbursed_usd": null,
     "projects": 3,
     "regional_projects": 2,
-    "regional_disbursed_usd": 114736884,
+    "regional_disbursed_usd": 140986884,
     "instruments": [
       "Equity",
       "Grants",
@@ -652,12 +1189,12 @@
     ],
     "state": "observed",
     "$reason": "every DS-15 project reaching this country is multi-country, and the Fund does not publish a country split of their disbursements.",
-    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 2 multi-country project(s) disbursing 114,736,884 USD in total are counted separately and never divided.",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 2 multi-country project(s) disbursing 140,986,884 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -944,47 +1481,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 8.682662598713941
+            "value_mtco2e": 8.730697281161069
           },
           {
             "year": 2016,
-            "value_mtco2e": 8.72664868339431
+            "value_mtco2e": 8.756806252419393
           },
           {
             "year": 2017,
-            "value_mtco2e": 8.833036942160224
+            "value_mtco2e": 8.908451578867606
           },
           {
             "year": 2018,
-            "value_mtco2e": 8.907782642936043
+            "value_mtco2e": 8.967690037127866
           },
           {
             "year": 2019,
-            "value_mtco2e": 9.293764688058042
+            "value_mtco2e": 11.028664236015187
           },
           {
             "year": 2020,
-            "value_mtco2e": 10.977326092671301
+            "value_mtco2e": 13.897739067639646
           },
           {
             "year": 2021,
-            "value_mtco2e": 13.004880315046234
+            "value_mtco2e": 14.262044005600398
           },
           {
             "year": 2022,
-            "value_mtco2e": 17.058276577637056
+            "value_mtco2e": 16.399586991643112
           },
           {
             "year": 2023,
-            "value_mtco2e": 19.397489456186428
+            "value_mtco2e": 16.937873298732853
           },
           {
             "year": 2024,
-            "value_mtco2e": 21.759515782940884
+            "value_mtco2e": 19.707978942886633
           },
           {
             "year": 2025,
-            "value_mtco2e": 24.187739336902
+            "value_mtco2e": 21.748020814525375
           }
         ]
       },
@@ -1280,11 +1817,11 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is NDC 3.0, filed 2026-07-01. 61 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (15). For 2024 the sources disagree: DS-02 21.8 MtCO₂e, DS-35 13.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 45.9 for 2024. Projected warming for 2080-2099 against 1995-2014 ranges from +1.16°C under SSP1-2.6 to +4.57°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "A later submission, NDC 3.0, was filed on 2026-07-01; it has not been read, so no figure here comes from it. 61 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (15). For 2024 the sources disagree: DS-02 19.7 MtCO₂e, DS-35 13.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 45.9 for 2024. Projected warming for 2080-2099 against 1995-2014 ranges from +1.16°C under SSP1-2.6 to +4.57°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc_registry.submission_date",
-        "text": "The registry's current submission for this Party is NDC 3.0, filed 2026-07-01."
+        "text": "A later submission, NDC 3.0, was filed on 2026-07-01; it has not been read, so no figure here comes from it."
       },
       {
         "field": "series.observed",
@@ -1292,7 +1829,7 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-02 21.8 MtCO₂e, DS-35 13.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-02 19.7 MtCO₂e, DS-35 13.4 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
@@ -1524,8 +2061,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1538,8 +2075,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1552,8 +2089,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1566,8 +2103,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1580,8 +2117,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1594,8 +2131,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1608,8 +2145,8 @@
       ],
       "connection": "connected",
       "records": 15,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1622,8 +2159,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1636,8 +2173,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1650,10 +2187,24 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-11T14:22:35.888Z",
+      "retrieved_at": "2026-10-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": null,
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -1664,8 +2215,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:43.203Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -1678,94 +2229,146 @@
       ],
       "connection": "connected",
       "records": 43,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "84f39abf30dc800da8cc98ce9f64595f24ec3306942630b83f3241a21e8aa106",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "ea1abe5c6c79d0d9cc398a0ec8c8bcde74c49235ae2832825c5f83f4dd0f6b4a",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "a73d50716be529f60878b7f71a58c007510e1c9da3dcb96a4618877cbb5e1ea1",
-        "retrieved_at": "2026-09-13T03:19:06.679Z",
+        "retrieved_at": "2026-10-10T16:21:26.528Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/GUY_Guyana_First_NDC_English.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "a4c1e0caa157c6cd8281dc7500cff5f9c8bc2e1f53320dff8415807d7569c92c",
+        "retrieved_at": "2026-10-10T20:41:45.674Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s102795--471789008c9be954b13ef1a1406c80b0.xlsx"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "975fe4cbd693679194f6b950683c71e97db5ba7d053493a92d455a9f1a3d739d",
+        "retrieved_at": "2026-10-10T20:41:49.535Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s4617138--5a7c705af4c842c4a52d303e761470b6.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
@@ -1827,6 +2430,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -1835,6 +2443,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }

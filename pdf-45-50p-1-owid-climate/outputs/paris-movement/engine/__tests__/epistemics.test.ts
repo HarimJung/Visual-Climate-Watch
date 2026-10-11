@@ -50,7 +50,10 @@ void test("R6 — a document the engine read is hashed itself, not just its inde
   for (const [file, data] of built()) {
     const doc = data.ndc_document;
     if (!doc?.document_url || doc.pages === 0) continue;
-    const receipts = (data.provenance?.inputs ?? []).filter((i) => i.source_id === 'DS-06-NDC');
+    // Widened from 'DS-06-NDC' (D1): a newer filing's bytes, retrieved from an
+    // Internet Archive capture or the PRIMAP mirror, are their own input under
+    // their own source id, DS-06-NDC-LATEST, and must be hashed just the same.
+    const receipts = (data.provenance?.inputs ?? []).filter((i) => /^DS-06-NDC/.test(i.source_id));
     const forDocument = receipts.find((i) => i.url === doc.retrieval_url);
     assert.ok(forDocument,
       `${file} carries ndc_document read from ${doc.retrieval_url} but no provenance input hashes that file — the only receipt is the index`);

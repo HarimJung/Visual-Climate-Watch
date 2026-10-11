@@ -31,6 +31,8 @@ export type NdcRegistryEntry = {
   title: string | null;
   submission_date: string | null;
   document_url: string | null;
+  /** The registry's own language label for that file ("Spanish"), when it gives one. */
+  language?: string | null;
   /** How many earlier submissions this Party has on the registry. */
   archived: number;
   /**
@@ -42,7 +44,7 @@ export type NdcRegistryEntry = {
   active: boolean;
 };
 
-type RawDoc = { title?: string; fileType?: string; encodedAbsUrl?: string };
+type RawDoc = { title?: string; fileType?: string; encodedAbsUrl?: string; language?: string };
 type RawRow = { code?: string; party?: string; version?: string; status?: string; submissionDate?: string; ndcs?: RawDoc[] };
 
 const isoDate = (v: string | undefined) => (v && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : null);
@@ -89,6 +91,7 @@ export async function collect(refresh = false): Promise<{ data: Map<string, NdcR
     held.title = title;
     held.submission_date = date;
     held.document_url = doc.encodedAbsUrl;
+    held.language = doc.language?.trim() || null;
     held.active = true;
     records++;
   }

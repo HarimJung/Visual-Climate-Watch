@@ -1,5 +1,6 @@
 import {loadCountry,loadIndex,RecordUnavailable} from '@/lib/record';
 import {buildRelated,comparableFigures,RELATED_CONTRACT} from '@/lib/related';
+import {resolveFigure} from '@/lib/receipt';
 
 // Given one figure, what else sits at that address: who else carries it, what
 // the engine could not work out here, and what you can take away. The roster
@@ -14,6 +15,9 @@ export async function GET(request:Request){
  try{d=await loadCountry(iso,request.url)}
  catch(e){return Response.json({error:e instanceof RecordUnavailable?e.message:'The climate data service could not be verified. Please retry.'},{status:502})}
  if(!d)return Response.json({error:'No record has been built for this country.'},{status:404});
+ // A path that names nothing is a 404, as the receipt route answers: a peer
+ // set for a typo would read as a figure no other record publishes.
+ if(!resolveFigure(d,path))return Response.json({error:`No figure at "${path}" in this record.`},{status:404});
  const index=await loadIndex();
  const mode=process.env.CLIMATE_API_BASE?'upstream':'static';
  return Response.json(buildRelated(d,path,index?.countries??[]),{headers:{'Cache-Control':mode==='upstream'?'no-store':'public, max-age=300','X-Climate-Mode':mode}});

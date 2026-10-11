@@ -19,7 +19,21 @@ const HEADERS = 'dist/client/_headers';
 const dirs = readdirSync('dist/client/_next/static', { withFileTypes: true })
   .filter((d) => d.isDirectory() && d.name !== 'css').map((d) => d.name);
 
+// The same security set next.config.ts puts on rendered responses, for the
+// static files the worker never sees (data, basemap, fonts, chunks). Only
+// this rule carries them, so Cloudflare's appending of matching rules cannot
+// send one twice.
+const SECURITY = [
+  '/*',
+  '  Strict-Transport-Security: max-age=31536000',
+  '  X-Content-Type-Options: nosniff',
+  '  Referrer-Policy: strict-origin-when-cross-origin',
+  '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()',
+  '',
+];
+
 const rules = [
+  ...SECURITY,
   '# Content-hashed: the filename moves when the bytes do.',
   ...dirs.flatMap((d) => [`/_next/static/${d}/*`, '  Cache-Control: public, max-age=31536000, immutable', '']),
   '# The CSS bundle keeps its filename across builds, so it must revalidate.',
@@ -29,4 +43,4 @@ const rules = [
 ].join('\n');
 
 writeFileSync(HEADERS, rules);
-console.log(`[after-build] cache rules rewritten for ${dirs.length} hashed director(ies) + revalidating css`);
+console.log(`[after-build] security headers + cache rules for ${dirs.length} hashed director(ies) + revalidating css`);

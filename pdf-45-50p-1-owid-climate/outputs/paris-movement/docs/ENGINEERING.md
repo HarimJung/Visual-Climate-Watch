@@ -19,7 +19,7 @@
 
 ```bash
 cd pdf-45-50p-1-owid-climate/outputs/paris-movement
-npm test                       # 전부 통과가 기준 (2026-09-12: 119건)
+npm test                       # 전부 통과가 기준 (2026-10-11: 324건)
 node engine/cli.ts verify      # 218 통과 + golden clean
 node engine/cli.ts report      # 사람이 읽는 커버리지
 node engine/cli.ts report --json   # 기계가 읽는 커버리지 (문서 인용은 전부 여기서)
@@ -47,29 +47,41 @@ engine/
     ds-05-edgar.ts       비CO₂ 가스별·섹터별          (패턴 B)
     ds-06-cait.ts        1차 (I)NDC 제3자 평가        (패턴 C)
     ds-06-ndc-docs.ts    ★ NDC 원문 → 수치            (패턴 D)
+    ds-06-ndc-latest.ts  ★ 미러보다 새 제출본의 바이트 + 미러 파일 검증(D14) (패턴 D)
     ds-08-ndc-registry.ts 등록부 색인                 (패턴 C)
     ds-15-gcf.ts         ★ GCF 프로젝트·집행          (패턴 A)
     ds-18-cckp.ts        CMIP6 전망                   (패턴 A)
     ds-35-owid.ts        전 가스 시계열               (패턴 C)
     ds-40-unfccc.ts      당사국 제출 인벤토리         (패턴 B)
     ds-btr.ts            ★ BTR1 제출·첨부 목록        (패턴 C)
+    ds-btr-tables.ts     ★ BTR1 CTF 표4·CRT Summary2 셀 (패턴 D)
+    ds-untc.ts           ★ UN 조약집 당사국 지위       (패턴 D)
   build/
     compose.ts           소스 → 계약. state 태깅이 여기서.
     derive.ts            파생값 + 거절 로직 (R4)
     verdict.ts           절 단위 규칙 문장 생성
     index.ts             로스터 + 소스 카탈로그 집계
-  cli.ts                 build / build-all / index / verify / report / etl / ndc-parse
+  cli.ts                 build / build-all / index / verify / report / etl /
+                         ndc-parse / ndc-latest / btr-tables / untc
   server.ts              node:http, 포트 8787
   cache/                 원문 스냅샷 (gitignore, SHA-256 동봉)
 data/
   khm.json               동결된 계약. 진실의 원본. 수정 금지.
   countries/<ISO3>.json  엔진 생성물 218개. 커밋.
   golden/<ISO3>.json     회귀 기준. 의도적 변경일 때만 갱신.
-  ndc-targets.json       ★ 패턴 D 추출 결과. 커밋. §4 참조.
+  ndc-targets.json       ★ 패턴 D 추출 결과 (미러 문서 169개, mirror_check 포함). 커밋. §4 참조.
+  ndc-latest.json        ★ 미러보다 새 제출본의 읽기 결과. 커밋.
+  ndc-latest-sources.json  그 바이트를 어디서 받았는지 (Archive 캡처·PRIMAP R2, 해시). 커밋.
+  btr-tables.json        ★ BTR1 워크북 셀 인용. 커밋.
+  parties.json           ★ UNFCCC·파리협정 당사국 지위와 조약집 인용. 커밋.
   engine-index.json      로스터 + 카탈로그 (정적 호스트용)
   etl-logs.json          마지막 실행의 run_id·소스별 건수
 components/record/country-record.tsx   레코드 화면 8섹션
 scripts/stage-data.mjs   data/ → public/data/ 스테이징 (predev·prebuild)
+scripts/verify-evidence.mjs  인용 문장이 그 물리 페이지에 그대로 있는지, 셀 인용이 워크북 셀과 같은지
+scripts/regression-gate.mjs  이전 레코드 대비 사유 없이 사라진 값 = 실패 (refresh PR·deploy)
+scripts/sync-prd.mjs         docs/*.md의 census 링크 수치를 새 census로
+scripts/watch.mjs            운영 사이트 매일 점검 → watch 이슈 열고 닫기
 ```
 
 ---
@@ -107,6 +119,14 @@ scripts/stage-data.mjs   data/ → public/data/ 스테이징 (predev·prebuild)
   거절한다(`gap.two-ledgers`). 판정은 퍼센트를 추세 소스 자신의 기준연도 값에
   적용한 경우뿐이고, 그때 `derived.trend_source_id`와 판정문이 장부를 말한다.
 
+- **R11 — 라벨보다 바이트 (2026-10-11).** 미러가 붙인 이름·링크·날짜는 그 파일이
+  어느 문서인지의 증거가 아니다. openclimatedata 미러는 당사국이 같은 링크의 문서를
+  갈아끼우기 전에 받은 파일을 새 링크·날짜 아래 그대로 두었다(브라질 "2022-04-07"
+  파일은 2020년 갱신본이고 그 43%는 2022년 문서가 바꾼 수치다). 그래서 미러 파일은
+  인터넷 아카이브 색인의 그 링크 PDF 다이제스트와 SHA-1이 같을 때만 그 링크의
+  문서로 쓴다(D14, `checkMirrored`). 다르면 아카이브 캡처를 읽고, 그것도 검사를 못
+  넘으면 거절한다. 결과는 문서마다 `mirror_check`로 레코드에 남는다.
+
 ---
 
 ## 3. 소스 현황 (측정치, `report --json`)
@@ -123,10 +143,14 @@ scripts/stage-data.mjs   data/ → public/data/ 스테이징 (predev·prebuild)
 | `DS-40` | UNFCCC DI (PIK 경유) | B | 191 | `series.observed` (당사국 자기 신고) |
 | `DS-04` | ND-GAIN | B | 190 | `vulnerability` |
 | `DS-15` | Green Climate Fund | A | 136 | `finance_flows` |
-| `DS-BTR` | BTR1 제출·첨부 목록 | C | 134 | `btr.submitted`, `btr.components` |
-| `DS-06-NDC` | NDC 원문 | D | 20 | `ndc.reduction_pct`, `ndc_document` |
+| `DS-BTR` | BTR1 제출·첨부 목록 | C | 137 | `btr.submitted`, `btr.components` |
+| `DS-06-NDC` | NDC 원문 (미러, D14 대조) | D | 67 | `ndc.*`, `ndc_document`, `ndc_documents` |
+| `DS-06-NDC-LATEST` | 미러보다 새 NDC 제출본 | D | 53 | `ndc.*`, `ndc_documents`, `ndc_registry.latest_retrieval` |
+| `DS-BTR-TABLES` | BTR1 워크북 셀 (CTF 표4, CRT Summary2) | D | 124 | `ndc_progress`, `btr_inventory`, 소켓 `$evidence` |
+| `DS-UNTC` | UN 조약집 (XXVII-7, XXVII-7-d) | D | 218 | `party_status` |
 
-**카탈로그 42개 중 12개.** 나머지 30개를 앞당겨 붙이지 마라. 지표는 소스
+연결 국가 수는 2026-10-11 `report --json`의 `connected_sources`다(그 수의 뜻: 그 소스가 값을 하나라도 준 레코드).
+**카탈로그 42개 중 12개, 그리고 새 경로 셋.** 나머지 30개를 앞당겨 붙이지 마라. 지표는 소스
 개수가 아니라 `unknown` 감소다 (PRD §7).
 
 ---
@@ -141,21 +165,42 @@ scripts/stage-data.mjs   data/ → public/data/ 스테이징 (predev·prebuild)
 ```
 node engine/cli.ts ndc-parse [ISO3] [--refresh]   ← 네트워크 + poppler 필요
      ↓ 미러에서 PDF 169개 수집 → pdftotext → 규칙 추출
+     ↓ D14: 파일마다 아카이브 색인과 SHA-1 대조 → 다르면 아카이브 캡처를 읽거나 거절
 data/ndc-targets.json (커밋)
-     ↓ 빌드는 이 파일만 읽는다
+node engine/cli.ts ndc-latest [--refresh]          ← 등록부가 더 새 제출본을 가리키면
+     ↓ PRIMAP R2(크기·MD5) 또는 아카이브 id_ 캡처(SHA-1 = 색인 다이제스트, %%EOF,
+     ↓ pdfinfo, MiB 단위 잘림 거절) → 같은 리더
+data/ndc-latest.json + data/ndc-latest-sources.json (커밋)
+     ↓ 빌드는 이 파일들만 읽는다. 헤드라인 = 수치를 읽은 가장 새 문서.
 node engine/cli.ts build-all                       ← 네트워크·poppler 불필요
 ```
+
+unfccc.int 자신에는 절대 요청하지 않는다(`get()`이 막는다, R9). Save Page Now도
+쓰지 않는다: 아카이브에 unfccc.int를 대신 받게 하면 그것이 프록시다.
 
 빌드가 PDF를 읽지 않는 이유는 재현성이다. poppler가 없는 기계에서도 같은
 바이트가 나와야 하고, 추출 결과가 git에 남아야 감사할 수 있다.
 
-### 4.2 받아들이는 문장은 두 형태뿐
+### 4.2 받아들이는 것 (리더 `ds-06-ndc-docs@2`, 2026-10-10)
 
-1. 기준연도형 — `X% below <연도> levels by <목표연도>`
-2. BAU형 — `X% below business-as-usual by <목표연도>`
+기준은 그대로 두 가지다: 기준연도 대비, 또는 BAU 대비 경제 전체 감축률. 그 위에서:
+
+1. **단일 수치** — `reduction_pct`. 문장과 물리 페이지를 `evidence`에 싣는다(600자까지,
+   단어 중간에서 자르지 않는다).
+2. **범위** — "53 to 61%", "66.25-72.5%" → `reduction_range_pct`, `reduction_pct`는 null.
+   두 끝을 다 싣고 어느 쪽도 서약이라 부르지 않는다. IPCC·전 지구 경로 인용 범위는 읽지 않는다.
+3. **조건** — 수치마다 가장 가까운 라벨(무조건/조건부)을 묶는다. 쌍은 **두 수치에 각각
+   라벨이 있고 조건부가 더 클 때만**. 라벨이 하나뿐이면 그 수치가 헤드라인이고
+   `headline_condition`이 그 조건이다. 단, 같은 문장에 같은 지평의 못 읽은 수치가 있거나
+   문서가 다른 수치를 무조건이라 부르면 거절(잠비아, 앙골라, 나미비아).
+4. **지평** — 지평마다 하나씩 `targets[]`. 헤드라인 = 2040 이하의 가장 늦은 해.
+5. **기체 범위** — "CO2 emissions"(CO2e 아님)면 `gas_scope:'co2-only'`. 수치는 유지하고 판정문이 말한다.
+6. **페이지** — 물리 페이지. 이미지뿐인 페이지도 자리를 지킨다(`pagesOf`). 캄보디아 41.7% 문장은
+   물리 31쪽(같은 문장이 151쪽에도 있다).
 
 퍼센트 **각각을 중심으로** 앞뒤를 본다. 정규식으로 문장 전체를 훑으면
-겹치는 매치를 잡아먹는다 (§4.3의 스리랑카 사례).
+겹치는 매치를 잡아먹는다 (§4.3의 스리랑카 사례). 같은 해·같은 기준·같은 라벨의 두 수치,
+한 해에 두 기준, 라벨 없는 수치 옆의 다른 라벨 수치는 여전히 거절이다.
 
 ### 4.3 실제로 틀렸던 것들 — 다시 틀리지 마라
 
@@ -172,8 +217,13 @@ node engine/cli.ts build-all                       ← 네트워크·poppler 불
 | 인도 | "emissions **intensity** of GDP by 45 percent" | 절대 45% 감축 | 원단위 목표 거절 |
 | 인도네시아 | "26% by **2020**" | 지난 시계를 목표로 | 목표연도 2025 미만 거절 |
 | 스리랑카 | "3% unconditional and 7% conditional" | 3%만 읽음 | 퍼센트 단위 순회 (겹침 손실 방지) |
-| 잠비아 | 조건부 47%만 매치 | 47%를 서약으로 (무조건부는 25%) | 조건부 단독은 거절 |
-| 지부티·멕시코 | 두 퍼센트를 무·조건부 쌍으로 묶으려는 시도 | 지부티는 뒤집혔고 멕시코는 흑색탄소와 짝지어짐 | **쌍 묶기 분기는 제거했다. 되살리지 마라.** |
+| 잠비아 | 조건부 47%만 매치 | 47%를 서약으로 (무조건부는 25%) | 같은 문장에 같은 지평의 못 읽은 수치가 있으면 조건부 단독은 거절 |
+| 지부티·멕시코 | 두 퍼센트를 무·조건부 쌍으로 묶으려는 시도 | 지부티는 뒤집혔고 멕시코는 흑색탄소와 짝지어짐 | 쌍은 **수치마다 자기 라벨**이 있을 때만. 흑색탄소 등 단일 기체 수치는 후보가 아니다 |
+| 몽골 2035 | 46.3/52.8(흡수 차감)과 30.3(LULUCF 제외)을 쌍으로 | 기준이 다른 둘을 짝지음 | 조건부 수치의 문장이 다른 무조건 수치와 짝지으면 뺀다 |
+| 일본 | "no sentence in this document states" | 문장이 있는데 없다고 말함 | 거절문은 "was read as"로: 리더가 읽은 방식을 말하지 문서를 단정하지 않는다 |
+| 세네갈 | 조건부 2030 수치가 3쪽 29%, 20쪽 29.5% | 하나를 골라 서약으로 | 거절, `doc.conflicting-figure` 가족 |
+| 캄보디아 | 이미지 페이지를 건너뛴 쪽 번호 | 독자가 연 150쪽에 문장이 없음 | 물리 페이지 번호 (`pagesOf`) |
+| 브라질·한국·알바니아 (D14) | 미러 파일이 링크의 옛 판본 | 2020년 43%를 2022년 제출본의 서약으로 | 아카이브 다이제스트 대조, 다르면 아카이브 캡처를 읽음 (R11) |
 | 알바니아(BTR) | 첨부가 전부 "awaiting submission" | 미제출 CRT를 확인으로 | 파일명에 draft/awaiting이면 근거 아님 |
 | 나이지리아 | 스캔 PDF (텍스트 5바이트) | "목표 문장 없음" | 페이지당 40자 미만이면 "텍스트 레이어 없음" |
 
@@ -184,11 +234,17 @@ node engine/cli.ts build-all                       ← 네트워크·poppler 불
 
 ### 4.5 다음에 손댈 곳
 
-- **BAU 투영 파싱.** 18개 중 BAU형은 톤수로 환산할 수 없어 판정이 거절된다.
-  문서가 BAU 2030 총량을 쓴 경우가 많다. 이것을 읽으면 기능1이 열린다.
 - **절대량 목표.** 아르헨티나 "483 million tCO2eq by 2030" 형태. 매처 없음.
-- **범위 목표.** 노르웨이 "at least 50 per cent and towards 55 per cent".
-  현재 거절. 범위로 저장하려면 계약에 키가 필요하다 (R7: 추가만).
+- **"at least X and towards Y"** (노르웨이). 범위 키는 생겼지만 이 형태는 아직 거절.
+- **조지아 2035.** 헤드라인 47%(2030)는 맞지만 문서의 2035 "extended target of 50%"를
+  `targets[]`가 놓친다. 연도가 다른 문장에 있다.
+- **빌려온 연도의 인용.** 문장에 목표연도가 없으면 리더는 같은 쪽의 연도를 빌리고 그 연도가 든 문장을
+  함께 인용한다(R8). 우크라이나는 그 문장이 다른 수치(6.6%)의 문장이다. 값은 맞지만(문서 다른 쪽에
+  "65% by 2030, compared to 1990"이 있다) 인용이 약하다. 문서 전체에서 수치와 연도가 함께 든 문장을
+  찾아 인용하는 것이 다음 단계다.
+- **D14 `unverifiable`.** 아카이브에 캡처가 없는 미러 파일은 대조할 수 없어 그대로 쓴다.
+  레코드는 `mirror_check.result`로 그렇다고 말한다. PRIMAP R2에 같은 파일이 있으면 그쪽
+  다이제스트로 대조하는 것이 다음 단계다.
 
 ---
 
@@ -260,6 +316,8 @@ PRD §9의 1~4번. 새 소스도 새 파싱도 필요 없다.
 케이스 먼저; 영어 정규식은 손대지 않음).
 
 **인수 결과:** 판정 4 → 38. 목표 읽음 18 → 50. 투영 읽음 6 (AND·BRN·COD·MUS·OMN·UGA).
+(2026-10-11: COD·UGA의 투영은 미러의 옛 판본에서 읽은 것이었다. UGA 파일은 2015년 INDC였다. D14 이후 두
+레코드는 링크의 실제 문서를 읽고, 거기서는 투영을 읽지 못한다.)
 `ndc-extract.test.ts` 13/13 유지, 신규 회귀 29건 통과. 오판정으로 확인된 것 0
 (예멘 1%/14%는 첫 컷에서 잘못 통과할 뻔했고 회귀 케이스로 고정).
 
@@ -307,6 +365,27 @@ CI 설치는 `npm install`이다. `npm ci`는 macOS에서 쓴 lockfile을 Linux�
 22·24 모두, `--os linux`로 재생성해도 안 생김). 커밋된 lock이 기록이고 CI 설치는
 일회용이다.
 
+### M14 — 빈칸의 원인을 고친 라운드 — **2026-10-10~11, 커밋 전**
+
+측정한 원인: 미러가 2022-06-07에 보관돼 168개 레코드의 더 새 제출본을 못 읽었고, BTR 근거는
+파일명뿐이었고, 당사국 지위가 없었고, 리더가 조건을 버리고 증거를 300자에서 자르고 빈 페이지를
+건너뛰어 쪽 번호를 셌다. 그리고 2026-10-11에 미러 파일 일부가 링크의 옛 판본임을 찾았다(R11).
+
+한 일 (D1~D14, 결정은 `data/` 커밋 파일과 이 문서 §4):
+- `ndc-latest`: 등록부의 더 새 제출본을 PRIMAP R2 또는 아카이브 id_ 캡처로 받아 같은 리더로 읽는다.
+  헤드라인 = 수치를 읽은 가장 새 문서. `ndc_documents`가 모든 문서를 싣는다.
+- 리더 v2: 범위, 조건 라벨, 쌍, 지평별 `targets`, 기체 범위, 물리 페이지, 600자 증거.
+- `btr-tables`: CTF 표4 시계열과 CRT Summary2 총량을 셀 인용과 함께. EU 수치를 실은 회원국 CTF는 거절.
+- `untc`: UN 조약집 PDF에서 UNFCCC·파리협정 지위. 당사국이 아닌 레코드에 "안 읽음"을 쓰지 않는다.
+- GCF 전체 목록에 없는 레코드는 진술된 부재(`finance_listing`).
+- D14 미러 대조(`checkMirrored`).
+- 지속 검증: `_base.ts` 재시도·stale 폴백, `verify-evidence`, 회귀 게이트(refresh PR 본문, deploy 차단),
+  `watch.yml` 매일 운영 점검, `sync-prd`.
+
+**인수 결과.** 수치는 `report --json`이 말한다: `ndc_headline_read`, `ndc_mirror_*`,
+`btr_ctf_progress_read`, `btr_crt_totals_read`, `party_status_read`. 이 문서에 손으로 옮기지 않는다.
+verify-evidence 불일치 0, 회귀 게이트 사유 없는 손실 0이 기준이다.
+
 ### M13 — 영속화 (v3의 M7 잔여)
 `engine/db/schema.sql` 실행, ETL이 파일 대신 DB에 쓰기. 파일 경로는 로컬 폴백.
 **M9~M12가 끝나기 전에 시작하지 마라.** 파일 기반으로 218개국이 돌고 있고,
@@ -316,7 +395,7 @@ DB는 지금 아무 문제도 풀지 않는다.
 
 ## 7. 테스트
 
-`npm test` 전부 통과. 2026-09-12 기준 119건이며, 건수는 늘기만 한다.
+`npm test` 전부 통과. 2026-10-11 기준 324건이며(엔진 리더 테스트 126건 별도 포함), 건수는 늘기만 한다.
 
 | 파일 | 지키는 것 |
 |---|---|

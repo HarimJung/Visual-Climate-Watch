@@ -20,7 +20,8 @@
     "predev": "node scripts/stage-data.mjs",
     "prebuild": "node scripts/stage-data.mjs",
     "engine:index": "node engine/cli.ts index",
-    "engine:refresh": "node engine/cli.ts etl && node engine/cli.ts ndc-parse --refresh && node engine/cli.ts build-all --refresh && node engine/cli.ts verify",
+    "engine:refresh": "node engine/cli.ts etl && node engine/cli.ts ndc-parse --refresh && node engine/cli.ts ndc-latest --refresh && node engine/cli.ts btr-tables --refresh && node engine/cli.ts untc --refresh && node engine/cli.ts build-all --refresh && node scripts/verify-evidence.mjs && node engine/cli.ts verify",
+    "engine:verify-evidence": "node scripts/verify-evidence.mjs",
     "engine:census": "node engine/cli.ts report --json"
   },
   "dependencies": {

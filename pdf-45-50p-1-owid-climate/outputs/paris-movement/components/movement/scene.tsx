@@ -13,8 +13,10 @@ const ink=(name:string,fallback:string)=>{
 import {cycleOffset,narrativeAmount,deskAmount,returnAmount,cyclePhase,reveal,btrReveal,btrStepAt,storyPhase,BTR_STORIES,AssemblyReplay} from './explosion-motion';
 import {createExplosionLayout} from './explosion-layout';
 import {PointerTap} from './pointer-tap';
-import {fmt,observedYears,type CountryData} from '@/lib/climate';
-export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;inset?:number;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;resetView?:number;playSeconds?:number};
+import {fmt,observedYears,pledgeText,type CountryData} from '@/lib/climate';
+export type SceneControls={explode:boolean;replay:number;paused:boolean;camera:'atelier'|'plan'|'back';mode:'instrument'|'engine';selected:string|null;inset?:number;loop?:boolean;progress?:number|null;zoom?:number;inputToken?:number;resetView?:number;playSeconds?:number;
+ /** Turn the whole machine slowly once the assembly has finished and no hand is on it (the hero). */
+ spin?:boolean};
 export const phases=[
  {title:'Opening the planet',description:'Scroll down and the connected data rises one layer at a time. The movement explains structure; it never stands for progress.'},
  {title:'01 · The Paris Agreement, the plate under every promise',description:'Pledges, observations, reporting and support conditions all seat on one shared design.'},
@@ -26,42 +28,44 @@ export const phases=[
  {title:'One by one, back into one machine',description:'Target ring, inventory gears, reporting and support return to the Paris plate. The shell closes last.'},
  {title:'One planet, connected again',description:'Every record is back in its seat. The gears keep turning. Scroll back to revisit any scene.'}
 ];
-export default function MovementScene({data,controls,onSelect,onReady,onPhase,onProgress,onManual}:{data:CountryData;controls:SceneControls;onSelect:(id:string)=>void;onReady?:(canvas:HTMLCanvasElement,render:()=>void)=>void;onPhase?:(index:number)=>void;onProgress?:(value:number)=>void;onManual?:(manual:boolean)=>void}){
- const host=useRef<HTMLDivElement>(null);const current=useRef(controls);const select=useRef(onSelect);const ready=useRef(onReady);const phaseCallback=useRef(onPhase);const progressCallback=useRef(onProgress);const manual=useRef(onManual);const [failed,setFailed]=useState(false);
- useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress;manual.current=onManual},[controls,onSelect,onReady,onPhase,onProgress,onManual]);
+export default function MovementScene({data,controls,onSelect,onReady,onPhase,onProgress,onManual,onHover}:{data:CountryData;controls:SceneControls;onSelect:(id:string)=>void;onReady?:(canvas:HTMLCanvasElement,render:()=>void)=>void;onPhase?:(index:number)=>void;onProgress?:(value:number)=>void;onManual?:(manual:boolean)=>void;/** The piece under the pointer, or null when it leaves one; the studio names it. */onHover?:(id:string|null)=>void}){
+ const host=useRef<HTMLDivElement>(null);const current=useRef(controls);const select=useRef(onSelect);const ready=useRef(onReady);const phaseCallback=useRef(onPhase);const progressCallback=useRef(onProgress);const manual=useRef(onManual);const hoverCallback=useRef(onHover);const [failed,setFailed]=useState(false);
+ useEffect(()=>{current.current=controls;select.current=onSelect;ready.current=onReady;phaseCallback.current=onPhase;progressCallback.current=onProgress;manual.current=onManual;hoverCallback.current=onHover},[controls,onSelect,onReady,onPhase,onProgress,onManual,onHover]);
  useEffect(()=>{let cleanup=()=>{};let cancelled=false;void(async()=>{try{
  const T=await import('three');const {RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');if(cancelled||!host.current)return;
- setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0xf4f2ec,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
+ setFailed(false);const el=host.current;const scene=new T.Scene();const renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0xfbfbfa,0);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
  // Neutral (Khronos PBR Neutral) keeps a base colour what it was authored as.
  // ACES pulled the evidence inks off their twins on the cards beside them.
- renderer.toneMapping=T.NeutralToneMapping;renderer.toneMappingExposure=1;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate data. Scroll to move the story, drag to rotate, use the zoom slider to move closer, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
- const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.6;room.dispose();pm.dispose();
- // The key sits nearly overhead so a lifted part shadows the part below it,
- // not a patch of floor five units away. The rim only draws edges.
- const key=new T.DirectionalLight(0xffffff,1.7);key.position.set(-2.4,-1.8,12);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=7;scene.add(key);scene.add(new T.AmbientLight(0xffffff,.22));
- const rim=new T.DirectionalLight(0xffffff,.9);rim.position.set(4,9,6);scene.add(rim);
- // A dark studio, but the fills stay white: a blue fill tinted every grey part
- // blue and read as murk. The globe's cool edge comes from its own rim shader.
- const fillLeft=new T.DirectionalLight(0xffffff,.7);fillLeft.position.set(-9,3,4);scene.add(fillLeft);const fillTop=new T.DirectionalLight(0xffffff,.45);fillTop.position.set(2,-6,10);scene.add(fillTop);
+ renderer.toneMapping=T.NeutralToneMapping;renderer.toneMappingExposure=1;el.appendChild(renderer.domElement);renderer.outputColorSpace=T.SRGBColorSpace;renderer.domElement.setAttribute('role','img');renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','A model of one country\u2019s climate record: the ring is its pledge, the gears its inventory, the eight sockets its transparency report. Drag to turn, tap a part to open it.');ready.current?.(renderer.domElement,()=>renderer.render(scene,camera));
+ const pm=new T.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pm.fromScene(room,.04);scene.environment=env.texture;scene.environmentIntensity=.5;room.dispose();pm.dispose();
+ // A paper studio: the page behind the machine is white, so the light is kept
+ // low enough that a light alloy face still shades, and the parts take their
+ // contrast from themselves (a darker edge, dark hubs, the colour keys, the
+ // shadow one part casts on the one below it). The key sits nearly overhead so
+ // a lifted part shadows the part under it, not a patch of floor away from it.
+ const key=new T.DirectionalLight(0xffffff,1.3);key.position.set(-2.4,-1.8,12);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;key.shadow.bias=-.001;key.shadow.normalBias=.025;key.shadow.radius=7;scene.add(key);scene.add(new T.AmbientLight(0xffffff,.3));
+ const rim=new T.DirectionalLight(0xffffff,.55);rim.position.set(4,9,6);scene.add(rim);
+ const fillLeft=new T.DirectionalLight(0xffffff,.5);fillLeft.position.set(-9,3,4);scene.add(fillLeft);const fillTop=new T.DirectionalLight(0xffffff,.3);fillTop.position.set(2,-6,10);scene.add(fillTop);
  const camera=new T.PerspectiveCamera(34,1,.1,100);const world=new T.Group();world.rotation.z=-.13;scene.add(world);
- // The finishes of a hardware instrument: bead-blasted aluminium for the frame,
- // matte keycap plastic for the parts, the sources' blue-grey for hubs and
- // source gears (no black: the brand is UN blue). Mirror metal read
- // as murk at this size; matte surfaces keep every edge crisp. Colour is kept
- // for the four evidence parts, as coloured keys: the pledge blue, the
- // inventory green, a lit key for each reported BTR component, finance gold,
- // each in its SDG colour.
- const silver=new T.MeshStandardMaterial({color:0x7a7b77,metalness:.4,roughness:.45});const edge=new T.MeshStandardMaterial({color:0xdcdcd8,metalness:.7,roughness:.25});const steel=new T.MeshStandardMaterial({color:0x4d6477,metalness:0,roughness:.5});const porcelain=new T.MeshPhysicalMaterial({color:0xd6d4cf,metalness:0,roughness:.58,clearcoat:.15,clearcoatRoughness:.5});const white=new T.MeshStandardMaterial({color:0xe6e4df,metalness:0,roughness:.52});const shadow=new T.MeshStandardMaterial({color:0x16181b,metalness:0,roughness:.7});
- const blue=new T.MeshPhysicalMaterial({color:0x009edb,metalness:0,roughness:.45,clearcoat:.25,clearcoatRoughness:.4});const teal=new T.MeshPhysicalMaterial({color:0x3f9e4a,metalness:0,roughness:.48,clearcoat:.2,clearcoatRoughness:.4});const violet=new T.MeshPhysicalMaterial({color:0xdd1367,metalness:0,roughness:.3,clearcoat:.6,clearcoatRoughness:.2,emissive:0x3a0618,emissiveIntensity:.4});const gold=new T.MeshPhysicalMaterial({color:0xd9a13a,metalness:.15,roughness:.42,clearcoat:.2,clearcoatRoughness:.4});const glass=new T.MeshPhysicalMaterial({color:0xe3e9f4,transparent:true,opacity:.7,metalness:0,roughness:.04,clearcoat:1,ior:1.77,side:T.DoubleSide,depthWrite:false});const clear=new T.MeshPhysicalMaterial({color:0xe6ebf5,transparent:true,opacity:.2,metalness:0,roughness:.05,clearcoat:1,side:T.DoubleSide,depthWrite:false});const ghost=new T.MeshStandardMaterial({color:0xb9bfc6,metalness:.4,roughness:.4,transparent:true,opacity:.5});
+ // The finishes of a hardware instrument on white paper: matte light alloy for
+ // the frame and plates, a slightly darker alloy for every edge and ring so a
+ // part keeps its outline against the page, the sources' blue-grey for hubs
+ // and source gears (no black: the brand is UN blue). Colour is kept for the
+ // four evidence parts, as coloured keys: the pledge blue, the inventory
+ // green, a lit key for each reported BTR component, finance gold, each in its
+ // SDG colour.
+ const silver=new T.MeshStandardMaterial({color:0xc6c8c4,metalness:.35,roughness:.5});const edge=new T.MeshStandardMaterial({color:0x8d918f,metalness:.55,roughness:.38});const steel=new T.MeshStandardMaterial({color:0x4d6477,metalness:0,roughness:.5});const porcelain=new T.MeshPhysicalMaterial({color:0xe9e7e2,metalness:0,roughness:.58,clearcoat:.15,clearcoatRoughness:.5});const white=new T.MeshStandardMaterial({color:0xf5f4f0,metalness:0,roughness:.52});const shadow=new T.MeshStandardMaterial({color:0x23272b,metalness:0,roughness:.7});
+ const blue=new T.MeshPhysicalMaterial({color:0x009edb,metalness:0,roughness:.45,clearcoat:.25,clearcoatRoughness:.4,emissive:0x009edb,emissiveIntensity:0});const teal=new T.MeshPhysicalMaterial({color:0x3f9e4a,metalness:0,roughness:.48,clearcoat:.2,clearcoatRoughness:.4});const violet=new T.MeshPhysicalMaterial({color:0xdd1367,metalness:0,roughness:.3,clearcoat:.6,clearcoatRoughness:.2,emissive:0x3a0618,emissiveIntensity:.4});const gold=new T.MeshPhysicalMaterial({color:0xd9a13a,metalness:.15,roughness:.42,clearcoat:.2,clearcoatRoughness:.4});const glass=new T.MeshPhysicalMaterial({color:0xe3e9f4,transparent:true,opacity:.7,metalness:0,roughness:.04,clearcoat:1,ior:1.77,side:T.DoubleSide,depthWrite:false});const clear=new T.MeshPhysicalMaterial({color:0xe6ebf5,transparent:true,opacity:.2,metalness:0,roughness:.05,clearcoat:1,side:T.DoubleSide,depthWrite:false});const ghost=new T.MeshStandardMaterial({color:0xb9bfc6,metalness:.4,roughness:.4,transparent:true,opacity:.5});
  const parts:THREE.Group[]=[];const gears:{g:THREE.Group;speed:number;phase:number}[]=[];const hits:THREE.Object3D[]=[];const textures:THREE.Texture[]=[];const labels:{el:HTMLDivElement;anchor:THREE.Object3D;offset:[number,number];phase:number;color:string}[]=[];const topLabels=document.createElement('div');topLabels.className='projected-labels';el.appendChild(topLabels);topLabels.setAttribute('aria-hidden','true');const btrLayer=document.createElement('div');btrLayer.className='projected-labels btr-layer';el.appendChild(btrLayer);
- // A soft contact shadow under the base. The floor used to take the cast shadow
- // of every part, and a part floating six units up printed its silhouette far
- // from itself: dark gear shapes with no owner. Parts still shadow each other.
- const blob=document.createElement('canvas');blob.width=blob.height=256;const bctx=blob.getContext('2d')!;const fall=bctx.createRadialGradient(128,128,0,128,128,128);fall.addColorStop(0,'rgba(40,170,235,.30)');fall.addColorStop(.5,'rgba(20,130,205,.11)');fall.addColorStop(1,'rgba(10,80,150,0)');bctx.fillStyle=fall;bctx.fillRect(0,0,256,256);
+ // A soft contact shadow on the paper under the base. The floor used to take
+ // the cast shadow of every part, and a part floating six units up printed its
+ // silhouette far from itself: dark gear shapes with no owner. Parts still
+ // shadow each other; the ground only says where the machine stands.
+ const blob=document.createElement('canvas');blob.width=blob.height=256;const bctx=blob.getContext('2d')!;const fall=bctx.createRadialGradient(128,128,0,128,128,128);fall.addColorStop(0,'rgba(34,38,42,.28)');fall.addColorStop(.45,'rgba(34,38,42,.11)');fall.addColorStop(1,'rgba(34,38,42,0)');bctx.fillStyle=fall;bctx.fillRect(0,0,256,256);
  const blobTexture=new T.CanvasTexture(blob);blobTexture.colorSpace=T.SRGBColorSpace;textures.push(blobTexture);
- const plate=new T.MeshStandardMaterial({color:0x8a8b87,metalness:.3,roughness:.56});
- const cotes=new T.MeshStandardMaterial({color:0x9a9b97,metalness:.3,roughness:.52});
- const floor=new T.Mesh(new T.PlaneGeometry(9.6,9.6),new T.MeshBasicMaterial({map:blobTexture,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));floor.position.set(.3,.2,-3.43);scene.add(floor);
+ const plate=new T.MeshStandardMaterial({color:0xd3d4cf,metalness:.25,roughness:.6});
+ const cotes=new T.MeshStandardMaterial({color:0xc9cac5,metalness:.25,roughness:.55});
+ const floor=new T.Mesh(new T.PlaneGeometry(9.6,9.6),new T.MeshBasicMaterial({map:blobTexture,transparent:true,depthWrite:false,toneMapped:false}));floor.position.set(.3,.2,-3.43);scene.add(floor);
  function mesh(geometry:THREE.BufferGeometry,material:THREE.Material,parent:THREE.Object3D,x=0,y=0,z=0){const m=new T.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
  function cylinder(parent:THREE.Object3D,r:number,h:number,z:number,mat:THREE.Material=porcelain,x=0,y=0){const m=mesh(new T.CylinderGeometry(r,r,h,72),mat,parent,x,y,z);m.rotation.x=Math.PI/2;return m;}
  function ring(parent:THREE.Object3D,r:number,t:number,z:number,mat:THREE.Material=edge,arc=Math.PI*2){return mesh(new T.TorusGeometry(r,t,12,140,arc),mat,parent,0,0,z);}
@@ -92,12 +96,12 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  // The neutral chassis is the shared country contract; it contains no claimed climate values.
  const chassis=part('treaty',0,-.22);clickable(annulus(chassis,2.96,1.04,.22,0,plate),'treaty');annulus(chassis,3.07,2.9,.14,-.12,silver);ring(chassis,3.04,.032,.11,edge);ring(chassis,2.94,.024,.25,white);cylinder(chassis,1.03,.11,.09,white);ring(chassis,1.07,.022,.19,silver);
  engraving(chassis,'PARIS AGREEMENT · 2015',ink('--ink-2','#3c464d'),1.75,.14,.29).position.y=-2.42;
- const anchorT=chip(chassis,'PARIS',ink('--engrave','#4c565c'),-2.62,-2.62,.30,'treaty');label(anchorT,'01 / Paris plate','The shared design every part seats on','#c3cae3',0,[-150,26]);
+ const anchorT=chip(chassis,'PARIS',ink('--engrave','#4c565c'),-2.62,-2.62,.30,'treaty');label(anchorT,'01 / Paris plate','The shared design every part seats on','#4c565c',0,[-150,26]);
  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;screw(chassis,Math.cos(a)*2.73,Math.sin(a)*2.73,.28,.066);}
  // 1. NDC records become the target ring. The arc length is the actual pledged reduction.
- const promise=part('pledge',1,.40);clickable(annulus(promise,2.82,2.4,.12,0,clear),'pledge');ring(promise,2.85,.028,.12,edge);ring(promise,2.37,.015,.13,edge);const ratio=(data.ndc.reduction_pct??0)/100;
- const segments:THREE.Mesh[]=[];const pledgeUnknown=data.ndc.reduction_pct==null;for(let i=0;i<50;i++){const g=new T.TorusGeometry(2.61,.082,8,8,Math.PI*2/50*.78);const m=mesh(g,pledgeUnknown?ghost:i<Math.round(ratio*50)?blue:porcelain,promise,0,0,.17);m.rotation.z=Math.PI/2+i/50*Math.PI*2;segments.push(m);clickable(m,'pledge');}
- const anchorN=chip(promise,'NDC','#00689d',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC target ring',data.ndc.reduction_pct==null?'No pledge figure read from the document':`${fmt(data.ndc.reduction_pct)}% pledged cut`,'#4cc3f5',1,[-110,-28]);
+ const promise=part('pledge',1,.40);clickable(annulus(promise,2.82,2.4,.12,0,clear),'pledge');ring(promise,2.85,.028,.12,edge);ring(promise,2.37,.015,.13,edge);const lo=data.ndc.reduction_pct??data.ndc.reduction_range_pct?.[0]??null;const ratio=(lo??0)/100;
+ const segments:THREE.Mesh[]=[];const pledgeUnknown=lo==null;for(let i=0;i<50;i++){const g=new T.TorusGeometry(2.61,.082,8,8,Math.PI*2/50*.78);const m=mesh(g,pledgeUnknown?ghost:i<Math.round(ratio*50)?blue:porcelain,promise,0,0,.17);m.rotation.z=Math.PI/2+i/50*Math.PI*2;segments.push(m);clickable(m,'pledge');}
+ const anchorN=chip(promise,'NDC','#00689d',-1.86,2.62,.37,'pledge');label(anchorN,'02 / NDC target ring',lo==null?'No pledge figure read from the document':`${pledgeText(data.ndc.reduction_pct,data.ndc.reduction_range_pct)} pledged cut`,'#00689d',1,[-110,-28]);
  // 2. Only loaded observations become metal markers; the gear train has mechanical support, not invented time-series points.
  const inventory=part('delivery',2,.35);
  const yearsOf=(id:string)=>Math.max(9,Math.min(64,id==='delivery'?new Set(data.series.observed.map(p=>p.year)).size||36:data.emissions_profile?.by_source.find(x=>x.source_id===id.slice(7))?.series.length||(id==='source:DS-05'?29:24)));
@@ -105,19 +109,33 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  sourceGears.forEach(([x,y,r,n,mat,sign,id])=>{const g=clickable(cog(inventory,x,y,r,n,mat,sign),id);g.userData.source=id;const available=id==='delivery'?data.series.observed.length>0:(data.sources??[]).some(s=>s.id===id.slice(7)&&s.connection==='connected');g.userData.available=available;if(!available)ghost_(g);const cap=new T.Group();cap.position.set(x,y,.43);inventory.add(cap);engraving(cap,id==='delivery'?(data.emissions_profile?.total_mtco2e!=null?`${fmt(data.emissions_profile.total_mtco2e,0)} Mt`:'INVENTORY'):id==='source:DS-05'?'EDGAR':'TRACE',ink('--ink-2','#3c464d'),r*1.22,r*.30,.02);clickable(cap,id);});
  const gearSupports:[[number,number],[number,number]][]=[[[-1.05,-.30],[.55,-.30]],[[.55,-.30],[1.33,.75]]];gearSupports.forEach(([a,b])=>{const dx=b[0]-a[0],dy=b[1]-a[1];const bar=new T.Group();bar.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,-.17);bar.rotation.z=Math.atan2(dy,dx);inventory.add(bar);slab(bar,Math.hypot(dx,dy),.13,0,cotes,.065);});
  const dataMarks:THREE.Mesh[]=[];data.series.observed.forEach((p,i)=>{const a=Math.PI*.1+i/Math.max(data.series.observed.length,15)*Math.PI*1.8;const m=cylinder(inventory,.075,.045,.25,teal,Math.cos(a)*2.26,Math.sin(a)*2.26);clickable(m,'delivery');dataMarks.push(m)});
- const anchorI=chip(inventory,'INV','#3f7e44',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${observedYears(data)} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#7cc47f',2,[-144,10]);
+ const anchorI=chip(inventory,'INV','#3f7e44',-2.28,-1.79,.30,'delivery');label(anchorI,'03 / Observations',`${observedYears(data)} observed years${trend==null?' · no trend computed':` · ${trend>0?'+':'−'}${fmt(Math.abs(trend),2)} MtCO₂e per year`}`,'#3f7e44',2,[-144,10]);
  // 3. BTR submission seats a bridge. Eight individual states remain independent of submission.
  const evidence=part('evidence',3,.78);const bridge=new T.Group();bridge.position.set(.65,.72,0);bridge.rotation.z=.16;evidence.add(bridge);clickable(slab(bridge,2.0,.48,0,cotes,.13),'evidence');screw(bridge,-.81,0,.19,.07);screw(bridge,.81,0,.19,.07);engraving(bridge,'BTR',data.btr.submitted===true?'#b0105a':'#9a93a6',.7,.22,.174);
- const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);const pad=mesh(new T.CylinderGeometry(.34,.34,.6,8),new T.MeshBasicMaterial({visible:false}),g,0,0,.1);pad.rotation.x=Math.PI/2;pad.castShadow=pad.receiveShadow=false;clickable(pad,'evidence:'+key);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed'||state.state==='pledged'){const jewel=mesh(new T.SphereGeometry(.112,32,16,0,Math.PI*2,0,Math.PI/2),state.state==='observed'?violet:glass,g,0,0,.02);jewel.rotation.x=Math.PI/2;jewel.scale.set(1,.62,1);}else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{annulus(g,.124,.082,.055,-.075,edge);cylinder(g,.082,.012,-.105,shadow);}sockets.push(g);g.userData.key=key});
+ const sockets:THREE.Group[]=[];Object.entries(data.btr.components).forEach(([key,state],i)=>{const a=Math.PI*2*i/8;const g=new T.Group();g.position.set(Math.cos(a)*1.95,Math.sin(a)*1.95,.12);evidence.add(g);g.userData.click='evidence:'+key;const pad=mesh(new T.CylinderGeometry(.34,.34,.6,8),new T.MeshBasicMaterial({visible:false}),g,0,0,.1);pad.rotation.x=Math.PI/2;pad.castShadow=pad.receiveShadow=false;clickable(pad,'evidence:'+key);clickable(ring(g,.13,.024,.02,edge),'evidence:'+key);if(state.state==='observed'||state.state==='pledged'){const jewel=mesh(new T.SphereGeometry(.112,32,16,0,Math.PI*2,0,Math.PI/2),state.state==='observed'?violet:glass,g,0,0,.02);jewel.rotation.x=Math.PI/2;jewel.scale.set(1,.62,1);}else if(state.state==='absent')cylinder(g,.098,.08,-.04,shadow);else{annulus(g,.124,.082,.055,-.075,edge);cylinder(g,.082,.012,-.105,shadow);}sockets.push(g);g.userData.key=key});
  const btrUnread=Object.values(data.btr.components).every(c=>c.state==='unknown');
  if(btrUnread){bridge.position.z+=.32;bridge.rotation.y=-.19;}
- const anchorB=chip(evidence,'BTR','#b0105a',2.18,1.58,.27,'evidence');label(anchorB,'04 / BTR reporting duty',data.btr.submitted===true?`Submitted · ${Object.values(data.btr.components).filter(c=>c.state==='unknown').length} unparsed`:'Submission unparsed','#f06aa8',3,[36,-42]);
+ const anchorB=chip(evidence,'BTR','#b0105a',2.18,1.58,.27,'evidence');label(anchorB,'04 / Transparency report',data.btr.submitted===true?`${data.btr.version} submitted · ${Object.values(data.btr.components).filter(c=>c.state==='observed').length} of ${Object.keys(data.btr.components).length} parts read`:data.btr.submitted===false?'Non-submission confirmed':'Submission not read','#b0105a',3,[36,-42]);
  // 4. Finance docks beside the mechanism. Unknown receipts never make this conditional wheel mesh.
- const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN','#8a6208',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_need.received_usd==null?'Receipts unknown \u2192 not meshed':'Receiving finance is not fulfilling a condition','#f2c35b',4,[32,18]);
+ const finance=part('conditions',4,.44);finance.position.set(3.58,-.38,.44);const fg=cog(finance,0,0,.55,23,gold,-1);clickable(fg,'conditions');if(data.finance_need.received_usd==null)ghost_(fg);ring(finance,.68,.018,.13,edge);cylinder(finance,.11,.15,.15,gold);const anchorF=chip(finance,'FIN','#8a6208',0,1.06,.04,'conditions');label(anchorF,'05 / International support',data.finance_flows?.disbursed_usd!=null?`$${fmt(data.finance_flows.disbursed_usd/1e6,0)}m disbursed by the ${data.finance_flows.channel}`:data.finance_need.received_usd==null?'Finance received not read':'Receiving finance is not fulfilling a condition','#8a6208',4,[32,18]);
  // 5. The assessment core seats only after the inputs. It refuses an unsupported conclusion.
  const core=part('assessment',5,1.02);const corePlate=slab(core,.89,.75,0,porcelain,.13);clickable(corePlate,'delivery');engraving(core,data.country.iso3,ink('--ink-2','#3c464d'),.63,.24,.174);ring(core,.48,.018,.05,edge);
 
- function disposeScene(){const materials=new Set<THREE.Material>();scene.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Points||o instanceof T.Line){o.geometry.dispose();(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));}});materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());key.shadow.dispose();env.dispose();renderer.dispose();renderer.domElement.remove();topLabels.remove();btrLayer.remove();}
+ // Hover and selection restyle a mesh by swapping its authored material for a
+ // lit or a faded twin, made once per material and shared, so nothing is
+ // allocated while the pointer moves. Fading is a step toward the paper, not
+ // opacity: a see-through part on a white page reads as glass.
+ const paper=new T.Color(0xfbfbfa);const twins=new Map<THREE.Material,{lit?:THREE.Material;dim?:THREE.Material}>();
+ const skins:{m:THREE.Mesh;base:THREE.Material;family:string;click:string|null}[]=[];
+ function twin(base:THREE.Material,kind:'lit'|'dim'){
+  const slot=twins.get(base)??{};twins.set(base,slot);const had=slot[kind];if(had)return had;
+  let m=base;
+  if(base instanceof T.MeshStandardMaterial){const s=base.clone();if(kind==='lit'){s.emissive.copy(base.emissive).multiplyScalar(base.emissiveIntensity).add(base.color.clone().multiplyScalar(.18));s.emissiveIntensity=1}else{s.color.lerp(paper,.62);s.emissive.multiplyScalar(.25);s.metalness*=.5;s.roughness=Math.max(s.roughness,.6);if(s.transparent)s.opacity*=.5}m=s}
+  else if(base instanceof T.MeshBasicMaterial&&kind==='dim'){const s=base.clone();if(s.map){s.transparent=true;s.opacity*=.4}else s.color.lerp(paper,.62);m=s}
+  slot[kind]=m;return m;
+ }
+ const contextLost=(event:Event)=>{event.preventDefault();cleanup();setFailed(true);};
+ function disposeScene(){const materials=new Set<THREE.Material>();scene.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Points||o instanceof T.Line){o.geometry.dispose();(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));if(o instanceof T.InstancedMesh)o.dispose();}});for(const s of skins)materials.add(s.base);twins.forEach(s=>{s.lit?.dispose();s.dim?.dispose()});materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());key.shadow.dispose();env.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();topLabels.remove();btrLayer.remove();}
  cleanup=disposeScene;
  // The planet the way GitHub drew theirs: a lit blue sphere, the land as flat
  // five-sided dots laid along rows of latitude, and a glow at its edge. The dots
@@ -126,7 +144,9 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const basemap=await fetch('/data/basemap.json').then(r=>r.ok?r.json() as Promise<{shapes:Record<string,string>}>:null).catch(()=>null);if(cancelled){cleanup();return;}
  const R=2.9;let beacon:THREE.Mesh|null=null;
  const globeBase=new T.MeshStandardMaterial({color:0x0b5f9e,roughness:.62,metalness:.08,emissive:0x053a66,emissiveIntensity:.55,side:T.DoubleSide});
- const rimGlow=new T.ShaderMaterial({transparent:true,side:T.BackSide,depthWrite:false,blending:T.AdditiveBlending,uniforms:{glow:{value:new T.Color(0x33b8f0)}},vertexShader:'varying vec3 n; varying vec3 v; void main(){vec4 mv=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',fragmentShader:'varying vec3 n; varying vec3 v; uniform vec3 glow; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),2.4);gl_FragColor=vec4(glow*rim,rim*.9);}'});
+ // The atmosphere at the limb. Additive light vanishes on white paper, so the
+ // halo is painted, a pale blue that fades out from the edge of the globe.
+ const rimGlow=new T.ShaderMaterial({transparent:true,side:T.BackSide,depthWrite:false,uniforms:{glow:{value:new T.Color(0x7fcdf2)}},vertexShader:'varying vec3 n; varying vec3 v; void main(){vec4 mv=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',fragmentShader:'varying vec3 n; varying vec3 v; uniform vec3 glow; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),2.4);gl_FragColor=vec4(glow,rim*.6);}'});
  const north=new T.Group(),south=new T.Group();world.add(north,south);
  for(const [g,start] of [[north,0],[south,Math.PI/2]] as const){
   const shell=new T.SphereGeometry(R,96,48,0,Math.PI*2,start,Math.PI/2);shell.rotateX(Math.PI/2);const planet=clickable(mesh(shell,globeBase,g),'planet');planet.castShadow=false;planet.receiveShadow=false;
@@ -169,6 +189,12 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const confirmedGaps=Object.values(data.btr.components).filter(c=>c.state==='absent').length;const offTrack=data.derived.on_track===false;const unresolved=data.derived.on_track==null;
  const warningMat=new T.MeshStandardMaterial({color:0xa6432f,emissive:0x7e261c,emissiveIntensity:.25,metalness:.3,roughness:.38});
  if(offTrack||confirmedGaps>0){const brokenArc=ring(chassis,2.99,.027,.31,warningMat,Math.PI*.32);brokenArc.rotation.z=-Math.PI*.4;clickable(brokenArc,'planet');}
+ // Every mesh belongs to one family (the part group it rides on; the core and
+ // the equator ride with the inventory and the planet) and to the piece a tap
+ // on it opens, which can be finer: one socket, one source gear, one chip.
+ const familyOf=(o:THREE.Object3D)=>{for(let p:THREE.Object3D|null=o;p;p=p.parent){if(p===north||p===south)return 'planet';const id=p.userData.id as string|undefined;if(id)return id==='assessment'?'delivery':id==='planet-label'?'planet':id}return null};
+ const clickOf=(o:THREE.Object3D)=>{for(let p:THREE.Object3D|null=o;p;p=p.parent)if(p.userData.click)return String(p.userData.click);return null};
+ scene.traverse(o=>{if(o instanceof T.Mesh&&!Array.isArray(o.material)){const family=familyOf(o);if(family)skins.push({m:o,base:o.material,family,click:clickOf(o)})}});
  // Keep the earlier open-work instrument as the resting pose. This is an
  // explanatory cutaway, independent of whether a country's goal is met.
  north.position.set(0,.65,3.8);camera.up.set(0,0,1);south.position.z=-.34;
@@ -179,7 +205,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const assemblies=[...parts.filter(g=>g!==equator),north,south].map((g,index)=>{
   const box=new T.Box3().setFromObject(g);const center=box.getCenter(new T.Vector3());
   const shell:'upper'|'lower'|null=g===north?'upper':g===south?'lower':null;
-  return {g,id:shell??String(g.userData.id),layer:shell==='upper'?4:shell==='lower'?0:g===core?2:Math.min(4,g.userData.phase),shell,home:g.position.clone(),box,center,bounds:[box.min.toArray(),box.max.toArray()] as [[number,number,number],[number,number,number]]};
+  return {g,id:shell??String(g.userData.id),layer:shell==='upper'?4:shell==='lower'?0:g===core?2:Math.min(4,g.userData.phase),shell,home:g.position.clone(),shift:new T.Vector3(),box,center,bounds:[box.min.toArray(),box.max.toArray()] as [[number,number,number],[number,number,number]]};
  });
  world.rotation.z=-.13;
  let layout=createExplosionLayout(assemblies,1);
@@ -221,19 +247,32 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  const changed=()=>{dirty=true};const started=()=>{manualCamera=true;fitDirty=false;dirty=true;cameraSpeed.set(0,0,0);lookSpeed.set(0,0,0);manual.current?.(true)};
  orbit.addEventListener('change',changed);orbit.addEventListener('start',started);
  const motionChanged=()=>{replay.cancel();fitDirty=dirty=true;manualCamera=false;};reduced.addEventListener('change',motionChanged);
- const contextLost=(event:Event)=>{event.preventDefault();cleanup();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',contextLost);
- function pick(event:PointerEvent){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);const result=ray.intersectObjects(hits.filter(o=>{let p:THREE.Object3D|null=o;while(p){if(!p.visible)return false;p=p.parent;}return true}),true);if(result.length){let o:THREE.Object3D|null=result[0].object;while(o&&!o.userData.click)o=o.parent;if(o)select.current(o.userData.click)}}
- const down=(e:PointerEvent)=>tap.down(e.pointerId,e.clientX,e.clientY,e.pointerType==='touch'?12:5);
- const move=(e:PointerEvent)=>tap.move(e.pointerId,e.clientX,e.clientY);
- const up=(e:PointerEvent)=>{if(tap.up(e.pointerId,e.clientX,e.clientY))pick(e)};
- const cancel=(e:PointerEvent)=>tap.cancel(e.pointerId);
- renderer.domElement.addEventListener('pointerdown',down);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',cancel);renderer.domElement.addEventListener('lostpointercapture',cancel);
+ renderer.domElement.addEventListener('webglcontextlost',contextLost);
+ function castAt(x:number,y:number){const rect=renderer.domElement.getBoundingClientRect();pointer.set((x-rect.left)/rect.width*2-1,-(y-rect.top)/rect.height*2+1);camera.updateMatrixWorld();ray.setFromCamera(pointer,camera);const result=ray.intersectObjects(hits.filter(o=>{let p:THREE.Object3D|null=o;while(p){if(!p.visible)return false;p=p.parent;}return true}),true);if(!result.length)return null;let o:THREE.Object3D|null=result[0].object;while(o&&!o.userData.click)o=o.parent;return o?String(o.userData.click):null}
+ function pick(event:PointerEvent){const id=castAt(event.clientX,event.clientY);if(id)select.current(id)}
+ // Hover: the pointer's last place is cast once per frame, never mid-drag. The
+ // piece under it lifts a little and the cursor says it will open.
+ let hovered:string|null=null,hoverAt:{x:number;y:number}|null=null,hoverDirty=false,pressed=false,lastHover=0,shown='';
+ function setHover(id:string|null){if(id===hovered)return;hovered=id;renderer.domElement.style.cursor=id?'pointer':'';dirty=true;hoverCallback.current?.(id)}
+ // Hovering a whole part lifts its family; hovering a socket, a source gear
+ // or a chip lifts only that piece. With a part chosen, every other family
+ // fades toward the paper but stays where it is and stays clickable.
+ function restyle(){const sel=current.current.selected?.split(':')[0]??null;const selFamily=sel==='source'?'delivery':sel;const hoverFamily=hovered&&!hovered.includes(':')?hovered:null;const k=`${hovered}|${selFamily}`;if(k===shown)return;shown=k;
+  for(const s of skins){const lit=hovered!=null&&(hoverFamily?s.family===hoverFamily:s.click===hovered);s.m.material=lit?twin(s.base,'lit'):selFamily&&s.family!==selFamily?twin(s.base,'dim'):s.base}dirty=true}
+ const down=(e:PointerEvent)=>{pressed=true;setHover(null);tap.down(e.pointerId,e.clientX,e.clientY,e.pointerType==='touch'?12:5)};
+ const move=(e:PointerEvent)=>{tap.move(e.pointerId,e.clientX,e.clientY);if(e.pointerType!=='touch'){hoverAt={x:e.clientX,y:e.clientY};hoverDirty=true}};
+ const up=(e:PointerEvent)=>{pressed=false;hoverDirty=true;if(tap.up(e.pointerId,e.clientX,e.clientY))pick(e)};
+ const cancel=(e:PointerEvent)=>{pressed=false;tap.cancel(e.pointerId)};
+ const leave=()=>{hoverAt=null;hoverDirty=true};
+ renderer.domElement.addEventListener('pointerdown',down);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',cancel);renderer.domElement.addEventListener('lostpointercapture',cancel);renderer.domElement.addEventListener('pointerleave',leave);
+ // A hidden tab draws nothing; the first frame back redraws.
+ const vis=()=>{dirty=true};document.addEventListener('visibilitychange',vis);
  function placeParts(){
   const story=narrativeAmount(amount);const internal=(layer:number)=>story*(1-returnAmount(amount,layer));
   assemblies.forEach(part=>{
    const cell=layout.cells.get(part.id)!;const offset=cycleOffset(amount,part.layer,part.center,{x:cell.x,y:cell.y,z:0},part.shell,liftScale);
    const float=part.shell?0:Math.sin(gearTime*.8+part.layer*.9)*.025*(part.layer===0?.25:1);
-   part.g.position.copy(part.home).add(pos.set(offset.x,offset.y,offset.z+float));
+   part.shift.set(offset.x,offset.y,offset.z);part.g.position.copy(part.home).add(pos.set(offset.x,offset.y,offset.z+float));
   });
   // Each family has its own secondary motion, after its supporting layer lifts.
   segments.forEach((m,i)=>{const t=reveal(internal(1),.235+i*.0014,.26+i*.0014);m.position.z=.17+t*(.12+.012*Math.sin(gearTime+i*.16));});
@@ -255,7 +294,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
  // the movement coming together, and each shell enters the shot as it flies in.
  function measure(lidAway:boolean,waiting=false){
   const c=current.current;const bounds=new T.Box3();const story=narrativeAmount(amount);const deskView=deskAmount(amount)*(1-reveal(amount,.84,.96));
-  assemblies.forEach(part=>{if(lidAway&&part.shell==='upper'||waiting&&part.shell&&returnAmount(amount,0,part.shell)<=0)return;const box=part.box.clone().translate(part.g.position.clone().sub(part.home));
+  assemblies.forEach(part=>{if(lidAway&&part.shell==='upper'||waiting&&part.shell&&returnAmount(amount,0,part.shell)<=0)return;const box=part.box.clone().translate(part.shift);
    // Frame the mechanism generously; the decorative poles may extend beyond
    // the study's edge, as in the previous close-up. Fit complete shells in plan.
    if(c.camera==='atelier'&&deskView<.001){
@@ -286,9 +325,16 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   const dx=at.x-goal.x,dy=at.y-goal.y,dz=at.z-goal.z,tx=(speed.x+w*dx)*dt,ty=(speed.y+w*dy)*dt,tz=(speed.z+w*dz)*dt;
   speed.set((speed.x-w*tx)*e,(speed.y-w*ty)*e,(speed.z-w*tz)*e);at.set(goal.x+(dx+tx)*e,goal.y+(dy+ty)*e,goal.z+(dz+tz)*e);
  }
+ // The piece the reader chose, framed on its own once the machine has
+ // settled: its rest box where it stands now, the breathing float left out so
+ // the camera lands and stays. A source gear frames the inventory it turns in.
+ let focusing=false;
+ function framed(id:string){const family=id.split(':')[0];const want=family==='source'||family==='delivery'?['delivery','assessment']:family==='planet'?['upper','lower']:['treaty','pledge','evidence','conditions'].includes(family)?[family]:null;if(!want)return null;
+  const bounds=new T.Box3();for(const part of assemblies)if(want.includes(part.id))bounds.union(part.box.clone().translate(part.shift).applyMatrix4(world.matrixWorld));return bounds.isEmpty()?null:bounds}
  function fit(){
   const c=current.current;const deskView=deskAmount(amount)*(1-reveal(amount,.84,.96));const chapter=cyclePhase(amount);
-  const bounds=chapter===7?measure(false,true):shot(chapter);
+  const focus=c.selected&&!c.explode&&amount>=1?framed(c.selected):null;focusing=!!focus;
+  const bounds=focus??(chapter===7?measure(false,true):shot(chapter));
   bounds.getCenter(lookGoal);
   const direction=(c.camera==='plan'?new T.Vector3(.16,-.8,1).normalize():c.camera==='back'?back:iso).clone().lerp(front,deskView).normalize();
   const right=new T.Vector3().crossVectors(camera.up,direction).normalize();const up=new T.Vector3().crossVectors(direction,right).normalize();
@@ -306,7 +352,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    const corner=new T.Vector3(x,y,z).sub(lookGoal);const depth=corner.dot(direction);
    distance=Math.max(distance,depth+Math.abs(corner.dot(right))/tanX,depth+Math.abs(corner.dot(up))/tanY);
   }
-  distance=distance*1.04/(c.zoom??1);
+  distance=distance*(focus?1.22:1.04)/(c.zoom??1);
   // Centred on the free width: between the card on the left and the controls on the right.
   lookGoal.addScaledVector(right,-(inset+36-edge)/el.clientWidth*distance*tangent*camera.aspect);
   cameraGoal.copy(direction).multiplyScalar(distance).add(lookGoal);camera.far=Math.max(150,distance+80);camera.updateProjectionMatrix();
@@ -341,7 +387,7 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
    // Drawn from the part out to its callout, so the part seems to speak.
    const edgeX=cx<x?x:cx>x+w?x+w:x+w/2;leaders[i].setAttribute('points',`${cx},${cy} ${cx},${y+h/2} ${edgeX},${y+h/2}`);dots[i].setAttribute('cx',String(cx));dots[i].setAttribute('cy',String(cy));
   });  btrTags.forEach((tag,i)=>{sockets[i].getWorldPosition(pos);pos.project(camera);
-   const show=(amount<.70&&step===i||current.current.selected==='evidence:'+sockets[i].userData.key)&&pos.z>=-1&&pos.z<=1;
+   const sel=current.current.selected;const show=(amount<.70&&step===i||sel==='evidence'||sel==='evidence:'+sockets[i].userData.key)&&pos.z>=-1&&pos.z<=1;
    tag.classList.toggle('is-shown',show);btrLeaders[i].classList.toggle('is-shown',show);if(!show)return;
    let cx=(pos.x*.5+.5)*el.clientWidth,cy=(-pos.y*.5+.5)*el.clientHeight;const anchor=btrAnchors[i];
    if(anchor.set&&Math.hypot(cx-anchor.x,cy-anchor.y)<4){cx=anchor.x;cy=anchor.y}else{anchor.x=cx;anchor.y=cy;anchor.set=true}
@@ -376,23 +422,29 @@ export default function MovementScene({data,controls,onSelect,onReady,onPhase,on
   if(still)amount=target;
   else if(!c.paused||replay.stage==='idle')amount=scrub?(Math.abs(target-amount)<.0001?target:T.MathUtils.damp(amount,target,8,dt)):(Math.abs(target-amount)<=step?target:amount+Math.sign(target-amount)*step);
   const moving=previous!==amount;
-  const key=[c.camera,c.zoom,c.selected,c.paused,still,c.inset].join('|');if(key!==lastKey){const was=lastKey.split('|');if(c.camera!==was[0])shots.clear();if(c.camera!==was[0]||String(c.zoom)!==was[1]||String(c.inset)!==was[5]){fitDirty=true;manualCamera=false;}lastKey=key;dirty=true;}
+  const key=[c.camera,c.zoom,c.selected,c.paused,still,c.inset].join('|');if(key!==lastKey){const was=lastKey.split('|');if(c.camera!==was[0])shots.clear();if(c.camera!==was[0]||String(c.zoom)!==was[1]||String(c.selected)!==was[2]||String(c.inset)!==was[5]){fitDirty=true;manualCamera=false;}lastKey=key;dirty=true;}
   if(moving){dirty=true;if(!manualCamera)fitDirty=true;}
   orbit.enableRotate=true;orbit.mouseButtons.LEFT=T.MOUSE.ROTATE;orbit.touches.ONE=T.TOUCH.ROTATE;
-  // Keep the readable study angle steady; the gears supply the motion.
-  orbit.autoRotate=false;
   const animate=!still&&!c.paused;
-  if(animate){gearTime+=dt;dirty=true;}
+  // Keep the readable study angle steady; the gears supply the motion. The
+  // hero alone asks for a slow turn, and only after the assembly has settled
+  // and while no hand is on the machine.
+  orbit.autoRotate=!!c.spin&&animate&&!manualCamera&&replay.stage==='hold';
+  if(orbit.autoRotate)dirty=true;
+  // The held machine breathes: the pledge ring's glow rises and falls slowly.
+  if(animate){gearTime+=dt;dirty=true;blue.emissiveIntensity=.045+.045*Math.sin(gearTime*.8);}
   if(moving||animate)placeParts();
 
-  if(fitDirty){fit();if(still){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);}else{glide(camera.position,cameraSpeed,cameraGoal,dt);glide(orbit.target,lookSpeed,lookGoal,dt);}if(camera.position.distanceTo(cameraGoal)<.0001&&orbit.target.distanceTo(lookGoal)<.0001&&cameraSpeed.lengthSq()<1e-8){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);cameraSpeed.set(0,0,0);lookSpeed.set(0,0,0);fitDirty=false;}dirty=true;}
+  if(fitDirty){fit();if(still){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);}else{const t=focusing?.3:.42;glide(camera.position,cameraSpeed,cameraGoal,dt,t);glide(orbit.target,lookSpeed,lookGoal,dt,t);}if(camera.position.distanceTo(cameraGoal)<.0001&&orbit.target.distanceTo(lookGoal)<.0001&&cameraSpeed.lengthSq()<1e-8){camera.position.copy(cameraGoal);orbit.target.copy(lookGoal);cameraSpeed.set(0,0,0);lookSpeed.set(0,0,0);fitDirty=false;}dirty=true;}
   orbit.update(dt);
   const phase=cyclePhase(amount);
   if(phase!==lastPhase){lastPhase=phase;phaseCallback.current?.(phase);dirty=true;}
   const percent=Math.round(amount*100);if(percent!==lastPercent){lastPercent=percent;progressCallback.current?.(percent);}
+  if(!pressed&&(hoverDirty||(hoverAt&&dirty&&now-lastHover>120))){hoverDirty=false;lastHover=now;setHover(hoverAt?castAt(hoverAt.x,hoverAt.y):null);}
+  restyle();
   if(dirty){camera.updateMatrixWorld();renderer.render(scene,camera);updateLabels();dirty=false;}
  }raf=requestAnimationFrame(frame);
- cleanup=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();io.disconnect();reduced.removeEventListener('change',motionChanged);orbit.removeEventListener('change',changed);orbit.removeEventListener('start',started);orbit.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',cancel);renderer.domElement.removeEventListener('lostpointercapture',cancel);disposeScene();};
+ cleanup=()=>{if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();io.disconnect();reduced.removeEventListener('change',motionChanged);orbit.removeEventListener('change',changed);orbit.removeEventListener('start',started);orbit.dispose();renderer.domElement.removeEventListener('webglcontextlost',contextLost);renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',cancel);renderer.domElement.removeEventListener('lostpointercapture',cancel);renderer.domElement.removeEventListener('pointerleave',leave);document.removeEventListener('visibilitychange',vis);if(hovered)hoverCallback.current?.(null);disposeScene();};
  }catch(error){cleanup();console.error('3D movement unavailable',error);if(!cancelled)setFailed(true)}})();return()=>{cancelled=true;cleanup()}},[data]);
  return <div ref={host} className="scene-host" aria-label={`${data.country.name_en}: NDC, inventory, BTR and finance assemble into a climate evidence instrument.`}>{failed&&<div className="fallback"><StaticDial data={{...data,observed_years:observedYears(data)}}/><p>3D is unavailable in this browser. Every figure is still readable below.</p></div>}</div>
 }

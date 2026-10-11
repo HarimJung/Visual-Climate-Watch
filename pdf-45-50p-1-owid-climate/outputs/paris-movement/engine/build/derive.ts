@@ -25,7 +25,12 @@ function slope(points: Point[]): number {
   return den === 0 ? 0 : num / den;
 }
 
-export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
+/**
+ * `noTarget` replaces the default no-target clause when the record already
+ * knows why no target can exist (a record that is not a Party: it files no
+ * NDC, so "not parsed" would be untrue about it).
+ */
+export function derive(ndc: CountryData['ndc'], observed: Point[], noTarget?: string): Derived {
   // R3: never trend across sources. Use the largest single-source series.
   const bySource = new Map<string, Point[]>();
   for (const p of observed) {
@@ -89,8 +94,14 @@ export function derive(ndc: CountryData['ndc'], observed: Point[]): Derived {
     }
   }
 
+  // D4: a range is the document's own form of the pledge. No single figure is
+  // taken from it here either, so it never becomes one tonnage (R5).
+  const range = ndc.reduction_range_pct;
+  if (target == null && ndc.reduction_pct == null && range && targetYear != null) {
+    return refuse(`the pledge is a range, ${range[0]} to ${range[1]}% ${ndc.base_year != null ? `below ${ndc.base_year} levels` : 'below business-as-usual'} by ${targetYear}, and no single figure is taken from it, so no target tonnage is derived and the trend is not judged against it.`, trend, sourceId);
+  }
   if (target == null || targetYear == null) {
-    return refuse(`${series.length} observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against.`, trend, sourceId);
+    return refuse(`${series.length} observed years are loaded, but ${noTarget ?? 'no NDC target emissions figure has been parsed, so there is nothing to measure the trend against.'}`, trend, sourceId);
   }
 
   const latest = sorted[sorted.length - 1];

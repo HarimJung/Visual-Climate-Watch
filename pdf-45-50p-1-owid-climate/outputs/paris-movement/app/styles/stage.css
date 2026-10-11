@@ -1,0 +1,145 @@
+/* stage — the morphing chart stage on the home. Owned by the stage agent (2026-10-09). Tokens come from globals.css :root.
+   One SVG stays mounted; marks keep their identity and the browser interpolates cx/cy/r and x/y/width/height between steps.
+   Marks move first (600–800 ms, --out, a wave through --d); labels fade in 140 ms later; exits are shorter than entrances. */
+.stage{position:relative}
+.stage-box{position:relative}
+.stage svg{display:block;width:100%;height:auto;overflow:hidden}
+/* the instrument, seated over the SVG's centre inside the ring of beads: 75% of the stage's height is the plate's diameter (r 240 of 640) */
+.stage-hero{position:absolute;left:50%;top:50%;height:75%;aspect-ratio:1;transform:translate(-50%,-50%);animation:stage-in .4s var(--out) .2s both}
+.stage-hero>*{width:100%;height:100%;margin:0}
+.stage-hero svg{width:100%;height:100%}
+
+/* ── Map ─────────────────────────────────────────────────────────────── */
+.stage-map{transform-origin:0 0;transform-box:view-box;transition:transform .8s var(--out),opacity .5s var(--out)}
+.stage-map.hide{opacity:0;pointer-events:none;transition-duration:.35s}
+.stage-map path{vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;
+ transition:opacity .6s var(--out),stroke .2s;animation:stage-land .6s var(--out) both;animation-delay:calc(var(--w,0) * .5s)}
+.stage-map path.out{fill:none;stroke:var(--rule);stroke-width:.6}
+.stage-map path.c{stroke:var(--rule-strong);stroke-width:.6;cursor:pointer;outline:none}
+.stage-map path.c:hover,.stage-map path.c:focus-visible{stroke:var(--un-ink);stroke-width:1.4}
+.stage-map path.self{stroke:var(--paper);stroke-width:2;paint-order:stroke}
+/* closed in, the neighbours are context: a flat pale wash, no dots scaled up into polka */
+.stage-map.focus path:not(.self){opacity:.25}
+.stage-map.focus path.c:not(.self){fill:#a1dafc}
+
+/* ── The rect pool ───────────────────────────────────────────────────── */
+.stage-cell{fill:var(--rule);stroke:none;stroke-width:1.5;outline:none;
+ transition:x .7s var(--out),y .7s var(--out),width .7s var(--out),height .7s var(--out),rx .7s var(--out),
+  fill .45s var(--ease),stroke .25s var(--ease),stroke-dasharray .25s,opacity .35s var(--ease);
+ transition-delay:var(--d,0ms)}
+.stage-cell.off{opacity:0;pointer-events:none;transition-duration:.4s}
+.stage-cell:focus-visible{stroke:var(--ink);stroke-width:2;stroke-dasharray:none}
+.stage-cell[data-key]{cursor:pointer}
+/* filings: a stamp per document */
+.stage-cell.f{fill:var(--paper-raised);stroke-dasharray:5 4}
+.stage-cell.f.ndc{stroke:var(--un)}
+.stage-cell.f.btr{stroke:var(--btr)}
+.stage-cell.f.read{stroke-dasharray:none;stroke:none}
+.stage-cell.f.ndc.read{fill:var(--un)}
+.stage-cell.f.btr.read{fill:var(--btr)}
+.stage-cell.f.absent{fill:var(--paper-sunken);stroke:var(--rule-strong);stroke-dasharray:none}
+/* pledge: the waffle */
+.stage-cell.on{fill:var(--un)}
+.stage-cell.cond{fill:url(#stage-hatch)}
+.stage-cell.pale{fill:var(--rule)}
+.stage-cell.band{fill:var(--paper-raised);stroke:var(--un);stroke-width:1.5}
+.stage-cell.hair{fill:var(--paper-raised);stroke:var(--rule-strong);stroke-dasharray:4 3}
+/* observed: one hue, light to dark; a reported net removal is a blank with its sign in the tooltip */
+.stage-cell.q1{fill:#a1dafc}
+.stage-cell.q2{fill:#3aa7dd}
+.stage-cell.q3{fill:#0072a8}
+.stage-cell.q4{fill:#004066}
+.stage-cell.neg{fill:var(--paper-raised);stroke:var(--rule-strong)}
+/* btr: eight sockets. unknown is a hairline, absent is a dark socket; never the same drawing */
+.stage-cell.k.observed{fill:var(--btr)}
+.stage-cell.k.absent{fill:var(--dial-absent)}
+.stage-cell.k.unknown{fill:var(--paper-raised);stroke:var(--rule-strong);stroke-dasharray:5 4}
+.stage-cell.k.pledged{fill:var(--paper-raised);stroke:var(--rule-strong)}
+.stage-cell.k:hover{stroke:var(--ink);stroke-dasharray:none}
+/* finance: stated need and disbursed are gold; approved is an outline; a regional total is dashed because it is counted, never divided */
+.stage-cell.g{fill:var(--fin)}
+.stage-cell.ga{fill:var(--paper-raised);stroke:var(--fin);stroke-width:1.5}
+.stage-cell.gr{fill:var(--paper-raised);stroke:var(--fin);stroke-width:1.5;stroke-dasharray:5 4}
+
+/* ── Beads ───────────────────────────────────────────────────────────── */
+.stage-bead{fill:var(--ink-4);fill-opacity:.5;outline:none;
+ transition:cx .75s var(--out),cy .75s var(--out),r .5s var(--out),fill .4s var(--ease),fill-opacity .4s,opacity .3s var(--ease);
+ transition-delay:var(--d,0ms)}
+.stage-bead.off{opacity:0;pointer-events:none}
+.stage-bead[data-pick]{cursor:pointer}
+.stage-bead.ctx:hover,.stage-bead.ctx:focus-visible{fill:var(--ink);fill-opacity:1}
+.stage-bead.self{fill:var(--un);fill-opacity:1;stroke:var(--paper);stroke-width:2;paint-order:stroke}
+.stage-bead.self:focus-visible{stroke:var(--ink)}
+
+/* ── Static marks per step ───────────────────────────────────────────── */
+.stage-x{animation:stage-in .16s var(--out) .14s both}
+.stage text{font-family:var(--font-sans);font-size:18px;font-weight:500;fill:var(--ink);font-variant-numeric:tabular-nums;pointer-events:none}
+.stage .fig{font-family:var(--font-display);font-weight:800;letter-spacing:-.03em}
+.stage .lbl{font-weight:400;fill:var(--ink-3)}
+.stage .lbl-s{font-size:16px;font-weight:400;fill:var(--ink-4)}
+.stage .paper{fill:var(--paper)}
+.stage .muted{fill:var(--ink-3)}
+.stage .kind{font-size:14px;font-weight:600;letter-spacing:.08em;fill:var(--ink-3)}
+.stage .kind.paper{fill:var(--paper);fill-opacity:.85}
+.stage .rowid{font-weight:600}
+.stage .reading{font-size:17px;letter-spacing:.12em}
+.stage .axis{stroke:var(--rule-strong);stroke-width:1}
+.stage .axis.dim{stroke:var(--rule)}
+.stage .grp{font-size:16px;font-weight:600;fill:var(--ink-2)}
+.stage .leader{stroke:var(--ink-2);stroke-width:1}
+.stage .leader-dot{fill:var(--ink-2)}
+.stage .locator .ring{fill:none;stroke:var(--un);stroke-width:2.5}
+.stage .locator .halo{fill:none;stroke:var(--un);stroke-width:2;animation:stage-pulse 2s var(--out) infinite}
+.stage .cross line{stroke:var(--ink-4);stroke-width:1.5}
+.stage .bar{fill:var(--paper)}
+.stage .stamp.bau rect{fill:var(--ink-4)}
+.stage .stamp.target rect{fill:var(--un)}
+.stage .rise{animation:stage-in .3s var(--out) both;animation-delay:calc(var(--d,0ms) + .3s)}
+/* the plate the instrument sits on */
+.stage .dial .seat{fill:var(--paper-sunken);stroke:var(--dial-edge)}
+
+/* ── Tooltip, note, caption ──────────────────────────────────────────── */
+.stage-tip{position:absolute;z-index:5;transform:translate(14px,-50%);pointer-events:none;max-width:280px;
+ padding:8px 10px;border:1px solid var(--rule-strong);background:var(--paper-raised);box-shadow:var(--shadow-1);
+ font-size:var(--t1);line-height:1.45;color:var(--ink-2);white-space:pre-line;animation:stage-in .12s var(--ease) both}
+.stage-tip::first-line{font-weight:600;color:var(--ink)}
+.stage-tip.flip{transform:translate(calc(-100% - 14px),-50%)}
+.stage-note{margin-top:var(--s3);max-width:64ch;font-size:var(--t1);line-height:1.5;color:var(--ink-2)}
+.stage-caption{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);justify-content:space-between;align-items:baseline;
+ margin-top:var(--s3);font-size:var(--t1);line-height:1.45;color:var(--ink-3)}
+.stage-src a{color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px;transition:color var(--dur) var(--ease)}
+.stage-src a:hover{color:var(--un-ink);text-decoration-color:currentColor}
+.stage-why{color:var(--ink-3)}
+.stage-key{display:inline-flex;flex-wrap:wrap;gap:var(--s3)}
+.stage-key span{display:inline-flex;align-items:center;gap:6px}
+.stage-key i{width:12px;height:12px;border-radius:2px;background:var(--rule)}
+.stage-key i.un{background:var(--un)}
+.stage-key i.btr{background:var(--btr)}
+.stage-key i.ctx{background:var(--ink-4);opacity:.5;border-radius:50%}
+.stage-key i.fin{background:var(--fin)}
+.stage-key i.fin-o{background:var(--paper-raised);border:1.5px solid var(--fin)}
+.stage-key i.fin-d{background:var(--paper-raised);border:1.5px dashed var(--fin)}
+.stage-key i.band{background:var(--paper-raised);border:1.5px solid var(--un)}
+.stage-key i.hatch{background:repeating-linear-gradient(45deg,#0072a8 0 2px,#a1dafc 2px 5px)}
+.stage-key i.q1{background:#a1dafc}
+.stage-key i.q2{background:#3aa7dd}
+.stage-key i.q3{background:#0072a8}
+.stage-key i.q4{background:#004066}
+
+@keyframes stage-in{from{opacity:0}to{opacity:1}}
+@keyframes stage-land{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes stage-pulse{0%{r:9;opacity:.6}100%{r:26;opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+ .stage *{transition:none!important;animation:none!important}
+}
+@media (max-width:767px){
+ .stage svg{max-height:calc(46svh - 76px)}
+ /* the viewBox lands at 0.39 scale on a phone: the small labels come up a step, the big figures already carry */
+ .stage text{font-size:22px}
+ .stage .lbl-s{font-size:19px}
+ .stage .kind{font-size:16px}
+ .stage .reading{font-size:20px}
+ .stage-caption{font-size:var(--t0);gap:var(--s1) var(--s3)}
+ .stage-note{font-size:var(--t0)}
+}

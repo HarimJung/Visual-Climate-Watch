@@ -5,11 +5,11 @@ import Mark from '@/components/site/mark';
 // One header and one footer for the whole site, mounted in the root layout.
 // The menu names the visitor's five questions, not the engine's screens. Each
 // item also lights for the pages that sit under it, so a reader on /finance
-// still sees they are inside Compare. The logo is the way home.
+// still sees they are inside Countries. The logo is the way home.
 const NAV=[
- {href:'/',label:'Home',under:[]},
- {href:'/countries',label:'Countries',under:['/countries','/country/']},
- {href:'/compare',label:'Compare',under:['/compare','/finance','/divergence','/unknown']},
+ {href:'/',label:'Home',under:['/movement']},
+ {href:'/studio',label:'Studio',under:['/studio']},
+ {href:'/countries',label:'Countries',under:['/countries','/country/','/finance','/divergence','/unknown']},
  {href:'/method',label:'How we read',under:['/method','/refusals']},
  {href:'/teach',label:'Teach',under:['/teach']},
  {href:'/about',label:'About',under:['/about']},
@@ -29,7 +29,7 @@ export function SiteHeader(){
    <span className="brand-word">Visual Climate<small>The Paris Movement</small></span>
   </a>
   <nav className="site-nav" aria-label="Sections">
-   {NAV.map(n=><a key={n.href} href={n.href} aria-current={(n.href==='/'?path==='/':n.under.some(p=>path.startsWith(p)))?'page':undefined}>{n.label}</a>)}
+   {NAV.map(n=><a key={n.href} href={n.href} aria-current={path===n.href||n.under.some(p=>path.startsWith(p))?'page':undefined}>{n.label}</a>)}
   </nav>
   {/* Beside the menu, not in it: on a phone it rides up next to the logo so
       the five links get the whole second row. */}

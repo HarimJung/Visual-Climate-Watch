@@ -23,24 +23,49 @@ const FAMILIES = [
   { id: 'gap.two-ledgers', field: 'derived.$reason', match: /Two ledgers;/,
     label: 'The target and the trend are on different inventories',
     note: 'The document states its tonnage on its own inventory; the trend is measured on another source’s. The engine does not judge one against the other, just as the divergence atlas does not reconcile them.' },
+  { id: 'gap.range-target', field: 'derived.$reason', match: /the pledge is a range,/,
+    label: 'The target is a range',
+    note: 'The document states its target as a range. No single figure is taken from a range, so no target tonnage is derived and the trend is not judged against it.' },
+  { id: 'gap.not-a-party', field: 'derived.$reason', match: /is not listed as a Party to the Paris Agreement/,
+    label: 'Not a Party to the Paris Agreement',
+    note: 'The UN Treaty Collection does not list this territory as a Party to the Paris Agreement, and no NDC is held for it, so there is no target to judge a trend against.' },
+  { id: 'gap.no-base-year', field: 'derived.$reason', match: /so there is no base-year level to apply it to/,
+    label: 'No observation for the base year',
+    note: 'The pledge is a percentage below a base year, and the series the trend is measured on has no observation for that year, so the percentage cannot be turned into a tonnage.' },
   { id: 'gap.no-target', field: 'derived.$reason', match: /no NDC target emissions figure has been parsed/,
     label: 'No target to measure the trend against',
     note: 'Observations are loaded, but no NDC document has yielded a target figure, so there is no line to compare the trend with.' },
   { id: 'gap.bau-not-loaded', field: 'derived.$reason', match: /business-as-usual projection/,
     label: 'The pledge is against a BAU projection nobody published',
     note: 'The target is a percentage below a business-as-usual path. That path is not in any connected source, so the percentage cannot be turned into tonnes.' },
-  { id: 'doc.no-sentence', field: 'ndc_document.$reason', match: /no sentence in this document states/,
-    label: 'No economy-wide percentage in the document',
-    note: 'The filing was read end to end and states no economy-wide percentage reduction against a base year or a BAU path. Trajectory and absolute-level targets land here.' },
+  // D14, first: its sentence quotes the capture checks, which can contain other families' words.
+  { id: 'doc.not-the-linked-file', field: 'ndc_document.$reason', match: /is not shown to be the file a reader opens there/,
+    label: 'The mirrored file is not the one at the registry link',
+    note: 'The mirror filed this PDF under the registry link, but its bytes are not the Internet Archive\'s capture of that link, and no capture passed the checks to be read instead. Nothing from the mirror\'s copy is used: it may be an earlier version of the filing.' },
+  { id: 'doc.no-sentence', field: 'ndc_document.$reason', match: /no sentence in this document (?:was read as|states)/,
+    label: 'No economy-wide percentage read from the document',
+    note: 'The filing was read end to end and no sentence in it was read as an economy-wide percentage reduction against a base year or a BAU path. Trajectory, absolute-level and sector-only targets land here, and so does a target stated in a form the reader does not parse; the family says what was read, not what the filing lacks.' },
   { id: 'doc.unlabelled-percentages', field: 'ndc_document.$reason', match: /different percentages on the same basis/,
     label: 'Several percentages, none labelled as the pledge',
     note: 'The document states more than one figure on the same basis and does not say which one is the commitment. Choosing would be the engine writing the pledge.' },
   { id: 'doc.multiple-bases', field: 'ndc_document.$reason', match: /more than one basis or horizon/,
     label: 'More than one basis or horizon',
     note: 'Base-year and BAU targets, or several target years, stated side by side. Picking one would silently change what the number means.' },
+  { id: 'doc.conflicting-figure', field: 'ndc_document.$reason', match: /figure as [\d.,]+% \(page \d+\) and as [\d.,]+% \(page \d+\)/,
+    label: 'One target stated as two different figures',
+    note: 'The document states the same target, for the same year, basis and condition, as one figure on one page and another figure on another page. Choosing between them would be a guess, so neither is shown; both are quoted.' },
   { id: 'doc.no-text-layer', field: 'ndc_document.$reason', match: /no extractable text layer/,
     label: 'The filing is a scan',
-    note: 'The mirrored PDF carries no text layer, so nothing in it has been read. Not a statement about what the document says.' },
+    note: 'The PDF carries no text layer, so nothing in it has been read. Not a statement about what the document says.' },
+  { id: 'doc.range-target', field: 'ndc_document.$reason', match: /as a range/,
+    label: 'The target is a range',
+    note: 'The document states its target as a range, not as one figure. The range is kept on the record and no single percentage is taken from it.' },
+  { id: 'doc.level-or-cut', field: 'ndc_document.$reason', match: /as the level emissions are to be brought to/,
+    label: 'One figure stated as a cut and as a level',
+    note: 'The same percentage is written as a reduction and, elsewhere, as the level emissions are brought to. Reading it as either would be choosing between the two.' },
+  { id: 'doc.increment-only', field: 'ndc_document.$reason', match: /adds on top of another figure/,
+    label: 'Only an increment was read',
+    note: 'The one figure read is added on top of another figure that was not read, so it is not a target on its own.' },
   { id: 'doc.conditional-only', field: 'ndc_document.$reason', match: /conditions? on international support/,
     label: 'Only the conditional figure was found',
     note: 'The one percentage in the document is conditioned on international support and its unconditional pair was not found. Reporting it alone would overstate the commitment.' },
@@ -185,7 +210,10 @@ export function divergence(records: CountryData[]): Divergence {
 //
 // Two distinctions carry this whole view, and collapsing either one turns it
 // into an accusation the data cannot support:
-//   · no fund record at all  → the ledger was not read (not "received nothing")
+//   · no fund record at all  → the Fund's complete project list, read in full,
+//     names no project for the country (finance_listing says so with the count
+//     and date); readiness support is outside that list, so it is never
+//     "received nothing"
 //   · a record with no disbursement figure → that figure was not read
 //     (not "nothing was disbursed", and never a 0% ratio)
 // Every total and every average below therefore names the countries it covers.
@@ -236,7 +264,7 @@ export type Finance = {
   };
   bands: FinanceBand[];
   rows: FinanceRow[];
-  /** Vulnerability is known, the fund ledger is not. Kept visible on purpose. */
+  /** Vulnerability is known, and the Fund's project list names no project for the country. Kept visible on purpose. */
   unknowns: { iso3: string; name_en: string; vulnerability: number; $reason: string }[];
   caveat: string;
 };
@@ -262,7 +290,9 @@ export function finance(records: CountryData[]): Finance {
     if (!hasF) {
       unknowns.push({
         iso3: d.country.iso3, name_en: d.country.name_en, vulnerability: v!.vulnerability!,
-        $reason: f?.$reason ?? 'No Green Climate Fund record was read for this country. That is an unread ledger, not a country that received nothing.',
+        // The record's own sentence: the complete list names no project (D7).
+        // The fallback is true only for a record built with no list at all.
+        $reason: f?.$reason ?? d.finance_listing?.$reason ?? 'The Green Climate Fund\'s project list was not read for this record.',
       });
       continue;
     }
@@ -323,7 +353,7 @@ export function finance(records: CountryData[]): Finance {
       median_disbursed_pct: median(rows.map((r) => r.disbursed_pct).filter((x): x is number => x != null)),
     },
     bands, rows, unknowns,
-    caveat: 'The Green Climate Fund is one channel among many, bilateral aid, the Adaptation Fund, the GEF and multilateral development banks are not counted here. A low figure on this page means this fund disbursed little to that country, never that the country received nothing. Approved and disbursed totals are not like for like: every plotted country has an approval, but only some carry a disbursement figure, and the rest were never read rather than paid nothing. Stated need comes from a government’s own NDC and is a claim, not an audited requirement; received totals against that need are not published by any source this engine reads, so no gap is computed.',
+    caveat: 'The Green Climate Fund is one channel among many, bilateral aid, the Adaptation Fund, the GEF and multilateral development banks are not counted here. A low figure on this page means this fund disbursed little to that country, never that the country received nothing. Approved and disbursed totals are not like for like: every plotted country has an approval, but only some carry a disbursement figure, and the rest were never read rather than paid nothing. Stated need comes from a government’s own NDC and is a claim, not an audited requirement; received totals against that need are not published by any source this record reads, so no gap is computed.',
   };
 }
 

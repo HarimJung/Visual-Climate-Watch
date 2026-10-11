@@ -1,17 +1,17 @@
 import type {Metadata} from 'next';
-import {ArrowDown,ArrowLeft} from 'lucide-react';
 import {fmt} from '@/lib/climate';
 import {loadView} from '@/lib/record';
 import Ledger from '@/components/finance/ledger';
+import Tip from '@/components/finance/tip';
 import ExportCsv from '@/components/site/export-csv';
 
-// Persona C: "Who is vulnerable, and what reached them?" ND-GAIN on one axis,
-// the Green Climate Fund ledger on the other, both already in every record.
-// Every figure on this page is read from data/finance.json; no sentence states
-// a direction the numbers do not show.
+// "Who is vulnerable, and what reached them?" ND-GAIN on one axis, the Green
+// Climate Fund ledger on the other, both already in every record. Every figure
+// on this page is read from data/finance.json; no sentence states a direction
+// the numbers do not show.
 export const metadata:Metadata={
  title:'Who is vulnerable, and what reached them? · Visual Climate',
- description:'Who is vulnerable, and what the Green Climate Fund approved and paid them. One channel among many, with the unread ledgers kept visible.',
+ description:'Vulnerability against what the Green Climate Fund approved and paid, country by country. One channel among many, with every unread ledger kept visible.',
 };
 
 type Row={
@@ -24,6 +24,7 @@ type Row={
 };
 type Band={label:string;from:number;to:number;countries:number;approved_usd:number;disbursed_usd:number;disbursed_read:number;median_readiness:number;disbursed_per_read_country_usd:number};
 type Finance={
+ generated_at:string;
  headline:{channel:string;vulnerability_scored:number;gcf_recorded:number;plottable:number;
   no_gcf_record:number;approved_nothing_disbursed:number;disbursement_unread:number;
   disbursed_read_countries:number;
@@ -33,9 +34,9 @@ type Finance={
  caveat:string;
 };
 
-/** Money at the scale this page deals in. Null stays "Unknown", never $0. */
+/** Money at the scale this page deals in. Null stays "not read", never $0. */
 const usd=(n:number|null|undefined)=>{
- if(n==null)return 'Unknown';
+ if(n==null)return 'not read';
  const a=Math.abs(n);
  if(a>=1e9)return `$${(n/1e9).toFixed(a>=1e10?0:1)}bn`;
  if(a>=1e6)return `$${(n/1e6).toFixed(a>=1e7?0:1)}m`;
@@ -72,9 +73,12 @@ function Scatter({rows}:{rows:Row[]}){
  const zeroY=PAD.t+PLOT_H+LANE/2+6;
  const paid=rows.filter(r=>r.disbursed_usd!=null);
  const unread=rows.filter(r=>r.disbursed_usd==null);
- return <div className="fin-plot-scroll">
-  <svg className="fin-plot" viewBox={`0 0 ${W} ${H}`} role="img"
-   aria-label={`Scatter of ${rows.length} countries. Horizontal axis is ND-GAIN vulnerability, higher is more vulnerable. Vertical axis is Green Climate Fund disbursement on a logarithmic scale. ${unread.length} countries whose disbursement figure was never read are drawn in a separate lane beneath the axis break; that lane means unread, not zero.`}>
+ const mark=(r:Row,cy:number,cls:string,tip:string)=><a key={r.iso3} href={`/country/${r.iso3}#finance`} data-tip={`${r.name_en}\n${tip}`} aria-label={`${r.name_en}: ${tip}`}>
+  <circle className={cls} cx={x(r.vulnerability)} cy={cy} r={3.8}/>
+ </a>;
+ return <Tip className="fin-plot-scroll">
+  <svg className="fin-plot" viewBox={`0 0 ${W} ${H}`} role="group"
+   aria-label={`Scatter of ${rows.length} countries. Horizontal axis is ND-GAIN vulnerability, higher is more vulnerable. Vertical axis is Green Climate Fund disbursement on a logarithmic scale. ${unread.length} countries whose disbursement figure was never read are drawn in a separate lane beneath the axis break; that lane means not read, not zero.`}>
    {TICKS.map(t=><g key={t}>
     <line className="fin-grid" x1={PAD.l} x2={W-PAD.r} y1={y(t)} y2={y(t)}/>
     <text className="fin-tick" x={PAD.l-9} y={y(t)+3.5} textAnchor="end">{usd(t)}</text>
@@ -83,26 +87,19 @@ function Scatter({rows}:{rows:Row[]}){
    {/* below this line, disbursement is not small, it was never read */}
    <line className="fin-break" x1={PAD.l} x2={W-PAD.r} y1={PAD.t+PLOT_H+11} y2={PAD.t+PLOT_H+11}/>
    <text className="fin-tick" x={PAD.l-9} y={zeroY+3.5} textAnchor="end">not read</text>
-
-   {paid.map(r=><circle key={r.iso3} className="fin-dot" cx={x(r.vulnerability)} cy={y(r.disbursed_usd!)} r={3.6}>
-    <title>{`${r.name_en}, vulnerability ${r.vulnerability.toFixed(3)}, disbursed ${usd(r.disbursed_usd)} of ${usd(r.approved_usd)} approved`}</title>
-   </circle>)}
-   {unread.map(r=><circle key={r.iso3} className="fin-dot none" cx={x(r.vulnerability)} cy={zeroY} r={3.6}>
-    <title>{`${r.name_en}, vulnerability ${r.vulnerability.toFixed(3)}, ${usd(r.approved_usd)} approved, disbursement not read`}</title>
-   </circle>)}
-
+   {paid.map(r=>mark(r,y(r.disbursed_usd!),'fin-dot',`vulnerability ${r.vulnerability.toFixed(3)} · ${usd(r.disbursed_usd)} disbursed of ${usd(r.approved_usd)} approved`))}
+   {unread.map(r=>mark(r,zeroY,'fin-dot none',`vulnerability ${r.vulnerability.toFixed(3)} · ${usd(r.approved_usd)} approved · disbursement not read`))}
    {[xMin,(xMin+xMax)/2,xMax].map((v,i)=>
     <text key={i} className="fin-tick" x={x(v)} y={H-30} textAnchor={i===0?'start':i===2?'end':'middle'}>{v.toFixed(2)}</text>)}
    <text className="fin-axis-label" x={(PAD.l+W-PAD.r)/2} y={H-10} textAnchor="middle">ND‑GAIN vulnerability →  more vulnerable</text>
   </svg>
- </div>;
+ </Tip>;
 }
 
-// The gradient: four equal groups by vulnerability, approvals as the bar.
-// Disbursement is printed per country with a payment figure, because the
-// groups carry different numbers of read figures and a total would compare
-// unlike with unlike.
-function Gradient({bands}:{bands:Band[]}){
+// Four equal groups by vulnerability, approvals as the bar. Disbursement is
+// printed per country with a payment figure, because the groups carry
+// different numbers of read figures and a total would compare unlike with unlike.
+function Quartiles({bands}:{bands:Band[]}){
  const max=Math.max(...bands.map(b=>b.approved_usd))||1;
  return <figure className="fin-grad">
   <ol>{bands.map(b=><li key={b.label}>
@@ -111,47 +108,54 @@ function Gradient({bands}:{bands:Band[]}){
    <span className="fin-grad-fig">{usd(b.approved_usd)}<small>approved</small></span>
    <span className="fin-grad-paid">{usd(b.disbursed_per_read_country_usd)} disbursed per country with a payment figure ({b.disbursed_read} of {b.countries})</span>
   </li>)}</ol>
-  <figcaption>Equal groups by ND-GAIN vulnerability. An association, not a cause. No country is ranked.</figcaption>
+  <figcaption className="source">Equal groups by ND-GAIN vulnerability. An association, not a cause; no country is ranked.</figcaption>
  </figure>;
 }
 
 export default async function Page(){
  const v=await loadView<Finance>('finance');
  const h=v?.headline;
- const first=v?.bands[0],last=v?.bands[v.bands.length-1];
  const reasons=v?[...Map.groupBy(v.unknowns,u=>u.$reason)]:[];
- return <main className="record cmp" id="main">
+ return <main className="record cmp fin" id="main">
   <div className="rec-shell">
-   <a className="cmp-back" href="/compare"><ArrowLeft size={14} aria-hidden="true"/>Compare</a>
-   <header className="cmp-head">
-    <div className="cmp-head-text">
-     <h1 className="rec-title">Who is vulnerable, and what reached them?</h1>
-     {v&&h&&first&&last&&<>
-      <p className="rec-lede">{trend(v.bands)}: the least vulnerable quartile was approved {usd(first.approved_usd)}, the most vulnerable {usd(last.approved_usd)}. {h.channel} only, one channel among many.</p>
-      <div className="cmp-actions">
-       <ExportCsv name="visual-climate-gcf-ledger" label={`Download ${v.rows.length} rows (CSV)`}
+   {!v||!h?<>
+    <h1>Who is vulnerable, and what reached them?</h1>
+    <div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. It will be back with the next build; every country record is still open.</p></div>
+   </>:<>
+    <header className="cmp-hero">
+     <div className="cmp-hero-text">
+      <h1>The median country has received <em>{fmt(h.median_disbursed_pct)}%</em> of what the fund approved for it.</h1>
+      <p className="lede">{trend(v.bands)}. The {h.channel} is one channel among many, and a ledger that was not read is never a country that received nothing.</p>
+      <dl className="figs">
+       <div><dd>{usd(h.total_disbursed_usd)}</dd><dt>disbursed, of {usd(h.total_approved_usd)} approved</dt></div>
+       <div><dd>{fmt(h.plottable,0)}</dd><dt>countries with a score and a fund record</dt></div>
+       <div><dd>{fmt(v.unknowns.length,0)}</dd><dt>with a score and no fund record read</dt></div>
+      </dl>
+      <div className="take">
+       <ExportCsv name="visual-climate-gcf-ledger" label="Download CSV"
         rows={v.rows.map(r=>({iso3:r.iso3,country:r.name_en,region:r.region,income_group:r.income_group,vulnerability:r.vulnerability,approved_usd:r.approved_usd,disbursed_usd:r.disbursed_usd,disbursed_pct:r.disbursed_pct}))}/>
-       <a className="record-action" href="#countries">Find a country or filter the ledger<ArrowDown size={13} aria-hidden="true"/></a>
+       <a className="way" href="#countries">The ledger, row by row</a>
       </div>
       <details className="disc"><summary>Read this before quoting the figures</summary><div className="disc-body">{v.caveat}</div></details>
-     </>}
-    </div>
-    {v&&<Gradient bands={v.bands}/>}
-   </header>
+     </div>
+     <figure className="cmp-chart">
+      <Scatter rows={v.rows}/>
+      <figcaption className="source">One mark per country, payments on a log scale; the dashed lane holds the {fmt(h.disbursement_unread,0)} whose payment figure was not read. Read from <a href="/data/finance.json">finance.json</a>, generated {v.generated_at.slice(0,10)}, from the Green Climate Fund’s project register (DS-15) and the ND-GAIN Country Index (DS-04).</figcaption>
+     </figure>
+    </header>
 
-   {!v||!h?<div className="rec-blank"><span className="state-token unknown"><i/>View unavailable</span><p>The finance view has not been published with this build. It will be back with the next build; every country record is still open.</p></div>:<>
-    <section className="rec-section" id="plot">
-     <div className="sec-head fin"><h2>Every country, vulnerability against payment</h2><p>One dot per country, {h.plottable} in all, payments on a log scale. The dashed lane holds the {h.disbursement_unread} with an approval whose payment figure was not read: not read, not zero.</p></div>
-     <Scatter rows={v.rows}/>
+    <section className="rec-section" id="quartiles">
+     <div className="sec-head fin"><h2>Approvals by vulnerability quartile</h2></div>
+     <Quartiles bands={v.bands}/>
     </section>
 
     <section className="rec-section" id="countries">
-     <div className="sec-head fin"><h2>The ledger, most vulnerable first</h2><p>The median country has received {fmt(h.median_disbursed_pct)}% of its approval. A dash means a figure was not read. Each row opens that country&rsquo;s finance block.</p></div>
+     <div className="sec-head fin"><h2>The ledger, most vulnerable first</h2><p>Each row opens that country’s finance block.</p></div>
      <Ledger rows={v.rows}/>
     </section>
 
     <section className="rec-section" id="unread">
-     <div className="sec-head unk"><h2>Vulnerability known, no fund record: {v.unknowns.length}</h2><p>These countries are in no figure above. Each opens its own record.</p></div>
+     <div className="sec-head unk"><h2>A vulnerability score, and no fund record read</h2><p>These countries are in no figure above. Each opens its own record.</p></div>
      {reasons.map(([why,list])=><div className="fin-unread" key={why}>
       <p><span className="state-token unknown"><i/>Not read</span>{why}</p>
       <ul>{list.map(u=><li key={u.iso3}><a href={`/country/${u.iso3}#finance`}><i>{u.iso3}</i>{u.name_en}</a></li>)}</ul>
