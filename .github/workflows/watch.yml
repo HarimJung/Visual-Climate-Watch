@@ -1,0 +1,69 @@
+# The daily watch (ENGINEERING M12). Nobody should have to remember to look.
+#
+# Every morning: open the published site the way a reader would and check
+# that it answers, that its data is fresh, that every one of the 218 records
+# passes its contract and reproduces its own hash, and that each receipt
+# answers. Then check the pipeline behind it: did the last weekly refresh
+# succeed, and is a refresh pull request waiting unread. Any problem opens one
+# issue labelled `watch` (or adds today's report to the open one); a green day
+# closes it. A failed job also mails the repository owner.
+name: watch
+on:
+  schedule:
+    - cron: "41 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+  actions: read
+  pull-requests: read
+defaults:
+  run:
+    working-directory: pdf-45-50p-1-owid-climate/outputs/paris-movement
+env:
+  SITE: https://visual-climate.visualclimate.workers.dev
+  DOMAIN: https://visualclimate.org
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24 }
+      - name: the published site
+        id: site
+        run: node scripts/watch.mjs "$SITE" --out /tmp/site.md || echo "failed=1" >> "$GITHUB_OUTPUT"
+      - name: the custom domain serves the same build
+        id: domain
+        run: node scripts/watch.mjs "$DOMAIN" --quick --out /tmp/domain.md || echo "failed=1" >> "$GITHUB_OUTPUT"
+      - name: the pipeline behind it
+        id: pipeline
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "# Pipeline"
+            echo
+            last=$(gh run list --workflow refresh.yml --limit 1 --json conclusion,createdAt,url --jq '.[0]')
+            echo "- Last weekly refresh: $(echo "$last" | jq -r '.conclusion + " on " + .createdAt[0:10] + " (" + .url + ")"')"
+            stale=$(gh pr list --label refresh --state open --json number,createdAt,url --jq "[.[] | select((now - (.createdAt | fromdateiso8601)) > 7*86400)]")
+            echo "- Refresh pull requests open for more than 7 days: $(echo "$stale" | jq -r 'if length == 0 then "none" else map("#" + (.number|tostring) + " since " + .createdAt[0:10]) | join(", ") end')"
+          } > /tmp/pipeline.md
+          cat /tmp/pipeline.md
+          if [ "$(echo "$last" | jq -r .conclusion)" != "success" ] || [ "$(echo "$stale" | jq length)" != "0" ]; then echo "failed=1" >> "$GITHUB_OUTPUT"; fi
+      - name: open, update or close the watch issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FAILED: ${{ steps.site.outputs.failed }}${{ steps.domain.outputs.failed }}${{ steps.pipeline.outputs.failed }}
+        run: |
+          cat /tmp/site.md /tmp/domain.md /tmp/pipeline.md > /tmp/watch.md 2>/dev/null || true
+          gh label create watch --color d73a4a --description "The daily watch found a problem" --force >/dev/null
+          open=$(gh issue list --label watch --state open --json number --jq '.[0].number // empty')
+          if [ -n "$FAILED" ]; then
+            if [ -n "$open" ]; then gh issue comment "$open" --body-file /tmp/watch.md
+            else gh issue create --title "Watch: the published record needs attention" --label watch --body-file /tmp/watch.md; fi
+            exit 1
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --comment "Every check passed on $(date -u +%F). $(head -c 2000 /tmp/watch.md)"
+          fi

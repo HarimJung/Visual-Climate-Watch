@@ -10,8 +10,8 @@
     ]
   },
   "ndc": {
-    "version": "First NDC adjustment (2023)",
-    "submission_date": "2023-10-27",
+    "version": "First NDC (2022)",
+    "submission_date": "2022-04-07",
     "base_year": 2005,
     "base_year_emissions_mtco2e": null,
     "base_year_state": "unknown",
@@ -19,25 +19,62 @@
     "bau_2030_mtco2e": null,
     "bau_state": "unknown",
     "reduction_mtco2e": null,
-    "reduction_pct": null,
+    "reduction_pct": 50,
     "target_emissions_mtco2e": null,
-    "target_state": "unknown",
+    "target_state": "pledged",
     "folu_share_of_reduction_pct": null,
     "sectors": [],
-    "net_zero_target_year": null,
-    "net_zero_state": "unknown",
+    "net_zero_target_year": 2050,
+    "net_zero_state": "pledged",
     "conditionality": {
       "statement": "The conditional / unconditional split has not been extracted from this document.",
       "unconditional_pct": null,
       "conditional_pct": null,
       "split_state": "unknown",
-      "extraction_confidence": "low"
+      "extraction_confidence": "medium"
     },
+    "headline_condition": "not-read",
+    "gas_scope": "ghg",
+    "reduction_range_pct": null,
+    "targets": [
+      {
+        "reduction_pct": 37,
+        "reduction_range_pct": null,
+        "basis": "base-year",
+        "base_year": 2005,
+        "target_year": 2025,
+        "condition": "not-read",
+        "unconditional_pct": null,
+        "conditional_pct": null,
+        "evidence": [
+          {
+            "page": 2,
+            "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 50% below 2005 levels in 2030."
+          }
+        ]
+      },
+      {
+        "reduction_pct": 50,
+        "reduction_range_pct": null,
+        "basis": "base-year",
+        "base_year": 2005,
+        "target_year": 2030,
+        "condition": "not-read",
+        "unconditional_pct": null,
+        "conditional_pct": null,
+        "evidence": [
+          {
+            "page": 2,
+            "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 50% below 2005 levels in 2030."
+          }
+        ]
+      }
+    ],
     "source": {
       "id": "DS-06-NDC",
-      "name": "Brazil First NDC: 2023 adjustment",
-      "url": "https://unfccc.int/documents/633022",
-      "retrieved_at": "2026-09-07"
+      "name": "Brazil First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_need": {
@@ -49,9 +86,9 @@
     "$reason": "no connected source publishes this country's own stated finance need, and the NDC extraction reads targets only, never costings. finance_flows below reports what one fund disbursed, which is a different question.",
     "source": {
       "id": "DS-06-NDC",
-      "name": "Brazil First NDC: 2023 adjustment",
-      "url": "https://unfccc.int/documents/633022",
-      "retrieved_at": "2026-09-07"
+      "name": "Brazil First NDC",
+      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+      "retrieved_at": "2026-10-11"
     }
   },
   "btr": {
@@ -69,20 +106,20 @@
       "crt": {
         "state": "observed",
         "$evidence": [
-          "BRA-CRT-2024-V0.4-1990-20241219-152333_started.xlsx",
-          "BRA-CRT-2024-V0.4-1991-20241219-152333_started.xlsx",
-          "BRA-CRT-2024-V0.4-1992-20241219-152333_started.xlsx"
+          "BRA-CRT-2024-V0.4-2022-20241219-152333_started.xlsx!Summary2!K72"
         ]
       },
       "ctf": {
         "state": "observed",
         "$evidence": [
-          "BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx"
+          "BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx!Table4.1!E9"
         ]
       },
       "ndc_track": {
-        "state": "unknown",
-        "$reason": "none of the 71 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
+        "state": "observed",
+        "$evidence": [
+          "BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx!Table4.1!E9"
+        ]
       },
       "adaptation": {
         "state": "unknown",
@@ -101,12 +138,12 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "71 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
+    "$note": "71 attachment(s) are listed for this Party's BTR1. 4 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -121,7 +158,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -428,7 +465,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 1139.238844126127,
+        "value_mtco2e": 1124.1261808861234,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -446,7 +483,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 1098.6472155892843,
+        "value_mtco2e": 1082.4218677023202,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -464,7 +501,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 1114.7997283156076,
+        "value_mtco2e": 1101.491219079089,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -476,7 +513,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 1107.499343179245,
+        "value_mtco2e": 1097.0937616267395,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -488,7 +525,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 1112.6842739424385,
+        "value_mtco2e": 1107.4638126497566,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -500,7 +537,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 1105.9332393546283,
+        "value_mtco2e": 1092.4425418814342,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -512,7 +549,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 1180.1515604271422,
+        "value_mtco2e": 1140.0466224688178,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -524,7 +561,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 1146.8428073064108,
+        "value_mtco2e": 1127.4730944324667,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -536,7 +573,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 1151.4643314414159,
+        "value_mtco2e": 1126.238596000491,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -548,7 +585,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 1167.1198468799964,
+        "value_mtco2e": 1138.0540710634612,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -560,7 +597,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 1183.0806925421712,
+        "value_mtco2e": 1155.5127266446561,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -572,16 +609,21 @@
   "derived": {
     "ambition_gap_factor": null,
     "trend_annual_mtco2e": 2.367,
-    "on_track": null,
-    "gap_state": "unknown",
+    "on_track": false,
+    "gap_state": "observed",
     "trend_source_id": "DS-35",
-    "$reason": "35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+    "$note": "Trend: least-squares slope over 35 observed years (1990-2024) from DS-35, compared against the DS-06-NDC target of 1528.524 MtCO₂e by 2030. The two are not necessarily on the same inventory scope, see series.$note. The target tonnage is derived here, not quoted: 50% below DS-35's 2005 value of 3057.048 MtCO₂e. The document states the percentage; the level it is applied to comes from DS-35, on DS-35's inventory scope, which is not necessarily the document's.",
+    "$reason": "observed emissions are rising by 2.37 MtCO₂e/yr while the target requires a fall of 212.65 MtCO₂e/yr. No multiple of the current trend reaches it, so no finite gap factor is reported."
   },
   "$extensions": [
     "country_profile",
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
     "finance_flows",
@@ -600,7 +642,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
@@ -609,15 +651,22 @@
     "submission_date": "2024-11-13",
     "document_url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
     "archived_submissions": 3,
-    "matches_parsed_document": false,
+    "matches_parsed_document": true,
+    "latest_retrieval": {
+      "state": "observed",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20261002184710id_/https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+      "capture_timestamp": "20261002184710",
+      "checked_at": "2026-10-10T21:25:30.326Z"
+    },
     "state": "observed",
-    "$note": "The document this record was built from is dated 2023-10-27. The registry's latest active submission is Second Nationally Determined Contribution, dated 2024-11-13, and has not been read; no figure above comes from it.",
+    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
     "source": {
       "id": "DS-08",
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -637,48 +686,598 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
-    "kind": "First NDC",
+    "kind": "Second Nationally Determined Contribution",
     "language": "English",
-    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
-    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/BRA_Brazil_First_NDC_English.pdf",
-    "submission_date": "2022-04-07",
-    "pages": 9,
+    "document_url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+    "retrieval_url": "https://web.archive.org/web/20261002184710id_/https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+    "submission_date": "2024-11-13",
+    "pages": 44,
     "reduction_pct": null,
     "basis": null,
     "base_year": null,
     "target_year": null,
     "unconditional_pct": null,
     "conditional_pct": null,
-    "net_zero_year": 2060,
+    "net_zero_year": null,
     "confidence": "low",
     "evidence": [
       {
-        "page": 2,
-        "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 43% below 2005 levels in 2030."
+        "page": 23,
+        "sentence": "BRAZIL'S NDC TARGET FOR 2035 After a careful process involving analysis and consultation with federal ministries within the Interministerial Committee on Climate Change (CIM), Brazil is setting an economy-wide target of reducing its net greenhouse gas emissions by 59 to 67 percent below 2005 levels by 2035, which is consistent, in absolute terms, with an emission level of 1.05 to 0.85 GtCO2e, according to the most recent inventory data."
+      },
+      {
+        "page": 24,
+        "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction; The target for 2035 is a reduction on the range of 59 to 67 per cent compared to 2005 emissions, which is consistent with a reduction of 1.51 to 1.71 GtCO2e, according to the latest inventory data."
+      },
+      {
+        "page": 39,
+        "sentence": "BRAZIL'S NDC -National determination to contribute and transform (g) The intention to use voluntary cooperation under Article 6 of the Paris Agreement, if applicable: The Government of Brazil estimates that it is possible to raise the ambition of its national mitigation actions beyond the base level of 59 percent below 2005 levels by 2035 or 1.05 GtCO2e, as proposed in section 1b, through the international transfer of mitigation results (ITMOs) generated in its territory."
       }
     ],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "wayback",
+    "capture_timestamp": "20261002184710",
+    "document_sha256": "ebbf1fdf7b35506bf86f5300e0f908af4f2f7ee3bb0e0b7ed8d845431ef4911b",
     "state": "unknown",
-    "$reason": "the document states 2 different percentages on the same basis (37%, 43%) and does not label which is the pledge.",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "$reason": "the document states 2 different percentages on the same basis for 2035 (59-67%, 59%) and does not say which is the target.",
+    "$note": "Read by DS-06-NDC from the Second Nationally Determined Contribution from the Internet Archive's capture of 2026-10-02 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
-      "id": "DS-06-NDC",
-      "name": "Brazil First NDC",
-      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
-      "retrieved_at": "2026-09-13"
+      "id": "DS-06-NDC-LATEST",
+      "name": "Brazil Second Nationally Determined Contribution",
+      "url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "Second Nationally Determined Contribution",
+      "language": "English",
+      "document_url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+      "retrieval_url": "https://web.archive.org/web/20261002184710id_/https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+      "submission_date": "2024-11-13",
+      "pages": 44,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "low",
+      "evidence": [
+        {
+          "page": 23,
+          "sentence": "BRAZIL'S NDC TARGET FOR 2035 After a careful process involving analysis and consultation with federal ministries within the Interministerial Committee on Climate Change (CIM), Brazil is setting an economy-wide target of reducing its net greenhouse gas emissions by 59 to 67 percent below 2005 levels by 2035, which is consistent, in absolute terms, with an emission level of 1.05 to 0.85 GtCO2e, according to the most recent inventory data."
+        },
+        {
+          "page": 24,
+          "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction; The target for 2035 is a reduction on the range of 59 to 67 per cent compared to 2005 emissions, which is consistent with a reduction of 1.51 to 1.71 GtCO2e, according to the latest inventory data."
+        },
+        {
+          "page": 39,
+          "sentence": "BRAZIL'S NDC -National determination to contribute and transform (g) The intention to use voluntary cooperation under Article 6 of the Paris Agreement, if applicable: The Government of Brazil estimates that it is possible to raise the ambition of its national mitigation actions beyond the base level of 59 percent below 2005 levels by 2035 or 1.05 GtCO2e, as proposed in section 1b, through the international transfer of mitigation results (ITMOs) generated in its territory."
+        }
+      ],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20261002184710",
+      "document_sha256": "ebbf1fdf7b35506bf86f5300e0f908af4f2f7ee3bb0e0b7ed8d845431ef4911b",
+      "headline": false,
+      "state": "unknown",
+      "$reason": "the document states 2 different percentages on the same basis for 2035 (59-67%, 59%) and does not say which is the target.",
+      "$note": "Read by DS-06-NDC from the Second Nationally Determined Contribution from the Internet Archive's capture of 2026-10-02 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC-LATEST",
+        "name": "Brazil Second Nationally Determined Contribution",
+        "url": "https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    },
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+      "retrieval_url": "https://web.archive.org/web/20220519144345id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+      "submission_date": "2022-04-07",
+      "pages": 11,
+      "reduction_pct": 50,
+      "basis": "base-year",
+      "base_year": 2005,
+      "target_year": 2030,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": 2050,
+      "confidence": "medium",
+      "evidence": [
+        {
+          "page": 2,
+          "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 50% below 2005 levels in 2030."
+        }
+      ],
+      "headline_condition": "not-read",
+      "gas_scope": "ghg",
+      "reduction_range_pct": null,
+      "targets": [
+        {
+          "reduction_pct": 37,
+          "reduction_range_pct": null,
+          "basis": "base-year",
+          "base_year": 2005,
+          "target_year": 2025,
+          "condition": "not-read",
+          "unconditional_pct": null,
+          "conditional_pct": null,
+          "evidence": [
+            {
+              "page": 2,
+              "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 50% below 2005 levels in 2030."
+            }
+          ]
+        },
+        {
+          "reduction_pct": 50,
+          "reduction_range_pct": null,
+          "basis": "base-year",
+          "base_year": 2005,
+          "target_year": 2030,
+          "condition": "not-read",
+          "unconditional_pct": null,
+          "conditional_pct": null,
+          "evidence": [
+            {
+              "page": 2,
+              "sentence": "(d) Target relative to the reference indicator, expressed numerically, for example in percentage or amount of reduction: To reduce greenhouse gas emissions by 37% below 2005 levels in 2025, and by 50% below 2005 levels in 2030."
+            }
+          ]
+        }
+      ],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20220519144345",
+      "document_sha256": "514631f129128f5513d2ad0216e68e55ae738cd3f476a9394c5635d75dc32b80",
+      "headline": true,
+      "mirror_check": {
+        "result": "replaced",
+        "checked_at": "2026-10-11T14:22:36.531Z",
+        "capture_timestamp": "20220519144345"
+      },
+      "state": "pledged",
+      "$note": "Read by DS-06-NDC from the First NDC from the Internet Archive's capture of 2022-05-19 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. The figure above is this engine's reading of the sentence quoted, not a figure the document tabulates.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Brazil First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Brazil",
+      "notes": [],
+      "signature": "1992-06-04",
+      "consent": "1994-02-28",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 1,
+          "sentence": "Brazil 4 Jun 1992 28 Feb 1994"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Brazil",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2016-09-21",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 1,
+          "sentence": "Brazil 22 Apr 2016 21 Sep 2016"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s1627145--4b2ba8a76c3b9c43323423d4d5b0ca47.xlsx",
+    "file_sha256": "bb9d41ad71b90abebb0e2f4eedeebeaf9d57e5dffa22dc990bc01330033e15bf",
+    "tables": [
+      {
+        "sheet": "Table4.1",
+        "title": {
+          "cell": "Table4.1!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.1!B9",
+              "text": "Total net GHG emissions in 2025"
+            },
+            "unit": {
+              "cell": "Table4.1!C9",
+              "text": "Gt CO2 eq"
+            },
+            "reference": {
+              "year_label": null,
+              "value": null,
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.1!E9",
+                "value": 1.82,
+                "literal": "1.82",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.1!F9",
+                "value": 2.12,
+                "literal": "2.12",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.1!G9",
+                "value": 2.04,
+                "literal": "2.04",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.1!H9",
+              "value": 1.32,
+              "literal": "1.32"
+            },
+            "target_period": {
+              "cell": "Table4.1!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.1!J9",
+              "text": "Brazil is progressing towards the NDC target. The total GHG emissions decreased in 2022, compared to the GHG emission level in the NDC base year (2005). In 2020, emissions decreased significantly to 1.82 Gt CO₂ eq, mainly in the LULUCF sector, related to the reduction in deforestation, which was due above all to the adoption of Action Plans for the Prevention and Control of Deforestation and Fires. Despite the increase in national emissions in 2021 (explained in Section 3.1, NIR 2024), Brazil reverted the growth trend in 2022, registering emissions of 2.04 Gt CO₂ eq."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.2",
+        "title": {
+          "cell": "Table4.2!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.2!B9",
+              "text": "Total net GHG emissions in 2030"
+            },
+            "unit": {
+              "cell": "Table4.2!C9",
+              "text": "Gt CO2 eq"
+            },
+            "reference": {
+              "year_label": null,
+              "value": null,
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.2!E9",
+                "value": 1.82,
+                "literal": "1.82",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.2!F9",
+                "value": 2.12,
+                "literal": "2.12",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.2!G9",
+                "value": 2.04,
+                "literal": "2.04",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.2!H9",
+              "value": 1.2,
+              "literal": "1.2"
+            },
+            "target_period": {
+              "cell": "Table4.2!I9",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table4.2!J9",
+              "text": "Brazil is progressing towards the NDC target. The total GHG emissions decreased in 2022, compared to the GHG emission level in the NDC base year (2005). In 2020, emissions decreased significantly to 1.82 Gt CO₂ eq, mainly in the LULUCF sector, related to the reduction in deforestation, which was due above all to the adoption of Action Plans for the Prevention and Control of Deforestation and Fires. Despite the increase in national emissions in 2021 (explained in Section 3.1, NIR 2024), Brazil reverted the growth trend in 2022, registering emissions of 2.04 Gt CO₂ eq."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.3",
+        "title": {
+          "cell": "Table4.3!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.3!B9",
+              "text": "GHG emissions reduction in 2025"
+            },
+            "unit": {
+              "cell": "Table4.3!C9",
+              "text": "%"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.3!D7",
+                "text": "2005"
+              },
+              "value": {
+                "cell": "Table4.3!D9",
+                "value": 2.56,
+                "literal": "2.56"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.3!E9",
+                "value": 28.8,
+                "literal": "28.8",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.3!F9",
+                "value": 17.4,
+                "literal": "17.4",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.3!G9",
+                "value": 20.4,
+                "literal": "20.4",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.3!H9",
+              "value": 48.8,
+              "literal": "48.8"
+            },
+            "target_period": {
+              "cell": "Table4.3!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.3!J9",
+              "text": "Brazil is progressing on implementation its NDC target in the period 2020–2022 since the indicator selected is below the base-year emissions. In 2022, total GHG emissions are 20.4% below the reference point."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.4",
+        "title": {
+          "cell": "Table4.4!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.4!B9",
+              "text": "GHG emissions reduction in 2030"
+            },
+            "unit": {
+              "cell": "Table4.4!C9",
+              "text": "%"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.4!D7",
+                "text": "2005"
+              },
+              "value": {
+                "cell": "Table4.4!D9",
+                "value": 2.56,
+                "literal": "2.56"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.4!E9",
+                "value": 28.8,
+                "literal": "28.8",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.4!F9",
+                "value": 17.4,
+                "literal": "17.4",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.4!G9",
+                "value": 20.4,
+                "literal": "20.4",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.4!H9",
+              "value": 53.1,
+              "literal": "53.1"
+            },
+            "target_period": {
+              "cell": "Table4.4!I9",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table4.4!J9",
+              "text": "Brazil is progressing on implementation its NDC target in the period 2020–2022 since the indicator selected is below the base-year emissions. In 2022, total GHG emissions are 20.4% below the reference point."
+            },
+            "unread": []
+          }
+        ]
+      }
+    ],
+    "target_text": {
+      "cell": "Appendix!C7",
+      "text": "Net emissions limit of 1.32 Gt CO2 eq in 2025 and 1.20 Gt CO2 eq in 2030, consistent with a reduction of 48.4% and 53.1%, respectively, in comparison with 2005, according to the latest GHG inventory data."
+    },
+    "reference_text": [
+      {
+        "cell": "Table1!C8",
+        "text": "The quantification of the reference indicator is the total net emissions of GHG in the reference year of 2005, as reported in Brazil’s National Inventory of Anthropogenic Emissions by Sources and Removals by Sinks of Greenhouse Gases not controlled by the Montreal Protocol. According to the latest inventory, net emission levels in 2005 were of 2.56 GtCO2e (GWP AR5)."
+      },
+      {
+        "cell": "Table1!C12",
+        "text": "The quantification of the reference indicator is the total net emissions of GHG in the reference year of 2005, as reported in Brazil’s National Inventory of Anthropogenic Emissions by Sources and Removals by Sinks of Greenhouse Gases not controlled by the Montreal Protocol. According to the latest inventory, net emission levels in 2005 were of 2.56 GtCO2e (GWP AR5)."
+      },
+      {
+        "cell": "Table1!C16",
+        "text": "The quantification of the reference indicator is the total net emissions of GHG in the reference year of 2005, as reported in Brazil’s National Inventory of Anthropogenic Emissions by Sources and Removals by Sinks of Greenhouse Gases not controlled by the Montreal Protocol. According to the latest inventory, net emission levels in 2005 were of 2.56 GtCO2e (GWP AR5)."
+      },
+      {
+        "cell": "Table1!C20",
+        "text": "The quantification of the reference indicator is the total net emissions of GHG in the reference year of 2005, as reported in Brazil’s National Inventory of Anthropogenic Emissions by Sources and Removals by Sinks of Greenhouse Gases not controlled by the Montreal Protocol. According to the latest inventory, net emission levels in 2005 were of 2.56 GtCO2e (GWP AR5)."
+      }
+    ],
+    "superseded": [],
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/BRA-CTF-NDC-2024-V0.1-20241218-163037_started.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "observed",
+    "file": "BRA-CRT-2024-V0.4-2022-20241219-152333_started.xlsx",
+    "year": 2022,
+    "year_cell": {
+      "cell": "Summary2!K1",
+      "text": "2022"
+    },
+    "party_cell": {
+      "cell": "Summary2!K3",
+      "text": "Brazil"
+    },
+    "unit": {
+      "cell": "Summary2!C9",
+      "text": "CO2 equivalents (kt ) (2)"
+    },
+    "totals": {
+      "without_lulucf": {
+        "cell": "Summary2!K71",
+        "value": 1233542.3652906907,
+        "literal": "1233542.3652906907",
+        "label": {
+          "cell": "Summary2!J71",
+          "text": "Total CO2 equivalent emissions without LULUCF"
+        }
+      },
+      "with_lulucf": {
+        "cell": "Summary2!K72",
+        "value": 2039236.3061352088,
+        "literal": "2039236.3061352088",
+        "label": {
+          "cell": "Summary2!J72",
+          "text": "Total CO2 equivalent emissions with LULUCF"
+        }
+      },
+      "with_indirect_without_lulucf": {
+        "cell": "Summary2!K73",
+        "value": 1233542.3652906907,
+        "literal": "1233542.3652906907",
+        "label": {
+          "cell": "Summary2!J73",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  without LULUCF"
+        }
+      },
+      "with_indirect_with_lulucf": {
+        "cell": "Summary2!K74",
+        "value": 2039236.3061352088,
+        "literal": "2039236.3061352088",
+        "label": {
+          "cell": "Summary2!J74",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  with LULUCF"
+        }
+      }
+    },
+    "document_url": "https://unfccc.int/sites/default/files/resource/BRA_CRT_2024.zip",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s3796605--178d0546d5a16727a572890c9b5a554a.xlsx",
+    "file_sha256": "902f94f5dc04f8fada4863d86fb6d82df279122d0a7d220b6ecf7a1a49bf6dde",
+    "in_by_source": true,
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/BRA_CRT_2024.zip",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_flows": {
     "channel": "Green Climate Fund",
-    "approved_usd": 959411349,
-    "co_financing_usd": 2737950199,
+    "approved_usd": 958496679,
+    "co_financing_usd": 2739774692,
     "disbursed_usd": 140416928,
     "projects": 21,
     "regional_projects": 13,
-    "regional_disbursed_usd": 708563254,
+    "regional_disbursed_usd": 729123772,
     "instruments": [
       "Equity",
       "Grants",
@@ -871,7 +1470,7 @@
         "channel": "GCF",
         "instrument": "Equity + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 5260485.48,
+        "amount_usd": 5144397.52,
         "project_ref": "FP230",
         "project_name": "Kuali Fund-GCF",
         "state": "observed"
@@ -882,7 +1481,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 18735584.12,
+        "amount_usd": 18449066,
         "project_ref": "FP237",
         "project_name": "E-Motion : E-Mobility and Low Carbon Transportation",
         "state": "observed"
@@ -915,7 +1514,7 @@
         "channel": "GCF",
         "instrument": "Equity",
         "provider": "Green Climate Fund",
-        "amount_usd": 23204009.65,
+        "amount_usd": 22691945.49,
         "project_ref": "FP276",
         "project_name": "GCF's investment into the Global Green Bond Initiative (GGBI) (previously known as Green and Resilience Debt Platform (GRDP)",
         "state": "observed"
@@ -999,12 +1598,12 @@
       }
     ],
     "state": "observed",
-    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 13 multi-country project(s) disbursing 708,563,254 USD in total are counted separately and never divided.",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 13 multi-country project(s) disbursing 729,123,772 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -1291,47 +1890,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 1139.238844126127
+            "value_mtco2e": 1124.1261808861234
           },
           {
             "year": 2016,
-            "value_mtco2e": 1098.6472155892843
+            "value_mtco2e": 1082.4218677023202
           },
           {
             "year": 2017,
-            "value_mtco2e": 1114.7997283156076
+            "value_mtco2e": 1101.491219079089
           },
           {
             "year": 2018,
-            "value_mtco2e": 1107.499343179245
+            "value_mtco2e": 1097.0937616267395
           },
           {
             "year": 2019,
-            "value_mtco2e": 1112.6842739424385
+            "value_mtco2e": 1107.4638126497566
           },
           {
             "year": 2020,
-            "value_mtco2e": 1105.9332393546283
+            "value_mtco2e": 1092.4425418814342
           },
           {
             "year": 2021,
-            "value_mtco2e": 1180.1515604271422
+            "value_mtco2e": 1140.0466224688178
           },
           {
             "year": 2022,
-            "value_mtco2e": 1146.8428073064108
+            "value_mtco2e": 1127.4730944324667
           },
           {
             "year": 2023,
-            "value_mtco2e": 1151.4643314414159
+            "value_mtco2e": 1126.238596000491
           },
           {
             "year": 2024,
-            "value_mtco2e": 1167.1198468799964
+            "value_mtco2e": 1138.0540710634612
           },
           {
             "year": 2025,
-            "value_mtco2e": 1183.0806925421712
+            "value_mtco2e": 1155.5127266446561
           }
         ]
       },
@@ -1670,20 +2269,30 @@
             "value_mtco2e": 1305.56978
           }
         ]
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "scope": "The Party's own CRT national total with LULUCF for 2022 only (BRA-CRT-2024-V0.4-2022-20241219-152333_started.xlsx Summary2!K72, 2039236.3061352088 CO2 equivalents (kt ) (2) as filed), shown in Mt; its own inventory and LULUCF accounting",
+        "series": [
+          {
+            "year": 2022,
+            "value_mtco2e": 2039.236306135209
+          }
+        ]
       }
     ],
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Brazil submitted its First NDC adjustment (2023) on 2023-10-27; no numeric target has been extracted from it. A later submission, Second Nationally Determined Contribution, was filed on 2024-11-13; it has not been read, so no figure here comes from it. 73 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (27). For 2024 the sources disagree: DS-35 2804.4 MtCO₂e, DS-02 1167.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 50.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: Reduce GHG emissions by 37% in 2025, and by 43% (indicative) in 2030 below 2005 levels It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.15°C under SSP1-2.6 to +4.49°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Brazil pledges a 50% reduction by 2030 against 2005 baseline (condition not read). The registry's current submission for this Party is Second Nationally Determined Contribution, filed 2024-11-13. It was read and refused, so the figure above comes from the First NDC (2022). 73 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (27). For 2024 the sources disagree: DS-35 2804.4 MtCO₂e, DS-02 1138.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. The target is not reached on the observed trend. Both figures are on DS-35's inventory: the document's percentage applied to DS-35's 2005 level, not the document's own. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 50.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: Reduce GHG emissions by 37% in 2025, and by 43% (indicative) in 2030 below 2005 levels It was classed unconditional. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.15°C under SSP1-2.6 to +4.49°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
-        "field": "ndc.version",
-        "text": "Brazil submitted its First NDC adjustment (2023) on 2023-10-27; no numeric target has been extracted from it."
+        "field": "ndc.reduction_pct",
+        "text": "Brazil pledges a 50% reduction by 2030 against 2005 baseline (condition not read)."
       },
       {
         "field": "ndc_registry.submission_date",
-        "text": "A later submission, Second Nationally Determined Contribution, was filed on 2024-11-13; it has not been read, so no figure here comes from it."
+        "text": "The registry's current submission for this Party is Second Nationally Determined Contribution, filed 2024-11-13. It was read and refused, so the figure above comes from the First NDC (2022)."
       },
       {
         "field": "series.observed",
@@ -1691,15 +2300,15 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-35 2804.4 MtCO₂e, DS-02 1167.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-35 2804.4 MtCO₂e, DS-02 1138.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
-        "field": "derived.$reason",
-        "text": "No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against."
+        "field": "derived.on_track",
+        "text": "The target is not reached on the observed trend. Both figures are on DS-35's inventory: the document's percentage applied to DS-35's 2005 level, not the document's own."
       },
       {
         "field": "btr.submitted",
-        "text": "It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
+        "text": "It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1927,8 +2536,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1941,8 +2550,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1955,8 +2564,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1969,8 +2578,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1983,8 +2592,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1997,8 +2606,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -2011,8 +2620,8 @@
       ],
       "connection": "connected",
       "records": 27,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -2025,8 +2634,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -2039,8 +2648,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -2053,10 +2662,24 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:20:54.819Z",
+      "last_run": "2026-10-11T14:22:35.888Z",
       "retrieved_at": "2026-09-07",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -2067,8 +2690,8 @@
       ],
       "connection": "connected",
       "records": 28,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:43.203Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -2081,102 +2704,160 @@
       ],
       "connection": "connected",
       "records": 71,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "d38579e4f0e8e32a2ea305ec5d0dfa5c183178b0ce2315461bef023ee893ed19",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "9b1f23572031cefa0bb7dcff4a09cda2552a57118b5314cab7e6d45b5c7dd758",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
+        "source_id": "DS-06-NDC-LATEST",
+        "file_sha256": "ebbf1fdf7b35506bf86f5300e0f908af4f2f7ee3bb0e0b7ed8d845431ef4911b",
+        "retrieved_at": "2026-10-10T20:37:08.355Z",
+        "url": "https://web.archive.org/web/20261002184710id_/https://unfccc.int/sites/default/files/2024-11/Brazil_Second%20Nationally%20Determined%20Contribution%20%28NDC%29_November2024.pdf"
+      },
+      {
         "source_id": "DS-06-NDC",
-        "file_sha256": "3863a9aa665454cd88bb9082570368f9baad1b2ab7d9953ecf32ef5e58f60225",
-        "retrieved_at": "2026-09-13T03:18:25.524Z",
-        "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/BRA_Brazil_First_NDC_English.pdf"
+        "file_sha256": "514631f129128f5513d2ad0216e68e55ae738cd3f476a9394c5635d75dc32b80",
+        "retrieved_at": "2026-10-11T14:22:36.531Z",
+        "url": "https://web.archive.org/web/20220519144345id_/https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Brazil%20First/Updated%20-%20First%20NDC%20-%20%20FINAL%20-%20PDF.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "bb9d41ad71b90abebb0e2f4eedeebeaf9d57e5dffa22dc990bc01330033e15bf",
+        "retrieved_at": "2026-10-10T20:39:08.211Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s1627145--4b2ba8a76c3b9c43323423d4d5b0ca47.xlsx"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "902f94f5dc04f8fada4863d86fb6d82df279122d0a7d220b6ecf7a1a49bf6dde",
+        "retrieved_at": "2026-10-10T20:39:10.245Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s3796605--178d0546d5a16727a572890c9b5a554a.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
   "$meta": {
-    "mode": "document-snapshot",
-    "snapshot": "2023 NDC",
+    "mode": "document-parsed",
+    "snapshot": "First NDC · 2022",
     "basis": "2005 baseline",
-    "notice": "Historical document snapshot. Not a live assessment or the latest NDC."
+    "notice": "Second Nationally Determined Contribution (2024-11-13) was read and refused: the document states 2 different percentages on the same basis for 2035 (59-67%, 59%) and does not say which is the target. The figure shown is from First NDC (2022-04-07)."
   },
   "$sources_index": [
     {
@@ -2230,6 +2911,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -2238,6 +2924,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }

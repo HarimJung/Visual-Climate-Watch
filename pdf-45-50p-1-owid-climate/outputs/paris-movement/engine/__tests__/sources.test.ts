@@ -101,5 +101,8 @@ void test('the 2016 assessment never becomes the target', () => {
   // below the 150 it was when every EU Member was assessment-only. The
   // per-record checks above are what this test is for; the floor only guards
   // against the loop silently checking nothing.
-  assert.ok(checked > 120, `expected most parties to be assessment-only, got ${checked}`);
+  // Lowered from 120 (D1): the registry's newer filings are now read too, so
+  // fewer records are left with no reading of their own (106 on 2026-10-10).
+  // The floor still only guards against the loop checking nothing.
+  assert.ok(checked > 60, `expected many parties to be assessment-only, got ${checked}`);
 });

@@ -2,22 +2,40 @@
 #
 # Every Monday: collect every source again, re-parse the filings, rebuild the
 # 218 records, run the contract gate and the suite, and open a pull request
-# with whatever changed — data, golden, census — for a person to read before
-# it is merged and deployed. A failure anywhere stops the job, and GitHub mails
-# the repository owner; that is the receiver the ETL's exit code never had.
+# with whatever changed (data, golden, census, and the census figures cited in
+# docs/) for a person to read before it is merged and deployed. A failure
+# anywhere stops the job, and GitHub mails the repository owner.
 #
-# The refresh runs from nothing: the engine cache is not in git, so every
-# source is fetched. poppler is the one system dependency (pdftotext).
+# Every source is fetched on every run (`--refresh`). The engine cache is not
+# in git; the previous run's snapshots are restored only as the fallback for a
+# fetch that still fails after its retries. Such a source is used as it was
+# last fetched, dated by that fetch, logged 'stale' in data/etl-logs.json and
+# named in the pull request. A source with no earlier snapshot still fails the
+# job. poppler is the one system dependency (pdftotext).
 name: refresh
 on:
   schedule:
     - cron: "17 3 * * 1"
+    # GitHub drops a cache nobody has read for 7 days, and the Monday run has
+    # started up to 7 h 14 m late (7 d 0 h 51 m between two runs), so a
+    # Thursday restore keeps last week's snapshots for Monday's fallback.
+    - cron: "17 3 * * 4"
   workflow_dispatch:
 defaults:
   run:
     working-directory: pdf-45-50p-1-owid-climate/outputs/paris-movement
 jobs:
+  keep-snapshots:
+    if: github.event.schedule == '17 3 * * 4'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/cache/restore@v5
+        with:
+          path: pdf-45-50p-1-owid-climate/outputs/paris-movement/engine/cache
+          key: engine-cache-${{ github.run_id }}
+          restore-keys: engine-cache-
   refresh:
+    if: github.event.schedule != '17 3 * * 4'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
@@ -39,25 +57,108 @@ jobs:
           else
             echo "gin.hemio.de still unreachable; BTR bodies stay unread."
           fi
+      - name: restore the last snapshots (the fallback only; every source is fetched again below)
+        uses: actions/cache/restore@v5
+        with:
+          path: pdf-45-50p-1-owid-climate/outputs/paris-movement/engine/cache
+          key: engine-cache-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: engine-cache-
+      # The regression gate compares the rebuild with what is published now.
+      - name: keep the published records aside for the regression gate
+        run: cp -R data/countries "$RUNNER_TEMP/published-countries"
+      # build-all --refresh fetches every source it builds from and exits
+      # non-zero when one fails with no snapshot to fall back on. `etl` is not
+      # run here: it reads the cache when it has the file, so after the restore
+      # it would fetch nothing.
+      # In dependency order: the mirrored filings, then the registry's newer
+      # filings (compared with what ndc-parse read), the BTR tables, the UN
+      # Treaty Collection status, then the build that reads all four committed
+      # files. A Pattern D step that fails keeps its committed file (it writes
+      # nothing on a failure), is named in the pull request, and does not stop
+      # the sources that did answer from reaching review.
       - name: collect, parse, build
-        run: node engine/cli.ts etl && node engine/cli.ts ndc-parse --refresh && node engine/cli.ts build-all --refresh
+        run: |
+          echo "REFRESH_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+          kept=""
+          node engine/cli.ts ndc-parse --refresh
+          node engine/cli.ts ndc-latest --refresh || { kept="$kept ndc-latest"; echo "::warning::ndc-latest did not finish; data/ndc-latest.json and data/ndc-latest-sources.json are kept as committed"; }
+          node engine/cli.ts btr-tables --refresh || { kept="$kept btr-tables"; echo "::warning::btr-tables did not finish; data/btr-tables.json is kept as committed"; }
+          node engine/cli.ts untc --refresh || { kept="$kept untc"; echo "::warning::untc did not finish; data/parties.json is kept as committed"; }
+          echo "KEPT_FILES=$kept" >> "$GITHUB_ENV"
+          node engine/cli.ts build-all --refresh
+      # Saved only when the collect step passed, so every file kept was read by
+      # a build that succeeded.
+      - name: keep these snapshots for the next run's fallback
+        uses: actions/cache/save@v5
+        with:
+          path: pdf-45-50p-1-owid-climate/outputs/paris-movement/engine/cache
+          key: engine-cache-${{ github.run_id }}-${{ github.run_attempt }}
+      # R8 every week: every cited page re-read with the reader's own pagesOf()
+      # (mirrored and newer filings) and every cited workbook cell re-read from
+      # the cache. A sentence not verbatim on its page, a figure in none of its
+      # sentences, or a cell that does not hold what is quoted fails the job,
+      # printed with the document, the page or cell, and the sentence.
+      - name: verify every cited page and cell
+        run: node scripts/verify-evidence.mjs
       - name: contract gate (golden drift is this job's output, so only the contract is checked here)
         run: node engine/cli.ts verify --no-golden
+      # A rebuild may change what a record says, never lose a value without the
+      # record saying why. The report goes in the pull request; a loss labels it
+      # and the deploy job refuses it on merge (deploy.yml runs the same gate).
+      - name: regression gate
+        run: node scripts/regression-gate.mjs --base "$RUNNER_TEMP/published-countries" --out "$RUNNER_TEMP/gate.md" || echo "GATE_LOST=1" >> "$GITHUB_ENV"
       - name: accept the rebuilt records as golden
         run: cp data/countries/*.json data/golden/
+      # tests/prd-census.test.ts still fails on a figure edited by hand.
+      - name: rewrite the census figures cited in docs/ to the new census
+        run: node scripts/sync-prd.mjs
       - run: npm test
       - name: census
-        run: node engine/cli.ts report --json > /tmp/census.json && node -e "const c=require('/tmp/census.json');console.log('read',c.ndc_target_accepted,'judged',c.gap_assessed,'refusals',c.refusals_total)"
+        run: node engine/cli.ts report --json > /tmp/census.json && node -e "const c=require('/tmp/census.json');console.log('targets read',c.ndc_headline_read??c.ndc_target_accepted,'judged',c.gap_assessed,'refusals',c.refusals_total)"
+      # A source whose fetch failed is 'stale' in data/etl-logs.json. An NDC
+      # document is not in that file: one that fell back keeps the
+      # document_retrieved_at of its earlier fetch in data/ndc-targets.json.
+      - name: write the pull request body, naming everything that fell back to an earlier snapshot
+        run: |
+          node -e '
+            const fs = require("fs");
+            const read = (f) => JSON.parse(fs.readFileSync(f, "utf8"));
+            const since = Date.parse(process.env.REFRESH_STARTED);
+            const lines = read("data/etl-logs.json").logs.filter((l) => l.status === "stale" || l.status === "partial").map((l) => `- ${l.source_id}: ${l.error_message}`);
+            // The newer filings: links not retrieved, and links retried next run.
+            if (fs.existsSync("data/ndc-latest-sources.json")) {
+              const rows = read("data/ndc-latest-sources.json").rows;
+              const transient = rows.filter((r) => r.transient);
+              const unresolved = rows.filter((r) => !r.route && !r.transient);
+              if (transient.length) lines.push(`- DS-06-NDC-LATEST: ${transient.length} newer filing link(s) not retrieved on this run, tried again next run: ${transient.map((r) => `${r.iso3.join(",")} ${r.document_url}`).join("; ")}`);
+              if (unresolved.length) lines.push(`- DS-06-NDC-LATEST: ${unresolved.length} newer filing link(s) no route this engine uses could retrieve (each record says why): ${unresolved.map((r) => r.iso3.join(",")).join(", ")}`);
+            }
+            for (const k of (process.env.KEPT_FILES || "").split(" ").filter(Boolean)) lines.push(`- ${k}: the step did not finish; its committed data file is kept unchanged`);
+            const docs = read("data/ndc-targets.json").targets.filter((t) => t.document_retrieved_at && Date.parse(t.document_retrieved_at) < since);
+            if (docs.length) lines.push(`- DS-06-NDC: ${docs.length} document(s) read from an earlier snapshot: ${docs.map((t) => t.iso3).join(", ")}`);
+            for (const l of lines) console.log(`::warning::${l.slice(2, 200)}`);
+            fs.writeFileSync(process.env.RUNNER_TEMP + "/pr-body.md", [
+              "Every source fetched again, every filing re-parsed, all 218 records rebuilt, the census figures cited in docs/ rewritten to the new census, contract gate and suite green.",
+              "Read the census diff in `data/census.json`, the docs diff and the record diffs before merging. Merging deploys.",
+              "",
+              lines.length
+                ? "Fell back to an earlier snapshot after the fetch failed (each record dates these bytes by their own fetch):"
+                : "Nothing fell back to an earlier snapshot: every source and every NDC document was fetched on this run.",
+              ...lines,
+              "",
+              fs.existsSync(process.env.RUNNER_TEMP + "/gate.md") ? fs.readFileSync(process.env.RUNNER_TEMP + "/gate.md", "utf8") : "The regression gate did not run.",
+            ].join("\n") + "\n");
+          '
       - name: open a pull request with the refreshed records
         uses: peter-evans/create-pull-request@v6
         with:
           branch: refresh/${{ github.run_id }}
           base: main
           commit-message: "Refresh every source and rebuild the 218 records"
-          title: "Weekly refresh: rebuilt records for review"
-          body: |
-            Every source collected again, every filing re-parsed, all 218 records rebuilt, contract gate and suite green.
-            Read the census diff in `data/census.json` and the record diffs before merging. Merging deploys.
-          labels: refresh
+          title: "${{ env.GATE_LOST == '1' && 'Weekly refresh, blocked: a value was lost without a reason' || 'Weekly refresh: rebuilt records for review' }}"
+          body-path: ${{ runner.temp }}/pr-body.md
+          labels: "${{ env.GATE_LOST == '1' && 'refresh,regression' || 'refresh' }}"
           delete-branch: true
-          add-paths: pdf-45-50p-1-owid-climate/outputs/paris-movement/data/**
+          add-paths: |
+            pdf-45-50p-1-owid-climate/outputs/paris-movement/data/**
+            pdf-45-50p-1-owid-climate/outputs/paris-movement/docs/**

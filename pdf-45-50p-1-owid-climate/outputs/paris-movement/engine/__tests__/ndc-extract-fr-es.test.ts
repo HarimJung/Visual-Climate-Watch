@@ -8,8 +8,14 @@ import { extract } from '../sources/ds-06-ndc-docs.ts';
 
 const read = (s: string) => extract([s]);
 
-void test('Andorra: a BAU pledge in Spanish, with the horizon after the figure', () => {
-  const r = read('Andorra fue una de las Partes pioneras en comunicar su INDC en 2015, según la cual el compromiso era reducir las emisiones de GEI en un 37% respecto al escenario Bussines as usual (BAU), 530,55 Gg CO2 eq.), para el año 2030.');
+void test('Andorra: the update states its 37% in its own words, and the retold 2015 INDC is not read', () => {
+  // This case used to accept the page 1 sentence. Both verifiers of the
+  // accepted readings (2026-10-10) found it retells the 2015 INDC in the past
+  // tense ("el compromiso era"); the update's own statement is on page 7, with
+  // the tonnage in a bracket between the figure and its basis.
+  const history = read('Andorra fue una de las Partes pioneras en comunicar su INDC en 2015, según la cual el compromiso era reducir las emisiones de GEI en un 37% respecto al escenario Bussines as usual (BAU), 530,55 Gg CO2 eq.), para el año 2030.');
+  assert.equal(history.reduction_pct, null);
+  const r = read('Los niveles de reducción del escenario a mediano plazo se concretan en un 37% (193,73 Gg CO2 eq.) de las emisiones anuales no absorbidas respecto al escenario Business as usual, de aquí al 2030.');
   assert.equal(r.reduction_pct, 37); assert.equal(r.basis, 'bau'); assert.equal(r.target_year, 2030);
 });
 
@@ -54,20 +60,33 @@ void test('Haiti: the headline sentence alone reads, the document with its uncon
   assert.match(both.$reason ?? '', /different percentages/);
 });
 
-void test('Cameroon: a figure the document conditions on support is refused, in French too', () => {
+void test('Cameroon: a figure the document conditions on support, and states alone, is read and labelled conditional', () => {
+  // This case used to be a refusal. Since 2026-10-10 a figure the document
+  // conditions on support and states with no unconditional figure is the
+  // headline, labelled 'conditional' and never shown as unconditional.
   const r = read('Réduction des émissions de GES à hauteur de 32% par rapport à un scénario de référence pour l’année cible (2035), et conditionnée au soutien de la communauté internationale.');
-  assert.equal(r.reduction_pct, null);
-  assert.match(r.$reason ?? '', /conditions? on international support/);
+  assert.equal(r.reduction_pct, 32); assert.equal(r.basis, 'bau'); assert.equal(r.target_year, 2035);
+  assert.equal(r.headline_condition, 'conditional');
+  assert.equal(r.conditional_pct, 32);
+  assert.equal(r.unconditional_pct, null);
 });
 
-void test('Senegal: two figures for two horizons in one sentence are refused', () => {
+void test('Senegal: two figures for two horizons in one sentence are two targets, paired by "respectivement"', () => {
+  // This case used to be a refusal (two horizons). Horizons are kept as
+  // targets now; "respectivement" pairs 5% with 2025 and 7% with 2030, and the
+  // label after both ("pour l'objectif inconditionnel") covers both.
   const r = read('Ceci se traduit par une réduction relative des émissions de gaz à effet de serre de 5% et 7% respectivement, aux horizons 2025 et 2030, par rapport à la situation de référence (Business as usual) pour l’objectif inconditionnel (CDN).');
-  assert.equal(r.reduction_pct, null);
+  assert.deepEqual(r.targets.map((t) => [t.target_year, t.reduction_pct, t.condition]), [[2025, 5, 'unconditional'], [2030, 7, 'unconditional']]);
+  assert.equal(r.reduction_pct, 7); assert.equal(r.target_year, 2030);
 });
 
-void test('Congo: two horizons, both conditional, refused', () => {
+void test('Congo: two horizons, both conditional, are two conditional targets', () => {
+  // This case used to be a refusal. Each figure takes the horizon of its own
+  // stretch of the sentence ("48% en 2025 ..., et 54% en 2035"), and the one
+  // label before both figures covers both.
   const r = read('La contribution de la République du Congo devrait permettre de réduire, dans un scénario bas-carbone conditionnel (dépendant de l’appui de la communauté internationale), les émissions de GES d’environ 48% en 2025 (soit 8MteqCO2), et 54% en 2035 (soit 19MteqCO2) par rapport au scénario tendanciel.');
-  assert.equal(r.reduction_pct, null);
+  assert.deepEqual(r.targets.map((t) => [t.target_year, t.reduction_pct, t.condition]), [[2025, 48, 'conditional'], [2035, 54, 'conditional']]);
+  assert.equal(r.reduction_pct, 54); assert.equal(r.headline_condition, 'conditional'); assert.equal(r.unconditional_pct, null);
 });
 
 void test('Nicaragua: a forest-sector target is not an economy-wide one', () => {

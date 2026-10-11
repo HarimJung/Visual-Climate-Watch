@@ -33,6 +33,11 @@
       "split_state": "unknown",
       "extraction_confidence": "low"
     },
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "$reason": "the document states 5 different percentages on the same basis (2.5%, 3.5%, 25%, 34.6%, 34.7%) and labels more than one of them unconditional; choosing between them would be a guess.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -74,14 +79,13 @@
       "ctf": {
         "state": "observed",
         "$evidence": [
-          "3._CTF_Tables_FTC_Support_Needed_and_Received_26-02-25.xlsx",
-          "CTF_Tracking_Progress_NDC_NIGER_Final_Version.xlsx"
+          "CTF_Tracking_Progress_NDC_NIGER_Final_Version.xlsx!Table 4!D9"
         ]
       },
       "ndc_track": {
         "state": "observed",
         "$evidence": [
-          "RAPPORT_NDC_Tracking_2025.pdf"
+          "CTF_Tracking_Progress_NDC_NIGER_Final_Version.xlsx!Table 4!D9"
         ]
       },
       "adaptation": {
@@ -103,12 +107,12 @@
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "9 attachment(s) are listed for this Party's BTR1. 4 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
+    "$note": "9 attachment(s) are listed for this Party's BTR1. 4 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -123,7 +127,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -298,7 +302,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 35.21479909989811,
+        "value_mtco2e": 34.991843784255224,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -310,7 +314,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 35.21953680781047,
+        "value_mtco2e": 35.00696197162169,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -322,7 +326,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 36.19725686267308,
+        "value_mtco2e": 35.98495050301505,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -334,7 +338,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 35.91616899570839,
+        "value_mtco2e": 35.77525220895717,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -346,7 +350,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 40.471657371481314,
+        "value_mtco2e": 40.128708489027666,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -358,7 +362,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 40.96767428970863,
+        "value_mtco2e": 40.72189987811232,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -370,7 +374,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 42.73295097625355,
+        "value_mtco2e": 42.25858897736255,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -382,7 +386,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 46.150458521202914,
+        "value_mtco2e": 45.62308683162027,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -394,7 +398,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 50.69801462762767,
+        "value_mtco2e": 50.19446101770755,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -406,7 +410,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 48.653784641015626,
+        "value_mtco2e": 48.34505707479189,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -418,7 +422,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 50.98983765028745,
+        "value_mtco2e": 49.73325331150255,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -440,6 +444,10 @@
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
     "finance_flows",
@@ -458,24 +466,32 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
     "party": "Niger",
-    "latest_version": "First NDC (Updated submission)",
-    "submission_date": "2021-12-13",
-    "document_url": "https://unfccc.int/sites/default/files/NDC/2022-06/CDN_Niger_R%C3%A9vis%C3%A9e_2021.pdf",
+    "latest_version": "NDC 3.0",
+    "submission_date": "2026-09-23",
+    "document_url": "https://unfccc.int/sites/default/files/2026-09/CDN%20_3.0_Niger.pdf",
     "archived_submissions": 1,
-    "matches_parsed_document": null,
+    "matches_parsed_document": false,
+    "latest_retrieval": {
+      "state": "unknown",
+      "route": null,
+      "retrieval_url": null,
+      "capture_timestamp": null,
+      "checked_at": "2026-10-10T21:25:32.772Z",
+      "$reason": "no copy of this filing (filed 2026-09-23) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+    },
     "state": "observed",
-    "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
+    "$note": "The document this record was built from is dated 2016-09-21. The registry's latest active submission is NDC 3.0, dated 2026-09-23, and has not been read; no figure above comes from it. Why: no copy of this filing (filed 2026-09-23) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day.",
     "source": {
       "id": "DS-08",
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
-      "document_url": "https://unfccc.int/sites/default/files/NDC/2022-06/CDN_Niger_R%C3%A9vis%C3%A9e_2021.pdf",
-      "retrieved_at": "2026-09-13"
+      "document_url": "https://unfccc.int/sites/default/files/2026-09/CDN%20_3.0_Niger.pdf",
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -495,7 +511,7 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
@@ -520,31 +536,1147 @@
       },
       {
         "page": 11,
-        "sentence": "According to figure 3 below: • For 2030, the INDC with unconditional financing permits a GHG emissions reduction of 3.5% compared to BAU, while the INDC with conditional financing permits an emissions reduction of 34.6 % compared to BaU."
+        "sentence": "According to figure 3 below: • For 2030, the INDC with unconditional financing permits a GHG emissions reduction of 3.5% compared to BAU, while the INDC with conditional financing permits an emissions reduction of 34.6 % compared to BaU. • For 2020, the INDC under unconditional financing permits a 2.5% reduction of GHG emissions compared to BaU (2030), while the INDC with conditional financing permits an emissions reduction of 25% compared to BaU."
       },
       {
         "page": 11,
         "sentence": "• For 2020, the INDC under unconditional financing permits a 2.5% reduction of GHG emissions compared to BaU (2030), while the INDC with conditional financing permits an emissions reduction of 25% compared to BaU."
       }
     ],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "openclimatedata",
+    "capture_timestamp": null,
+    "document_sha256": "94771819a8b01135693b67518ea8814da7ce7e9eb69c26e338010b77d9b996f9",
+    "mirror_check": {
+      "result": "verified",
+      "checked_at": "2026-10-11T14:22:38.735Z",
+      "capture_timestamp": "20220120182025"
+    },
     "state": "unknown",
-    "$reason": "the document states 5 different percentages on the same basis (2.5%, 3.5%, 25%, 34.6%, 34.7%) and does not label which is the pledge.",
+    "$reason": "the document states 5 different percentages on the same basis (2.5%, 3.5%, 25%, 34.6%, 34.7%) and labels more than one of them unconditional; choosing between them would be a guess.",
     "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
       "id": "DS-06-NDC",
       "name": "Niger First NDC",
       "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Niger%20First/Niger-INDC-final_Eng.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Niger%20First/Niger-INDC-final_Eng.pdf",
+      "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/NER_Niger_First_NDC_Translation_English.pdf",
+      "submission_date": "2016-09-21",
+      "pages": 21,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "low",
+      "evidence": [
+        {
+          "page": 11,
+          "sentence": "The emissions reduction of the two priority sectors, AFOLU, and energy is estimated at 33,400 GgCO2e, 34,7% compared to BaU in 2030."
+        },
+        {
+          "page": 11,
+          "sentence": "According to figure 3 below: • For 2030, the INDC with unconditional financing permits a GHG emissions reduction of 3.5% compared to BAU, while the INDC with conditional financing permits an emissions reduction of 34.6 % compared to BaU. • For 2020, the INDC under unconditional financing permits a 2.5% reduction of GHG emissions compared to BaU (2030), while the INDC with conditional financing permits an emissions reduction of 25% compared to BaU."
+        },
+        {
+          "page": 11,
+          "sentence": "• For 2020, the INDC under unconditional financing permits a 2.5% reduction of GHG emissions compared to BaU (2030), while the INDC with conditional financing permits an emissions reduction of 25% compared to BaU."
+        }
+      ],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "openclimatedata",
+      "capture_timestamp": null,
+      "document_sha256": "94771819a8b01135693b67518ea8814da7ce7e9eb69c26e338010b77d9b996f9",
+      "headline": false,
+      "mirror_check": {
+        "result": "verified",
+        "checked_at": "2026-10-11T14:22:38.735Z",
+        "capture_timestamp": "20220120182025"
+      },
+      "state": "unknown",
+      "$reason": "the document states 5 different percentages on the same basis (2.5%, 3.5%, 25%, 34.6%, 34.7%) and labels more than one of them unconditional; choosing between them would be a guess.",
+      "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Niger First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Niger%20First/Niger-INDC-final_Eng.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Niger",
+      "notes": [],
+      "signature": "1992-06-11",
+      "consent": "1995-07-25",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 3,
+          "sentence": "Niger 11 Jun 1992 25 Jul 1995"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Niger",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2016-09-21",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 3,
+          "sentence": "Niger 22 Apr 2016 21 Sep 2016"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "CTF_Tracking_Progress_NDC_NIGER_Final_Version.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/CTF_Tracking_Progress_NDC_NIGER%20Final%20Version.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s100796--a74cf3cc05e8c38a6a5c2d63de3fa66c.xlsx",
+    "file_sha256": "96fea42baf4b06ad4953e9c33edb3c4f6a19879053bedfb552e0877bd9e21fa3",
+    "tables": [
+      {
+        "sheet": "Table 4",
+        "title": {
+          "cell": "Table 4!A1",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreementa"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table 4!A9",
+              "text": "{Indicator} target: Total CO2 eq emissions from the energy sector évitées (Conditionnel &inconditionnel)"
+            },
+            "unit": {
+              "cell": "Table 4!B9",
+              "text": "KtCO2eq"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C9",
+                "value": 0,
+                "literal": "0"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D9",
+                "value": 239.96,
+                "literal": "239.96",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E9",
+                "value": 479.92,
+                "literal": "479.92",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F9",
+                "value": 719.89,
+                "literal": "719.89",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N9",
+              "value": 6565.5599999999995,
+              "literal": "6565.5599999999995"
+            },
+            "target_period": {
+              "cell": "Table 4!O9",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P9",
+              "text": "0.14619468864803614"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G9",
+                "text": "959.85",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A10",
+              "text": "{Indicator} target: Total CO2 eq emissions from the AFOLU sector évitées (Conditionnel &inconditionnel)"
+            },
+            "unit": {
+              "cell": "Table 4!B10",
+              "text": "ktCO2eq"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C10",
+                "value": 0,
+                "literal": "0"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D10",
+                "value": 31016.7275,
+                "literal": "31016.727500000001",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E10",
+                "value": 62033.455,
+                "literal": "62033.455000000002",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F10",
+                "value": 93050.1825,
+                "literal": "93050.182499999995",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N10",
+              "value": 204198.078,
+              "literal": "204198.07800000001"
+            },
+            "target_period": {
+              "cell": "Table 4!O10",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P10",
+              "text": "0.60758118399135963"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G10",
+                "text": "124066.91",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A11",
+              "text": "{Indicator} Superficie plantée en espèces à usages multiples"
+            },
+            "unit": {
+              "cell": "Table 4!B11",
+              "text": "Ha"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C11",
+                "value": 21037,
+                "literal": "21037"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D11",
+                "value": 23359,
+                "literal": "23359",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E11",
+                "value": 27639,
+                "literal": "27639",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F11",
+                "value": 21505,
+                "literal": "21505",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N11",
+              "value": 750000,
+              "literal": "750000"
+            },
+            "target_period": {
+              "cell": "Table 4!O11",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P11",
+              "text": "0.15231496886438181"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G11",
+                "text": "24462",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A12",
+              "text": "{Indicator} Superficie de dunes fixées "
+            },
+            "unit": {
+              "cell": "Table 4!B12",
+              "text": "Ha"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C12",
+                "value": 6370,
+                "literal": "6370"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D12",
+                "value": 4610,
+                "literal": "4610",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E12",
+                "value": 6313,
+                "literal": "6313",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F12",
+                "value": 9263,
+                "literal": "9263",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N12",
+              "value": 10053,
+              "literal": "10053"
+            },
+            "target_period": {
+              "cell": "Table 4!O12",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P12",
+              "text": "-0.10639717425431711"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G12",
+                "text": "2583",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A13",
+              "text": "{Indicator} Superficie des terres couvertes par la RNA"
+            },
+            "unit": {
+              "cell": "Table 4!B13",
+              "text": "Ha"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C13",
+                "value": 21938,
+                "literal": "21938"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D13",
+                "value": 108823,
+                "literal": "108823",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E13",
+                "value": 240147,
+                "literal": "240147",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F13",
+                "value": 65619,
+                "literal": "65619",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N13",
+              "value": 913932,
+              "literal": "913932"
+            },
+            "target_period": {
+              "cell": "Table 4!O13",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P13",
+              "text": "4.032910930804996"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G13",
+                "text": "27059",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A14",
+              "text": "{Indicator} Superficie de terres pastorales restaurées"
+            },
+            "unit": {
+              "cell": "Table 4!B14",
+              "text": "Ha"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C14",
+                "value": 29973,
+                "literal": "29973"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D14",
+                "value": 11466,
+                "literal": "11466",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E14",
+                "value": 17119,
+                "literal": "17119",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F14",
+                "value": 20084,
+                "literal": "20084",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N14",
+              "value": 112500,
+              "literal": "112500"
+            },
+            "target_period": {
+              "cell": "Table 4!O14",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P14",
+              "text": "-0.50745671103993595"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G14",
+                "text": "10383",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A15",
+              "text": "Nombre d'ampoules fluocompactes pour l'éclairage efficace"
+            },
+            "unit": {
+              "cell": "Table 4!B15",
+              "text": "Lampes"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C15",
+                "value": 390751,
+                "literal": "390751"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D15",
+                "value": 523654,
+                "literal": "523654",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E15",
+                "value": 542915,
+                "literal": "542915",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F15",
+                "value": 561760,
+                "literal": "561760",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N15",
+              "value": 1091000,
+              "literal": "1091000"
+            },
+            "target_period": {
+              "cell": "Table 4!O15",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P15",
+              "text": "0.41332843677943243"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G15",
+                "text": "580709",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A16",
+              "text": "Nombre de Foyers à bois efficaces "
+            },
+            "unit": {
+              "cell": "Table 4!B16",
+              "text": "Foyers"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C16",
+                "value": 149348,
+                "literal": "149348"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D16",
+                "value": 180846,
+                "literal": "180846",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E16",
+                "value": 183475,
+                "literal": "183475",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F16",
+                "value": 188935,
+                "literal": "188935",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N16",
+              "value": 1242000,
+              "literal": "1242000"
+            },
+            "target_period": {
+              "cell": "Table 4!O16",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P16",
+              "text": "0.25034148431850445"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G16",
+                "text": "193688",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A17",
+              "text": "Nombre de Foyers au GPL "
+            },
+            "unit": {
+              "cell": "Table 4!B17",
+              "text": "Foyers"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C17",
+                "value": 143120,
+                "literal": "143120"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D17",
+                "value": 173310,
+                "literal": "173310",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E17",
+                "value": 175831,
+                "literal": "175831",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F17",
+                "value": 181064,
+                "literal": "181064",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N17",
+              "value": 1020000,
+              "literal": "1020000"
+            },
+            "target_period": {
+              "cell": "Table 4!O17",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P17",
+              "text": "0.25039128004471772"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G17",
+                "text": "185619",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A18",
+              "text": "Réfrigérateurs efficaces "
+            },
+            "unit": {
+              "cell": "Table 4!B18",
+              "text": "Réfrigérateurs"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C18",
+                "value": 8625,
+                "literal": "8625"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D18",
+                "value": 11731,
+                "literal": "11731",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E18",
+                "value": 12164,
+                "literal": "12164",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F18",
+                "value": 12611,
+                "literal": "12611",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N18",
+              "value": 396000,
+              "literal": "396000"
+            },
+            "target_period": {
+              "cell": "Table 4!O18",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P18",
+              "text": "0.43666666666666665"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G18",
+                "text": "13059",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A19",
+              "text": "Nombre de Foyers à charbon de bois efficaces "
+            },
+            "unit": {
+              "cell": "Table 4!B19",
+              "text": "Foyers"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C19",
+                "value": 133791.1,
+                "literal": "133791.1"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D19",
+                "value": 162008,
+                "literal": "162008",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E19",
+                "value": 164363,
+                "literal": "164363",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F19",
+                "value": 169255,
+                "literal": "169255",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N19",
+              "value": 660000,
+              "literal": "660000"
+            },
+            "target_period": {
+              "cell": "Table 4!O19",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P19",
+              "text": "0.25034101670439957"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G19",
+                "text": "173512",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A20",
+              "text": "Puissance installé grand réseau (PV solaires, grand réseau) "
+            },
+            "unit": {
+              "cell": "Table 4!B20",
+              "text": "MWc"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C20",
+                "value": 0,
+                "literal": "0"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D20",
+                "value": 7,
+                "literal": "7",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E20",
+                "value": 7,
+                "literal": "7",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F20",
+                "value": 37,
+                "literal": "37",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N20",
+              "value": 402,
+              "literal": "402"
+            },
+            "target_period": {
+              "cell": "Table 4!O20",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P20",
+              "text": "9.2039800995024873E-2"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G20",
+                "text": "37",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A21",
+              "text": "Puissance installé en hybridation (Mini-réseau solaire/diesel) "
+            },
+            "unit": {
+              "cell": "Table 4!B21",
+              "text": "MWc"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C21",
+                "value": 0,
+                "literal": "0"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D21",
+                "value": 0.06,
+                "literal": "0.06",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E21",
+                "value": 0.42,
+                "literal": "0.42",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F21",
+                "value": 0,
+                "literal": "0",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N21",
+              "value": 24,
+              "literal": "24"
+            },
+            "target_period": {
+              "cell": "Table 4!O21",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P21",
+              "text": "0.25441666666666668"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G21",
+                "text": "6.1059999999999999",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A22",
+              "text": "Puissance installé (PV solaires, petit réseau isolé, 100% solaire) "
+            },
+            "unit": {
+              "cell": "Table 4!B22",
+              "text": "MWc"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C22",
+                "value": 0,
+                "literal": "0"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D22",
+                "value": 10.61,
+                "literal": "10.61",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E22",
+                "value": 12.5,
+                "literal": "12.5",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F22",
+                "value": 0,
+                "literal": "0",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N22",
+              "value": 100,
+              "literal": "100"
+            },
+            "target_period": {
+              "cell": "Table 4!O22",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P22",
+              "text": "1.1999999999999999E-3"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G22",
+                "text": "0.12",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A23",
+              "text": "Éclairage de bureau\nefficace avec des ampoules fluocompactes"
+            },
+            "unit": {
+              "cell": "Table 4!B23",
+              "text": "Lampes"
+            },
+            "reference": {
+              "year_label": null,
+              "value": {
+                "cell": "Table 4!C23",
+                "value": 275024,
+                "literal": "275024"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table 4!D23",
+                "value": 368565,
+                "literal": "368565",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table 4!E23",
+                "value": 382121,
+                "literal": "382121",
+                "year": 2022,
+                "year_label": "2022"
+              },
+              {
+                "cell": "Table 4!F23",
+                "value": 395385,
+                "literal": "395385",
+                "year": 2023,
+                "year_label": "2023"
+              }
+            ],
+            "target_level": {
+              "cell": "Table 4!N23",
+              "value": 333000,
+              "literal": "333000"
+            },
+            "target_period": {
+              "cell": "Table 4!O23",
+              "text": "2030"
+            },
+            "progress": {
+              "cell": "Table 4!P23",
+              "text": "0.41332483710512535"
+            },
+            "unread": [
+              {
+                "cell": "Table 4!G23",
+                "text": "408722",
+                "why": "after 2023, the year before the UNFCCC posted this file, which the mirror's download logs place between 2024-12-18 and 2025-01-06"
+              }
+            ]
+          },
+          {
+            "label": {
+              "cell": "Table 4!A24",
+              "text": "{Parties can add rows for each additional indicator and\nsupporting information for each indicator, e.g. baseline values,\nbaseline for the portion of NDC, target values, mitigation effects\nof policies and measures, etc.}"
+            },
+            "unit": null,
+            "reference": {
+              "year_label": null,
+              "value": null,
+              "as_written": null
+            },
+            "series": [],
+            "target_level": null,
+            "target_period": null,
+            "progress": null,
+            "unread": []
+          }
+        ]
+      }
+    ],
+    "target_text": {
+      "cell": "Appendix!B4",
+      "text": "La Contribution Déterminée au niveau National (CDN) du Niger vise à contribuer à l'effort mondial de lutte contre les changements climatiques tout en répondant aux priorités nationales de développement durable. Ses objectifs incluent une réduction des émissions de gaz à effet de serre de manière inconditionnelle de 22,75 % d'ici 2030 pour le secteur Agriculture, Foresterie et Autres Terres (AFAT) et de 11,20 % d'ici 2025 pour le secteur de l'Énergie, par rapport à un scénario de référence. Avec un appui international, ces cibles deviennent conditionnelles, atteignant une réduction de 48 % pour le secteur de l'Énergie d'ici 2030. La CDN intègre à la fois des objectifs d'atténuation, visant à réduire les émissions, et d'adaptation, visant à renforcer la résilience des écosystèmes et des communautés face aux impacts climatiques, avec une attention particulière à la sécurité alimentaire, à la gestion durable des ressources naturelles et à la promotion des énergies renouvelables."
+    },
+    "reference_text": [
+      {
+        "cell": "Table 1!B7",
+        "text": "Année de référence: 2014"
+      }
+    ],
+    "superseded": [],
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/CTF_Tracking_Progress_NDC_NIGER%20Final%20Version.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "unknown",
+    "$reason": "None of the 9 file(s) in the mirror's BTR1 folder for Niger is a CRT workbook by its name, so no inventory total was read. This is unread, not missing.",
+    "file": null,
+    "year": null,
+    "year_cell": null,
+    "party_cell": null,
+    "unit": null,
+    "totals": null,
+    "document_url": null,
+    "retrieval_url": null,
+    "file_sha256": null,
+    "in_by_source": false,
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_flows": {
     "channel": "Green Climate Fund",
-    "approved_usd": 156162857,
-    "co_financing_usd": 231862526,
-    "disbursed_usd": 19221138,
+    "approved_usd": 154339686,
+    "co_financing_usd": 230910450,
+    "disbursed_usd": 18796968,
     "projects": 12,
     "regional_projects": 9,
-    "regional_disbursed_usd": 135781568,
+    "regional_disbursed_usd": 138944842,
     "instruments": [
       "Equity",
       "Grants",
@@ -571,7 +1703,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 11795607.48,
+        "amount_usd": 11535302.99,
         "project_ref": "FP105",
         "project_name": "BOAD Climate Finance Facility to Scale Up Solar Energy Investments in Francophone West Africa LDCs",
         "state": "observed"
@@ -582,7 +1714,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 9861704.1,
+        "amount_usd": 9644076.83,
         "project_ref": "SAP012",
         "project_name": "Inclusive Green Financing for Climate Resilient and Low Emission Smallholder Agriculture",
         "state": "observed"
@@ -604,7 +1736,7 @@
         "channel": "GCF",
         "instrument": "Grants + Senior Loans",
         "provider": "Green Climate Fund",
-        "amount_usd": 34967017.82,
+        "amount_usd": 34195368.57,
         "project_ref": "FP176",
         "project_name": "Hydro-agricultural development with smart agriculture practices resilient to climate change in Niger",
         "state": "observed"
@@ -626,7 +1758,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "IFAD",
-        "amount_usd": 3287234.696956,
+        "amount_usd": 3214692.274527,
         "project_ref": "SAP012",
         "project_name": "Inclusive Green Financing for Climate Resilient and Low Emission Smallholder Agriculture",
         "state": "observed"
@@ -637,7 +1769,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 9318657.9,
+        "amount_usd": 9113014.53,
         "project_ref": "FP183",
         "project_name": "Inclusive Green Financing Initiative (IGREENFIN I): Greening Agricultural Banks & the Financial Sector to Foster Climate Resilient, Low Emission Smallholder Agriculture in the Great Green Wall (GGW) countries - Phase I",
         "state": "observed"
@@ -648,7 +1780,7 @@
         "channel": "GCF",
         "instrument": "Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 1946251.1,
+        "amount_usd": 1903301.39,
         "project_ref": "FP198",
         "project_name": "CATALI.5°T Initiative: Concerted Action To Accelerate Local I.5° Technologies – Latin America and West Africa",
         "state": "observed"
@@ -681,7 +1813,7 @@
         "channel": "GCF",
         "instrument": "Grants + Senior Loans",
         "provider": "BOAD",
-        "amount_usd": 15933903.378504,
+        "amount_usd": 15582275.321375,
         "project_ref": "FP176",
         "project_name": "Hydro-agricultural development with smart agriculture practices resilient to climate change in Niger",
         "state": "observed"
@@ -692,7 +1824,7 @@
         "channel": "GCF",
         "instrument": "Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 14727150.78,
+        "amount_usd": 14402153.24,
         "project_ref": "FP247",
         "project_name": "Local Climate Adaptive Living Facility Plus (LoCAL+) – West Africa (Burkina Faso, Ivory Coast, Mali and Niger)",
         "state": "observed"
@@ -710,12 +1842,12 @@
       }
     ],
     "state": "observed",
-    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 9 multi-country project(s) disbursing 135,781,568 USD in total are counted separately and never divided.",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 9 multi-country project(s) disbursing 138,944,842 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -1002,47 +2134,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 35.21479909989811
+            "value_mtco2e": 34.991843784255224
           },
           {
             "year": 2016,
-            "value_mtco2e": 35.21953680781047
+            "value_mtco2e": 35.00696197162169
           },
           {
             "year": 2017,
-            "value_mtco2e": 36.19725686267308
+            "value_mtco2e": 35.98495050301505
           },
           {
             "year": 2018,
-            "value_mtco2e": 35.91616899570839
+            "value_mtco2e": 35.77525220895717
           },
           {
             "year": 2019,
-            "value_mtco2e": 40.471657371481314
+            "value_mtco2e": 40.128708489027666
           },
           {
             "year": 2020,
-            "value_mtco2e": 40.96767428970863
+            "value_mtco2e": 40.72189987811232
           },
           {
             "year": 2021,
-            "value_mtco2e": 42.73295097625355
+            "value_mtco2e": 42.25858897736255
           },
           {
             "year": 2022,
-            "value_mtco2e": 46.150458521202914
+            "value_mtco2e": 45.62308683162027
           },
           {
             "year": 2023,
-            "value_mtco2e": 50.69801462762767
+            "value_mtco2e": 50.19446101770755
           },
           {
             "year": 2024,
-            "value_mtco2e": 48.653784641015626
+            "value_mtco2e": 48.34505707479189
           },
           {
             "year": 2025,
-            "value_mtco2e": 50.98983765028745
+            "value_mtco2e": 49.73325331150255
           }
         ]
       },
@@ -1290,11 +2422,11 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is First NDC (Updated submission), filed 2021-12-13. 49 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (3). For 2024 the sources disagree: DS-35 52.1 MtCO₂e, DS-02 48.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 35.4 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 2.5% (unconditional) to 25%(conditional) reduction by 2020 and of 3.5% (unconditional) to 34.6%(conditional) reduction by 2030 in GHG emissions compared to the BAU scenario It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.25°C under SSP1-2.6 to +5.18°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "A later submission, NDC 3.0, was filed on 2026-09-23; it has not been read, so no figure here comes from it. 49 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (3). For 2024 the sources disagree: DS-35 52.1 MtCO₂e, DS-02 48.3 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 35.4 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 2.5% (unconditional) to 25%(conditional) reduction by 2020 and of 3.5% (unconditional) to 34.6%(conditional) reduction by 2030 in GHG emissions compared to the BAU scenario It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.25°C under SSP1-2.6 to +5.18°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc_registry.submission_date",
-        "text": "The registry's current submission for this Party is First NDC (Updated submission), filed 2021-12-13."
+        "text": "A later submission, NDC 3.0, was filed on 2026-09-23; it has not been read, so no figure here comes from it."
       },
       {
         "field": "series.observed",
@@ -1302,7 +2434,7 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-35 52.1 MtCO₂e, DS-02 48.7 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-35 52.1 MtCO₂e, DS-02 48.3 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
@@ -1538,8 +2670,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1552,8 +2684,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1566,8 +2698,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1580,8 +2712,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1594,8 +2726,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1608,8 +2740,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1622,8 +2754,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1636,8 +2768,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1650,8 +2782,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1664,10 +2796,24 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-11T14:22:35.888Z",
+      "retrieved_at": "2026-10-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": null,
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -1678,8 +2824,8 @@
       ],
       "connection": "connected",
       "records": 14,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:43.203Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -1692,94 +2838,140 @@
       ],
       "connection": "connected",
       "records": 9,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 1,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "25720764ab5ac4b668361722eab5bfc66473c1d77ab37b6d1601b5c9874ca494",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "454da8b498e8075579af1d9d599a650091c8ba2c055578c8ccc69f7c816239a5",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "94771819a8b01135693b67518ea8814da7ce7e9eb69c26e338010b77d9b996f9",
-        "retrieved_at": "2026-09-13T03:19:49.647Z",
+        "retrieved_at": "2026-10-10T16:22:13.166Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/NER_Niger_First_NDC_Translation_English.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "96fea42baf4b06ad4953e9c33edb3c4f6a19879053bedfb552e0877bd9e21fa3",
+        "retrieved_at": "2026-10-10T20:44:41.271Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s100796--a74cf3cc05e8c38a6a5c2d63de3fa66c.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
@@ -1841,6 +3033,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -1849,6 +3046,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }

@@ -20,10 +20,31 @@
 //   · Adaptation and Article 6 reporting are chapters inside the BTR, not
 //     separate attachments. No filename evidences them, so all 218 records
 //     leave both unknown. That is the honest answer, not a gap to paper over.
-//   · Files the mirror marks draft or "awaiting submission" are not evidence
-//     of a submission. Albania's CRT tables all carry that marker.
 //   · Submission dates are not in the listing, so btr.submission_date stays
 //     null even where `submitted` is true.
+//   · An entity that is not a Party in its own right does not file a BTR,
+//     whatever folder the mirror gives it (see NON_PARTIES).
+//
+// STATUS WORDS IN FILE NAMES ARE NOT SUBMISSION STATUS. The reporting tools
+// stamp their export state into the name ("_started", "_awaiting approval",
+// "_approved", "_awaiting submission"), and Parties also name files "DRAFT_…".
+// None of these says whether the UNFCCC published the file. The mirror's own
+// download logs do (00_new_downloads_BTR1-<date>.csv, Kind/Country/Title/URL,
+// read by ds-btr-tables.ts). Measured 2026-10-10 over 44 logs (880 rows) and
+// the 5,490 files in BTR1 folders: files carrying each word sit at unfccc.int
+// URLs as the Party's own submission, by their own row or as the listed zip
+// they were unpacked from: "awaiting submission" 592 of 692, "started" 1,505
+// of 2,504, "awaiting approval" 110 of 143, "approved" 490 of 490, "draft" 4
+// of 6 (no status word: 1,088 of 1,655; the rest are unpacked from zips whose
+// names the logs spell differently, not files of another status). Albania's
+// whole CRT is "ALB-CRT-2024-V2.0-20251103-231619_awaiting submission.zip",
+// logged 2026-01-08 as "Albania. 2024 Common Reporting Table (CRT).", and its
+// NID "DRAFT_NID_2024_Albania_20241231.pdf" was logged 2025-01-06 as
+// "Albania. 2024 National Inventory Document (NID)". So the rule is one rule:
+// a status word neither adds nor removes evidence. (It used to exclude
+// "draft" and "awaiting submission" only, while "started" and "awaiting
+// approval" counted: 80 sockets rested on the second pair, 22 were blank
+// because of the first: 21 "awaiting submission" and Zimbabwe's "Draft_" NIR.)
 import { snapshot, etlLog, type EtlLog, type Snapshot, asModule, type EtlModule } from './_base.ts';
 import { BTR_COMPONENTS } from '../contract/schema.ts';
 
@@ -37,6 +58,8 @@ export type Component = (typeof BTR_COMPONENTS)[number];
 
 export type BtrParty = {
   party_folder: string;
+  /** Every mirror folder merged into this entry (the EU has two). */
+  folders: string[];
   files: number;
   /** Attachment names, per component, that evidence it. */
   evidence: Partial<Record<Component, string[]>>;
@@ -58,9 +81,6 @@ const PATTERNS: Partial<Record<Component, RegExp>> = {
   finance: /financ|support[_\s-]*(needed|received|provided)/i,
   redd_plus: /redd/i,
 };
-
-/** A file the mirror itself marks as not (yet) submitted is not evidence. */
-const NOT_SUBMITTED = /draft|awaiting[_\s%20-]*submission/i;
 
 type TreeNode = { path: string; type: string };
 
@@ -87,7 +107,7 @@ const ALIASES: Record<string, string> = {
   'lao people s democratic republic': 'LAO', 'bolivia': 'BOL', 'venezuela': 'VEN',
   'united kingdom of great britain and northern ireland': 'GBR', 'united states of america': 'USA',
   'united republic of tanzania': 'TZA', 'democratic republic of the congo': 'COD',
-  'cote d ivoire': 'CIV', 'turkiye': 'TUR', 'czechia': 'CZE', 'holy see': 'VAT',
+  'cote d ivoire': 'CIV', 'turkiye': 'TUR', 'czechia': 'CZE', 'czech republic': 'CZE', 'holy see': 'VAT',
   'brunei darussalam': 'BRN', 'viet nam': 'VNM', 'syrian arab republic': 'SYR',
   'iran': 'IRN', 'micronesia': 'FSM', 'netherlands': 'NLD', 'hong kong': 'HKG',
   'macao': 'MAC', 'european union': 'EUU', 'eswatini': 'SWZ', 'cabo verde': 'CPV',
@@ -97,10 +117,34 @@ const ALIASES: Record<string, string> = {
 /** Folders that are not Parties at all. */
 const NOT_A_PARTY = /^(country[_\s]authors|unfccc)/i;
 
+/**
+ * Records that are not Parties to the Convention (UN Treaty Collection,
+ * XXVII-7, status read 2026-10-10; findings/gap-audit.md §1.2). A BTR is a
+ * Party's report, so a folder that resolves here is never `submitted`. Hong
+ * Kong and Macao are the two the mirror has folders for: China's ratification
+ * applies the Agreement to both, and the mirror's 2025-01-06 download log lists
+ * "HKSAR.zip" and "MSAR.zip" as "China. 2024 Common Reporting Table (CRT).".
+ */
+export const NON_PARTIES = new Set([
+  'ABW', 'AIA', 'ATA', 'BES', 'BMU', 'CUW', 'CXR', 'FRO', 'GRL', 'HKG', 'MAC',
+  'MSR', 'NCL', 'PYF', 'SHN', 'SPM', 'SXM', 'TCA', 'TWN', 'VGB', 'WLF',
+]);
+
 export async function collect(
   nameToIso3: Map<string, string>,
   refresh = false,
-): Promise<{ data: Map<string, BtrParty>; unmatched: string[]; log: EtlLog; snap: Snapshot }> {
+): Promise<{
+  data: Map<string, BtrParty>;
+  // The two below are always set here; optional only so that hand-built
+  // inputs elsewhere (compose.ts emptyRecord) still type-check (R7, additive).
+  /** Folders of entities in NON_PARTIES, kept out of `data` so no record reads "submitted". */
+  non_parties?: Map<string, BtrParty>;
+  /** The folder-name resolver this listing used, for a caller matching other Party names (a CRT's Party cell). */
+  iso3Of?: (name: string) => string | undefined;
+  unmatched: string[];
+  log: EtlLog;
+  snap: Snapshot;
+}> {
   const started = Date.now();
   const snap = await snapshot(URL, ID, 'submission-tree.json', refresh);
   const tree = JSON.parse(snap.bytes.toString('utf8')) as { tree?: TreeNode[]; truncated?: boolean };
@@ -115,41 +159,42 @@ export async function collect(
     const [, folder, rest] = m;
     if (NOT_A_PARTY.test(folder)) continue;
     const file = decode(rest.split('/').pop() ?? rest);
-    const e = byFolder.get(folder) ?? { party_folder: folder, files: 0, evidence: {} };
+    const e = byFolder.get(folder) ?? { party_folder: folder, folders: [folder], files: 0, evidence: {} };
     e.files++;
-    if (!NOT_SUBMITTED.test(file)) {
-      for (const [component, re] of Object.entries(PATTERNS) as [Component, RegExp][]) {
-        if (!re.test(file)) continue;
-        const list = (e.evidence[component] ??= []);
-        // Parties attach one CRT workbook per inventory year; three names are
-        // enough to show what the promotion rests on.
-        if (list.length < 3 && !list.includes(file)) list.push(file);
-      }
+    for (const [component, re] of Object.entries(PATTERNS) as [Component, RegExp][]) {
+      if (!re.test(file)) continue;
+      const list = (e.evidence[component] ??= []);
+      // Parties attach one CRT workbook per inventory year; three names are
+      // enough to show what the promotion rests on.
+      if (list.length < 3 && !list.includes(file)) list.push(file);
     }
     byFolder.set(folder, e);
   }
 
+  const iso3Of = (name: string) => { const k = nameKey(name); return ALIASES[k] ?? nameToIso3.get(k); };
   const data = new Map<string, BtrParty>();
+  const non_parties = new Map<string, BtrParty>();
   const unmatched: string[] = [];
   for (const [folder, e] of byFolder) {
-    const k = nameKey(folder);
-    const iso3 = ALIASES[k] ?? nameToIso3.get(k);
+    const iso3 = iso3Of(folder);
     if (!iso3) { unmatched.push(folder); continue; }
+    const into = NON_PARTIES.has(iso3) ? non_parties : data;
     // Two folders can map to one Party (the mirror carries both
     // "European_Union" and "European_Union_(EU)"). Merge rather than drop.
-    const held = data.get(iso3);
-    if (!held) { data.set(iso3, e); continue; }
+    const held = into.get(iso3);
+    if (!held) { into.set(iso3, e); continue; }
     held.files += e.files;
+    held.folders.push(folder);
     for (const [c, names] of Object.entries(e.evidence) as [Component, string[]][]) {
       const list = (held.evidence[c] ??= []);
       for (const n of names) if (list.length < 3 && !list.includes(n)) list.push(n);
     }
   }
 
-  for (const e of data.values()) {
+  for (const e of [...data.values(), ...non_parties.values()]) {
     for (const names of Object.values(e.evidence)) names.sort();
   }
-  return { data, unmatched, log: etlLog(ID, snap, data.size, started), snap };
+  return { data, non_parties, unmatched, iso3Of, log: etlLog(ID, snap, data.size, started), snap };
 }
 
 export const etlModule: EtlModule = asModule(ID, () => collect(new Map()));

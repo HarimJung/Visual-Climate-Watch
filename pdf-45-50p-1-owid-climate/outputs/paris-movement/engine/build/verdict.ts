@@ -10,18 +10,68 @@ export type Clause = { field: string; text: string };
 
 export const NO_CONDITIONALITY_PARSED =
   'The conditional / unconditional split has not been extracted from this document.';
+/** The conditionality statement of a record that holds no NDC document at all. */
+export const NO_NDC_HELD = 'No NDC document is held for this record.';
 
-const pct = (n: number) => `${Number(n.toFixed(1))}%`;
+/** The condition names international support itself, in the languages the filings use. */
+const SUPPORT = /international\s+(?:support|assistance|financ\w*|cooperation|community|means)|soutien\s+international|appui\s+international|assistance\s+internationale|communaut[ée]\s+internationale|apoyo\s+internacional|cooperaci[óo]n\s+internacional|financiamiento\s+internacional/i;
+
+const pct = (n: number) => `${Number(n.toFixed(2))}%`;
 const mt = (n: number) => `${Number(n.toFixed(1))} MtCO₂e`;
+/** "an 84%", "an 11.5%", "an 18%", "a 41.7%": the article as the figure is spoken. */
+const an = (n: number) => (/^(8|11(\.|$)|18(\.|$))/.test(String(Number(n.toFixed(2)))) ? 'an' : 'a');
+const poss = (name: string) => (name.endsWith('s') ? `${name}'` : `${name}'s`);
 
 export function verdict(d: CountryData, basis?: string): { clauses: Clause[]; text: string } {
   const c: Clause[] = [];
   const name = d.country.name_en;
   const n = d.ndc;
+  const ps = d.party_status;
 
-  // 1. the pledge
-  if (n.reduction_pct != null && n.target_year != null) {
-    c.push({ field: 'ndc.reduction_pct', text: `${name} pledges a ${pct(n.reduction_pct)} reduction by ${n.target_year} against ${basis ?? 'the stated reference'}.` });
+  // 0. who the record is about, in the depositary's terms (D6). A record the
+  // UN Treaty Collection does not list says so in its words; a signatory
+  // that has not ratified, and a Party that withdrew, say that with the date.
+  if (ps?.paris_status === 'signed-not-ratified' && ps.paris.signature) {
+    c.push({ field: 'party_status.paris_status', text: `${name} signed the Paris Agreement on ${ps.paris.signature} and has not ratified it (UN Treaty Collection, XXVII-7-d).` });
+  } else if (ps?.paris_status === 'withdrawn' && ps.paris.withdrawal) {
+    const u = ps.unfccc.withdrawal && !ps.unfccc.withdrawal.in_effect ? ` Its withdrawal from the UNFCCC takes effect on ${ps.unfccc.withdrawal.effective} (XXVII-7).` : '';
+    c.push({ field: 'party_status.paris_status', text: `${name} withdrew from the Paris Agreement, with effect from ${ps.paris.withdrawal.effective} (UN Treaty Collection, XXVII-7-d).${u}` });
+  } else if (ps?.paris_status === 'not-listed') {
+    const s = ps.paris.statements?.[0];
+    c.push({
+      field: 'party_status.paris_status',
+      text: s
+        ? `The UN Treaty Collection does not list ${name} as a Party to the Paris Agreement; under ${s.by.join(' and ') || s.where} it prints: "${s.sentence}"`
+        : ps.paris.$statement ?? `The UN Treaty Collection does not list ${name} as a Party to the Paris Agreement.`,
+    });
+  }
+
+  // 1. the pledge, as the document states it: one figure or a range, with the
+  // condition the document puts on it (D2) and its gas scope (D3). A record
+  // that is not a Party to the Agreement "states" what its filing says; it
+  // does not pledge under an Agreement it is not bound by.
+  const range = n.reduction_range_pct;
+  const statement = n.conditionality.statement !== NO_CONDITIONALITY_PARSED && n.conditionality.statement !== NO_NDC_HELD ? n.conditionality.statement : null;
+  const u = n.conditionality.unconditional_pct, k = n.conditionality.conditional_pct;
+  const onSupport = statement && SUPPORT.test(statement) ? ' on international support' : '';
+  if ((n.reduction_pct != null || range) && n.target_year != null) {
+    const who = !ps || ps.paris_status === 'party' || ps.paris_status == null
+      ? `${name} pledges`
+      : ps.paris_status === 'signed-not-ratified' && /\bINDC\b/.test(n.version)
+        ? `${poss(name)} ${n.version}, the INDC of a signatory, states`
+        : `${poss(name)} ${n.version} states`;
+    const figure = n.reduction_pct != null ? `${an(n.reduction_pct)} ${pct(n.reduction_pct)} reduction` : `a reduction of ${range![0]} to ${range![1]}%`;
+    // A pair is read as the unconditional headline and its conditional figure.
+    const cond = u != null && k != null
+      ? ` (unconditional), and ${pct(k)} conditional${onSupport}`
+      : n.headline_condition === 'conditional' ? `, conditional${onSupport}`
+        : n.headline_condition === 'unconditional' ? ' (unconditional)'
+          : n.headline_condition === 'not-read' ? ' (condition not read)' : '';
+    const scope = n.gas_scope === 'co2-only' ? ' The figure covers CO₂ only.' : '';
+    // A bloc's joint filing speaks for every Member: the figure is collective.
+    const joint = d.ndc_documents?.find((x) => x.headline)?.kind.includes('(joint)')
+      ? ' It is a collective target of the European Union and its Member States acting jointly, not this Party\'s national figure.' : '';
+    c.push({ field: n.reduction_pct != null ? 'ndc.reduction_pct' : 'ndc.reduction_range_pct', text: `${who} ${figure} by ${n.target_year} against ${basis ?? 'the stated reference'}${cond}.${scope}${joint}` });
   } else if (n.version && n.submission_date) {
     c.push({ field: 'ndc.version', text: `${name} submitted its ${n.version} on ${n.submission_date}; no numeric target has been extracted from it.` });
   }
@@ -32,18 +82,26 @@ export function verdict(d: CountryData, basis?: string): { clauses: Clause[]; te
   if (reg?.state === 'absent' && reg.$reason) {
     c.push({ field: 'ndc_registry.state', text: `The UNFCCC registry holds no active NDC for this Party: ${reg.$reason}` });
   } else if (reg?.state === 'observed' && reg.latest_version && reg.submission_date) {
+    const read = d.ndc_documents?.find((x) => x.document_url === reg.document_url);
+    const headline = d.ndc_documents?.find((x) => x.headline);
     c.push({
       field: 'ndc_registry.submission_date',
       text: reg.matches_parsed_document === false
-        ? `A later submission, ${reg.latest_version}, was filed on ${reg.submission_date}; it has not been read, so no figure here comes from it.`
-        : `The registry's current submission for this Party is ${reg.latest_version}, filed ${reg.submission_date}.`,
+        ? read
+          ? `A later submission, ${reg.latest_version}, was filed on ${reg.submission_date}; it was read and refused, so no figure here comes from it.`
+          : `A later submission, ${reg.latest_version}, was filed on ${reg.submission_date}; it has not been read, so no figure here comes from it.`
+        : read && headline && headline !== read && read.state === 'unknown' && !read.reduction_range_pct
+          ? `The registry's current submission for this Party is ${reg.latest_version}, filed ${reg.submission_date}. It was read and refused, so the figure above comes from the ${n.version}.`
+          : `The registry's current submission for this Party is ${reg.latest_version}, filed ${reg.submission_date}.`,
     });
   }
 
-  // 2. conditionality, only when the document itself says something
-  if (n.conditionality.conditional_pct != null) {
-    c.push({ field: 'ndc.conditionality.conditional_pct', text: `${pct(n.conditionality.conditional_pct)} of that target is conditional on international support.` });
-  } else if (n.conditionality.statement && n.conditionality.statement !== NO_CONDITIONALITY_PARSED) {
+  // 2. the condition, in the document's own words, when the headline depends
+  // on one. A document that conditions its targets but publishes no split
+  // (Cambodia's hand-read record) says that instead.
+  if (statement && (k != null || n.headline_condition === 'conditional')) {
+    c.push({ field: 'ndc.conditionality.statement', text: `The document's condition, in its own words: "${statement}"` });
+  } else if (statement && u == null && k == null && n.headline_condition == null && (n.reduction_pct != null || range)) {
     c.push({ field: 'ndc.conditionality.statement', text: 'The document conditions its targets on international support but publishes no numeric split, so none is shown.' });
   }
 
@@ -51,7 +109,7 @@ export function verdict(d: CountryData, basis?: string): { clauses: Clause[]; te
   const bySource = new Map<string, number>();
   for (const p of d.series.observed) bySource.set(p.source_id ?? '?', (bySource.get(p.source_id ?? '?') ?? 0) + 1);
   if (bySource.size) {
-    const parts = [...bySource].sort((a, b) => a[0].localeCompare(b[0])).map(([id, k]) => `${id} (${k})`).join(', ');
+    const parts = [...bySource].sort((a, b) => a[0].localeCompare(b[0])).map(([id, x]) => `${id} (${x})`).join(', ');
     c.push({ field: 'series.observed', text: `${d.series.observed.length} observed values are loaded from ${parts}.` });
   }
 
@@ -105,8 +163,8 @@ export function verdict(d: CountryData, basis?: string): { clauses: Clause[]; te
   }
 
   // 8. what the models say, kept separate from what was measured
-  const worst = d.projections?.scenarios.filter((s) => s.period === '2080-2099' && s.anomaly != null).sort((a, b) => b.anomaly! - a.anomaly!)[0];
-  const best = d.projections?.scenarios.filter((s) => s.period === '2080-2099' && s.anomaly != null).sort((a, b) => a.anomaly! - b.anomaly!)[0];
+  const worst = d.projections?.scenarios.filter((s) => s.period === '2080-2099' && s.anomaly != null).sort((x, y) => y.anomaly! - x.anomaly!)[0];
+  const best = d.projections?.scenarios.filter((s) => s.period === '2080-2099' && s.anomaly != null).sort((x, y) => x.anomaly! - y.anomaly!)[0];
   if (worst && best) {
     c.push({ field: 'projections.scenarios', text: `Projected warming for 2080-2099 against 1995-2014 ranges from +${best.anomaly}°C under ${best.scenario} to +${worst.anomaly}°C under ${worst.scenario}. These are model runs, not observations.` });
   }

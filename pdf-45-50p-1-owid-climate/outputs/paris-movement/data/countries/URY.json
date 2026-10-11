@@ -33,6 +33,11 @@
       "split_state": "unknown",
       "extraction_confidence": "low"
     },
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "$reason": "the document states 2 different percentages on the same basis (5% and 1.1%, in one sentence) and does not label which is the pledge.",
     "source": {
       "id": "DS-06-NDC",
       "name": "UNFCCC NDC registry",
@@ -69,21 +74,20 @@
       "crt": {
         "state": "observed",
         "$evidence": [
-          "URY-CRT-2024-V0.3-1990-20241231-095653_started.xlsx",
-          "URY-CRT-2024-V0.3-2020-20241231-095653_started.xlsx",
-          "URY-CRT-2024-V0.3-2021-20241231-095653_started.xlsx"
+          "URY-CRT-2024-V0.3-2022-20241231-095653_started.xlsx!Summary2!K72"
         ]
       },
       "ctf": {
         "state": "observed",
         "$evidence": [
-          "URY-CTF-FTC-2024-V0.1-20241230.xlsx",
-          "URY-CTF-NDC-2024-V0.1-20241230.xlsx"
+          "URY-CTF-NDC-2024-V0.1-20241230.xlsx!Table4.1!E9"
         ]
       },
       "ndc_track": {
-        "state": "unknown",
-        "$reason": "none of the 9 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
+        "state": "observed",
+        "$evidence": [
+          "URY-CTF-NDC-2024-V0.1-20241230.xlsx!Table4.1!E9"
+        ]
       },
       "adaptation": {
         "state": "unknown",
@@ -91,23 +95,23 @@
       },
       "finance": {
         "state": "unknown",
-        "$reason": "none of the 9 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
+        "$reason": "none of the 11 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "redd_plus": {
         "state": "unknown",
-        "$reason": "none of the 9 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
+        "$reason": "none of the 11 attachment name(s) listed for this Party's BTR1 names this component. The filing itself has not been read, so this is unread, not missing."
       },
       "article6": {
         "state": "unknown",
         "$reason": "Article 6 reporting is a chapter inside the BTR, not a separate attachment, so no attachment name can evidence it. The filing itself has not been read, and no filename match would be evidence if it had been."
       }
     },
-    "$note": "9 attachment(s) are listed for this Party's BTR1. 3 of 8 components are evidenced by an attachment name; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
+    "$note": "11 attachment(s) are listed for this Party's BTR1. 4 of 8 components are evidenced by an attachment name or a table read inside the filing; the rest are unread, not missing. Adaptation and Article 6 are chapters inside the report rather than separate attachments, so no filename can evidence them and both stay unknown for every Party. Submission dates are not in this listing.",
     "source": {
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "vulnerability": {
@@ -122,7 +126,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "series": {
@@ -345,7 +349,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 29.68521809250617,
+        "value_mtco2e": 28.807196277155498,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -357,7 +361,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 30.02084701778002,
+        "value_mtco2e": 29.052138694522053,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -375,7 +379,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 29.65824904161518,
+        "value_mtco2e": 28.65608118231124,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -393,7 +397,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 29.176431341312693,
+        "value_mtco2e": 28.223911577517416,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -405,7 +409,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 29.681587881679395,
+        "value_mtco2e": 28.777321218411537,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -423,7 +427,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 29.51218801168806,
+        "value_mtco2e": 28.468205539902034,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -435,7 +439,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 36.93751129374392,
+        "value_mtco2e": 36.042510953977555,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -447,7 +451,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 35.47992555535922,
+        "value_mtco2e": 34.42530412966369,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -459,7 +463,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 32.070951377173266,
+        "value_mtco2e": 32.013931821759805,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -471,7 +475,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 33.55576859841423,
+        "value_mtco2e": 33.75330630953314,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -483,7 +487,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 35.09426532459347,
+        "value_mtco2e": 33.59628265203047,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -505,6 +509,10 @@
     "ndc_registry",
     "ndc_assessment",
     "ndc_document",
+    "ndc_documents",
+    "party_status",
+    "ndc_progress",
+    "btr_inventory",
     "emissions_profile",
     "projections",
     "finance_flows",
@@ -523,7 +531,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_registry": {
@@ -532,7 +540,14 @@
     "submission_date": "2024-12-30",
     "document_url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
     "archived_submissions": 1,
-    "matches_parsed_document": null,
+    "matches_parsed_document": true,
+    "latest_retrieval": {
+      "state": "observed",
+      "route": "wayback",
+      "retrieval_url": "https://web.archive.org/web/20260809070233id_/https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+      "capture_timestamp": "20260809070233",
+      "checked_at": "2026-10-10T21:25:33.460Z"
+    },
     "state": "observed",
     "$note": "The registry states which submission is current and where it is. It carries no target figure, so nothing in ndc.* is derived from it.",
     "source": {
@@ -540,7 +555,7 @@
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_assessment": {
@@ -560,16 +575,16 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "ndc_document": {
-    "kind": "First NDC",
-    "language": "English",
-    "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Uruguay%20First/Uruguay_First%20Nationally%20Determined%20Contribution.pdf",
-    "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/URY_Uruguay_First_NDC_Translation_English.pdf",
-    "submission_date": "2017-11-14",
-    "pages": 29,
+    "kind": "Third NDC",
+    "language": "Spanish",
+    "document_url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+    "retrieval_url": "https://web.archive.org/web/20260809070233id_/https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+    "submission_date": "2024-12-30",
+    "pages": 77,
     "reduction_pct": null,
     "basis": null,
     "base_year": null,
@@ -578,15 +593,1348 @@
     "conditional_pct": null,
     "net_zero_year": null,
     "confidence": "low",
-    "evidence": [],
+    "evidence": [
+      {
+        "page": 48,
+        "sentence": "Tierras) Reducir 5% IPPU HFC el consumo respecto a la línea de base establecida a partir del consumo promedio de los años 2020 a 2022 1,1% de las emisiones de GEI INGEI 2022 en GWP100 AR5 5.1.2.2."
+      }
+    ],
+    "headline_condition": null,
+    "gas_scope": null,
+    "reduction_range_pct": null,
+    "targets": [],
+    "retrieval_route": "wayback",
+    "capture_timestamp": "20260809070233",
+    "document_sha256": "1917f0814081daeb97d6f274900c62506baa757a6edc22d28b3634744f6875ea",
     "state": "unknown",
-    "$reason": "no sentence in this document states an economy-wide percentage reduction against a base year or a business-as-usual projection.",
-    "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+    "$reason": "the document states 2 different percentages on the same basis (5% and 1.1%, in one sentence) and does not label which is the pledge.",
+    "$note": "Read by DS-06-NDC from the Third NDC from the Internet Archive's capture of 2026-08-09 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
     "source": {
-      "id": "DS-06-NDC",
-      "name": "Uruguay First NDC",
-      "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Uruguay%20First/Uruguay_First%20Nationally%20Determined%20Contribution.pdf",
-      "retrieved_at": "2026-09-13"
+      "id": "DS-06-NDC-LATEST",
+      "name": "Uruguay Third NDC",
+      "url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "ndc_documents": [
+    {
+      "kind": "Third NDC",
+      "language": "Spanish",
+      "document_url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+      "retrieval_url": "https://web.archive.org/web/20260809070233id_/https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+      "submission_date": "2024-12-30",
+      "pages": 77,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "low",
+      "evidence": [
+        {
+          "page": 48,
+          "sentence": "Tierras) Reducir 5% IPPU HFC el consumo respecto a la línea de base establecida a partir del consumo promedio de los años 2020 a 2022 1,1% de las emisiones de GEI INGEI 2022 en GWP100 AR5 5.1.2.2."
+        }
+      ],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "wayback",
+      "capture_timestamp": "20260809070233",
+      "document_sha256": "1917f0814081daeb97d6f274900c62506baa757a6edc22d28b3634744f6875ea",
+      "headline": false,
+      "state": "unknown",
+      "$reason": "the document states 2 different percentages on the same basis (5% and 1.1%, in one sentence) and does not label which is the pledge.",
+      "$note": "Read by DS-06-NDC from the Third NDC from the Internet Archive's capture of 2026-08-09 of the registry link (its SHA-1 equals the Archive's index digest); unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC-LATEST",
+        "name": "Uruguay Third NDC",
+        "url": "https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    },
+    {
+      "kind": "First NDC",
+      "language": "English",
+      "document_url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Uruguay%20First/Uruguay_First%20Nationally%20Determined%20Contribution.pdf",
+      "retrieval_url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/URY_Uruguay_First_NDC_Translation_English.pdf",
+      "submission_date": "2017-11-14",
+      "pages": 29,
+      "reduction_pct": null,
+      "basis": null,
+      "base_year": null,
+      "target_year": null,
+      "unconditional_pct": null,
+      "conditional_pct": null,
+      "net_zero_year": null,
+      "confidence": "low",
+      "evidence": [],
+      "headline_condition": null,
+      "gas_scope": null,
+      "reduction_range_pct": null,
+      "targets": [],
+      "retrieval_route": "openclimatedata",
+      "capture_timestamp": null,
+      "document_sha256": "c64847a0d2c7940dc9663ecdc0c330fdfa761d31b1fb93f92db0441f38ffc034",
+      "headline": false,
+      "mirror_check": {
+        "result": "verified",
+        "checked_at": "2026-10-11T14:23:30.866Z",
+        "capture_timestamp": "20220119145515"
+      },
+      "state": "unknown",
+      "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
+      "$note": "Read by DS-06-NDC from the First NDC as mirrored by openclimatedata; unfccc.int itself refuses this engine's requests. Nothing was accepted from this document.",
+      "source": {
+        "id": "DS-06-NDC",
+        "name": "Uruguay First NDC",
+        "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Uruguay%20First/Uruguay_First%20Nationally%20Determined%20Contribution.pdf",
+        "retrieved_at": "2026-10-11"
+      }
+    }
+  ],
+  "party_status": {
+    "unfccc_party": true,
+    "paris_party": true,
+    "paris_status": "party",
+    "unfccc": {
+      "status": "party",
+      "listed_as": "Uruguay",
+      "notes": [],
+      "signature": "1992-06-04",
+      "consent": "1994-08-18",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7",
+          "page": 3,
+          "sentence": "Uruguay 4 Jun 1992 18 Aug 1994"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+    },
+    "paris": {
+      "status": "party",
+      "listed_as": "Uruguay",
+      "notes": [],
+      "signature": "2016-04-22",
+      "consent": "2016-10-19",
+      "consent_kind": "ratification",
+      "withdrawal": null,
+      "evidence": [
+        {
+          "doc": "XXVII-7-d",
+          "page": 3,
+          "sentence": "Uruguay 22 Apr 2016 19 Oct 2016"
+        }
+      ],
+      "document_url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
+    },
+    "state": "observed",
+    "source": {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
+      "retrieved_at": "2026-10-10"
+    }
+  },
+  "ndc_progress": {
+    "state": "observed",
+    "file": "URY-CTF-NDC-2024-V0.1-20241230.xlsx",
+    "document_url": "https://unfccc.int/sites/default/files/resource/URY-CTF-NDC-2024-V0.1-20241230.xlsx",
+    "document_url_basis": "file",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s107676--6a9d48be6ff0c91417b1078f2411abcb.xlsx",
+    "file_sha256": "4b0612fe4c06453991e3d6e0f0be1e98b92fe48623a7153cd2abffcb27be1e3c",
+    "tables": [
+      {
+        "sheet": "Table4.1",
+        "title": {
+          "cell": "Table4.1!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.1!B9",
+              "text": "Intensidad de emisiones de CO2 por unidad de PIB"
+            },
+            "unit": {
+              "cell": "Table4.1!C9",
+              "text": "Gg CH4/miles de millones de UYU a precio constante 2016"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.1!D7",
+                "text": "1990"
+              },
+              "value": {
+                "cell": "Table4.1!D9",
+                "value": 4.86,
+                "literal": "4.8600000000000003"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.1!E9",
+                "value": 3.94,
+                "literal": "3.94",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.1!F9",
+                "value": 4.67,
+                "literal": "4.67",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.1!G9",
+                "value": 4.21,
+                "literal": "4.21",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.1!H9",
+              "value": 3.69,
+              "literal": "3.69"
+            },
+            "target_period": {
+              "cell": "Table4.1!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.1!J9",
+              "text": "El nivel mas reciente del indicador es un 13% inferior al del año base. La meta es 24%"
+            },
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table4.1!B10",
+              "text": "Kt CO2"
+            },
+            "unit": {
+              "cell": "Table4.1!C10",
+              "text": "kt CO2"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.1!D7",
+                "text": "1990"
+              },
+              "value": null,
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.1!E10",
+                "value": 1651.65,
+                "literal": "1651.65",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.1!F10",
+                "value": 1743.51,
+                "literal": "1743.51",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.1!G10",
+                "value": 1825.58,
+                "literal": "1825.58",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": null,
+            "target_period": null,
+            "progress": null,
+            "unread": []
+          },
+          {
+            "label": {
+              "cell": "Table4.1!B11",
+              "text": "GDP"
+            },
+            "unit": {
+              "cell": "Table4.1!C11",
+              "text": "miles de millones de UYU a precios constantes 2016"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.1!D7",
+                "text": "1990"
+              },
+              "value": null,
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.1!E11",
+                "value": 6501.32,
+                "literal": "6501.32",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.1!F11",
+                "value": 8143.14,
+                "literal": "8143.14",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.1!G11",
+                "value": 7682.08,
+                "literal": "7682.08",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": null,
+            "target_period": null,
+            "progress": null,
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.2",
+        "title": {
+          "cell": "Table4.2!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.2!B9",
+              "text": "Intensidad de emisiones de CH4 por unidad de PIB"
+            },
+            "unit": {
+              "cell": "Table4.2!C9",
+              "text": "Unit (specify)"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.2!D7",
+                "text": "1990"
+              },
+              "value": {
+                "cell": "Table4.2!D9",
+                "value": 0.887,
+                "literal": "0.88700000000000001"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.2!E9",
+                "value": 0.4426,
+                "literal": "0.44259999999999999",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.2!F9",
+                "value": 0.4351,
+                "literal": "0.43509999999999999",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.2!H9",
+              "value": 0.382,
+              "literal": "0.38200000000000001"
+            },
+            "target_period": {
+              "cell": "Table4.2!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.2!J9",
+              "text": "El nivel mas reciente del indicador es un 51% inferior al del año base. La meta es 57%"
+            },
+            "unread": [
+              {
+                "cell": "Table4.2!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.3",
+        "title": {
+          "cell": "Table4.3!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.3!B9",
+              "text": "Intensidad de emisiones de N2O por unidad de PIB"
+            },
+            "unit": {
+              "cell": "Table4.3!C9",
+              "text": "Gg N2O/miles de millones de UYU a precios constantes 2016"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.3!D7",
+                "text": "1990"
+              },
+              "value": {
+                "cell": "Table4.3!D9",
+                "value": 0.031,
+                "literal": "3.1E-2"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.3!E9",
+                "value": 0.016,
+                "literal": "1.6E-2",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.3!F9",
+                "value": 0.0158,
+                "literal": "1.5800000000000002E-2",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.3!H9",
+              "value": 0.016,
+              "literal": "1.6E-2"
+            },
+            "target_period": {
+              "cell": "Table4.3!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.3!J9",
+              "text": "El nivel mas reciente del indicador es un 49% inferior al del año base. La meta es 48%"
+            },
+            "unread": [
+              {
+                "cell": "Table4.3!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.4",
+        "title": {
+          "cell": "Table4.4!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.4!B9",
+              "text": "Intensidad de emisiones de CH4 por Gg de carne vacuna"
+            },
+            "unit": {
+              "cell": "Table4.4!C9",
+              "text": "Gg CH4/Gg carne vacuna peso vivo"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.4!D7",
+                "text": "1990"
+              },
+              "value": {
+                "cell": "Table4.4!D9",
+                "value": 0.7813,
+                "literal": "0.78129999999999999"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.4!E9",
+                "value": 0.551,
+                "literal": "0.55100000000000005",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.4!F9",
+                "value": 0.5372,
+                "literal": "0.53720000000000001",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.4!H9",
+              "value": 0.5313,
+              "literal": "0.53129999999999999"
+            },
+            "target_period": {
+              "cell": "Table4.4!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.4!J9",
+              "text": "El nivel mas reciente del indicador es un 31% inferior al del año base. La meta es 32%"
+            },
+            "unread": [
+              {
+                "cell": "Table4.4!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.5",
+        "title": {
+          "cell": "Table4.5!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.5!B9",
+              "text": "Intensidad de emisiones de N2O por Gg de carne vacuna"
+            },
+            "unit": {
+              "cell": "Table4.5!C9",
+              "text": "Gg N2O/Gg carne vacuna peso vivo"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.5!D7",
+                "text": "1990"
+              },
+              "value": {
+                "cell": "Table4.5!D9",
+                "value": 0.0243,
+                "literal": "2.4299999999999999E-2"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.5!E9",
+                "value": 0.01663,
+                "literal": "1.6629999999999999E-2",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.5!F9",
+                "value": 0.01609,
+                "literal": "1.609E-2",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.5!H9",
+              "value": 0.016,
+              "literal": "1.6E-2"
+            },
+            "target_period": {
+              "cell": "Table4.5!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.5!J9",
+              "text": "El nivel mas reciente del indicador es un 34% inferior al del año base. La meta es 34%"
+            },
+            "unread": [
+              {
+                "cell": "Table4.5!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.6",
+        "title": {
+          "cell": "Table4.6!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.6!B9",
+              "text": "Superficie de bosque nativo."
+            },
+            "unit": {
+              "cell": "Table4.6!C9",
+              "text": "Hectárea"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.6!D7",
+                "text": "2012"
+              },
+              "value": {
+                "cell": "Table4.6!D9",
+                "value": 849960,
+                "literal": "849960"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.6!F9",
+                "value": 847181,
+                "literal": "847181",
+                "year": 2021,
+                "year_label": "2021"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.6!H9",
+              "value": 849960,
+              "literal": "849960"
+            },
+            "target_period": {
+              "cell": "Table4.6!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.6!J9",
+              "text": "El nivel mas reciente del indicador es un 100% de cumplimiento."
+            },
+            "unread": [
+              {
+                "cell": "Table4.6!E9",
+                "text": "NE"
+              },
+              {
+                "cell": "Table4.6!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.7",
+        "title": {
+          "cell": "Table4.7!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.7!B9",
+              "text": "Superficie de plantaciones forestales."
+            },
+            "unit": {
+              "cell": "Table4.7!C9",
+              "text": "Hectárea"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.7!D7",
+                "text": "2015"
+              },
+              "value": {
+                "cell": "Table4.7!D9",
+                "value": 763070,
+                "literal": "763070"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.7!E9",
+                "value": 1053693,
+                "literal": "1053693",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.7!F9",
+                "value": 1064805,
+                "literal": "1064805",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.7!G9",
+                "value": 1085238,
+                "literal": "1085238",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.7!H9",
+              "value": 763070,
+              "literal": "763070"
+            },
+            "target_period": {
+              "cell": "Table4.7!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.7!J9",
+              "text": "El nivel mas reciente del indicador es un 142% de cunplimiento."
+            },
+            "unread": []
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.8",
+        "title": {
+          "cell": "Table4.8!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.8!B9",
+              "text": "Superficie de montes de sombra y abrigo."
+            },
+            "unit": {
+              "cell": "Table4.8!C9",
+              "text": "Hectárea"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.8!D7",
+                "text": "2012"
+              },
+              "value": null,
+              "as_written": {
+                "cell": "Table4.8!D9",
+                "text": "77790\n77790"
+              }
+            },
+            "series": [
+              {
+                "cell": "Table4.8!E9",
+                "value": 81956,
+                "literal": "81956",
+                "year": 2020,
+                "year_label": "2020"
+              }
+            ],
+            "target_level": null,
+            "target_period": {
+              "cell": "Table4.8!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.8!J9",
+              "text": "El nivel mas reciente del indicador es un 105% de cumplimiento."
+            },
+            "unread": [
+              {
+                "cell": "Table4.8!F9",
+                "text": "NE"
+              },
+              {
+                "cell": "Table4.8!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.9",
+        "title": {
+          "cell": "Table4.9!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.9!B9",
+              "text": "Superficie de pastizales."
+            },
+            "unit": {
+              "cell": "Table4.9!C9",
+              "text": "Hectárea"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.9!D7",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table4.9!D9",
+                "value": 652455,
+                "literal": "652455"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.9!E9",
+                "value": 652455,
+                "literal": "652455",
+                "year": 2020,
+                "year_label": "2020"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.9!H9",
+              "value": 1000000,
+              "literal": "1000000"
+            },
+            "target_period": {
+              "cell": "Table4.9!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.9!J9",
+              "text": "El nivel mas reciente del indicador es un 65% de cumplimiento."
+            },
+            "unread": [
+              {
+                "cell": "Table4.9!F9",
+                "text": "NE"
+              },
+              {
+                "cell": "Table4.9!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.10",
+        "title": {
+          "cell": "Table4.10!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.10!B9",
+              "text": "Superficie de turberas."
+            },
+            "unit": {
+              "cell": "Table4.10!C9",
+              "text": "Hectárea"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.10!D7",
+                "text": "2020"
+              },
+              "value": {
+                "cell": "Table4.10!D9",
+                "value": 4829,
+                "literal": "4829"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.10!E9",
+                "value": 4829,
+                "literal": "4829",
+                "year": 2020,
+                "year_label": "2020"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.10!H9",
+              "value": 4183,
+              "literal": "4183"
+            },
+            "target_period": {
+              "cell": "Table4.10!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.10!J9",
+              "text": "El nivel mas reciente del indicador es un 115% de cumplimiento."
+            },
+            "unread": [
+              {
+                "cell": "Table4.10!F9",
+                "text": "NE"
+              },
+              {
+                "cell": "Table4.10!G9",
+                "text": "NE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sheet": "Table4.11",
+        "title": {
+          "cell": "Table4.11!B2",
+          "text": "4. Structured summary: Tracking progress made in implementing and achieving the NDC under Article 4 of the Paris Agreement a"
+        },
+        "indicators": [
+          {
+            "label": {
+              "cell": "Table4.11!B9",
+              "text": "Superficie de tierras de cultivo - evitada"
+            },
+            "unit": {
+              "cell": "Table4.11!C9",
+              "text": "Hectárea"
+            },
+            "reference": {
+              "year_label": {
+                "cell": "Table4.11!D7",
+                "text": "2016"
+              },
+              "value": {
+                "cell": "Table4.11!D9",
+                "value": 488159,
+                "literal": "488159"
+              },
+              "as_written": null
+            },
+            "series": [
+              {
+                "cell": "Table4.11!E9",
+                "value": 488159,
+                "literal": "488159",
+                "year": 2020,
+                "year_label": "2020"
+              },
+              {
+                "cell": "Table4.11!F9",
+                "value": 570299,
+                "literal": "570299",
+                "year": 2021,
+                "year_label": "2021"
+              },
+              {
+                "cell": "Table4.11!G9",
+                "value": 597411,
+                "literal": "597411",
+                "year": 2022,
+                "year_label": "2022"
+              }
+            ],
+            "target_level": {
+              "cell": "Table4.11!H9",
+              "value": 1147000,
+              "literal": "1147000"
+            },
+            "target_period": {
+              "cell": "Table4.11!I9",
+              "text": "2025"
+            },
+            "progress": {
+              "cell": "Table4.11!J9",
+              "text": "El nivel mas reciente del indicador es un 52% de cumplimiento."
+            },
+            "unread": []
+          }
+        ]
+      }
+    ],
+    "target_text": {
+      "cell": "Appendix!C7",
+      "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+    },
+    "reference_text": [
+      {
+        "cell": "Table1!C8",
+        "text": "Valor base: 4,86 Gg CO₂/miles de millones de pesos uruguayos a precios constantes de 2016\nAño base: 1990"
+      },
+      {
+        "cell": "Table1!C12",
+        "text": "Valor base: 0,887 Gg CH4/miles de milliones de pesos uruguayos a precios constantes de 2016. \nAño base: 1990"
+      },
+      {
+        "cell": "Table1!C16",
+        "text": "Valor base: 0,031 Gg N2O/miles de milliones de pesos uruguayos a precios constantes de 2016. \nAño base: 1990"
+      },
+      {
+        "cell": "Table1!C20",
+        "text": "Valor base: 0,7813 Gg CH4/ Gg carne vacuna en peso vivo\nAño base: 1990"
+      },
+      {
+        "cell": "Table1!C24",
+        "text": "Valor base: 0,0243 Gg N2O/ Gg carne vacuna en peso vivo\nAño base: 1990"
+      },
+      {
+        "cell": "Table1!C28",
+        "text": "Valor base: 849.960 hectáreas\nAño base: 2012"
+      },
+      {
+        "cell": "Table1!C32",
+        "text": "Valor base: 763.070 hectáreas.\nAño base: 2015"
+      },
+      {
+        "cell": "Table1!C36",
+        "text": "Valor base: 77.790 hectáreas\nAño base: 2012"
+      },
+      {
+        "cell": "Table1!C40",
+        "text": "Año de referencia: 2012; Valor de superficie de referencia: 10.000.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de pastizales (bajo cualquier práctica de manejo del campo natural y del rodeo de cría). \nAño base: 2020; Valor de superficie en año base: 652.455 hectáreas. El valor de la superficie en el año base corresponde a la superficie de pastizales bajo buenas prácticas de manejo del campo natural y del rodeo de cría."
+      },
+      {
+        "cell": "Table1!C44",
+        "text": "Año de referencia: 2016; Valor de superficie de referencia: 8.366 hectáreas. Este valor de superficie corresponde al 100% del área de turberas (sin tener en cuenta el estado de conservación). Año base: 2020; Valor de superficie en año base: 4.829 hectáreas. El valor de la superficie en el año base corresponde a la superficie de turberas en estado de conservación bueno y regular (estados en los cuales se considera que potencialmente hay mantenimiento del stock de carbono)."
+      },
+      {
+        "cell": "Table1!C48",
+        "text": "Año de referencia: 2016; Valor de superficie de referencia: 1.530.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo (PUMS) en el año 2016.\nAño base: 2020; Valor de superficie bajo PUMS en las que se evitan emisiones de CO2 en año base: 488.159 hectáreas"
+      }
+    ],
+    "superseded": [],
+    "disagreements": [
+      {
+        "a": {
+          "cell": "Table4.6!D9",
+          "text": "849960"
+        },
+        "b": {
+          "cell": "Table1!C28",
+          "text": "Valor base: 849.960 hectáreas\nAño base: 2012"
+        },
+        "$note": "The Party's own cells disagree: Table4.6!D9 holds 849960 under the unit \"Hectárea\", and Table1!C28 writes 849.960. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.6!D9",
+          "text": "849960"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.6!D9 holds 849960 under the unit \"Hectárea\", and Appendix!C7 writes 849.960. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.6!H9",
+          "text": "849960"
+        },
+        "b": {
+          "cell": "Table1!C28",
+          "text": "Valor base: 849.960 hectáreas\nAño base: 2012"
+        },
+        "$note": "The Party's own cells disagree: Table4.6!H9 holds 849960 under the unit \"Hectárea\", and Table1!C28 writes 849.960. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.6!H9",
+          "text": "849960"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.6!H9 holds 849960 under the unit \"Hectárea\", and Appendix!C7 writes 849.960. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.7!D9",
+          "text": "763070"
+        },
+        "b": {
+          "cell": "Table1!C32",
+          "text": "Valor base: 763.070 hectáreas.\nAño base: 2015"
+        },
+        "$note": "The Party's own cells disagree: Table4.7!D9 holds 763070 under the unit \"Hectárea\", and Table1!C32 writes 763.070. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.7!D9",
+          "text": "763070"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.7!D9 holds 763070 under the unit \"Hectárea\", and Appendix!C7 writes 763.070. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.7!H9",
+          "text": "763070"
+        },
+        "b": {
+          "cell": "Table1!C32",
+          "text": "Valor base: 763.070 hectáreas.\nAño base: 2015"
+        },
+        "$note": "The Party's own cells disagree: Table4.7!H9 holds 763070 under the unit \"Hectárea\", and Table1!C32 writes 763.070. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.7!H9",
+          "text": "763070"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.7!H9 holds 763070 under the unit \"Hectárea\", and Appendix!C7 writes 763.070. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!D9",
+          "text": "652455"
+        },
+        "b": {
+          "cell": "Table1!C40",
+          "text": "Año de referencia: 2012; Valor de superficie de referencia: 10.000.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de pastizales (bajo cualquier práctica de manejo del campo natural y del rodeo de cría). \nAño base: 2020; Valor de superficie en año base: 652.455 hectáreas. El valor de la superficie en el año base corresponde a la superficie de pastizales bajo buenas prácticas de manejo del campo natural y del rodeo de cría."
+        },
+        "$note": "The Party's own cells disagree: Table4.9!D9 holds 652455 under the unit \"Hectárea\", and Table1!C40 writes 652.455. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Table1!C40",
+          "text": "Año de referencia: 2012; Valor de superficie de referencia: 10.000.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de pastizales (bajo cualquier práctica de manejo del campo natural y del rodeo de cría). \nAño base: 2020; Valor de superficie en año base: 652.455 hectáreas. El valor de la superficie en el año base corresponde a la superficie de pastizales bajo buenas prácticas de manejo del campo natural y del rodeo de cría."
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Table1!C40 writes 100. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Table1!C44",
+          "text": "Año de referencia: 2016; Valor de superficie de referencia: 8.366 hectáreas. Este valor de superficie corresponde al 100% del área de turberas (sin tener en cuenta el estado de conservación). Año base: 2020; Valor de superficie en año base: 4.829 hectáreas. El valor de la superficie en el año base corresponde a la superficie de turberas en estado de conservación bueno y regular (estados en los cuales se considera que potencialmente hay mantenimiento del stock de carbono)."
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Table1!C44 writes 100. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Table1!C48",
+          "text": "Año de referencia: 2016; Valor de superficie de referencia: 1.530.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo (PUMS) en el año 2016.\nAño base: 2020; Valor de superficie bajo PUMS en las que se evitan emisiones de CO2 en año base: 488.159 hectáreas"
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Table1!C48 writes 100. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Appendix!C7 writes 100. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Appendix!C7 writes 100. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Appendix!C7 writes 100. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Appendix!C7 writes 10. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!H9",
+          "text": "1000000"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.9!H9 holds 1000000 under the unit \"Hectárea\", and Appendix!C7 writes 10. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.9!E9",
+          "text": "652455"
+        },
+        "b": {
+          "cell": "Table1!C40",
+          "text": "Año de referencia: 2012; Valor de superficie de referencia: 10.000.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de pastizales (bajo cualquier práctica de manejo del campo natural y del rodeo de cría). \nAño base: 2020; Valor de superficie en año base: 652.455 hectáreas. El valor de la superficie en el año base corresponde a la superficie de pastizales bajo buenas prácticas de manejo del campo natural y del rodeo de cría."
+        },
+        "$note": "The Party's own cells disagree: Table4.9!E9 holds 652455 under the unit \"Hectárea\", and Table1!C40 writes 652.455. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.10!D9",
+          "text": "4829"
+        },
+        "b": {
+          "cell": "Table1!C44",
+          "text": "Año de referencia: 2016; Valor de superficie de referencia: 8.366 hectáreas. Este valor de superficie corresponde al 100% del área de turberas (sin tener en cuenta el estado de conservación). Año base: 2020; Valor de superficie en año base: 4.829 hectáreas. El valor de la superficie en el año base corresponde a la superficie de turberas en estado de conservación bueno y regular (estados en los cuales se considera que potencialmente hay mantenimiento del stock de carbono)."
+        },
+        "$note": "The Party's own cells disagree: Table4.10!D9 holds 4829 under the unit \"Hectárea\", and Table1!C44 writes 4.829. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.10!H9",
+          "text": "4183"
+        },
+        "b": {
+          "cell": "Appendix!C7",
+          "text": "Target 1: Reducir 24% la intensidad de emisiones de CO2 de los sectores Energía e IPPU por unidad de PIB con respecto a 1990.\nTarget 2: Reducir 57% la intensidad de emisiones de CH4 de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 3: Reducir 48% la intensidad de emisiones de N2O de los sectores Energía, Agricultura (incluida la Ganadería), Desechos e IPPU por unidad de PIB con respecto a 1990.\nTarget 4: Reducir 32% la intensidad de emisiones de CH4 de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 5: Reducir 34% la intensidad de emisiones de N2O de la producción de carne vacuna por unidad de producto (carne vacuna en peso vivo) con respecto a 1990.\nTarget 6: Mantener el 100% de la superficie de bosque nativo  del año 2012 (849.960 ha) \nTarget 7: Al menos mantener el 100% de la cantidad de superficie efectiva en manejo de plantaciones forestales del año 2015 (763.070 ha) \nTarget 8: Mantener el 100% de la superficie de plantaciones forestales con destino sombra y abrigo del año 2012 (77.790 ha) \nTarget 9: Evitar las emisiones de CO2 del COS en el 10% de la superficie de pastizales (1.000.000 ha) \nTarget 10: Evitar las emisiones de CO2 del COS en el 50% de la superficie de turberas del año 2016 (4.183 ha) \nTarget 11: Evitar las emisiones de CO2 del COS en el 75% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo del año 2016 (1.147.000 ha), así como secuestrar CO2 en el 25% de la superficie restante (383.000 ha)"
+        },
+        "$note": "The Party's own cells disagree: Table4.10!H9 holds 4183 under the unit \"Hectárea\", and Appendix!C7 writes 4.183. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.10!E9",
+          "text": "4829"
+        },
+        "b": {
+          "cell": "Table1!C44",
+          "text": "Año de referencia: 2016; Valor de superficie de referencia: 8.366 hectáreas. Este valor de superficie corresponde al 100% del área de turberas (sin tener en cuenta el estado de conservación). Año base: 2020; Valor de superficie en año base: 4.829 hectáreas. El valor de la superficie en el año base corresponde a la superficie de turberas en estado de conservación bueno y regular (estados en los cuales se considera que potencialmente hay mantenimiento del stock de carbono)."
+        },
+        "$note": "The Party's own cells disagree: Table4.10!E9 holds 4829 under the unit \"Hectárea\", and Table1!C44 writes 4.829. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.11!D9",
+          "text": "488159"
+        },
+        "b": {
+          "cell": "Table1!C48",
+          "text": "Año de referencia: 2016; Valor de superficie de referencia: 1.530.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo (PUMS) en el año 2016.\nAño base: 2020; Valor de superficie bajo PUMS en las que se evitan emisiones de CO2 en año base: 488.159 hectáreas"
+        },
+        "$note": "The Party's own cells disagree: Table4.11!D9 holds 488159 under the unit \"Hectárea\", and Table1!C48 writes 488.159. Neither is converted or chosen."
+      },
+      {
+        "a": {
+          "cell": "Table4.11!E9",
+          "text": "488159"
+        },
+        "b": {
+          "cell": "Table1!C48",
+          "text": "Año de referencia: 2016; Valor de superficie de referencia: 1.530.000 hectáreas. Este valor de superficie corresponde al 100% de la superficie de cultivos bajo Planes de Uso y Manejo del Suelo (PUMS) en el año 2016.\nAño base: 2020; Valor de superficie bajo PUMS en las que se evitan emisiones de CO2 en año base: 488.159 hectáreas"
+        },
+        "$note": "The Party's own cells disagree: Table4.11!E9 holds 488159 under the unit \"Hectárea\", and Table1!C48 writes 488.159. Neither is converted or chosen."
+      }
+    ],
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CTF Table 4",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/URY-CTF-NDC-2024-V0.1-20241230.xlsx",
+      "retrieved_at": "2026-10-11"
+    }
+  },
+  "btr_inventory": {
+    "state": "observed",
+    "file": "URY-CRT-2024-V0.3-2022-20241231-095653_started.xlsx",
+    "year": 2022,
+    "year_cell": {
+      "cell": "Summary2!K1",
+      "text": "2022"
+    },
+    "party_cell": {
+      "cell": "Summary2!K3",
+      "text": "Uruguay"
+    },
+    "unit": {
+      "cell": "Summary2!C9",
+      "text": "CO2 equivalents (kt ) (2)"
+    },
+    "totals": {
+      "without_lulucf": {
+        "cell": "Summary2!K71",
+        "value": 37513.64214749532,
+        "literal": "37513.64214749532",
+        "label": {
+          "cell": "Summary2!J71",
+          "text": "Total CO2 equivalent emissions without LULUCF"
+        }
+      },
+      "with_lulucf": {
+        "cell": "Summary2!K72",
+        "value": 28448.00227393536,
+        "literal": "28448.00227393536",
+        "label": {
+          "cell": "Summary2!J72",
+          "text": "Total CO2 equivalent emissions with LULUCF"
+        }
+      },
+      "with_indirect_without_lulucf": {
+        "cell": "Summary2!K73",
+        "value": 37513.64214749532,
+        "literal": "37513.64214749532",
+        "label": {
+          "cell": "Summary2!J73",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  without LULUCF"
+        }
+      },
+      "with_indirect_with_lulucf": {
+        "cell": "Summary2!K74",
+        "value": 28448.00227393536,
+        "literal": "28448.00227393536",
+        "label": {
+          "cell": "Summary2!J74",
+          "text": "Total CO2 equivalent emissions, including indirect CO2,  with LULUCF"
+        }
+      }
+    },
+    "document_url": "https://unfccc.int/sites/default/files/resource/URY-CRT-2024-V0.3-20241231.zip",
+    "retrieval_url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s3776911--6a35beadc54de39a0fa409d3126706ce.xlsx",
+    "file_sha256": "5db9d50fd96cec24fc90fbd9dccee0c658306f37caeb65e693880f5e6dc8fda0",
+    "in_by_source": false,
+    "$note": "No figure in the Party's own CTF Table 4 is within an order of magnitude of these totals, so they are shown as filed and not converted to Mt for emissions_profile.by_source.",
+    "source": {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbook: CRT Summary2",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "document_url": "https://unfccc.int/sites/default/files/resource/URY-CRT-2024-V0.3-20241231.zip",
+      "retrieved_at": "2026-10-11"
     }
   },
   "finance_flows": {
@@ -667,7 +2015,7 @@
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-09-13"
+      "retrieved_at": "2026-10-10"
     }
   },
   "emissions_profile": {
@@ -954,47 +2302,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 29.68521809250617
+            "value_mtco2e": 28.807196277155498
           },
           {
             "year": 2016,
-            "value_mtco2e": 30.02084701778002
+            "value_mtco2e": 29.052138694522053
           },
           {
             "year": 2017,
-            "value_mtco2e": 29.65824904161518
+            "value_mtco2e": 28.65608118231124
           },
           {
             "year": 2018,
-            "value_mtco2e": 29.176431341312693
+            "value_mtco2e": 28.223911577517416
           },
           {
             "year": 2019,
-            "value_mtco2e": 29.681587881679395
+            "value_mtco2e": 28.777321218411537
           },
           {
             "year": 2020,
-            "value_mtco2e": 29.51218801168806
+            "value_mtco2e": 28.468205539902034
           },
           {
             "year": 2021,
-            "value_mtco2e": 36.93751129374392
+            "value_mtco2e": 36.042510953977555
           },
           {
             "year": 2022,
-            "value_mtco2e": 35.47992555535922
+            "value_mtco2e": 34.42530412966369
           },
           {
             "year": 2023,
-            "value_mtco2e": 32.070951377173266
+            "value_mtco2e": 32.013931821759805
           },
           {
             "year": 2024,
-            "value_mtco2e": 33.55576859841423
+            "value_mtco2e": 33.75330630953314
           },
           {
             "year": 2025,
-            "value_mtco2e": 35.09426532459347
+            "value_mtco2e": 33.59628265203047
           }
         ]
       },
@@ -1286,7 +2634,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "The registry's current submission for this Party is Third NDC, filed 2024-12-30. 60 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (14). For 2024 the sources disagree: DS-35 43.1 MtCO₂e, DS-02 33.6 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 54.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 2025 mitigation objective of intensity reduction (GHG emissions per GDP unit) from base year 1990 of 24% in CO2, 57% in CH4, 48% in N2O (unconditional), and 29% in CO2, 59% in CH4, 52% in N2O (conditional) It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.86°C under SSP1-2.6 to +3.35°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "The registry's current submission for this Party is Third NDC, filed 2024-12-30. 60 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (14). For 2024 the sources disagree: DS-35 43.1 MtCO₂e, DS-02 33.8 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: 35 observed years are loaded, but no NDC target emissions figure has been parsed, so there is nothing to measure the trend against. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 54.7 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 2025 mitigation objective of intensity reduction (GHG emissions per GDP unit) from base year 1990 of 24% in CO2, 57% in CH4, 48% in N2O (unconditional), and 29% in CO2, 59% in CH4, 52% in N2O (conditional) It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +0.86°C under SSP1-2.6 to +3.35°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc_registry.submission_date",
@@ -1298,7 +2646,7 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-35 43.1 MtCO₂e, DS-02 33.6 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-35 43.1 MtCO₂e, DS-02 33.8 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
@@ -1306,7 +2654,7 @@
       },
       {
         "field": "btr.submitted",
-        "text": "It submitted BTR1. 3 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
+        "text": "It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country."
       },
       {
         "field": "vulnerability.ndgain_score",
@@ -1534,8 +2882,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-09-13T03:20:55.225Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:31.628Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -1548,8 +2896,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-09-13T03:21:07.005Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:43.456Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -1562,8 +2910,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-09-13T03:20:56.224Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:23:32.768Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -1576,8 +2924,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-09-13T03:21:24.041Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:00.526Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1590,8 +2938,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-09-13T03:21:26.058Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:02.539Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -1604,8 +2952,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-09-13T03:21:29.546Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:07.891Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -1618,8 +2966,8 @@
       ],
       "connection": "connected",
       "records": 14,
-      "last_run": "2026-09-13T03:23:14.609Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:29.141Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -1632,8 +2980,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:29.980Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:08.161Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -1646,8 +2994,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-09-13T03:21:30.956Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:24:09.116Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -1660,10 +3008,24 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-09-13T03:20:54.819Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-11T14:22:35.888Z",
+      "retrieved_at": "2026-10-11",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
+    },
+    {
+      "id": "DS-06-NDC-LATEST",
+      "name": "UNFCCC NDC filings newer than the mirror, retrieved from Internet Archive captures of unfccc.int or the PRIMAP mirror",
+      "pattern": "D",
+      "tables": [
+        "ndc_targets"
+      ],
+      "connection": "not-connected",
+      "records": 0,
+      "last_run": "2026-10-11T14:25:52.359Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/NDCREG",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
     {
       "id": "DS-15",
@@ -1674,8 +3036,8 @@
       ],
       "connection": "connected",
       "records": 5,
-      "last_run": "2026-09-13T03:23:48.160Z",
-      "retrieved_at": "2026-09-13",
+      "last_run": "2026-10-10T16:28:43.203Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -1687,95 +3049,153 @@
         "btr_status"
       ],
       "connection": "connected",
-      "records": 9,
-      "last_run": "2026-09-13T03:23:49.115Z",
-      "retrieved_at": "2026-09-13",
+      "records": 11,
+      "last_run": "2026-10-10T16:28:44.155Z",
+      "retrieved_at": "2026-10-10",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "name": "BTR1 workbooks: CTF Table 4 and CRT Summary2, read cell by cell",
+      "pattern": "D",
+      "tables": [
+        "btr_tables"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.779Z",
+      "retrieved_at": "2026-10-11",
+      "url": "https://unfccc.int/first-biennial-transparency-reports",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "name": "UN Treaty Collection, depositary status",
+      "pattern": "D",
+      "tables": [
+        "party_status"
+      ],
+      "connection": "connected",
+      "records": 2,
+      "last_run": "2026-10-11T14:11:53.938Z",
+      "retrieved_at": "2026-10-10",
+      "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
+      "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "8d05be94cc8d7c4d7a475d243d325de1",
-    "built_at": "2026-09-13T03:23:49.115Z",
-    "payload_sha256": "93f61aaace415edfd77d276def12f5aa124eada0c08f2bd2c147a757130b972c",
+    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
+    "built_at": "2026-10-10T16:28:44.155Z",
+    "payload_sha256": "9d40ba6a7076c84a57fa19c9bd585e765ee9f83f0a173e472f4ec6a594d182d0",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-09-13T03:20:55.225Z",
+        "retrieved_at": "2026-10-10T16:23:31.628Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-09-13T03:20:56.224Z",
+        "retrieved_at": "2026-10-10T16:23:32.768Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "a0bb752f08cd32bda1b4eb81a8862b90f3b32f0b9d8566e9662d3af2f9199933",
-        "retrieved_at": "2026-09-13T03:21:07.005Z",
+        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
+        "retrieved_at": "2026-10-10T16:23:43.456Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-09-13T03:21:24.041Z",
+        "retrieved_at": "2026-10-10T16:24:00.526Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
-        "file_sha256": "014ac9edeeeb5c4bbe38c40bce0fa01be0a942597192ce6a21a3df2ec2a70d85",
-        "retrieved_at": "2026-09-13T03:21:26.058Z",
+        "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
+        "retrieved_at": "2026-10-10T16:24:02.539Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-09-13T03:21:29.546Z",
+        "retrieved_at": "2026-10-10T16:24:07.891Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-09-13T03:21:29.980Z",
+        "retrieved_at": "2026-10-10T16:24:08.161Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "bccbf4c375d8881e0fa9e12a92955d3e488c733dcbf1c5e19df995a0a041498d",
-        "retrieved_at": "2026-09-13T03:21:30.956Z",
+        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
+        "retrieved_at": "2026-10-10T16:24:09.116Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-09-13T03:23:14.609Z",
+        "retrieved_at": "2026-10-10T16:28:29.141Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "c83b63673c476ec076a8448dbf376eb934d1dcf401f2b1a9bf0da13bb144ac7c",
-        "retrieved_at": "2026-09-13T03:23:48.160Z",
+        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
+        "retrieved_at": "2026-10-10T16:28:43.203Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "b34ed59e19f7d2530f4d7348adff46f053d2621cd65491d5797cce50a3c9a1ca",
-        "retrieved_at": "2026-09-13T03:23:49.115Z",
+        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
+        "retrieved_at": "2026-10-10T16:28:44.155Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-09-13T03:20:54.819Z",
+        "retrieved_at": "2026-10-11T14:22:35.888Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
+      },
+      {
+        "source_id": "DS-06-NDC-LATEST",
+        "file_sha256": "1917f0814081daeb97d6f274900c62506baa757a6edc22d28b3634744f6875ea",
+        "retrieved_at": "2026-10-10T21:21:33.772Z",
+        "url": "https://web.archive.org/web/20260809070233id_/https://unfccc.int/sites/default/files/2025-01/20241220_Uruguay_NDC3.pdf"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "c64847a0d2c7940dc9663ecdc0c330fdfa761d31b1fb93f92db0441f38ffc034",
-        "retrieved_at": "2026-09-13T03:20:47.751Z",
+        "retrieved_at": "2026-10-10T16:23:16.112Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/URY_Uruguay_First_NDC_Translation_English.pdf"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "4b0612fe4c06453991e3d6e0f0be1e98b92fe48623a7153cd2abffcb27be1e3c",
+        "retrieved_at": "2026-10-10T20:47:16.230Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s107676--6a9d48be6ff0c91417b1078f2411abcb.xlsx"
+      },
+      {
+        "source_id": "DS-BTR-TABLES",
+        "file_sha256": "5db9d50fd96cec24fc90fbd9dccee0c658306f37caeb65e693880f5e6dc8fda0",
+        "retrieved_at": "2026-10-10T20:47:19.053Z",
+        "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s3776911--6a35beadc54de39a0fa409d3126706ce.xlsx"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
+        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
+      },
+      {
+        "source_id": "DS-UNTC",
+        "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
+        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
   },
@@ -1837,6 +3257,11 @@
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
     {
+      "id": "DS-06-NDC-LATEST",
+      "org": "UNFCCC, documents retrieved from Internet Archive captures of unfccc.int and from the PRIMAP mirror (JGuetschow/UNFCCC_non-AnnexI_data)",
+      "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
+    },
+    {
       "id": "DS-15",
       "org": "Green Climate Fund",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
@@ -1845,6 +3270,16 @@
       "id": "DS-BTR",
       "org": "UNFCCC, submissions mirrored by JGuetschow/UNFCCC_non-AnnexI_data",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-BTR-TABLES",
+      "org": "UNFCCC, BTR1 workbooks mirrored by JGuetschow/UNFCCC_non-AnnexI_data (its R2 content store)",
+      "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
+    },
+    {
+      "id": "DS-UNTC",
+      "org": "United Nations Treaty Collection (Office of Legal Affairs)",
+      "license": "United Nations depositary record, public"
     }
   ]
 }
