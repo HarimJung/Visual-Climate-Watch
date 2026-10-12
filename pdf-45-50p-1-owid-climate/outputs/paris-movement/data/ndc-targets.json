@@ -1,6 +1,6 @@
 {
   "$note": "Read by engine/sources/ds-06-ndc-docs.ts from the mirrored NDC documents. Committed so a build reproduces without a PDF extractor installed. Every accepted figure carries the sentence and page it came from; every refusal carries its reason.",
-  "extracted_at": "2026-10-11T14:22:35.888Z",
+  "extracted_at": "2026-10-12T10:59:47.633Z",
   "index_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
   "extractor": "ds-06-ndc-docs@2",
   "targets": [
@@ -60,11 +60,11 @@
       "pages": 8,
       "text_sha256": "1cbab3de9fd5240de8f0206d0f21e9d259a783de3995fd06b7d546392496ab69",
       "document_sha256": "fbeeb331441c86fd3db7f2776da20e7d0075d837952ab3e99b1ba4ab11dba0c9",
-      "document_retrieved_at": "2026-10-10T16:20:22.621Z",
+      "document_retrieved_at": "2026-10-12T10:56:57.579Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "TA2BYIL55N4524OSFM7NIGMLP3F2Q7WB",
-        "checked_at": "2026-10-11T14:22:35.891Z",
+        "checked_at": "2026-10-12T10:59:47.640Z",
         "capture_timestamp": "20220315014745"
       }
     },
@@ -102,11 +102,11 @@
       "pages": 95,
       "text_sha256": "4c8f3165e3644a933ca9417e7b53a5a45c30581391ab3506bc3ddbe2fcdf6952",
       "document_sha256": "d2c3454baff307c99284684a3409102f1038480cc2ba4b683d3225af4c83751e",
-      "document_retrieved_at": "2026-10-10T16:20:27.084Z",
+      "document_retrieved_at": "2026-10-12T10:57:01.750Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "SJ24WPT3HYYMLFZLWKY7A55FVNCZP6XO",
-        "checked_at": "2026-10-11T14:22:35.892Z",
+        "checked_at": "2026-10-12T10:59:47.643Z",
         "capture_timestamp": "20220110005637"
       }
     },
@@ -156,7 +156,7 @@
       "pages": 145,
       "text_sha256": "2f3c6036586fc130f3747f81321cc1f861650bbee8f1c4d9ed7b79d2776cedb8",
       "document_sha256": "7652ff984915950d26045b43493ea4fe25da518f2562e8b3254bdb06d3d8876b",
-      "document_retrieved_at": "2026-10-11T14:22:35.893Z",
+      "document_retrieved_at": "2026-10-12T10:59:55.876Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -164,7 +164,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "MKFG3TWWGQMPJV6K4NQ2Z3D3UPWEDRVP",
-        "checked_at": "2026-10-11T14:22:35.893Z",
+        "checked_at": "2026-10-12T10:59:55.876Z",
         "capture_timestamp": "20220110005509",
         "why": "the mirror's copy (108,766 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -228,11 +228,11 @@
       "pages": 23,
       "text_sha256": "c3a4f143f6dd2e5278f980e63f4a4cef694874c6cf37999a4739b08fa9058d6b",
       "document_sha256": "0aab080c22d7e7ede742d67f84da54a52705ff05a0a548c65c65f427207a30ae",
-      "document_retrieved_at": "2026-10-10T16:20:25.636Z",
+      "document_retrieved_at": "2026-10-12T10:57:00.541Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "NKRVKF5UUXY2PL7ILN6CTAYQPV2WEOGE",
-        "checked_at": "2026-10-11T14:22:35.893Z",
+        "checked_at": "2026-10-12T11:00:04.940Z",
         "capture_timestamp": "20220402133636"
       }
     },
@@ -292,11 +292,11 @@
       "pages": 16,
       "text_sha256": "87fb50fbaff615a5f2e506abb74f6d817f74c77ab95ee436e788ef5f6f0406f5",
       "document_sha256": "8abbfa608d0a6f485bc61ffa8e308096bf42d43ec8ba3747dd60975283978950",
-      "document_retrieved_at": "2026-10-10T16:23:12.100Z",
+      "document_retrieved_at": "2026-10-12T10:59:36.531Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "DPOGMOWZ7XW3FNCMFUIWA3AEJFISS6EP",
-        "checked_at": "2026-10-11T14:22:35.912Z",
+        "checked_at": "2026-10-12T11:00:18.742Z",
         "capture_timestamp": "20220428083801"
       }
     },
@@ -325,11 +325,11 @@
       "pages": 10,
       "text_sha256": "5940c815f8ef768605081ca8da5bb862b26cf93c0c24b1ff50abea2fa6bfe75d",
       "document_sha256": "d4cfeab56806228910bf7bdb4251610b2fea10a7196ac90788be30e4cacc517e",
-      "document_retrieved_at": "2026-10-10T16:20:28.665Z",
+      "document_retrieved_at": "2026-10-12T10:57:03.555Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "YQVTRCZAJRIGGDW6AKS2DQFD3Y3Y42IL",
-        "checked_at": "2026-10-11T14:22:36.125Z",
+        "checked_at": "2026-10-12T11:00:25.641Z",
         "capture_timestamp": "20220310171312"
       }
     },
@@ -389,11 +389,11 @@
       "pages": 16,
       "text_sha256": "ac7486fe2b42e59bf805c3f7e0055bb920900a0cd56f8efbfe387f830b5a2728",
       "document_sha256": "3894e2035d3d4e8e98dc21438988a82f92b895494a03a1c139377fb459a85c1f",
-      "document_retrieved_at": "2026-10-10T16:20:29.627Z",
+      "document_retrieved_at": "2026-10-12T10:57:04.462Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "XJ4ZEBPQ3G26JHMDIRWEQJ7LW5WAZNCJ",
-        "checked_at": "2026-10-11T14:22:36.125Z",
+        "checked_at": "2026-10-12T11:01:18.089Z",
         "capture_timestamp": "20220512015839"
       }
     },
@@ -421,7 +421,7 @@
       "pages": 63,
       "text_sha256": "a5fa2ecb81aa8eb984b6e0b5de00fb9ce46b7c90700641895cccbc5c527e06c6",
       "document_sha256": "1b14b908183b5349038d16312f292db6f645af41db18ab0bc6ef25b71831f828",
-      "document_retrieved_at": "2026-10-11T14:22:36.126Z",
+      "document_retrieved_at": "2026-10-12T11:01:43.736Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -430,7 +430,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "HR3Y2PGNDTTSQPNLOZSLDBOEEC7NRLRG",
-        "checked_at": "2026-10-11T14:22:36.126Z",
+        "checked_at": "2026-10-12T11:01:43.736Z",
         "capture_timestamp": "20220110005725",
         "why": "the mirror's copy (242,119 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -472,7 +472,7 @@
       "pages": 24,
       "text_sha256": "a8940863f946636cadd414519ac545e548dbc3f83ecea7c39459b4f996e7cd58",
       "document_sha256": "3a92b2f882df5ead12e1afa93e6ebe52217a0b6f79ed32012d2a48bfd7ec26ae",
-      "document_retrieved_at": "2026-10-11T14:22:36.126Z",
+      "document_retrieved_at": "2026-10-12T11:01:56.583Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 2 different percentages on the same basis for 2030 (26-28%, 30-38%) and does not say which is the target.",
@@ -481,7 +481,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "6YHRZDPO42GFA4SQIN73QAWPKSL227VI",
-        "checked_at": "2026-10-11T14:22:36.126Z",
+        "checked_at": "2026-10-12T11:01:56.583Z",
         "capture_timestamp": "20220303223846",
         "why": "the mirror's copy (809,352 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -511,11 +511,11 @@
       "pages": 3,
       "text_sha256": "8efdd3288bd58eadc0c9c0c764b692b316372d40624042b8147fb99380ad98a8",
       "document_sha256": "5c991c4d8858605c7ba4705b74cc6f217eb0e7c6df565d35ca9eed3cb5335bcb",
-      "document_retrieved_at": "2026-10-10T16:20:31.631Z",
+      "document_retrieved_at": "2026-10-12T10:57:06.510Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "JKYKNHSZRLYDR57MLLA765SMG5UZTJEU",
-        "checked_at": "2026-10-11T14:22:36.310Z",
+        "checked_at": "2026-10-12T11:02:17.698Z",
         "capture_timestamp": "20220324133233"
       }
     },
@@ -549,11 +549,11 @@
       "pages": 14,
       "text_sha256": "47e6a772f851fced3746d7dbbeddf064b7fa760657ecd157ef8cd58eee5cd44a",
       "document_sha256": "541fcabdef8d69412ba39409c96440d6baffdc12389fb1450207d25fc656af4a",
-      "document_retrieved_at": "2026-10-10T16:20:47.262Z",
+      "document_retrieved_at": "2026-10-12T10:57:21.540Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "7NNY2I7PLWB3HDW6K5UQSOCOBQBB44ZM",
-        "checked_at": "2026-10-11T14:22:36.310Z",
+        "checked_at": "2026-10-12T11:02:36.528Z",
         "capture_timestamp": "20220121021601"
       }
     },
@@ -582,11 +582,11 @@
       "pages": 43,
       "text_sha256": "f755993e58ae67eafce6e17203c0e4db25e1b3581ba57c6e20db3df87759e566",
       "document_sha256": "f2b7e68025d2e2b436277629de94f881048235ecf27aa5a08aabf60dbd8320ab",
-      "document_retrieved_at": "2026-10-10T16:20:38.765Z",
+      "document_retrieved_at": "2026-10-12T10:57:13.515Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "Z45N2HNREJOGPCIMUTD5K2XXV323V5J7",
-        "checked_at": "2026-10-11T14:22:36.311Z",
+        "checked_at": "2026-10-12T11:03:10.406Z",
         "capture_timestamp": "20220318003454"
       }
     },
@@ -624,11 +624,11 @@
       "pages": 51,
       "text_sha256": "95d29ff3ce4e6eaae7690a4e97a715a9d3b2a626d10c86ae7a3747905da8e32e",
       "document_sha256": "83983dfb16f3c86738629deaa9ca5c2055b99f6b335989e6b2bcfa55b03fcc37",
-      "document_retrieved_at": "2026-10-10T16:20:46.224Z",
+      "document_retrieved_at": "2026-10-12T10:57:20.663Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "3YZWG2DG5OHYGWREA6I4F4K2VUTRRQPH",
-        "checked_at": "2026-10-11T14:22:36.312Z",
+        "checked_at": "2026-10-12T11:03:17.221Z",
         "capture_timestamp": "20220417200240"
       }
     },
@@ -669,7 +669,7 @@
       "pages": 37,
       "text_sha256": "3e1199ae191bacbe441473c57d6e5c938f147a68a6840bfe8ee944bb5284b8f0",
       "document_sha256": "407e86465249ca94e2f885b81e094a2f07bfa7b5714ea089ac1b772b4ed36a98",
-      "document_retrieved_at": "2026-10-11T14:22:36.314Z",
+      "document_retrieved_at": "2026-10-12T11:03:20.456Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 4 different percentages on the same basis (5%, 6.73%, 15.12%, 21.85%) and labels more than one of them unconditional; choosing between them would be a guess.",
@@ -678,7 +678,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "QLINUPW7AGS6H65EK467TO2VMJ7VN5KI",
-        "checked_at": "2026-10-11T14:22:36.314Z",
+        "checked_at": "2026-10-12T11:03:20.456Z",
         "capture_timestamp": "20220429224504",
         "why": "the mirror's copy (2,161,085 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -707,7 +707,7 @@
       "pages": 10,
       "text_sha256": "b58e60c9d473b1e4cbe74ea5c159e4d4ac06c70a1dd5502b5d100dfee71b29c3",
       "document_sha256": "acb6d57942349b469763094f8cb81a0f14e19bc6f2dc65682ffe0c6444056593",
-      "document_retrieved_at": "2026-10-11T14:22:36.314Z",
+      "document_retrieved_at": "2026-10-12T11:03:31.252Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -716,7 +716,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "PBQIJAE34O77SKAV2ADWJEL5JC7XKTQK",
-        "checked_at": "2026-10-11T14:22:36.314Z",
+        "checked_at": "2026-10-12T11:03:31.252Z",
         "capture_timestamp": "20220120031024",
         "why": "the mirror's copy (582,373 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -746,11 +746,11 @@
       "pages": 12,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "7995a91b84fce1970a67fae6817b52c7f8f71bb1be63ef8eed56940123474ddc",
-      "document_retrieved_at": "2026-10-10T16:20:32.979Z",
+      "document_retrieved_at": "2026-10-12T10:57:07.795Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "H4FOQAXLVR4RQOT6EM3VMEB4DYWGYV43",
-        "checked_at": "2026-10-11T14:22:36.406Z",
+        "checked_at": "2026-10-12T11:03:43.886Z",
         "capture_timestamp": "20220408003056"
       }
     },
@@ -779,11 +779,11 @@
       "pages": 11,
       "text_sha256": "966c23e7c72fdb895dc016fbf7fe7f314f94a38d701a43c149a1fa641dce82a0",
       "document_sha256": "42b1f733a2876743d5b633af3a95da5dbfa8332c9542ca7ef7c2f93e17249b53",
-      "document_retrieved_at": "2026-10-10T16:20:42.155Z",
+      "document_retrieved_at": "2026-10-12T10:57:16.470Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "7V7EZVSCQSJRB3D7THA65CBWIQYMHWGI",
-        "checked_at": "2026-10-11T14:22:36.406Z",
+        "checked_at": "2026-10-12T11:03:52.777Z",
         "capture_timestamp": "20220120191311"
       }
     },
@@ -811,7 +811,7 @@
       "pages": 8,
       "text_sha256": "5be535312a4e62d03a9d992c17b16359e4b0963a4d46dddeb4ab9d783ebd9220",
       "document_sha256": "4185e78f05f6724e984b837c76c5ebc395240e3e6d2a3fe0757860e17317006f",
-      "document_retrieved_at": "2026-10-11T14:22:36.408Z",
+      "document_retrieved_at": "2026-10-12T11:04:06.882Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -820,7 +820,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "GXOPCOPLKGO3AMM5VFAU2EOIWZYMZ74S",
-        "checked_at": "2026-10-11T14:22:36.408Z",
+        "checked_at": "2026-10-12T11:04:06.882Z",
         "capture_timestamp": "20220417200143",
         "why": "the mirror's copy (2,326,606 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -849,7 +849,7 @@
       "pages": 48,
       "text_sha256": "95b526265a52d8a1dbe53571578131647c1d2a1fcc93bea8d6e01d915b70d66b",
       "document_sha256": "1edc85499eff30aa4677ad247cd486434a616d986534fea239a2da13fc1f03ee",
-      "document_retrieved_at": "2026-10-11T14:22:36.408Z",
+      "document_retrieved_at": "2026-10-12T11:04:15.620Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -858,7 +858,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "7E5JVEZEIAR2TJIA2MNES35XIAEYRHT5",
-        "checked_at": "2026-10-11T14:22:36.408Z",
+        "checked_at": "2026-10-12T11:04:15.620Z",
         "capture_timestamp": "20220119062011",
         "why": "the mirror's copy (379,291 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -886,13 +886,13 @@
       "evidence": [],
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "pages": 63,
-      "text_sha256": "0c50cb08524c71abd4d335a0aa6fb59c9a0e6b22a3eec13bcfc40d094a08344f",
+      "text_sha256": "c47b6e9044ac52ed625fb547a329b096fd0392e35c50cba7b43e4db624ad5849",
       "document_sha256": "de2db537d131f61ef3f5ef87498d8996872352d7f33f6787a7079d15510fa38b",
-      "document_retrieved_at": "2026-10-10T16:20:41.677Z",
+      "document_retrieved_at": "2026-10-12T10:57:15.766Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "IEN53LSPTTH7HZKWHY2WXQVZCRVK3KIF",
-        "checked_at": "2026-10-11T14:22:36.531Z",
+        "checked_at": "2026-10-12T11:04:29.128Z",
         "capture_timestamp": "20220519144415"
       }
     },
@@ -960,13 +960,13 @@
       "pages": 11,
       "text_sha256": "cf4ba3e4a0b3d52c75c8ea5cf279dbace68f1626dea131f8e7658a00bb09ad8e",
       "document_sha256": "514631f129128f5513d2ad0216e68e55ae738cd3f476a9394c5635d75dc32b80",
-      "document_retrieved_at": "2026-10-11T14:22:36.531Z",
+      "document_retrieved_at": "2026-10-12T11:05:08.351Z",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220519144345",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "6VT73UKUIIOPN66KEEQ2NWCX3DFZLLOT",
-        "checked_at": "2026-10-11T14:22:36.531Z",
+        "checked_at": "2026-10-12T11:05:08.351Z",
         "capture_timestamp": "20220519144345",
         "why": "the mirror's copy (119,951 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1008,7 +1008,7 @@
       "pages": 37,
       "text_sha256": "d279be00470a20df646d8b2f5bf7658bcc05865fd8eed1cd3420ecf40db71d18",
       "document_sha256": "c3d4ddcf148e68f3158cfb6f990da1cee406b8f51a4d0cf83fb1f2a3ba8c5ccb",
-      "document_retrieved_at": "2026-10-11T14:22:36.532Z",
+      "document_retrieved_at": "2026-10-12T11:05:22.790Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 3 different percentages on the same basis (20%, 35%, 37%) and does not label which is the pledge.",
@@ -1017,7 +1017,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "JHBA3YRDDDHDBO4DXTXVHRJJGLWRIOQE",
-        "checked_at": "2026-10-11T14:22:36.532Z",
+        "checked_at": "2026-10-12T11:05:22.790Z",
         "capture_timestamp": "20220110005707",
         "why": "the mirror's copy (479,179 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1089,11 +1089,11 @@
       "pages": 14,
       "text_sha256": "214445adb5ebf1adfa4a75d79c8c9669128201fd624aca995fdc8a241d1128fa",
       "document_sha256": "442aa477a9284e07bcd6100cc578bdec861317d67927c3a523b0eae5101c383c",
-      "document_retrieved_at": "2026-10-10T16:20:45.150Z",
+      "document_retrieved_at": "2026-10-12T10:57:19.610Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "E3KPOIJCQL6MWL4CTPYYSMPQ262AM3AS",
-        "checked_at": "2026-10-11T14:22:36.565Z",
+        "checked_at": "2026-10-12T11:05:35.749Z",
         "capture_timestamp": "20220124083902"
       }
     },
@@ -1120,13 +1120,13 @@
       "evidence": [],
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "pages": 27,
-      "text_sha256": "17b1ea83049349e16f454b6850c56881d27de2aac4b5e9327c035d473f9aa00d",
+      "text_sha256": "3717bfb6e226f560031deae84b4a32e7c0321cfcc40cd2cf18aeb73feda3c74d",
       "document_sha256": "64405a0285cb3cd3f68417df0369b85269e3d49037717b2843f17316ce57c5d4",
-      "document_retrieved_at": "2026-10-10T16:20:39.705Z",
+      "document_retrieved_at": "2026-10-12T10:57:14.544Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "WPAOJFUI5PM35STM3SGC65RMZ2CZBFM7",
-        "checked_at": "2026-10-11T14:22:36.623Z",
+        "checked_at": "2026-10-12T11:05:40.295Z",
         "capture_timestamp": "20220118200551"
       }
     },
@@ -1155,11 +1155,11 @@
       "pages": 5,
       "text_sha256": "aaded9b01de8c146c5e00fda5d63b73bdf392c1b197384e9971b3b02f24d2b36",
       "document_sha256": "bb41729bc2fef029dab6b15eb3031d23f7be0ce68c5d1b99209789a9aa75ccb4",
-      "document_retrieved_at": "2026-10-10T16:20:43.112Z",
+      "document_retrieved_at": "2026-10-12T10:57:17.495Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "5JYJ5THENILM32PTB2JSRCMHYFPSNQPF",
-        "checked_at": "2026-10-11T14:22:36.623Z",
+        "checked_at": "2026-10-12T11:06:12.854Z",
         "capture_timestamp": "20220318012049"
       }
     },
@@ -1188,11 +1188,11 @@
       "pages": 15,
       "text_sha256": "ceb5129a5ceb148a68832e7bf25d604ac32b7d233b74b83fe0c34b116e0696b3",
       "document_sha256": "b9a3b7faec83aee444ae1a9bdc314ab2ed69ba3c19526f3b1db58e74a561f07b",
-      "document_retrieved_at": "2026-10-10T16:20:52.155Z",
+      "document_retrieved_at": "2026-10-12T10:57:26.647Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "Y5VFHZ3QXEJPKKGOQ3CCGTMIOATOK4UK",
-        "checked_at": "2026-10-11T14:22:36.624Z",
+        "checked_at": "2026-10-12T11:06:39.065Z",
         "capture_timestamp": "20220120061328"
       }
     },
@@ -1220,7 +1220,7 @@
       "pages": 42,
       "text_sha256": "945bac41054bdc5e46eeb79097b5888ae6810f8f1121a3497c6742406b23337f",
       "document_sha256": "65978327c5b70d241bcaf7efa0d94278b7280a437f640f95c3aa7f21fff52631",
-      "document_retrieved_at": "2026-10-11T14:22:36.624Z",
+      "document_retrieved_at": "2026-10-12T11:06:43.919Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states targets on more than one basis or horizon (base-year · 2007 · 2025; base-year · 2014 · 2025); choosing between them would be a guess.",
@@ -1229,7 +1229,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "QMYLMI7E4HS4PJDEYHT6VMKNJZKTTEZT",
-        "checked_at": "2026-10-11T14:22:36.624Z",
+        "checked_at": "2026-10-12T11:06:43.919Z",
         "capture_timestamp": "20220422191620",
         "why": "the mirror's copy (982,088 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1260,14 +1260,14 @@
       "pages": 19,
       "text_sha256": "a3e3f81d10bb8959a4968f33be627a81273e5adfb2189eca13ef07f7e2b9bacc",
       "document_sha256": "435c4052f4c15d2488dffa7080d7a701d24da8065fe00faf59f85300a9e3d849",
-      "document_retrieved_at": "2026-10-11T14:22:36.625Z",
+      "document_retrieved_at": "2026-10-12T11:06:48.207Z",
       "$reason": "the document states targets on more than one basis or horizon (base-year · 1990 · 2030; base-year · 2010 · 2030); choosing between them would be a guess.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220110005603",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "FFR4BOU76H4PGVYRTBUFON4IKMSBV7X2",
-        "checked_at": "2026-10-11T14:22:36.625Z",
+        "checked_at": "2026-10-12T11:06:48.207Z",
         "capture_timestamp": "20220110005603",
         "why": "the mirror's copy (634,806 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1297,11 +1297,11 @@
       "pages": 51,
       "text_sha256": "9e7230badb8365cc3e6462725813d2f4b463154ec404fe54e6149438bf17caf3",
       "document_sha256": "5cab1818871ae352bd1c514bc7f5c7cce247768173a0347ea29fe4ff9ceaf8eb",
-      "document_retrieved_at": "2026-10-10T16:20:56.094Z",
+      "document_retrieved_at": "2026-10-12T10:57:28.651Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "ZON5RGTAZTHA33CYVNJIKRLHAT2GC7B6",
-        "checked_at": "2026-10-11T14:22:36.692Z",
+        "checked_at": "2026-10-12T11:06:53.368Z",
         "capture_timestamp": "20220428182904"
       }
     },
@@ -1330,11 +1330,11 @@
       "pages": 62,
       "text_sha256": "7439707e167fe986204ebb5fdc31cdff1c2929b4b64d6a185e57e2c7fe2ced02",
       "document_sha256": "d704db12df987062e0796146198daabdc84a692d62cff94c2eddbbb09f234c50",
-      "document_retrieved_at": "2026-10-10T16:20:56.512Z",
+      "document_retrieved_at": "2026-10-12T10:57:29.569Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "4NLR4V7SUMBRXFQS34OOBY5JZAHEQ62W",
-        "checked_at": "2026-10-11T14:22:36.744Z",
+        "checked_at": "2026-10-12T11:07:01.471Z",
         "capture_timestamp": "20220505041153"
       }
     },
@@ -1376,11 +1376,11 @@
       "pages": 48,
       "text_sha256": "6c681e98a4c885b7a78bdc1441a4085947ac7ee46ab1cdf364de6d437a587a08",
       "document_sha256": "6a52c3af0d38940b109dd8aac8ea746ce31284fffbb99865d5107ccc7d5cd404",
-      "document_retrieved_at": "2026-10-10T16:21:03.848Z",
+      "document_retrieved_at": "2026-10-12T10:57:36.578Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "YV7VSIQMMZRKP5ZIJBQEGIGMZ7F4JORO",
-        "checked_at": "2026-10-11T14:22:36.745Z",
+        "checked_at": "2026-10-12T11:07:06.557Z",
         "capture_timestamp": "20220519144433"
       }
     },
@@ -1423,14 +1423,14 @@
       "pages": 64,
       "text_sha256": "0872435ffbd1137022cbf4310d98eb4c6117d691807cd6b27875485754695663",
       "document_sha256": "e624fc2452d9181684714b5bb1f75981950784607a10417309142f58d7499292",
-      "document_retrieved_at": "2026-10-11T14:22:36.746Z",
+      "document_retrieved_at": "2026-10-12T11:07:06.927Z",
       "$reason": "the document states 2 different percentages on the same basis (12%, 35%) and does not label which is the pledge.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220110005525",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "EM4T5O5SZUCV3RVDVB2WZZW6P3KZJUFO",
-        "checked_at": "2026-10-11T14:22:36.746Z",
+        "checked_at": "2026-10-12T11:07:06.927Z",
         "capture_timestamp": "20220110005525",
         "why": "the mirror's copy (831,813 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1491,13 +1491,13 @@
       "pages": 102,
       "text_sha256": "872747edbd754a798131a0c60c51e3fa5a54c89203625488e4950434b4cd841e",
       "document_sha256": "5c30b5b136663a786c166dca8051581fd8dedd3d41f09feee23bf13b45b30424",
-      "document_retrieved_at": "2026-10-11T14:22:36.747Z",
+      "document_retrieved_at": "2026-10-12T11:07:21.676Z",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220415140729",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "WGQFRGTHKHKBVSWEASW65PUFWYWWUN57",
-        "checked_at": "2026-10-11T14:22:36.747Z",
+        "checked_at": "2026-10-12T11:07:21.676Z",
         "capture_timestamp": "20220415140729",
         "why": "the mirror's copy (473,828 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1526,7 +1526,7 @@
       "pages": 49,
       "text_sha256": "c488842d9dec51a6c6edbfa09a676caf908aeac27197fda0df87ef3790b863b7",
       "document_sha256": "85cdc8b2d71a07dff18dd3dfe7d38a6ca586bdd6098bcc7a6dff4f16cb68cbb6",
-      "document_retrieved_at": "2026-10-11T14:22:36.981Z",
+      "document_retrieved_at": "2026-10-12T11:07:36.123Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -1535,7 +1535,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "3KVKBGM6N5CP4B4LN5JTBPYZRIG5YUOH",
-        "checked_at": "2026-10-11T14:22:36.981Z",
+        "checked_at": "2026-10-12T11:07:36.123Z",
         "capture_timestamp": "20220120202604",
         "why": "the mirror's copy (780,905 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1565,11 +1565,11 @@
       "pages": 3,
       "text_sha256": "16bd07b6ca7013c83b30b5e7ef7b66ca8465ec297f69f29227008bf71ae9a65b",
       "document_sha256": "0a39b5df563ab58366fa3fade4a47c53ab19d8287b0f6d1bba1dd90933b9f123",
-      "document_retrieved_at": "2026-10-10T16:21:00.482Z",
+      "document_retrieved_at": "2026-10-12T10:57:33.574Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "TEL77MU7CCWLQ4VDWVTLF5SLRDV2QT4J",
-        "checked_at": "2026-10-11T14:22:36.981Z",
+        "checked_at": "2026-10-12T11:07:51.342Z",
         "capture_timestamp": "20220315014621"
       }
     },
@@ -1629,11 +1629,11 @@
       "pages": 10,
       "text_sha256": "debc391c2dd395741ee5738bb0d28b0c299c6837aba42c3cc76c947868d66670",
       "document_sha256": "23f1f4e3c16a130069426928d2df767932f000c7e1569dfd854c2964c2b7f459",
-      "document_retrieved_at": "2026-10-10T16:20:57.608Z",
+      "document_retrieved_at": "2026-10-12T10:57:30.578Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "ITBYG3LD57F56IOUALBZTU6SMPP3LIBV",
-        "checked_at": "2026-10-11T14:22:36.994Z",
+        "checked_at": "2026-10-12T11:07:53.800Z",
         "capture_timestamp": "20220411033128"
       }
     },
@@ -1663,14 +1663,14 @@
       "pages": 17,
       "text_sha256": "607fa9e2ea3c50d274a070b0f4bd2b0ba01d0a5bbb4fa6a1b1d90e8377a46f24",
       "document_sha256": "468259a7775ff8e250b9021950feb852171410c13f9d60b4a9e0a099ff315c41",
-      "document_retrieved_at": "2026-10-11T14:22:37.071Z",
+      "document_retrieved_at": "2026-10-12T11:08:01.498Z",
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220110005755",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "5TELLD27OFCQQY557HB3XYTUBSAEJVMC",
-        "checked_at": "2026-10-11T14:22:37.071Z",
+        "checked_at": "2026-10-12T11:08:01.498Z",
         "capture_timestamp": "20220110005755",
         "why": "the mirror's copy (1,372,549 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1713,11 +1713,11 @@
       "pages": 59,
       "text_sha256": "0c7620d683a583762b50d82e4b4c2d37208c2425eb01b3fbf1c6658813469f9a",
       "document_sha256": "a3cb133da4f6f9480f6aa69a54fd6baf20c41b503cc8cd0f9cdf04fbcb929459",
-      "document_retrieved_at": "2026-10-10T16:20:48.371Z",
+      "document_retrieved_at": "2026-10-12T10:57:22.675Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "CG3OFHAYLCWMJSS65ZERMBBCVRPITRHW",
-        "checked_at": "2026-10-11T14:22:37.073Z",
+        "checked_at": "2026-10-12T11:08:08.770Z",
         "capture_timestamp": "20220121021409"
       }
     },
@@ -1746,11 +1746,11 @@
       "pages": 18,
       "text_sha256": "3de36cbd249e3a2f5c5890d3c98511184c7b6d793f734ad8e2a3529e0a0f63dc",
       "document_sha256": "53a09adcabe7c85897d63411872be4d272021e7db776b51f7ca57d123c2afd41",
-      "document_retrieved_at": "2026-10-10T16:21:01.405Z",
+      "document_retrieved_at": "2026-10-12T10:57:34.474Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "K7GQILUK4WULHZMEKMSV3OWCTTQ557BB",
-        "checked_at": "2026-10-11T14:22:37.113Z",
+        "checked_at": "2026-10-12T11:08:20.184Z",
         "capture_timestamp": "20220308165728"
       }
     },
@@ -1778,7 +1778,7 @@
       "pages": 22,
       "text_sha256": "ccd77058eca69a26945d979509cf2e17a7e3aa7a1e0e286a6630c4edb5d68fec",
       "document_sha256": "8135a644b10a13cacb01cc383543bef1e52d45f1b3fe47015690dc56e7aee15f",
-      "document_retrieved_at": "2026-10-11T14:22:37.113Z",
+      "document_retrieved_at": "2026-10-12T11:08:27.315Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -1787,7 +1787,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "RCV7CZ7N6UOQHEGP56KFPJLA4UE6JWCB",
-        "checked_at": "2026-10-11T14:22:37.113Z",
+        "checked_at": "2026-10-12T11:08:27.315Z",
         "capture_timestamp": "20220428081913",
         "why": "the mirror's copy (172,702 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -1848,11 +1848,11 @@
       "pages": 15,
       "text_sha256": "b59555ab364b326d7787550e8a5005148ac09a1264d923a8ba0111f9d98a2e99",
       "document_sha256": "a47b0683d553393409be6ff10f97b2475af3e680403eeb3c08737904f594a7d9",
-      "document_retrieved_at": "2026-10-10T16:21:06.457Z",
+      "document_retrieved_at": "2026-10-12T10:57:39.583Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "EAVBTPLN5LSGKMVX5QK2NR5SWYBGVREU",
-        "checked_at": "2026-10-11T14:22:37.114Z",
+        "checked_at": "2026-10-12T11:08:27.475Z",
         "capture_timestamp": "20220120144309"
       }
     },
@@ -1912,11 +1912,11 @@
       "pages": 18,
       "text_sha256": "24e73eb1d5aa52966e5f46b75e356e20fff266fe10189f5b60ededb2556f97c1",
       "document_sha256": "8063e6b8e74a541f67f5d0e3bbb4100763a533c3c6981c732728fc13bcda4cfc",
-      "document_retrieved_at": "2026-10-10T16:21:07.360Z",
+      "document_retrieved_at": "2026-10-12T10:57:40.461Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "PNNLJNWQXOSZR4FETNIN2GAGWFLJI6MJ",
-        "checked_at": "2026-10-11T14:22:37.160Z",
+        "checked_at": "2026-10-12T11:08:39.210Z",
         "capture_timestamp": "20220429133318"
       }
     },
@@ -1945,11 +1945,11 @@
       "pages": 4,
       "text_sha256": "aa881d04d4cb989f1aed9ea16aa00f3e3e99408f21e84caf8bf96e138ed02dda",
       "document_sha256": "8fa0deec0547936673a17e05ab3617b0847e2a79f0c1773c6530e8ff98b716f7",
-      "document_retrieved_at": "2026-10-10T16:21:08.326Z",
+      "document_retrieved_at": "2026-10-12T10:57:41.476Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "O2SNN5BAQMYQWDQHDKWB7HDM6PZCNWXL",
-        "checked_at": "2026-10-11T14:22:37.160Z",
+        "checked_at": "2026-10-12T11:08:50.296Z",
         "capture_timestamp": "20220124054523"
       }
     },
@@ -2009,11 +2009,11 @@
       "pages": 10,
       "text_sha256": "9e05426cabf1dc5cdb07d5c1d8224c95fe367c8f21c5bcc862e5b226db0c71d9",
       "document_sha256": "00a655d96d2002fc8a4caccc8b0103d1046371793916aa3eddb4d596de2c210d",
-      "document_retrieved_at": "2026-10-10T16:20:24.617Z",
+      "document_retrieved_at": "2026-10-12T10:56:59.574Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "MNH7HRNPLRH3UUCA2UZNWV62D4D6W7JI",
-        "checked_at": "2026-10-11T14:22:37.161Z",
+        "checked_at": "2026-10-12T11:08:50.401Z",
         "capture_timestamp": "20220509052543"
       }
     },
@@ -2042,11 +2042,11 @@
       "pages": 44,
       "text_sha256": "e69e522ddb27e56219c14b0b55e15b663c391a11a0834dd37b32e0f4128237e5",
       "document_sha256": "5b09921f640cb0d0b17b662768b98e7049f2ac196c44c0d771bccbbf418b8dc6",
-      "document_retrieved_at": "2026-10-10T16:21:09.555Z",
+      "document_retrieved_at": "2026-10-12T10:57:42.557Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "HDDWP5LSZDKCMQ5T5NVLX5TYCCWTTR7A",
-        "checked_at": "2026-10-11T14:22:37.161Z",
+        "checked_at": "2026-10-12T11:09:18.538Z",
         "capture_timestamp": "20220403134604"
       }
     },
@@ -2075,11 +2075,11 @@
       "pages": 13,
       "text_sha256": "6edb606f271267a6073a6fbc2dac081c021370be99fb73b017ebf655ab686b8d",
       "document_sha256": "1641bf806d503dea601da616bedc3228216064c0cf7c754f6b95cfc690e83b45",
-      "document_retrieved_at": "2026-10-10T16:21:10.458Z",
+      "document_retrieved_at": "2026-10-12T10:57:43.609Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "TYOKQZNRZMRRBUP7NDMAV3GUETVAVSW4",
-        "checked_at": "2026-10-11T14:22:37.163Z",
+        "checked_at": "2026-10-12T11:09:52.272Z",
         "capture_timestamp": "20220527004444"
       }
     },
@@ -2121,11 +2121,11 @@
       "pages": 30,
       "text_sha256": "ce05a3e12fda62bb9516dbf3fc82878e1bd92e7ae75ff1704bd945bcdc87c2c8",
       "document_sha256": "99e77a19cca67b8a92a49068ba9f2134f87132b772ff7b029413a043317bcaff",
-      "document_retrieved_at": "2026-10-10T16:21:13.472Z",
+      "document_retrieved_at": "2026-10-12T10:57:46.603Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "RPEHRN2LEHOONZEXOXD6SCUE46PVOCDD",
-        "checked_at": "2026-10-11T14:22:37.164Z",
+        "checked_at": "2026-10-12T11:09:57.362Z",
         "capture_timestamp": "20220315014340"
       }
     },
@@ -2165,13 +2165,13 @@
       ],
       "$reason": "the document states 5 different percentages on the same basis (7.6%, 13.4%, 54.8%, 68.8%, 71%) and labels more than one of them conditional; choosing between them would be a guess.",
       "pages": 48,
-      "text_sha256": "5261c8826ad9592829786c42602ccf3a517f7b7533909caf78df4374a35fef16",
+      "text_sha256": "9dcc3f9159e8af5ef7f04a3c63296e4a871a184c27b3480e10afa0ab02405220",
       "document_sha256": "6a70cf005c3537e0f43a49fd17687c6e0ac59816fa59c4d4d78af349c3f3f3da",
-      "document_retrieved_at": "2026-10-10T16:21:15.775Z",
+      "document_retrieved_at": "2026-10-12T10:57:48.708Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "ATYUA5XXRZZT4BGSCJCNZVE62KREYJO6",
-        "checked_at": "2026-10-11T14:22:37.168Z",
+        "checked_at": "2026-10-12T11:10:00.546Z",
         "capture_timestamp": "20220110010605"
       }
     },
@@ -2200,11 +2200,11 @@
       "pages": 19,
       "text_sha256": "376d39e781d86f4866371a10d1373ba3d0e6e63a593249f58a76fc23cb1c7366",
       "document_sha256": "4528d268ec75c6e394335e7f35453ba6b5eb0c7beb9ebbf0450468096356fc5b",
-      "document_retrieved_at": "2026-10-10T16:21:16.391Z",
+      "document_retrieved_at": "2026-10-12T10:57:49.623Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "UIZSA47QE7CXGJNXGBBMEFAE2YRVMRRK",
-        "checked_at": "2026-10-11T14:22:37.168Z",
+        "checked_at": "2026-10-12T11:10:15.472Z",
         "capture_timestamp": "20220423204955"
       }
     },
@@ -2233,11 +2233,11 @@
       "pages": 20,
       "text_sha256": "94ba7e95d2217d491c88506bf8672a24db64cf06c027efc2af3fae7c10d24b40",
       "document_sha256": "dd2f2f01c0044c5a2cdf8acf23012d626a5cea9a79f24d4e78325d2064f58e8f",
-      "document_retrieved_at": "2026-10-10T16:21:17.344Z",
+      "document_retrieved_at": "2026-10-12T10:57:50.586Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "QCTKS5WNIKSZL2V6PJUXU3ON3UQQHOXC",
-        "checked_at": "2026-10-11T14:22:37.169Z",
+        "checked_at": "2026-10-12T11:10:52.912Z",
         "capture_timestamp": "20220505200506"
       }
     },
@@ -2266,11 +2266,11 @@
       "pages": 5,
       "text_sha256": "1a487d95dfea41fa0c8add5fe589a802ac7c840a1bdedcdc85dd2dfa49a1d7ad",
       "document_sha256": "84a8d7ed037e3d20ef0702abeca295a0b65c9a5039518a7e3120335da1d0aa95",
-      "document_retrieved_at": "2026-10-10T16:21:59.150Z",
+      "document_retrieved_at": "2026-10-12T10:58:30.561Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "R3TDHA6SZ3LKNBANUL23FA3MJALHF6YG",
-        "checked_at": "2026-10-11T14:22:37.169Z",
+        "checked_at": "2026-10-12T11:10:59.265Z",
         "capture_timestamp": "20220215130433"
       }
     },
@@ -2312,11 +2312,11 @@
       "pages": 14,
       "text_sha256": "2b43d67ce97b672a25ef55b9342bc55541d38c108f73c75bb8bd8ce41043057c",
       "document_sha256": "1553e1dd78fec9d74ad984986afba1fc60afe709169cbcbf31f13351624a87aa",
-      "document_retrieved_at": "2026-10-10T16:21:18.380Z",
+      "document_retrieved_at": "2026-10-12T10:57:51.639Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "WTQBPSGAWOOVTI6HCBVL2CETHFSGGOJR",
-        "checked_at": "2026-10-11T14:22:37.170Z",
+        "checked_at": "2026-10-12T11:11:13.043Z",
         "capture_timestamp": "20220315014008"
       }
     },
@@ -2345,11 +2345,11 @@
       "pages": 32,
       "text_sha256": "b5ad5b769af11c1b0fcfbbbe21e234d4d879f58a2ba81cb8c1437edf45d210c5",
       "document_sha256": "e8d0c7ae27774d62557e4080587b6e5d978ff0ad219349377d164a06b8551a59",
-      "document_retrieved_at": "2026-10-10T16:23:13.073Z",
+      "document_retrieved_at": "2026-10-12T10:59:37.547Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "HY3R5ADAWWENXYT7G76B3C72N3D3HZX4",
-        "checked_at": "2026-10-11T14:22:37.170Z",
+        "checked_at": "2026-10-12T11:11:19.854Z",
         "capture_timestamp": "20220215135705"
       }
     },
@@ -2387,11 +2387,11 @@
       "pages": 44,
       "text_sha256": "0b47051a62fd24aac8a3500e01dcb0e3660d7c6cadf499d440e0f282d686d6d3",
       "document_sha256": "0c39fea98d3ad02c7063e22135fa441e2be64388430e480132636a6f8ba50480",
-      "document_retrieved_at": "2026-10-10T16:21:20.935Z",
+      "document_retrieved_at": "2026-10-12T10:57:53.661Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "WS52MKJGD4RKCI5S53D3NKHZT3NPJK35",
-        "checked_at": "2026-10-11T14:22:37.174Z",
+        "checked_at": "2026-10-12T11:11:33.483Z",
         "capture_timestamp": "20220324224017"
       }
     },
@@ -2426,14 +2426,14 @@
       "pages": 27,
       "text_sha256": "1a5932731ccc702beb09d681cc18840eab0719bbcffca8dad20c9855f08e8f7e",
       "document_sha256": "1e0044ade84b00ddec0a0b4c9539e53ae1e8c6f9b3aeb6cce0f378c5b87ee202",
-      "document_retrieved_at": "2026-10-11T14:22:37.175Z",
+      "document_retrieved_at": "2026-10-12T11:11:46.040Z",
       "$reason": "the document states 6 different percentages on the same basis (5%, 28%, 30%, 31%, 36%, 39%) and does not label which is the pledge.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220428223936",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "KWBXQ7XRXKLX4GYMXBN43YJJJSAFDZZF",
-        "checked_at": "2026-10-11T14:22:37.175Z",
+        "checked_at": "2026-10-12T11:11:46.040Z",
         "capture_timestamp": "20220428223936",
         "why": "the mirror's copy (698,183 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -2463,11 +2463,11 @@
       "pages": 15,
       "text_sha256": "5273e99020c3a5593884cae2b0bf6207dfee190a7c2871b13628f0c9ed531a7e",
       "document_sha256": "bb2339894491b3b5fe09652cb0ab52affabcce1d70a98e745256bc3c3a2313c4",
-      "document_retrieved_at": "2026-10-10T16:21:24.343Z",
+      "document_retrieved_at": "2026-10-12T10:57:57.476Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "N4QI6JNJOGUBQGBMWPKCF2D353FFAVHT",
-        "checked_at": "2026-10-11T14:22:37.175Z",
+        "checked_at": "2026-10-12T11:12:02.213Z",
         "capture_timestamp": "20220120205023"
       }
     },
@@ -2504,7 +2504,7 @@
       "pages": 35,
       "text_sha256": "cce187eb1805b698daacd16eba9fed2ba217338aab7d6b401d826a7904ca4002",
       "document_sha256": "3d5e4388c2c010dd079c481c0dc1d4471289b0dfdb2acac4cb78ed88b822ec74",
-      "document_retrieved_at": "2026-10-11T14:22:37.219Z",
+      "document_retrieved_at": "2026-10-12T11:12:07.036Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the only figure read (49.7%) is one the document conditions on international support, and the document also labels a figure unconditional (2.6%, page 19) that could not be read against a basis and a year, so 49.7% alone would overstate the pledge.",
@@ -2513,7 +2513,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "QSCISR25DILE6QIGW6BFDMIXVVF2IWVZ",
-        "checked_at": "2026-10-11T14:22:37.219Z",
+        "checked_at": "2026-10-12T11:12:07.036Z",
         "capture_timestamp": "20220110005816",
         "why": "the mirror's copy (1,017,023 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -2541,7 +2541,7 @@
       "evidence": [
         {
           "page": 3,
-          "sentence": "emissions by -10% by 2030 relative to the baseline scenario-despite its low level of Special recognition extended team ofmeans."
+          "sentence": "emissions by -10% by 2030 relative to the baseline scenario-despite its low level of Special recognition extended the team ofmeans."
         },
         {
           "page": 7,
@@ -2553,9 +2553,9 @@
         }
       ],
       "pages": 38,
-      "text_sha256": "78aff5f0eb18f6f4b416fca667c4ba9575347df20a1ebcf29a1ddf0f06328d98",
+      "text_sha256": "6ebde493e067edbbb3f3337ec500c78159090bf4d866260de24bf3cb8aaccad4",
       "document_sha256": "10c34f080bfba21652ce244a7fa4dcfe4abb00b21521a4d16ba2f4fa4724f195",
-      "document_retrieved_at": "2026-10-11T14:22:37.219Z",
+      "document_retrieved_at": "2026-10-12T11:12:16.258Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 3 different percentages on the same basis (7%, 10%, 30%) and does not label which is the pledge.",
@@ -2564,7 +2564,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "X7OBWAH75XBQ2NALF25KNP7PORIODHCG",
-        "checked_at": "2026-10-11T14:22:37.219Z",
+        "checked_at": "2026-10-12T11:12:16.258Z",
         "capture_timestamp": "20220110005859",
         "why": "the mirror's copy (439,227 bytes) has none of the 3 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -2625,11 +2625,11 @@
       "pages": 12,
       "text_sha256": "4b939e85d3a967093058e2a9e724cef1a11e11712dd4b84bfcfe48b12a0dfada",
       "document_sha256": "57ad529c8b0f2ffb72b9ae0958ee599d1eb5dc86bba910aa9d0ace3d34fcb5fe",
-      "document_retrieved_at": "2026-10-10T16:21:12.475Z",
+      "document_retrieved_at": "2026-10-12T10:57:45.626Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "M5MQUS35LFG4ERBEUQVVFR4XBZHISKMA",
-        "checked_at": "2026-10-11T14:22:37.361Z",
+        "checked_at": "2026-10-12T11:12:48.961Z",
         "capture_timestamp": "20220315013813"
       }
     },
@@ -2658,11 +2658,11 @@
       "pages": 15,
       "text_sha256": "0bffa2920cf379e3d975dec35b4a537efe7a1d1d5645eca8c6030d0d659afc54",
       "document_sha256": "3b3df9fd29bc24037cfba8c5240b93e119cfd578a26ca564ad07605e8206a6d9",
-      "document_retrieved_at": "2026-10-10T16:21:22.335Z",
+      "document_retrieved_at": "2026-10-12T10:57:55.540Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "C57SEI5QWTXXDB3WQFWMOPV332RHBEAU",
-        "checked_at": "2026-10-11T14:22:37.362Z",
+        "checked_at": "2026-10-12T11:12:56.330Z",
         "capture_timestamp": "20220322111640"
       }
     },
@@ -2688,9 +2688,9 @@
       "confidence": "low",
       "evidence": [],
       "pages": 96,
-      "text_sha256": "9bca872b75f241843aaf3ce6f1f29f75787cb6702a4375168f143f3f1a518b1a",
+      "text_sha256": "e379c60eb84eec2d7d2d060ba8ecd0812c9f6f921f2d62055b0ffe3365cb33ed",
       "document_sha256": "d981358ba4b5ef86170bd2bed54a9851a9bcf06bd79ac68bb2b8e17b2fc1ef7f",
-      "document_retrieved_at": "2026-10-11T14:22:37.362Z",
+      "document_retrieved_at": "2026-10-12T11:13:14.145Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states targets on more than one basis or horizon (base-year · 2016 · 2030; bau ·  · 2030); choosing between them would be a guess.",
@@ -2699,7 +2699,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "ERAW5JXHO2WOZQ7BK4ROJL6GXQWHOXMM",
-        "checked_at": "2026-10-11T14:22:37.362Z",
+        "checked_at": "2026-10-12T11:13:14.145Z",
         "capture_timestamp": "20220519144248",
         "why": "the mirror's copy (135,456 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -2729,11 +2729,11 @@
       "pages": 13,
       "text_sha256": "80580771d5978b71e813cb16949759795e88c024233ba72256df53e27aa11531",
       "document_sha256": "a73d50716be529f60878b7f71a58c007510e1c9da3dcb96a4618877cbb5e1ea1",
-      "document_retrieved_at": "2026-10-10T16:21:26.528Z",
+      "document_retrieved_at": "2026-10-12T10:57:59.480Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "ECSCCHEYHFGQOIPEQABR5HS5A2NTVWHA",
-        "checked_at": "2026-10-11T14:22:37.362Z",
+        "checked_at": "2026-10-12T11:13:53.382Z",
         "capture_timestamp": "20220315014434"
       }
     },
@@ -2775,11 +2775,11 @@
       "pages": 68,
       "text_sha256": "b734c30a08a5b19fdca06391ce7116975f32a1d034d5619588433211b8141692",
       "document_sha256": "b85b869f295d83f00a262a2457ca2f976349a8941cf2f553fde8a60c932aa6d7",
-      "document_retrieved_at": "2026-10-10T16:21:30.471Z",
+      "document_retrieved_at": "2026-10-12T10:58:01.856Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "OTFETP6VBM2U6OPGXNALFJYQHJ5RUTGS",
-        "checked_at": "2026-10-11T14:22:37.449Z",
+        "checked_at": "2026-10-12T11:14:04.332Z",
         "capture_timestamp": "20220110005621"
       }
     },
@@ -2821,11 +2821,11 @@
       "pages": 15,
       "text_sha256": "bde9ea85ea7b904778fc7a26ae161006f169564bc9812e985b59880da252924c",
       "document_sha256": "e29f5b0cac13dcafc29f71270675a4cd3d0ee47300f5faf37f9467ae34f67a91",
-      "document_retrieved_at": "2026-10-10T16:21:27.388Z",
+      "document_retrieved_at": "2026-10-12T10:58:00.495Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "4CLTWR7SIKIV6O6JIVD6NVMNSKNH4V7G",
-        "checked_at": "2026-10-11T14:22:37.537Z",
+        "checked_at": "2026-10-12T11:14:24.735Z",
         "capture_timestamp": "20220315014030"
       }
     },
@@ -2877,13 +2877,13 @@
       "pages": 46,
       "text_sha256": "b7d679128c9d596547c150be55b0bd984ccd4ce1a2210f7d0d99d45c931a1f58",
       "document_sha256": "aee5486fcbea52f3ca6d5afd96a361a948a4f30e2ee1e9dd224847a27b522dcf",
-      "document_retrieved_at": "2026-10-11T14:22:37.539Z",
+      "document_retrieved_at": "2026-10-12T11:14:44.300Z",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220318011510",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "JHTZTIU6IV7J5ZTTITPHQUFLY4ESMCB6",
-        "checked_at": "2026-10-11T14:22:37.539Z",
+        "checked_at": "2026-10-12T11:14:44.300Z",
         "capture_timestamp": "20220318011510",
         "why": "the mirror's copy (2,272,580 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -2913,11 +2913,11 @@
       "pages": 38,
       "text_sha256": "95ab1777dd2ecee13dae05a8551a9b4fb908a30287b21558161ac0ca5cf59aa9",
       "document_sha256": "3d0395e955f5e785b93cd3b6d5d8b86725fd55902940b707d65561393d76b38b",
-      "document_retrieved_at": "2026-10-10T16:21:31.840Z",
+      "document_retrieved_at": "2026-10-12T10:58:03.565Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "353WZVCCYHHXVABBPERX5R25DNMYUPOB",
-        "checked_at": "2026-10-11T14:22:37.541Z",
+        "checked_at": "2026-10-12T11:15:13.943Z",
         "capture_timestamp": "20220429224453"
       }
     },
@@ -2985,11 +2985,11 @@
       "pages": 10,
       "text_sha256": "8667983b218a607e4f0d3730b546fef0fd72742c21a563f82b01f5c5a5f90667",
       "document_sha256": "a45cb1c6e9f3214456f91f128be8450e5d6995a0932022f72a37c0ed9003fa06",
-      "document_retrieved_at": "2026-10-10T16:21:33.735Z",
+      "document_retrieved_at": "2026-10-12T10:58:05.502Z",
       "mirror_check": {
         "result": "unverifiable",
         "mirror_sha1": "F5YFC27DQEFAPTXXBOEF6SQRRTFOV2BI",
-        "checked_at": "2026-10-11T14:22:37.624Z"
+        "checked_at": "2026-10-12T11:15:32.918Z"
       }
     },
     {
@@ -3016,12 +3016,12 @@
       "pages": 0,
       "text_sha256": "",
       "document_sha256": "2e8c55b965df9dd3e2fb5102bee86005820e76c08643c8de625ca70f10b51bd9",
-      "document_retrieved_at": "2026-10-10T16:21:35.038Z",
+      "document_retrieved_at": "2026-10-12T10:58:06.513Z",
       "$reason": "the document could not be read as a PDF: the mirrored file is a Microsoft Word document (.docx) saved under a .pdf name, and a Word file has no fixed pages, so nothing read from it could be cited to a page a reader opens. Nothing in it has been read.",
       "mirror_check": {
         "result": "unverifiable",
         "mirror_sha1": "PDUJ764O7U7WWE3MSDQBZDCVBEVYVQQO",
-        "checked_at": "2026-10-11T14:22:37.625Z"
+        "checked_at": "2026-10-12T11:15:40.058Z"
       }
     },
     {
@@ -3049,11 +3049,11 @@
       "pages": 14,
       "text_sha256": "0a8091dd4c0281d9667c52753117441d21d8b1bd56997f94a46e26e70302af9f",
       "document_sha256": "71a695cbd59f7c80cb90d094ca0840239ec8436f4e8fdcb3838af5623cdaaab4",
-      "document_retrieved_at": "2026-10-10T16:21:30.989Z",
+      "document_retrieved_at": "2026-10-12T10:58:02.529Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "NU4BBKAQEOPWAES5VRXMJ4AKIHYVZZ5J",
-        "checked_at": "2026-10-11T14:22:37.626Z",
+        "checked_at": "2026-10-12T11:15:49.629Z",
         "capture_timestamp": "20220602091916"
       }
     },
@@ -3081,12 +3081,12 @@
       "pages": 0,
       "text_sha256": "",
       "document_sha256": "0f5192d5542816235ac722a02f04731e27c4d81b5976231e90f7d00ed9c2f7b9",
-      "document_retrieved_at": "2026-10-10T16:21:35.691Z",
+      "document_retrieved_at": "2026-10-12T10:58:07.448Z",
       "$reason": "the document could not be read as a PDF: the mirrored file is a Microsoft Word document (.docx) saved under a .pdf name, and a Word file has no fixed pages, so nothing read from it could be cited to a page a reader opens. Nothing in it has been read.",
       "mirror_check": {
         "result": "unverifiable",
         "mirror_sha1": "YOH4UGX42BS3PSU6T23CWXQQSH7NM657",
-        "checked_at": "2026-10-11T14:22:37.626Z"
+        "checked_at": "2026-10-12T11:16:35.746Z"
       }
     },
     {
@@ -3123,11 +3123,11 @@
       "pages": 12,
       "text_sha256": "75bec44d923912335ea4302d5f55fa5f0dd78b46ef35c7246375f0665c5b985f",
       "document_sha256": "f9ae2861dbbbef9daf2ad533fb869ec355208b6c1cc6bde301c832a05c080196",
-      "document_retrieved_at": "2026-10-10T16:21:36.750Z",
+      "document_retrieved_at": "2026-10-12T10:58:08.573Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "FVDCSW6RFTLSDHOMWKUKXQPA2E4SFVAN",
-        "checked_at": "2026-10-11T14:22:37.627Z",
+        "checked_at": "2026-10-12T11:16:43.121Z",
         "capture_timestamp": "20220402133637"
       }
     },
@@ -3164,7 +3164,7 @@
       "pages": 77,
       "text_sha256": "b54a970dea94955270c56976bf3ab63f8f8a5ee370b0122700627f35e7fd131a",
       "document_sha256": "3a9cc82ecbafc309c980b13c9b1d913ca603c78a7bf1e1416ff33c4287c25246",
-      "document_retrieved_at": "2026-10-11T14:22:37.627Z",
+      "document_retrieved_at": "2026-10-12T11:16:54.373Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 2 different percentages on the same basis (5%, 31%) and does not label which is the pledge.",
@@ -3173,7 +3173,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "HI6X23XH5PMBSXJSGUUCZ66NCX4BIS6E",
-        "checked_at": "2026-10-11T14:22:37.627Z",
+        "checked_at": "2026-10-12T11:16:54.373Z",
         "capture_timestamp": "20220120194732",
         "why": "the mirror's copy (1,113,967 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3202,7 +3202,7 @@
       "pages": 13,
       "text_sha256": "02faa0c8bb8b2c8aeaa75609b905000e3d1b41319c9ea94fb748ba37baaf0e83",
       "document_sha256": "f3536990083e593ff474c8757cc75a6553fde9f2eec3b8f75cf9516ada37317c",
-      "document_retrieved_at": "2026-10-11T14:22:37.628Z",
+      "document_retrieved_at": "2026-10-12T11:17:12.366Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -3211,7 +3211,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "47LBBJX6OIGKSFWW64NL6PZHPLON5FIM",
-        "checked_at": "2026-10-11T14:22:37.628Z",
+        "checked_at": "2026-10-12T11:17:12.366Z",
         "capture_timestamp": "20220526153010",
         "why": "the mirror's copy (366,577 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3250,11 +3250,11 @@
       "pages": 4,
       "text_sha256": "4d80c89b08ed60d7534d129f14fb0e34cc481c0325ab73b257ff75f59649d67e",
       "document_sha256": "873c6ce89a039e9de433f337dc735eda6e5cbe1683959c2376d5879de054a953",
-      "document_retrieved_at": "2026-10-10T16:21:39.679Z",
+      "document_retrieved_at": "2026-10-12T10:58:11.475Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "PMLABBQBWPCYJ46TJSOE7LYHU3XHU2G2",
-        "checked_at": "2026-10-11T14:22:37.761Z",
+        "checked_at": "2026-10-12T11:17:28.000Z",
         "capture_timestamp": "20220430045130"
       }
     },
@@ -3283,11 +3283,11 @@
       "pages": 20,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "61ddd7c2ac2ed9ddcd832cc43f3d37493a7b8227ee29f87aa8cc57817d7e33db",
-      "document_retrieved_at": "2026-10-10T16:21:41.552Z",
+      "document_retrieved_at": "2026-10-12T10:58:12.758Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "CRNKTVRVEYDKRPXB6J3BH3FFEPTWECML",
-        "checked_at": "2026-10-11T14:22:37.768Z",
+        "checked_at": "2026-10-12T11:17:38.897Z",
         "capture_timestamp": "20220407130840"
       }
     },
@@ -3315,7 +3315,7 @@
       "pages": 41,
       "text_sha256": "2962913d755a76ef646eeb1f79b5d4dad5118ceece1f4e492d3b547fbdf90eed",
       "document_sha256": "56b2c9cb637b0a700384fb2f27becf5149879b2106ea2c6016f8966450959395",
-      "document_retrieved_at": "2026-10-11T14:22:37.769Z",
+      "document_retrieved_at": "2026-10-12T11:17:44.683Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -3324,7 +3324,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "E6UX5BRZ775WFEBJETSVJNU7XILQVMST",
-        "checked_at": "2026-10-11T14:22:37.769Z",
+        "checked_at": "2026-10-12T11:17:44.683Z",
         "capture_timestamp": "20220429231632",
         "why": "the mirror's copy (456,322 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3367,11 +3367,11 @@
       "pages": 158,
       "text_sha256": "27915a3edea98f5af422fbf53124df3797ffad56bc22b51450672cba32aa58ba",
       "document_sha256": "da6d38247f614f7cbfeaf9162ad0cd4bde101e0287ff32e913b261c1e746e216",
-      "document_retrieved_at": "2026-10-10T16:20:49.518Z",
+      "document_retrieved_at": "2026-10-12T10:57:23.751Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "4VEFPT6RFKC5VTR42VJPCNLJPTC7WZ6Y",
-        "checked_at": "2026-10-11T14:22:37.772Z",
+        "checked_at": "2026-10-12T11:18:21.811Z",
         "capture_timestamp": "20220430032128"
       }
     },
@@ -3409,11 +3409,11 @@
       "pages": 27,
       "text_sha256": "4ca94f67225301771fb0053a82f69dae0af9e1b1c3e161c2bc1d15174b1a2e21",
       "document_sha256": "ce8023383dc6823202b68efe4ea1abbd40958852404f79af71a488fb2823bd45",
-      "document_retrieved_at": "2026-10-10T16:21:41.825Z",
+      "document_retrieved_at": "2026-10-12T10:58:13.577Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "4MGZ6RPZTC4RWYHUSQMZUJDNHLEJRYAS",
-        "checked_at": "2026-10-11T14:22:37.775Z",
+        "checked_at": "2026-10-12T11:18:34.683Z",
         "capture_timestamp": "20220315013954"
       }
     },
@@ -3456,14 +3456,14 @@
       "pages": 29,
       "text_sha256": "5622a01db0596993b9069bea4211f4db09f851813f4bc2d88066f7898905dc55",
       "document_sha256": "64efb5a94b5a67a4e6522917de479d4102eb9fbedea26720df9c2b1f90babfdb",
-      "document_retrieved_at": "2026-10-11T14:22:37.877Z",
+      "document_retrieved_at": "2026-10-12T11:18:38.993Z",
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction of its own: the ones it states against a base year or a business-as-usual projection (22%, 35%, pages 3, 4) are an earlier contribution's, which it recounts.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220417205453",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "OTX6KYCDAYALWJIGHV5ETGME2OCRVZ5U",
-        "checked_at": "2026-10-11T14:22:37.877Z",
+        "checked_at": "2026-10-12T11:18:38.993Z",
         "capture_timestamp": "20220417205453",
         "why": "the mirror's copy (748,395 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3494,14 +3494,14 @@
       "pages": 30,
       "text_sha256": "18e46f8d3a70207d8f7e3a608ccc905ff46518576bfe7a34aad6beafded25f26",
       "document_sha256": "6ce5384f369ee492e4847c9ec8e200168f417980af631d25c366e65ee0b72bd3",
-      "document_retrieved_at": "2026-10-11T14:22:37.878Z",
+      "document_retrieved_at": "2026-10-12T11:18:50.359Z",
       "$reason": "the document states targets on more than one basis or horizon (base-year · 2017 · 2030; base-year · 2018 · 2030); choosing between them would be a guess.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220426023608",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "HOZUXR25YBZ2GGBXXGCACO7Z7TPWHEKF",
-        "checked_at": "2026-10-11T14:22:37.878Z",
+        "checked_at": "2026-10-12T11:18:50.359Z",
         "capture_timestamp": "20220426023608",
         "why": "the mirror's copy (308,430 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3560,7 +3560,7 @@
       "pages": 22,
       "text_sha256": "f8849661c639e2e44adde7f69179c85ac09256f12c8c5389e05d402e750c105c",
       "document_sha256": "9a40a8233d7b42449bc6cca80063a97e1a6d0fcba751d3089d9a425443c10758",
-      "document_retrieved_at": "2026-10-11T14:22:37.960Z",
+      "document_retrieved_at": "2026-10-12T11:19:00.799Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -3568,7 +3568,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "FNOWIXS2UJIMXGFWUO7A55SNXOHW2TYY",
-        "checked_at": "2026-10-11T14:22:37.960Z",
+        "checked_at": "2026-10-12T11:19:00.799Z",
         "capture_timestamp": "20220110005755",
         "why": "the mirror's copy (822,443 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3598,11 +3598,11 @@
       "pages": 25,
       "text_sha256": "712b2229cec75a68efffe5e70944bdb377e1046e26ee862fc6e5ff1b7b89d08e",
       "document_sha256": "bca58b75da7adbc72206f0c514b88abfe347ba4939a5fe222dff15c1325ae315",
-      "document_retrieved_at": "2026-10-10T16:21:44.788Z",
+      "document_retrieved_at": "2026-10-12T10:58:16.504Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "FBV2PYX2HMIKEVK3B4M5K4RU3X6VGOHW",
-        "checked_at": "2026-10-11T14:22:37.961Z",
+        "checked_at": "2026-10-12T11:19:04.920Z",
         "capture_timestamp": "20220308054523"
       }
     },
@@ -3644,11 +3644,11 @@
       "pages": 28,
       "text_sha256": "57a3bc1d64d0cc16c78c02835de5d999fd610a9a6ae5bbe7e9b98c01b75b7bcc",
       "document_sha256": "4f0bac9b24e938dd29f5e2ae6f9d5dee21dbb23f34a21f476395bdc4fc36c2c5",
-      "document_retrieved_at": "2026-10-10T16:21:45.830Z",
+      "document_retrieved_at": "2026-10-12T10:58:17.544Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "56J4OA64ZNG63D4QMPVUMLHFSRFK2GNB",
-        "checked_at": "2026-10-11T14:22:37.974Z",
+        "checked_at": "2026-10-12T11:19:17.195Z",
         "capture_timestamp": "20220428083754"
       }
     },
@@ -3689,7 +3689,7 @@
       "pages": 47,
       "text_sha256": "6c30b1136b385b6a9f18d2f2af61f369c23014954ef646798549a8f7432635ed",
       "document_sha256": "1b0446a91fabf3f501286fefb819c53caad4bb4fdaf1562299fc298623bf9c61",
-      "document_retrieved_at": "2026-10-11T14:22:38.004Z",
+      "document_retrieved_at": "2026-10-12T11:19:31.800Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 4 different percentages on the same basis (10%, 15%, 40%, 64%) and does not label which is the pledge.",
@@ -3698,7 +3698,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "7PPFW4HK57PW5YFWMF3UMCWWBW56KODG",
-        "checked_at": "2026-10-11T14:22:38.004Z",
+        "checked_at": "2026-10-12T11:19:31.800Z",
         "capture_timestamp": "20220428163812",
         "why": "the mirror's copy (804,849 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3728,11 +3728,11 @@
       "pages": 19,
       "text_sha256": "81ba2c05bd6407cccc081076091f9ecf5b8ae8734fc1c4722ab4920838608773",
       "document_sha256": "d45bdc88d82329655e5419156840add94e2495bcbb0e41de81a817a241ac8a32",
-      "document_retrieved_at": "2026-10-10T16:22:37.180Z",
+      "document_retrieved_at": "2026-10-12T10:59:02.484Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "3FSICHXRJK4FTRE5JLEUNRVS5UGLZ2IE",
-        "checked_at": "2026-10-11T14:22:38.004Z",
+        "checked_at": "2026-10-12T11:19:48.567Z",
         "capture_timestamp": "20220121013642"
       }
     },
@@ -3761,11 +3761,11 @@
       "pages": 5,
       "text_sha256": "fed0ef7110fb613f85262cc1f8915b44b6d4b905a6c6cf837e3ac7b48ae33c64",
       "document_sha256": "379b2f7d4188f3d8d5b41d65afbddb9a684335a2f95439509a62fe695d084837",
-      "document_retrieved_at": "2026-10-10T16:21:48.724Z",
+      "document_retrieved_at": "2026-10-12T10:58:20.494Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "UF22HQZNTJW2V3LPS7QNSB44NLV5ZLIH",
-        "checked_at": "2026-10-11T14:22:38.077Z",
+        "checked_at": "2026-10-12T11:19:52.270Z",
         "capture_timestamp": "20220602091849"
       }
     },
@@ -3791,9 +3791,9 @@
       "confidence": "low",
       "evidence": [],
       "pages": 69,
-      "text_sha256": "a4c66db945a630ef7a73d56fd1a8a65429c2d49cc7a33c70517cb947a6603e45",
+      "text_sha256": "591e7f0048c680e6cd6b2d92a5b2c069f197a9e16c258364c66b28a405130d69",
       "document_sha256": "76ba03a2b914280c9692804c6ac7984ddcddc517796ad42e26d8f798030543fb",
-      "document_retrieved_at": "2026-10-11T14:22:38.077Z",
+      "document_retrieved_at": "2026-10-12T11:19:55.818Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -3802,7 +3802,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "JIGK3UZMFFDYP4QBUDOY6N4ENJCG47PK",
-        "checked_at": "2026-10-11T14:22:38.077Z",
+        "checked_at": "2026-10-12T11:19:55.818Z",
         "capture_timestamp": "20220110005918",
         "why": "the mirror's copy (598,804 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -3871,11 +3871,11 @@
       "pages": 36,
       "text_sha256": "899ff8aaf2167f387fdab38f15c6a5cfaeba1af40bc14c3ae3c3d00a75b1df56",
       "document_sha256": "3557a9f2e9cd5c84461a52fb2efa8f0d894faf894b30c108d2662387836d299f",
-      "document_retrieved_at": "2026-10-10T16:21:47.138Z",
+      "document_retrieved_at": "2026-10-12T10:58:18.642Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "S42NAPHS4XHF3YBU7EBRHUH23YFELIRJ",
-        "checked_at": "2026-10-11T14:22:38.081Z",
+        "checked_at": "2026-10-12T11:20:06.337Z",
         "capture_timestamp": "20220315014725"
       }
     },
@@ -3951,11 +3951,11 @@
       "pages": 32,
       "text_sha256": "9f1d744bacb28462ee8f24c9b44f09aa4a444f113882a0d2ede6f83eb7dcff3a",
       "document_sha256": "3e0b52b508f54ad2ee7d44c977d2f3608954cdd9e58cbb1426254488cf36c804",
-      "document_retrieved_at": "2026-10-10T16:22:03.282Z",
+      "document_retrieved_at": "2026-10-12T10:58:34.615Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "HUAUBAC7FUKWWOQT7P2G52366X5ADAYQ",
-        "checked_at": "2026-10-11T14:22:38.164Z",
+        "checked_at": "2026-10-12T11:20:10.750Z",
         "capture_timestamp": "20220509052819"
       }
     },
@@ -3984,11 +3984,11 @@
       "pages": 9,
       "text_sha256": "fc4527237d2f7e0d37f2d51910dae5f7c264fd0634b49ccbada51dd2a4e5de66",
       "document_sha256": "351c5c2600428fb92508e51a9662efb2d192567359cc1eb3f4842a5540e49a0d",
-      "document_retrieved_at": "2026-10-10T16:22:00.313Z",
+      "document_retrieved_at": "2026-10-12T10:58:31.627Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "7Z72YKSM7J2HT2BNFCNSS2GLL2GMNDTI",
-        "checked_at": "2026-10-11T14:22:38.165Z",
+        "checked_at": "2026-10-12T11:20:24.219Z",
         "capture_timestamp": "20220110005616"
       }
     },
@@ -4064,11 +4064,11 @@
       "pages": 74,
       "text_sha256": "d6dc4c299dd86158588e514e7364b8cbe3235e35412f8e5563015d97fb287037",
       "document_sha256": "896501ba40b4af93f24d5bcce9cc15ec02bb7b7c506526af43a24233c8c9b378",
-      "document_retrieved_at": "2026-10-10T16:22:33.407Z",
+      "document_retrieved_at": "2026-10-12T10:58:58.560Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "G5S65AU3FNYZX7QQ6NSTBLHGQTQ7VBHC",
-        "checked_at": "2026-10-11T14:22:38.167Z",
+        "checked_at": "2026-10-12T11:20:33.023Z",
         "capture_timestamp": "20220402133647"
       }
     },
@@ -4128,11 +4128,11 @@
       "pages": 13,
       "text_sha256": "b16491facfd766603d7975eda3db33dd8dcefd7cfcaaf7659ae69672a0b697a3",
       "document_sha256": "a67935a566b670cf156b05878adaf8a428437b7e9b6fb56b29c77005c85df8ce",
-      "document_retrieved_at": "2026-10-10T16:21:49.738Z",
+      "document_retrieved_at": "2026-10-12T10:58:21.533Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "YDQ6IDCWL2PUFILUUZPBRNMQWIXO45LL",
-        "checked_at": "2026-10-11T14:22:38.167Z",
+        "checked_at": "2026-10-12T11:20:41.181Z",
         "capture_timestamp": "20220214135418"
       }
     },
@@ -4161,11 +4161,11 @@
       "pages": 22,
       "text_sha256": "7c4b2bd946ab63a4e21a9263aa45a08bf5e2c234131b1c1a41f06ea3af2f2aa3",
       "document_sha256": "74d8e9dd7f51049c616528ae80a99ffc9df8ba3400c13913d67c8b3c8dfb41b0",
-      "document_retrieved_at": "2026-10-10T16:21:52.918Z",
+      "document_retrieved_at": "2026-10-12T10:58:24.501Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "UIDYQHAVFKBNHFRO7XMPV2XXQXKV4RSE",
-        "checked_at": "2026-10-11T14:22:38.172Z",
+        "checked_at": "2026-10-12T11:21:17.142Z",
         "capture_timestamp": "20220324133228"
       }
     },
@@ -4223,13 +4223,13 @@
       "bau_mtco2e": null,
       "bau_evidence": null,
       "pages": 42,
-      "text_sha256": "5aa070e64ac397756f01e2998800942c637f6bf7332a2b18b2f200e983525787",
+      "text_sha256": "edf1515b5c311acf30023fe49db4a1deba90c6e2843858ac85467d3d5abc5215",
       "document_sha256": "1e049b56abfe528d831deee657a61695a2a87a4888ae8de4e9b0347b9045ca26",
-      "document_retrieved_at": "2026-10-10T16:21:58.870Z",
+      "document_retrieved_at": "2026-10-12T10:58:29.687Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "4BE2KM35MO5D5M5CWRVQUJ5FIVHXUSCE",
-        "checked_at": "2026-10-11T14:22:38.176Z",
+        "checked_at": "2026-10-12T11:21:24.858Z",
         "capture_timestamp": "20220430043657"
       }
     },
@@ -4258,11 +4258,11 @@
       "pages": 4,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "d7cf5dfcb737aa7c5862f6342f7adafb3dc7c65487519b2273b6c6ef1f80a27c",
-      "document_retrieved_at": "2026-10-10T16:21:54.705Z",
+      "document_retrieved_at": "2026-10-12T10:58:26.483Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "XVB3R6C5BMHBJOZWF5TO2P5OF64PMBGB",
-        "checked_at": "2026-10-11T14:22:38.177Z",
+        "checked_at": "2026-10-12T11:21:46.073Z",
         "capture_timestamp": "20220110005908"
       }
     },
@@ -4304,11 +4304,11 @@
       "pages": 26,
       "text_sha256": "9ed71434d6ab1af2a09a53ba13031bb95232a7af125546fb2a77301c8bef9c1f",
       "document_sha256": "78ebd6e381ce8d9c636d457895980b4ea6f93ff8fa4d771a2b2a4c4e07ef19db",
-      "document_retrieved_at": "2026-10-10T16:23:01.240Z",
+      "document_retrieved_at": "2026-10-12T10:59:25.847Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "H3BP3BDMFSW5NYRY4GD45O2D3PE4ONWN",
-        "checked_at": "2026-10-11T14:22:38.179Z",
+        "checked_at": "2026-10-12T11:21:56.645Z",
         "capture_timestamp": "20220110003415"
       }
     },
@@ -4336,7 +4336,7 @@
       "pages": 99,
       "text_sha256": "8304beefb862c58bc229ef2e50e60fac754075a0cbfabf4463dc3848d1363dbd",
       "document_sha256": "c2440dfa987bb88e70b108dc3d80c56d590b5bc32bbae6cdca742f9cefec6bf3",
-      "document_retrieved_at": "2026-10-11T14:22:38.180Z",
+      "document_retrieved_at": "2026-10-12T11:21:57.304Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -4345,7 +4345,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "EAC27KPTSAR22MW3BDJINIKXUOGNCHYB",
-        "checked_at": "2026-10-11T14:22:38.180Z",
+        "checked_at": "2026-10-12T11:21:57.304Z",
         "capture_timestamp": "20220110005505",
         "why": "the mirror's copy (1,499,706 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4374,7 +4374,7 @@
       "pages": 99,
       "text_sha256": "edfd829f4dacdecabf12a0d1db4fbbf507928a9e04f6cca9039c1a0e6d8c2deb",
       "document_sha256": "829781fd25c68bbe8456cb5754bd3b98e652f05bc05b5e050a32e88a54da6088",
-      "document_retrieved_at": "2026-10-11T14:22:38.180Z",
+      "document_retrieved_at": "2026-10-12T11:22:01.665Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -4383,7 +4383,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "ARH6IJ6LGOKHXJAPOHOMLRXLAYYEMMAX",
-        "checked_at": "2026-10-11T14:22:38.180Z",
+        "checked_at": "2026-10-12T11:22:01.665Z",
         "capture_timestamp": "20220118200605",
         "why": "the mirror's copy (416,505 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4413,11 +4413,11 @@
       "pages": 25,
       "text_sha256": "8c6816f8ae667d06e81581253cb30a88f700298504c8c1ea5e2c3dd62e7d6af9",
       "document_sha256": "c37e9639ceea43dadc1d3a962c9cac0172e4301b13678e9b08c280451be35efe",
-      "document_retrieved_at": "2026-10-10T16:22:02.169Z",
+      "document_retrieved_at": "2026-10-12T10:58:33.523Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "JUTU4AA6RCPXI6BKIZ4ZE5TG2AYLCP34",
-        "checked_at": "2026-10-11T14:22:38.369Z",
+        "checked_at": "2026-10-12T11:22:43.615Z",
         "capture_timestamp": "20220120203558"
       }
     },
@@ -4469,11 +4469,11 @@
       "pages": 8,
       "text_sha256": "6b074c8c3c56aab029cf6dac0103ea22b0b5feb975bfbce540e064397daccd29",
       "document_sha256": "12c90dd1f93aa967165295d36612dd0e2e68414edd82c7a4412630d7b720ff69",
-      "document_retrieved_at": "2026-10-10T16:22:01.138Z",
+      "document_retrieved_at": "2026-10-12T10:58:32.662Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "AOWIVGQDCIL2P6B2V2HDZCUHJSK2YUQ4",
-        "checked_at": "2026-10-11T14:22:38.369Z",
+        "checked_at": "2026-10-12T11:22:58.347Z",
         "capture_timestamp": "20220430020705"
       }
     },
@@ -4499,9 +4499,9 @@
       "confidence": "low",
       "evidence": [],
       "pages": 53,
-      "text_sha256": "80f7604a83cdb10d407873ebd4166f942a620e5eed59f2d7859c3d468281ecb5",
+      "text_sha256": "8e9a5c6c33d18ae7ac810373ae0bd7d6a84f198efca2cf7962653bccbbbf96fe",
       "document_sha256": "2ff95436a012b56c35ae3643d46afee2af9f716b621634f8b0a45eab93999b22",
-      "document_retrieved_at": "2026-10-11T14:22:38.370Z",
+      "document_retrieved_at": "2026-10-12T11:23:02.943Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -4510,7 +4510,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "L3ECLLPQXQUDVC4MYCEOKSHW6Y5K7XVQ",
-        "checked_at": "2026-10-11T14:22:38.370Z",
+        "checked_at": "2026-10-12T11:23:02.943Z",
         "capture_timestamp": "20220409031146",
         "why": "the mirror's copy (623,594 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4552,7 +4552,7 @@
       "pages": 63,
       "text_sha256": "dd006d6730c3ad141e22fd2ad5b67adf1710af960cd4ca15fbe1fff1c4d444c2",
       "document_sha256": "b6e163f52b5512272b9187717fdee40aee4d9246750c12b8bbdfb7a62a8027a9",
-      "document_retrieved_at": "2026-10-11T14:22:38.371Z",
+      "document_retrieved_at": "2026-10-12T11:23:24.784Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 3 different percentages on the same basis (3%, 11%, 92%) and does not label which is the pledge.",
@@ -4561,7 +4561,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "NDVTBIUUMIX6BN27SAKC7KC3UFFECXOU",
-        "checked_at": "2026-10-11T14:22:38.371Z",
+        "checked_at": "2026-10-12T11:23:24.784Z",
         "capture_timestamp": "20220326083816",
         "why": "the mirror's copy (1,018,536 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4617,11 +4617,11 @@
       "pages": 6,
       "text_sha256": "3a066eb8e120f7ca2d5321bb7638739733edd029d4b3134ef98927a6ea7b7784",
       "document_sha256": "5662e9bca7fce560ae8489ba50fda493d616edcbc50bbfba80f6a617cd9fb219",
-      "document_retrieved_at": "2026-10-10T16:21:56.813Z",
+      "document_retrieved_at": "2026-10-12T10:58:28.466Z",
       "mirror_check": {
         "result": "unverifiable",
         "mirror_sha1": "CKK3UI2SNIJ2AKYM4FQ4PNLSRYGACH5F",
-        "checked_at": "2026-10-11T14:22:38.479Z"
+        "checked_at": "2026-10-12T11:23:26.253Z"
       }
     },
     {
@@ -4694,7 +4694,7 @@
       "pages": 124,
       "text_sha256": "8cf6b782754b24e21a4da63a4eef1169eb4f8c2953a8c6d952890b9b9d7ee724",
       "document_sha256": "44b7b0046fc5478324707e1bef14c519029b96099104e17f31d9be5bcf210c42",
-      "document_retrieved_at": "2026-10-11T14:22:38.568Z",
+      "document_retrieved_at": "2026-10-12T11:23:31.924Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -4702,7 +4702,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "GT5WADSGQ2GFDDJDVOO3FAEPKI4DXPGS",
-        "checked_at": "2026-10-11T14:22:38.568Z",
+        "checked_at": "2026-10-12T11:23:31.924Z",
         "capture_timestamp": "20220502212138",
         "why": "the mirror's copy (215,760 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4732,11 +4732,11 @@
       "pages": 13,
       "text_sha256": "e7af5a0590da70aa0cb5cefb8047cc18101d95043816716327a47ba3289adf13",
       "document_sha256": "1ecbd3295827e37d7bf4f2a6988ddec940d8b24fec9e942e67010c38be0313ed",
-      "document_retrieved_at": "2026-10-10T16:21:51.709Z",
+      "document_retrieved_at": "2026-10-12T10:58:23.451Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "3NP2GU35Q4MJUPLGNKT3P3DDBX2VTFH4",
-        "checked_at": "2026-10-11T14:22:38.568Z",
+        "checked_at": "2026-10-12T11:23:38.717Z",
         "capture_timestamp": "20220120201828"
       }
     },
@@ -4764,7 +4764,7 @@
       "pages": 75,
       "text_sha256": "4295075d95752b28391015f9a21535dc7e0d08cd12c33cb4bd21ef4f3f929dd7",
       "document_sha256": "25da8ae325f3f4360f6c0c3cc697980af1564d05158ea5f11bb754ed700d46fa",
-      "document_retrieved_at": "2026-10-11T14:22:38.735Z",
+      "document_retrieved_at": "2026-10-12T11:23:47.620Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states targets on more than one basis or horizon (base-year · 2015 · 2030; bau ·  · 2030); choosing between them would be a guess.",
@@ -4773,7 +4773,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "LVKEGCHZV5VWPJEZBX7UPVSQ4F3NHXWV",
-        "checked_at": "2026-10-11T14:22:38.735Z",
+        "checked_at": "2026-10-12T11:23:47.620Z",
         "capture_timestamp": "20220121010415",
         "why": "the mirror's copy (941,420 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4816,11 +4816,11 @@
       "pages": 21,
       "text_sha256": "b135f333e1959bb0822bf24f39eae9f7e722db8ad467263308f3ce0ccab9c564",
       "document_sha256": "94771819a8b01135693b67518ea8814da7ce7e9eb69c26e338010b77d9b996f9",
-      "document_retrieved_at": "2026-10-10T16:22:13.166Z",
+      "document_retrieved_at": "2026-10-12T10:58:42.581Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "3AVWMULXYUUTNQ7I2SEP2AHSYAIJH34U",
-        "checked_at": "2026-10-11T14:22:38.735Z",
+        "checked_at": "2026-10-12T11:23:49.032Z",
         "capture_timestamp": "20220120182025"
       }
     },
@@ -4846,9 +4846,9 @@
       "confidence": "low",
       "evidence": [],
       "pages": 60,
-      "text_sha256": "6aa6c725687043528674a3c67618de43f1e70d0ed31488844b82b6f7bdc80cda",
+      "text_sha256": "2fd956826eef2ff7316382482c052d80a54e5236a62892c6601c1c9f7477ee01",
       "document_sha256": "9a7ec6d0e848c18e3d65f2a68568503e46ae2643893f499de16bedbd7d5e6f08",
-      "document_retrieved_at": "2026-10-11T14:22:38.832Z",
+      "document_retrieved_at": "2026-10-12T11:23:59.556Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -4857,7 +4857,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "H7OHDMNKA2YNFDOVXKNTK2MHBFHX6Q22",
-        "checked_at": "2026-10-11T14:22:38.832Z",
+        "checked_at": "2026-10-12T11:23:59.556Z",
         "capture_timestamp": "20220408130727",
         "why": "the mirror's copy (1,021,035 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -4887,11 +4887,11 @@
       "pages": 72,
       "text_sha256": "3044cac0c98c59f0ecbcfcee067d28f562e3574f697a43846ab31e4e118a3442",
       "document_sha256": "74250240618dc558639151a26d1dc891f79e7c1b51041cd5db624bc7a3a1b493",
-      "document_retrieved_at": "2026-10-10T16:22:12.897Z",
+      "document_retrieved_at": "2026-10-12T10:58:42.148Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "T7XEC2OHRLZGKXOLF4GLE4CCQHWMQHKK",
-        "checked_at": "2026-10-11T14:22:38.854Z",
+        "checked_at": "2026-10-12T11:24:01.487Z",
         "capture_timestamp": "20220405165409"
       }
     },
@@ -4920,11 +4920,11 @@
       "pages": 10,
       "text_sha256": "789cfcdc7562e99f5b3d080cb5c35c19991ba3ba4b0c67913eb8d8af473c5ec4",
       "document_sha256": "3d7db1bdf3304670f08592a2e839572105dd586a23f197d9f535294f420d3edb",
-      "document_retrieved_at": "2026-10-10T16:22:15.149Z",
+      "document_retrieved_at": "2026-10-12T10:58:44.549Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "7HWXIBL3K75NMPNJXHRES5VQSLARPXNQ",
-        "checked_at": "2026-10-11T14:22:39.024Z",
+        "checked_at": "2026-10-12T11:24:12.315Z",
         "capture_timestamp": "20220315014131"
       }
     },
@@ -4962,11 +4962,11 @@
       "pages": 16,
       "text_sha256": "b4c367e0177cc383807ab140380db4993e247a775da08a5a244b95853e773fac",
       "document_sha256": "50d3f5e333e8dd2b190b4d9c33cf6160ee3e517c16d31a759a310ce9d3bcd6eb",
-      "document_retrieved_at": "2026-10-10T16:22:16.198Z",
+      "document_retrieved_at": "2026-10-12T10:58:45.768Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "B5C7JUB5UZTZWR2MJXFAFN3I6FQL2BJQ",
-        "checked_at": "2026-10-11T14:22:39.025Z",
+        "checked_at": "2026-10-12T11:24:17.171Z",
         "capture_timestamp": "20220602091901"
       }
     },
@@ -4995,11 +4995,11 @@
       "pages": 22,
       "text_sha256": "3de2fa15897f61a373ec4360aea69762c217cf4463ea1a0073c7e4360468f016",
       "document_sha256": "8863f4da0ef44a71ad66c1dbf22fa6103459e76eff26e58ee5343bfe24ef785d",
-      "document_retrieved_at": "2026-10-10T16:22:08.180Z",
+      "document_retrieved_at": "2026-10-12T10:58:39.550Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "VQAXBRDMQVLVE3QRMCVQTRKSZTV53WWT",
-        "checked_at": "2026-10-11T14:22:39.025Z",
+        "checked_at": "2026-10-12T11:24:25.817Z",
         "capture_timestamp": "20220429224508"
       }
     },
@@ -5027,7 +5027,7 @@
       "pages": 45,
       "text_sha256": "77cd9efd5731e0a8dae7d03dc2fbfceeb5d96cada8b756ab9e6535a5bd629e5c",
       "document_sha256": "954bace8b29e901c84cbf97d88e990fc73879451786afdaab1fed2a09d84e55c",
-      "document_retrieved_at": "2026-10-11T14:22:39.025Z",
+      "document_retrieved_at": "2026-10-12T11:24:32.376Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -5036,7 +5036,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "K5YD4766BX4QLJDGJ3F5BGKOZUEM7EMX",
-        "checked_at": "2026-10-11T14:22:39.025Z",
+        "checked_at": "2026-10-12T11:24:32.376Z",
         "capture_timestamp": "20220118200602",
         "why": "the mirror's copy (218,474 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -5065,7 +5065,7 @@
       "pages": 20,
       "text_sha256": "944a3f97306401369db1721e479a0c6c79f4b400687b70ec234a5f8da7e17618",
       "document_sha256": "800e8fe6b26aae8e3a81cf9526825f5442bed6485b74350c108305f0b1406cfe",
-      "document_retrieved_at": "2026-10-11T14:22:39.027Z",
+      "document_retrieved_at": "2026-10-12T11:24:53.163Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -5074,7 +5074,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "P3W74REACQSSPWE342IVSHNJWJPN3FR6",
-        "checked_at": "2026-10-11T14:22:39.027Z",
+        "checked_at": "2026-10-12T11:24:53.163Z",
         "capture_timestamp": "20220428083735",
         "why": "the mirror's copy (225,549 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -5117,11 +5117,11 @@
       "pages": 16,
       "text_sha256": "77a47cba55e0cf19a1ad4df9d6573d12f32e2da8e2bfd8945611d49b58e65a92",
       "document_sha256": "5d16a05e85804d551df9eaafa4d3d5839993b2cb3d1509daf95f7ca897c404cb",
-      "document_retrieved_at": "2026-10-10T16:22:17.245Z",
+      "document_retrieved_at": "2026-10-12T10:58:46.553Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "UVLFFIFX4ZI47E4SA4APX7TT7GVW246A",
-        "checked_at": "2026-10-11T14:22:39.109Z",
+        "checked_at": "2026-10-12T11:25:22.262Z",
         "capture_timestamp": "20220417200039"
       }
     },
@@ -5187,7 +5187,7 @@
       "pages": 76,
       "text_sha256": "e397c6084a9e7d91241df046d6cb024fadd703644d5650d62faa41c6f4f9b98d",
       "document_sha256": "7f1f9c8396eec6a2bc6bec06903a29fec1d3d17252a956e37960c92e08977fa8",
-      "document_retrieved_at": "2026-10-11T14:22:39.140Z",
+      "document_retrieved_at": "2026-10-12T11:25:27.380Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -5195,7 +5195,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "UH4W6BLROXRUZFQWOO7MVC3QBUQGRR2U",
-        "checked_at": "2026-10-11T14:22:39.140Z",
+        "checked_at": "2026-10-12T11:25:27.380Z",
         "capture_timestamp": "20220601154543",
         "why": "the mirror's copy (779,814 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -5225,11 +5225,11 @@
       "pages": 69,
       "text_sha256": "24457120c75788937c9be5ea67049d75b1a8a442433beb501efabfc6107747e7",
       "document_sha256": "62d76a5a95f42644de838663040b980659101d1e81ac5c4cea578726b7ba0309",
-      "document_retrieved_at": "2026-10-10T16:22:26.313Z",
+      "document_retrieved_at": "2026-10-12T10:58:50.418Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "5LGYDB7S7NNA2DY7D7ETXQWZDNURGSG2",
-        "checked_at": "2026-10-11T14:22:39.183Z",
+        "checked_at": "2026-10-12T11:25:56.192Z",
         "capture_timestamp": "20220519173330"
       }
     },
@@ -5258,11 +5258,11 @@
       "pages": 12,
       "text_sha256": "bfe1d49cb234f89982fde121b5005445e1b00021fd2f4dcb0bd1ad28d9c6664f",
       "document_sha256": "82fec7a2c4136b0c9b539d76dbab3fc437ddb45eccf4c20250e9f794fd128db4",
-      "document_retrieved_at": "2026-10-10T16:22:29.171Z",
+      "document_retrieved_at": "2026-10-12T10:58:54.403Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "HWCW3BMTY4TTUD5TY5K5HKYAR6LFVNTN",
-        "checked_at": "2026-10-11T14:22:39.391Z",
+        "checked_at": "2026-10-12T11:25:59.777Z",
         "capture_timestamp": "20220308214751"
       }
     },
@@ -5291,11 +5291,11 @@
       "pages": 5,
       "text_sha256": "bf4ac6c25076ec1933d78231cac7ec29748e393361c077645b75991d71dfd186",
       "document_sha256": "ff7382b85c7c722a44def49f8a2851de10f8718f00d5ddb35ef3eaa334fb375b",
-      "document_retrieved_at": "2026-10-10T16:22:30.137Z",
+      "document_retrieved_at": "2026-10-12T10:58:55.396Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "RZNDSLU6VJXIH6MYXDCGOMASP4OQIZGP",
-        "checked_at": "2026-10-11T14:22:39.391Z",
+        "checked_at": "2026-10-12T11:26:00.132Z",
         "capture_timestamp": "20220402212907"
       }
     },
@@ -5324,11 +5324,11 @@
       "pages": 5,
       "text_sha256": "d342e3102bf4ac4b267bb7999d9ec0944f131d4a21e4b26c2f99fcaf1d8e47a3",
       "document_sha256": "3d320e409bc526b599f781403a65e13b641da6b63d851791080547316ca5ed6f",
-      "document_retrieved_at": "2026-10-10T16:22:19.197Z",
+      "document_retrieved_at": "2026-10-12T10:58:48.593Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "JVAWXZXYOHIQZRKKN2QZHAGXD6Y5XLN2",
-        "checked_at": "2026-10-11T14:22:39.392Z",
+        "checked_at": "2026-10-12T11:26:04.054Z",
         "capture_timestamp": "20220315014024"
       }
     },
@@ -5357,11 +5357,11 @@
       "pages": 4,
       "text_sha256": "65986dcd6abe8695f9e4c5eae0448fafa9a344a482504c1544fd2b320e0822c3",
       "document_sha256": "9d7b6409b9b0750ca0c7a9b73d9e2fc1988a10978aa544e775cfca409d14509c",
-      "document_retrieved_at": "2026-10-10T16:22:27.145Z",
+      "document_retrieved_at": "2026-10-12T10:58:52.525Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "55Z325TBKGU45ZJPLFI6BQDQDOBJHYCA",
-        "checked_at": "2026-10-11T14:22:39.393Z",
+        "checked_at": "2026-10-12T11:26:04.816Z",
         "capture_timestamp": "20220110005503"
       }
     },
@@ -5390,11 +5390,11 @@
       "pages": 3,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "34a6542748c0ffa90ce4b9507a23ce36601a3aa4fe9f6a062afb5cc49fee29a1",
-      "document_retrieved_at": "2026-10-10T16:21:04.606Z",
+      "document_retrieved_at": "2026-10-12T10:57:37.580Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "NUL6BUEAB7GYX7HWMMVXEDTFEKRABAWK",
-        "checked_at": "2026-10-11T14:22:39.394Z",
+        "checked_at": "2026-10-12T11:26:08.065Z",
         "capture_timestamp": "20220402133724"
       }
     },
@@ -5436,11 +5436,11 @@
       "pages": 128,
       "text_sha256": "a7140c826b207ed819e7d7cfd3e6ebf973ca5e9a940052332fbb3b87ffce5d8e",
       "document_sha256": "2b1bfeddc09d0f110ce7b51036681c6ca73c38a42456581ea202f30845d713f0",
-      "document_retrieved_at": "2026-10-10T16:22:28.851Z",
+      "document_retrieved_at": "2026-10-12T10:58:53.713Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "CC54R5MIKNOX5XOLFCJ4RG5UAEPKTVCC",
-        "checked_at": "2026-10-11T14:22:39.399Z",
+        "checked_at": "2026-10-12T11:26:38.150Z",
         "capture_timestamp": "20220119012958"
       }
     },
@@ -5479,9 +5479,9 @@
         }
       ],
       "pages": 55,
-      "text_sha256": "8d76855a14d3803162afd0cb296d0a94a6fea919636372b150c686e8ca811382",
+      "text_sha256": "a6bb93d6c0006409ccf1f9c4197af7a23d6c7d6f70e2c08f6ecc5cab9190ad20",
       "document_sha256": "75ca812470c9b08071d2883a1efe5ea62a9bb55f06c38e438d2b407ba736eccf",
-      "document_retrieved_at": "2026-10-11T14:22:39.399Z",
+      "document_retrieved_at": "2026-10-12T11:26:38.350Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 4 different percentages on the same basis (12.8%, 17.5%, 24.4%, 26.6%) and labels more than one of them conditional; choosing between them would be a guess.",
@@ -5490,7 +5490,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "DNP3JQTT7FPZNSYTRQDSFZ3JBX3Q2HHT",
-        "checked_at": "2026-10-11T14:22:39.399Z",
+        "checked_at": "2026-10-12T11:26:38.350Z",
         "capture_timestamp": "20220124030209",
         "why": "the mirror's copy (1,040,863 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -5549,7 +5549,7 @@
       "pages": 13,
       "text_sha256": "29dd78a87e71082c89923c3120adfa2c979f75f5eedb108486f4dcba1674968b",
       "document_sha256": "9d2afa4d7e0242758bd095e0cf47cc8fec06ada77d76e27a8486b988626153e0",
-      "document_retrieved_at": "2026-10-11T14:22:39.400Z",
+      "document_retrieved_at": "2026-10-12T11:26:49.140Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -5557,7 +5557,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "KGNINNKEAXFGBCIRPYULP4N6IN7NIRRC",
-        "checked_at": "2026-10-11T14:22:39.400Z",
+        "checked_at": "2026-10-12T11:26:49.140Z",
         "capture_timestamp": "20220324224045",
         "why": "the mirror's copy (256,807 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -5596,11 +5596,11 @@
       "pages": 19,
       "text_sha256": "68e4de23ede776230ecef126840b4f5d77e3a9b44bb66d8d63b56ce8aaf18da5",
       "document_sha256": "1ade973928b58627fa4b1d4a5e351c1b5559bd9ba2c6cdf832d1e0275df06446",
-      "document_retrieved_at": "2026-10-10T16:22:34.108Z",
+      "document_retrieved_at": "2026-10-12T10:58:59.405Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "JAUWB4GDBFJ3WDRBYAZYXCS2FANFZAZJ",
-        "checked_at": "2026-10-11T14:22:39.518Z",
+        "checked_at": "2026-10-12T11:26:57.748Z",
         "capture_timestamp": "20220122020303"
       }
     },
@@ -5668,11 +5668,11 @@
       "pages": 96,
       "text_sha256": "a33784e73c68326c788628076b0c386ab6254d01169b14d631bfb0216b9fbb24",
       "document_sha256": "925284b02a8c0edebe0f6ca320c5b0544c2cac8d8e1842c25f6e833d6ec23a78",
-      "document_retrieved_at": "2026-10-10T16:22:35.272Z",
+      "document_retrieved_at": "2026-10-12T10:59:00.465Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "3YYJSO6EHODXFTFGXCF3VX2VJ2ADC57K",
-        "checked_at": "2026-10-11T14:22:39.519Z",
+        "checked_at": "2026-10-12T11:26:58.696Z",
         "capture_timestamp": "20220527032754"
       }
     },
@@ -5701,11 +5701,11 @@
       "pages": 12,
       "text_sha256": "14c0556ee2366aa1c72ec9e693a5aeffd8b52aa02d5b728208a7d9edbb15401c",
       "document_sha256": "dbe84ffcf4ad4cc74b47d2f08522129921e4615d2841ee669a539fe577fc0d3c",
-      "document_retrieved_at": "2026-10-10T16:22:42.270Z",
+      "document_retrieved_at": "2026-10-12T10:59:07.670Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "CH2KW5T2YE7ZX65CGRHB7OKP6KMKZGP5",
-        "checked_at": "2026-10-11T14:22:39.520Z",
+        "checked_at": "2026-10-12T11:27:00.216Z",
         "capture_timestamp": "20220423071312"
       }
     },
@@ -5733,7 +5733,7 @@
       "pages": 9,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "2dccaf5d6f25d7885bcc9d36d6fc9285419a9c5853755ad461b769fc23e581f6",
-      "document_retrieved_at": "2026-10-11T14:22:39.521Z",
+      "document_retrieved_at": "2026-10-12T11:27:46.131Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document has no extractable text layer, it is a scan, so nothing in it has been read.",
@@ -5742,7 +5742,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "62FDMIQ2PSTDHYOMZK6636G75YSQYVYG",
-        "checked_at": "2026-10-11T14:22:39.521Z",
+        "checked_at": "2026-10-12T11:27:46.131Z",
         "capture_timestamp": "20220110005917",
         "why": "the mirror's copy (2,097,730 bytes) is the file the Internet Archive last captured at the registry link on 2022-01-10, and its newer capture of 2022-01-17 holds other bytes, so it is not shown to be the file a reader opens there now"
       }
@@ -5781,11 +5781,11 @@
       "pages": 47,
       "text_sha256": "b2e5ccea7d38bdca6f7879c1b53d3274c8da157f8d53df5844749c1a9a9ea3ad",
       "document_sha256": "754888d13f7c9d6ada7402fb9d6401b87646629fcaa095f1c6896dee6d2883c9",
-      "document_retrieved_at": "2026-10-10T16:22:43.374Z",
+      "document_retrieved_at": "2026-10-12T10:59:08.674Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "GPDBEMRZ3QVNVHYKD24IFKOXYLNWO3S7",
-        "checked_at": "2026-10-11T14:22:39.523Z",
+        "checked_at": "2026-10-12T11:27:50.994Z",
         "capture_timestamp": "20220318010918"
       }
     },
@@ -5814,11 +5814,11 @@
       "pages": 25,
       "text_sha256": "f2539897e36831cba434df983b04bcac845cc681cebe29215cee8d37ae708edb",
       "document_sha256": "b515d19625cb1a6b92a6a3dc7b52d4bb5ea11b78d2b45605e238cc192c64178d",
-      "document_retrieved_at": "2026-10-10T16:22:47.287Z",
+      "document_retrieved_at": "2026-10-12T10:59:12.619Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "MVEMSDAXHO64QD3YRYLYR4FQNFDTS6KN",
-        "checked_at": "2026-10-11T14:22:39.535Z",
+        "checked_at": "2026-10-12T11:28:01.660Z",
         "capture_timestamp": "20220402133639"
       }
     },
@@ -5886,11 +5886,11 @@
       "pages": 28,
       "text_sha256": "3c704ca78afcdc9b625d80597acb32957434bdf213457d0b8a7a883910500857",
       "document_sha256": "dcb0999f67a9162e99b122c7ba1b5317be6d0e81cd4c8295fbf73ad7c3455740",
-      "document_retrieved_at": "2026-10-10T16:22:49.318Z",
+      "document_retrieved_at": "2026-10-12T10:59:13.642Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "FR6Z7F4QSHOBU2JRHWSITAY2IIOCJZFO",
-        "checked_at": "2026-10-11T14:22:39.553Z",
+        "checked_at": "2026-10-12T11:28:02.300Z",
         "capture_timestamp": "20211107100645"
       }
     },
@@ -5918,7 +5918,7 @@
       "pages": 68,
       "text_sha256": "396b03980e1c29438adb76b4a4373a766fefaf771242e5428be4b068dda7c38c",
       "document_sha256": "d6507e3f2477607fef86470f83a24c57a6ae4145c549ffbdf5e8a5b80a1a6ec9",
-      "document_retrieved_at": "2026-10-11T14:22:39.553Z",
+      "document_retrieved_at": "2026-10-12T11:28:05.687Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -5927,7 +5927,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "MTHNFKSSIPPYE4FFXPK5WSU2SLBSMM5H",
-        "checked_at": "2026-10-11T14:22:39.553Z",
+        "checked_at": "2026-10-12T11:28:05.687Z",
         "capture_timestamp": "20220413100723",
         "why": "the mirror's copy (348,664 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -5967,9 +5967,9 @@
         }
       ],
       "pages": 168,
-      "text_sha256": "325a0a3c3f6f2eaa6a47a75c00b01c9f495a3835f8e95cf18786af0b4f982af6",
+      "text_sha256": "a6872edfc55ff4c4683bda2101041b7830be16de3ead5f4501ac86816e0b0891",
       "document_sha256": "a7ca09c631a921ce1028f147e18f04bc5833b4de337e36cf77a4a42e0bab4c05",
-      "document_retrieved_at": "2026-10-11T14:22:39.555Z",
+      "document_retrieved_at": "2026-10-12T11:28:10.267Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 3 different percentages on the same basis (1.6%, 8%, 61%) and does not label which is the pledge.",
@@ -5978,7 +5978,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "YVIARG5BSFDFGVEBV3Z62FJKK6L3SGAL",
-        "checked_at": "2026-10-11T14:22:39.555Z",
+        "checked_at": "2026-10-12T11:28:10.267Z",
         "capture_timestamp": "20220202200617",
         "why": "the mirror's copy (451,694 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -6008,11 +6008,11 @@
       "pages": 3,
       "text_sha256": "0d4499f104b2102d026dd8b9a946eac5fec9405bcde5998bef5eae0fc9c9d976",
       "document_sha256": "f08448db9ebb4537be81d36bdbcb59d68b595e86e823a4463c4865b1b67b3bc8",
-      "document_retrieved_at": "2026-10-10T16:22:40.227Z",
+      "document_retrieved_at": "2026-10-12T10:59:05.567Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "AIV7C5WN6UTEQ33C2RM2HNPAAVZ2OTCV",
-        "checked_at": "2026-10-11T14:22:39.650Z",
+        "checked_at": "2026-10-12T11:28:16.049Z",
         "capture_timestamp": "20220422033239"
       }
     },
@@ -6070,7 +6070,7 @@
       "pages": 16,
       "text_sha256": "505cba2b47dde256b02779bbb1981826b1d7553403e5886c11c06019e38a02df",
       "document_sha256": "38f29276ea24fba667201a4c253993710a29a43acb98c02615c657a183b47b84",
-      "document_retrieved_at": "2026-10-11T14:22:39.924Z",
+      "document_retrieved_at": "2026-10-12T11:28:19.677Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -6078,7 +6078,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "TX2ZLAOMWA4EC3OC5AVDFUA4NSQXYVIJ",
-        "checked_at": "2026-10-11T14:22:39.924Z",
+        "checked_at": "2026-10-12T11:28:19.677Z",
         "capture_timestamp": "20220228112857",
         "why": "the mirror's copy (1,068,275 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -6108,11 +6108,11 @@
       "pages": 3,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "deac487c6ded13b5535d5b9882826f2fb1053fc8874c4ce622669b60b16831c6",
-      "document_retrieved_at": "2026-10-10T16:22:44.217Z",
+      "document_retrieved_at": "2026-10-12T10:59:09.547Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "PAKDOMSQYEJOK522IMFNJAF6CBIIYHLJ",
-        "checked_at": "2026-10-11T14:22:39.924Z",
+        "checked_at": "2026-10-12T11:28:34.451Z",
         "capture_timestamp": "20220408152258"
       }
     },
@@ -6139,14 +6139,14 @@
       "evidence": [],
       "$reason": "the document states targets on more than one basis or horizon (base-year · 2010 · 2030; base-year · 2017 · 2030; base-year · 2018 · 2030; base-year · 2019 · 2030); choosing between them would be a guess.",
       "pages": 168,
-      "text_sha256": "d2d43fd2f0e12e8d62ed9ad9de1686a93ded89164c985a6113f00df889f8acb3",
+      "text_sha256": "f1153df7c088c361c3823e6e45bf285422103795ee7d1b75d3cc5aa6e81443c0",
       "document_sha256": "0870dc557143b754700bec95b355215c994d42f282abdcd98b9be77be18e3946",
-      "document_retrieved_at": "2026-10-10T16:22:52.562Z",
+      "document_retrieved_at": "2026-10-12T10:59:16.662Z",
       "mirror_check": {
         "result": "transient",
         "mirror_sha1": "MTUXE6MWR77O23SK7RJ5YZBOMJVIRQWI",
-        "checked_at": "2026-10-11T14:22:39.944Z",
-        "why": "the Internet Archive's capture of 2022-05-09 could not be fetched on this run (failed: other side closed (4 attempts)); the filing is looked for again on the next run."
+        "checked_at": "2026-10-12T11:28:35.049Z",
+        "why": "the Internet Archive's capture of 2022-05-09 could not be fetched on this run (failed: Connect Timeout Error (attempted address: web.archive.org:443, timeout: 10000ms) (4 attempts)); the filing is looked for again on the next run."
       }
     },
     {
@@ -6173,7 +6173,7 @@
       "pages": 19,
       "text_sha256": "53aeeefbf79b8f0fe4124be482db7a96ea4fe6c92cb2b131f3e9b4699b2870b8",
       "document_sha256": "35e8bb77368d0f95b3d5cfcf5a4e3eb223460e9142c9d3c588784be172260680",
-      "document_retrieved_at": "2026-10-11T14:22:39.994Z",
+      "document_retrieved_at": "2026-10-12T11:29:26.160Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -6182,7 +6182,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "7P3XCFFTUAPJPQTOJLQYZ24E5JQ6HRUK",
-        "checked_at": "2026-10-11T14:22:39.994Z",
+        "checked_at": "2026-10-12T11:29:26.160Z",
         "capture_timestamp": "20220417200108",
         "why": "the mirror's copy (251,241 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -6210,13 +6210,13 @@
       "evidence": [],
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "pages": 40,
-      "text_sha256": "b13ba590361ace88f12aa4c222173193afffb93b6043a0babd95183dac23644e",
+      "text_sha256": "6cc0d31d6abb92806232a93a2d69181922daab904d2be996d7b9c0698a6d6949",
       "document_sha256": "491f388f703929034085000a0ae9d5f647eee0131d2b8d2a46657699780f180e",
-      "document_retrieved_at": "2026-10-10T16:22:56.147Z",
+      "document_retrieved_at": "2026-10-12T10:59:20.673Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "7Q7LRUGDGN262DMOVAYDQHKK4UQVD7IM",
-        "checked_at": "2026-10-11T14:22:40.039Z",
+        "checked_at": "2026-10-12T11:29:39.991Z",
         "capture_timestamp": "20220405163414"
       }
     },
@@ -6243,13 +6243,13 @@
       "evidence": [],
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "pages": 7,
-      "text_sha256": "73da000df28484901fbfa33cc898a0ef7ddf46551d9ae17bed15c29258f20714",
+      "text_sha256": "e71012977adb727be866647d8c6a55a56916b6f3b939772b2e942118aa97a974",
       "document_sha256": "fc653d8e3993775da039fd37944e8640be10a14a769ecc055a5df6d95b5bd89d",
-      "document_retrieved_at": "2026-10-10T16:21:14.639Z",
+      "document_retrieved_at": "2026-10-12T10:57:47.672Z",
       "mirror_check": {
         "result": "unverifiable",
         "mirror_sha1": "SW24LEFO4WAWZLAJTDOPADR3UXXSUF6D",
-        "checked_at": "2026-10-11T14:22:40.042Z"
+        "checked_at": "2026-10-12T11:29:53.027Z"
       }
     },
     {
@@ -6314,7 +6314,7 @@
       "pages": 46,
       "text_sha256": "09b769e35a22dc0d64468bcabee572cc97fd1054514890099a4409ad2bfa3f25",
       "document_sha256": "328d366827699ed91f1e510975a8a0da9253d1b2d65fdbbb63b3f57451b941c2",
-      "document_retrieved_at": "2026-10-11T14:22:40.042Z",
+      "document_retrieved_at": "2026-10-12T11:30:48.387Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -6322,7 +6322,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "6A525XNKMHIS4YMCHVZWJC5UDHXYJWLD",
-        "checked_at": "2026-10-11T14:22:40.042Z",
+        "checked_at": "2026-10-12T11:30:48.387Z",
         "capture_timestamp": "20220528002653",
         "why": "the mirror's copy (404,604 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -6352,11 +6352,11 @@
       "pages": 14,
       "text_sha256": "e6ca883e054ceab9e97567245d69b80f9cbf16363714df1654ba5b89a390a496",
       "document_sha256": "9c74c853e3e192f2f6ccd970eef3bd4b341d974b07df0018c3e429544f0cae52",
-      "document_retrieved_at": "2026-10-10T16:22:57.995Z",
+      "document_retrieved_at": "2026-10-12T10:59:22.590Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "2OM7K35IXUGB4V6OKDH3LXAKWOX3BYB3",
-        "checked_at": "2026-10-11T14:22:40.132Z",
+        "checked_at": "2026-10-12T11:30:55.256Z",
         "capture_timestamp": "20220406072843"
       }
     },
@@ -6408,11 +6408,11 @@
       "pages": 17,
       "text_sha256": "e745be43a4b904ecc31a30fbc0fdb54a84152eccd7629ec5b0ae947037825f2c",
       "document_sha256": "8e0c51f12e3aa78c513117792126b5ee5dac28f4b4fb39913e8b94d9ec3596b6",
-      "document_retrieved_at": "2026-10-10T16:20:53.192Z",
+      "document_retrieved_at": "2026-10-12T10:57:27.514Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "W3X2NTJPXD7WZBOGPXPNTQ43PMEKCWQM",
-        "checked_at": "2026-10-11T14:22:40.132Z",
+        "checked_at": "2026-10-12T11:30:55.592Z",
         "capture_timestamp": "20220120194734"
       }
     },
@@ -6472,11 +6472,11 @@
       "pages": 21,
       "text_sha256": "d51da9d52969392e1403e2cf321811b3a35bdc39bdd92dec9db73765dab35c89",
       "document_sha256": "37ec4d0f024996d6631762b7fc27fc647e7d0f1f54e49b670e107a831b89c6b5",
-      "document_retrieved_at": "2026-10-10T16:23:03.084Z",
+      "document_retrieved_at": "2026-10-12T10:59:27.577Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "RFCPXHK3RAUIN64N43LU74P5J2Z5UHB6",
-        "checked_at": "2026-10-11T14:22:40.133Z",
+        "checked_at": "2026-10-12T11:30:57.960Z",
         "capture_timestamp": "20220417212805"
       }
     },
@@ -6505,11 +6505,11 @@
       "pages": 8,
       "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "document_sha256": "01fe8abe891444ab9012a2d73e89af57586aaf5fd04e5c34975f4ac48461136d",
-      "document_retrieved_at": "2026-10-10T16:23:00.898Z",
+      "document_retrieved_at": "2026-10-12T10:59:24.925Z",
       "mirror_check": {
         "result": "transient",
         "mirror_sha1": "DJCFBCCYGBQVM2Z6TOR2R5YBHAZK2JIH",
-        "checked_at": "2026-10-11T14:22:40.139Z",
+        "checked_at": "2026-10-12T11:31:03.862Z",
         "why": "the Internet Archive's capture of 2022-06-01 could not be fetched on this run (failed: other side closed (4 attempts)); the filing is looked for again on the next run."
       }
     },
@@ -6651,11 +6651,11 @@
       "pages": 101,
       "text_sha256": "181fe9c9ec7954d7d143c40d984461e1a94ab794e3faa32f6a20b273c33fa1b9",
       "document_sha256": "986b5e5c37b975f82256aa2cb0708b74a0be7933c7b780c374a13862b27b4408",
-      "document_retrieved_at": "2026-10-10T16:23:04.447Z",
+      "document_retrieved_at": "2026-10-12T10:59:28.640Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "SK4XF62LHE5CMGFIGLPII73PUMKIWGNE",
-        "checked_at": "2026-10-11T14:23:30.792Z",
+        "checked_at": "2026-10-12T11:32:22.734Z",
         "capture_timestamp": "20220321141702"
       }
     },
@@ -6707,11 +6707,11 @@
       "pages": 6,
       "text_sha256": "341b285064dd5acb399fe26c0930a059730fe8680bec1b606db7f025d748661e",
       "document_sha256": "704c50769507b7fa6f95c08b9b0f32ea9d41fe1501027617565eb82ac6e130c7",
-      "document_retrieved_at": "2026-10-10T16:23:05.124Z",
+      "document_retrieved_at": "2026-10-12T10:59:29.563Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "FCCDASH6DNMGVXTCSTO2BCEXBFZTU7UL",
-        "checked_at": "2026-10-11T14:23:30.793Z",
+        "checked_at": "2026-10-12T11:32:30.476Z",
         "capture_timestamp": "20220315014447"
       }
     },
@@ -6740,11 +6740,11 @@
       "pages": 18,
       "text_sha256": "3a26e777d9f0195b0e5f84cfed432129514abbc9698dbe780b0f8e22a7f1b676",
       "document_sha256": "d13e66736c33a4ddc3cae7a7abf799aefb295213315f8aaf08bf9ff94b81d95a",
-      "document_retrieved_at": "2026-10-10T16:23:06.128Z",
+      "document_retrieved_at": "2026-10-12T10:59:30.590Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "JQYRTQSVHJMRP37GDP4NIG2AFKDRE6W5",
-        "checked_at": "2026-10-11T14:23:30.794Z",
+        "checked_at": "2026-10-12T11:32:35.532Z",
         "capture_timestamp": "20220307200004"
       }
     },
@@ -6837,11 +6837,11 @@
       "pages": 10,
       "text_sha256": "6d3b288adb341303faaed8c7a99d9603ba9bb5f88d010d068563d89537711e9f",
       "document_sha256": "07e7b7cbbefa909e515b6c473127843623755bc096e3c3bf020383993baa3d1d",
-      "document_retrieved_at": "2026-10-10T16:23:09.093Z",
+      "document_retrieved_at": "2026-10-12T10:59:33.533Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "GUMWKIIXMXQQMTKYY7WZDGBGBEKOJJFK",
-        "checked_at": "2026-10-11T14:23:30.795Z",
+        "checked_at": "2026-10-12T11:32:49.208Z",
         "capture_timestamp": "20220315014148"
       }
     },
@@ -6908,11 +6908,11 @@
       "pages": 35,
       "text_sha256": "aed0b51cfd144ae097e1451ffdcd38b5db0667f7b0f935d3e615e8857c27df94",
       "document_sha256": "c4232e71bd6025a93a54f922cecde83d0146788319b04d580b7b41c4357816cf",
-      "document_retrieved_at": "2026-10-10T16:23:14.178Z",
+      "document_retrieved_at": "2026-10-12T10:59:38.706Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "LKKW7S5GIECD4QHSLDJGNXBGDQR75PI3",
-        "checked_at": "2026-10-11T14:23:30.796Z",
+        "checked_at": "2026-10-12T11:32:54.541Z",
         "capture_timestamp": "20220110005909"
       }
     },
@@ -6942,14 +6942,14 @@
       "pages": 13,
       "text_sha256": "dda2c4ef764014e432869fe2964ecbd1f7575da463c5c01bf5ed577fb80041ff",
       "document_sha256": "f21d366d010d696cae60a9a093f6f59cfbf55325081db40be35f205aec319b00",
-      "document_retrieved_at": "2026-10-11T14:23:30.797Z",
+      "document_retrieved_at": "2026-10-12T11:32:56.671Z",
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20220110005527",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "QH2MCYT2DZOZH3NOD352AWNACZOVJQVW",
-        "checked_at": "2026-10-11T14:23:30.797Z",
+        "checked_at": "2026-10-12T11:32:56.671Z",
         "capture_timestamp": "20220110005527",
         "why": "the mirror's copy (720,366 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -7016,7 +7016,7 @@
       "pages": 19,
       "text_sha256": "9d88522530d4fa85474d279ecd272b3afbf2974d5749db7b8c6e288a664b585e",
       "document_sha256": "92bf75ed72bb63b129996e7cdc2f2f363d1a9c787c5d669a76388c40ca34216b",
-      "document_retrieved_at": "2026-10-11T14:23:30.827Z",
+      "document_retrieved_at": "2026-10-12T11:32:59.607Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "retrieval_route": "wayback",
@@ -7024,7 +7024,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "OCHMH4BKM3FWO6NX4RY3Y23ITY7B4F3J",
-        "checked_at": "2026-10-11T14:23:30.827Z",
+        "checked_at": "2026-10-12T11:32:59.607Z",
         "capture_timestamp": "20220428163354",
         "why": "the mirror's copy (205,345 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -7054,11 +7054,11 @@
       "pages": 29,
       "text_sha256": "64f3354a492209c6356be2648c724701e02c5f49806919183b8a8612a58ec4c9",
       "document_sha256": "c64847a0d2c7940dc9663ecdc0c330fdfa761d31b1fb93f92db0441f38ffc034",
-      "document_retrieved_at": "2026-10-10T16:23:16.112Z",
+      "document_retrieved_at": "2026-10-12T10:59:40.573Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "QN7RSSL24WUEUQPQ2K4AQFNVY76NEE44",
-        "checked_at": "2026-10-11T14:23:30.866Z",
+        "checked_at": "2026-10-12T11:33:12.830Z",
         "capture_timestamp": "20220119145515"
       }
     },
@@ -7133,11 +7133,11 @@
       "pages": 24,
       "text_sha256": "cd7273a068df045d90897e9d90677e70ee5ba268f5956c23be37d318fa4bf575",
       "document_sha256": "a2fcbf3ca4053be6974a0abcc89fafbfb79bdfbc33d7f38490d7100ddf75573c",
-      "document_retrieved_at": "2026-10-10T16:23:15.159Z",
+      "document_retrieved_at": "2026-10-12T10:59:39.632Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "HELIKVV5DR3C7RCFBCSRDH73UXQ6X3I4",
-        "checked_at": "2026-10-11T14:23:30.866Z",
+        "checked_at": "2026-10-12T11:33:27.467Z",
         "capture_timestamp": "20220531081529"
       }
     },
@@ -7166,11 +7166,11 @@
       "pages": 28,
       "text_sha256": "3ec85966cdcc21aa27d87e496519994059c24fae66ea1c85d08b5177c12f4066",
       "document_sha256": "46f40590ebfe8f840479f7757e8b0190329ee4583d4dafa42d5d8f6b2f76cf6e",
-      "document_retrieved_at": "2026-10-10T16:23:17.242Z",
+      "document_retrieved_at": "2026-10-12T10:59:41.620Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "NU263TFSUZESWT7Q7SAQJWLQE2U66JZU",
-        "checked_at": "2026-10-11T14:23:30.868Z",
+        "checked_at": "2026-10-12T11:33:38.419Z",
         "capture_timestamp": "20220110005623"
       }
     },
@@ -7230,11 +7230,11 @@
       "pages": 14,
       "text_sha256": "e93b199328663f30d348f3478ea82784e4a5a347f714d34371173326366bdff1",
       "document_sha256": "0419d99bcd9b904677cdde15e7457ada7d3c9bd030e7c9f31a90de31f1671b5c",
-      "document_retrieved_at": "2026-10-10T16:22:38.183Z",
+      "document_retrieved_at": "2026-10-12T10:59:03.468Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "6JL7WGBWB3GYGKWSQAHOORWP5XDMZ6VM",
-        "checked_at": "2026-10-11T14:23:30.869Z",
+        "checked_at": "2026-10-12T11:34:02.367Z",
         "capture_timestamp": "20220120222713"
       }
     },
@@ -7264,14 +7264,14 @@
       "pages": 162,
       "text_sha256": "d079904199271e5d0eaf968a4d11e860dd5b7ea47db42a4e9fb10cb2d9efaff9",
       "document_sha256": "aa64e1b0b55dd85cb6a3db0c57f0c362c3a287e0e2786d1484ede86132d637da",
-      "document_retrieved_at": "2026-10-11T14:23:30.870Z",
+      "document_retrieved_at": "2026-10-12T11:34:12.797Z",
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
       "retrieval_route": "wayback",
       "capture_timestamp": "20211205040206",
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "ODCQKUVJKGLC7XHKE667UU34RLWERMAW",
-        "checked_at": "2026-10-11T14:23:30.870Z",
+        "checked_at": "2026-10-12T11:34:12.797Z",
         "capture_timestamp": "20211205040206",
         "why": "the mirror's copy (638,973 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -7314,11 +7314,11 @@
       "pages": 46,
       "text_sha256": "0dc9700e418be2d42b81f96877db134021e6148058cb1deedc19ce6c615aedf6",
       "document_sha256": "db57f3f2ec4181b32c8be756d2105b925553d9e7376dcc08c2113cd925a593aa",
-      "document_retrieved_at": "2026-10-10T16:23:20.130Z",
+      "document_retrieved_at": "2026-10-12T10:59:44.786Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "NZRRC4O5CKDX63FRUT7CJ6QD2CGVCNTL",
-        "checked_at": "2026-10-11T14:23:31.083Z",
+        "checked_at": "2026-10-12T11:34:18.284Z",
         "capture_timestamp": "20220428180039"
       }
     },
@@ -7347,11 +7347,11 @@
       "pages": 30,
       "text_sha256": "52670b4c0c2290cc03f0bddd331d81b17e39b45b8024315960cb7090878e5d0c",
       "document_sha256": "4a75fdec64812438d66ab75a9e09d8d9af335d4cd54f40bda2299e0b9140ba59",
-      "document_retrieved_at": "2026-10-10T16:23:18.152Z",
+      "document_retrieved_at": "2026-10-12T10:59:42.606Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "Q7SHPWJ34ZTKRAHPYLUAJRJOJDSGGSKS",
-        "checked_at": "2026-10-11T14:23:31.086Z",
+        "checked_at": "2026-10-12T11:34:18.932Z",
         "capture_timestamp": "20220120192553"
       }
     },
@@ -7380,11 +7380,11 @@
       "pages": 30,
       "text_sha256": "d4d710dfafd99037dcdb76e21cfcc27a40790c5b67d4b34f0b811cc912eb778b",
       "document_sha256": "01dca7fc4c9886dc86bd5242aab0558d9a7ce42b8a0529b7c682e66dc5e1ebb0",
-      "document_retrieved_at": "2026-10-10T16:22:39.708Z",
+      "document_retrieved_at": "2026-10-12T10:59:04.664Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "BI6IRMC2IMJYDX3GJCXWZIOO2X3BRYJK",
-        "checked_at": "2026-10-11T14:23:31.090Z",
+        "checked_at": "2026-10-12T11:34:27.137Z",
         "capture_timestamp": "20220118200602"
       }
     },
@@ -7422,11 +7422,11 @@
       "pages": 16,
       "text_sha256": "5ceefbcc68619eafe10178ac10b2514d9bbd4d770f8c64a463cec91a83c980df",
       "document_sha256": "2c7154c184ee2deca2863c38de77d6da7206c80a724105f88561426b76d80442",
-      "document_retrieved_at": "2026-10-10T16:23:21.123Z",
+      "document_retrieved_at": "2026-10-12T10:59:45.600Z",
       "mirror_check": {
         "result": "verified",
         "mirror_sha1": "VU5OBP2ANDVXRCCGKY4H5K273QZGSSPB",
-        "checked_at": "2026-10-11T14:23:31.091Z",
+        "checked_at": "2026-10-12T11:34:28.065Z",
         "capture_timestamp": "20180328175413"
       }
     },
@@ -7454,7 +7454,7 @@
       "pages": 33,
       "text_sha256": "131325ad6ad9eb7d245bfa91943a80013a2378f3a5d8ab425a76022218c628a9",
       "document_sha256": "a2358ac01f17261622fe92e84dd6389faaa3c0dec41f4ac27c3567fd86465ab4",
-      "document_retrieved_at": "2026-10-11T14:23:31.092Z",
+      "document_retrieved_at": "2026-10-12T11:34:30.793Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -7463,7 +7463,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "6VPKH7M6R6W6TMMDCDCWLNVBDA74WG6T",
-        "checked_at": "2026-10-11T14:23:31.092Z",
+        "checked_at": "2026-10-12T11:34:30.793Z",
         "capture_timestamp": "20220110005529",
         "why": "the mirror's copy (602,928 bytes) has none of the 2 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -7495,9 +7495,9 @@
         }
       ],
       "pages": 21,
-      "text_sha256": "9208e39ff09c5eca78e693aa53b40a8aa289970039b56ee3b4ce75dd308797da",
+      "text_sha256": "c2870a34ff077b78f35a964428f56e41c16aa1231c13d766c78c41e822f6c646",
       "document_sha256": "28a2c3fd980a916ad3edc9e69ad8886e2d7aa42510db67f98af394f388d99a46",
-      "document_retrieved_at": "2026-10-11T14:23:31.167Z",
+      "document_retrieved_at": "2026-10-12T11:34:43.682Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "the document states 2 different percentages on the same basis (47% and 25%, in one sentence) and only 47% could be read against a year; shown alone, it could overstate the pledge.",
@@ -7506,7 +7506,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "BMA7NTWA4PBQWFOMCG4SSFSV5WRAWJ7P",
-        "checked_at": "2026-10-11T14:23:31.167Z",
+        "checked_at": "2026-10-12T11:34:43.682Z",
         "capture_timestamp": "20220528012258",
         "why": "the mirror's copy (647,446 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }
@@ -7533,9 +7533,9 @@
       "confidence": "low",
       "evidence": [],
       "pages": 56,
-      "text_sha256": "12cafaf2200e2be728bb08eb084ba80d13f13fab71747edcd436a88f5b324468",
+      "text_sha256": "ee3e203fd9866cf14f738c12978fee55e2849ba6cf31bddd9fef0cfb3bfca078",
       "document_sha256": "4da6b0d3f49db349f21c3e33eaf5985d5d04b3500f290fa254e36ab904216b2b",
-      "document_retrieved_at": "2026-10-11T14:23:31.219Z",
+      "document_retrieved_at": "2026-10-12T11:35:31.979Z",
       "bau_mtco2e": null,
       "bau_evidence": null,
       "$reason": "no sentence in this document was read as an economy-wide percentage reduction against a base year or a business-as-usual projection.",
@@ -7544,7 +7544,7 @@
       "mirror_check": {
         "result": "replaced",
         "mirror_sha1": "TS7IQLCLDPPHBZ5LU7HPBFHZKMC2M5EV",
-        "checked_at": "2026-10-11T14:23:31.219Z",
+        "checked_at": "2026-10-12T11:35:31.979Z",
         "capture_timestamp": "20220428160800",
         "why": "the mirror's copy (754,869 bytes) has none of the 1 digest(s) the Internet Archive indexes for the registry link, so it is not shown to be the file a reader opens there"
       }

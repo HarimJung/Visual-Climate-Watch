@@ -16,7 +16,7 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-11T14:23:50.196Z",
+      "checked_at": "2026-10-12T11:52:21.994Z",
       "rejected": [
         {
           "route": "primap-r2",
@@ -2076,9 +2076,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:30.063Z",
+      "checked_at": "2026-10-12T11:37:31.053Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-06-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-06-01) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-06/CDN%203.0%20CMR%20FINAL.pdf",
@@ -2111,9 +2111,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:30.839Z",
+      "checked_at": "2026-10-12T11:45:53.575Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-06-24) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-06-24) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-06/NDC_3.0_Versio%CC%81n%20Final_1303_conAnexos_REV_2.pdf",
@@ -2163,9 +2163,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:31.117Z",
+      "checked_at": "2026-10-12T11:52:22.909Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-07-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-07-01) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-07/NDC3.0%20Malawi_17June2026_Final%20Version.pdf",
@@ -2198,9 +2198,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:32.905Z",
+      "checked_at": "2026-10-12T12:13:45.857Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-07-30) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-07-30) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-08/NDC%203.0%20M%C3%A9xico_spanish.pdf",
@@ -2233,9 +2233,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:30.057Z",
+      "checked_at": "2026-10-12T11:36:43.640Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2025-11-05) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2025-11-05) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-08/State%20of%20Palestine%20NDC%203.pdf",
@@ -2251,9 +2251,10 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:33.027Z",
+      "checked_at": "2026-10-12T12:15:50.168Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "the Internet Archive's index could not be queried on this run (failed: Connect Timeout Error (attempted address: web.archive.org:443, timeout: 10000ms)); the filing is looked for again on the next run.",
+      "transient": true
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-08/The%20Gambia%20NDC%203.0%20-30%20AUG%202026.pdf",
@@ -2269,9 +2270,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:31.100Z",
+      "checked_at": "2026-10-12T11:51:41.227Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-09/1.%20PH%20Nationally%20Determined%20Contribution%202026.0715.pdf",
@@ -2287,9 +2288,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:32.964Z",
+      "checked_at": "2026-10-12T12:14:15.290Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-09-08) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-09-08) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-09/2026_MADAGASCAR_NDC3.0.pdf",
@@ -2322,9 +2323,10 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:33.231Z",
+      "checked_at": "2026-10-12T12:18:14.378Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-08-31) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "the Internet Archive's index could not be queried on this run (failed: Connect Timeout Error (attempted address: web.archive.org:443, timeout: 10000ms)); the filing is looked for again on the next run.",
+      "transient": true
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-09/Albania%20NDC%203.0-%20Revised.pdf",
@@ -2340,9 +2342,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:32:15.283Z",
+      "checked_at": "2026-10-12T11:36:00.049Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-09-16) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-09-16) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-09/CDN%20_3.0_Niger.pdf",
@@ -2358,9 +2360,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:32.772Z",
+      "checked_at": "2026-10-12T12:10:55.866Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-09-23) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-09-23) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-09/NDC3.0%20_Guinea%20Bissau_EN.pdf",
@@ -2376,9 +2378,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:31.100Z",
+      "checked_at": "2026-10-12T11:51:48.277Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-09-22) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-09-22) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-09/TOGO_CDN3.0_2026.pdf",
@@ -2394,9 +2396,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:33.298Z",
+      "checked_at": "2026-10-12T12:19:14.600Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-09-07) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-09-07) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-10/CDN%203.0%20Tchad.pdf",
@@ -2412,9 +2414,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:33.297Z",
+      "checked_at": "2026-10-12T12:18:53.465Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-10-05) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-10-05) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/2026-10/NDC_Grenada_2025-v4-WEB.pdf",
@@ -2430,9 +2432,9 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:31.102Z",
+      "checked_at": "2026-10-12T11:52:08.289Z",
       "rejected": [],
-      "$reason": "no copy of this filing (filed 2026-10-07) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
+      "$reason": "no copy of this filing (filed 2026-10-07) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the Internet Archive holds no capture of its link, and the PRIMAP mirror holds no file of this name filed that day."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/NDC/2022-05/Actualizacio%CC%81n%20meta%20de%20emisiones%202030.pdf",
@@ -2467,7 +2469,7 @@
       "sha256": null,
       "size": null,
       "pages": null,
-      "checked_at": "2026-10-10T21:25:31.867Z",
+      "checked_at": "2026-10-12T11:56:34.111Z",
       "rejected": [
         {
           "route": "wayback",
@@ -2482,7 +2484,7 @@
           "why": "it is cut off at exactly 1 MiB (1,048,576 bytes), the size at which crawlers cut a capture off"
         }
       ],
-      "$reason": "no complete copy of this filing (filed 2022-06-01) could be retrieved by 2026-10-10: unfccc.int refuses automated requests, the PRIMAP mirror holds no file of this name filed that day, and each of the Internet Archive's 2 captured version(s) of its link failed a check (the capture of 2026-06-23: it is cut off at exactly 30 MiB (31,457,280 bytes), the size at which crawlers cut a capture off; the capture of 2022-08-13: it is cut off at exactly 1 MiB (1,048,576 bytes), the size at which crawlers cut a capture off)."
+      "$reason": "no complete copy of this filing (filed 2022-06-01) could be retrieved by 2026-10-12: unfccc.int refuses automated requests, the PRIMAP mirror holds no file of this name filed that day, and each of the Internet Archive's 2 captured version(s) of its link failed a check (the capture of 2026-06-23: it is cut off at exactly 30 MiB (31,457,280 bytes), the size at which crawlers cut a capture off; the capture of 2022-08-13: it is cut off at exactly 1 MiB (1,048,576 bytes), the size at which crawlers cut a capture off)."
     },
     {
       "document_url": "https://unfccc.int/sites/default/files/NDC/2022-09/Updated%20NDC%20_Uganda_2022%20Final.pdf",
