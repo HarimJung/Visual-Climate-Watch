@@ -1,6 +1,6 @@
 {
   "$note": "Read by engine/sources/ds-untc.ts from the UN Treaty Collection status PDFs of the UNFCCC (XXVII-7) and the Paris Agreement (XXVII-7-d). Every status cites the row or the sentence it was read from and its page; quoted rows omit dot leaders and footnote markers, whose numbers are in `notes`. A record not listed carries the document's status line as evidence and either the sentences that name it, quoted with the Party they are printed under, or a fixed statement. No territory is made a Party through its administering State.",
-  "extracted_at": "2026-10-11T14:11:53.938Z",
+  "extracted_at": "2026-10-12T12:38:25.674Z",
   "extractor": "ds-untc@1",
   "source": {
     "id": "DS-UNTC",
@@ -13,7 +13,7 @@
       "title": "United Nations Framework Convention on Climate Change",
       "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf",
       "sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
-      "retrieved_at": "2026-10-10T20:31:34.360Z",
+      "retrieved_at": "2026-10-12T12:38:24.805Z",
       "document_date": "2026-07-27",
       "pages": 6,
       "status": {
@@ -39,7 +39,7 @@
       "title": "Paris Agreement",
       "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
       "sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
-      "retrieved_at": "2026-10-10T20:31:35.175Z",
+      "retrieved_at": "2026-10-12T12:38:25.621Z",
       "document_date": "2026-07-27",
       "pages": 7,
       "status": {
