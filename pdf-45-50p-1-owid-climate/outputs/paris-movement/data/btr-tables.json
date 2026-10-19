@@ -1,6 +1,6 @@
 {
   "$note": "Read by engine/sources/ds-btr-tables.ts from the BTR1 workbooks the DS-BTR mirror lists (CTF Table 4 and CRT Summary2). Committed so a build reproduces without the network. Every figure carries its file and Sheet!Cell; every refusal carries its reason. document_url is unfccc.int as the mirror's download logs record it; retrieval_url is where the bytes came from.",
-  "extracted_at": "2026-10-11T14:11:53.779Z",
+  "extracted_at": "2026-10-19T09:14:38.108Z",
   "tree_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
   "extractor": "ds-btr-tables@1",
   "download_logs": [
@@ -242,7 +242,7 @@
           "annex_key": "MD5E-s107941--83b2fe73133c2e46f97c51f1af77b449.xlsx",
           "sha256": "a9002e489af2462a4d937d32fb65bef0ad9926d59157f38341379f267b1db0b2",
           "size": 107941,
-          "retrieved_at": "2026-10-10T20:37:55.757Z",
+          "retrieved_at": "2026-10-12T12:28:11.254Z",
           "$reason": "251111_ALB-NDC_Filled_Tables_FINAL.xlsx reports Albania's Table 4 indicator only as text (Table4!E9: \"11010.7d\"). A number written inside text is not read as a figure, so none is shown."
         },
         {
@@ -257,7 +257,7 @@
           "annex_key": "MD5E-s3291154--f9d75a22b6d2a15c1e2caf04976c05c5.xlsx",
           "sha256": "2570f3358d3dd3d972dfb47f319958335d76e95b32c8f71b9ff4e89b9977dd7d",
           "size": 3291154,
-          "retrieved_at": "2026-10-10T20:37:57.655Z",
+          "retrieved_at": "2026-10-12T12:28:13.416Z",
           "archive": "ALB-CRT-2024-V2.0-20251103-231619_awaiting_submission.zip"
         }
       ],
@@ -352,7 +352,7 @@
           "annex_key": "MD5E-s752661--1a6a670ed2ff1d463ecaa47deb1d94e3.xlsx",
           "sha256": "4544b182fa280303466ddd93c5c30273517475762e1284f029400093606ff3a5",
           "size": 752661,
-          "retrieved_at": "2026-10-10T20:37:59.886Z"
+          "retrieved_at": "2026-10-12T12:28:15.340Z"
         }
       ],
       "ctf": {
@@ -495,7 +495,7 @@
           "annex_key": "MD5E-s866090--c59bc4ca371dac9bb754028538e0ae88.xlsx",
           "sha256": "8608da330fa22ac3f61b2fd47d3c75f34e4cd71689f92caa29a5f48cd7da1eda",
           "size": 866090,
-          "retrieved_at": "2026-10-10T20:38:01.854Z"
+          "retrieved_at": "2026-10-12T12:28:17.279Z"
         },
         {
           "name": "ARE-CRT-2024-2022-132357.xlsx",
@@ -509,7 +509,7 @@
           "annex_key": "MD5E-s563551--a070938993acd31967e955729f7cfe5b.xlsx",
           "sha256": "d43b89968dfecebac746636f994d2058702e4cfbb4415f16eba659ed38ee04e4",
           "size": 563551,
-          "retrieved_at": "2026-10-10T20:38:03.727Z",
+          "retrieved_at": "2026-10-12T12:28:19.270Z",
           "also_at": [
             "downloaded_data/UNFCCC/United_Arab_Emirates/BTR1/ARE-CRT-2024-V0.0-2022-132357.xlsx"
           ]
@@ -679,7 +679,7 @@
           "annex_key": "MD5E-s50494--555cf11210db8e79e0fcfbf2ce7641a3.xlsx",
           "sha256": "c5e9ba680ef1a4c90e9e035196910aa24c0732f66ca0cdbbc9f7b11c48f111de",
           "size": 50494,
-          "retrieved_at": "2026-10-10T20:38:06.521Z"
+          "retrieved_at": "2026-10-12T12:28:22.330Z"
         },
         {
           "name": "ARG-CRT-2024-V0.2-2022-20241025-125439_started.xlsx",
@@ -693,7 +693,7 @@
           "annex_key": "MD5E-s555384--3adf66500bef90df7931c0c934baa3c6.xlsx",
           "sha256": "9ee47dc517a36fdf6e9f507fcf71b38a5e3ab8d888d4083752b97f853203b280",
           "size": 555384,
-          "retrieved_at": "2026-10-10T20:38:09.780Z",
+          "retrieved_at": "2026-10-12T12:28:25.278Z",
           "archive": "ARG-CRT-20241216.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Argentina/BTR1/ARG-CRT-20241216/ARG-CRT-2024-V0.2-2022-20241025-125439_started.xlsx"
@@ -846,7 +846,7 @@
           "annex_key": "MD5E-s60666--fac72f440f6e866f755ded57f696e457.5.xlsx",
           "sha256": "09fecc0c17dc0d7f104fec4f489a6ccb874a452f274f3038d316cd79b59381b0",
           "size": 60666,
-          "retrieved_at": "2026-10-10T20:38:11.495Z",
+          "retrieved_at": "2026-10-12T12:28:27.349Z",
           "$reason": "4_Armenia_BTR1_CTF_ETF_Progress_Tables_v3.5.xlsx has numbers in its Table 4 sheet (CTF-Four; CTF-Four!D6 is 0.51318146522230501), but this reader does not tie them to a named indicator and a reporting year, so none is shown as Armenia's progress. This is unread, not missing."
         },
         {
@@ -860,7 +860,7 @@
           "annex_key": "MD5E-s61491--842bbefb7a015be28fce53a72b1b058e.xlsx",
           "sha256": "f74cc9fed836c44b3ce6d9624d11b165f25e8681a8ea689b1f90f89cbf132759",
           "size": 61491,
-          "retrieved_at": "2026-10-10T20:38:13.558Z"
+          "retrieved_at": "2026-10-12T12:28:29.278Z"
         },
         {
           "name": "ARM-CRT-2022.xlsx",
@@ -874,7 +874,7 @@
           "annex_key": "MD5E-s596092--b4d9c5197e41f708586ca611aed54a5d.xlsx",
           "sha256": "2b9bbc56746125fe8fa1cce0d696af28cb7f2575dd77cce150b7a99739e3f8fd",
           "size": 596092,
-          "retrieved_at": "2026-10-10T20:38:15.664Z",
+          "retrieved_at": "2026-10-12T12:28:31.339Z",
           "archive": "2_CRT_Armenia_1990-2022-20260106T161823Z-3-001.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Armenia/BTR1/ARM-CRT-2025-V0.0-2022-20251229.xlsx"
@@ -1026,7 +1026,7 @@
           "annex_key": "MD5E-s134415--8c77c8c82fcb0c6b714e5f335ded0f39.xlsx",
           "sha256": "f128a65fe12c81a2beb2f2b802a60590dada1351cb76859566ab4e61bd724cd1",
           "size": 134415,
-          "retrieved_at": "2026-10-10T20:38:18.668Z"
+          "retrieved_at": "2026-10-12T12:28:34.273Z"
         },
         {
           "name": "AUS_2024_2022_12042024.xlsx",
@@ -1040,7 +1040,7 @@
           "annex_key": "MD5E-s984374--4a3da046202140422139f5e82c281f19.xlsx",
           "sha256": "0504252773441ea175894de916822070a0fc83faa5fb2e3361fd4d3fdb2f05b5",
           "size": 984374,
-          "retrieved_at": "2026-10-10T20:38:21.271Z"
+          "retrieved_at": "2026-10-12T12:28:36.461Z"
         }
       ],
       "ctf": {
@@ -1297,7 +1297,7 @@
           "annex_key": "MD5E-s1164745--6e26cceed42174f6e2449ebdee119981.xlsx",
           "sha256": "6a7d5bf36bdd6f8826d5aa4a3b36071c579aa0101ff93cd8fdf58071580c2a41",
           "size": 1164745,
-          "retrieved_at": "2026-10-10T20:38:22.762Z",
+          "retrieved_at": "2026-10-12T12:28:38.456Z",
           "$reason": "AUT-CTF-NDC-2024-V1.0-20241218-151406_awaiting_submission.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Austria's own emissions, and none is shown as Austria's."
         },
         {
@@ -1312,7 +1312,7 @@
           "annex_key": "MD5E-s3339969--3eb38fb37f26b1f3464c6fc2e44fead2.xlsx",
           "sha256": "d6ce91c00d84ec6e12c530f104d881ff906e7c25187e0966fa61f70c430e0135",
           "size": 3339969,
-          "retrieved_at": "2026-10-10T20:38:25.023Z",
+          "retrieved_at": "2026-10-12T12:28:40.641Z",
           "archive": "AUT-CRT-2024-V1.0.zip"
         }
       ],
@@ -1407,7 +1407,7 @@
           "annex_key": "MD5E-s1031920--1f169e1910a73e5a9645e54365125db7.xlsx",
           "sha256": "5a2c8de7a62c93f6de0e869d76a2986b59ff85975c5fac7e7bf007b9b60538f9",
           "size": 1031920,
-          "retrieved_at": "2026-10-10T20:38:27.062Z",
+          "retrieved_at": "2026-10-12T12:28:42.308Z",
           "$reason": "AZE-CTF-NDC-2024-V0.4-20241231-050046_started.xlsx reports Azerbaijan's Table 4 indicator only as text (Table4.1!G9: \"The indicator level in the current year is 69498.88 kt CO2 eq. It is 17.8% below…\"). A number written inside text is not read as a figure, so none is shown."
         },
         {
@@ -1422,7 +1422,7 @@
           "annex_key": "MD5E-s3944808--4e9bcc5809c76e407f583c89c415a5ab.xlsx",
           "sha256": "b0c5260c7f364052729a1b6939fdd419d6667b6743795c4f5f37c1a41dd9bf8f",
           "size": 3944808,
-          "retrieved_at": "2026-10-10T20:38:29.131Z",
+          "retrieved_at": "2026-10-12T12:28:44.375Z",
           "archive": "AZE-CRT-2024-V0.17-20241231-050131_started.zip"
         }
       ],
@@ -1517,7 +1517,7 @@
           "annex_key": "MD5E-s89564--12496df28fabe79b82f9e7a49d3a8de9.xlsx",
           "sha256": "5a1d65a5511d18a3d6d3176f4b90eaaec56d3fa80340b0388fc74ccbf234e652",
           "size": 89564,
-          "retrieved_at": "2026-10-10T20:38:30.618Z"
+          "retrieved_at": "2026-10-12T12:28:46.270Z"
         },
         {
           "name": "BDI-CRT-2025-V1.1-2023-20260107-135208_started.xlsx",
@@ -1531,7 +1531,7 @@
           "annex_key": "MD5E-s4012085--121d2c24abfaa052f0fadb5d9ed317eb.xlsx",
           "sha256": "f27b78cd9612443546bc960ddbf2fee195fb4aa02cd3648b415eb5f79da5e769",
           "size": 4012085,
-          "retrieved_at": "2026-10-10T20:38:33.843Z",
+          "retrieved_at": "2026-10-12T12:28:49.400Z",
           "archive": "BDI-CRT-2025-V1.1-20260107-135208_started.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Burundi/BTR1/BDI-CRT-2025-V1.1-20260107-135208_started/BDI-CRT-2025-V1.1-2023-20260107-135208_started.xlsx"
@@ -1708,7 +1708,7 @@
           "annex_key": "MD5E-s1581110--dc43e15c5d05a5453dfb9af7befc6f83.xlsx",
           "sha256": "741fca48264d3a2853a1d489748b4b3eca3012f7b6f616f9b5698c77e7aaeae2",
           "size": 1581110,
-          "retrieved_at": "2026-10-10T20:38:35.821Z",
+          "retrieved_at": "2026-10-12T12:28:51.294Z",
           "$reason": "BEL-CTF-NDC-2024-V1.0-20241218-090821_awaiting_submission.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Belgium's own emissions, and none is shown as Belgium's."
         },
         {
@@ -1723,7 +1723,7 @@
           "annex_key": "MD5E-s3431261--665d51cac860ab2ad78fc845173ae0c9.xlsx",
           "sha256": "e8cc9a5b3bfb2b4b8bd7db702207c8d2b1003418924a1b93f59fc157c0b551a6",
           "size": 3431261,
-          "retrieved_at": "2026-10-10T20:38:38.214Z",
+          "retrieved_at": "2026-10-12T12:28:53.362Z",
           "archive": "BEL-CRT-2024-V1.0-20241217-192810_awaiting_submission.zip"
         }
       ],
@@ -1826,7 +1826,7 @@
           "annex_key": "MD5E-s2495504--62c2bb82c6a1a267c1b841a481d01dfb.0.xlsx",
           "sha256": "3b55f9349f1925eab64e7dc733286dd0d8a291b6aac0acf49926449c056546e8",
           "size": 2495504,
-          "retrieved_at": "2026-10-10T20:38:39.911Z",
+          "retrieved_at": "2026-10-12T12:28:55.409Z",
           "$reason": "BFA-CTF-NDC-2024-V1.0.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Burkina Faso. This is an empty table, not a missing report."
         },
         {
@@ -1841,7 +1841,7 @@
           "annex_key": "MD5E-s4381530--516e73ff6a197f6aca91106aa59936e9.xlsx",
           "sha256": "301fbac345bcae871cb51168a0feec2d7d1360593559e2b6f378f703c0d81feb",
           "size": 4381530,
-          "retrieved_at": "2026-10-10T20:38:41.806Z",
+          "retrieved_at": "2026-10-12T12:28:57.376Z",
           "archive": "BFA-CRT-2024-V0.4-20251109-154548_awaiting_approval.zip"
         }
       ],
@@ -1955,7 +1955,7 @@
           "annex_key": "MD5E-s841257--e720a494f4373677ca5105a8a30aab4d.xlsx",
           "sha256": "8dcfd487a5e924d162089b749f595550c90a302ea1c2f3535ba8b852d9bc0cb8",
           "size": 841257,
-          "retrieved_at": "2026-10-10T20:38:44.102Z",
+          "retrieved_at": "2026-10-12T12:28:59.286Z",
           "$reason": "BGR-CTF-NDC-2024-V1.0-20250102-113210_awaiting_submission.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Bulgaria."
         },
         {
@@ -1969,7 +1969,7 @@
           "annex_key": "MD5E-s78027--24fe397a5606c024783cfa32cee4b85f.xlsx",
           "sha256": "07969fa503fdcd441fa6a5b6992ea97a3edbe7d915a812c69a94df18d3f6e545",
           "size": 78027,
-          "retrieved_at": "2026-10-10T20:38:45.678Z",
+          "retrieved_at": "2026-10-12T12:29:01.315Z",
           "$reason": "BGR-CTF-NDC-2024-V1.1-20250827-145535_started.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Bulgaria's own emissions, and none is shown as Bulgaria's."
         },
         {
@@ -1984,7 +1984,7 @@
           "annex_key": "MD5E-s3285294--55f896d18081eba5df2b044943fda69d.xlsx",
           "sha256": "3b3ed23a48739ae71e08007fb49a8fddf970df249f1afb1d195c4c8eef7d92d0",
           "size": 3285294,
-          "retrieved_at": "2026-10-10T20:38:47.828Z",
+          "retrieved_at": "2026-10-12T12:29:03.360Z",
           "archive": "BGR-CRT-2024-V0.1-20241216-122428_approved.zip"
         }
       ],
@@ -2074,7 +2074,7 @@
           "annex_key": "MD5E-s55403--81a08d241e4ba00aaf468e096aa5da79.xlsx",
           "sha256": "fb27d13c5d9217030b0751cf2ca9dea71834612a0d2dab5e16e36b7f4365713e",
           "size": 55403,
-          "retrieved_at": "2026-10-10T20:38:49.653Z"
+          "retrieved_at": "2026-10-12T12:29:05.262Z"
         },
         {
           "name": "30112025_BHR-CRT-2024-V0.2-2022-20250420-122954_vSubmitted.xlsx",
@@ -2088,7 +2088,7 @@
           "annex_key": "MD5E-s578906--2c50a5d89981ea14fe38dc744458f226.xlsx",
           "sha256": "9a7199d2c832eae175e6fc3a1f15127f6e6f4208b17c5eac46fc454a5230af85",
           "size": 578906,
-          "retrieved_at": "2026-10-10T20:38:51.976Z",
+          "retrieved_at": "2026-10-12T12:29:07.278Z",
           "archive": "30112025_BHR-CRT-2024-V0.2-20250420-122954_vSubmitted.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Bahrain/BTR1/BHR-CRT-2024-V0.2-2022-20250420-122954.xlsx"
@@ -2106,7 +2106,7 @@
           "annex_key": "MD5E-s4255632--fcd7b941d9152c31433d8f42d308ad75.xlsx",
           "sha256": "95fbada44c6d65a25d737ac6594f84af785ee84215022dc7ea8c660c03b571f5",
           "size": 4255632,
-          "retrieved_at": "2026-10-10T20:38:54.926Z",
+          "retrieved_at": "2026-10-12T12:29:10.491Z",
           "archive": "BHR-CRT-2024-V1.0.zip"
         }
       ],
@@ -2471,7 +2471,7 @@
           "annex_key": "MD5E-s926128--130f17c927974cea73a37a263d89e7cb.xlsx",
           "sha256": "597ec6600a48ac16142a01098753ba72cc3ab3b292603a8263b4dad328180bbf",
           "size": 926128,
-          "retrieved_at": "2026-10-10T20:38:57.007Z",
+          "retrieved_at": "2026-10-12T12:29:12.419Z",
           "$reason": "BLR-CTF-NDC-2024-V1.0-20241230-164626_awaiting_submission.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Belarus."
         },
         {
@@ -2485,7 +2485,7 @@
           "annex_key": "MD5E-s1433095--54af8a41021025a85e8d14d9d1352116.xlsx",
           "sha256": "0cc02ef05386914d7b5512179e4db3f128addbcdbd0b95eddac0feafc838e158",
           "size": 1433095,
-          "retrieved_at": "2026-10-10T20:38:58.890Z"
+          "retrieved_at": "2026-10-12T12:29:14.267Z"
         },
         {
           "name": "BLR-CRT-2024-V0.2-2022-20241230-164120_approved.xlsx",
@@ -2499,7 +2499,7 @@
           "annex_key": "MD5E-s3288686--efc7019c3745d34579a72f2acb836ad4.xlsx",
           "sha256": "366bd8621a739ab62a602cc3e4c9b8121b9f7955df394c8595d9b8cc6999eff3",
           "size": 3288686,
-          "retrieved_at": "2026-10-10T20:39:01.088Z",
+          "retrieved_at": "2026-10-12T12:29:16.391Z",
           "archive": "BLR-CRT-2024-V0.2-20241230-164120_approved.zip"
         }
       ],
@@ -2709,7 +2709,7 @@
           "annex_key": "MD5E-s4054956--a3e4e591d5b454fc63d73d8bdc021c4b.xlsx",
           "sha256": "b7f1f647c6ff74880511eda3c45d948695f4058582729cb44422bfd95945069f",
           "size": 4054956,
-          "retrieved_at": "2026-10-10T20:39:02.941Z",
+          "retrieved_at": "2026-10-12T12:29:18.658Z",
           "archive": "BLZ-CRT-2024-V0.16-20250124-212751_started.zip"
         },
         {
@@ -2724,7 +2724,7 @@
           "annex_key": "MD5E-s4293591--286f19133cf44a2c98a7ca85cd2aeaf2.xlsx",
           "sha256": "61815d03f52484818c7e6bad9dbef4141717fc196af79069145ada81cab6442e",
           "size": 4293591,
-          "retrieved_at": "2026-10-10T20:39:06.103Z",
+          "retrieved_at": "2026-10-12T12:29:21.375Z",
           "archive": "BLZ-CRT-2024-V0.18-20260410-145551_started.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Belize/BTR1/BLZ-CRT-2024-V0.18-20260410-145551_started/BLZ-CRT-2024-V0.18-2022-20260410-145551_started.xlsx"
@@ -2847,7 +2847,7 @@
           "annex_key": "MD5E-s1627145--4b2ba8a76c3b9c43323423d4d5b0ca47.xlsx",
           "sha256": "bb9d41ad71b90abebb0e2f4eedeebeaf9d57e5dffa22dc990bc01330033e15bf",
           "size": 1627145,
-          "retrieved_at": "2026-10-10T20:39:08.211Z"
+          "retrieved_at": "2026-10-12T12:29:23.454Z"
         },
         {
           "name": "BRA-CRT-2024-V0.4-2022-20241219-152333_started.xlsx",
@@ -2861,7 +2861,7 @@
           "annex_key": "MD5E-s3796605--178d0546d5a16727a572890c9b5a554a.xlsx",
           "sha256": "902f94f5dc04f8fada4863d86fb6d82df279122d0a7d220b6ecf7a1a49bf6dde",
           "size": 3796605,
-          "retrieved_at": "2026-10-10T20:39:10.245Z",
+          "retrieved_at": "2026-10-12T12:29:25.419Z",
           "archive": "BRA_CRT_2024.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Brazil/BTR1/BRA-CRT-2024-V0.4-2022-20241219-152333_started.xlsx"
@@ -3233,7 +3233,7 @@
           "annex_key": "MD5E-s880144--339bb1cc9aa336d43ca7d6b92ceaede4.xlsx",
           "sha256": "0a912a106a8c7fb608f16dba776f7f22881b5c35db801cbdcdedf54a3f567d54",
           "size": 880144,
-          "retrieved_at": "2026-10-10T20:39:12.880Z"
+          "retrieved_at": "2026-10-12T12:29:28.275Z"
         },
         {
           "name": "BRN-CRT-2024-V0.1-2022-20250107-081727_started.xlsx",
@@ -3247,7 +3247,7 @@
           "annex_key": "MD5E-s2796910--4a4d1f85479e9bc6b919ce7b249bba23.xlsx",
           "sha256": "377345f24307dd31000c35c8043be1ea4e29184b46a641047fff514b6b1bc309",
           "size": 2796910,
-          "retrieved_at": "2026-10-10T20:39:15.157Z",
+          "retrieved_at": "2026-10-12T12:29:30.358Z",
           "archive": "BRN-CRT-2024-V0.1-20250107-081727_started.zip"
         }
       ],
@@ -3391,7 +3391,7 @@
           "annex_key": "MD5E-s68397--71a147d3ed6929a9662b9f066b2de8ff.xlsx",
           "sha256": "bcc53c2ea3dbbf5205a25626c9b6efd8273c36384bdb0f6056d3d53b02cc98e3",
           "size": 68397,
-          "retrieved_at": "2026-10-10T20:39:16.699Z"
+          "retrieved_at": "2026-10-12T12:29:32.288Z"
         },
         {
           "name": "BTN-CRT-2024-V0.6-2022-20241222-232810_started.xlsx",
@@ -3405,7 +3405,7 @@
           "annex_key": "MD5E-s541181--5cbf3ba590b14b0b7fc13d9fbc14c4a1.xlsx",
           "sha256": "c714a9f84287a2dee9d4947dcfd0265a65ca91b0d3db8bc8c2e1288bd4f0b48e",
           "size": 541181,
-          "retrieved_at": "2026-10-10T20:39:19.016Z",
+          "retrieved_at": "2026-10-12T12:29:34.230Z",
           "archive": "Annexure_III_Bhutan_CRT_Tables_for_GHG_Inventory.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Bhutan/BTR1/BTN-CRT-2024-V0.6-2022-20241222-232810_started.xlsx"
@@ -3602,7 +3602,7 @@
           "annex_key": "MD5E-s4623011--f65fb33e7d3442995887a39ebddd175d.xlsx",
           "sha256": "28ac54bd7ad91830134a91498c04957a0fe7a3826945c44666b5eeae9d2405ab",
           "size": 4623011,
-          "retrieved_at": "2026-10-10T20:39:22.049Z",
+          "retrieved_at": "2026-10-12T12:29:37.401Z",
           "archive": "BWA-CRT-2025-V1.0.zip"
         }
       ],
@@ -3689,7 +3689,7 @@
           "annex_key": "MD5E-s487905--9c468293717a7762c1d748cadfc74ff0.xlsx",
           "sha256": "17e17dc2abbecd2c422a403e21a0e934202a55fc092fb8e5d9c35a0eb48d4e0c",
           "size": 487905,
-          "retrieved_at": "2026-10-10T20:39:23.895Z",
+          "retrieved_at": "2026-10-12T12:29:39.282Z",
           "$reason": "Tableau_CTF_Suivi_du_Pregrès_de_la_CDN-22.11.2024_Sheet_(1).xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Central African Republic."
         }
       ],
@@ -3731,7 +3731,7 @@
           "annex_key": "MD5E-s209641--d6eb5a83b9ec4605953eff2d2d8c689a.xlsx",
           "sha256": "43f0d49812a52c42c660a43ba4699ddf9a000815f6eafffcd480644bdbde719e",
           "size": 209641,
-          "retrieved_at": "2026-10-10T20:39:25.989Z"
+          "retrieved_at": "2026-10-12T12:29:41.231Z"
         },
         {
           "name": "CAN-CRT-2024-V0.1-2022-20241013-185747_started.xlsx",
@@ -3745,7 +3745,7 @@
           "annex_key": "MD5E-s5060115--da287bf8f7b27bf1c7502f152844d7d6.xlsx",
           "sha256": "aeae2d1d52bd0777470c5978c6cc91c8537d236871b18798e1f572374a279bf6",
           "size": 5060115,
-          "retrieved_at": "2026-10-10T20:39:27.932Z"
+          "retrieved_at": "2026-10-12T12:29:43.505Z"
         }
       ],
       "ctf": {
@@ -3898,7 +3898,7 @@
           "annex_key": "MD5E-s95565--a4709a33437b0319fc491b6039f7fdb2.xlsx",
           "sha256": "c98742050803882ec66c33fd21c62d80b5ab2d3809c63767e68bdc51bd91352b",
           "size": 95565,
-          "retrieved_at": "2026-10-10T20:37:35.609Z"
+          "retrieved_at": "2026-10-12T12:29:45.247Z"
         },
         {
           "name": "CHE-CRT-2024-V1.0-2022-20241211-180354.xlsx",
@@ -3912,7 +3912,7 @@
           "annex_key": "MD5E-s3690547--8f22017b8cccb8ae65b62be9146cafa8.xlsx",
           "sha256": "97e886d5ead76a75d8cfffd5016f53185606d99c7d855d957d50c32587f93032",
           "size": 3690547,
-          "retrieved_at": "2026-10-10T20:37:37.752Z",
+          "retrieved_at": "2026-10-12T12:29:47.412Z",
           "archive": "CHE-CRT-2024-V1.0-20241211-180354.zip"
         }
       ],
@@ -4069,7 +4069,7 @@
           "annex_key": "MD5E-s111183--21e0a251e4e15cfce1978be9c2409c75.xlsx",
           "sha256": "e3b62f7bb8b2aaf21cb7d780a31806e4fc62c1c5d46891e3ed213952a25d2a14",
           "size": 111183,
-          "retrieved_at": "2026-10-10T20:39:29.824Z"
+          "retrieved_at": "2026-10-12T12:29:49.235Z"
         },
         {
           "name": "CHL_2024_2022.xlsx",
@@ -4083,7 +4083,7 @@
           "annex_key": "MD5E-s794803--8bdc459c6374bc0a22dca02cdbc8d9f4.xlsx",
           "sha256": "dbf54c7d16c2dcc02bac6283bfd1429dbc2f70b7c71469464ef0013b393c1f25",
           "size": 794803,
-          "retrieved_at": "2026-10-10T20:39:32.055Z",
+          "retrieved_at": "2026-10-12T12:29:51.308Z",
           "also_at": [
             "downloaded_data/UNFCCC/Chile/BTR1/CHL-CRT-2024-V0.0-2022-20241230.xlsx"
           ]
@@ -4712,7 +4712,7 @@
           "annex_key": "MD5E-s788342--d192ae8e9b2f212ebd55b52feb6aa7dd.xlsx",
           "sha256": "04dc327c0b6b55c9e7ee2ebe9cc83c164f68a32bb2de879f09394d01b074100a",
           "size": 788342,
-          "retrieved_at": "2026-10-10T20:39:35.160Z"
+          "retrieved_at": "2026-10-12T12:29:54.237Z"
         },
         {
           "name": "CHN-CTF-NDC-2024-V0.3-20241231-145232_started.xlsx",
@@ -4725,7 +4725,7 @@
           "annex_key": "MD5E-s60953--eab24640f637c426ffc060ed1e42ba13.xlsx",
           "sha256": "e7ee313cbd14b4be9a3524b3cbceb8c3fb2ec00708918a752595ab604fee277f",
           "size": 60953,
-          "retrieved_at": "2026-10-10T20:39:36.720Z"
+          "retrieved_at": "2026-10-12T12:29:56.251Z"
         },
         {
           "name": "CHN-CTF-NDC-2024-V0.6-20241231-171006_started(1).xlsx",
@@ -4738,7 +4738,7 @@
           "annex_key": "MD5E-s1008149--ff65bc83550f4849149d1467379339c5.xlsx",
           "sha256": "34b2e1ba32f32dc703f41bf9cbe35815c8acb0ab0038de934e66f61e74fc6eb1",
           "size": 1008149,
-          "retrieved_at": "2026-10-10T20:39:38.881Z",
+          "retrieved_at": "2026-10-12T12:29:58.254Z",
           "$reason": "CHN-CTF-NDC-2024-V0.6-20241231-171006_started(1).xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for China. This is an empty table, not a missing report."
         },
         {
@@ -4753,7 +4753,7 @@
           "annex_key": "MD5E-s2505366--f4527a20390ee754a9569a8900581c11.xlsx",
           "sha256": "86bf247a19a489e7746b4e4a23e9eb1b627c416872a86ec158a41d86e62c8089",
           "size": 2505366,
-          "retrieved_at": "2026-10-10T20:39:41.166Z",
+          "retrieved_at": "2026-10-12T12:30:00.330Z",
           "archive": "CHN-CRT-2024-V0.11-2005-2020-2021-20241231-141557_started.zip"
         }
       ],
@@ -4843,7 +4843,7 @@
           "annex_key": "MD5E-s49151--da4e11a5dadeeec6f3d4e4e11b958616.xlsx",
           "sha256": "c00318d42b2ce6f95796ff781e96066bb40d14db8fb39ae241ba4e3bebffb64f",
           "size": 49151,
-          "retrieved_at": "2026-10-10T20:39:42.748Z",
+          "retrieved_at": "2026-10-12T12:30:02.325Z",
           "$reason": "CIV-CTF-NDC-2024-V0-2-DataEntry-20241230-140044Côte_d'Ivoire.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Côte d'Ivoire."
         },
         {
@@ -4857,7 +4857,7 @@
           "annex_key": "MD5E-s2439978--a525fa63b8d1250dff151e66f5ef1f2c.xlsx",
           "sha256": "6b85fad6bafbd3ba71f3f6a253b2407f004def551a56d476c89526b01a82d137",
           "size": 2439978,
-          "retrieved_at": "2026-10-10T20:39:45.022Z",
+          "retrieved_at": "2026-10-12T12:30:04.332Z",
           "$reason": "CIV-CTF-NDC-2024-V1.0-20250325-163016_awaiting_submission.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Côte d'Ivoire. This is an empty table, not a missing report."
         },
         {
@@ -4872,7 +4872,7 @@
           "annex_key": "MD5E-s388704--25988d0bc1b961369293361052a4d751.xlsx",
           "sha256": "8c9b60c25550c0dde661ad380fa27fe9c62bac4a551e15d1d1febb2d5ce15107",
           "size": 388704,
-          "retrieved_at": "2026-10-10T20:39:48.172Z",
+          "retrieved_at": "2026-10-12T12:30:07.265Z",
           "archive": "CIV-CRT-2024-V0.2-20241226-172522_Côte_d'Ivoire.zip",
           "$reason": "CIV-CRT-2024-V0.2-2022-20241226-172522_started.xlsx has the national-total rows in Summary2, but Summary2!K71 (\"Total CO2 equivalent emissions without LULUCF\") holds \"FX,NO\", not a number, so no total was read for Côte d'Ivoire.",
           "also_at": [
@@ -4891,7 +4891,7 @@
           "annex_key": "MD5E-s4932001--ab15fd384aa73f9f6ffc412589edaeb2.xlsx",
           "sha256": "2d8b7d1bd22f42f569029deb875e9a61ff988b1dac2e4bd4b8aa757f2246212f",
           "size": 4932001,
-          "retrieved_at": "2026-10-10T20:39:50.238Z",
+          "retrieved_at": "2026-10-12T12:30:09.430Z",
           "archive": "CIV-CRT-2024-V1.3-20250325-102959_started.zip"
         },
         {
@@ -4906,7 +4906,7 @@
           "annex_key": "MD5E-s4946617--6c5c393470f4c343f7c8eff570ae1f99.xlsx",
           "sha256": "6089152d6cbc046a39e7445932d4a148cc12e86c558e737ae4438ab56f807492",
           "size": 4946617,
-          "retrieved_at": "2026-10-10T20:39:52.200Z",
+          "retrieved_at": "2026-10-12T12:30:11.385Z",
           "archive": "CIV-CRT-2024-V1.4-20251110-150925_started.zip"
         }
       ],
@@ -4999,7 +4999,7 @@
           "annex_key": "MD5E-s96028--04482cab0670fc6caf8b237b4afd3648.xlsx",
           "sha256": "6ebb69b5200d8bb1a70da615b1428ab5e3e7d02b3c1932778190044a5a70cfcf",
           "size": 96028,
-          "retrieved_at": "2026-10-10T20:39:53.883Z"
+          "retrieved_at": "2026-10-12T12:30:13.263Z"
         },
         {
           "name": "COL-CRT-2024-V0.2-2021-20241216-102326_started.xlsx",
@@ -5013,7 +5013,7 @@
           "annex_key": "MD5E-s633408--3a168adbcefe6739d76030d4107cb71d.xlsx",
           "sha256": "35c6a70055c53c47686898d224eedb156be485cfbaa6b3a129acabacf0783ffc",
           "size": 633408,
-          "retrieved_at": "2026-10-10T20:39:56.907Z",
+          "retrieved_at": "2026-10-12T12:30:16.244Z",
           "archive": "4._CRT_Colombia.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Colombia/BTR1/CRT Colombia/COL-CRT-2024-V0.2-2021-20241216-102326_started.xlsx"
@@ -5175,7 +5175,7 @@
           "annex_key": "MD5E-s2976338--647bd53ba671d02dbd0c171bb4ee6354.xlsx",
           "sha256": "53b723577fd0f46c54be6897113901bc16b445545eb17600c6373745a407eb0b",
           "size": 2976338,
-          "retrieved_at": "2026-10-10T20:39:59.282Z",
+          "retrieved_at": "2026-10-12T12:30:18.452Z",
           "archive": "CRI-CRT-2024-V0.1-20250901-122258_started.zip"
         }
       ],
@@ -5262,7 +5262,7 @@
           "annex_key": "MD5E-s76770--b8f8019692633107c7aac5a978175c31.xlsx",
           "sha256": "99fcac3a61098bc35ab251b64f3192ded21c88338f5ace821bbbd850e8bc6a62",
           "size": 76770,
-          "retrieved_at": "2026-10-10T20:40:00.943Z"
+          "retrieved_at": "2026-10-12T12:30:20.254Z"
         },
         {
           "name": "CUB-CTF-NDC-2024-V0.1-20250401-114041_started.xlsx",
@@ -5275,7 +5275,7 @@
           "annex_key": "MD5E-s2340171--bfd9fa344793971ce5b8053e9740d770.xlsx",
           "sha256": "1cb3727d77289e6b504fe30499dcda310fa95faa65cccd03e97fabb857cebfc0",
           "size": 2340171,
-          "retrieved_at": "2026-10-10T20:40:03.199Z"
+          "retrieved_at": "2026-10-12T12:30:22.359Z"
         },
         {
           "name": "CUB-CRT-2024-V0.3-2022-20250414-101016_started.xlsx",
@@ -5289,7 +5289,7 @@
           "annex_key": "MD5E-s4808739--a6c73de17450eef47f380d4a225c98cd.xlsx",
           "sha256": "30e086dac2cf60ecdba2dcfa5a30bc08aee484a1637a7500c8d457263ff308df",
           "size": 4808739,
-          "retrieved_at": "2026-10-10T20:40:05.029Z",
+          "retrieved_at": "2026-10-12T12:30:24.398Z",
           "archive": "CUB-CRT-2024-V0.3-20250414-101016_started.zip"
         }
       ],
@@ -5889,7 +5889,7 @@
           "annex_key": "MD5E-s1365545--30591ca2e602a6b7c5ede6b111e3528a.xlsx",
           "sha256": "8623e5ba29c76bc328939ddbbb2538f15a4d0b319fa3e4a9a08839fbf9ac0fe3",
           "size": 1365545,
-          "retrieved_at": "2026-10-10T20:40:06.932Z",
+          "retrieved_at": "2026-10-12T12:30:26.299Z",
           "$reason": "CYP-CTF-NDC-2025-V0.2-20250930-144404_started.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Cyprus. This is an empty table, not a missing report."
         },
         {
@@ -5904,7 +5904,7 @@
           "annex_key": "MD5E-s3484389--e6366679b169996bfbcee10eca35d37f.xlsx",
           "sha256": "d07537df0161600974355d21e43c2361b7f8f35e1006fe447f91986838d3bc45",
           "size": 3484389,
-          "retrieved_at": "2026-10-10T20:40:08.966Z",
+          "retrieved_at": "2026-10-12T12:30:28.551Z",
           "archive": "CYP-CRT-2025-V1.0-20250930-144143_submitted.zip"
         }
       ],
@@ -5994,7 +5994,7 @@
           "annex_key": "MD5E-s85755--c655ceef79bae073d860912e6531e687.1.xlsx",
           "sha256": "68d0c0f1ead40c3faa334691bd96446cf8274bd321d47ded8cc1a77475632f47",
           "size": 85755,
-          "retrieved_at": "2026-10-10T20:40:10.842Z",
+          "retrieved_at": "2026-10-12T12:30:30.254Z",
           "$reason": "CZE-CTF-NDC-2024-V0.1.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Czechia's own emissions, and none is shown as Czechia's."
         },
         {
@@ -6009,7 +6009,7 @@
           "annex_key": "MD5E-s3306415--3106f3bde899b8b0724b924d3d5e1d0e.xlsx",
           "sha256": "2b1fd28e3443466122e40d274f3c3d8f8101a22a18c94c388c99d21bfe2dd141",
           "size": 3306415,
-          "retrieved_at": "2026-10-10T20:40:13.036Z",
+          "retrieved_at": "2026-10-12T12:30:32.370Z",
           "archive": "CZE-CRT-2024-V0.1-20241216-082215_approved.zip"
         }
       ],
@@ -6104,7 +6104,7 @@
           "annex_key": "MD5E-s83068--8005ebf2eff479df386e0fd25115e2ec.xlsx",
           "sha256": "61d5f6f7844697c57bcf317aff946b9763553536edf375fc595a43e4d2ec87fd",
           "size": 83068,
-          "retrieved_at": "2026-10-10T20:40:14.650Z",
+          "retrieved_at": "2026-10-12T12:30:34.469Z",
           "$reason": "DEU-CTF-NDC-2024.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Germany's own emissions, and none is shown as Germany's."
         },
         {
@@ -6119,7 +6119,7 @@
           "annex_key": "MD5E-s3293930--f4562ae373eae1362e45a94e8417dd5f.xlsx",
           "sha256": "808bf097f6742a88387b39d8568f07ca5f274e52702e53402bed7acb07019f8d",
           "size": 3293930,
-          "retrieved_at": "2026-10-10T20:40:16.966Z",
+          "retrieved_at": "2026-10-12T12:30:36.364Z",
           "archive": "DEU-CRT-2024-V1.1-20241206-101928_started.zip"
         }
       ],
@@ -6241,7 +6241,7 @@
           "annex_key": "MD5E-s98976--a6da87cdd767e3258a0320fe7e68e3ad.xlsx",
           "sha256": "134e13145b997949be66824e41b86bd94250c9c498e5889d03320a6147c191ee",
           "size": 98976,
-          "retrieved_at": "2026-10-10T20:40:18.841Z",
+          "retrieved_at": "2026-10-12T12:30:38.283Z",
           "$reason": "DNK-CTF-NDC-2024.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Denmark's own emissions, and none is shown as Denmark's."
         },
         {
@@ -6256,7 +6256,7 @@
           "annex_key": "MD5E-s3419004--91b49137eb20a7c762c2ea2d3267ab64.xlsx",
           "sha256": "0a099f2c803e8412982c6ce79e381b58d30e2ac9619790c421f863814d8d60e6",
           "size": 3419004,
-          "retrieved_at": "2026-10-10T20:40:21.203Z",
+          "retrieved_at": "2026-10-12T12:30:40.396Z",
           "archive": "DNK-CRT-2024-V0.7-20241028-154625_started.zip"
         }
       ],
@@ -6351,7 +6351,7 @@
           "annex_key": "MD5E-s82997--a36c32c6e1381ccc258c7ec13ce55878.xlsx",
           "sha256": "43ad9bbb3829f9e9bc3c34bd3f392a79d982fa029b5d4029b32ba9f636a35cdc",
           "size": 82997,
-          "retrieved_at": "2026-10-10T20:40:22.902Z",
+          "retrieved_at": "2026-10-12T12:30:42.298Z",
           "$reason": "CTF-NDC-2025-20251210-IRD_BTR1_CN4_Dominican_Republic.xlsx reports Dominican Republic's Table 4 indicator only as text (Table4.1!J9: \"1. El indicador se considera en aumento y con un 67% de cumplimiento dada la pub…\"). A number written inside text is not read as a figure, so none is shown."
         },
         {
@@ -6366,7 +6366,7 @@
           "annex_key": "MD5E-s3370970--9ed9d245e3a81618fdf2c00ea5d15698.xlsx",
           "sha256": "703ee75d91b01d9db8d9ad278c55a9ea9eb3d32275bf0ff92a3e794087c64d1f",
           "size": 3370970,
-          "retrieved_at": "2026-10-10T20:59:28.175Z",
+          "retrieved_at": "2026-10-12T12:30:44.489Z",
           "archive": "DOM-CRT-2025-V1.0.zip"
         }
       ],
@@ -6458,7 +6458,7 @@
           "annex_key": "MD5E-s71461--db516b123e9f0248240aef9e4d6d673b.xlsx",
           "sha256": "68919b9b2cb32fad8839ba0d3f15a2b92b406305de69ce003ef021682a089b56",
           "size": 71461,
-          "retrieved_at": "2026-10-10T20:40:26.857Z",
+          "retrieved_at": "2026-10-12T12:30:46.312Z",
           "$reason": "DZA-CTF-NDC-2024-V0.5-20241225-180441_started.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Algeria. This is an empty table, not a missing report."
         },
         {
@@ -6473,7 +6473,7 @@
           "annex_key": "MD5E-s3386311--4e83386a88af0073dba8d4dc82d61a5c.xlsx",
           "sha256": "2d4943093e75263e67fa7f27a58a415c6f8bf24afceece30f79fd494126c1fd0",
           "size": 3386311,
-          "retrieved_at": "2026-10-10T20:40:29.042Z",
+          "retrieved_at": "2026-10-12T12:30:48.548Z",
           "archive": "DZA-CRT-2024-V0.1-20241225-153939_started.zip"
         }
       ],
@@ -6585,7 +6585,7 @@
           "annex_key": "MD5E-s71684--f39b7da91d7345477b7194aa6353425d.xlsx",
           "sha256": "895cf8ab8cf6307ba9e5a222fe857a02082fcbae873bb85108cb59e62c978a46",
           "size": 71684,
-          "retrieved_at": "2026-10-10T20:40:30.895Z"
+          "retrieved_at": "2026-10-12T12:30:50.270Z"
         },
         {
           "name": "11 - CRT compiladas INGEI 2022.xlsx",
@@ -6599,7 +6599,7 @@
           "annex_key": "MD5E-s846284--b28769d195b8d8be06f9310747274c97.xlsx",
           "sha256": "dc4fccd49ad28425f704b387b677103ca77e6bf91e832ccbc6c0fb0c6df014c4",
           "size": 846284,
-          "retrieved_at": "2026-10-10T20:40:33.008Z",
+          "retrieved_at": "2026-10-12T12:30:52.304Z",
           "also_at": [
             "downloaded_data/UNFCCC/Ecuador/BTR1/ECU-CRT-2024-V0.0-2022-20241227.xlsx"
           ]
@@ -6899,7 +6899,7 @@
           "annex_key": "MD5E-s441006--4e28b2ff0eeacbd0bf75ba39dee58fab.xlsx",
           "sha256": "2fddcf93e6d687d038ab5d51386591edbfb7b8d7c986c0dee16a0b590986ca62",
           "size": 441006,
-          "retrieved_at": "2026-10-10T20:40:36.201Z"
+          "retrieved_at": "2026-10-12T12:30:55.266Z"
         },
         {
           "name": "EGY-CRT-2024-V0.4-2022-20241230-110251_started.xlsx",
@@ -6913,7 +6913,7 @@
           "annex_key": "MD5E-s2124518--13841246ee146065b43683759dd95bb6.xlsx",
           "sha256": "86e8328c103acc419b94a8c07103100ad5790ca01d4c7903488ef0e7afbf9bda",
           "size": 2124518,
-          "retrieved_at": "2026-10-10T20:40:39.204Z",
+          "retrieved_at": "2026-10-12T12:30:58.336Z",
           "archive": "EGY-CRT-2024-V0.4-20241230-110251_started.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Egypt/BTR1/EGY-CRT-2024-V0.4-20241230-110251_started/EGY-CRT-2024-V0.4-2022-20241230-110251_started.xlsx"
@@ -6931,7 +6931,7 @@
           "annex_key": "MD5E-s4366157--2b51f62214144d95c3f79c88f6728435.xlsx",
           "sha256": "678a3c6005d784c9a36ee2220b57fe2bc8abb6ed440d937cfbb908fec68c01a0",
           "size": 4366157,
-          "retrieved_at": "2026-10-10T20:40:41.154Z",
+          "retrieved_at": "2026-10-12T12:31:00.452Z",
           "archive": "EGY-CRT-2024-V1.2-20260225-232734_started.zip"
         }
       ],
@@ -7349,7 +7349,7 @@
           "annex_key": "MD5E-s7821972--77d73f89ca3f2bca41ba63f5c3fd1dfc.xlsx",
           "sha256": "0d1ab324761877ed9dceac1e2770e153b978179d26abc59e42e44da244f33313",
           "size": 7821972,
-          "retrieved_at": "2026-10-10T20:40:43.593Z",
+          "retrieved_at": "2026-10-12T12:31:02.526Z",
           "$reason": "ESP-CTF-FTC-2024-V0.3-20250529-090652_started.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Spain."
         },
         {
@@ -7363,7 +7363,7 @@
           "annex_key": "MD5E-s131777--2c7e9936e7ab02428b06334949e5bf27.xlsx",
           "sha256": "2476f1cbcecb9343a9e1c70404d1a36e842452932cd5861aec5b145dff2a80b1",
           "size": 131777,
-          "retrieved_at": "2026-10-10T20:40:45.071Z",
+          "retrieved_at": "2026-10-12T12:31:04.404Z",
           "$reason": "ESP-CTF-NDC-2024-V0.1-20241105-143944_started.xlsx has numbers in its Table 4 sheet (Table4.1; Table4.1!E10 is 91685), but this reader does not tie them to a named indicator and a reporting year, so none is shown as Spain's progress. This is unread, not missing."
         },
         {
@@ -7377,7 +7377,7 @@
           "annex_key": "MD5E-s131619--a376e1ef32b9d76e41260072a19d880b.xlsx",
           "sha256": "49b37d81cc59d646cb392a2fe9280c127960eabe07d1881fab2a0e0718a12485",
           "size": 131619,
-          "retrieved_at": "2026-10-10T20:40:47.055Z",
+          "retrieved_at": "2026-10-12T12:31:06.292Z",
           "$reason": "ESP-CTF-NDC-2024-V0.1-20250114-083810_started.xlsx gives 4699405 in Table4.1!D9, the figure the European Union's own CTF gives for the EU (EUU-CTF-NDC-2024-V0.5-20241211.xlsx Table4.1!D9), so its Table 4 figures are the EU's, not Spain's own emissions, and none is shown as Spain's."
         },
         {
@@ -7391,7 +7391,7 @@
           "annex_key": "MD5E-s766713--0179131bc4a36e6ea7afc650ce6b44ec.xlsx",
           "sha256": "c375285459513b55517d8e267e61290154ab62ab7b9844f55129e6b000673e38",
           "size": 766713,
-          "retrieved_at": "2026-10-10T20:40:49.431Z",
+          "retrieved_at": "2026-10-12T12:31:08.251Z",
           "$reason": "ESP-CTF-NDC-2024-V0.1-20250212-085216_started_Corrigendum.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Spain's own emissions, and none is shown as Spain's."
         },
         {
@@ -7406,7 +7406,7 @@
           "annex_key": "MD5E-s3798342--2b7a081474a84c5b854644854c7e6015.xlsx",
           "sha256": "a49de6125df98eeeba463ba34680cc2b0d21d71a2519c5e5361b564907c21152",
           "size": 3798342,
-          "retrieved_at": "2026-10-10T20:40:51.444Z",
+          "retrieved_at": "2026-10-12T12:31:10.542Z",
           "archive": "ESP-CRT-2024-V0.1-2022-20240912-094341_started.zip"
         },
         {
@@ -7421,7 +7421,7 @@
           "annex_key": "MD5E-s3757486--e39a33178bb9ad976b2b4bf806773c40.xlsx",
           "sha256": "fe2e165feb16d32fadc404fc6e6cc3ee791707d0e8b777ea472ecfdc30e16a5b",
           "size": 3757486,
-          "retrieved_at": "2026-10-10T20:40:53.558Z",
+          "retrieved_at": "2026-10-12T12:31:12.387Z",
           "archive": "ESP-CRT-2024-V0.2-20241216-142841_started.zip"
         }
       ],
@@ -7522,7 +7522,7 @@
           "annex_key": "MD5E-s98276--f209af29bcce9b56cf652652d680b739.xlsx",
           "sha256": "1fd63267a8950a4de8340ca65e449c4df7a72f18565f613248814b7f0e67409f",
           "size": 98276,
-          "retrieved_at": "2026-10-10T20:40:55.013Z",
+          "retrieved_at": "2026-10-12T12:31:14.262Z",
           "$reason": "EST-CTF-NDC-2024.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Estonia's own emissions, and none is shown as Estonia's."
         },
         {
@@ -7537,7 +7537,7 @@
           "annex_key": "MD5E-s3189098--4e143df02586619c0bbb7a36efe07edc.xlsx",
           "sha256": "ca22e078db7f8b419852c27def4d5126ac0f5b2a44b85f186c7069970e7bb543",
           "size": 3189098,
-          "retrieved_at": "2026-10-10T20:40:57.350Z",
+          "retrieved_at": "2026-10-12T12:31:16.383Z",
           "archive": "EST-CRT-2024-V1.0-20241220-135059_awaiting_submission.zip"
         }
       ],
@@ -7632,7 +7632,7 @@
           "annex_key": "MD5E-s59218--e4d151e2a0373ab85a1c9288b13a0870.xlsx",
           "sha256": "a1d971199f7daebb3bb994589d0701d4fc66242dedf09d4d5fcfe02a539366f8",
           "size": 59218,
-          "retrieved_at": "2026-10-10T20:40:59.025Z"
+          "retrieved_at": "2026-10-12T12:31:18.281Z"
         },
         {
           "name": "EUU-CTF-NDC-2024-V0.5-20241211.xlsx",
@@ -7645,7 +7645,7 @@
           "annex_key": "MD5E-s95017--82cc8e278b91a2032abc51ec19ccdab5.xlsx",
           "sha256": "caf58cd702a99a5d08e5413a559a5a442011ece92f7e036e9017110d7245aa0c",
           "size": 95017,
-          "retrieved_at": "2026-10-10T20:41:01.036Z"
+          "retrieved_at": "2026-10-12T12:31:20.289Z"
         },
         {
           "name": "EUA_CRT_2022.xlsx",
@@ -7659,7 +7659,7 @@
           "annex_key": "MD5E-s673604--930d4e4a2610247c8224612f871ecf1f.xlsx",
           "sha256": "08a02743c48b21d163a21ee4c6fa9147269d56468ecaeab1cc56eee65d97adcf",
           "size": 673604,
-          "retrieved_at": "2026-10-10T20:41:03.184Z",
+          "retrieved_at": "2026-10-12T12:31:22.379Z",
           "archive": "EUA_CRT_December_2024.zip",
           "$reason": "EUA_CRT_2022.xlsx is named for 2022, but Summary2!L1, where the CRT states its year, is empty, so its totals are not attributed to 2022 for European Union."
         }
@@ -7779,7 +7779,7 @@
           "annex_key": "MD5E-s106709--f199020fb2064630b0dba2617fd512e0.xlsx",
           "sha256": "d126c1b274cac7cb46589482bb48c508d5bbff176a9e7fde54446b5fd18546aa",
           "size": 106709,
-          "retrieved_at": "2026-10-10T20:41:05.039Z",
+          "retrieved_at": "2026-10-12T12:31:24.254Z",
           "$reason": "FIN-CTF-NDC-2024-V0.6-20241219-110757_approved.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Finland's own emissions, and none is shown as Finland's."
         },
         {
@@ -7794,7 +7794,7 @@
           "annex_key": "MD5E-s3574906--b5462221fec20489cb885a817b384818.xlsx",
           "sha256": "182efa3891fa60b874880fafb2a1b6834ee80bb941db99bae2752dcb9534643c",
           "size": 3574906,
-          "retrieved_at": "2026-10-10T20:41:07.354Z",
+          "retrieved_at": "2026-10-12T12:31:26.477Z",
           "archive": "FIN-CRT-2024-V1.0-20241216-165950_awaiting_submission.zip"
         }
       ],
@@ -7889,7 +7889,7 @@
           "annex_key": "MD5E-s1335799--2b10cc27215c76aaf7b05ffae7ebf37d.xlsx",
           "sha256": "38af50206ac31c4c856268877e10ae1b592ab9c711386e89ec81efe9445faae3",
           "size": 1335799,
-          "retrieved_at": "2026-10-10T20:41:09.178Z",
+          "retrieved_at": "2026-10-12T12:31:28.394Z",
           "$reason": "FRA-CTF-NDC-2024-V0.1-20241220-180741_approved.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 700 168 kt CO2eq…\"), so its figures are the EU's, not France's own emissions, and none is shown as France's."
         },
         {
@@ -7904,7 +7904,7 @@
           "annex_key": "MD5E-s3513916--c825a5ad57cb1110acce49e610904cf1.xlsx",
           "sha256": "e5a2e9a77994ebdc120fe4e55a7ea3a6db17353b92cf1d12799f16d19ba6ad99",
           "size": 3513916,
-          "retrieved_at": "2026-10-10T20:41:11.405Z",
+          "retrieved_at": "2026-10-12T12:31:30.385Z",
           "archive": "FRA-CRT-2024-V0.6-20241216-161112_started.zip"
         }
       ],
@@ -8000,7 +8000,7 @@
           "annex_key": "MD5E-s4284218--b3f9ea3c470ec42cb4fdad8fe040ae62.xlsx",
           "sha256": "187106a96ff0a2990e05cc52da87a1e252ccd0ad7c2fc47dd371a50f9fac335c",
           "size": 4284218,
-          "retrieved_at": "2026-10-10T20:41:13.190Z",
+          "retrieved_at": "2026-10-12T12:31:32.441Z",
           "archive": "GAB-CRT-2024-V1.0-20260306-091606_awaiting_submission.zip"
         }
       ],
@@ -8087,7 +8087,7 @@
           "annex_key": "MD5E-s105734--e15441cfc3f0ee6b77a358dcd6d22013.xlsx",
           "sha256": "7540a71ae155f348e3c5443595881ad6462175262df21969242aa18996e4d5ea",
           "size": 105734,
-          "retrieved_at": "2026-10-10T20:41:20.565Z"
+          "retrieved_at": "2026-10-12T12:31:34.295Z"
         },
         {
           "name": "GBR-CRT-2024-V1.1-2022-20241227-053246_started.xlsx",
@@ -8101,7 +8101,7 @@
           "annex_key": "MD5E-s4480441--d41054ecafb7869f6a945f419231fc9f.xlsx",
           "sha256": "4387d5ff639f9d417481c2e95071963d15d8d0377fc6fa98e6afed02d9a26e38",
           "size": 4480441,
-          "retrieved_at": "2026-10-10T20:41:22.829Z",
+          "retrieved_at": "2026-10-12T12:31:36.404Z",
           "archive": "GBR-CRT-2024-V1.1-1990To2022-20241227-053246_started.zip"
         }
       ],
@@ -8258,7 +8258,7 @@
           "annex_key": "MD5E-s114263--9f5367bd9ffc0842a1464b062164a2ab.xlsx",
           "sha256": "b36cb742108138930d6d31cd6c8ab4233285bb38e35082812707cc67f50bfb41",
           "size": 114263,
-          "retrieved_at": "2026-10-10T20:41:24.232Z"
+          "retrieved_at": "2026-10-12T12:31:38.239Z"
         },
         {
           "name": "GEO-CRT-2024-V1.0-2022-20241231-131945_awaiting submission.xlsx",
@@ -8272,7 +8272,7 @@
           "annex_key": "MD5E-s474134--c25394e6b26a21d66c56461b31019063.xlsx",
           "sha256": "9ca51dec7a827d32adf22fcb2d5259dabab64412b8059cd5c25adbfdee3e5078",
           "size": 474134,
-          "retrieved_at": "2026-10-10T20:41:26.505Z",
+          "retrieved_at": "2026-10-12T12:31:40.332Z",
           "archive": "GEO-CRT-2024-V1.0-20241231-131945_awaiting_submission.zip"
         },
         {
@@ -8287,7 +8287,7 @@
           "annex_key": "MD5E-s3028521--cc40365c2acc1da3c94775a642b8b625.xlsx",
           "sha256": "7fc22a29fac5ebf431a9417ce2ac1c5b59f3510196393ac402e19ef378c20dd6",
           "size": 3028521,
-          "retrieved_at": "2026-10-10T20:41:28.689Z",
+          "retrieved_at": "2026-10-12T12:31:42.373Z",
           "archive": "GEO-CRT-2024-V1.0-20241231-131945_awaiting_submission.zip"
         }
       ],
@@ -8710,7 +8710,7 @@
           "annex_key": "MD5E-s981650--230065566c68d1322c1e86d1aa605cf9.xlsx",
           "sha256": "09b3f2aebc7c470de0ea7403c4fd5d13ef6cc0272ef580b311772ad1f9d14091",
           "size": 981650,
-          "retrieved_at": "2026-10-10T20:41:30.625Z"
+          "retrieved_at": "2026-10-12T12:31:44.264Z"
         },
         {
           "name": "GHA-CRT-2024-V0.1-2022-20241225-110923_started.xlsx",
@@ -8724,7 +8724,7 @@
           "annex_key": "MD5E-s478215--9cc1e9d649e0938f316462d356d3bfd4.xlsx",
           "sha256": "94c54824bd9f5b5b91c3625ddd476e8543080d3f2046acc19da5281d078f27d2",
           "size": 478215,
-          "retrieved_at": "2026-10-10T20:41:33.542Z",
+          "retrieved_at": "2026-10-12T12:31:47.369Z",
           "archive": "GHA-CRT-2024-V0.1-20241225-110923_started.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Ghana/BTR1/GHA-CRT-2024-V0.1-20241225-110923_started/GHA-CRT-2024-V0.1-2022-20241225-110923_started.xlsx"
@@ -8944,7 +8944,7 @@
           "annex_key": "MD5E-s473363--a9ed5a845a72e93abfc377de4232e010.xlsx",
           "sha256": "73c409819de0a953a32fbaaec165f1b81f96944dab25334251717b97dbbebdaa",
           "size": 473363,
-          "retrieved_at": "2026-10-10T20:41:35.459Z"
+          "retrieved_at": "2026-10-12T12:31:49.297Z"
         },
         {
           "name": "GNB-CRT-2024-V0.7-2022-20250101-134400_started.xlsx",
@@ -8958,7 +8958,7 @@
           "annex_key": "MD5E-s4079757--3a692e1b3ed8914b9755fc47f4ddc93c.xlsx",
           "sha256": "dbfcb926feec2c6aaaef94b52a70bcfd8ea373d778224d7031fe9c4554a32db9",
           "size": 4079757,
-          "retrieved_at": "2026-10-10T20:41:37.783Z",
+          "retrieved_at": "2026-10-12T12:31:51.460Z",
           "archive": "GNB-CRT-2024-V0.7-20250101-134400_started.zip"
         }
       ],
@@ -9105,7 +9105,7 @@
           "annex_key": "MD5E-s1083326--9d22c2f1c82f0b041b4e33293448cd2d.xlsx",
           "sha256": "97282c4b4554b3ad75e47c30406d4c7b798f8d4472d371c9a2e92cfbbea4c138",
           "size": 1083326,
-          "retrieved_at": "2026-10-10T20:41:39.755Z",
+          "retrieved_at": "2026-10-12T12:31:53.337Z",
           "$reason": "GRC-CTF-NDC-2024-V0.1-20241209-135217_started.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Greece's own emissions, and none is shown as Greece's."
         },
         {
@@ -9120,7 +9120,7 @@
           "annex_key": "MD5E-s3157775--74bf3d69f503b763d7f280e4304954cf.xlsx",
           "sha256": "1cfb1adf7622df519318e6e3b8d0a0cfbb4314848f5e0b0a7330eafb00d2ce00",
           "size": 3157775,
-          "retrieved_at": "2026-10-10T20:41:41.799Z",
+          "retrieved_at": "2026-10-12T12:31:55.388Z",
           "archive": "GRC-CRT-2024-V0.1-20241228-100005_approved.zip"
         }
       ],
@@ -9216,7 +9216,7 @@
           "annex_key": "MD5E-s2898176--1d3f0383d3820ab143187c869fdc5b1a.xlsx",
           "sha256": "55ea0ebf9c029a3bbd56aa5b6faff643d67df4d0b3987e778786d73d18c4d22e",
           "size": 2898176,
-          "retrieved_at": "2026-10-10T20:41:43.392Z",
+          "retrieved_at": "2026-10-12T12:31:57.382Z",
           "archive": "GTM-CRT-2024-V0.3-20250304-084824_started.zip"
         }
       ],
@@ -9303,7 +9303,7 @@
           "annex_key": "MD5E-s102795--471789008c9be954b13ef1a1406c80b0.xlsx",
           "sha256": "a4c1e0caa157c6cd8281dc7500cff5f9c8bc2e1f53320dff8415807d7569c92c",
           "size": 102795,
-          "retrieved_at": "2026-10-10T20:41:45.674Z"
+          "retrieved_at": "2026-10-12T12:31:59.269Z"
         },
         {
           "name": "GUY-CTF-NDC-2024-V0.1-20240906-184627_started.xlsx",
@@ -9316,7 +9316,7 @@
           "annex_key": "MD5E-s86685--6507d5817bfc789ae68f4796789985f9.xlsx",
           "sha256": "97c832cb3cf97c07a2fc5a1387b81f9ed4a211418b3e3687b7acc855c655f064",
           "size": 86685,
-          "retrieved_at": "2026-10-10T20:41:47.306Z"
+          "retrieved_at": "2026-10-12T12:32:01.260Z"
         },
         {
           "name": "GUY-CRT-2024-V0.3-2022-20240927-213052_started.xlsx",
@@ -9330,7 +9330,7 @@
           "annex_key": "MD5E-s4617138--5a7c705af4c842c4a52d303e761470b6.xlsx",
           "sha256": "975fe4cbd693679194f6b950683c71e97db5ba7d053493a92d455a9f1a3d739d",
           "size": 4617138,
-          "retrieved_at": "2026-10-10T20:41:49.535Z"
+          "retrieved_at": "2026-10-12T12:32:03.408Z"
         }
       ],
       "ctf": {
@@ -9761,7 +9761,7 @@
           "annex_key": "MD5E-s2173553--d012c3ef65f98611707b33806facf75c.xlsx",
           "sha256": "3f8507cc6e65b651956228a63f25a616a045eb05266b922aff52982834478aba",
           "size": 2173553,
-          "retrieved_at": "2026-10-10T20:41:51.365Z",
+          "retrieved_at": "2026-10-12T12:32:05.488Z",
           "$reason": "HKG-CRT-2024-V0.5-2021-20241231-154423_started.xlsx sits in Hong Kong's folder, but Summary2!K3 names \"China\", so its totals are not shown as Hong Kong's."
         }
       ],
@@ -9804,7 +9804,7 @@
           "annex_key": "MD5E-s4046817--96dadc9a79ebe67fdd1933d501914c38.xlsx",
           "sha256": "df190dc83bd8241f40c3f2b1adc5531700194566b5c3743944d6ad8771b23f80",
           "size": 4046817,
-          "retrieved_at": "2026-10-10T20:41:53.691Z",
+          "retrieved_at": "2026-10-12T12:32:07.443Z",
           "archive": "HND-CRT-2024-V1.0.zip"
         }
       ],
@@ -9891,7 +9891,7 @@
           "annex_key": "MD5E-s1408999--2e84fd4152501cfec56f21375232f254.xlsx",
           "sha256": "29525494c7f5dd7a76631c8b5470581cebe0b7d220d2ef1194d3d8093a547581",
           "size": 1408999,
-          "retrieved_at": "2026-10-10T20:41:55.548Z",
+          "retrieved_at": "2026-10-12T12:32:09.437Z",
           "$reason": "HRV-CTF-NDC-2024-V0.1-20241230-133900_started.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Croatia's own emissions, and none is shown as Croatia's."
         },
         {
@@ -9906,7 +9906,7 @@
           "annex_key": "MD5E-s3394980--7ba49c83959a30a1916b5f3169a8d1a4.xlsx",
           "sha256": "a9bec1e6922d426ee10c289d09e259f26f60bcaff96c36cf35f40a2229300e5d",
           "size": 3394980,
-          "retrieved_at": "2026-10-10T20:41:57.512Z",
+          "retrieved_at": "2026-10-12T12:32:11.414Z",
           "archive": "HRV-CRT-2024-V0.1-20241125-130506_started.zip"
         }
       ],
@@ -10001,7 +10001,7 @@
           "annex_key": "MD5E-s100140--c61d678675ff24ac4c18c21aada0028c.xlsx",
           "sha256": "576c55b0cedcffba304b5937f2954455f186b0e74f9e2adcb3af97297c0af961",
           "size": 100140,
-          "retrieved_at": "2026-10-10T20:41:59.303Z",
+          "retrieved_at": "2026-10-12T12:32:13.307Z",
           "$reason": "Annex_II_BTR-1_Hungary_Progress.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Hungary's own emissions, and none is shown as Hungary's."
         },
         {
@@ -10016,7 +10016,7 @@
           "annex_key": "MD5E-s3550493--7d38c3c97da904aa76d9b5c751d57ca3.xlsx",
           "sha256": "8d44235c767da30f77b84479ad672e423d8e0d533cda444516066d535ae5690e",
           "size": 3550493,
-          "retrieved_at": "2026-10-10T20:42:01.452Z",
+          "retrieved_at": "2026-10-12T12:32:15.691Z",
           "archive": "HUN-CRT-2024-V1.0-20250221-153240_awaiting_submission.zip"
         }
       ],
@@ -10111,7 +10111,7 @@
           "annex_key": "MD5E-s144799--f2a08a32e920de394d5d68664558ba99.xlsx",
           "sha256": "d9ce9fa9cbd0583d5f4396f27163417cf6292042245ceb7bf7468c0171678b2b",
           "size": 144799,
-          "retrieved_at": "2026-10-10T20:42:03.286Z"
+          "retrieved_at": "2026-10-12T12:32:17.258Z"
         },
         {
           "name": "IDN-CRT-2024-V0.16-2022-20241212-204251_started.xlsx",
@@ -10125,7 +10125,7 @@
           "annex_key": "MD5E-s4728866--e280ed047d6f8beb11fd50cfe9dee4c8.xlsx",
           "sha256": "e05eb5da546b8dbc7c349ea185443fd03547ae8f0642101ce19941f52f2dc960",
           "size": 4728866,
-          "retrieved_at": "2026-10-10T20:42:05.546Z",
+          "retrieved_at": "2026-10-12T12:32:19.543Z",
           "archive": "IDN-CRT-2024-V0.16-20241212-204251_started.zip"
         }
       ],
@@ -10525,7 +10525,7 @@
           "annex_key": "MD5E-s62839--cb9b52c4fe6217224e44ae55c1b10609.xlsx",
           "sha256": "2127e521fb5c6ad8214b0d6ac4e88792f404978ef4ffa4ffa7a935d8a1a35ddb",
           "size": 62839,
-          "retrieved_at": "2026-10-10T20:42:07.267Z"
+          "retrieved_at": "2026-10-12T12:32:21.264Z"
         },
         {
           "name": "BTR1_CRT_2022_All Sectors_INDIA.xlsx",
@@ -10539,7 +10539,7 @@
           "annex_key": "MD5E-s3464337--d1f5884082d1aed0e6af5070f3a02195.xlsx",
           "sha256": "51116025a1f367168a3d7476b16fa32c26628db1967ea80d9acf830e1a130b2a",
           "size": 3464337,
-          "retrieved_at": "2026-10-10T20:42:10.249Z",
+          "retrieved_at": "2026-10-12T12:32:23.386Z",
           "archive": "BTR1_CRT_All_Sectors_INDIA.zip",
           "also_at": [
             "downloaded_data/UNFCCC/India/BTR1/IND-CRT-2026-V0.0-2022.xlsx"
@@ -10798,7 +10798,7 @@
           "annex_key": "MD5E-s87449--67c36f73675686a0ebb2dc97e6574bc2.xlsx",
           "sha256": "09f92399d554cafe2f5a4f855032522c7932b70be6b2bbfb843c323a09eb1216",
           "size": 87449,
-          "retrieved_at": "2026-10-10T20:42:12.777Z",
+          "retrieved_at": "2026-10-12T12:32:26.257Z",
           "$reason": "IRL-CTF-NDC-2024-V1.1-20241223-111446_23122024.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Ireland. This is an empty table, not a missing report."
         },
         {
@@ -10813,7 +10813,7 @@
           "annex_key": "MD5E-s3624964--02ef6819aefe955d923a3f5fad84ecd4.xlsx",
           "sha256": "231840a1d6ba631c32f03df477ed4fdabae487e17d8a8ff67dd66db1341a69fd",
           "size": 3624964,
-          "retrieved_at": "2026-10-10T20:42:14.756Z"
+          "retrieved_at": "2026-10-12T12:32:28.384Z"
         }
       ],
       "ctf": {
@@ -10902,7 +10902,7 @@
           "annex_key": "MD5E-s71946--8355f648660a5f4ddb8fdad43352d832.xlsx",
           "sha256": "283978ef475118926010488b81dd5a9780c4bf5cd5946a8c86384eaa39a20f96",
           "size": 71946,
-          "retrieved_at": "2026-10-10T20:42:16.669Z"
+          "retrieved_at": "2026-10-12T12:32:30.281Z"
         },
         {
           "name": "IRQ-CRT-2024-V0.1-2021-20241216-142723_started.xlsx",
@@ -10916,7 +10916,7 @@
           "annex_key": "MD5E-s572217--cacf8be8dc10acf90211fd21602e556a.xlsx",
           "sha256": "9ccd5dccebce52d1edb95e3addc69a7292975ab8168392dd179a3dd6a5748c74",
           "size": 572217,
-          "retrieved_at": "2026-10-10T20:42:18.951Z",
+          "retrieved_at": "2026-10-12T12:32:32.250Z",
           "archive": "IRQ-CRT-2024-V0.1-20241216-142723_started.zip"
         }
       ],
@@ -11125,7 +11125,7 @@
           "annex_key": "MD5E-s99127--1570951870a031a2802909fbd806da71.xlsx",
           "sha256": "de80e4f93e62fe5c801d60273c9fda410eec1f25a1fb6ebae0053547652c15fa",
           "size": 99127,
-          "retrieved_at": "2026-10-10T20:42:20.633Z"
+          "retrieved_at": "2026-10-12T12:32:34.257Z"
         },
         {
           "name": "ISL-CTF-NDC-2024-V1.0-20260305-150921_awaiting_submission.xlsx",
@@ -11138,7 +11138,7 @@
           "annex_key": "MD5E-s1061207--12778002a71941955c5ff89ffd77cc88.xlsx",
           "sha256": "37cfa1423fbd9770d4bfd8102f0d720877ad8bcd410b6c8cc067e545b5555fe6",
           "size": 1061207,
-          "retrieved_at": "2026-10-10T20:42:23.151Z"
+          "retrieved_at": "2026-10-12T12:32:36.343Z"
         },
         {
           "name": "ISL-CRT-2024-V1.0-2022-20241219-110923_awaiting submission.xlsx",
@@ -11152,7 +11152,7 @@
           "annex_key": "MD5E-s3334576--2d24047a5574ab0cfc58d0677757225e.xlsx",
           "sha256": "a7bec12b13f6c5c984741b92c80270553cde3abde3060d4326ff52e4342e75cb",
           "size": 3334576,
-          "retrieved_at": "2026-10-10T20:42:24.978Z",
+          "retrieved_at": "2026-10-12T12:32:38.366Z",
           "archive": "ISL-CRT-2024-V1.0-20241219-110923.zip"
         }
       ],
@@ -11311,7 +11311,7 @@
           "annex_key": "MD5E-s80077--a10a483908ac77f0e20b5a1de1a9c2af.xlsx",
           "sha256": "55dfbae8a80d3ee12207532911cd3c17e5151f303955d2cb8afa96cb3085632d",
           "size": 80077,
-          "retrieved_at": "2026-10-10T20:42:26.654Z"
+          "retrieved_at": "2026-10-12T12:32:40.251Z"
         },
         {
           "name": "ISR-CRT-2022-2022.xlsx",
@@ -11325,7 +11325,7 @@
           "annex_key": "MD5E-s736761--5418eb36cc1a2787f217c4368db4ee3b.xlsx",
           "sha256": "73a74dbcb980cfaa1e9bfd1389211f750fca380f944522bede3226ea2faea32f",
           "size": 736761,
-          "retrieved_at": "2026-10-10T20:42:28.998Z",
+          "retrieved_at": "2026-10-12T12:32:42.294Z",
           "also_at": [
             "downloaded_data/UNFCCC/Israel/BTR1/ISR-CRT-2022-V0.0-2022-20250625.xlsx"
           ]
@@ -11773,7 +11773,7 @@
           "annex_key": "MD5E-s96819--041394295a63672ebc90932feb298969.xlsx",
           "sha256": "b7b496a2aca4789ca8e9ed2a9e10bb422e207ebfb5139196888ec5056a542b7b",
           "size": 96819,
-          "retrieved_at": "2026-10-10T20:42:31.706Z",
+          "retrieved_at": "2026-10-12T12:32:45.288Z",
           "$reason": "ITA-CTF-NDC-2024-V1.2-20241120-141742_awaiting_approval.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Italy's own emissions, and none is shown as Italy's."
         },
         {
@@ -11788,7 +11788,7 @@
           "annex_key": "MD5E-s3298981--a0f31c22842249e8d8e7594b7b459de5.xlsx",
           "sha256": "3f0ebf51e4c2c294e41619fc9f506c9f7a8ab7b61fe581a8f7e65fac9cb26027",
           "size": 3298981,
-          "retrieved_at": "2026-10-10T20:42:34.016Z",
+          "retrieved_at": "2026-10-12T12:32:47.430Z",
           "archive": "ITA-CRT-2024-V1.0-20241115-162239_awaiting_submission.zip"
         }
       ],
@@ -11883,7 +11883,7 @@
           "annex_key": "MD5E-s73163--4291066c228c6c30297e3c3a962ede0e.1.xlsx",
           "sha256": "3151fd65c126048d3dfc2623212ef1c99c1d90df3727eb0d56a10dc76ae3c755",
           "size": 73163,
-          "retrieved_at": "2026-10-10T20:42:35.767Z"
+          "retrieved_at": "2026-10-12T12:32:49.253Z"
         },
         {
           "name": "Annex_I_JOR-CRT-2025-V1.3-2023-20251029-114641_awaiting_approval.xlsx",
@@ -11897,7 +11897,7 @@
           "annex_key": "MD5E-s505735--63d533899846d68bf3675b0e04fd88b4.xlsx",
           "sha256": "6154f4f8306b2ac6c3c1ed47eed7b3b17f42e39e71c2e8e5de3955633b7b1528",
           "size": 505735,
-          "retrieved_at": "2026-10-10T20:42:38.043Z"
+          "retrieved_at": "2026-10-12T12:32:51.443Z"
         }
       ],
       "ctf": {
@@ -12050,7 +12050,7 @@
           "annex_key": "MD5E-s1353466--cbd15b493311b920f61b45629e3eb33f.xlsx",
           "sha256": "1eac7e4717705d7df44a7c373c99cf1267428aa3c46ab3df2f43b34ba4504d45",
           "size": 1353466,
-          "retrieved_at": "2026-10-10T20:42:39.901Z"
+          "retrieved_at": "2026-10-12T12:32:53.475Z"
         },
         {
           "name": "JPN-CTF-NDC-20241031r.xlsx",
@@ -12063,7 +12063,7 @@
           "annex_key": "MD5E-s100018--04a67c0145cb3813ebdc943237b0e42e.xlsx",
           "sha256": "ad05e02a1cb887e85cc417216e9c00c2c184c6fedab7746bf492c6fef50edd8e",
           "size": 100018,
-          "retrieved_at": "2026-10-10T20:42:41.761Z"
+          "retrieved_at": "2026-10-12T12:32:55.294Z"
         },
         {
           "name": "JPN-CRT-2024-V1.0-2022-20241203-155039_awaiting submission.xlsx",
@@ -12077,7 +12077,7 @@
           "annex_key": "MD5E-s4218616--bfa8e06246c67d0e7d8b0a84d82f8300.xlsx",
           "sha256": "cbad478a6de01d5830334c0369f6679e0f934f427334945e1b340130b7042f27",
           "size": 4218616,
-          "retrieved_at": "2026-10-10T20:42:43.883Z",
+          "retrieved_at": "2026-10-12T12:32:57.420Z",
           "archive": "JPN-CRT-2024-V1.0-20241203-155039_awaiting_submission.zip"
         }
       ],
@@ -12240,7 +12240,7 @@
           "annex_key": "MD5E-s101583--19616f7bf0bfef2437d06abd9222f46b.xlsx",
           "sha256": "f9748e91468feedb002b23e9d10daf012f3be985a3077d628aa982ba2233961e",
           "size": 101583,
-          "retrieved_at": "2026-10-10T20:42:45.699Z"
+          "retrieved_at": "2026-10-12T12:32:59.392Z"
         },
         {
           "name": "KAZ-CRT-2024-V0.1-2022-20241211-120148_approved.xlsx",
@@ -12254,7 +12254,7 @@
           "annex_key": "MD5E-s3204372--d5fd938bef61d0c4f6d39b3d2277aa07.xlsx",
           "sha256": "449a62affd49e086a9f53c0b7731b41abb92decc97836ffd0f66ee4aebc8ec09",
           "size": 3204372,
-          "retrieved_at": "2026-10-10T20:42:47.790Z",
+          "retrieved_at": "2026-10-12T12:33:01.498Z",
           "archive": "KAZ-CRT-2024-V0.1-20241211-120148_approved.zip"
         }
       ],
@@ -12431,7 +12431,7 @@
           "annex_key": "MD5E-s979314--edba0382393f8e097604411656e28586.xlsx",
           "sha256": "675b43eaf9eb0f774f168e7c38f0dbe0c48f62505239787eb5f4f9c22d0f0d64",
           "size": 979314,
-          "retrieved_at": "2026-10-10T20:42:49.527Z"
+          "retrieved_at": "2026-10-12T12:33:03.273Z"
         },
         {
           "name": "KEN-CRT-2024-V0.3-2022-20241231-210929_approved.xlsx",
@@ -12445,7 +12445,7 @@
           "annex_key": "MD5E-s4519309--ec374a6f1f25b3981b6d0ffc9a930227.xlsx",
           "sha256": "d45957a80cc69d9e4134ad733da245c2133d7219746306bdf3db5f4f768e9226",
           "size": 4519309,
-          "retrieved_at": "2026-10-10T20:42:52.058Z",
+          "retrieved_at": "2026-10-12T12:33:05.423Z",
           "archive": "KEN-CRT-2024-V0.3-20241231-210929_approved.zip"
         },
         {
@@ -12460,7 +12460,7 @@
           "annex_key": "MD5E-s4830259--a8d7d517dec9df300e4c7657634dac93.xlsx",
           "sha256": "9b0ee4d9b7e1d783e32bd4b76ead1f799d364250cdf5358c38c1434eec769352",
           "size": 4830259,
-          "retrieved_at": "2026-10-10T20:42:53.897Z",
+          "retrieved_at": "2026-10-12T12:33:07.445Z",
           "archive": "KEN-CRT-2024-V0.4-1990-2022-20250130-151128_awaiting_approval.zip"
         }
       ],
@@ -12629,7 +12629,7 @@
           "annex_key": "MD5E-s4496303--3c45ddcaaeda1fbfbb09d480cc53fc5a.xlsx",
           "sha256": "4131b58d037a6e7afdf06644b7bffd4aaff6d43026998d6408143547334c64ff",
           "size": 4496303,
-          "retrieved_at": "2026-10-10T20:42:56.249Z",
+          "retrieved_at": "2026-10-12T12:33:09.402Z",
           "archive": "KGZ-CRT-2025-V3.0.zip"
         }
       ],
@@ -12743,7 +12743,7 @@
           "annex_key": "MD5E-s90880--6856c2b701d6284351d1a95ca7c5f4ab.1.xlsx",
           "sha256": "282a81af07300506f78e4917d1b05ed29221eec43f664796cad48db8b6c6c403",
           "size": 90880,
-          "retrieved_at": "2026-10-10T20:42:57.657Z"
+          "retrieved_at": "2026-10-12T12:33:11.272Z"
         },
         {
           "name": "KOR-CRT-2024-V0.24-2022-20260114-142632_started.xlsx",
@@ -12757,7 +12757,7 @@
           "annex_key": "MD5E-s4497219--2eff18d44d11eb1006a137528afcb300.xlsx",
           "sha256": "b6515172fe41f4b03ef8238e2045e9ae626ea272b756d5a0395935a6f4a57d2f",
           "size": 4497219,
-          "retrieved_at": "2026-10-10T20:43:01.020Z",
+          "retrieved_at": "2026-10-12T12:33:14.446Z",
           "archive": "KOR-CRT-2024-V0.24-20260114-142632_started.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Republic_of_Korea/BTR1/KOR-CRT-2024-V0.24-20260114-142632_started/KOR-CRT-2024-V0.24-2022-20260114-142632_started.xlsx"
@@ -12914,7 +12914,7 @@
           "annex_key": "MD5E-s132878--354ff90329b2a80776d2dea93a12f678.xlsx",
           "sha256": "19646f2b9ded40a8690571d262ccb50301ee6fd71c5105c97720c4bbeff135ef",
           "size": 132878,
-          "retrieved_at": "2026-10-10T20:43:02.731Z",
+          "retrieved_at": "2026-10-12T12:33:16.301Z",
           "archive": "CTF_NDC_Tracking_BTR1_Lao_PDR.zip"
         },
         {
@@ -12928,7 +12928,7 @@
           "annex_key": "MD5E-s121284--d5c9b83d3b487dfb52f85217400a207a.xlsx",
           "sha256": "45a8dc94a20f0262946930e5b5ab70345780c330998f1a62e28641856dad4cbd",
           "size": 121284,
-          "retrieved_at": "2026-10-10T20:43:04.726Z",
+          "retrieved_at": "2026-10-12T12:33:18.273Z",
           "archive": "CTF_NDC_Tracking_BTR1_Lao_PDR.zip"
         },
         {
@@ -12942,7 +12942,7 @@
           "annex_key": "MD5E-s124433--c230ad5dec9f827e73a8b9147582cc15.xlsx",
           "sha256": "6fdd0682810817f502340b743b8bb3f0398246105805bdc0b2bbc2a1be881fb1",
           "size": 124433,
-          "retrieved_at": "2026-10-10T20:43:06.708Z",
+          "retrieved_at": "2026-10-12T12:33:20.275Z",
           "archive": "CTF_NDC_Tracking_BTR1_Lao_PDR.zip",
           "$reason": "CTF Transport _BTR1_Lao PDR.xlsx reports Lao People's Democratic Republic's Table 4 indicator only as text (Table 4!G9: \"2022: 3,201 EVs\"). A number written inside text is not read as a figure, so none is shown."
         },
@@ -12957,7 +12957,7 @@
           "annex_key": "MD5E-s108632--8a62a95d57dead2555e21e9e28d4e676.xlsx",
           "sha256": "aa5ac804f2bc4733afd0974c44fe460cefe1613b40120a68ca507e8f2f76c2b5",
           "size": 108632,
-          "retrieved_at": "2026-10-10T20:43:08.723Z",
+          "retrieved_at": "2026-10-12T12:33:22.280Z",
           "archive": "CTF_NDC_Tracking_BTR1_Lao_PDR.zip",
           "$reason": "CTF Waste_BTR1_Lao PDR.xlsx has a Table 4 sheet (Table 4), but no header row there names the reference point and the target level, so its columns cannot be told apart and nothing was read for Lao People's Democratic Republic."
         },
@@ -12973,7 +12973,7 @@
           "annex_key": "MD5E-s552019--d621b253f79221f7844045771b9ecb81.xlsx",
           "sha256": "c7008a5fb2baa559c1a00ea7659142f9d330de6e4d3bb9f408ddac109123c014",
           "size": 552019,
-          "retrieved_at": "2026-10-10T20:43:10.975Z",
+          "retrieved_at": "2026-10-12T12:33:24.255Z",
           "archive": "CRT_BTR1_Lao_PDR.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Lao_People's_Democratic_Republic/BTR1/LAO-CRT-2024-V0.16-2022-20250605-210940.xlsx"
@@ -13068,7 +13068,7 @@
           "annex_key": "MD5E-s1375578--9c4ece0abc7bfb3e9270a03bb4d0e141.xlsx",
           "sha256": "459183d08de3a5b2b6583fa738d89677ed3985f52bb2c4abadb5154a6ca103a8",
           "size": 1375578,
-          "retrieved_at": "2026-10-10T20:43:13.995Z"
+          "retrieved_at": "2026-10-12T12:33:27.292Z"
         },
         {
           "name": "LBN-CRT-2024-V0.2-2022-20241219-142232_started.xlsx",
@@ -13082,7 +13082,7 @@
           "annex_key": "MD5E-s3587066--87633c47ed082d5202269d1598a7d0aa.xlsx",
           "sha256": "caac74677735b5d1ef6f4b024d00682702759a19c3fe474eb9d29e3e96a0bf3b",
           "size": 3587066,
-          "retrieved_at": "2026-10-10T20:43:15.907Z",
+          "retrieved_at": "2026-10-12T12:33:29.372Z",
           "archive": "LBN-CRT-2024-V0.2-20241219-142232_started.zip"
         }
       ],
@@ -13542,7 +13542,7 @@
           "annex_key": "MD5E-s2193499--91ff038a3d6fcd6e4ce77f5700573082.xlsx",
           "sha256": "e4e6f02ca1069f3fe19adc61d99fd4fb3793e323dabf0f1dd65584eb19a94b64",
           "size": 2193499,
-          "retrieved_at": "2026-10-10T20:43:17.971Z",
+          "retrieved_at": "2026-10-12T12:33:31.321Z",
           "archive": "LBR-CRT-2026-V1.0.zip",
           "$reason": "LBR-CRT-2026-V1.0-2024.xlsx has the national-total rows in Summary2, but Summary2!K71 (\"Total CO2 equivalent emissions without LULUCF\") is empty, so no total was read for Liberia."
         }
@@ -13585,7 +13585,7 @@
           "annex_key": "MD5E-s1142470--f8752b7b78d1bbb1f0dc65ed1026d084.xlsx",
           "sha256": "cba33cf497dd742d0f28012b54df377ede1fe6807c5439f1b8e7be9b83d236ad",
           "size": 1142470,
-          "retrieved_at": "2026-10-10T20:43:20.108Z"
+          "retrieved_at": "2026-10-12T12:33:33.350Z"
         },
         {
           "name": "LIE-CRT-2024-V1.0-2022-20250210-164414_submitted.xlsx",
@@ -13599,7 +13599,7 @@
           "annex_key": "MD5E-s3217370--b0cc45107649116d927ff3632214564a.xlsx",
           "sha256": "5666fb7e5ffeb39d6cc303de040d59d3cf8565551684d2fa0cdac7b0aa536506",
           "size": 3217370,
-          "retrieved_at": "2026-10-10T20:43:22.199Z",
+          "retrieved_at": "2026-10-12T12:33:35.422Z",
           "archive": "LIE-CRT-2024-V1.0-20250210-164414_submitted.zip"
         },
         {
@@ -13614,7 +13614,7 @@
           "annex_key": "MD5E-s3154864--bba0f87b0c2d0e9da7ca21b69e6dafcd.xlsx",
           "sha256": "05e66bc7c4fb88b1bc97ec3bdd7529ef353f184d7a91f15e663bd374f8425bde",
           "size": 3154864,
-          "retrieved_at": "2026-10-10T20:43:23.963Z",
+          "retrieved_at": "2026-10-12T12:33:37.390Z",
           "archive": "LIE-CRT-2024-V1.0-20250108-171444_awaiting_submission.zip"
         }
       ],
@@ -13773,7 +13773,7 @@
           "annex_key": "MD5E-s492513--147a6d5bf4371f1a280a160ebf34e82a.xlsx",
           "sha256": "42a53498627cc4cd3709f231f24df1c4f7b8a7a6b3eb247c26f0bf7f6d0cae4a",
           "size": 492513,
-          "retrieved_at": "2026-10-10T20:43:26.109Z"
+          "retrieved_at": "2026-10-12T12:33:39.307Z"
         }
       ],
       "ctf": {
@@ -14240,7 +14240,7 @@
           "annex_key": "MD5E-s1246854--8b8cd636493fee3fe65634f9eb00cb92.xlsx",
           "sha256": "97efb26be16a0d4856cea3ca260ce52d315579ed816ed26c6258ab8972101aba",
           "size": 1246854,
-          "retrieved_at": "2026-10-10T20:43:27.975Z",
+          "retrieved_at": "2026-10-12T12:33:41.268Z",
           "$reason": "LTU-CTF-NDC-2024-V0.1-20241222-204353_approved.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Lithuania's own emissions, and none is shown as Lithuania's."
         },
         {
@@ -14255,7 +14255,7 @@
           "annex_key": "MD5E-s4073471--16eb47b217f79eed4733900ee37dd33c.xlsx",
           "sha256": "14123b4e01fb27fc44adb6a4dc82e408cce67b668a6c09f3dca7a9ef8d459a18",
           "size": 4073471,
-          "retrieved_at": "2026-10-10T20:43:29.876Z",
+          "retrieved_at": "2026-10-12T12:33:43.451Z",
           "archive": "LTU-CRT-2024-V0.4-20241217-083654_approved.zip"
         }
       ],
@@ -14350,7 +14350,7 @@
           "annex_key": "MD5E-s199036--27e40ae13efddf9fea5eab55b278a075.xlsx",
           "sha256": "680cb4fe1270ee792e685efce374eebd6ffca717d2f63f1e632cc715acd914c7",
           "size": 199036,
-          "retrieved_at": "2026-10-10T20:43:31.950Z",
+          "retrieved_at": "2026-10-12T12:33:45.331Z",
           "$reason": "LUX-CTF-NDC-2024-V0.1-20250716-114556_started.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2e.\"), so its figures are the EU's, not Luxembourg's own emissions, and none is shown as Luxembourg's."
         },
         {
@@ -14365,7 +14365,7 @@
           "annex_key": "MD5E-s3367297--0a1ea383a249fcda2d9f2b06b2a1ebc0.xlsx",
           "sha256": "80179640477b1d96f7dc403cc57b0e646559c1959484f3b35f82a55cb6e524ed",
           "size": 3367297,
-          "retrieved_at": "2026-10-10T20:43:34.130Z",
+          "retrieved_at": "2026-10-12T12:33:47.385Z",
           "archive": "LUX-CRT-2024-V1.0-20250116-080735_awaiting_submission.zip"
         }
       ],
@@ -14468,7 +14468,7 @@
           "annex_key": "MD5E-s111731--3711b0bb415bcdf867e0f070ffc4ec39.xlsx",
           "sha256": "2000267cc99f18af9fa60b96a677d69e5ed77da640457715b4ae9e3f5a2a213f",
           "size": 111731,
-          "retrieved_at": "2026-10-10T20:43:35.800Z",
+          "retrieved_at": "2026-10-12T12:33:49.255Z",
           "$reason": "LVA-CTF-NDC-2024-V0.1-20241218-153436_approved.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Latvia's own emissions, and none is shown as Latvia's."
         },
         {
@@ -14483,7 +14483,7 @@
           "annex_key": "MD5E-s3434074--e15e829c17a28617bf0ab1baff2dc288.xlsx",
           "sha256": "f4bb0d716fa79041dee9222a0f0d06bd8fe022ffd3639ea8a87947ca43476b4a",
           "size": 3434074,
-          "retrieved_at": "2026-10-10T20:43:38.036Z",
+          "retrieved_at": "2026-10-12T12:33:51.480Z",
           "archive": "LVA-CRT-2024-V0.1-20241212-105356_approved.zip"
         }
       ],
@@ -14579,7 +14579,7 @@
           "annex_key": "MD5E-s1974349--064364e8ce2b5fcb938185f057fdaf83.xlsx",
           "sha256": "a65aef60abffaedbe2f91e105d641a7ad47cba28471d3b25585fd8568ad0552f",
           "size": 1974349,
-          "retrieved_at": "2026-10-10T20:43:39.937Z",
+          "retrieved_at": "2026-10-12T12:33:53.325Z",
           "$reason": "MAC-CRT-2024-V0.9-2021-20241231-154709_started.xlsx sits in Macao's folder, but Summary2!K3 names \"China\", so its totals are not shown as Macao's."
         }
       ],
@@ -14621,7 +14621,7 @@
           "annex_key": "MD5E-s168759--e6d4bd560c79fb263fe7fd591d26b6ef.xlsx",
           "sha256": "6a14faf6237c952ac8561fb3bfa853e2d8b1e23b8503cb218a24dbc81d79339c",
           "size": 168759,
-          "retrieved_at": "2026-10-10T20:43:41.828Z"
+          "retrieved_at": "2026-10-12T12:33:55.275Z"
         },
         {
           "name": "MAR-CRT-2024-V0.15-2022-20241229-195341_started.xlsx",
@@ -14635,7 +14635,7 @@
           "annex_key": "MD5E-s3090165--2f4b880caf69c36a291c57e99f566ec4.xlsx",
           "sha256": "9a7814a81a3c956c33fc7fd555ce433974319e8babde02fa2595e194c5666c2c",
           "size": 3090165,
-          "retrieved_at": "2026-10-10T20:43:43.850Z",
+          "retrieved_at": "2026-10-12T12:33:57.562Z",
           "archive": "MAR-CRT-2024-V0.15-20241229-195341_started.zip"
         }
       ],
@@ -14825,7 +14825,7 @@
           "annex_key": "MD5E-s1048322--18e536d423f52f35acb97df0791cea2f.xlsx",
           "sha256": "10fd3b29affb3518174f823a200b49c44c025f6f7555d475719c282a5ced622d",
           "size": 1048322,
-          "retrieved_at": "2026-10-10T20:43:45.834Z"
+          "retrieved_at": "2026-10-12T12:33:59.372Z"
         },
         {
           "name": "MCO-CRT-2024-V0.1-2022-20240930-112600_started.xlsx",
@@ -14839,7 +14839,7 @@
           "annex_key": "MD5E-s2921830--59d91245e82a759b0c73c082299d1f54.xlsx",
           "sha256": "0582749e5747315033477e39de3e51190e964f239ac75762a446e13d3bec3e7c",
           "size": 2921830,
-          "retrieved_at": "2026-10-10T20:43:48.152Z",
+          "retrieved_at": "2026-10-12T12:34:01.546Z",
           "archive": "MCO-CRT-2024-V0.1-20240930-112600_started.zip"
         }
       ],
@@ -14993,7 +14993,7 @@
           "annex_key": "MD5E-s86747--0fa29ceb1079f89eb230a8aaca0ffb01.xlsx",
           "sha256": "63ce999260601836b30ce6938bb1154aa3638f130b8150a87ab3b603bb88cdd8",
           "size": 86747,
-          "retrieved_at": "2026-10-10T20:43:49.801Z",
+          "retrieved_at": "2026-10-12T12:34:03.269Z",
           "$reason": "MDA-CTF-NDC-2024-V1.0-20250328-090308_awaiting_submission.xlsx has numbers in its Table 4 sheet (Table4.1; Table4.1!E9 is 14657.272079542299), but this reader does not tie them to a named indicator and a reporting year, so none is shown as Republic of Moldova's progress. This is unread, not missing."
         },
         {
@@ -15008,7 +15008,7 @@
           "annex_key": "MD5E-s3361465--2f726c47daee7a961811341bed89c26b.xlsx",
           "sha256": "581e9aa9c87c51a02e675947d6eced09bb558f5e63a1dd3bedbf2e890a4b743e",
           "size": 3361465,
-          "retrieved_at": "2026-10-10T20:43:53.541Z",
+          "retrieved_at": "2026-10-12T12:34:06.382Z",
           "archive": "MDA-CRT-2024-V1.0-20250407-094136_awaiting_submission.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Republic_of_Moldova/BTR1/MDA-CRT-2024-V1.0-20250407-094136_awaiting submission/MDA-CRT-2024-V1.0-2022-20250407-094136_awaiting submission.xlsx"
@@ -15106,7 +15106,7 @@
           "annex_key": "MD5E-s282843--fc685dd2e772665a4023c89f8cdd151c.xlsx",
           "sha256": "f172cbb0ef1e656849975d398ba09da864a5a241fb14d3e2c10ea3b702c50d51",
           "size": 282843,
-          "retrieved_at": "2026-10-10T20:43:54.943Z"
+          "retrieved_at": "2026-10-12T12:34:08.306Z"
         }
       ],
       "ctf": {
@@ -15686,7 +15686,7 @@
           "annex_key": "MD5E-s22738--3054e597282766a013dcf037cc220b1a.0.xlsx",
           "sha256": "f7f62bb119d3f110e4a4ca6dbb7ffd7113a17f08aa07ab013dc5f791c539a69e",
           "size": 22738,
-          "retrieved_at": "2026-10-10T20:43:56.992Z",
+          "retrieved_at": "2026-10-12T12:34:10.239Z",
           "$reason": "CTF tables 1 - Structured Summary v2.0.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Maldives."
         },
         {
@@ -15700,7 +15700,7 @@
           "annex_key": "MD5E-s18691--71cc6dee7afd8812d40354e58baf4cb9.xlsx",
           "sha256": "93dee7c3b6ebb832676a59ac9d974a4f9011918ecd315214c18f950e21756602",
           "size": 18691,
-          "retrieved_at": "2026-10-10T20:43:58.982Z",
+          "retrieved_at": "2026-10-12T12:34:12.272Z",
           "$reason": "CTF tables 2 -  Mitigation Actions.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Maldives."
         },
         {
@@ -15714,7 +15714,7 @@
           "annex_key": "MD5E-s15422--a94cc39128ec981b80e639ffc4198146.xlsx",
           "sha256": "c315f2c77d3dada7e9a6dd89bac527a9e09a3c55bc589b5ff9eb36ae1cd3859b",
           "size": 15422,
-          "retrieved_at": "2026-10-10T20:44:00.962Z",
+          "retrieved_at": "2026-10-12T12:34:14.274Z",
           "$reason": "CTF tables 3 - Projections.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Maldives."
         },
         {
@@ -15728,7 +15728,7 @@
           "annex_key": "MD5E-s1080503--a18266c99a8ae2540cbf1fdf4d1206df.xlsx",
           "sha256": "a35804d74761a763ce729484002e265b0d7f0f2386f36ea246845881fb849723",
           "size": 1080503,
-          "retrieved_at": "2026-10-10T20:44:03.083Z"
+          "retrieved_at": "2026-10-12T12:34:16.298Z"
         },
         {
           "name": "MDV-CRT-2024-V0.0-2022-20241120-164406_started.xlsx",
@@ -15742,7 +15742,7 @@
           "annex_key": "MD5E-s610503--23667bce37b057dfb818f0fb30130a45.xlsx",
           "sha256": "2fb16b716212a5f003227dec6b6dc0fa42986b448b46205f66fa4648194300f0",
           "size": 610503,
-          "retrieved_at": "2026-10-10T20:44:06.135Z",
+          "retrieved_at": "2026-10-12T12:34:19.282Z",
           "archive": "MDV-CRT-2024.zip"
         }
       ],
@@ -15897,7 +15897,7 @@
           "annex_key": "MD5E-s70691--f354b03d45ac3ba98b489c88a3595411.xlsx",
           "sha256": "12301ef225939ad6e4833ea3dc2e1274d02e407499415d33ae1c647a0ff8e946",
           "size": 70691,
-          "retrieved_at": "2026-10-10T20:44:07.951Z"
+          "retrieved_at": "2026-10-12T12:34:21.276Z"
         },
         {
           "name": "MEX-CRT-2024-V0.1-2022-20250617-141446_started.xlsx",
@@ -15911,7 +15911,7 @@
           "annex_key": "MD5E-s3530815--033ddd817a2ef48465656c76f02be42e.xlsx",
           "sha256": "6920e47dd0fd22f3a77ef60192d2c438861d295f267389624fb724cecac69cc4",
           "size": 3530815,
-          "retrieved_at": "2026-10-10T20:44:10.379Z",
+          "retrieved_at": "2026-10-12T12:34:23.390Z",
           "archive": "MEX-CRT-2024-V0.1-20250617-141446_started.zip"
         },
         {
@@ -15926,7 +15926,7 @@
           "annex_key": "MD5E-s3531104--71bb2a26476e7f68ef7db062f1585946.xlsx",
           "sha256": "49afba3dd99f440af62375781d4f806822a181332eddfe43ab77c6a586360511",
           "size": 3531104,
-          "retrieved_at": "2026-10-10T20:44:12.909Z",
+          "retrieved_at": "2026-10-12T12:34:25.400Z",
           "archive": "MEX-CRT-2024-V1.2-20250902-121844_started.zip"
         }
       ],
@@ -16134,7 +16134,7 @@
           "annex_key": "MD5E-s101934--00152dba41738793ea526202b8bcdfcf.xlsx",
           "sha256": "8b7a12097756d5da7865201c658fba6e35a95e2d0dd2f66b8dff2f4c648f71a1",
           "size": 101934,
-          "retrieved_at": "2026-10-10T20:44:14.563Z"
+          "retrieved_at": "2026-10-12T12:34:27.310Z"
         }
       ],
       "ctf": {
@@ -16246,7 +16246,7 @@
           "annex_key": "MD5E-s88545--b84c122dfeefd1393e8f9578361c7b7a.xlsx",
           "sha256": "a766f733c48807c3ba0c561b1e213fd26fd0ab3b11204461e538d9a88ea273dc",
           "size": 88545,
-          "retrieved_at": "2026-10-10T20:44:16.568Z",
+          "retrieved_at": "2026-10-12T12:34:29.260Z",
           "$reason": "CTF_Tables_NDC_-_Malta.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Malta's own emissions, and none is shown as Malta's."
         },
         {
@@ -16261,7 +16261,7 @@
           "annex_key": "MD5E-s3197990--a9a632feca819423c2b431d0ed3482a7.xlsx",
           "sha256": "95899a61bbe91931af43f6972b0c7c106e966d973ed4b19ad1b3bed668714083",
           "size": 3197990,
-          "retrieved_at": "2026-10-10T20:44:18.663Z",
+          "retrieved_at": "2026-10-12T12:34:31.374Z",
           "archive": "MLT-CRT-2024-V0.1-20240913-160338_started.zip"
         }
       ],
@@ -16356,7 +16356,7 @@
           "annex_key": "MD5E-s80095--6abc9b0af20873fb6e36b1350bd7c62b.xlsx",
           "sha256": "9164b75a638492b62dd292f8422cdceb509a9fdb12f629cb60452affe648f330",
           "size": 80095,
-          "retrieved_at": "2026-10-10T20:44:20.327Z"
+          "retrieved_at": "2026-10-12T12:34:33.257Z"
         }
       ],
       "ctf": {
@@ -16502,7 +16502,7 @@
           "annex_key": "MD5E-s980478--15e38f0fad70ddf73fef69d284156225.xlsx",
           "sha256": "21409cb68b8a10855a8f28c3586df2ad86f386b28221d2ff1f6c0029971ce582",
           "size": 980478,
-          "retrieved_at": "2026-10-10T20:44:22.826Z"
+          "retrieved_at": "2026-10-12T12:34:35.305Z"
         },
         {
           "name": "MNG-CRT-2024-V1.7-2022-20250418-100941_started.xlsx",
@@ -16516,7 +16516,7 @@
           "annex_key": "MD5E-s5128939--8ad580b8e980e36cae79c136cb0d2034.xlsx",
           "sha256": "7cd685dd1f2846cdd369c40cbe0977f72d5ee821ad5f76694bd5dfa181ea0076",
           "size": 5128939,
-          "retrieved_at": "2026-10-10T20:44:25.847Z",
+          "retrieved_at": "2026-10-12T12:34:38.504Z",
           "archive": "MNG-CRT-BTR1.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Mongolia/BTR1/MNG-CRT-BTR1/MNG-CRT-2024-V1.7-2022-20250418-100941_started.xlsx"
@@ -16677,7 +16677,7 @@
           "annex_key": "MD5E-s67654--cd7bb4bd6905c15fbd90ee8ef16426de.xlsx",
           "sha256": "ff6307535412ea137dcc45a5aa8f316f883bccecc3c80f8b52e8695ff522b3b7",
           "size": 67654,
-          "retrieved_at": "2026-10-10T20:44:27.270Z",
+          "retrieved_at": "2026-10-12T12:34:40.357Z",
           "$reason": "CTF_for_NDC_Progress_Tracking_Final.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Mauritius. This is an empty table, not a missing report."
         },
         {
@@ -16692,7 +16692,7 @@
           "annex_key": "MD5E-s3820466--56201ac838f76465d3e68d7ccc36ce30.xlsx",
           "sha256": "f794f2c19b1614c35aa2bf187fed301a8c1d2137ecf039a9e8e633bf9a03e6a4",
           "size": 3820466,
-          "retrieved_at": "2026-10-10T20:44:29.584Z"
+          "retrieved_at": "2026-10-12T12:34:42.942Z"
         }
       ],
       "ctf": {
@@ -16786,7 +16786,7 @@
           "annex_key": "MD5E-s86447--a34ee80259b786229817f12c9c921ea6.xlsx",
           "sha256": "87a66517b042af8204c10f3e5c51c969a872f11a51ad39e51e38607e45c32ed4",
           "size": 86447,
-          "retrieved_at": "2026-10-10T20:44:31.277Z",
+          "retrieved_at": "2026-10-12T12:34:44.291Z",
           "$reason": "Final_CTF_NDC_Tracking_Malawi.xlsx reports Malawi's Table 4 indicator only as text (Table 4_CG!D9: \"24.13 million tCO2eq actual GHG emissions against 10.89 million tCO2eq planned G…\"). A number written inside text is not read as a figure, so none is shown."
         }
       ],
@@ -16831,7 +16831,7 @@
           "annex_key": "MD5E-s1035494--34693f32d0c3ea02260062d2448d3fc3.xlsx",
           "sha256": "5a5a8cfba98900ba5e8b25160ae17e8f8fb4178127bc228e05efb904462d0dd8",
           "size": 1035494,
-          "retrieved_at": "2026-10-10T20:44:33.672Z"
+          "retrieved_at": "2026-10-12T12:34:46.409Z"
         },
         {
           "name": "MYS-CRT-2024-V0.12-2022-20241231-124050_started.xlsx",
@@ -16845,7 +16845,7 @@
           "annex_key": "MD5E-s2727704--e4bc1330e7fa59c0eeb6a7af02b36871.xlsx",
           "sha256": "46663b3df64f8369967a49366e488899e3ff9c99d2e92a2c689b684df4750968",
           "size": 2727704,
-          "retrieved_at": "2026-10-10T20:44:35.599Z",
+          "retrieved_at": "2026-10-12T12:34:48.616Z",
           "archive": "MYS-CRT-2024-V0.12-20241231-124050_started.zip",
           "$reason": "MYS-CRT-2024-V0.12-2022-20241231-124050_started.xlsx has the national-total rows in Summary2, but Summary2!K71 (\"Total CO2 equivalent emissions without LULUCF\") is empty, so no total was read for Malaysia."
         }
@@ -17013,7 +17013,7 @@
           "annex_key": "MD5E-s45499--7c08da55f08424bbc8966cf60a4d29ad.xlsx",
           "sha256": "84eadabeb9b18508cb3fa42fc4f922d4a072817cc899c8148260b7b081006539",
           "size": 45499,
-          "retrieved_at": "2026-10-10T20:44:37.572Z",
+          "retrieved_at": "2026-10-12T12:34:50.307Z",
           "$reason": "NAM-CTF-NDC-2024-V0.1-2024.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Namibia."
         },
         {
@@ -17028,7 +17028,7 @@
           "annex_key": "MD5E-s4822781--100c4780f04dd4918115997ac7207f75.xlsx",
           "sha256": "47b6920b8d8424fecc8fb8f41419cc75cc7d255b48f2c6636502c5c415f10a6a",
           "size": 4822781,
-          "retrieved_at": "2026-10-10T20:44:39.865Z",
+          "retrieved_at": "2026-10-12T12:34:52.424Z",
           "archive": "NAM-CRT-2024-V0.1-20241107-111227_started.zip"
         }
       ],
@@ -17120,7 +17120,7 @@
           "annex_key": "MD5E-s100796--a74cf3cc05e8c38a6a5c2d63de3fa66c.xlsx",
           "sha256": "96fea42baf4b06ad4953e9c33edb3c4f6a19879053bedfb552e0877bd9e21fa3",
           "size": 100796,
-          "retrieved_at": "2026-10-10T20:44:41.271Z"
+          "retrieved_at": "2026-10-12T12:34:54.294Z"
         }
       ],
       "ctf": {
@@ -18126,7 +18126,7 @@
           "annex_key": "MD5E-s74383--37d49623278531c7460bd6dea1f7062b.xlsx",
           "sha256": "5ad745152d0f249e1b71a091a0578f293f80f9ea705c07e3f3833021199aa36e",
           "size": 74383,
-          "retrieved_at": "2026-10-10T20:44:43.462Z"
+          "retrieved_at": "2026-10-12T12:34:56.284Z"
         },
         {
           "name": "NGA-CRT-2024-V0.1-2022-20241223-102421_started.xlsx",
@@ -18140,7 +18140,7 @@
           "annex_key": "MD5E-s5105046--1409f305b4ab12d13ef7df88d71bdb3e.xlsx",
           "sha256": "af6397c18a80fe1a5c329618607be3252e575183cfe27b6e050a86b6d077c889",
           "size": 5105046,
-          "retrieved_at": "2026-10-10T20:44:45.762Z",
+          "retrieved_at": "2026-10-12T12:34:58.464Z",
           "archive": "NGA-CRT-2024-V0.1-20241223-102421_started_(2).zip"
         }
       ],
@@ -18318,7 +18318,7 @@
           "annex_key": "MD5E-s163971--5e0b77d38f825d1df871aad16bb185d1.xlsx",
           "sha256": "07e44186517bb5f5cf3f68736fb830669e6c3cbf507a1bfb99b5c426828e42f9",
           "size": 163971,
-          "retrieved_at": "2026-10-10T20:44:47.647Z",
+          "retrieved_at": "2026-10-12T12:35:00.257Z",
           "$reason": "NLD-CTF-NDC-2024-V0.2-20241219-130251_final.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Netherlands' own emissions, and none is shown as Netherlands'."
         },
         {
@@ -18333,7 +18333,7 @@
           "annex_key": "MD5E-s3305289--d5815478cbf77f74ddf8e88fd06cdb2a.xlsx",
           "sha256": "56a7a0e9244c970a0f86f42318ee5a908d42d65b1e864b1172dabf6926b7de61",
           "size": 3305289,
-          "retrieved_at": "2026-10-10T20:44:49.797Z",
+          "retrieved_at": "2026-10-12T12:35:02.515Z",
           "archive": "03_NLD-CRT-2024-V0.1-20241030-091300_started.zip"
         }
       ],
@@ -18436,7 +18436,7 @@
           "annex_key": "MD5E-s88925--ca69ca45b640b360fde40d877c4ef5c6.xlsx",
           "sha256": "106521c2c3e846dd4299aea0052973e454f212d352aa0292de8251122d7cd944",
           "size": 88925,
-          "retrieved_at": "2026-10-10T20:44:51.446Z"
+          "retrieved_at": "2026-10-12T12:35:04.267Z"
         },
         {
           "name": "NOR-CTF-NDC-2024.xlsx",
@@ -18449,7 +18449,7 @@
           "annex_key": "MD5E-s72447--c8fc9516f3b033b095442ec2be0eeb35.xlsx",
           "sha256": "aacbcd6dd5d14eb70fe714cd523efd684c1087887db2e2cbdf333466349355b3",
           "size": 72447,
-          "retrieved_at": "2026-10-10T20:44:53.328Z"
+          "retrieved_at": "2026-10-12T12:35:06.255Z"
         },
         {
           "name": "NOR-CRT-2024-V0.4-2022-20241122-100056_approved.xlsx",
@@ -18463,7 +18463,7 @@
           "annex_key": "MD5E-s3666864--182460146b08956edf9744a50f589ceb.xlsx",
           "sha256": "5d6fbb2441d7c907622d6f249984067c4d8a54af1ae80bc092cdf59717df39dc",
           "size": 3666864,
-          "retrieved_at": "2026-10-10T20:44:55.794Z",
+          "retrieved_at": "2026-10-12T12:35:08.387Z",
           "archive": "NOR-CRT-2024-V0.4-20241122-100056_approved.zip"
         }
       ],
@@ -18625,7 +18625,7 @@
           "annex_key": "MD5E-s40513--f92583d1daff6780f14d8f9b6d042c59.xlsx",
           "sha256": "8537af4a88788fb6824aea9e11fc41cbedea35a8e7810422a562e03b494a380b",
           "size": 40513,
-          "retrieved_at": "2026-10-10T20:44:57.372Z",
+          "retrieved_at": "2026-10-12T12:35:10.276Z",
           "$reason": "NPL_CTF_Tables_NDC_Tracking.xlsx is not an Open XML workbook (not a zip file: no end-of-central-directory record), so nothing was read from it."
         },
         {
@@ -18640,7 +18640,7 @@
           "annex_key": "MD5E-s4513097--3ef2a7555c8343172099c6792324c3f4.xlsx",
           "sha256": "a8e48a68d5d3dbb0526f4a83f41d19c76ce1e58821e8bcb80f2a203a501f91bc",
           "size": 4513097,
-          "retrieved_at": "2026-10-10T20:44:59.987Z",
+          "retrieved_at": "2026-10-12T12:35:12.634Z",
           "archive": "NPL-CRT-2024-V1.0-20250605-154236_awaiting_submission.zip"
         }
       ],
@@ -18727,7 +18727,7 @@
           "annex_key": "MD5E-s94127--76a1697d1270ff542acdc75f72ff070e.xlsx",
           "sha256": "76df91dc603fd7aebccaede41e91a7578d107c98a85bfc815eb104e3f6b0386e",
           "size": 94127,
-          "retrieved_at": "2026-10-10T20:45:01.462Z"
+          "retrieved_at": "2026-10-12T12:35:14.310Z"
         },
         {
           "name": "NZL-CRT-2024-V0.1-2022-20241101-110226_started.xlsx",
@@ -18741,7 +18741,7 @@
           "annex_key": "MD5E-s588074--bd002f6eeb759be5fd524a1733361917.xlsx",
           "sha256": "64289a3c8c3a0bf58574248420119e993f36dc15da60f6e98b1d4190269be579",
           "size": 588074,
-          "retrieved_at": "2026-10-10T20:59:31.663Z",
+          "retrieved_at": "2026-10-12T12:35:16.277Z",
           "archive": "NZL-CRT-2024-V0.1-20241101-110226.zip"
         },
         {
@@ -18756,7 +18756,7 @@
           "annex_key": "MD5E-s3816661--7916b2fce9d1c73471ff2c1ddd341c3f.xlsx",
           "sha256": "4a0f588afb76f8ca1c2b16531133bcacf3691fccbdb53609fa4479deb8a70b21",
           "size": 3816661,
-          "retrieved_at": "2026-10-10T20:59:33.883Z",
+          "retrieved_at": "2026-10-12T12:35:18.606Z",
           "archive": "NZL-CRT-2024-V1.1-20241203-174908_awaiting_approval.zip"
         }
       ],
@@ -18912,7 +18912,7 @@
           "annex_key": "MD5E-s1446577--530d88790e2abdc41da8dca2e321882e.xlsx",
           "sha256": "0707974010d44f321dff1a490e31ca0dc409131d72974a7a2001cda9db55272a",
           "size": 1446577,
-          "retrieved_at": "2026-10-10T20:45:05.565Z"
+          "retrieved_at": "2026-10-12T12:35:20.332Z"
         },
         {
           "name": "OMN-CRT-2025-V0.4-2022-20251101-094413_started.xlsx",
@@ -18926,7 +18926,7 @@
           "annex_key": "MD5E-s2396362--686b066b23bb83a8994e988acdcd26c1.xlsx",
           "sha256": "06b99fbd01df762bdcd4ca272bf04c5f7f99cdb41467f46d0b0abf8b7ca07a26",
           "size": 2396362,
-          "retrieved_at": "2026-10-10T20:45:07.831Z",
+          "retrieved_at": "2026-10-12T12:35:22.314Z",
           "archive": "OMN-CRT-2025-V0.4-20251101-094413_started.zip"
         }
       ],
@@ -19149,7 +19149,7 @@
           "annex_key": "MD5E-s106724--63994788c512c1eaecfdfb69a3ea8261.xlsx",
           "sha256": "70919f9da520c80007172ae412a005e83b5b1adee4441672a9c5f8755fbdd616",
           "size": 106724,
-          "retrieved_at": "2026-10-10T20:45:09.523Z"
+          "retrieved_at": "2026-10-12T12:35:24.250Z"
         },
         {
           "name": "PAK-CRT-2026-V0.0-2022-Agriculture.xlsx",
@@ -19163,7 +19163,7 @@
           "annex_key": "MD5E-s110924--1c7bde88af5b645a9174f41335cdd305.xlsx",
           "sha256": "880916b3a1d296ccc6b9c4d6c83d6d4601d24edf55d5b48eedf4d7a05889baa9",
           "size": 110924,
-          "retrieved_at": "2026-10-10T20:59:35.676Z",
+          "retrieved_at": "2026-10-12T12:35:27.340Z",
           "$reason": "PAK-CRT-2026-V0.0-2022-Agriculture.xlsx has no Summary2 sheet, so no national total was read from it for Pakistan."
         },
         {
@@ -19178,7 +19178,7 @@
           "annex_key": "MD5E-s107407--4b0dbe041559ce13bea2ec1291bad891.xlsx",
           "sha256": "ca504f7eb0894573d790b1b4c08576d4fbe795acd56ef5e5c4120b0d3897a944",
           "size": 107407,
-          "retrieved_at": "2026-10-10T20:59:37.666Z",
+          "retrieved_at": "2026-10-12T12:35:30.265Z",
           "$reason": "PAK-CRT-2026-V0.0-2022-ENERGY.xlsx has no Summary2 sheet, so no national total was read from it for Pakistan."
         },
         {
@@ -19193,7 +19193,7 @@
           "annex_key": "MD5E-s89862--1d4986d45fbe4651c04e8cb92cca99d5.xlsx",
           "sha256": "f23848c27b9a1978ebdc3998e2fdd4bf662a69bad490355a30d00999c16b3856",
           "size": 89862,
-          "retrieved_at": "2026-10-10T20:59:39.552Z",
+          "retrieved_at": "2026-10-12T12:35:33.457Z",
           "$reason": "PAK-CRT-2026-V0.0-2022-IPPU.xlsx has no Summary2 sheet, so no national total was read from it for Pakistan."
         },
         {
@@ -19208,7 +19208,7 @@
           "annex_key": "MD5E-s205586--ee8887ea9385f218ea81c4567e0c61c1.xlsx",
           "sha256": "d41857bb160e3b384599e4bdb27891bc2dec51731a1624d7cbb0e62dd43b8305",
           "size": 205586,
-          "retrieved_at": "2026-10-10T20:59:41.638Z",
+          "retrieved_at": "2026-10-12T12:35:36.288Z",
           "$reason": "PAK-CRT-2026-V0.0-2022-LULUCF.xlsx has no Summary2 sheet, so no national total was read from it for Pakistan."
         },
         {
@@ -19223,7 +19223,7 @@
           "annex_key": "MD5E-s77091--d78e49e05bd73c8bef9ac11249c987ab.xlsx",
           "sha256": "6a197b5b68d64945166523eadba96e08992fe3ef9b195e5f6a46e404c44a31ca",
           "size": 77091,
-          "retrieved_at": "2026-10-10T20:59:43.621Z",
+          "retrieved_at": "2026-10-12T12:35:39.274Z",
           "$reason": "PAK-CRT-2026-V0.0-2022-Wastes.xlsx has no Summary2 sheet, so no national total was read from it for Pakistan."
         }
       ],
@@ -19762,7 +19762,7 @@
           "annex_key": "MD5E-s165499--f8d5868b7d9311dd1f9c734d30068698.xlsx",
           "sha256": "0d6f0407fa5fc7059d225d1ddef464f7049d1c5169f721d390062d5e86681ac2",
           "size": 165499,
-          "retrieved_at": "2026-10-10T20:45:16.560Z",
+          "retrieved_at": "2026-10-12T12:35:41.251Z",
           "$reason": "PAN-CTF-NDC-2024-V0.1-20241126-085950_started.xlsx has numbers in its Table 4 sheet (Table4.1; Table4.1!E9 is 23.1), but this reader does not tie them to a named indicator and a reporting year, so none is shown as Panama's progress. This is unread, not missing."
         },
         {
@@ -19777,7 +19777,7 @@
           "annex_key": "MD5E-s4277190--316ab30b3ed0c93a661a0fdb8057e332.xlsx",
           "sha256": "a7894ef9ed4d65cd86283962671d7576b8c1677c7096a3c5ca2158ead10f2dbe",
           "size": 4277190,
-          "retrieved_at": "2026-10-10T20:45:18.611Z",
+          "retrieved_at": "2026-10-12T12:35:43.433Z",
           "archive": "PAN-CRT-2024-V0.3-20250110-115408_started.zip"
         }
       ],
@@ -20008,7 +20008,7 @@
           "annex_key": "MD5E-s209787--ddafbfdc29d478d112e3a2b1e51584db.xlsx",
           "sha256": "e3a3d79e41e36e2a11124c94a8e1f5557cb2c3ceb68ab79f158a58a489519001",
           "size": 209787,
-          "retrieved_at": "2026-10-10T20:45:20.669Z"
+          "retrieved_at": "2026-10-12T12:35:45.288Z"
         },
         {
           "name": "PERU_CRT_2025_2021.xlsx",
@@ -20022,7 +20022,7 @@
           "annex_key": "MD5E-s2791966--2813b25df49359ef61d7a4cc19fea295.xlsx",
           "sha256": "96c35519d5b3f6aa6bbf02ecdbb535afdfdd17b98479134c7addc7f3f77e11f8",
           "size": 2791966,
-          "retrieved_at": "2026-10-10T20:45:22.832Z",
+          "retrieved_at": "2026-10-12T12:35:47.366Z",
           "archive": "2._CRT_2000_-_2021-20250929T144241Z-1-001.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Peru/BTR1/PER-CRT-2025-V0.0-2021-20250926.xlsx"
@@ -20154,7 +20154,7 @@
           "annex_key": "MD5E-s320367--0599bfdefa61a00d1b455749e3720393.xlsx",
           "sha256": "7ee68b73e94607cc3384c169540552dc1dc4c9dcd2e0dfc6fcc2fff3c288d3e3",
           "size": 320367,
-          "retrieved_at": "2026-10-10T20:45:25.589Z",
+          "retrieved_at": "2026-10-12T12:35:50.303Z",
           "$reason": "PH-CTF-NDC.xlsx reports Philippines' Table 4 indicator only as text (Table4!E9: \"Projected BAU emissions: 212.800 NGHGI: 204.325\"). A number written inside text is not read as a figure, so none is shown."
         }
       ],
@@ -20231,7 +20231,7 @@
           "annex_key": "MD5E-s293919--ab6a2918e71e08c86a782de69b5f8ed6.xlsx",
           "sha256": "e9a951be4ad8896b43db1e422ee21f71b7d7d9cbc199afba8eeb51ca26ba41fa",
           "size": 293919,
-          "retrieved_at": "2026-10-10T20:45:27.524Z",
+          "retrieved_at": "2026-10-12T12:35:52.363Z",
           "$reason": "CTF_Tables_NDC_BTR1_Poland_31Dec2024.xlsx states its Table 4 indicator in terms of the European Union (Table1!C7: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Poland's own emissions, and none is shown as Poland's."
         },
         {
@@ -20246,7 +20246,7 @@
           "annex_key": "MD5E-s3262861--31d7f4f1904ca661ea8e981039d4b571.xlsx",
           "sha256": "d68db0a10999864a84f5b4e262cb8a553968d0a8de2fea3813bf4a0d42623d62",
           "size": 3262861,
-          "retrieved_at": "2026-10-10T20:45:29.681Z",
+          "retrieved_at": "2026-10-12T12:35:54.739Z",
           "archive": "POL-CRT-2024-V0.1-20241126-112703_approved.zip"
         }
       ],
@@ -20341,7 +20341,7 @@
           "annex_key": "MD5E-s92710--3953743b504f753b4023ca65e82d1d99.xlsx",
           "sha256": "4d5cc4f3b528485cab829f263a9f67e456817c4d4ce6b5f35a52d8da2ef8e82d",
           "size": 92710,
-          "retrieved_at": "2026-10-10T20:45:31.389Z",
+          "retrieved_at": "2026-10-12T12:35:56.270Z",
           "$reason": "PRT-CTF-NDC-2024.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Portugal's own emissions, and none is shown as Portugal's."
         },
         {
@@ -20356,7 +20356,7 @@
           "annex_key": "MD5E-s3285859--4003c880f5ba0bb7ed1e792bbfde097c.xlsx",
           "sha256": "f2f304cc57d8ed86ffa1fce47974f0cb555ef744aeb5d76cc4941aecbd45a449",
           "size": 3285859,
-          "retrieved_at": "2026-10-10T20:45:33.709Z",
+          "retrieved_at": "2026-10-12T12:35:58.478Z",
           "archive": "PRT-CRT-2024-V0.5-1990-2022-20241211-114303_started.zip"
         }
       ],
@@ -20451,7 +20451,7 @@
           "annex_key": "MD5E-s54013--20dce3fc84b794c59c52ec629af5860b.xlsx",
           "sha256": "34bc8cfbc08aa06c518ebe45a7cbdfba3e7243664f55995900d1cfba8afe2544",
           "size": 54013,
-          "retrieved_at": "2026-10-10T20:45:35.450Z"
+          "retrieved_at": "2026-10-12T12:36:00.277Z"
         },
         {
           "name": "PRY-CRT-2024-V0.2-2021-20241115-140828_started.xlsx",
@@ -20465,7 +20465,7 @@
           "annex_key": "MD5E-s4575867--bc78072ac22e8023faa0db51e661b244.xlsx",
           "sha256": "99a68d33afcc30bcdeb175801669f62dabed3374676ef71ae2d593c6d49e86c7",
           "size": 4575867,
-          "retrieved_at": "2026-10-10T20:45:37.847Z"
+          "retrieved_at": "2026-10-12T12:36:02.419Z"
         },
         {
           "name": "PRY-CRT-2024-V0.2-2021-20241115-140828_started.xlsx",
@@ -20479,7 +20479,7 @@
           "annex_key": "MD5E-s5396012--ebdce7e175ee0cfcf519044f4bb585c7.xlsx",
           "sha256": "e36b9e734524633cb44d4a319af71ed615013d2bf0fa14388c80f0a0c2736351",
           "size": 5396012,
-          "retrieved_at": "2026-10-10T20:45:40.601Z",
+          "retrieved_at": "2026-10-12T12:36:05.450Z",
           "archive": "PRY-CRT-20241230_rect.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Paraguay/BTR1/PRY-CRT-20241230_rect/PRY-CRT-2024-V0.2-2021-20241115-140828_started.xlsx"
@@ -20624,7 +20624,7 @@
           "annex_key": "MD5E-s76839--c0a7c21ae60958841e9586b3ede13b42.xlsx",
           "sha256": "05cc0f6bf260b14f0620782a35db1c3196f37a2e62004aa2646fa8b7d9a833a8",
           "size": 76839,
-          "retrieved_at": "2026-10-10T20:45:42.705Z"
+          "retrieved_at": "2026-10-12T12:36:07.279Z"
         },
         {
           "name": "QAT-CRT-2024-V0.1-2023.xlsx",
@@ -20638,7 +20638,7 @@
           "annex_key": "MD5E-s468550--0cd37aee6bcfeaffd3cc1d920a761501.xlsx",
           "sha256": "4161078aa8257827fe482c93ad57b4aadd0f90373b1bcc426b0c1ecb3045f926",
           "size": 468550,
-          "retrieved_at": "2026-10-10T20:45:44.498Z",
+          "retrieved_at": "2026-10-12T12:36:09.257Z",
           "archive": "QAT-CRT-2024_2019-2020-2021-2022-2023.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Qatar/BTR1/QAT-CRT-2024-V0.1-2023.xlsx"
@@ -20806,7 +20806,7 @@
           "annex_key": "MD5E-s1188576--5e9a89afd1ebc7691233314dd451c655.xlsx",
           "sha256": "f986932167ac183dbd4cdae72abe112f57596e710ea0f3c4d25ed6411024b66d",
           "size": 1188576,
-          "retrieved_at": "2026-10-10T20:45:47.744Z",
+          "retrieved_at": "2026-10-12T12:36:12.304Z",
           "$reason": "ROU-CTF-NDC-2026-V1.0-20260204-141232_awaiting_submission.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The value of the base year (1990) for the EU is 4 689 000 …\"), so its figures are the EU's, not Romania's own emissions, and none is shown as Romania's."
         },
         {
@@ -20821,7 +20821,7 @@
           "annex_key": "MD5E-s4913799--1209c4737e460e3cddc43556fe5eff56.xlsx",
           "sha256": "f35915c8a0a7c12b985f02d49e3df9bd557eef418cc771924078940c7addd1d2",
           "size": 4913799,
-          "retrieved_at": "2026-10-10T20:45:49.606Z",
+          "retrieved_at": "2026-10-12T12:36:14.495Z",
           "archive": "ROU-CRT-2025-V1.8-20250227-141057_started.zip"
         }
       ],
@@ -20916,7 +20916,7 @@
           "annex_key": "MD5E-s1105406--a80635d8a5ead166ea4488c084aa4010.xlsx",
           "sha256": "c030c852adfe61e81d82ef99b55b8db427c389d71fb471a8be7833dc4ba499cd",
           "size": 1105406,
-          "retrieved_at": "2026-10-10T20:45:51.635Z"
+          "retrieved_at": "2026-10-12T12:36:16.289Z"
         },
         {
           "name": "RUS-CRT-2024-V0.1-2022-20241108-143301_approved.xlsx",
@@ -20930,7 +20930,7 @@
           "annex_key": "MD5E-s3359263--a4911b0d9d1252adccb9598c1225d5c6.xlsx",
           "sha256": "0708305316d706fe93959fc94c5ffcef8f767abcdfd68167603743aaa2ecacdc",
           "size": 3359263,
-          "retrieved_at": "2026-10-10T20:45:53.655Z",
+          "retrieved_at": "2026-10-12T12:36:18.390Z",
           "archive": "RUS-CRT-2024-V0.1-20241108-143301_approved.zip"
         },
         {
@@ -20945,7 +20945,7 @@
           "annex_key": "MD5E-s3482820--39a44e114808d4bda9c33d4e27e49cfb.xlsx",
           "sha256": "292600de6bcb46b7d92c2312fa43ec8ab4abe4f5972c4fecdc312320bfcc2aeb",
           "size": 3482820,
-          "retrieved_at": "2026-10-10T20:45:55.841Z",
+          "retrieved_at": "2026-10-12T12:36:20.394Z",
           "archive": "RUS-CRT-2024-V1.0-20241220-120706_awaiting_submission.zip"
         }
       ],
@@ -21104,7 +21104,7 @@
           "annex_key": "MD5E-s67563--f8d8143d1f2caf23b69cf9d474154d92.xlsx",
           "sha256": "eeed6617c989c3a43e3b55b22081f9de78bc10d5b67c9fde631510e194858701",
           "size": 67563,
-          "retrieved_at": "2026-10-10T20:45:57.487Z",
+          "retrieved_at": "2026-10-12T12:36:22.294Z",
           "$reason": "CTF_NDC_Progress__-_Rwanda.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Rwanda. This is an empty table, not a missing report."
         },
         {
@@ -21118,7 +21118,7 @@
           "annex_key": "MD5E-s86578--a260a0156b9adf749f16a6da2210dffe.xlsx",
           "sha256": "7844dcaad9105f92b3c66f8619a0b86b1eb4ddf2840b078a5309f51489b38fb5",
           "size": 86578,
-          "retrieved_at": "2026-10-10T20:45:59.454Z",
+          "retrieved_at": "2026-10-12T12:36:24.281Z",
           "$reason": "RWA-CTF-NDC-2024-Version_3.xlsx has numbers in its Table 4 sheet (Table 4.1; Table 4.1!E10 is 6434.03), but this reader does not tie them to a named indicator and a reporting year, so none is shown as Rwanda's progress. This is unread, not missing."
         },
         {
@@ -21133,7 +21133,7 @@
           "annex_key": "MD5E-s4425936--ecd3be880ef59aa531d5ffb4cf248aa0.xlsx",
           "sha256": "979dc45505bf44e0e7907b71e4def648a55ccc7e714ebcf6e34b1f3c830472ed",
           "size": 4425936,
-          "retrieved_at": "2026-10-10T20:46:02.127Z",
+          "retrieved_at": "2026-10-12T12:36:26.433Z",
           "also_at": [
             "downloaded_data/UNFCCC/Rwanda/BTR1/RWA-CRT-2024-V0.5-2022-20250620-064550_started.xlsx"
           ]
@@ -21226,7 +21226,7 @@
           "annex_key": "MD5E-s541864--5610180cea08cadaa8e0cb3d78b60f36.xlsx",
           "sha256": "45cf60f42e79d712cac4b134bcd0003ffa024a85143e3e7b849a1b080f81a63e",
           "size": 541864,
-          "retrieved_at": "2026-10-10T20:46:05.534Z",
+          "retrieved_at": "2026-10-12T12:36:30.327Z",
           "archive": "SAU-Inventory.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Saudi_Arabia/BTR1/SAU-Inventory/SAU-CRT-2024-V0.6-2021.xlsx"
@@ -21316,7 +21316,7 @@
           "annex_key": "MD5E-s78844--d76a6562e5fec68bb671837d99a8610b.xlsx",
           "sha256": "252223e401c23cb53c3aa09aca5b095668753b5a3f42e2f5bf0c9b222afd2069",
           "size": 78844,
-          "retrieved_at": "2026-10-10T20:46:07.522Z"
+          "retrieved_at": "2026-10-12T12:36:32.300Z"
         },
         {
           "name": "SGP-CRT-2024-V0.3-2022-20241108-153202_started.xlsx",
@@ -21330,7 +21330,7 @@
           "annex_key": "MD5E-s559884--6953ba4cd77cc893e418700440361a98.xlsx",
           "sha256": "848b7d59bb9674a212eb23defea0b8e9f1a2988ba3b9319b2757fd33982d95ab",
           "size": 559884,
-          "retrieved_at": "2026-10-10T20:46:09.546Z",
+          "retrieved_at": "2026-10-12T12:36:34.452Z",
           "also_at": [
             "downloaded_data/UNFCCC/Singapore/BTR1/SGP-CRT-2024-V0.3-2022-20241108-153202_started.xlsx"
           ]
@@ -21482,7 +21482,7 @@
           "annex_key": "MD5E-s72288--b3b2457ec108046dcacac590e792c966.xlsx",
           "sha256": "038f2ca16d54ca5ac8923b1b1776195a7fc5c784ab9cd5527a6b0c9cf886b4cb",
           "size": 72288,
-          "retrieved_at": "2026-10-10T20:46:12.518Z"
+          "retrieved_at": "2026-10-12T12:36:37.304Z"
         },
         {
           "name": "SI-CRT-2022.xlsx",
@@ -21496,7 +21496,7 @@
           "annex_key": "MD5E-s765571--2cb169606548c299971e983a80c60e7f.xlsx",
           "sha256": "902244cce5a5ed88f5b225ccb9f00ef11ab8d1c7777d632c1eb947409ba8779c",
           "size": 765571,
-          "retrieved_at": "2026-10-10T20:46:14.734Z",
+          "retrieved_at": "2026-10-12T12:36:39.323Z",
           "also_at": [
             "downloaded_data/UNFCCC/Solomon_Islands/BTR1/SLB-CRT-2025-V0.0-2022-20250809.xlsx"
           ]
@@ -21793,7 +21793,7 @@
           "annex_key": "MD5E-s1146313--ae3da9ea67115d023fba82eda07ed751.xlsx",
           "sha256": "097a3f236695070c060efb7fd96ce0c459e7eb5ab1cafdeb9998b3a839ea0b21",
           "size": 1146313,
-          "retrieved_at": "2026-10-10T20:46:17.673Z"
+          "retrieved_at": "2026-10-12T12:36:42.395Z"
         },
         {
           "name": "SRB-CRT-2024-V0.2-2022-20241217-134732_started.xlsx",
@@ -21807,7 +21807,7 @@
           "annex_key": "MD5E-s3281661--e9b1338c0077bf28a2758230856f82a6.xlsx",
           "sha256": "08c642691a3ae15c5515f7ae528bad82ea6e32578acb90f926bc419a0df5b334",
           "size": 3281661,
-          "retrieved_at": "2026-10-10T20:46:19.648Z",
+          "retrieved_at": "2026-10-12T12:36:44.454Z",
           "archive": "CRT_1990-2022.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Serbia/BTR1/SRB-CRT-2024-V0.2-2022-20241217-134732_started.xlsx"
@@ -21967,7 +21967,7 @@
           "annex_key": "MD5E-s1296148--d68359bd5e0b0d5241d6a86ed8c07368.xlsx",
           "sha256": "7441d5964092ce81ce704f45d0b8cce0322252bae247ca2c40164282cbbbd946",
           "size": 1296148,
-          "retrieved_at": "2026-10-10T20:46:22.620Z",
+          "retrieved_at": "2026-10-12T12:36:47.311Z",
           "$reason": "SVK-CTF-NDC-2024-V0.1-20241211-170408_approved.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Slovakia's own emissions, and none is shown as Slovakia's."
         },
         {
@@ -21982,7 +21982,7 @@
           "annex_key": "MD5E-s3246551--f3af7eb5967e21f3e335b34720eb1eb2.xlsx",
           "sha256": "8cbbc0348da64e0b681bfa026aa186d1fba0b023f44b7a342fd12e8a08a1e5e0",
           "size": 3246551,
-          "retrieved_at": "2026-10-10T20:46:25.178Z",
+          "retrieved_at": "2026-10-12T12:36:49.674Z",
           "archive": "SVK-CRT-2024-V0.1-20241202-135201_approved.zip"
         }
       ],
@@ -22077,7 +22077,7 @@
           "annex_key": "MD5E-s1137035--8ce6a65cc524d10699a7f24c023d5595.xlsx",
           "sha256": "8fee74df9642cb1d6f3c6d18cd0d010464755e556faf218a0ee2c928c0a0b9cb",
           "size": 1137035,
-          "retrieved_at": "2026-10-10T20:46:26.663Z",
+          "retrieved_at": "2026-10-12T12:36:51.444Z",
           "$reason": "SVN-CTF-NDC-2024-V0.1-20250416-113857_approved.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Slovenia's own emissions, and none is shown as Slovenia's."
         },
         {
@@ -22092,7 +22092,7 @@
           "annex_key": "MD5E-s3322947--6f8229bcc96ba3af97c00085dea48fad.xlsx",
           "sha256": "78f7e410f1b82f30204ea9bf76a6ded4638adcae6aa9b3df91b3be34c8bb7b5b",
           "size": 3322947,
-          "retrieved_at": "2026-10-10T20:46:28.667Z",
+          "retrieved_at": "2026-10-12T12:36:53.407Z",
           "archive": "SVN-CRT-2024-V0.9-20241203-112408_approved.zip"
         }
       ],
@@ -22187,7 +22187,7 @@
           "annex_key": "MD5E-s89288--df8e4096e5e12fd8a9756877720dcdb1.xlsx",
           "sha256": "5ee24e6c7cf2fea40f3cf2e06caf9991d7a66a408403ea5351fe7d11660a3b0e",
           "size": 89288,
-          "retrieved_at": "2026-10-10T20:46:30.620Z",
+          "retrieved_at": "2026-10-12T12:36:55.335Z",
           "$reason": "SWE-CTF-NDC-2024.xlsx states its Table 4 indicator in terms of the European Union (Table1!C8: \"The reference level is total net GHG emissions of the EU in the base year (1990). The reference level value for the EU is 4 699 405 kt CO2eq…\"), so its figures are the EU's, not Sweden's own emissions, and none is shown as Sweden's."
         },
         {
@@ -22202,7 +22202,7 @@
           "annex_key": "MD5E-s548097--d38be3a82302899a5e1d40a2ca6fe3d3.xlsx",
           "sha256": "649f5224b1cbab0911841e10f2821ba325f720d203fd4dc80970181c8474ab05",
           "size": 548097,
-          "retrieved_at": "2026-10-10T20:46:33.797Z",
+          "retrieved_at": "2026-10-12T12:36:58.499Z",
           "archive": "SWE-CRT-2024-V0.4-20241022-124123_started_(incl_footnotes).zip",
           "also_at": [
             "downloaded_data/UNFCCC/Sweden/BTR1/SWE-CRT-2024-V0.4-20241022-124123_started (Rapporterad till FN och EU)/SWE-CRT-2024-V0.4-2022-20241022-124123_started.xlsx"
@@ -22220,7 +22220,7 @@
           "annex_key": "MD5E-s165--0845998e4881cc2b31b4975988201e49.xlsx",
           "sha256": "105f9d29d6f57a5227618e003e92c32e4980276bf35d683e20c487da3c90367f",
           "size": 165,
-          "retrieved_at": "2026-10-10T20:46:35.547Z",
+          "retrieved_at": "2026-10-12T12:37:00.292Z",
           "archive": "SWE-CRT-2024-V0.4-20241022-124123_started_(incl_footnotes).zip",
           "$reason": "~$SWE-CRT-2024-V0.4-2022-20241022-124123_started.xlsx is not an Open XML workbook (not a zip file: no end-of-central-directory record), so no total was read for Sweden."
         },
@@ -22236,7 +22236,7 @@
           "annex_key": "MD5E-s3416163--933c15045cfeed96771b81927a4c4f2c.xlsx",
           "sha256": "32017a5f9ac74f3ecf4a7089423ef023dcb28b1beeaabdbd2e30d16565a64cc6",
           "size": 3416163,
-          "retrieved_at": "2026-10-10T20:46:38.444Z",
+          "retrieved_at": "2026-10-12T12:37:02.667Z",
           "archive": "Sweden._2024_Common_Reporting_Tables.zip"
         }
       ],
@@ -22338,7 +22338,7 @@
           "annex_key": "MD5E-s4922887--da40b1796304ebd59dc03eb76b589ddb.xlsx",
           "sha256": "3fd9530968b567c85250347dfae36fd47da15ecf2bb126fbf351558b8ea43001",
           "size": 4922887,
-          "retrieved_at": "2026-10-10T20:46:40.356Z",
+          "retrieved_at": "2026-10-12T12:37:04.410Z",
           "archive": "SWZ-CRT-2024-V0.5-20241221-223528_started.zip"
         }
       ],
@@ -22425,7 +22425,7 @@
           "annex_key": "MD5E-s1188136--4bb4b721c7518c5e82a01dc079555f5b.0.xlsx",
           "sha256": "7505d5f2878792f8a1ef783f8d67f83cdc43598eb85020b8f97714cd2f57976e",
           "size": 1188136,
-          "retrieved_at": "2026-10-10T20:46:41.984Z",
+          "retrieved_at": "2026-10-12T12:37:06.306Z",
           "$reason": "SYC-CTF-NDC-2024-V1.0.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Seychelles. This is an empty table, not a missing report."
         },
         {
@@ -22440,7 +22440,7 @@
           "annex_key": "MD5E-s4936711--43772874017a7f2038a48f3aabcb5bf0.xlsx",
           "sha256": "12ca167116d246a34fa8447d90d80e7a1d75229f3634fb7703fe492ccd9c1cc9",
           "size": 4936711,
-          "retrieved_at": "2026-10-10T20:46:44.048Z",
+          "retrieved_at": "2026-10-12T12:37:08.440Z",
           "archive": "SYC-CRT-2024-V1.0.zip"
         }
       ],
@@ -22527,7 +22527,7 @@
           "annex_key": "MD5E-s64149--14ef8a521e3ea04052c5d261c90310e0.xlsx",
           "sha256": "e20f8481ae755bec0290b65e9d9093dc48a6220218c6994893f3c43badcc989a",
           "size": 64149,
-          "retrieved_at": "2026-10-10T20:46:45.804Z"
+          "retrieved_at": "2026-10-12T12:37:10.320Z"
         },
         {
           "name": "THA-CRT-2025-V0.5-2022-20250611-173334_started.xlsx",
@@ -22541,7 +22541,7 @@
           "annex_key": "MD5E-s2898048--2d45b76245f61e2ef6cd5ac813ccd8f6.xlsx",
           "sha256": "cc143f1a6c86b956d76a56508af32dc2a4d4b9f5c4b8469fc65534982c287cfe",
           "size": 2898048,
-          "retrieved_at": "2026-10-10T20:46:48.208Z",
+          "retrieved_at": "2026-10-12T12:37:12.424Z",
           "archive": "THA-CRT-2025-V0.5-20250611-173334_started.zip"
         }
       ],
@@ -22697,7 +22697,7 @@
           "annex_key": "MD5E-s82975--2209f1b0e35fa2dce4c4dfd5b9d26bab.xlsx",
           "sha256": "29a1876d4357d17b89d34cf477c6803e69329a83db4ac8470ea72cd687ca7aef",
           "size": 82975,
-          "retrieved_at": "2026-10-10T20:46:49.840Z"
+          "retrieved_at": "2026-10-12T12:37:14.349Z"
         },
         {
           "name": "TJK-CRT-2024-V0.2-2022-20241225-123348_started.xlsx",
@@ -22711,7 +22711,7 @@
           "annex_key": "MD5E-s2805975--be029349dd89406b88654c10a499f911.xlsx",
           "sha256": "7685cb1e049735ef9da73d64d840bd95b2e098ebf04020b78bfada5f0b0ea926",
           "size": 2805975,
-          "retrieved_at": "2026-10-10T20:46:52.183Z",
+          "retrieved_at": "2026-10-12T12:37:16.490Z",
           "archive": "TJK-CRT-2024.zip"
         }
       ],
@@ -22868,7 +22868,7 @@
           "annex_key": "MD5E-s58057--282c3f7963807d57b84aa4072bac58c0.xlsx",
           "sha256": "3848eaf7f786c85d3da721e15ffbc14e30c5656b55fe9c1aacad1c398a6a3686",
           "size": 58057,
-          "retrieved_at": "2026-10-10T20:46:53.820Z"
+          "retrieved_at": "2026-10-12T12:37:18.310Z"
         }
       ],
       "ctf": {
@@ -22971,7 +22971,7 @@
           "annex_key": "MD5E-s6063235--3f0ac8a1bc76329a8cbf134c56de2ac3.xlsx",
           "sha256": "12638b82424ba72b26a7b1efda4fe78794623512174c142cdfe4e8c36df7ec92",
           "size": 6063235,
-          "retrieved_at": "2026-10-10T20:46:56.241Z",
+          "retrieved_at": "2026-10-12T12:37:20.775Z",
           "$reason": "Annex 2 A - NDC Indicators.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Trinidad and Tobago."
         },
         {
@@ -22985,7 +22985,7 @@
           "annex_key": "MD5E-s73587--f5981cfd4e21a71f4f66da8813969562.xlsx",
           "sha256": "d117eb0993a2c6d9762939adda26d52bc23d19f5c8e1367f80181c9c4ad91021",
           "size": 73587,
-          "retrieved_at": "2026-10-10T20:46:58.029Z",
+          "retrieved_at": "2026-10-12T12:37:22.311Z",
           "$reason": "Annex 2C - CTF Table 5.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for Trinidad and Tobago."
         }
       ],
@@ -23027,7 +23027,7 @@
           "annex_key": "MD5E-s182177--9225488ff81d2dfb834b419872ec6159.xlsx",
           "sha256": "55afe0fddee5699e9ccb8b53660993ce25b5b9b23642e047475670549e40f24a",
           "size": 182177,
-          "retrieved_at": "2026-10-10T20:46:59.964Z"
+          "retrieved_at": "2026-10-12T12:37:24.414Z"
         },
         {
           "name": "2022_Tables_CRT_AR5.xlsm",
@@ -23041,7 +23041,7 @@
           "annex_key": "MD5E-s2261661--db866b03ee824f416ba4be2203e45224.xlsm",
           "sha256": "2c90bf4e7b32508222a22f7208f68f8ebd1b0e46e4f2bf04eaf315d79a6daaa3",
           "size": 2261661,
-          "retrieved_at": "2026-10-10T20:47:01.913Z",
+          "retrieved_at": "2026-10-12T12:37:26.458Z",
           "archive": "CRT_17.12.2024.zip",
           "$reason": "2022_Tables_CRT_AR5.xlsm is named for 2022, but Summary2!L1, where the CRT states its year, is empty, so its totals are not attributed to 2022 for Tunisia.",
           "also_at": [
@@ -23407,7 +23407,7 @@
           "annex_key": "MD5E-s77183--e55ca461bc43beece7652654aaafcac6.xlsx",
           "sha256": "f8d287af9ed1bff3bfe30cb3dac574b8759306f894b225bcdb0f5bfd500e93d1",
           "size": 77183,
-          "retrieved_at": "2026-10-10T20:47:05.011Z"
+          "retrieved_at": "2026-10-12T12:37:29.296Z"
         },
         {
           "name": "TUR-CRT-2024-V0.1-2022-20241118-143948_started.xlsx",
@@ -23421,7 +23421,7 @@
           "annex_key": "MD5E-s3369426--f14a49e5b8c70e4cbd6d5e721843eddf.xlsx",
           "sha256": "63b6d02919c511b9d17a0abe009363a3c23f0b32530be669b443af734ed4f3dd",
           "size": 3369426,
-          "retrieved_at": "2026-10-10T20:47:07.172Z",
+          "retrieved_at": "2026-10-12T12:37:31.401Z",
           "archive": "TUR-CRT-2024-V0.1-20241118-143948_started.zip"
         }
       ],
@@ -23572,7 +23572,7 @@
           "annex_key": "MD5E-s683047--3bf82e2a2c63ae73492c147d4073a92b.xlsx",
           "sha256": "2375d19d39836238a11cb30de6e921493f582ffd298d2941e4038d3442cc5605",
           "size": 683047,
-          "retrieved_at": "2026-10-10T20:47:10.104Z",
+          "retrieved_at": "2026-10-12T12:37:34.313Z",
           "archive": "Tuvalu@CRT_2.83_All_Consolidated.zip",
           "also_at": [
             "downloaded_data/UNFCCC/Tuvalu/BTR1/Tuvalu@CRT_2.83_All Consolidated/Tuvalu@CRT_2.83_All Consolidated-2023.xlsx"
@@ -23644,7 +23644,7 @@
           "annex_key": "MD5E-s1225024--f33b228fa5048fbfe924b0ea00b9180c.xlsx",
           "sha256": "bfa629ba91f22ac1dc0c52069d792cb541f50130ed5dac1dc880579f2766c0d3",
           "size": 1225024,
-          "retrieved_at": "2026-10-10T20:47:12.121Z"
+          "retrieved_at": "2026-10-12T12:37:36.357Z"
         },
         {
           "name": "UKR-CRT-2024-V0.1-2022-20241224-091701_approved.xlsx",
@@ -23658,7 +23658,7 @@
           "annex_key": "MD5E-s3641041--39c064c99e99bea824771d78d9a5f2a4.xlsx",
           "sha256": "cb4290d6c06d9484e16c4d2015799d0bb3993c38b2d50914b136b1422b0cd695",
           "size": 3641041,
-          "retrieved_at": "2026-10-10T20:47:14.812Z",
+          "retrieved_at": "2026-10-12T12:37:38.652Z",
           "archive": "UKR-CRT-2024-V0.1-20241224-091701_approved.zip"
         }
       ],
@@ -23815,7 +23815,7 @@
           "annex_key": "MD5E-s107676--6a9d48be6ff0c91417b1078f2411abcb.xlsx",
           "sha256": "4b0612fe4c06453991e3d6e0f0be1e98b92fe48623a7153cd2abffcb27be1e3c",
           "size": 107676,
-          "retrieved_at": "2026-10-10T20:47:16.230Z"
+          "retrieved_at": "2026-10-12T12:37:40.369Z"
         },
         {
           "name": "URY-CRT-2024-V0.3-2022-20241231-095653_started.xlsx",
@@ -23829,7 +23829,7 @@
           "annex_key": "MD5E-s3776911--6a35beadc54de39a0fa409d3126706ce.xlsx",
           "sha256": "5db9d50fd96cec24fc90fbd9dccee0c658306f37caeb65e693880f5e6dc8fda0",
           "size": 3776911,
-          "retrieved_at": "2026-10-10T20:47:19.053Z",
+          "retrieved_at": "2026-10-12T12:37:42.400Z",
           "archive": "URY-CRT-2024-V0.3-20241231.zip"
         }
       ],
@@ -24780,7 +24780,7 @@
           "annex_key": "MD5E-s127402--ecc03de1ef248e5f3f39e7aade1620d8.xlsx",
           "sha256": "13c7a37c6cbcfc131dd9dd254a93fcae7facc4e5a05fbb749706fe3ae5d189c4",
           "size": 127402,
-          "retrieved_at": "2026-10-10T20:47:20.468Z"
+          "retrieved_at": "2026-10-12T12:37:44.283Z"
         },
         {
           "name": "USA-CRT-2024-V0.5-2022-20241218-112924_started.xlsx",
@@ -24794,7 +24794,7 @@
           "annex_key": "MD5E-s5248455--baf9c18aa31b68aefdd86f5b6c6ad8e7.xlsx",
           "sha256": "67f3997cb3437faea20ec59d97495c1b96b51a8e662e0c88d367678c495efe99",
           "size": 5248455,
-          "retrieved_at": "2026-10-10T20:47:22.784Z"
+          "retrieved_at": "2026-10-12T12:37:46.749Z"
         }
       ],
       "ctf": {
@@ -24950,7 +24950,7 @@
           "annex_key": "MD5E-s108654--ab00d479b7a4171ecf2b605825ddcc5c.xlsx",
           "sha256": "8483260f1e9f9b06c76724c96e99e11a261386d863539751f43700adb432d67f",
           "size": 108654,
-          "retrieved_at": "2026-10-10T20:47:24.496Z"
+          "retrieved_at": "2026-10-12T12:37:48.271Z"
         },
         {
           "name": "UZB-CTF-NDC_eng.xlsx",
@@ -24963,7 +24963,7 @@
           "annex_key": "MD5E-s96754--b88702b5d7443716051c9fc8f149ce44.xlsx",
           "sha256": "1790832fd9c9fa7cf783ac0bd5600ea22c8026f6142ec4cb14596f7cb0e6609a",
           "size": 96754,
-          "retrieved_at": "2026-10-10T20:47:26.426Z"
+          "retrieved_at": "2026-10-12T12:37:50.328Z"
         },
         {
           "name": "UZB-CRT-2024-V0.5-2022-20241230-141505_started.xlsx",
@@ -24977,7 +24977,7 @@
           "annex_key": "MD5E-s4174250--30229999fec23cc51956a879fc42fa55.xlsx",
           "sha256": "3ca7588e8a17d7398cb40a70c3942c3fe5b23c896db3a5b8ea42c23922737b65",
           "size": 4174250,
-          "retrieved_at": "2026-10-10T20:47:28.845Z",
+          "retrieved_at": "2026-10-12T12:37:52.570Z",
           "archive": "UZB-CRT-2024.zip"
         }
       ],
@@ -25279,7 +25279,7 @@
           "annex_key": "MD5E-s59009--18ac1e0632bcc77c544f9acfed749598.xlsx",
           "sha256": "d3a177a2b01ec8825c0689e27ae0e2674cd2f44e4c58c82beea6dc8510533ed4",
           "size": 59009,
-          "retrieved_at": "2026-10-10T20:47:30.471Z"
+          "retrieved_at": "2026-10-12T12:37:54.320Z"
         },
         {
           "name": "VAT-CRT-2024-V0.2-2022-20241218-150748_awaiting approval.xlsx",
@@ -25293,7 +25293,7 @@
           "annex_key": "MD5E-s2062594--59387638fd60849b12d315e2a22e5f1e.xlsx",
           "sha256": "8ba9218b0f7f6463ae6ba542b25f0e3e43188bca2b030674279299b5777bcd26",
           "size": 2062594,
-          "retrieved_at": "2026-10-10T20:47:32.599Z",
+          "retrieved_at": "2026-10-12T12:37:56.375Z",
           "archive": "VAT-CRT-2024-V0.2-20241218-150748_awaiting_approval.zip"
         }
       ],
@@ -25443,7 +25443,7 @@
           "annex_key": "MD5E-s2171569--9d3a6f2a225af056d56d693bacae7740.xlsx",
           "sha256": "0762862097aa1d90b7068b122798389bece01ac21bbf5b6e0f6e6563ec3caf12",
           "size": 2171569,
-          "retrieved_at": "2026-10-10T20:47:34.781Z",
+          "retrieved_at": "2026-10-12T12:37:58.350Z",
           "archive": "VEN-CTF-NDC-2024-V0.2-20241231-130329_started.zip",
           "$reason": "VEN-CTF-NDC-2024-V0.2-20241231-130329_started.xlsx has a Table 4 sheet (Table4.1), but no indicator row in it holds a number in a reporting-year column, so no progress figure has been read for Venezuela (Bolivarian Republic of). This is an empty table, not a missing report."
         },
@@ -25459,7 +25459,7 @@
           "annex_key": "MD5E-s610217--1b773b65c670a1177b2f30dea47ee7a0.xlsx",
           "sha256": "c3c97ca78e56ca3ac3a5d80ce6ddefad39cd07e9426e6f248014bd9c1f977c80",
           "size": 610217,
-          "retrieved_at": "2026-10-10T20:59:47.196Z",
+          "retrieved_at": "2026-10-12T12:38:01.345Z",
           "archive": "VEN-CRT-2024-V0.12-20241231-083507_(Rev_C).zip",
           "also_at": [
             "downloaded_data/UNFCCC/Venezuela_(Bolivarian_Republic_of)/BTR1/VEN-CRT-2024-V0.12-20241231-083507 (Rev C)/VEN-CRT-2024-V0.12-2022-20241231-083507_started (Validado C).xlsx"
@@ -25576,7 +25576,7 @@
           "annex_key": "MD5E-s25887--5e2a9d334aa643f194909b5ab97a44d8.xlsx",
           "sha256": "1cdbdb5d1d933562a42e56b2638d52af2b045062fdbc666724ba9c785c133065",
           "size": 25887,
-          "retrieved_at": "2026-10-10T20:47:48.454Z",
+          "retrieved_at": "2026-10-12T12:38:03.339Z",
           "$reason": "Copy_of_CTF_6_on_summary_of_GHG_Emissions_-Completed.xlsx has no sheet whose title reads \"Structured summary: Tracking progress\", so no Table 4 was read from it for South Africa."
         },
         {
@@ -25590,7 +25590,7 @@
           "annex_key": "MD5E-s67494--e29eed1292aa6fd26f154909693f0170.xlsx",
           "sha256": "6cd5f15b7f80cd4aae6329296ea5df84367c32db5c44de4ca9a759b9f2e396fd",
           "size": 67494,
-          "retrieved_at": "2026-10-10T20:47:50.474Z",
+          "retrieved_at": "2026-10-12T12:38:05.285Z",
           "$reason": "CTFs_for_NDC_Tracking_Chapter_of_First_BTR_of_South_Africa.xlsx reports South Africa's Table 4 indicator only as text (Table4.1!E9: \"413.1(3)\"). A number written inside text is not read as a figure, so none is shown."
         },
         {
@@ -25605,7 +25605,7 @@
           "annex_key": "MD5E-s3299686--05997808c0f2a146185a8bd2f26401b6.xlsx",
           "sha256": "15e6a84b1baca002a8453f55744fcac9d0216bd38a05057e765e19b91332bd62",
           "size": 3299686,
-          "retrieved_at": "2026-10-10T20:47:52.607Z",
+          "retrieved_at": "2026-10-12T12:38:07.411Z",
           "archive": "CRTs_2024.zip"
         },
         {
@@ -25620,7 +25620,7 @@
           "annex_key": "MD5E-s3662796--b656285443454333e06efc51951421b3.xlsx",
           "sha256": "69e83ccd46cb15672ba2817527672f6b13e5ff100af2edc60413bd88f9335952",
           "size": 3662796,
-          "retrieved_at": "2026-10-10T20:47:54.564Z",
+          "retrieved_at": "2026-10-12T12:38:09.515Z",
           "archive": "ZAF-CRT-2024-V0.3-20250429-155928_awaiting_approval.zip"
         }
       ],
@@ -25709,7 +25709,7 @@
           "annex_key": "MD5E-s476098--ec8992948adabcf5d28100d41c6c2eec.xlsx",
           "sha256": "f1304e4d912965e1ca3a52ca2333f0395ebaa34982db7604298c1b1a9bdb9b15",
           "size": 476098,
-          "retrieved_at": "2026-10-10T20:47:57.154Z"
+          "retrieved_at": "2026-10-12T12:38:11.293Z"
         },
         {
           "name": "ZMB-CRT-2024-V1.0-2022.xlsx",
@@ -25723,7 +25723,7 @@
           "annex_key": "MD5E-s4866536--0f2c9c615773ed4147c03c1896c62c44.xlsx",
           "sha256": "0171dcd81c628c05b692e37b51c5c9f61804dc825f27dd40ad7f93204055dc78",
           "size": 4866536,
-          "retrieved_at": "2026-10-10T20:47:58.870Z",
+          "retrieved_at": "2026-10-12T12:38:13.403Z",
           "archive": "ZMB-CRT-2024-V1.0.zip"
         }
       ],
@@ -25911,7 +25911,7 @@
           "annex_key": "MD5E-s83152--5448450212e266eb8657a6d07f919cfa.xlsx",
           "sha256": "ac947e2f5091c16293eb504a1883503d628bb359a5b40c69baf492fc9b3e93d3",
           "size": 83152,
-          "retrieved_at": "2026-10-10T20:48:00.585Z"
+          "retrieved_at": "2026-10-12T12:38:15.258Z"
         },
         {
           "name": "Sixth_Feb_ZWE-CTF-NDC-2024.xlsx",
@@ -25924,7 +25924,7 @@
           "annex_key": "MD5E-s83149--f79094bd29adbadec1236b6514da72e1.xlsx",
           "sha256": "68ca2aa26bb72ebeed9ee81422d4adb1655edd0d24b160c3167b60d6bdbb9424",
           "size": 83149,
-          "retrieved_at": "2026-10-10T20:48:02.936Z"
+          "retrieved_at": "2026-10-12T12:38:17.255Z"
         },
         {
           "name": "ZWE-CTF-NDC-2024_Combined.xlsx",
@@ -25937,7 +25937,7 @@
           "annex_key": "MD5E-s81642--c0a85afdafd19e0be043f020ad7526e4.xlsx",
           "sha256": "3c8d53693aba65b418c230a959d8399bd18d5ba8bc0f57a35ef87e1971b4502e",
           "size": 81642,
-          "retrieved_at": "2026-10-10T20:48:04.584Z"
+          "retrieved_at": "2026-10-12T12:38:19.290Z"
         },
         {
           "name": "ZWE-CRT-2024-V0.9-2022-20250213-143936_started.xlsx",
@@ -25951,7 +25951,7 @@
           "annex_key": "MD5E-s696537--d9898bf2e2662f9b08a4be061528521c.xlsx",
           "sha256": "6e527a4a3366b98312ebe6fdab81a2c3ca508daff89bc85eb3e44dca3827b31f",
           "size": 696537,
-          "retrieved_at": "2026-10-10T20:48:06.606Z",
+          "retrieved_at": "2026-10-12T12:38:21.314Z",
           "archive": "ZIM_CRTs_All_Sectors_09.01.2026_(3).zip",
           "also_at": [
             "downloaded_data/UNFCCC/Zimbabwe/BTR1/ZWE-CRT-2024-V0.9-2022-20250213-143936_started.xlsx"
@@ -25969,7 +25969,7 @@
           "annex_key": "MD5E-s753226--f1d5f1cc333987f61d29401f47d4605b.xlsx",
           "sha256": "417fc1ea5d9902c4be7171984ca64953597ede005112739744c3b029c8022c30",
           "size": 753226,
-          "retrieved_at": "2026-10-10T20:48:08.773Z",
+          "retrieved_at": "2026-10-12T12:38:23.267Z",
           "$reason": "ZWE-CRT-2024-V0.1-2022-20250211-160026_started.xlsx has no Summary2 sheet, so no national total was read from it for Zimbabwe."
         }
       ],
