@@ -71,7 +71,7 @@ T4의 첫 표본은 캄보디아와 우간다다. 09-12부터 첫 화면의 두 
 |---|---:|---|
 | 레코드가 있는 국가·영토 | [218](../data/census.json#countries) | `report --json` |
 | 병합하지 않고 나란히 보관하는 연결 소스 | 12 | 〃 |
-| 계산을 거절하고 사유를 기록한 건 | [370](../data/census.json#refusals_total) | 〃 |
+| 계산을 거절하고 사유를 기록한 건 | [369](../data/census.json#refusals_total) | 〃 |
 | 그 사유의 서로 다른 문장 | [131](../data/census.json#refusals_distinct_sentences) | 〃 |
 | 순위·등급을 매긴 국가 | 0 | 설계상 없음 |
 
@@ -139,7 +139,7 @@ document's own." 거절은 새 가족 `gap.two-ledgers`로 묶이고, 추세는 
 | 수치 | 09-10 | 09-12 |
 |---|---:|---:|
 | 이행 판정 | 38 | [12](../data/census.json#gap_assessed) |
-| 거절 전체 | 325 | [370](../data/census.json#refusals_total) |
+| 거절 전체 | 325 | [369](../data/census.json#refusals_total) |
 | 서로 다른 문장 | 69 | [131](../data/census.json#refusals_distinct_sentences) |
 | 두 장부 거절 | — | [1](../data/census.json#refusals_by_family.gap.two-ledgers) |
 
