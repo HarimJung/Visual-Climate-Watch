@@ -68,16 +68,16 @@
 | NDC 등록부에 현행 제출본 있음 | [193](../data/census.json#ndc_registry_active) / 218 |
 | 등록부가 "현행 없음"을 명시 | [2](../data/census.json#ndc_registry_none_active) / 218 |
 | NDC 문서를 실제로 확보 | [196](../data/census.json#ndc_documents_held) (EU 공동 NDC 하나가 27개 회원국을 덮는다) |
-| **수치를 읽어낸 문서** | **[63](../data/census.json#ndc_document_accepted)** |
-| 읽기를 거절한 문서 | [133](../data/census.json#ndc_target_refused) |
+| **수치를 읽어낸 문서** | **[64](../data/census.json#ndc_document_accepted)** |
+| 읽기를 거절한 문서 | [132](../data/census.json#ndc_target_refused) |
 | 문서가 절대 톤수까지 명시 | [1](../data/census.json#ndc_target_tonnage_stated) |
 | **헤드라인 서약을 읽은 레코드 (범위 포함)** | **[83](../data/census.json#ndc_headline_read)** |
 | 그중 범위로 진술된 것 (두 끝을 다 싣는다) | [31](../data/census.json#ndc_target_ranges) |
 | 무조건·조건부 쌍을 둘 다 읽음 | [14](../data/census.json#ndc_headline_pairs) |
 | 조건부 수치만 있는 헤드라인 (조건을 함께 싣는다) | [5](../data/census.json#ndc_headline_conditional_only) |
 | 등록부의 더 새 제출본에서 읽음 | [53](../data/census.json#ndc_headline_from_newer_filing) |
-| 더 새 제출본을 확보함 (아카이브 캡처·PRIMAP) | [155](../data/census.json#ndc_newer_filing_held) |
-| 더 새 제출본을 아직 못 받음 (사유 기재) | [17](../data/census.json#ndc_newer_filing_unretrieved) |
+| 더 새 제출본을 확보함 (아카이브 캡처·PRIMAP) | [154](../data/census.json#ndc_newer_filing_held) |
+| 더 새 제출본을 아직 못 받음 (사유 기재) | [19](../data/census.json#ndc_newer_filing_unretrieved) |
 
 헤드라인은 수치를 읽은 **가장 새 문서**에서 온다. 더 새 문서를 읽고 거절했는데 옛 문서에서
 읽은 수치가 있으면 그 수치를 보이되, 레코드가 어느 문서의 수치인지와 새 문서의 거절 사유를
@@ -91,7 +91,7 @@
 
 | 사유 | 건수 |
 |---|---:|
-| 조건에 맞는 문장이 없음 (궤적형·절대량형 목표) | [75](../data/census.json#refusals_by_family.doc.no-sentence) |
+| 조건에 맞는 문장이 없음 (궤적형·절대량형 목표) | [74](../data/census.json#refusals_by_family.doc.no-sentence) |
 | 같은 기준에 서로 다른 퍼센트가 여러 개, 라벨 없음 | [34](../data/census.json#refusals_by_family.doc.unlabelled-percentages) |
 | 기준연도와 BAU 등 기준·시계가 둘 이상 | [12](../data/census.json#refusals_by_family.doc.multiple-bases) |
 | 텍스트 레이어 없음 (스캔 문서) | [4](../data/census.json#refusals_by_family.doc.no-text-layer) |
@@ -131,9 +131,9 @@
 | 항목 | 값 |
 |---|---:|
 | GCF 재원이 도달한 국가 | [136](../data/census.json#finance_countries) |
-| 승인액 합계 | [$21.09bn](../data/census.json#finance_total_approved_usd) |
-| 단일국 프로젝트로 귀속 가능한 집행액 | [$4.62bn](../data/census.json#finance_total_disbursed_usd) |
-| 집행액이 귀속된 국가 | [101](../data/census.json#finance_disbursement_attributed) |
+| 승인액 합계 | [$21.06bn](../data/census.json#finance_total_approved_usd) |
+| 단일국 프로젝트로 귀속 가능한 집행액 | [$4.66bn](../data/census.json#finance_total_disbursed_usd) |
+| 집행액이 귀속된 국가 | [102](../data/census.json#finance_disbursement_attributed) |
 | GCF 전체 프로젝트 목록에 하나도 없는 레코드 (진술된 부재) | [82](../data/census.json#gcf_stated_absences) |
 
 마지막 줄은 "안 읽음"이 아니라 **기금 자신의 전체 목록이 그 이름을 적지 않았다**는 사실이다.
@@ -148,14 +148,14 @@
 |---|---:|
 | 이행 격차를 판정함 | [12](../data/census.json#gap_assessed) / 218 |
 | 판정을 **거절**함 (R4) | [206](../data/census.json#gap_refused) / 218 |
-| 거절 문장 전체 (판정 + 문서 읽기) | [370](../data/census.json#refusals_total) |
+| 거절 문장 전체 (판정 + 문서 읽기) | [369](../data/census.json#refusals_total) |
 
 판정이 2026-09-12의 31건에서 줄어든 것은 헤드라인이 더 새 제출본으로 옮겨 갔기 때문이다.
 범위로 진술된 목표는 단일 톤수로 바꾸지 않으므로 판정하지 않고([31](../data/census.json#refusals_by_family.gap.range-target)건),
 BAU 기준 목표인데 그 BAU 투영을 읽지 못한 것이 [38](../data/census.json#refusals_by_family.gap.bau-not-loaded)건이다.
 당사국이 아닌 레코드 [21](../data/census.json#refusals_by_family.gap.not-a-party)건은 판정 대상이 아니다.
 
-[370](../data/census.json#refusals_total)건의 거절은 실패가 아니라 출력물이다. 각 거절은 그 국가에만 해당하는
+[369](../data/census.json#refusals_total)건의 거절은 실패가 아니라 출력물이다. 각 거절은 그 국가에만 해당하는
 문장을 갖는다. 예: 아프가니스탄은 "13.6% below BAU"인데 그 BAU 투영이 어떤
 소스에도 없어서 톤수로 환산할 수 없다고 말한다. 우간다는 한때 BAU 77.3 MtCO₂e를
 "문서에서 읽은" 나라였다. 그런데 그 파일은 2015년 10월에 만든 18쪽짜리 INDC였고, 레코드는
@@ -224,12 +224,12 @@ BAU 기준 목표인데 그 BAU 투영을 읽지 못한 것이 [38](../data/cens
 | **P3** | The Unknown Map — 우리 자신의 공백을 헤드라인 지표로 | `engine:census` → `data/census.json` | **출시됨** `/unknown` |
 | **P4** | Receipts — 수치별 출처 API + 인용 칩 | `provenance`, `$sources_index` | **출시됨** `/api/v1/receipt`, `/api/v1/related` |
 | **P5** | BTR Reading Room — [1,744](../data/census.json#btr_component_sockets) 소켓 | `btr.components[].$evidence` [424](../data/census.json#btr_components_evidenced) 확보 | **부분 출시**, 문서 파싱 시 확대 |
-| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` [206](../data/census.json#gap_refused) + `ndc_document.$reason` [133](../data/census.json#ndc_target_refused) | **출시됨** `/refusals` |
+| **P6** | Refusal Log — 엔진이 거절한 모든 계산 | `derived.$reason` [206](../data/census.json#gap_refused) + `ndc_document.$reason` [132](../data/census.json#ndc_target_refused) | **출시됨** `/refusals` |
 
-**P6이 지금 가장 저평가된 자산이다.** 거절 [370](../data/census.json#refusals_total)건이 이미 레코드 안에 있고,
+**P6이 지금 가장 저평가된 자산이다.** 거절 [369](../data/census.json#refusals_total)건이 이미 레코드 안에 있고,
 서로 다른 문장은 [131](../data/census.json#refusals_distinct_sentences)개, 사유 가족(census `refusals_by_family`의 키)은 2026-10-11 기준 15개다.
-과장하지 않고 말하면: [370](../data/census.json#refusals_total)건 중 [114](../data/census.json#refusals_by_family.gap.no-target)건은 "목표 없음" 한 가족이고 숫자만 다르다.
-그래서 헤드라인으로 파는 숫자는 가족 수(`/refusals`가 `refusals.json`에서 센다, 2026-10-11 기준 15개)이고, [370](../data/census.json#refusals_total)은 화면이 링크할 항목 수다.
+과장하지 않고 말하면: [369](../data/census.json#refusals_total)건 중 [114](../data/census.json#refusals_by_family.gap.no-target)건은 "목표 없음" 한 가족이고 숫자만 다르다.
+그래서 헤드라인으로 파는 숫자는 가족 수(`/refusals`가 `refusals.json`에서 센다, 2026-10-11 기준 15개)이고, [369](../data/census.json#refusals_total)은 화면이 링크할 항목 수다.
 경쟁 제품이 갖지 못한 것은 개수가 아니라, 문장이 규칙에서 생성되고
 레코드·API·로그에서 바이트 동일하다는 점이다.
 
@@ -304,7 +304,7 @@ BAU 기준 목표인데 그 BAU 투영을 읽지 못한 것이 [38](../data/cens
 |---|---:|---:|
 | 목표를 읽어낸 국가 (범위 포함) | [83](../data/census.json#ndc_headline_read) | 60 |
 | 근거가 붙은 BTR 소켓 | [424](../data/census.json#btr_components_evidenced) / [1,744](../data/census.json#btr_component_sockets) | 700 / 1,744 |
-| 재원 집행액이 귀속된 국가 | [101](../data/census.json#finance_disbursement_attributed) | 130 |
+| 재원 집행액이 귀속된 국가 | [102](../data/census.json#finance_disbursement_attributed) | 130 |
 | 이행 판정이 가능한 국가 | [12](../data/census.json#gap_assessed) | 40 |
 | **근거 없는 `absent`** | **0** | **0 (불변)** |
 | **거절에 사유가 없는 건** | **0** | **0 (불변)** |
