@@ -62,7 +62,7 @@
       "id": "DS-06-NDC-LATEST",
       "name": "Ecuador Second NDC",
       "url": "https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-09"
     }
   },
   "finance_need": {
@@ -76,7 +76,7 @@
       "id": "DS-06-NDC-LATEST",
       "name": "Ecuador Second NDC",
       "url": "https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-09"
     }
   },
   "btr": {
@@ -131,7 +131,7 @@
       "id": "DS-BTR",
       "name": "UNFCCC: First Biennial Transparency Reports",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "vulnerability": {
@@ -146,7 +146,7 @@
       "id": "DS-04",
       "name": "ND-GAIN Country Index",
       "url": "https://gain.nd.edu/our-work/country-index/",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "series": {
@@ -339,7 +339,7 @@
       },
       {
         "year": 2015,
-        "value_mtco2e": 74.71517652062116,
+        "value_mtco2e": 71.93491733864913,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -351,7 +351,7 @@
       },
       {
         "year": 2016,
-        "value_mtco2e": 74.19397403977275,
+        "value_mtco2e": 71.47942239988669,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -363,7 +363,7 @@
       },
       {
         "year": 2017,
-        "value_mtco2e": 71.66888126927792,
+        "value_mtco2e": 69.01396810139642,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -375,7 +375,7 @@
       },
       {
         "year": 2018,
-        "value_mtco2e": 73.72658785289448,
+        "value_mtco2e": 71.51647453149238,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -387,7 +387,7 @@
       },
       {
         "year": 2019,
-        "value_mtco2e": 72.90111403192397,
+        "value_mtco2e": 70.99463304033458,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -399,7 +399,7 @@
       },
       {
         "year": 2020,
-        "value_mtco2e": 66.74533675969887,
+        "value_mtco2e": 64.4242316388801,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -411,7 +411,7 @@
       },
       {
         "year": 2021,
-        "value_mtco2e": 68.43446156341453,
+        "value_mtco2e": 69.18620982916921,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -423,7 +423,7 @@
       },
       {
         "year": 2022,
-        "value_mtco2e": 70.54667766415663,
+        "value_mtco2e": 71.288837773081,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -435,7 +435,7 @@
       },
       {
         "year": 2023,
-        "value_mtco2e": 74.85244869631931,
+        "value_mtco2e": 74.79590595450263,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -447,7 +447,7 @@
       },
       {
         "year": 2024,
-        "value_mtco2e": 77.76178342511268,
+        "value_mtco2e": 78.33872678306778,
         "state": "observed",
         "source_id": "DS-02"
       },
@@ -459,7 +459,7 @@
       },
       {
         "year": 2025,
-        "value_mtco2e": 77.15128037938395,
+        "value_mtco2e": 77.08932806339249,
         "state": "observed",
         "source_id": "DS-02"
       }
@@ -503,7 +503,7 @@
       "id": "DS-01",
       "name": "World Bank: country register and World Development Indicators",
       "url": "https://data.worldbank.org",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "ndc_registry": {
@@ -527,7 +527,7 @@
       "name": "UNFCCC NDC Registry index",
       "url": "https://unfccc.int/NDCREG",
       "document_url": "https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "ndc_assessment": {
@@ -547,7 +547,7 @@
       "id": "DS-06",
       "name": "Climate Watch / CAIT: (I)NDC content assessment",
       "url": "https://www.climatewatchdata.org/ndcs-content",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "ndc_document": {
@@ -609,7 +609,7 @@
       "id": "DS-06-NDC-LATEST",
       "name": "Ecuador Second NDC",
       "url": "https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-09"
     }
   },
   "ndc_documents": [
@@ -673,7 +673,7 @@
         "id": "DS-06-NDC-LATEST",
         "name": "Ecuador Second NDC",
         "url": "https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf",
-        "retrieved_at": "2026-10-11"
+        "retrieved_at": "2026-11-09"
       }
     },
     {
@@ -702,7 +702,7 @@
       "headline": false,
       "mirror_check": {
         "result": "verified",
-        "checked_at": "2026-10-11T14:22:37.161Z",
+        "checked_at": "2026-11-09T11:44:21.726Z",
         "capture_timestamp": "20220403134604"
       },
       "state": "unknown",
@@ -712,7 +712,7 @@
         "id": "DS-06-NDC",
         "name": "Ecuador First NDC",
         "url": "https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Ecuador%20First/Primera%20NDC%20Ecuador.pdf",
-        "retrieved_at": "2026-10-11"
+        "retrieved_at": "2026-11-09"
       }
     }
   ],
@@ -759,7 +759,7 @@
       "id": "DS-UNTC",
       "name": "UN Treaty Collection, depositary status",
       "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "ndc_progress": {
@@ -1007,7 +1007,7 @@
       "name": "BTR1 workbook: CTF Table 4",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "document_url": "https://unfccc.int/sites/default/files/resource/c.%20ECU-CTF-NDC-2024_final.xlsx",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-09"
     }
   },
   "btr_inventory": {
@@ -1055,17 +1055,17 @@
       "id": "DS-BTR-TABLES",
       "name": "BTR1 workbook: CRT Summary2",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-09"
     }
   },
   "finance_flows": {
     "channel": "Green Climate Fund",
-    "approved_usd": 369585635,
-    "co_financing_usd": 538876203,
+    "approved_usd": 387778584,
+    "co_financing_usd": 591303654,
     "disbursed_usd": 73385086,
-    "projects": 20,
+    "projects": 21,
     "regional_projects": 13,
-    "regional_disbursed_usd": 753598535,
+    "regional_disbursed_usd": 751095051,
     "instruments": [
       "Equity",
       "Grants",
@@ -1104,7 +1104,7 @@
         "channel": "GCF",
         "instrument": "Senior Loans + Grants",
         "provider": "Green Climate Fund",
-        "amount_usd": 36869873.04,
+        "amount_usd": 36362822.55,
         "project_ref": "FP095",
         "project_name": "Transforming Financial Systems for Climate",
         "state": "observed"
@@ -1388,6 +1388,17 @@
         "year": 2026,
         "flow_type": "approval",
         "channel": "GCF",
+        "instrument": "Equity + Grants",
+        "provider": "Green Climate Fund",
+        "amount_usd": 18700000,
+        "project_ref": "FP328",
+        "project_name": "Transformation Pathways Initiative (TPI)",
+        "state": "observed"
+      },
+      {
+        "year": 2026,
+        "flow_type": "approval",
+        "channel": "GCF",
         "instrument": "Grants",
         "provider": "Green Climate Fund",
         "amount_usd": 23362075,
@@ -1397,12 +1408,12 @@
       }
     ],
     "state": "observed",
-    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 13 multi-country project(s) disbursing 753,598,535 USD in total are counted separately and never divided.",
+    "$note": "Green Climate Fund only. Not total climate finance received. approved_usd is the Fund's own per-country figure. disbursed_usd counts only single-country projects; 13 multi-country project(s) disbursing 751,095,051 USD in total are counted separately and never divided.",
     "source": {
       "id": "DS-15",
       "name": "Green Climate Fund: projects and disbursements",
       "url": "https://www.greenclimate.fund/projects/dashboard",
-      "retrieved_at": "2026-10-10"
+      "retrieved_at": "2026-11-09"
     }
   },
   "emissions_profile": {
@@ -1689,47 +1700,47 @@
         "series": [
           {
             "year": 2015,
-            "value_mtco2e": 74.71517652062116
+            "value_mtco2e": 71.93491733864913
           },
           {
             "year": 2016,
-            "value_mtco2e": 74.19397403977275
+            "value_mtco2e": 71.47942239988669
           },
           {
             "year": 2017,
-            "value_mtco2e": 71.66888126927792
+            "value_mtco2e": 69.01396810139642
           },
           {
             "year": 2018,
-            "value_mtco2e": 73.72658785289448
+            "value_mtco2e": 71.51647453149238
           },
           {
             "year": 2019,
-            "value_mtco2e": 72.90111403192397
+            "value_mtco2e": 70.99463304033458
           },
           {
             "year": 2020,
-            "value_mtco2e": 66.74533675969887
+            "value_mtco2e": 64.4242316388801
           },
           {
             "year": 2021,
-            "value_mtco2e": 68.43446156341453
+            "value_mtco2e": 69.18620982916921
           },
           {
             "year": 2022,
-            "value_mtco2e": 70.54667766415663
+            "value_mtco2e": 71.288837773081
           },
           {
             "year": 2023,
-            "value_mtco2e": 74.85244869631931
+            "value_mtco2e": 74.79590595450263
           },
           {
             "year": 2024,
-            "value_mtco2e": 77.76178342511268
+            "value_mtco2e": 78.33872678306778
           },
           {
             "year": 2025,
-            "value_mtco2e": 77.15128037938395
+            "value_mtco2e": 77.08932806339249
           }
         ]
       },
@@ -1989,7 +2000,7 @@
     "$note": "Headline totals are OWID only. OWID's CO₂ sub-totals are fossil/industrial CO₂ by fuel, not a full sectoral GHG breakdown, and do not sum to total_mtco2e. DS-05's rows are non-CO₂ gases only and are not comparable with the others; that is also why DS-05 is absent from series.observed, where a shorter curve would read as a disagreement rather than a difference of scope. by_source carries each source whole."
   },
   "verdict": {
-    "text": "Ecuador pledges a 7% reduction by 2035 against 2035 business-as-usual (unconditional). The registry's current submission for this Party is Second NDC, filed 2025-02-06. 52 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (6). For 2024 the sources disagree: DS-02 77.8 MtCO₂e, DS-35 63.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 7% below a business-as-usual projection for 2035. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 43.6 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 20.4-25% (unconditional) to 37.5-45.8% (conditional) reduction in emissions in the energy sector by 2025 compared to the BAU scenario, equivalent to 40% reduction (conditional) in emissions per capita by 2025 compared to the BAU levels. It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.03°C under SSP1-2.6 to +4°C under SSP5-8.5. These are model runs, not observations.",
+    "text": "Ecuador pledges a 7% reduction by 2035 against 2035 business-as-usual (unconditional). The registry's current submission for this Party is Second NDC, filed 2025-02-06. 52 observed values are loaded from DS-02 (11), DS-35 (35), DS-40 (6). For 2024 the sources disagree: DS-02 78.3 MtCO₂e, DS-35 63.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them. No implementation gap is reported: the pledge is 7% below a business-as-usual projection for 2035. That projection is not in any source loaded here, so the percentage cannot be turned into a tonnage and the trend cannot be judged against it. It submitted BTR1. 4 of 8 components have been confirmed in the document; the rest are unparsed, which is not a finding against the country. ND-GAIN scores it 43.6 for 2024. In the first NDC round, WRI's CAIT assessment recorded: 20.4-25% (unconditional) to 37.5-45.8% (conditional) reduction in emissions in the energy sector by 2025 compared to the BAU scenario, equivalent to 40% reduction (conditional) in emissions per capita by 2025 compared to the BAU levels. It was classed both. That is a 2016 assessment of an earlier submission, not the target above. Projected warming for 2080-2099 against 1995-2014 ranges from +1.03°C under SSP1-2.6 to +4°C under SSP5-8.5. These are model runs, not observations.",
     "clauses": [
       {
         "field": "ndc.reduction_pct",
@@ -2005,7 +2016,7 @@
       },
       {
         "field": "series.observed.$conflict",
-        "text": "For 2024 the sources disagree: DS-02 77.8 MtCO₂e, DS-35 63.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
+        "text": "For 2024 the sources disagree: DS-02 78.3 MtCO₂e, DS-35 63.1 MtCO₂e. They are on different inventory scopes and the engine does not reconcile them."
       },
       {
         "field": "derived.$reason",
@@ -2241,8 +2252,8 @@
       ],
       "connection": "connected",
       "records": 35,
-      "last_run": "2026-10-10T16:23:31.628Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:54:49.299Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://github.com/owid/co2-data",
       "license": "CC BY 4.0"
     },
@@ -2255,8 +2266,8 @@
       ],
       "connection": "connected",
       "records": 11,
-      "last_run": "2026-10-10T16:23:43.456Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:55:07.555Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://climatetrace.org",
       "license": "CC BY 4.0"
     },
@@ -2269,8 +2280,8 @@
       ],
       "connection": "connected",
       "records": 3,
-      "last_run": "2026-10-10T16:23:32.768Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:54:50.686Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://gain.nd.edu/our-work/country-index/",
       "license": "CC BY"
     },
@@ -2283,8 +2294,8 @@
       ],
       "connection": "connected",
       "records": 16,
-      "last_run": "2026-10-10T16:24:00.526Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:55:23.636Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://climateknowledgeportal.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -2297,8 +2308,8 @@
       ],
       "connection": "connected",
       "records": 12,
-      "last_run": "2026-10-10T16:24:02.539Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:55:25.626Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://data.worldbank.org",
       "license": "CC BY 4.0"
     },
@@ -2311,8 +2322,8 @@
       ],
       "connection": "connected",
       "records": 54,
-      "last_run": "2026-10-10T16:24:07.891Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:55:35.148Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://edgar.jrc.ec.europa.eu/report_2024",
       "license": "CC BY 4.0 (CH₄/N₂O/F-gases). CO₂ excluded: IEA-derived, CC BY-NC-ND 4.0"
     },
@@ -2325,8 +2336,8 @@
       ],
       "connection": "connected",
       "records": 6,
-      "last_run": "2026-10-10T16:28:29.141Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:56:31.034Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://di.unfccc.int/detailed_data_by_party",
       "license": "CC BY 4.0 (PIK/Zenodo release); the underlying submissions are UNFCCC public documents"
     },
@@ -2339,8 +2350,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-10-10T16:24:08.161Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:55:35.831Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://www.climatewatchdata.org/ndcs-content",
       "license": "CC BY 4.0"
     },
@@ -2353,8 +2364,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-10-10T16:24:09.116Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:55:36.488Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://unfccc.int/NDCREG",
       "license": "not declared by the mirror; underlying documents are UNFCCC public filings"
     },
@@ -2367,8 +2378,8 @@
       ],
       "connection": "not-connected",
       "records": 0,
-      "last_run": "2026-10-11T14:22:35.888Z",
-      "retrieved_at": "2026-10-11",
+      "last_run": "2026-11-09T11:42:46.509Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the mirror declares CC0 for its scripts only"
     },
@@ -2381,8 +2392,8 @@
       ],
       "connection": "connected",
       "records": 1,
-      "last_run": "2026-10-11T14:25:52.359Z",
-      "retrieved_at": "2026-10-11",
+      "last_run": "2026-11-09T11:54:35.446Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://unfccc.int/NDCREG",
       "license": "UNFCCC public filings; the Internet Archive and the PRIMAP mirror are retrieval routes only"
     },
@@ -2394,9 +2405,9 @@
         "climate_finance"
       ],
       "connection": "connected",
-      "records": 29,
-      "last_run": "2026-10-10T16:28:43.203Z",
-      "retrieved_at": "2026-10-10",
+      "records": 30,
+      "last_run": "2026-11-09T11:56:46.765Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://www.greenclimate.fund/projects/dashboard",
       "license": "GCF website terms (greenclimate.fund/terms-and-conditions, read 2026-09-12): attribution required, \"First published by the Green Climate Fund\"; non-commercial use; commercial redistribution needs GCF written consent"
     },
@@ -2409,8 +2420,8 @@
       ],
       "connection": "connected",
       "records": 27,
-      "last_run": "2026-10-10T16:28:44.155Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:56:47.734Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     },
@@ -2423,8 +2434,8 @@
       ],
       "connection": "connected",
       "records": 2,
-      "last_run": "2026-10-11T14:11:53.779Z",
-      "retrieved_at": "2026-10-11",
+      "last_run": "2026-11-09T11:54:47.454Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://unfccc.int/first-biennial-transparency-reports",
       "license": "mirror tooling Apache-2.0; the filings themselves are UNFCCC public submissions"
     },
@@ -2437,123 +2448,123 @@
       ],
       "connection": "connected",
       "records": 2,
-      "last_run": "2026-10-11T14:11:53.938Z",
-      "retrieved_at": "2026-10-10",
+      "last_run": "2026-11-09T11:54:48.879Z",
+      "retrieved_at": "2026-11-09",
       "url": "https://treaties.un.org/Pages/Treaties.aspx?id=27&subid=A&clang=_en",
       "license": "United Nations depositary record, public"
     }
   ],
   "provenance": {
-    "run_id": "6b00e9279921d63545d5ee4369a81a1e",
-    "built_at": "2026-10-10T16:28:44.155Z",
-    "payload_sha256": "329b52b2edba971dbdb9e21c3ae991c358be5f7fc06853a770262173905bd488",
+    "run_id": "bbffca092359948a1d20da2fea926995",
+    "built_at": "2026-11-09T11:56:47.734Z",
+    "payload_sha256": "93464eae3d9055048af20f912da2cac73e9457c7e0eb7808a600352e5ea6ada0",
     "inputs": [
       {
         "source_id": "DS-35",
         "file_sha256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
-        "retrieved_at": "2026-10-10T16:23:31.628Z",
+        "retrieved_at": "2026-11-09T11:54:49.299Z",
         "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
       },
       {
         "source_id": "DS-04",
         "file_sha256": "e854c7fe6ccef8c5d24a5ef7f370b7f61d1b8c6816da19fda4cd892ca6cdf0de",
-        "retrieved_at": "2026-10-10T16:23:32.768Z",
+        "retrieved_at": "2026-11-09T11:54:50.686Z",
         "url": "https://gain.nd.edu/assets/647440/ndgain_countryindex_2026.zip"
       },
       {
         "source_id": "DS-02",
-        "file_sha256": "50ecfd976626464637bcf04e02112e07764bfe165141eb1ec976b0cbee7efb59",
-        "retrieved_at": "2026-10-10T16:23:43.456Z",
+        "file_sha256": "49ab839e6fb6a34044e974e52bc04f2cb3d2f0f00d6f1dd867ad3dea89c4ca78",
+        "retrieved_at": "2026-11-09T11:55:07.555Z",
         "url": "https://api.climatetrace.org/v6/country/emissions?since=2025&to=2025&countries=ABW%2CAFG%2CAGO%2CAIA%2CALB%2CAND%2CARE%2CARG%2CARM%2CATA%2CATG%2CAUS%2CAUT%2CAZE%2CBDI%2CBEL%2CBEN%2CBES%2CBFA%2CBGD%2CBGR%2CBHR%2CBHS%2CBIH%2CBLR%2CBLZ%2CBMU%2CBOL%2CBRA%2CBRB%2CBRN%2CBTN%2CBWA%2CCAF%2CCAN%2CCHE%2CCHL%2CCHN%2CCIV%2CCMR%2CCOD%2CCOG%2CCOK%2CCOL%2CCOM%2CCPV%2CCRI%2CCUB%2CCUW%2CCXR%2CCYP%2CCZE%2CDEU%2CDJI%2CDMA%2CDNK%2CDOM%2CDZA%2CECU%2CEGY%2CERI%2CESP%2CEST%2CETH%2CFIN%2CFJI%2CFRA%2CFRO%2CFSM%2CGAB%2CGBR%2CGEO%2CGHA%2CGIN%2CGMB%2CGNB%2CGNQ%2CGRC%2CGRD%2CGRL%2CGTM%2CGUY%2CHKG%2CHND%2CHRV%2CHTI%2CHUN%2CIDN%2CIND%2CIRL%2CIRN%2CIRQ%2CISL%2CISR%2CITA%2CJAM%2CJOR%2CJPN%2CKAZ%2CKEN%2CKGZ%2CKHM%2CKIR%2CKNA%2CKOR%2CKWT%2CLAO%2CLBN%2CLBR%2CLBY%2CLCA%2CLIE%2CLKA%2CLSO%2CLTU%2CLUX%2CLVA%2CMAC%2CMAR%2CMCO%2CMDA%2CMDG%2CMDV%2CMEX%2CMHL%2CMKD%2CMLI%2CMLT%2CMMR%2CMNE%2CMNG%2CMOZ%2CMRT%2CMSR%2CMUS%2CMWI%2CMYS%2CNAM%2CNCL%2CNER%2CNGA%2CNIC%2CNIU%2CNLD%2CNOR%2CNPL%2CNRU%2CNZL%2COMN%2CPAK%2CPAN%2CPER%2CPHL%2CPLW%2CPNG%2CPOL%2CPRK%2CPRT%2CPRY%2CPSE%2CPYF%2CQAT%2CROU%2CRUS%2CRWA%2CSAU%2CSDN%2CSEN%2CSGP%2CSHN%2CSLB%2CSLE%2CSLV%2CSMR%2CSOM%2CSPM%2CSRB%2CSSD%2CSTP%2CSUR%2CSVK%2CSVN%2CSWE%2CSWZ%2CSXM%2CSYC%2CSYR%2CTCA%2CTCD%2CTGO%2CTHA%2CTJK%2CTKM%2CTLS%2CTON%2CTTO%2CTUN%2CTUR%2CTUV%2CTWN%2CTZA%2CUGA%2CUKR%2CURY%2CUSA%2CUZB%2CVAT%2CVCT%2CVEN%2CVGB%2CVNM%2CVUT%2CWLF%2CWSM%2CYEM%2CZAF%2CZMB%2CZWE"
       },
       {
         "source_id": "DS-18",
         "file_sha256": "1db3893a3ecac5738269a320e29838652b94a1ddb736d7d44f487033a940ce4c",
-        "retrieved_at": "2026-10-10T16:24:00.526Z",
+        "retrieved_at": "2026-11-09T11:55:23.636Z",
         "url": "https://cckpapi.worldbank.org/cckp/v1/cmip6-x0.25_climatology_tas_climatology_annual_2080-2099_median_ssp585_ensemble_all_mean/all_countries?_format=json"
       },
       {
         "source_id": "DS-01",
         "file_sha256": "b66a43d65d59de6f4a2f34376880d1651e0cc8f34910a7e968a8d59513519759",
-        "retrieved_at": "2026-10-10T16:24:02.539Z",
+        "retrieved_at": "2026-11-09T11:55:25.626Z",
         "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2015:2025&per_page=20000"
       },
       {
         "source_id": "DS-05",
         "file_sha256": "769803bb2d3c9535123f69c7b4d15d38030efe77e237b85867a2c0de3726edec",
-        "retrieved_at": "2026-10-10T16:24:07.891Z",
+        "retrieved_at": "2026-11-09T11:55:35.148Z",
         "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2024_GHG_booklet_2024.xlsx"
       },
       {
         "source_id": "DS-06",
         "file_sha256": "dfba870661a07c986d3f8c5d2d7d90a4426c1143ceac4e5d08888c0da5b269cb",
-        "retrieved_at": "2026-10-10T16:24:08.161Z",
+        "retrieved_at": "2026-11-09T11:55:35.831Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndc-assessments/main/data/ndc-content-cait.csv"
       },
       {
         "source_id": "DS-08",
-        "file_sha256": "c529fcfefbc881df2b8f8e4ef7208d775d68de0dd1b81f56e550e0a498468632",
-        "retrieved_at": "2026-10-10T16:24:09.116Z",
+        "file_sha256": "b7d8326786fb29341c69fa4d81e24d780d592cff25ec51616f2b68c31873c9d0",
+        "retrieved_at": "2026-11-09T11:55:36.488Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/ndcs/main/data/ndcs.json"
       },
       {
         "source_id": "DS-40",
         "file_sha256": "c5c5da9feea9b2102e5ac9d7b7429ed2ff51b7425df8d748dc11eb887266b07a",
-        "retrieved_at": "2026-10-10T16:28:29.141Z",
+        "retrieved_at": "2026-11-09T11:56:31.034Z",
         "url": "https://zenodo.org/api/records/12664477/files/data-2024-07-05.zip/content"
       },
       {
         "source_id": "DS-15",
-        "file_sha256": "3d0398f3cb087233ebe54573cc5dd8e20429c5bc30b25455cc7f9047c5614401",
-        "retrieved_at": "2026-10-10T16:28:43.203Z",
+        "file_sha256": "239489eeff63f28a52dbf5cc8fce440556ec3bf883a40df2f68f426fa6dc10eb",
+        "retrieved_at": "2026-11-09T11:56:46.765Z",
         "url": "https://api.gcfund.org/v1/projects"
       },
       {
         "source_id": "DS-BTR",
-        "file_sha256": "0dfd707d6bf7e524a57cc4c497c424e01dd1b5e84f69775b019359a1324ef651",
-        "retrieved_at": "2026-10-10T16:28:44.155Z",
+        "file_sha256": "1f10e6879f0b962957f2ac3c3146371d5651a0fc517ff700bf2cc4b23d28c8a0",
+        "retrieved_at": "2026-11-09T11:56:47.734Z",
         "url": "https://api.github.com/repos/JGuetschow/UNFCCC_non-AnnexI_data/git/trees/main?recursive=1"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "721aa825e2bf979b6b864620182bd48337d37db719795eebfd676e39681b74cd",
-        "retrieved_at": "2026-10-11T14:22:35.888Z",
+        "retrieved_at": "2026-11-09T11:42:46.509Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/data/national-climate-plans.csv"
       },
       {
         "source_id": "DS-06-NDC-LATEST",
         "file_sha256": "c257cb90f1ac8ced54c346cff669384f3526e38ccf7ee5578e48dfc412998838",
-        "retrieved_at": "2026-10-10T20:47:23.627Z",
+        "retrieved_at": "2026-10-12T11:47:55.133Z",
         "url": "https://web.archive.org/web/20260920074101id_/https://unfccc.int/sites/default/files/2025-02/Segunda%20NDC%20de%20Ecuador.pdf"
       },
       {
         "source_id": "DS-06-NDC",
         "file_sha256": "5b09921f640cb0d0b17b662768b98e7049f2ac196c44c0d771bccbbf418b8dc6",
-        "retrieved_at": "2026-10-10T16:21:09.555Z",
+        "retrieved_at": "2026-11-09T11:40:41.363Z",
         "url": "https://raw.githubusercontent.com/openclimatedata/national-climate-plans/main/pdfs/ECU_Ecuador_First_NDC_Spanish.pdf"
       },
       {
         "source_id": "DS-BTR-TABLES",
         "file_sha256": "895cf8ab8cf6307ba9e5a222fe857a02082fcbae873bb85108cb59e62c978a46",
-        "retrieved_at": "2026-10-10T20:40:30.895Z",
+        "retrieved_at": "2026-10-12T12:30:50.270Z",
         "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s71684--f39b7da91d7345477b7194aa6353425d.xlsx"
       },
       {
         "source_id": "DS-BTR-TABLES",
         "file_sha256": "dc4fccd49ad28425f704b387b677103ca77e6bf91e832ccbc6c0fb0c6df014c4",
-        "retrieved_at": "2026-10-10T20:40:33.008Z",
+        "retrieved_at": "2026-10-12T12:30:52.304Z",
         "url": "https://pub-550cb70a20574daa8b2d1f979876bf4b.r2.dev/MD5E-s846284--b28769d195b8d8be06f9310747274c97.xlsx"
       },
       {
         "source_id": "DS-UNTC",
         "file_sha256": "92a525f426a968a80e0b422f3f0a2f730b6ff1e5a70aa6f0eac80d13d060e897",
-        "retrieved_at": "2026-10-10T20:31:34.360Z",
+        "retrieved_at": "2026-11-09T11:54:48.073Z",
         "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf"
       },
       {
         "source_id": "DS-UNTC",
         "file_sha256": "cb2aec820cb4fa2691ca28ef4ef8a0f3f33aeac9f309ce4e55fb8f607b0deeee",
-        "retrieved_at": "2026-10-10T20:31:35.175Z",
+        "retrieved_at": "2026-11-09T11:54:48.835Z",
         "url": "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7-d.en.pdf"
       }
     ]
